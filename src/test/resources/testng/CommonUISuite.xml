@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="DUPR login test">
+	<test name="Common UI Automation Tests" thread-count="4">
+		<classes>
+			<!-- <class name="com.dupr.tests.DUPRLoginTest" />
+			<class name="com.dupr.tests.NegativeLoginTest" />
+			<class name="com.dupr.tests.SignupTest" />
+			<class name="com.dupr.tests.DUPRClaimAccountSignUpTest" />
+			<class name="com.dupr.tests.ForgotPasswordTest" />
+			<class name="com.dupr.tests.SearchPlayersTest" /> -->
+			<class name="com.dupr.tests.AddAMatchTest" />
+		</classes>
+	</test>
+</suite>

@@ -1,0 +1,291 @@
+package com.dupr.pages;
+
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import com.b2b.support.B2BFindBy;
+import com.b2b.support.B2BPageFactory;
+
+public class ForgotPasswordPage extends DUPRBaseAutomationPage {
+
+	private static final Logger log = LogManager.getLogger(DUPRLoginPage.class);
+
+	@B2BFindBy(xpath = "//a[contains(@class,'mt-4') and text()='Search Players']")
+	private WebElement lblSearchPlayers;
+
+	@B2BFindBy(xpath = "//a[contains(@class, 'md:block') and text()='Log In']")
+	private WebElement lnkLogIn;
+
+	@B2BFindBy(xpath = "//h1[@class='MuiTypography-root MuiTypography-h1 css-18q12qh']")
+	private WebElement lblWelcomeBack;
+
+	@B2BFindBy(xpath = "//button[contains(@class,'css-1srnq60') and text()='Forgot Password?']")
+	private WebElement btnForgotPassword;
+
+	@B2BFindBy(xpath = "//h1[contains(@class,'MuiTypography-h1') and text()='Forgot Password?']")
+	private WebElement lblForgotPassword;
+
+	@B2BFindBy(xpath = "//input[@class='MuiInputBase-input MuiOutlinedInput-input css-1x5jdmq']")
+	private WebElement txtBoxEmail;
+
+	@B2BFindBy(xpath = "//button[contains(@class,'MuiButton-root') and text()='Send Email']")
+	private WebElement btnSendEmail;
+
+	@B2BFindBy(xpath = "//h1[@class='MuiTypography-root MuiTypography-h1 css-nidsp']")
+	private WebElement lblCreateANewPassword;
+
+	@B2BFindBy(xpath = "//h5[text()='Verification code (OTP)*']/parent::div/following-sibling::div//input[@aria-label='Please enter verification code. Digit 1']")
+	private WebElement txtBoxOTPOne;
+
+	@B2BFindBy(xpath = "//h5[text()='Verification code (OTP)*']/parent::div/following-sibling::div//input[@aria-label='Digit 2']")
+	private WebElement txtBoxOTPtwo;
+
+	@B2BFindBy(xpath = "//h5[text()='Verification code (OTP)*']/parent::div/following-sibling::div//input[@aria-label='Digit 3']")
+	private WebElement txtBoxOTPThree;
+
+	@B2BFindBy(xpath = "//h5[text()='Verification code (OTP)*']/parent::div/following-sibling::div//input[@aria-label='Digit 4']")
+	private WebElement txtBoxOTPFour;
+
+	@B2BFindBy(xpath = "//h5[text()='Password']/parent::div/following-sibling::div //div[@class='MuiFormControl-root css-tzsjye'] //input")
+	private WebElement txtBoxPassword;
+
+	@B2BFindBy(xpath = "//h5[text()='Confirm Password']/parent::div/following-sibling::div//input")
+	private WebElement txtBoxConfirmPassword;
+
+	@B2BFindBy(xpath = "//button[contains(@class ,'MuiButton-contained') and text()='Confirm Password']")
+	private WebElement btnConfirmPassword;
+
+	@B2BFindBy(xpath = "//h4[@id='customized-dialog-title']")
+	private WebElement lblSuccess;
+
+	@B2BFindBy(xpath = "//button[contains(@class,'MuiButton-sizeMedium') and text()='OK']")
+	private WebElement btnOk;
+
+	@B2BFindBy(xpath = "//h5[@class='MuiTypography-root MuiTypography-h5 css-1m5yda9']//parent::div/following-sibling::div//p")
+	private WebElement txtEmailInvalid;
+
+	@B2BFindBy(xpath = "//h5[@class='MuiTypography-root MuiTypography-h5 css-1m5yda9']//parent::div/following-sibling::div//p")
+	private WebElement txtEmailRequired;
+
+	@B2BFindBy(xpath = "//h5[text()='Password']/parent::div/following-sibling::div/child::div/following-sibling::div[@class=\"MuiFormControl-root css-tzsjye\"]/descendant::p")
+	private WebElement txtPasswordValidation;
+
+	@B2BFindBy(xpath = "//h5[text()='Confirm Password']/parent::div/following-sibling::div//p")
+	private WebElement txtConfirmPasswordValidation;
+
+	@B2BFindBy(xpath = "//button[contains(@class,'MuiButton-whitecontained') and text()='Resend Code']")
+	private WebElement btnResendCode;
+
+	@B2BFindBy(xpath = "//p[@class='MuiTypography-root MuiTypography-body1 css-zds3da']")
+	private WebElement txtOTPSentValidation;
+
+	public ForgotPasswordPage(WebDriver driver) {
+		super(driver);
+		B2BPageFactory.initElements(driver, this);
+	}
+
+	public String getSearchPlayersText() {
+		log.info("Starting of getSearchPlayersText method");
+		log.info("Ending of getSearchPlayersText method");
+
+		return getText(lblSearchPlayers);
+	}
+
+	public void clickOnLogInLink() {
+		log.info("Starting of clickOnLogInLink method");
+
+		this.lnkLogIn.click();
+
+		log.info("Ending of clickOnLogInLink method");
+	}
+
+	public String getWelcomeBackText() {
+		log.info("Starting of getWelcomeBackText method");
+		log.info("Ending of getWelcomeBackText method");
+
+		return getText(lblWelcomeBack);
+	}
+
+	public void clickOnForgotPasswordButton() {
+		log.info("Starting of clickOnForgotPasswordButton method");
+
+		this.btnForgotPassword.click();
+
+		log.info("Ending of clickOnForgotPasswordButton method");
+	}
+
+	public String getForgotPasswordText() {
+		log.info("Starting of getForgotPasswordText method");
+		log.info("Ending of getForgotPasswordText method");
+
+		return getText(lblForgotPassword);
+	}
+
+	public void setEmail(String strEmail) {
+		log.info("Starting of setEmailText method");
+
+		this.impicitWait();
+		txtBoxEmail.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
+		this.txtBoxEmail.click();
+		this.txtBoxEmail.sendKeys(strEmail);
+
+		log.info("Ending of setEmailText method");
+	}
+
+	public void clickOnSendEmailButton() {
+		log.info("Starting of clickOnSendEmailButton method");
+
+		this.clickOnWebElement(btnSendEmail);
+
+		log.info("Ending of clickOnSendEmailButton method");
+	}
+
+	public String getCreateANewPasswordText() {
+		log.info("Starting of getCreateANewPasswordText method");
+		log.info("Ending of getCreateANewPasswordText method");
+
+		return getText(lblCreateANewPassword);
+	}
+
+	public void setOTP(String strOTP1, String strOTP2, String strOTP3, String strOTP4) {
+		log.info("Starting of setOTP method");
+
+		this.impicitWait();
+		sendKeys(txtBoxOTPOne, strOTP1);
+		this.txtBoxOTPtwo.sendKeys(strOTP2);
+		this.txtBoxOTPThree.sendKeys(strOTP3);
+		this.txtBoxOTPFour.sendKeys(strOTP4);
+
+		log.info("Ending of setOTP method");
+	}
+
+	public void setPassword(String strPassword) {
+		log.info("Starting of setPassword method");
+
+		this.impicitWait();
+		this.txtBoxPassword.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
+		this.txtBoxPassword.sendKeys(strPassword);
+
+		log.info("Ending of setPassword method");
+	}
+
+	public void setConfirmPassword(String strConfirmPassword) {
+		log.info("Starting of setConfirmPassword method");
+
+		this.impicitWait();
+		this.txtBoxConfirmPassword.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
+		this.txtBoxConfirmPassword.sendKeys(strConfirmPassword);
+
+		log.info("Ending of setConfirmPassword method");
+	}
+
+	public void clickOnConfirmPasswordButton() {
+		log.info("Starting of clickOnConfirmPasswordButton method");
+
+		this.impicitWait();
+		this.btnConfirmPassword.click();
+
+		log.info("Ending of clickOnConfirmPasswordButton method");
+	}
+
+	public String getSuccessLabel() {
+		log.info("Starting of getSuccessLabel method");
+		log.info("Ending of getSuccessLabel method");
+
+		return getText(lblSuccess);
+	}
+
+	public boolean isOkButtonDisplayed() {
+
+		log.info("Starting of isDisplayedOkButton method");
+		log.info("Ending of isDisplayedOkButton method");
+
+		return isDisplayed(btnOk);
+	}
+
+	public String getEmailValidationText() {
+		log.info("Starting of getEmailValidationText method");
+		log.info("Ending of getEmailValidationText method");
+
+		return getText(txtEmailInvalid);
+	}
+
+	public String getEmailrequiredValidationText() {
+		log.info("Starting of getEmailrequiredValidationText method");
+		log.info("Ending of getEmailrequiredValidationText method");
+
+		return getText(txtEmailRequired);
+	}
+
+	public String getPasswordValidationText() {
+		log.info("Starting of getPasswordValidationText method");
+		log.info("Ending of getPasswordValidationText method");
+
+		return getText(txtPasswordValidation);
+	}
+
+	public String getConfirmPasswordValidationText() {
+		log.info("Starting of getConfirmPasswordValidationText method");
+		log.info("Ending of getConfirmPasswordValidationText method");
+
+		return getText(txtConfirmPasswordValidation);
+	}
+
+	public void setPasswordFieldWhiteSpaces(String value) {
+		log.info("Starting of setPasswordFieldWhiteSpaces method");
+		this.impicitWait();
+		this.txtBoxPassword.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
+		int i = Integer.parseInt(value);
+		if (i >= 6) {
+			for (int j = 1; j <= i; j++) {
+				txtBoxPassword.sendKeys(Keys.SPACE);
+			}
+
+		}
+
+		log.info("Ending of setPasswordFieldWhiteSpaces method");
+	}
+
+	public void setConfirmPasswordFieldWhiteSpaces(String value) {
+		log.info("Starting of setConfirmPasswordFieldWhiteSpaces method");
+		this.impicitWait();
+		this.txtBoxConfirmPassword.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
+		int i = Integer.parseInt(value);
+		if (i >= 6) {
+			for (int j = 1; j <= i; j++) {
+				txtBoxConfirmPassword.sendKeys(Keys.SPACE);
+			}
+
+		}
+
+		log.info("Ending of setConfirmPasswordFieldWhiteSpaces method");
+	}
+
+	public void clickOnOkButton() {
+		log.info("Starting of clickOnOkButton method");
+
+		clickOnElement(btnOk);
+
+		log.info("Ending of clickOnOkButton method");
+	}
+
+	public void clickOnResendCodeButton() {
+		log.info("Starting of clickOnResendCodeButton method");
+
+		clickOnElement(btnResendCode);
+
+		log.info("Ending of clickOnResendCodeButton method");
+	}
+
+	public String getOTPSentValidationText() {
+		log.info("Starting of getOTPSentValidationValidationMessage method");
+		log.info("Ending of getOTPSentValidationValidationMessage method");
+
+		return getText(txtOTPSentValidation);
+
+	}
+
+}
