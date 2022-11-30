@@ -285,7 +285,5 @@ public class ForgotPasswordPage extends DUPRBaseAutomationPage {
 		log.info("Ending of getOTPSentValidationValidationMessage method");
 
 		return getText(txtOTPSentValidation);
-
 	}
-
 }

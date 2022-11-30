@@ -3,12 +3,12 @@
 <suite name="DUPR login test">
 	<test name="Common UI Automation Tests" thread-count="4">
 		<classes>
-			<!-- <class name="com.dupr.tests.DUPRLoginTest" />
+			<class name="com.dupr.tests.DUPRLoginTest" />
 			<class name="com.dupr.tests.NegativeLoginTest" />
 			<class name="com.dupr.tests.SignupTest" />
 			<class name="com.dupr.tests.DUPRClaimAccountSignUpTest" />
 			<class name="com.dupr.tests.ForgotPasswordTest" />
-			<class name="com.dupr.tests.SearchPlayersTest" /> -->
+			<class name="com.dupr.tests.SearchPlayersTest" />
 			<class name="com.dupr.tests.AddAMatchTest" />
 		</classes>
 	</test>

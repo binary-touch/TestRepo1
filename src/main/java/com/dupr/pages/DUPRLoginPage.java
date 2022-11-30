@@ -59,6 +59,10 @@ public class DUPRLoginPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//p[@class='MuiFormHelperText-root Mui-error MuiFormHelperText-contained MuiFormHelperText-filled css-tcj1fs']")
 	private WebElement txtPasswordInvalid;
+	
+	@B2BFindBy(xpath = "//h5[text()='Password']/parent::div/following-sibling::div//p")
+	private WebElement txtPasswordMustNotExceedMaxCharacters;
+
 
 	public DUPRLoginPage(WebDriver driver) {
 		super(driver);
@@ -201,5 +205,13 @@ public class DUPRLoginPage extends DUPRBaseAutomationPage {
 		}
 
 		log.info("Ending of clickOnLogoutButton method");
+	}
+	
+	public String getPasswordMustNotExceedMaxCharactersValidationText() {		
+		log.info("Starting of getPasswordMustNotExceedMaxCharactersText method");
+		log.info("Ending of getPasswordMustNotExceedMaxCharactersText method");
+		
+		return getText(txtPasswordMustNotExceedMaxCharacters);
+		
 	}
 }

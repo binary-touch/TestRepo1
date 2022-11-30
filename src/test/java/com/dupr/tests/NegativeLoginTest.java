@@ -142,6 +142,20 @@ public class NegativeLoginTest extends DUPRBaseAutomationTest {
 
 		logger.info("Ending of verifyLoginWithInvalidEmailInvalidPassword method");
 	}
+	@Parameters({ "validEmail" })
+	@Test(priority = 7, description = "Verify password filed by entering more than 40 characters", groups = "sanity")
+	@Description("Test case #7, Verify password filed by entering more than 40 characters")
+	@Severity(SeverityLevel.NORMAL)
+	@Story("Test case #7, Verify password filed by entering more than 40 characters")
+	public void verifyLoginWithMoreThanMaxCharactersInPassword(String validEmail ) {
+		logger.info("Starting of verifyLoginWithMoreThanMaxCharactersInPassword method");
+		driver.navigate().refresh();
+		duprLoginPage.loginToDUPRApplication(validEmail,
+				testDataProp.getProperty("more.than.max.characters.password"));
+		duprLoginPage.hardWait(2);
+		Assert.assertEquals(duprLoginPage.getPasswordMustNotExceedMaxCharactersValidationText(), expectedAssertionsProp.getProperty("password.mustnot.exceed.max.characters"));
+		logger.info("Ending of verifyLoginWithMoreThanMaxCharactersInPassword method");
+	}
 
 	@AfterClass
 	public void quitDriver() {
