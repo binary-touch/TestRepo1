@@ -12,7 +12,7 @@ import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
 
-import com.dupr.tests.DUPRBaseAutomationTest;
+import com.dupr.test.DUPRBaseAutomationTest;
 
 import io.qameta.allure.Allure;
 import io.qameta.allure.Attachment;
@@ -71,7 +71,6 @@ public class B2BBaseTestListener extends TestListenerAdapter {
 			log.info("Screenshot captured for test case: {}", getTestMethodName(iTestResult));
 			saveScreenshotPNG("Test_Failure_Screenshot_", driver);
 		}
-
 	}
 
 	@Override

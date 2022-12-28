@@ -13,10 +13,10 @@ public class DUPRLoginPage extends DUPRBaseAutomationPage {
 
 	private static final Logger log = LogManager.getLogger(DUPRLoginPage.class);
 
-	@B2BFindBy(xpath = "//a[contains(@class,'mt-4') and text()='Search Players']")
+	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-gmuwbf']/a[text()='Search Players']")
 	private WebElement lblSearchPlayers;
 
-	@B2BFindBy(xpath = "//a[contains(@class, 'md:block') and text()='Log In']")
+	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-gmuwbf']/a[text()='Log In']")
 	private WebElement lnkLogIn;
 
 	@B2BFindBy(xpath = "//h1[text()='Welcome Back']")
@@ -35,34 +35,18 @@ public class DUPRLoginPage extends DUPRBaseAutomationPage {
 	private WebElement lblAddaMatch;
 
 	@B2BFindBy(xpath = "//button[@class='MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-148fdm8']")
-	private WebElement iconProfile;
+	private WebElement mnuOpenSettings;
 
 	@B2BFindBy(xpath = "//div[text()='Logout']")
 	private WebElement btnLogout;
 
 	// Negative login scenarios xpaths
 
-	@B2BFindBy(xpath = "//p[text()='Email is invalid.']")
-	private WebElement txtEmailInvalid;
+	@B2BFindBy(xpath = "//h5[text()='Email']/../following-sibling::div//p")
+	private WebElement txtEmailValidation;
 
-	@B2BFindBy(xpath = "//p[text()='Password must be at least 6 characters.']")
-	private WebElement txtPasswordLengthValidationMessage;
-
-	@B2BFindBy(xpath = "//p[text()='Email is required.']")
-	private WebElement txtEmailRequiredMessage;
-
-	@B2BFindBy(xpath = "//p[text()='Password is required.']")
-	private WebElement txtPasswordRequiredMessege;
-
-	@B2BFindBy(xpath = "//p[text()='Whitespace is not allowed.']")
-	private WebElement txtPasswordWhitespacesNotAllowedMessage;
-
-	@B2BFindBy(xpath = "//p[@class='MuiFormHelperText-root Mui-error MuiFormHelperText-contained MuiFormHelperText-filled css-tcj1fs']")
-	private WebElement txtPasswordInvalid;
-	
-	@B2BFindBy(xpath = "//h5[text()='Password']/parent::div/following-sibling::div//p")
-	private WebElement txtPasswordMustNotExceedMaxCharacters;
-
+	@B2BFindBy(xpath = "//h5[text()='Password']/../following-sibling::div//p")
+	private WebElement txtPasswordValidation;
 
 	public DUPRLoginPage(WebDriver driver) {
 		super(driver);
@@ -79,6 +63,7 @@ public class DUPRLoginPage extends DUPRBaseAutomationPage {
 	public void clickOnLogInLink() {
 		log.info("Starting of clickOnLogInLink method");
 
+		explicitWait(lnkLogIn);
 		this.lnkLogIn.click();
 
 		log.info("Ending of clickOnLogInLink method");
@@ -94,7 +79,7 @@ public class DUPRLoginPage extends DUPRBaseAutomationPage {
 	public void setEmail(String strEmail) {
 		log.info("Starting of setEmail method");
 
-		this.txtBoxEmail.sendKeys(Keys.CONTROL+"a", Keys.BACK_SPACE);
+		this.txtBoxEmail.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		this.txtBoxEmail.sendKeys(strEmail);
 
 		log.info("Ending of setEmail method");
@@ -103,7 +88,7 @@ public class DUPRLoginPage extends DUPRBaseAutomationPage {
 	public void setPassword(String strPassword) {
 		log.info("Starting of setPassword method");
 
-		this.txtBoxPassword.sendKeys(Keys.CONTROL+"a", Keys.BACK_SPACE);
+		this.txtBoxPassword.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		this.txtBoxPassword.sendKeys(strPassword);
 
 		log.info("Ending of setPassword method");
@@ -122,7 +107,7 @@ public class DUPRLoginPage extends DUPRBaseAutomationPage {
 
 		this.setEmail(userName);
 		this.setPassword(password);
-		
+
 		this.clickOnSignInButton();
 
 		log.info("Ending of loginToDUPRApplication method");
@@ -138,18 +123,18 @@ public class DUPRLoginPage extends DUPRBaseAutomationPage {
 	// Negative login methods
 
 	public String getInvalidEmailText() {
-		log.info("Starting of getInvalidEmailText");
-		log.info("Ending of getInvalidEmailText");
+		log.info("Starting of getInvalidEmailText method");
+		log.info("Ending of getInvalidEmailText method");
 
-		return getText(txtEmailInvalid);
+		return getText(txtEmailValidation);
 	}
 
 	public String getPasswordErrorMessageText() {
-		log.info("Starting of getPasswordErrorMessageText");
+		log.info("Starting of getPasswordErrorMessageText method");
 		this.impicitWait();
-		log.info("Ending of getPasswordErrorMessageText");
+		log.info("Ending of getPasswordErrorMessageText method");
 
-		return getText(txtPasswordLengthValidationMessage);
+		return getText(txtPasswordValidation);
 	}
 
 	public String getEmailRequiredText() {
@@ -157,17 +142,15 @@ public class DUPRLoginPage extends DUPRBaseAutomationPage {
 		this.impicitWait();
 		log.info("Ending of getEmailRequiredText method");
 
-		return getText(txtEmailRequiredMessage);
+		return getText(txtEmailValidation);
 	}
 
 	public String getPasswordRequiredText() {
 		log.info("Starting of getPasswordRequiredText method");
-
 		this.impicitWait();
-
 		log.info("Ending of getPasswordRequiredText method");
 
-		return getText(txtPasswordRequiredMessege);
+		return getText(txtPasswordValidation);
 	}
 
 	public String getWhiteSpacesNotAllowedValidationText() {
@@ -175,7 +158,7 @@ public class DUPRLoginPage extends DUPRBaseAutomationPage {
 		this.impicitWait();
 		log.info("Ending of getWhiteSpacesNotAllowedValidationText method");
 
-		return getText(txtPasswordWhitespacesNotAllowedMessage);
+		return getText(txtPasswordValidation);
 	}
 
 	public String getInvalidPasswordValidationText() {
@@ -183,35 +166,29 @@ public class DUPRLoginPage extends DUPRBaseAutomationPage {
 		this.impicitWait();
 		log.info("Ending of getInvalidPasswordValidationText method");
 
-		return getText(txtPasswordInvalid);
+		return getText(txtPasswordValidation);
 	}
 
-	public void clickOnProfileIcon() {
-		log.info("Starting of clickOnProfileIcon method");
-		
-		clickOnElement(iconProfile);
+	public void clickOnOpenSettingsMenu() {
+		log.info("Starting of clickOnOpenSettingsMenu method");
 
-		log.info("Ending of clickOnProfileIcon method");
+		clickOnWebElement(mnuOpenSettings);
+
+		log.info("Ending of clickOnOpenSettingsMenu method");
 	}
 
 	public void clickOnLogoutButton() {
 		log.info("Starting of clickOnLogoutButton method");
 
-		try {
-			this.clickOnWebElement(btnLogout);
-		}
-		catch(Exception e) {
-			this.clickOnElement(btnLogout);
-		}
+		elementClick(btnLogout);
 
 		log.info("Ending of clickOnLogoutButton method");
 	}
-	
-	public String getPasswordMustNotExceedMaxCharactersValidationText() {		
+
+	public String getPasswordMustNotExceedMaxCharactersValidationText() {
 		log.info("Starting of getPasswordMustNotExceedMaxCharactersText method");
 		log.info("Ending of getPasswordMustNotExceedMaxCharactersText method");
-		
-		return getText(txtPasswordMustNotExceedMaxCharacters);
-		
+
+		return getText(txtPasswordValidation);
 	}
 }

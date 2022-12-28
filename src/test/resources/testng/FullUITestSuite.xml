@@ -4,11 +4,22 @@
 	<parameter name="language" value="en" />
 	<parameter name="headless" value="false" />
 	<parameter name="browser" value="chrome" />
+
 	<parameter name="siteURL"
 		value="https://stage.gamestoppedout.com/" />
+
 	<parameter name="validEmail" value="meet@yopmail.com" />
 	<parameter name="validPassword" value="qwer1234" />
-	
+
+	<parameter name="partnerEmail"
+		value="spandana.bomma@binarytouch.com" />
+	<parameter name="partnerPassword" value="Venky346" />
+	<parameter name="opponent1Email"
+		value="venkatesh.thuti@binarytouch.com" />
+	<parameter name="opponent2Email"
+		value="chandraiah.kathera@binarytouch.com" />
+	<parameter name="ChangePassword" value="qwer12345" />
+
 	<suite-files>
 		<suite-file path="CommonUISuite.xml" />
 	</suite-files>

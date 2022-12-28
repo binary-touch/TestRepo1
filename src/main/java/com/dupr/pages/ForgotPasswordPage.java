@@ -13,10 +13,10 @@ public class ForgotPasswordPage extends DUPRBaseAutomationPage {
 
 	private static final Logger log = LogManager.getLogger(DUPRLoginPage.class);
 
-	@B2BFindBy(xpath = "//a[contains(@class,'mt-4') and text()='Search Players']")
+	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-gmuwbf']/a[text()='Search Players']")
 	private WebElement lblSearchPlayers;
 
-	@B2BFindBy(xpath = "//a[contains(@class, 'md:block') and text()='Log In']")
+	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-gmuwbf']/a[text()='Log In']")
 	private WebElement lnkLogIn;
 
 	@B2BFindBy(xpath = "//h1[@class='MuiTypography-root MuiTypography-h1 css-18q12qh']")
@@ -65,22 +65,22 @@ public class ForgotPasswordPage extends DUPRBaseAutomationPage {
 	private WebElement btnOk;
 
 	@B2BFindBy(xpath = "//h5[@class='MuiTypography-root MuiTypography-h5 css-1m5yda9']//parent::div/following-sibling::div//p")
-	private WebElement txtEmailInvalid;
+	private WebElement txtValidationEmailInvalid;
 
 	@B2BFindBy(xpath = "//h5[@class='MuiTypography-root MuiTypography-h5 css-1m5yda9']//parent::div/following-sibling::div//p")
-	private WebElement txtEmailRequired;
+	private WebElement txtValidationEmailRequired;
 
 	@B2BFindBy(xpath = "//h5[text()='Password']/parent::div/following-sibling::div/child::div/following-sibling::div[@class=\"MuiFormControl-root css-tzsjye\"]/descendant::p")
-	private WebElement txtPasswordValidation;
+	private WebElement txtValidationPassword;
 
 	@B2BFindBy(xpath = "//h5[text()='Confirm Password']/parent::div/following-sibling::div//p")
-	private WebElement txtConfirmPasswordValidation;
+	private WebElement txtValidationConfirmPassword;
 
 	@B2BFindBy(xpath = "//button[contains(@class,'MuiButton-whitecontained') and text()='Resend Code']")
 	private WebElement btnResendCode;
 
 	@B2BFindBy(xpath = "//p[@class='MuiTypography-root MuiTypography-body1 css-zds3da']")
-	private WebElement txtOTPSentValidation;
+	private WebElement txtValidationOTPSent;
 
 	public ForgotPasswordPage(WebDriver driver) {
 		super(driver);
@@ -199,9 +199,8 @@ public class ForgotPasswordPage extends DUPRBaseAutomationPage {
 	}
 
 	public boolean isOkButtonDisplayed() {
-
-		log.info("Starting of isDisplayedOkButton method");
-		log.info("Ending of isDisplayedOkButton method");
+		log.info("Starting of isOkButtonDisplayed method");
+		log.info("Ending of isOkButtonDisplayed method");
 
 		return isDisplayed(btnOk);
 	}
@@ -210,34 +209,36 @@ public class ForgotPasswordPage extends DUPRBaseAutomationPage {
 		log.info("Starting of getEmailValidationText method");
 		log.info("Ending of getEmailValidationText method");
 
-		return getText(txtEmailInvalid);
+		return getText(txtValidationEmailInvalid);
 	}
 
-	public String getEmailrequiredValidationText() {
-		log.info("Starting of getEmailrequiredValidationText method");
-		log.info("Ending of getEmailrequiredValidationText method");
+	public String getEmailRequiredValidationText() {
+		log.info("Starting of getEmailRequiredValidationText method");
+		log.info("Ending of getEmailRequiredValidationText method");
 
-		return getText(txtEmailRequired);
+		return getText(txtValidationEmailRequired);
 	}
 
 	public String getPasswordValidationText() {
 		log.info("Starting of getPasswordValidationText method");
 		log.info("Ending of getPasswordValidationText method");
 
-		return getText(txtPasswordValidation);
+		return getText(txtValidationPassword);
 	}
 
 	public String getConfirmPasswordValidationText() {
 		log.info("Starting of getConfirmPasswordValidationText method");
 		log.info("Ending of getConfirmPasswordValidationText method");
 
-		return getText(txtConfirmPasswordValidation);
+		return getText(txtValidationConfirmPassword);
 	}
 
-	public void setPasswordFieldWhiteSpaces(String value) {
-		log.info("Starting of setPasswordFieldWhiteSpaces method");
+	public void setPasswordWithWhiteSpaces(String value) {
+		log.info("Starting of setPasswordWithWhiteSpaces method");
+
 		this.impicitWait();
 		this.txtBoxPassword.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
+
 		int i = Integer.parseInt(value);
 		if (i >= 6) {
 			for (int j = 1; j <= i; j++) {
@@ -246,22 +247,23 @@ public class ForgotPasswordPage extends DUPRBaseAutomationPage {
 
 		}
 
-		log.info("Ending of setPasswordFieldWhiteSpaces method");
+		log.info("Ending of setPasswordWithWhiteSpaces method");
 	}
 
-	public void setConfirmPasswordFieldWhiteSpaces(String value) {
-		log.info("Starting of setConfirmPasswordFieldWhiteSpaces method");
+	public void setConfirmPasswordWithWhiteSpaces(String value) {
+		log.info("Starting of setConfirmPasswordWithWhiteSpaces method");
+
 		this.impicitWait();
 		this.txtBoxConfirmPassword.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
+
 		int i = Integer.parseInt(value);
 		if (i >= 6) {
 			for (int j = 1; j <= i; j++) {
 				txtBoxConfirmPassword.sendKeys(Keys.SPACE);
 			}
-
 		}
 
-		log.info("Ending of setConfirmPasswordFieldWhiteSpaces method");
+		log.info("Ending of setConfirmPasswordWithWhiteSpaces method");
 	}
 
 	public void clickOnOkButton() {
@@ -281,9 +283,9 @@ public class ForgotPasswordPage extends DUPRBaseAutomationPage {
 	}
 
 	public String getOTPSentValidationText() {
-		log.info("Starting of getOTPSentValidationValidationMessage method");
-		log.info("Ending of getOTPSentValidationValidationMessage method");
+		log.info("Starting of getOTPSentValidationText method");
+		log.info("Ending of getOTPSentValidationText method");
 
-		return getText(txtOTPSentValidation);
+		return getText(txtValidationOTPSent);
 	}
 }

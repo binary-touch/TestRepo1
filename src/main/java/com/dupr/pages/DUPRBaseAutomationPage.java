@@ -35,6 +35,13 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 		return String.valueOf(RandomStringUtils.randomNumeric(digits));
 	}
 	
+	public static String randomAlphabet(int noOfAlphabets) {
+		log.info("Starting of randomAlphabet method");
+		log.info("Ending of randomAlphabet method");
+		
+		return String.valueOf(RandomStringUtils.randomAlphabetic(noOfAlphabets));
+	}
+
 	public void clickAndDragSliderNode(WebElement webElement) {
 		log.info("starting of clickAndDragSliderNode");
 
@@ -44,5 +51,21 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 		action.moveByOffset(100, 0).build().perform();
 
 		log.info("Ending of clickAndDragSliderNode");
+	}
+
+	public void elementClick(WebElement webElement) {
+		log.info("Starting of elementClick method");
+
+		try {
+			clickOnWebElement(webElement);
+		} catch (Exception e) {
+			try {
+				clickOnElement(webElement);
+			} catch (Exception e2) {
+				webElement.click();
+			}
+		}
+
+		log.info("Ending of elementClick method");
 	}
 }

@@ -1,0 +1,740 @@
+package com.dupr.pages.profile;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+
+import com.b2b.support.B2BFindBy;
+import com.b2b.support.B2BFindBys;
+import com.b2b.support.B2BPageFactory;
+import com.dupr.pages.DUPRBaseAutomationPage;
+import com.dupr.pages.DUPRLoginPage;
+
+public class EditProfilePage extends DUPRBaseAutomationPage {
+
+	private static final Logger log = LogManager.getLogger(DUPRLoginPage.class);
+
+	@B2BFindBy(xpath = "//div[@class ='MuiBox-root css-xev8c9']/button")
+	private WebElement mnuOpenSettings;
+
+	@B2BFindBys(@B2BFindBy(xpath = "//div[@class='py-2 flex flex-row text-base']/div[@class='text-dark_blue']"))
+	private List<WebElement> lstProfileOptions;
+
+	@B2BFindBy(xpath = "//ul[@class ='MuiList-root MuiList-padding MuiMenu-list css-r8u8y9']//div/child::div/following-sibling::div")
+	private WebElement btnEditProfile;
+
+	@B2BFindBy(xpath = "//h3[@class='MuiTypography-root MuiTypography-h3 css-hyqj8z']")
+	private WebElement lblEditProfile;
+
+	@B2BFindBy(xpath = "//div[@class='MuiGrid-root MuiGrid-container css-1d3bbye']/descendant::h2")
+	private WebElement lblPlayerName;
+
+	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-q5fqw0']//span[contains(@class,'MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary MuiIconButton-sizeMedium')]/*")
+	private WebElement iconCamera;
+
+	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-1eupesm']/button")
+	private WebElement btnViewPublicProfile;
+
+	@B2BFindBy(xpath = "//button[@class='MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary Mui-selected css-1tymec1']")
+	private WebElement tabProfile;
+
+	@B2BFindBy(xpath = "//h5[text()='Full Name']/../following-sibling::div//input")
+	private WebElement txtBoxFullName;
+
+	@B2BFindBy(xpath = "//h5[text()='Full Name']/../following-sibling::div//p")
+	private WebElement txtValidationFullName;
+
+	@B2BFindBy(xpath = "//h5[text()='Address']/../following-sibling::div//input")
+	private WebElement txtBoxAddress;
+
+	@B2BFindBys(@B2BFindBy(xpath = "//li[@class='MuiListItem-root MuiListItem-gutters MuiListItem-divider css-1vzmadc']/*/*/span"))
+	private List<WebElement> lstAddress;
+
+	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-sjnho']/button")
+	private WebElement btnSave;
+
+	@B2BFindBy(xpath = "//h4[@id='customized-dialog-title']")
+	private WebElement lblUpdateProfile;
+
+	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-1e1mp32']/h6")
+	private WebElement lblInvalidAddressValidation;
+
+	@B2BFindBy(xpath = "//div[@class='MuiDialogActions-root MuiDialogActions-spacing css-v0512d']/button")
+	private WebElement btnOk;
+
+	@B2BFindBy(xpath = "//h4[@id='customized-dialog-title']/button")
+	private WebElement iconClose;
+
+	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-0']/p")
+	private WebElement txtValidationStreetAddress;
+
+	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-1e1mp32']/h2")
+	private WebElement txtValidationCongratulations;
+
+	@B2BFindBy(xpath = "//h5[text()='Birth Date']/../following-sibling::div//input")
+	private WebElement txtBoxBirthDate;
+
+	@B2BFindBy(xpath = "//h5[text()='Birth Date']/../following-sibling::div//p")
+	private WebElement txtValidationBirthDate;
+
+	@B2BFindBy(xpath = "//h4[@id='customized-dialog-title']")
+	private WebElement lblReviewPolicies;
+
+	@B2BFindBy(xpath = "//h4[@id='customized-dialog-title']/following-sibling::div/label/span/input[@type='checkbox']")
+	private WebElement chkReviewPolicies;
+
+	@B2BFindBy(xpath = "//h5[text()='DUPR ID']/../following-sibling::div//input")
+	private WebElement txtBoxDuprId;
+
+	@B2BFindBy(xpath = "//h5[text()='Gender']/../following-sibling::div/div/div")
+	private WebElement ddGender;
+
+	@B2BFindBys(@B2BFindBy(xpath = "(//ul[@class='MuiList-root MuiList-padding MuiMenu-list css-r8u8y9'])[2]/li"))
+	private List<WebElement> lstGender;
+
+	@B2BFindBy(xpath = "//h5[text()='Default Rating']/../following-sibling::div//label//input[@value='DOUBLES']")
+	private WebElement rdoDoublesStatus;
+
+	@B2BFindBy(xpath = "//h5[text()='Default Rating']/../following-sibling::div//label//input/..")
+	private WebElement rdoDoubles;
+
+	@B2BFindBy(xpath = "//h5[text()='Default Rating']/../following-sibling::div//label/following-sibling::label//input/..")
+	private WebElement rdoSingles;
+
+	@B2BFindBy(xpath = "//h5[text()='Phone Number']/../following-sibling::div//input")
+	private WebElement txtBoxPhoneNumber;
+
+	@B2BFindBy(xpath = "//h5[text()='Phone Number']/../following-sibling::div//div[contains(@class,'MuiInputAdornment-positionStart')]/button")
+	private WebElement btnCountryCode;
+
+	@B2BFindBys(@B2BFindBy(xpath = "//div[@class='MuiPopover-root  MuiModal-root css-1sucic7']//ul/li/div/following-sibling::span[@class='country-name']"))
+	private List<WebElement> lstCountryNames;
+
+	@B2BFindBy(xpath = "//h4[@id='customized-dialog-title']")
+	private WebElement lblVerifyYourMobileNumber;
+
+	@B2BFindBy(xpath = "//h4[text()='Enter your OTP']")
+	private WebElement lblEnterYourOTP;
+
+	@B2BFindBy(xpath = "//input[@aria-label='Please enter verification code. Character 1']")
+	private WebElement txtBoxOTPFirst;
+
+	@B2BFindBy(xpath = "//div[@class='MuiDialogActions-root MuiDialogActions-spacing css-v0512d']/button[contains(@class,'MuiButton-whitecontained')]")
+	private WebElement btnResendCode;
+
+	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-t91h8u']//p")
+	private WebElement txtValidationOTPResend;
+
+	@B2BFindBy(xpath = "//div[@class='MuiDialogActions-root MuiDialogActions-spacing css-v0512d']/button[contains(@class,'MuiButton-contained')]")
+	private WebElement btnVerifyNow;
+
+	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-t91h8u']/p")
+	private WebElement txtPhoneNumberVerified;
+
+	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-1a6l843']/div/following-sibling::div/following-sibling::div/*[local-name()='svg']")
+	private WebElement iconPhoneNumberVerified;
+
+	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-t91h8u']/p")
+	private WebElement txtValidationIncorrectOTP;
+
+	@B2BFindBy(xpath = "//h5[text()='Dominant Hand']/../following-sibling::div/div/div")
+	private WebElement ddDominantHand;
+
+	@B2BFindBys(@B2BFindBy(xpath = "//div[@class='MuiPopover-root MuiMenu-root MuiModal-root css-1sucic7']//ul[@class='MuiList-root MuiList-padding MuiMenu-list css-r8u8y9']/li"))
+	private List<WebElement> lstDominantHandOptions;
+
+	@B2BFindBy(xpath = "//h5[text()='Paddle Brand']/../following-sibling::div//input")
+	private WebElement txtBoxPaddleBrand;
+
+	@B2BFindBy(xpath = "//h5[text()='Shoe Brand']/../following-sibling::div//input")
+	private WebElement txtBoxShoeBrand;
+
+	@B2BFindBy(xpath = "//h5[text()='Apparel Brand']/../following-sibling::div//input")
+	private WebElement txtBoxApparelBrand;
+
+	@B2BFindBy(xpath = "//h5[text()='Preferred Ball']/../following-sibling::div//input")
+	private WebElement txtBoxPrefferedBall;
+
+	@B2BFindBy(xpath = "//h5[text()='Preferred Side']/../following-sibling::div/div/div")
+	private WebElement ddPreferredSide;
+
+	@B2BFindBys(@B2BFindBy(xpath = "//div[@class='MuiPopover-root MuiMenu-root MuiModal-root css-1sucic7']//ul/li"))
+	private List<WebElement> lstPreferredSideOptions;
+
+	public EditProfilePage(WebDriver driver) {
+		super(driver);
+		B2BPageFactory.initElements(driver, this);
+	}
+
+	public void clickOnOpenSettingMenu() {
+		log.info("Starting of clickOnOpenSettingMenu method");
+
+		clickOnElement(mnuOpenSettings);
+
+		log.info("Ending of clickOnOpenSettingMenu method");
+	}
+
+	public boolean isProfileDropDownContains() {
+		log.info("Starting of isProfileDropDownContains method");
+
+		boolean isProfileDropDownContains = false;
+
+		for (WebElement profileOption : lstProfileOptions) {
+
+			if (isDisplayed(profileOption)) {
+				isProfileDropDownContains = true;
+			}
+		}
+
+		log.info("Ending of isProfileDropDownContains method");
+
+		return isProfileDropDownContains;
+	}
+
+	public void clickOnEditProfileButton() {
+		log.info("Starting of clickOnEditProfileButton method");
+
+		clickOnElement(btnEditProfile);
+
+		log.info("Ending of clickOnEditProfileButton method");
+	}
+
+	public boolean isEditProfilePageContains() {
+		log.info("Starting of isEditProfilePageContaiins method");
+
+		boolean isEditProfilePageContains = false;
+
+		if (isDisplayed(lblEditProfile) && isDisplayed(lblPlayerName) && isDisplayed(iconCamera)
+				&& isDisplayed(btnViewPublicProfile) && tabProfile.isEnabled() && isDisplayed(txtBoxFullName)
+				&& isDisplayed(txtBoxAddress) && isDisplayed(txtBoxBirthDate)) {
+			isEditProfilePageContains = true;
+		}
+
+		log.info("Ending of isEditProfilePageContaiins method");
+
+		return isEditProfilePageContains;
+	}
+
+	public boolean isProfileTabContains() {
+		log.info("Starting of isProfileTabContains method");
+
+		boolean isProfileTabContains = false;
+
+		if (isDisplayed(txtBoxFullName) && isDisplayed(txtBoxAddress) && isDisplayed(txtBoxBirthDate)
+				&& isDisplayed(txtBoxPhoneNumber) && isDisplayed(btnCountryCode) && isDisplayed(rdoDoubles)
+				&& isDisplayed(txtBoxDuprId) && isDisplayed(ddDominantHand) && isDisplayed(txtBoxPaddleBrand)
+				&& isDisplayed(txtBoxShoeBrand) && isDisplayed(txtBoxApparelBrand) && isDisplayed(txtBoxPrefferedBall)
+				&& isDisplayed(ddPreferredSide)) {
+			isProfileTabContains = true;
+		}
+
+		log.info("Ending of isProfileTabContains method");
+
+		return isProfileTabContains;
+	}
+
+	public void setFullName(String fullName) {
+		log.info("Starting of setFullName method");
+
+		clickOnElement(txtBoxFullName);
+		this.txtBoxFullName.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
+		sendKeys(txtBoxFullName, fullName);
+
+		log.info("Ending of setFullName method");
+	}
+
+	public String getFullNameValidationText() {
+		log.info("Starting of getFullNameValidationText method");
+		log.info("Ending of getFullNameValidationText method");
+
+		return getText(txtValidationFullName);
+	}
+
+	public void setAddress(String stateOrCountryName, String Address) {
+		log.info("Starting of setAddress method");
+
+		clickOnElement(txtBoxAddress);
+		this.txtBoxAddress.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
+		sendKeys(txtBoxAddress, stateOrCountryName);
+
+		hardWait(3);
+		for (WebElement country : lstAddress) {
+
+			if (getText(country).equals(Address)) {
+				log.debug("Country: " + getText(country));
+				log.debug("Address: " + Address);
+
+				elementClick(country);
+				break;
+			}
+		}
+		log.info("Ending of setAddress method");
+	}
+
+	public boolean isSaveEnabled() {
+		log.info("Starting of isSaveEnabled method");
+
+		boolean buttonStatus = false;
+		try {
+			hardWait(1);
+			if (btnSave.isEnabled()) {
+				buttonStatus = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		log.info("Ending of isSaveEnabled method");
+
+		return buttonStatus;
+	}
+
+	public void clickOnSaveButton() {
+		log.info("Starting of clickOnSaveButton method");
+
+		scrollIntoView(btnSave);
+		clickOnWebElement(btnSave);
+
+		log.info("Ending of clickOnSaveButton method");
+	}
+
+	public boolean isUpdateProfilePopupContains() {
+		log.info("Starting of isUpdateProfilePopupContains method");
+
+		boolean isUpdateProfilePopupContains = false;
+
+		if (isDisplayed(lblUpdateProfile) && isDisplayed(lblInvalidAddressValidation) && isDisplayed(btnOk)
+				&& isDisplayed(iconClose)) {
+			isUpdateProfilePopupContains = true;
+		}
+
+		log.info("Ending of isUpdateProfilePopupContains method");
+
+		return isUpdateProfilePopupContains;
+	}
+
+	public void clickOnOkButton() {
+		log.info("Starting of clickOnOkButton method");
+
+		if (btnOk.isEnabled()) {
+			clickOnElement(btnOk);
+		}
+
+		log.info("Ending of clickOnOkButton method");
+	}
+
+	public String getStreetAddresValidationText() {
+		log.info("Starting of getStreetAddresValidationText method");
+		log.info("Ending of getStreetAddresValidationText method");
+
+		return getText(txtValidationStreetAddress);
+	}
+
+	public String getCongratulationsLabel() {
+		log.info("Starting of getCongratulationsLabel method");
+		log.info("Ending of getCongratulationsLabel method");
+
+		return getText(txtValidationCongratulations);
+	}
+
+	public void setBithDate(String birthDate) {
+		log.info("Starting of setBithDate method");
+
+		clickOnElement(txtBoxBirthDate);
+		this.txtBoxBirthDate.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
+		sendKeys(txtBoxBirthDate, birthDate);
+
+		log.info("Ending of setBithDate method");
+	}
+
+	public String getBirthDateValidationText() {
+		log.info("Starting of getBirthDateValidationText method");
+		log.info("Ending of getBirthDateValidationText method");
+
+		return getText(txtValidationBirthDate);
+	}
+
+	public void setCurrentDateAsBirthDate() {
+		log.info("Starting of setCurrentDateAsBirthDate method");
+
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatters = DateTimeFormatter.ofPattern("MM/dd/YYYY");
+
+		String strDate = date.format(formatters);
+		clickOnElement(txtBoxBirthDate);
+
+		this.txtBoxBirthDate.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
+		sendKeys(txtBoxBirthDate, strDate);
+
+		log.info("Ending of setCurrentDateAsBirthDate method");
+	}
+
+	public void setBirthDateWithLessthanMinimumAge() {
+		log.info("Starting of setBirthDateWithLessthanMinimumAge method");
+
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.DATE, 1);
+		cal.add(Calendar.YEAR, -2);
+
+		Date minDate = cal.getTime();
+		DateFormat formatDate = new SimpleDateFormat("MM/dd/YYYY");
+
+		String dateOfSystem = formatDate.format(minDate);
+		clickOnElement(txtBoxBirthDate);
+
+		this.txtBoxBirthDate.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
+		sendKeys(txtBoxBirthDate, dateOfSystem);
+
+		log.info("Ending of setBirthDateWithLessthanMinimumAge method");
+	}
+
+	public void setBirthDateMinimumAge() {
+		log.info("Starting of setBirthDateMinimumAge method");
+
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.YEAR, -3);
+
+		Date systemDate = cal.getTime();
+		DateFormat formatDate = new SimpleDateFormat("MM/dd/YYYY");
+
+		String dateOfSystem = formatDate.format(systemDate);
+		clickOnElement(txtBoxBirthDate);
+
+		this.txtBoxBirthDate.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
+		sendKeys(txtBoxBirthDate, dateOfSystem);
+
+		log.info("Ending of setBirthDateMinimumAge method");
+	}
+
+	public void setBirthDate(String validBirthDate) {
+		log.info("Starting of setBirthDate method");
+
+		clickOnElement(txtBoxBirthDate);
+		this.txtBoxBirthDate.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
+		sendKeys(txtBoxBirthDate, validBirthDate);
+
+		log.info("Ending of setBirthDate method");
+	}
+
+	public boolean isReviewDUPRPoliciesPopupContains() {
+		log.info("Starting of isReviewDUPRPoliciesPopupContains method");
+
+		boolean isReviewDUPRPoliciesPopupContains = false;
+
+		if (isDisplayed(lblReviewPolicies) && isDisplayed(btnOk)) {
+			isReviewDUPRPoliciesPopupContains = true;
+		}
+
+		log.info("Ending of isReviewDUPRPoliciesPopupContains method");
+
+		return isReviewDUPRPoliciesPopupContains;
+	}
+
+	public void clickOnReviewPoliciesCheckBox() {
+		log.info("Starting of clickOnReviewPoliciesCheckBox method");
+
+		elementClick(chkReviewPolicies);
+
+		log.info("Ending of clickOnReviewPoliciesCheckBox method");
+	}
+
+	public boolean isOkButtonEnabled() {
+		log.info("Starting of isOkButtonEnabled method");
+
+		boolean status = false;
+		if (btnOk.isEnabled()) {
+			status = true;
+		}
+
+		log.info("Ending of isOkButtonEnabled method");
+
+		return status;
+	}
+
+	public boolean isDUPRIDAutoPopulated() {
+		log.info("Starting of isOkButtonEnabled method");
+		log.info("Ending of isOkButtonEnabled method");
+
+		return txtBoxDuprId.getAttribute("value").isEmpty();
+	}
+
+	public void clickOnGenderDropDown() {
+		log.info("Starting of clickOnGenderDropDown method");
+
+		clickOnElement(ddGender);
+
+		log.info("Ending of clickOnGenderDropDown method");
+	}
+
+	public void clickOnGenderDropDownListOption() {
+		log.info("Starting of clickOnGenderDropDownListOption method");
+
+		String ddText = ddGender.getText();
+		log.debug("Gender: " + ddText);
+
+		for (WebElement gender : lstGender) {
+
+			try {
+
+				if (!(gender.getText().equals(ddText))) {
+					clickOnElement(gender);
+					break;
+				}
+			} catch (Exception e) {
+			}
+		}
+
+		log.info("Ending of clickOnGenderDropDownListOption method");
+	}
+
+	public void clickOnDefaultRatingRadioButtons() {
+		log.info("Starting of clickOnDefaultRatingRadioButtons method");
+
+		try {
+
+			if (rdoDoublesStatus.isSelected()) {
+				clickOnElement(rdoSingles);
+			} else {
+				clickOnElement(rdoDoubles);
+			}
+		} catch (Exception e) {
+		}
+
+		log.info("Ending of clickOnDefaultRatingRadioButtons method");
+	}
+
+	public void clickOnCountryCodePhoneNumber(String code) {
+		log.info("Starting of clickOnCountryCodePhoneNumber method");
+
+		clickOnElement(btnCountryCode);
+
+		for (WebElement countryName : lstCountryNames) {
+
+			try {
+
+				if (countryName.getText().equalsIgnoreCase(code)) {
+					clickOnWebElement(countryName);
+					break;
+				}
+			} catch (Exception e) {
+				clickOnElement(countryName);
+				break;
+			}
+		}
+
+		log.info("Ending of clickOnCountryCodePhoneNumber method");
+	}
+
+	public void clearPhoneNumber() {
+		log.info("Starting of clearPhoneNumber method");
+
+		clickOnElement(txtBoxPhoneNumber);
+		String s = txtBoxPhoneNumber.getAttribute("value");
+
+		int numberLenght = s.length();
+		for (int i = 0; i <= numberLenght - 1; i++) {
+			hardWait(1);
+			this.txtBoxPhoneNumber.sendKeys(Keys.BACK_SPACE);
+		}
+
+		log.info("Ending of clearPhoneNumber method");
+	}
+
+	public void setInvalidPhoneNumber(String phoneNumber) {
+		log.info("Starting of setInvalidPhoneNumber method");
+
+		sendKeys(txtBoxPhoneNumber, phoneNumber + randomNumber(2));
+
+		log.info("Ending of setInvalidPhoneNumber method");
+	}
+
+	public void setValidPhoneNumber(String phoneNumber) {
+		log.info("Starting of setValidPhoneNumber method");
+
+		sendKeys(txtBoxPhoneNumber, phoneNumber);
+
+		log.info("Ending of setValidPhoneNumber method");
+	}
+
+	public boolean isVeriyYourMobileNumberPopupContains() {
+		log.info("Starting of isVeriyYourMobileNumberPopupContains method");
+
+		boolean isVeriyYourMobileNumberPopupContains = false;
+		hardWait(3);
+
+		if (isDisplayed(lblVerifyYourMobileNumber) && isDisplayed(lblEnterYourOTP) && isDisplayed(txtBoxOTPFirst)
+				&& isDisplayed(btnResendCode) && !this.btnVerifyNow.isEnabled()) {
+			isVeriyYourMobileNumberPopupContains = true;
+		}
+
+		log.info("Ending of isVeriyYourMobileNumberPopupContains method");
+
+		return isVeriyYourMobileNumberPopupContains;
+	}
+
+	public void setOTP(String otp) {
+		log.info("Starting of setOTP method");
+
+		sendKeys(txtBoxOTPFirst, otp);
+
+		log.info("Ending of setOTP method");
+	}
+
+	public void clickOnVerifyNowButton() {
+		log.info("Starting of clickOnVerifyNowButton method");
+
+		if (this.btnVerifyNow.isEnabled()) {
+			clickOnElement(btnVerifyNow);
+		}
+
+		log.info("Ending of clickOnVerifyNowButton method");
+	}
+
+	public String getMobileVerifiedText() {
+		log.info("Starting of getMobileVerifiedText method");
+		log.info("Ending of getMobileVerifiedText method");
+
+		return getText(txtPhoneNumberVerified);
+	}
+
+	public boolean isVerifiedRightMarkIconDisplayed() {
+		log.info("Starting of isVerifiedRightMarkIconDisplayed method");
+
+		boolean iconStatus = false;
+		if (isDisplayed(iconPhoneNumberVerified)) {
+
+			iconStatus = true;
+
+		}
+
+		log.info("Ending of isVerifiedRightMarkIconDisplayed method");
+
+		return iconStatus;
+	}
+
+	public String getOTPValidationText() {
+		log.info("Starting of getOTPValidationText method");
+		log.info("Ending of getOTPValidationText method");
+
+		return getText(txtValidationIncorrectOTP);
+	}
+
+	public void clickOnCloseIcon() {
+		log.info("Starting of clickOnCloseIcon method");
+
+		clickOnElement(iconClose);
+
+		log.info("Ending of clickOnCloseIcon method");
+	}
+
+	public void clickOnResendCodeButton() {
+		log.info("Starting of clickOnResendCode method");
+
+		clickOnElement(btnResendCode);
+
+		log.info("Ending of clickOnResendCode method");
+	}
+
+	public String getOTPResendValidationText() {
+		log.info("Starting of getOTPResendValidationText method");
+		log.info("Ending of getOTPResendValidationText method");
+
+		return getText(txtValidationOTPResend);
+	}
+
+	public void clickOnDominantHandDropDownListOption() {
+		log.info("Starting of clickOnDominantHandDropDownListOption method");
+
+		String ddText = ddDominantHand.getText();
+		Actions action = new Actions(driver);
+		action.moveToElement(ddDominantHand).click().perform();
+
+		for (WebElement dominantHand : lstDominantHandOptions) {
+			try {
+				if (!(dominantHand.getText().equals(ddText))) {
+					clickOnWebElement(dominantHand);
+					break;
+				}
+			} catch (Exception e) {
+				clickOnElement(dominantHand);
+				break;
+			}
+		}
+
+		log.info("Ending of clickOnDominantHandDropDownListOption method");
+	}
+
+	public void setPaddleBrand(String paddleBrand) {
+		log.info("Starting of setPaddleBrand method");
+
+		clickOnElement(txtBoxPaddleBrand);
+		this.txtBoxPaddleBrand.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
+		sendKeys(txtBoxPaddleBrand, paddleBrand + randomNumber(2));
+
+		log.info("Ending of setPaddleBrand method");
+	}
+
+	public void setShoeBrand(String shoeBrand) {
+		log.info("Starting of setShoeBrand method");
+
+		this.txtBoxShoeBrand.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
+		sendKeys(txtBoxShoeBrand, shoeBrand + randomNumber(2));
+
+		log.info("Ending of setShoeBrand method");
+	}
+
+	public void setApparelBrand(String apparelBrand) {
+		log.info("Starting of setApparelBrand method");
+
+		this.txtBoxApparelBrand.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
+		sendKeys(txtBoxApparelBrand, apparelBrand + randomNumber(2));
+
+		log.info("Ending of setApparelBrand method");
+	}
+
+	public void setPreferredBall(String preferredBall) {
+		log.info("Starting of setPreferredBall method");
+
+		this.txtBoxPrefferedBall.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
+		sendKeys(txtBoxPrefferedBall, preferredBall + randomNumber(2));
+
+		log.info("Ending of setPreferredBall method");
+	}
+
+	public void clickOnPreferredSideDropDownListOption() {
+		log.info("Starting of clickOnPreferredSideDropDownListOption method");
+
+		hardWait(3);
+		String ddText = ddPreferredSide.getText();
+		Actions ac = new Actions(driver);
+		hardWait(3);
+		ac.moveToElement(ddPreferredSide).click(ddPreferredSide).build().perform();
+		hardWait(2);
+		for (WebElement preferredSide : lstPreferredSideOptions) {
+
+			try {
+
+				if (!(preferredSide.getText().equals(ddText))) {
+					
+					clickOnWebElement(preferredSide);
+					break;
+				}
+			} catch (Exception e) {
+				clickOnElement(preferredSide);
+				break;
+			}
+		}
+		log.info("Ending of clickOnPreferredSideDropDownListOption method");
+	}
+}
