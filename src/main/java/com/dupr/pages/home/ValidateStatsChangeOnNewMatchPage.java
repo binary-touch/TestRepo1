@@ -16,19 +16,19 @@ public class ValidateStatsChangeOnNewMatchPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h3[text()='Result Overview']")
 	private WebElement lblResultOverview;
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-9jay18']/button[text()='View Profile']")
+	@B2BFindBy(xpath = "//div[contains(@class, 'MuiBox-root')]/button[text()='View Profile']")
 	private WebElement btnViewProfile;
 
-	@B2BFindBy(xpath = "//div[@class='MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 css-1u5jq4p']/div/div[@class='MuiBox-root css-1xhj18k']/descendant::div[@class='MuiBox-root css-186cvf2']/h5")
+	@B2BFindBy(xpath = "(//div[contains(@class, 'MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0')]/div/div[contains(@class,'MuiBox-root')]/descendant::div[contains(@class, 'MuiBox-root')]/h5)[1]")
 	private WebElement lblWinsCount;
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-1wys6dg']/h5[@class='MuiTypography-root MuiTypography-h5 css-vnlh3h']")
+	@B2BFindBy(xpath = "(//div[contains(@class, 'MuiBox-root')]/h5[contains(@class, 'MuiTypography-root MuiTypography-h5')])[3]")
 	private WebElement lblPendingCount;
 
-	@B2BFindBy(xpath = "//div[@class='MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 css-1u5jq4p']/div/div[@class='MuiBox-root css-1xhj18k']/div/div/following-sibling::div[@class='MuiBox-root css-ubn9s9']/h5")
+	@B2BFindBy(xpath = "(//div[contains(@class, 'MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0')]/div/div[contains(@class, 'MuiBox-root')]/div/div/following-sibling::div[contains(@class, 'MuiBox-root')]/h5)[1]")
 	private WebElement lblLossesCount;
 
-	@B2BFindBy(xpath = "//div[@class='MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 css-1u5jq4p']/div/div/following-sibling::div/div/div/div/following-sibling::div/following-sibling::div/*/*/*[4]/*[1]")
+	@B2BFindBy(xpath = "//div[contains(@class, 'MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0')]/div/div/following-sibling::div/div/div/div/following-sibling::div/following-sibling::div/*/*/*[4]/*[1]")
 	private WebElement lblTotalMatches;
 
 	@B2BFindBy(xpath = "//p[contains(@id,'-legend-datagroup-0-title') and text()='Wins']/preceding-sibling::div")
@@ -40,7 +40,7 @@ public class ValidateStatsChangeOnNewMatchPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//p[contains(@id,'-legend-datagroup-2-title') and text()='Pending']/preceding-sibling::div")
 	private WebElement chkPending;
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-9jay18']//button/*[@class='MuiSvgIcon-root MuiSvgIcon-colorPrimary MuiSvgIcon-fontSizeMedium css-hy9rpc']")
+	@B2BFindBy(xpath = "(//div[contains(@class, 'MuiBox-root')]//button/*[contains(@class, 'MuiSvgIcon-root MuiSvgIcon-colorPrimary MuiSvgIcon-fontSizeMedium')])[2]")
 	private WebElement iconInfo;
 
 	@B2BFindBy(xpath = "//h4[@id='customized-dialog-title']")
@@ -52,19 +52,19 @@ public class ValidateStatsChangeOnNewMatchPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h4[@id='customized-dialog-title']/button")
 	private WebElement iconClose;
 
-	@B2BFindBy(xpath = "//h3[@class='MuiTypography-root MuiTypography-h3 css-hyqj8z']")
+	@B2BFindBy(xpath = "//h3[contains(@class, 'MuiTypography-root MuiTypography-h3') and text()='Result Overview']")
 	private WebElement lblPlayerProfile;
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-t13zzn']//descendant::h6[text()='Doubles']")
+	@B2BFindBy(xpath = "//div[contains(@class, 'MuiBox-root')]//descendant::h6[text()='Doubles']")
 	private WebElement lblDoubles;
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-t13zzn']/div/following-sibling::div/div/h6[text()='Singles']")
+	@B2BFindBy(xpath = "//div[contains(@class, 'MuiBox-root')]/div/following-sibling::div/div/h6[text()='Singles']")
 	private WebElement lblSingles;
 
-	@B2BFindBy(xpath = "//div[@class='MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1a952mb']/descendant::h3[text()='Performance Analysis']")
+	@B2BFindBy(xpath = "(//h3[text()='Performance Analysis'])[1]")
 	private WebElement lblPerformanceAnalysis;
 
-	@B2BFindBy(xpath = "//h4[@class='MuiTypography-root MuiTypography-h4 css-12grqhn' and text()='Match History']")
+	@B2BFindBy(xpath = "//h4[contains(@class, 'MuiTypography-root MuiTypography-h4') and text()='Match History']")
 	private WebElement tabMatchHistory;
 
 	@B2BFindBy(xpath = "//input[@id='Search']")

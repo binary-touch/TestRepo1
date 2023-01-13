@@ -12,37 +12,37 @@ public class NotificationsPage extends DUPRBaseAutomationPage {
 
 	private static final Logger log = LogManager.getLogger(NotificationsPage.class);
 
-	@B2BFindBy(xpath = "//div[@class='MuiTabs-flexContainer css-k008qs']/button[text()='Notifications']")
+	@B2BFindBy(xpath = "//button[text()='Notifications']")
 	private WebElement tabNotifications;
 
-	@B2BFindBy(xpath = "//span[text()='App Notifications']/../span[@class='MuiSwitch-root MuiSwitch-sizeMedium css-ecvcn9']/descendant::input/..")
+	@B2BFindBy(xpath = "//span[text()='App Notifications']/../span[contains(@class,'MuiSwitch-root MuiSwitch-sizeMedium')]/descendant::input/..")
 	private WebElement btnAppNotifications;
 
-	@B2BFindBy(xpath = "//div[@class='MuiFormGroup-root css-1h7anqn']/label[1]/*/span[contains(@class, 'Mui-checked')]")
+	@B2BFindBy(xpath = "//div[contains(@class,'MuiFormGroup-root')]/label[1]/*/span[contains(@class, 'Mui-checked')]")
 	private WebElement tglAppNotificationsInEnabled;
 
-	@B2BFindBy(xpath = "//div[@class='MuiFormGroup-root css-1h7anqn']/label[1]/*/span[@class='MuiButtonBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary css-1lu3ody']")
+	@B2BFindBy(xpath = "//div[contains(@class,'MuiFormGroup-root')]/label[1]/*/span[contains(@class,'PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary')]")
 	private WebElement tglAppNotificationsInDisabled;
 
-	@B2BFindBy(xpath = "//div[@class='MuiFormGroup-root css-1h7anqn']/label/following-sibling::label/span[@class='MuiSwitch-root MuiSwitch-sizeMedium css-ecvcn9']")
+	@B2BFindBy(xpath = "//div[contains(@class,'MuiFormGroup-root')]/label/following-sibling::label/span[contains(@class,'MuiSwitch-root MuiSwitch-sizeMedium')]")
 	private WebElement btnEmaillNotifications;
 
-	@B2BFindBy(xpath = "//div[@class='MuiFormGroup-root css-1h7anqn']/label/following-sibling::label/span[@class='MuiSwitch-root MuiSwitch-sizeMedium css-ecvcn9']/span[contains(@class,'Mui-checked')]")
+	@B2BFindBy(xpath = "//div[contains(@class,'MuiFormGroup-root')]/label/following-sibling::label/span[contains(@class,'MuiSwitch-root MuiSwitch-sizeMedium')]/span[contains(@class,'Mui-checked')]")
 	private WebElement tglEmaillNotificationsInEnabled;
 
-	@B2BFindBy(xpath = "//div[@class='MuiFormGroup-root css-1h7anqn']/label/following-sibling::label/span[@class='MuiSwitch-root MuiSwitch-sizeMedium css-ecvcn9']/span[@class='MuiButtonBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary css-1lu3ody']")
+	@B2BFindBy(xpath = "//div[contains(@class,'MuiFormGroup-root')]/label/following-sibling::label/span[contains(@class,'MuiSwitch-root MuiSwitch-sizeMedium')]/span[contains(@class,'PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary')]")
 	private WebElement tglEmaillNotificationsInDisabled;
 
-	@B2BFindBy(xpath = "//div[@class='MuiFormGroup-root css-1h7anqn']/div//span[@class='MuiSwitch-root MuiSwitch-sizeMedium css-ecvcn9']")
+	@B2BFindBy(xpath = "//div[contains(@class,'MuiFormGroup-root')]/div//span[contains(@class,'MuiSwitch-root MuiSwitch-sizeMedium')]")
 	private WebElement btnSmsNotifications;
 
-	@B2BFindBy(xpath = "//div[@class='MuiFormGroup-root css-1h7anqn']/div//span[@class='MuiSwitch-root MuiSwitch-sizeMedium css-ecvcn9']/span[contains(@class,'Mui-checked')]")
+	@B2BFindBy(xpath = "//div[contains(@class,'MuiFormGroup-root')]/div//span[contains(@class,'MuiSwitch-root MuiSwitch-sizeMedium')]/span[contains(@class,'Mui-checked')]")
 	private WebElement tglSMSNotificationsInEnabled;
 
-	@B2BFindBy(xpath = "//div[@class='MuiFormGroup-root css-1h7anqn']/div//span[@class='MuiSwitch-root MuiSwitch-sizeMedium css-ecvcn9']/span[@class='MuiButtonBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary css-1lu3ody']")
+	@B2BFindBy(xpath = "//div[contains(@class,'MuiFormGroup-root')]/div//span[contains(@class,'MuiSwitch-root MuiSwitch-sizeMedium')]/span[contains(@class,'PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary')]")
 	private WebElement tglSMSNotificationsInDisabled;
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-1fv5em7']/following-sibling::div[@class='MuiBox-root css-sjnho']/button")
+	@B2BFindBy(xpath = "//button[text()='Save']")
 	private WebElement btnSave;
 
 	public NotificationsPage(WebDriver driver) {
@@ -54,7 +54,7 @@ public class NotificationsPage extends DUPRBaseAutomationPage {
 		log.info("Starting of clickOnNotificationsTab method");
 
 		explicitWait(tabNotifications);
-		clickOnElement(tabNotifications);
+		clickOnWebElement(tabNotifications);
 
 		log.info("Ending of clickOnNotificationsTab method");
 	}
@@ -120,7 +120,7 @@ public class NotificationsPage extends DUPRBaseAutomationPage {
 			}
 		} catch (Exception e) {
 			if (tglSMSNotificationsInDisabled.isDisplayed() == true) {
-				btnSmsNotifications.click();
+				clickOnWebElement(btnSmsNotifications);
 			}
 		}
 

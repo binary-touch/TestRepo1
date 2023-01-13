@@ -226,7 +226,7 @@ public class ChangePasswordPage extends DUPRBaseAutomationPage {
 	public void setOldPassWordWithWhiteSpaces(String value) {
 		log.info("Starting of setOldPassWordWithWhiteSpaces method");
 
-		this.impicitWait();
+		this.implicitWait();
 		this.txtBoxOldPassword.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		int i = Integer.parseInt(value);
 		if (i >= 6) {
@@ -242,7 +242,7 @@ public class ChangePasswordPage extends DUPRBaseAutomationPage {
 	public void setNewPasswordWithWhiteSpaces(String value) {
 		log.info("Starting of setNewPasswordWithWhiteSpaces method");
 
-		this.impicitWait();
+		this.implicitWait();
 		this.txtBoxNewPassword.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		int i = Integer.parseInt(value);
 		if (i >= 6) {

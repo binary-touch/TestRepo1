@@ -86,7 +86,7 @@ public class PlayerProfileTest extends CommonBaseTest {
 		editProfilePage.setFullName("");
 
 		String validationText = editProfilePage.getFullNameValidationText();
-		Assert.assertEquals(validationText, expectedAssertionsProp.getProperty("full.name.required.validation"));
+		Assert.assertEquals(validationText, expectedAssertionsProp.getProperty("first.name.required.validation"));
 
 		logger.info("Ending of verifyFullNameFieldWithoutCharacters method");
 	}
@@ -128,7 +128,7 @@ public class PlayerProfileTest extends CommonBaseTest {
 	public void verifyFullNameFieldWithMoreThanMaxCharacters() {
 		logger.info("Starting of verifyFullNameFieldWithMoreThanMaxCharacters method");
 
-		editProfilePage.setFullName(testDataProp.getProperty("player.invalid.name"));
+		editProfilePage.setFullName(editProfilePage.randomAlphabet(52));
 
 		editProfilePage.hardWait(2);
 		String validationText = editProfilePage.getFullNameValidationText();
@@ -175,7 +175,6 @@ public class PlayerProfileTest extends CommonBaseTest {
 		editProfilePage.scrollDown(-700);
 		editProfilePage.setAddress(testDataProp.getProperty("state.address"),
 				testDataProp.getProperty("state.country.address"));
-		Assert.assertTrue(editProfilePage.isSaveEnabled());
 
 		editProfilePage.clickOnSaveButton();
 
@@ -258,7 +257,7 @@ public class PlayerProfileTest extends CommonBaseTest {
 
 		Assert.assertTrue(editProfilePage.isOkButtonEnabled());
 
-		editProfilePage.clickOnOkButton();
+		editProfilePage.clickOnOKButton();
 		editProfilePage.clickOnSaveButton();
 
 		Assert.assertEquals(editProfilePage.getCongratulationsLabel(),

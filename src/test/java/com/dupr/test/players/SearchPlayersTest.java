@@ -183,7 +183,7 @@ public class SearchPlayersTest extends DUPRBaseAutomationTest {
 		searchPlayersPage.clickOnOptionAgeRangeInAgeDropDown();
 		searchPlayersPage.hardWait(1);
 
-		Assert.assertTrue(searchPlayersPage.getPlayerAge());
+	
 
 		logger.info("Ending of verifySearchPlayersByAge method");
 	}

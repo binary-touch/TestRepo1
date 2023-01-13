@@ -140,11 +140,11 @@ public class NotificationsTest extends CommonBaseTest {
 		driver.navigate().refresh();
 
 		addAMatchPage.clickOnAddAMatchTab();
-		addAMatchPage.clickOnRallyMatchToggle();
+		//addAMatchPage.clickOnRallyMatchToggle();
 		addAMatchPage.setLocationInDoubles(testDataProp.getProperty("location.city.name"));
 		addAMatchPage.setEventName(testDataProp.getProperty("event.name"));
 		addAMatchPage.clickOnSinglesButton();
-		addAMatchPage.clickOnAddPlayer();
+		addAMatchPage.clickOnAddOpponentButton();
 		addAMatchPage.searchWithPlayerName(testDataProp.getProperty("search.partner.name"));
 		addAMatchPage.clickOnPlayerRadioButton();
 		addAMatchPage.clickOnAddPlayerButton();
@@ -153,6 +153,8 @@ public class NotificationsTest extends CommonBaseTest {
 				testDataProp.getProperty("teamtwo.gameone.Score"));
 
 		addAMatchPage.clickOnSubmitButton();
+		addAMatchPage.hardWait(1);
+		addAMatchPage.clickOnSubmitButtonInFinalScoresPopup();
 		addAMatchPage.clickOnOkButton();
 
 		logger.info("Ending of AddingMatchInSingles method");

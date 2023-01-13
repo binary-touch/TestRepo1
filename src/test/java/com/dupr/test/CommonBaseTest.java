@@ -30,7 +30,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 	public void verifySetMatchDetails() {
 		logger.info("Starting of verifySetMatchDetails method");
 
-		addAMatchPage.setMatchDate(testDataProp.getProperty("match.date"));
+		//addAMatchPage.setMatchDate(testDataProp.getProperty("match.date"));
 		addAMatchPage.setLocationInDoubles(testDataProp.getProperty("location.city.name"));
 
 		eventName = addAMatchPage.setEventName(testDataProp.getProperty("event.name.in.doubles"));
@@ -45,13 +45,13 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		addAMatchPage.searchWithPlayerName(testDataProp.getProperty("search.partner.name"));
 		addAMatchPage.clickOnPlayerRadioButton();
 		addAMatchPage.clickOnAddPlayerButton();
+		
 		addAMatchPage.clickOnAddPlayer();
-
 		addAMatchPage.searchWithPlayerName(testDataProp.getProperty("search.first.opponent.name"));
 		addAMatchPage.clickOnPlayerRadioButton();
 		addAMatchPage.clickOnAddPlayerButton();
+		
 		addAMatchPage.clickOnAddPlayer();
-
 		addAMatchPage.searchWithPlayerName(testDataProp.getProperty("search.second.opponent.name"));
 		addAMatchPage.clickOnPlayerRadioButton();
 		addAMatchPage.clickOnAddPlayerButton();
@@ -59,6 +59,10 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 				testDataProp.getProperty("teamtwo.gameone.Score"));
 
 		addAMatchPage.clickOnSubmitButton();
+		
+		addAMatchPage.hardWait(2);
+		addAMatchPage.clickOnSubmitButtonInFinalScoresPopup();
+		
 		addAMatchPage.clickOnOKButtonInSuccessPopup();
 
 		logger.info("Starting of verifyAddAMatchInDoubles method");
@@ -69,7 +73,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 
 		addAMatchPage.clickOnSinglesButton();
 
-		addAMatchPage.clickOnAddPlayer();
+		addAMatchPage.clickOnAddOpponentButton();
 		addAMatchPage.searchWithPlayerName(testDataProp.getProperty("search.first.opponent.name"));
 		addAMatchPage.clickOnPlayerRadioButton();
 		addAMatchPage.clickOnAddPlayerButton();
@@ -78,6 +82,10 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 				testDataProp.getProperty("teamone.gameone.Score"));
 
 		addAMatchPage.clickOnSubmitButton();
+		
+		addAMatchPage.hardWait(2);
+		
+		addAMatchPage.clickOnSubmitButtonInFinalScoresPopup();
 
 		logger.info("Starting of verifyAddAMatchInDoubles method");
 	}
@@ -87,7 +95,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 
 		addAMatchPage.clickOnSinglesButton();
 
-		addAMatchPage.clickOnAddPlayer();
+		addAMatchPage.clickOnAddOpponentButton();
 		addAMatchPage.searchWithPlayerName(testDataProp.getProperty("search.first.opponent.name"));
 		addAMatchPage.clickOnPlayerRadioButton();
 		addAMatchPage.clickOnAddPlayerButton();
@@ -96,6 +104,9 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 				testDataProp.getProperty("teamtwo.gameone.Score"));
 
 		addAMatchPage.clickOnSubmitButton();
+		
+		addAMatchPage.hardWait(2);
+		addAMatchPage.clickOnSubmitButtonInFinalScoresPopup();
 
 		logger.info("Starting of verifyAddAMatchInSinglesLossGame method");
 	}

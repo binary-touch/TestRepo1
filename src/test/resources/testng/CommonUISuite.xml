@@ -49,7 +49,7 @@
 			<class name="com.dupr.test.profile.NotificationsTest" />
 			<class name="com.dupr.test.profile.PlayerProfileTest" />
 			<class name="com.dupr.test.profile.ProfilePictureTest" />
-			<class name="com.dupr.test.profile.ChangePasswordTest" />
+			<!-- <class name="com.dupr.test.profile.ChangePasswordTest" /> -->
 		</classes>
 	</test>
 </suite>

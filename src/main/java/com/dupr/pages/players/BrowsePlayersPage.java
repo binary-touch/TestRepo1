@@ -17,34 +17,34 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 
 	private static final Logger log = LogManager.getLogger(BrowsePlayersPage.class);
 
-	@B2BFindBy(xpath = "//button[contains(@class,'MuiButton-sizeMedium')]")
+	@B2BFindBy(xpath = "//button[contains(@class,'MuiButton-sizeMedium') and text()='Filters']")
 	private WebElement btnFilters;
 
-	@B2BFindBy(xpath = "//button[contains(@class,'MuiButton-sizeLarge')]")
+	@B2BFindBy(xpath = "//button[contains(@class,'MuiButton-sizeLarge') and text()='Invite a Player to DUPR']")
 	private WebElement tabInvitePlayerToDUPR;
 
-	@B2BFindBy(xpath = "//input[@class='PrivateSwitchBase-input MuiSwitch-input css-1m9pwf3']")
+	@B2BFindBy(xpath = "//input[contains(@class, 'PrivateSwitchBase-input MuiSwitch-input') and @type='checkbox']")
 	private WebElement tglFindNearMePlayer;
 
-	@B2BFindBys(@B2BFindBy(xpath = "//div[@class='MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation3 css-1yxhj1v']//h4"))
+	@B2BFindBys(@B2BFindBy(xpath = "//div[contains(@class, 'MuiPaper-rounded MuiPaper-elevation3')]/div/following-sibling::div[1]//following-sibling::div[1]//h4"))
 	private List<WebElement> lstPlayerNames;
 
 	@B2BFindBys(@B2BFindBy(xpath = "//div[@class='MuiBox-root css-hp68mp'] //div/preceding-sibling::p"))
 	private List<WebElement> lstPlayersLocations;
 
-	@B2BFindBys(@B2BFindBy(xpath = "//div[@class='MuiBox-root css-hp68mp'] //div/following-sibling::p"))
+	@B2BFindBys(@B2BFindBy(xpath = "//div[contains(@class,'MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation3')]/div/following-sibling::div[1]/div/following-sibling::div/*/*/div/div/p"))
 	private List<WebElement> lstPlayersAge;
 
-	@B2BFindBys(@B2BFindBy(xpath = "//div[@class='MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation3 css-1yxhj1v'] //h2/../../../following-sibling::div //h2"))
+	@B2BFindBys(@B2BFindBy(xpath = "//div[contains(@class, 'MuiPaper-rounded MuiPaper-elevation3')]/div/following-sibling::div[1]/*/following-sibling::div/*/*/following-sibling::div/div/h6[text()='Singles']/parent::div/div"))
 	private List<WebElement> lstPlayersSingleMatchRatings;
 
-	@B2BFindBys(@B2BFindBy(xpath = "//div[@class='MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation3 css-1yxhj1v'] //h2/../../../following-sibling::div //h2/../../../preceding-sibling::div[@class='MuiGrid-root MuiGrid-item MuiGrid-grid-xs-5 MuiGrid-grid-md-2.5 css-13cv0kd'] //h2"))
+	@B2BFindBys(@B2BFindBy(xpath = "//div[contains(@class, 'MuiPaper-rounded MuiPaper-elevation3')]/div/following-sibling::div[1]/*/following-sibling::div/*/*/following-sibling::div/div/h6[text()='Doubles']/parent::div/div"))
 	private List<WebElement> lstPlayersDoublesMatchRatings;
 
-	@B2BFindBys(@B2BFindBy(xpath = "//div[@class='MuiBox-root css-hp68mp'] //div/following-sibling::p/../following-sibling::p"))
+	@B2BFindBys(@B2BFindBy(xpath = "//div[contains(@class,'MuiBox-root')]//div/following-sibling::p"))
 	private List<WebElement> lstPlayersDistance;
 
-	@B2BFindBy(xpath = "//h3[@class='MuiTypography-root MuiTypography-h3 css-hyqj8z']")
+	@B2BFindBy(xpath = "//h3[text()='Browse Players']")
 	private WebElement lblBrowsePlayers;
 
 	@B2BFindBy(xpath = "//input[@id='Search']")
@@ -53,19 +53,19 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h5[text()='Location']/../following-sibling::div/div//fieldset/preceding-sibling::input")
 	private WebElement txtBoxLocationInFilters;
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-2ph43x'] //h3[@class='MuiTypography-root MuiTypography-h3 css-1nvrxol']")
+	@B2BFindBy(xpath = "//h3[text()='Filters']")
 	private WebElement lblFilters;
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-2ph43x'] //h3[@class='MuiTypography-root MuiTypography-h3 css-1nvrxol']/preceding-sibling::button")
+	@B2BFindBy(xpath = "//button[text()='Clear All']")
 	private WebElement btnClearAll;
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-2ph43x'] //h3[@class='MuiTypography-root MuiTypography-h3 css-1nvrxol']/following-sibling::button")
+	@B2BFindBy(xpath = "//button[text()='Apply']")
 	private WebElement btnApply;
 
-	@B2BFindBy(xpath = "//h5[text()='Full Name']/../.. //input[@class='MuiInputBase-input MuiOutlinedInput-input css-1x5jdmq']")
+	@B2BFindBy(xpath = "//h5[text()='Full Name']/../.. //input[contains(@class,'MuiInputBase-input MuiOutlinedInput-input')]")
 	private WebElement txtBoxFullName;
 
-	@B2BFindBy(xpath = "//h5[text()='Email Address']/../.. //input[@class='MuiInputBase-input MuiOutlinedInput-input css-1x5jdmq']")
+	@B2BFindBy(xpath = "//h5[text()='Email Address']/../.. //input[contains(@class,'MuiInputBase-input MuiOutlinedInput-input')]")
 	private WebElement txtBoxEmail;
 
 	@B2BFindBy(xpath = "//h5[text()='Full Name']")
@@ -77,10 +77,10 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h4[@id='customized-dialog-title']")
 	private WebElement lblInvitePlayer;
 
-	@B2BFindBy(xpath = "//div[@class='MuiDialogActions-root MuiDialogActions-spacing css-v0512d']/button[contains(@class,'MuiButton-whitecontained')]")
+	@B2BFindBy(xpath = "//div/button[contains(@class,'MuiButton-whitecontained') and text()='Back']")
 	private WebElement btnBack;
 
-	@B2BFindBy(xpath = "//div[@class='MuiDialogActions-root MuiDialogActions-spacing css-v0512d']/button[contains(@class,'MuiButton-whitecontained')]/following-sibling::button")
+	@B2BFindBy(xpath = "//div/button[contains(@class,'MuiButton-whitecontained')]/following-sibling::button[text()='Send Invite']")
 	private WebElement btnSendInvite;
 
 	@B2BFindBy(xpath = "//h4[@id='customized-dialog-title']")
@@ -92,22 +92,22 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h5[text()='Location']")
 	private WebElement lblLocation;
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-19idom']/*[text()='Distance']")
+	@B2BFindBy(xpath = "//h5[text()='Distance']")
 	private WebElement lblDistance;
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-19idom']/*[text()='Skill Level Ratings']")
+	@B2BFindBy(xpath = "//h5[text()='Skill Level Ratings']")
 	private WebElement lblSkillLevelRatings;
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-19idom']/*[text()='Type']")
+	@B2BFindBy(xpath = "//h5[text()='Type']")
 	private WebElement lblType;
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-19idom']/*[text()='Gender']")
+	@B2BFindBy(xpath = "//h5[text()='Gender']")
 	private WebElement lblGender;
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-19idom']/*[text()='Age Range']")
+	@B2BFindBy(xpath = "//h5[text()='Age Range']")
 	private WebElement lblAgeRange;
 
-	@B2BFindBys(@B2BFindBy(xpath = "//ul[@class='MuiList-root MuiList-padding css-1xifowx']/*/div"))
+	@B2BFindBys(@B2BFindBy(xpath = "//ul[contains(@class,'MuiList-root MuiList-padding')]/li[contains(@class,'MuiListItem-gutters MuiListItem-divider')]/div"))
 	private List<WebElement> lstLocationOptions;
 
 	@B2BFindBy(xpath = "//input[@type='range' and @aria-label='Distance']")
@@ -125,7 +125,7 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//input[@data-index='1']/following-sibling::span")
 	private WebElement ratingSecondNode;
 
-	@B2BFindBys(@B2BFindBy(xpath = "//h2[@class='MuiTypography-root MuiTypography-h2 css-c4ki75']"))
+	@B2BFindBys(@B2BFindBy(xpath = "//h2[contains(@class,'MuiTypography-root MuiTypography-h2')]"))
 	private List<WebElement> lstPlayerRatings;
 
 	@B2BFindBy(xpath = "//button[@value='MALE']")
@@ -146,7 +146,7 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//p[text()='Email is invalid.']")
 	private WebElement txtValidationEmailIsInvalid;
 
-	@B2BFindBy(xpath = "//button[@class='MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-u7hjsa']")
+	@B2BFindBy(xpath = "(//button[@type='button' and contains(@class, 'MuiIconButton-root MuiIconButton-sizeMedium')]/span[contains(@class, 'MuiTouchRipple-root')])[2]")
 	private WebElement btnBackArrow;
 
 	public BrowsePlayersPage(WebDriver driver) {
@@ -246,7 +246,7 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 	public void setLocationInFilters(String location) {
 		log.info("Starting of setLocationInFilters method");
 
-		txtBoxLocationInFilters.click();
+		clickOnWebElement(txtBoxLocationInFilters);
 		txtBoxLocationInFilters.sendKeys(location);
 
 		log.info("Ending of setLocationInFilters method");
@@ -430,7 +430,7 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 				}
 			}
 		} catch (Exception e) {
-			flag =false;
+			flag = false;
 		}
 
 		log.info("Ending of getPlayersDoublesRating method");

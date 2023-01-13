@@ -13,28 +13,28 @@ public class ForgotPasswordPage extends DUPRBaseAutomationPage {
 
 	private static final Logger log = LogManager.getLogger(DUPRLoginPage.class);
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-gmuwbf']/a[text()='Search Players']")
+	@B2BFindBy(xpath = "(//a[text()='Search Players'])[1]")
 	private WebElement lblSearchPlayers;
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-gmuwbf']/a[text()='Log In']")
+	@B2BFindBy(xpath = "(//a[text()='Log In'])[2]")
 	private WebElement lnkLogIn;
 
-	@B2BFindBy(xpath = "//h1[@class='MuiTypography-root MuiTypography-h1 css-18q12qh']")
+	@B2BFindBy(xpath = "//h1[text()='Welcome Back']")
 	private WebElement lblWelcomeBack;
 
-	@B2BFindBy(xpath = "//button[contains(@class,'css-1srnq60') and text()='Forgot Password?']")
+	@B2BFindBy(xpath = "//button[text()='Forgot Password?']")
 	private WebElement btnForgotPassword;
 
 	@B2BFindBy(xpath = "//h1[contains(@class,'MuiTypography-h1') and text()='Forgot Password?']")
 	private WebElement lblForgotPassword;
 
-	@B2BFindBy(xpath = "//input[@class='MuiInputBase-input MuiOutlinedInput-input css-1x5jdmq']")
+	@B2BFindBy(xpath = "//input[contains(@class,'MuiInputBase-input MuiOutlinedInput-input')]")
 	private WebElement txtBoxEmail;
 
 	@B2BFindBy(xpath = "//button[contains(@class,'MuiButton-root') and text()='Send Email']")
 	private WebElement btnSendEmail;
 
-	@B2BFindBy(xpath = "//h1[@class='MuiTypography-root MuiTypography-h1 css-nidsp']")
+	@B2BFindBy(xpath = "//h1[text()='Create a New Password']")
 	private WebElement lblCreateANewPassword;
 
 	@B2BFindBy(xpath = "//h5[text()='Verification code (OTP)*']/parent::div/following-sibling::div//input[@aria-label='Please enter verification code. Digit 1']")
@@ -49,7 +49,7 @@ public class ForgotPasswordPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h5[text()='Verification code (OTP)*']/parent::div/following-sibling::div//input[@aria-label='Digit 4']")
 	private WebElement txtBoxOTPFour;
 
-	@B2BFindBy(xpath = "//h5[text()='Password']/parent::div/following-sibling::div //div[@class='MuiFormControl-root css-tzsjye'] //input")
+	@B2BFindBy(xpath = "//h5[text()='Password']/parent::div/following-sibling::div[1]/*/following-sibling::div//input")
 	private WebElement txtBoxPassword;
 
 	@B2BFindBy(xpath = "//h5[text()='Confirm Password']/parent::div/following-sibling::div//input")
@@ -64,13 +64,16 @@ public class ForgotPasswordPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//button[contains(@class,'MuiButton-sizeMedium') and text()='OK']")
 	private WebElement btnOk;
 
-	@B2BFindBy(xpath = "//h5[@class='MuiTypography-root MuiTypography-h5 css-1m5yda9']//parent::div/following-sibling::div//p")
+	@B2BFindBy(xpath = "//p[text()='Email is invalid.']")
 	private WebElement txtValidationEmailInvalid;
+	
+	@B2BFindBy(xpath = "//p[contains(@class, 'MuiFormHelperText-root Mui-error')]")
+	private WebElement txtValidationAccountDoesnotExist;
 
-	@B2BFindBy(xpath = "//h5[@class='MuiTypography-root MuiTypography-h5 css-1m5yda9']//parent::div/following-sibling::div//p")
+	@B2BFindBy(xpath = "//p[text()='Email is required.']")
 	private WebElement txtValidationEmailRequired;
 
-	@B2BFindBy(xpath = "//h5[text()='Password']/parent::div/following-sibling::div/child::div/following-sibling::div[@class=\"MuiFormControl-root css-tzsjye\"]/descendant::p")
+	@B2BFindBy(xpath = "//h5[text()='Password']/parent::div/following-sibling::div/child::div/following-sibling::div/descendant::p")
 	private WebElement txtValidationPassword;
 
 	@B2BFindBy(xpath = "//h5[text()='Confirm Password']/parent::div/following-sibling::div//p")
@@ -79,7 +82,7 @@ public class ForgotPasswordPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//button[contains(@class,'MuiButton-whitecontained') and text()='Resend Code']")
 	private WebElement btnResendCode;
 
-	@B2BFindBy(xpath = "//p[@class='MuiTypography-root MuiTypography-body1 css-zds3da']")
+	@B2BFindBy(xpath = "//p[text()='OTP sent on your email address']")
 	private WebElement txtValidationOTPSent;
 
 	public ForgotPasswordPage(WebDriver driver) {
@@ -127,7 +130,7 @@ public class ForgotPasswordPage extends DUPRBaseAutomationPage {
 	public void setEmail(String strEmail) {
 		log.info("Starting of setEmailText method");
 
-		this.impicitWait();
+		this.implicitWait();
 		txtBoxEmail.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		this.txtBoxEmail.click();
 		this.txtBoxEmail.sendKeys(strEmail);
@@ -153,7 +156,7 @@ public class ForgotPasswordPage extends DUPRBaseAutomationPage {
 	public void setOTP(String strOTP1, String strOTP2, String strOTP3, String strOTP4) {
 		log.info("Starting of setOTP method");
 
-		this.impicitWait();
+		this.implicitWait();
 		sendKeys(txtBoxOTPOne, strOTP1);
 		this.txtBoxOTPtwo.sendKeys(strOTP2);
 		this.txtBoxOTPThree.sendKeys(strOTP3);
@@ -165,7 +168,7 @@ public class ForgotPasswordPage extends DUPRBaseAutomationPage {
 	public void setPassword(String strPassword) {
 		log.info("Starting of setPassword method");
 
-		this.impicitWait();
+		this.implicitWait();
 		this.txtBoxPassword.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		this.txtBoxPassword.sendKeys(strPassword);
 
@@ -175,7 +178,7 @@ public class ForgotPasswordPage extends DUPRBaseAutomationPage {
 	public void setConfirmPassword(String strConfirmPassword) {
 		log.info("Starting of setConfirmPassword method");
 
-		this.impicitWait();
+		this.implicitWait();
 		this.txtBoxConfirmPassword.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		this.txtBoxConfirmPassword.sendKeys(strConfirmPassword);
 
@@ -185,7 +188,7 @@ public class ForgotPasswordPage extends DUPRBaseAutomationPage {
 	public void clickOnConfirmPasswordButton() {
 		log.info("Starting of clickOnConfirmPasswordButton method");
 
-		this.impicitWait();
+		this.implicitWait();
 		this.btnConfirmPassword.click();
 
 		log.info("Ending of clickOnConfirmPasswordButton method");
@@ -211,7 +214,14 @@ public class ForgotPasswordPage extends DUPRBaseAutomationPage {
 
 		return getText(txtValidationEmailInvalid);
 	}
+	
+	public String getAccountDoesnotExistValidationText() {
+		log.info("Starting of getAccountDoesnotExistValidationText method");
+		log.info("Ending of getAccountDoesnotExistValidationText method");
 
+		return getText(txtValidationAccountDoesnotExist);
+	}
+	
 	public String getEmailRequiredValidationText() {
 		log.info("Starting of getEmailRequiredValidationText method");
 		log.info("Ending of getEmailRequiredValidationText method");
@@ -236,7 +246,7 @@ public class ForgotPasswordPage extends DUPRBaseAutomationPage {
 	public void setPasswordWithWhiteSpaces(String value) {
 		log.info("Starting of setPasswordWithWhiteSpaces method");
 
-		this.impicitWait();
+		this.implicitWait();
 		this.txtBoxPassword.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 
 		int i = Integer.parseInt(value);
@@ -253,7 +263,7 @@ public class ForgotPasswordPage extends DUPRBaseAutomationPage {
 	public void setConfirmPasswordWithWhiteSpaces(String value) {
 		log.info("Starting of setConfirmPasswordWithWhiteSpaces method");
 
-		this.impicitWait();
+		this.implicitWait();
 		this.txtBoxConfirmPassword.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 
 		int i = Integer.parseInt(value);

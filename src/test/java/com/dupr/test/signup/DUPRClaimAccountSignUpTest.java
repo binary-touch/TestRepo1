@@ -98,7 +98,7 @@ public class DUPRClaimAccountSignUpTest extends DUPRBaseAutomationTest {
 		duprSignUpPage.setEmail(testDataProp.getProperty("email"));
 		duprSignUpPage.setConfirmEmail();
 		duprSignUpPage.clickOnGenderRadioButton();
-		duprSignUpPage.setLocation(testDataProp.getProperty("location.city.name"));
+		duprSignUpPage.setLocation(testDataProp.getProperty("location"));
 
 		duprSignUpPage.setPassword(testDataProp.getProperty("password"));
 		duprSignUpPage.setConfirmPassword();

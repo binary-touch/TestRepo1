@@ -19,19 +19,19 @@ public class DeleteRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h4[@id='customized-dialog-title']")
 	private WebElement lblDeleteMatch;
 
-	@B2BFindBy(xpath = "//button[@class='MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1d07y9m']")
+	@B2BFindBy(xpath = "//button[@aria-label='close']")
 	private WebElement iconClose;
 
-	@B2BFindBy(xpath = "//div[@class='MuiDialogActions-root MuiDialogActions-spacing css-v0512d']/button[contains(@class,'MuiButton-whitecontained')]")
+	@B2BFindBy(xpath = "//button[contains(@class,'MuiButton-whitecontained') and text()='Delete']")
 	private WebElement btnDelete;
 
-	@B2BFindBy(xpath = "//div[@class='MuiDialogActions-root MuiDialogActions-spacing css-v0512d']/button[contains(@class,'MuiButton-contained')]")
+	@B2BFindBy(xpath = "//button[contains(@class,'MuiButton-contained') and text()='Go Back']")
 	private WebElement btnGoBack;
 
 	@B2BFindBy(xpath = "//h4[@id='customized-dialog-title']")
 	private WebElement lblSuccess;
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-19midj6']/h4")
+	@B2BFindBy(xpath = "//h4[text()='Match Deleted Successfully']")
 	private WebElement txtValidationMessageInSuccessPopup;
 
 	@B2BFindBy(xpath = "//h6[text()='Home']")
@@ -46,8 +46,7 @@ public class DeleteRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 		log.info("Starting of isPendingLabelDisplayed method");
 
 		boolean isPendingLabelDisplayed = false;
-		WebElement lblPendingDisplayed = driver.findElement(By.xpath("//p[contains(text(),'" + eventName
-				+ "')]/ancestor::div[contains(@class, 'MuiGrid-grid-xs-8')]/following-sibling::div[@class='MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 MuiGrid-grid-md-2 css-lv0834']//span"));
+		WebElement lblPendingDisplayed = driver.findElement(By.xpath("//p[contains(text(),'"+eventName+"')]/ancestor::div[contains(@class, 'MuiGrid-grid-xs-8')]/following-sibling::div[@class='MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 MuiGrid-grid-md-2 css-lv0834']//span"));
 		try {
 			if (isDisplayed(lblPendingDisplayed) == true) {
 				isPendingLabelDisplayed = true;

@@ -20,10 +20,10 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 
 	private static final Logger log = LogManager.getLogger(ValidateRecentlyAddedMatchPage.class);
 
-	@B2BFindBy(xpath = "//h4[@class='MuiTypography-root MuiTypography-h4 css-12grqhn' and text()='Match History']")
+	@B2BFindBy(xpath = "//h4[contains(@class, 'MuiTypography-root MuiTypography-h4') and text()='Match History']")
 	private WebElement tabMatchHistory;
 
-	@B2BFindBy(xpath = "//h3[@class='MuiTypography-root MuiTypography-h3 css-hyqj8z' and text()='Match History']")
+	@B2BFindBy(xpath = "//h3[contains(@class, 'MuiTypography-root MuiTypography-h3') and text()='Match History']")
 	private WebElement lblMatchHistory;
 
 	@B2BFindBy(xpath = "//span[text()='Completed']")
@@ -41,16 +41,16 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//button[@id='composition-button']")
 	private WebElement btnSort;
 
-	@B2BFindBy(xpath = "//div[@class='MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 css-1efqb7s']/descendant::div[@class='MuiBox-root css-yd8sa2']/child::div/following-sibling::div/p")
+	@B2BFindBy(xpath = "//div[contains(@class,'MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0')]/descendant::div[contains(@class, 'MuiBox-root')]/child::div/following-sibling::div/p[text()='Match ID:']")
 	private WebElement lblMatchId;
 
 	@B2BFindBy(xpath = "//div[@class='MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 css-1efqb7s']/descendant::div[@class='MuiBox-root css-0']/p[@class='MuiTypography-root MuiTypography-body2 css-1kuc6t0']")
 	private WebElement txtEventNames;
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-d4yq24']/button[text()='Clear Filters']")
+	@B2BFindBy(xpath = "//div[contains(@class,'MuiBox-root')]/button[text()='Clear Filters']")
 	private WebElement btnClearFilters;
 
-	@B2BFindBys(@B2BFindBy(xpath = "//h6[@class='MuiTypography-root MuiTypography-subtitle2 css-1aon3dv']"))
+	@B2BFindBys(@B2BFindBy(xpath = "//h6[contains(@class,'MuiTypography-root MuiTypography-subtitle2')]"))
 	private List<WebElement> lstMatchDates;
 
 	@B2BFindBy(xpath = "(//button[text()='Validate'])[1]")
@@ -74,7 +74,8 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h4[@id='customized-dialog-title']/button")
 	private WebElement iconClose;
 
-	@B2BFindBy(xpath = "//h4[@class='MuiTypography-root MuiTypography-h4 MuiDialogTitle-root css-1jdllhz']")
+	//@B2BFindBy(xpath = "//h4[contains(@class,'MuiTypography-root MuiTypography-h4 MuiDialogTitle-root')]")
+	@B2BFindBy(xpath = "//h4[text()='Validate Match?']")
 	private WebElement lblValidateMatchInValidateMatchPopup;
 
 	@B2BFindBy(xpath = "//button[contains(@class,'MuiButton-whitecontained') and text()='Cancel']")
@@ -88,44 +89,47 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBys(@B2BFindBy(xpath = "//div[@class='MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 css-1efqb7s'] //div[@class='MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-12 css-15j76c0']/following-sibling::div[@class='MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-12 css-15j76c0']"))
 	private List<WebElement> lstPlayerNames;
+	
+	@B2BFindBys(@B2BFindBy(xpath = "//div[@class='MuiBox-root css-0']/div/div[contains(@class, 'MuiGrid-spacing-xs-2')]/div[3]/div/div[contains(@class, 'MuiGrid-grid-sm-12')]"))
+	private List<WebElement> lstSingleMatchPlayers;
 
-	@B2BFindBys(@B2BFindBy(xpath = "//div[@class='MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 css-1efqb7s'] //div[@class='MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-12 css-15j76c0']/following-sibling::div[@class='MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-12 css-15j76c0']/preceding-sibling::div[@class='MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-12 css-15j76c0']"))
+	@B2BFindBys(@B2BFindBy(xpath = "//div[@class='MuiBox-root css-0']/div/div[contains(@class, 'MuiGrid-spacing-xs-2')]/div[3]/div/div[contains(@class, 'MuiGrid-grid-sm-12')][1]"))
 	private List<WebElement> lstOpponentPlayerNames;
 
-	@B2BFindBys(@B2BFindBy(xpath = "//div[@class='MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 css-1efqb7s']/descendant::div[@class='MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 css-zbuby5']/div/div/following-sibling::div/following-sibling::div/following-sibling::div/following-sibling::div/preceding-sibling::div/preceding-sibling::div/preceding-sibling::div/preceding-sibling::div"))
+	@B2BFindBys(@B2BFindBy(xpath = "//div[contains(@class,'MuiPaper-rounded')]/descendant::div[contains(@class,'MuiGrid-grid-md-6')]/div/div/following-sibling::div/following-sibling::div/following-sibling::div/following-sibling::div/preceding-sibling::div/preceding-sibling::div[3]"))
 	private List<WebElement> lstDoublesPlayerNames;
 
-	@B2BFindBys(@B2BFindBy(xpath = "//div[@class='MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 css-1efqb7s'] //div[@class='MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6 css-rpybyc'][2]"))
+	@B2BFindBys(@B2BFindBy(xpath = "//div[contains(@class,'MuiPaper-elevation0')]//div[contains(@class,'MuiGrid-grid-xs-12 MuiGrid-grid-sm-6')][2]"))
 	private List<WebElement> lstDoublesPartner;
 
-	@B2BFindBys(@B2BFindBy(xpath = "//div[@class='MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 css-1efqb7s'] //div[@class='MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6 css-rpybyc'][3]"))
+	@B2BFindBys(@B2BFindBy(xpath = "//div[contains(@class, 'MuiPaper-elevation0')]//div[contains(@class,'MuiGrid-grid-sm-6')][3]"))
 	private List<WebElement> lstDoublesOpponent;
 
-	@B2BFindBys(@B2BFindBy(xpath = "//div[@class='MuiGrid-root MuiGrid-container css-1qx1d3r']/child::div/following-sibling::div/following-sibling::div/following-sibling::div/following-sibling::div"))
+	@B2BFindBys(@B2BFindBy(xpath = "//div[contains(@class, 'MuiPaper-elevation0')]//div[contains(@class,'MuiGrid-grid-sm-6')][4]"))
 	private List<WebElement> lstDoublesOpponentPartner;
 
-	@B2BFindBys(@B2BFindBy(xpath = "//div[contains(@class,'MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-15j76c0')]/div/div[@class='MuiBox-root css-1oykulc']/div//*[local-name()='svg']"))
+	@B2BFindBys(@B2BFindBy(xpath = "//hr[contains(@class, 'MuiDivider-root MuiDivider-fullWidth')]/following-sibling::*"))
 	private List<WebElement> lstIconGreenTickMark;
 
-	@B2BFindBy(xpath = "//input[@class='PrivateSwitchBase-input css-1m9pwf3' and @value='ASC']")
+	@B2BFindBy(xpath = "//input[contains(@class,'PrivateSwitchBase-input') and @value='ASC']")
 	private WebElement rdoOldestToNewest;
 
-	@B2BFindBy(xpath = "//input[@class='PrivateSwitchBase-input css-1m9pwf3' and @value='DESC']")
+	@B2BFindBy(xpath = "//input[contains(@class, 'PrivateSwitchBase-input') and @value='DESC']")
 	private WebElement rdoNewestToOldest;
 
-	@B2BFindBy(xpath = "//h3[@class='MuiTypography-root MuiTypography-h3 css-hyqj8z']//parent::div/following-sibling::div/descendant::div//*[@class='MuiSvgIcon-root MuiSvgIcon-fontSizeSmall MuiChip-icon MuiChip-iconMedium MuiChip-iconColorPrimary css-nitmjn']")
+	@B2BFindBy(xpath = "//span[text()='Completed']/parent::div/*[contains(@class,'MuiChip-iconColorPrimary')]")
 	private WebElement iconRightMarkCompleted;
 
-	@B2BFindBy(xpath = "(//h3[@class='MuiTypography-root MuiTypography-h3 css-hyqj8z']//parent::div/following-sibling::div/descendant::div//*[@class='MuiSvgIcon-root MuiSvgIcon-fontSizeSmall MuiChip-icon MuiChip-iconMedium MuiChip-iconColorPrimary css-nitmjn'])[2]")
+	@B2BFindBy(xpath = "//span[text()='Pending']/parent::div/*[contains(@class,'MuiChip-iconColorPrimary')]")
 	private WebElement iconRightMarkPending;
 
-	@B2BFindBy(xpath = "(//h3[@class='MuiTypography-root MuiTypography-h3 css-hyqj8z']//parent::div/following-sibling::div/descendant::div//*[@class='MuiSvgIcon-root MuiSvgIcon-fontSizeSmall MuiChip-icon MuiChip-iconMedium MuiChip-iconColorPrimary css-nitmjn'])[3]")
+	@B2BFindBy(xpath = "//span[text()='Singles']/parent::div/*[contains(@class,'MuiChip-iconColorPrimary')]")
 	private WebElement iconRightMarkSingles;
 
-	@B2BFindBy(xpath = "//h3[@class='MuiTypography-root MuiTypography-h3 css-hyqj8z']//parent::div/following-sibling::div[@class='MuiBox-root css-d4yq24']/child::div/following-sibling::div/following-sibling::div/following-sibling::div/*[local-name()='svg']")
+	@B2BFindBy(xpath = "//span[text()='Doubles']/parent::div/*[contains(@class,'MuiChip-iconColorPrimary')]")
 	private WebElement iconRightMarkDoubles;
 
-	@B2BFindBys(@B2BFindBy(xpath = "//div[@class='MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 css-1efqb7s']"))
+	@B2BFindBys(@B2BFindBy(xpath = "//div[@class='MuiBox-root css-0']/div/div[contains(@class, 'MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2')]"))
 	private List<WebElement> lstMatchDetailsBoxes;
 
 	public ValidateRecentlyAddedMatchPage(WebDriver driver) {
@@ -145,8 +149,7 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 	public void clickOnDeleteButton(String eventName) {
 		log.info("Ending of clickOnDeleteButton method");
 
-		WebElement btnDeleteDisplayed = driver.findElement(By.xpath("//p[contains(text(),' " + eventName
-				+ " ')]/ancestor::div[contains(@class, 'MuiGrid-grid-xs-8')]/following-sibling::div//button"));
+		WebElement btnDeleteDisplayed = driver.findElement(By.xpath("//p[contains(text(),'"+eventName+"')]/ancestor::div[contains(@class, 'MuiGrid-grid-xs-8')]/following-sibling::div//button"));
 
 		elementClick(btnDeleteDisplayed);
 
@@ -259,8 +262,7 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 		explicitWait(lstMatchDetailsBoxes);
 		boolean validateButtonState = false;
 
-		WebElement btnDeleteDisplayed = driver.findElement(By.xpath("//p[contains(text(),'" + eventName
-				+ "')]/ancestor::div[contains(@class, 'MuiGrid-grid-xs-8')]/following-sibling::div//button"));
+		WebElement btnDeleteDisplayed = driver.findElement(By.xpath("//p[contains(text(),'"+eventName+"')]/ancestor::div[contains(@class, 'MuiGrid-grid-xs-8')]/following-sibling::div//button"));
 
 		try {
 			if (isDisplayed(btnDeleteDisplayed) == true) {
@@ -278,8 +280,7 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 	public void clickOnValidateButton(String eventName) {
 		log.info("Starting of clickOnValidateButton method");
 
-		WebElement btnValidateDisplayed = driver.findElement(By.xpath("//p[contains(text(),'" + eventName
-				+ "')]/ancestor::div[contains(@class, 'MuiGrid-grid-xs-8')]/following-sibling::div//button"));
+		WebElement btnValidateDisplayed = driver.findElement(By.xpath("//p[contains(text(),'"+eventName+"')]/ancestor::div[contains(@class, 'MuiGrid-grid-xs-8')]/following-sibling::div//button"));
 
 		elementClick(btnValidateDisplayed);
 
@@ -401,8 +402,7 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 		explicitWait(lstMatchDetailsBoxes);
 		boolean deleteButtonState = false;
 
-		WebElement btnDeleteDisplayed = driver.findElement(By.xpath("//p[contains(text(),' " + eventName
-				+ " ')]/ancestor::div[contains(@class, 'MuiGrid-grid-xs-8')]/following-sibling::div//button"));
+		WebElement btnDeleteDisplayed = driver.findElement(By.xpath("//p[contains(text(),'"+eventName+"')]/ancestor::div[contains(@class, 'MuiGrid-grid-xs-8')]/following-sibling::div//button"));
 
 		try {
 			if (isDisplayed(btnDeleteDisplayed) == true) {
@@ -441,7 +441,26 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 
 		return teamOneButton;
 	}
+	
+	public boolean isSinglesMatchPlayersDisplayed() {
+		log.info("Starting of isSinglesMatchPlayersDisplayed method");
 
+		boolean singlesPlayersStatus = true;
+		for (WebElement playerName : lstSingleMatchPlayers) {
+
+			if (isDisplayed(playerName)) {
+				singlesPlayersStatus = true;
+			} else {
+				singlesPlayersStatus = false;
+			}
+
+		}
+
+		log.info("Ending of isSinglesMatchPlayersDisplayed method");
+
+		return singlesPlayersStatus;
+	}
+	
 	public boolean isOpponentPlayerNamesButtonsDisplayed() {
 		log.info("Starting of isOpponentPlayerNamesButtonsDisplayed method");
 
@@ -475,8 +494,8 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 		boolean rightMarkState = false;
 
 		try {
-			if (isDisplayed(iconRightMarkCompleted) && isDisplayed(iconRightMarkPending)
-					&& isDisplayed(iconRightMarkSingles) && isDisplayed(iconRightMarkDoubles)) {
+			if (iconRightMarkCompleted.isDisplayed() && iconRightMarkPending.isDisplayed()
+					&& iconRightMarkSingles.isDisplayed() && iconRightMarkDoubles.isDisplayed()) {
 
 				rightMarkState = true;
 			}
@@ -595,18 +614,24 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 		explicitWait(lstMatchDetailsBoxes);
 		String firstDate = lstMatchDates.get(0).getText();
 
-		SimpleDateFormat sdf = new SimpleDateFormat("MMMM dd,yyyy");
+		SimpleDateFormat sdf = new SimpleDateFormat("MMMM dd, yyyy");
 
 		Date oldDate = sdf.parse(firstDate);
+		
+		String oldDateValue = sdf.format(oldDate);
 
 		boolean oldToNewDates = false;
-
+System.out.println("List size: "+ lstMatchDates.size());
 		for (WebElement matchDate : lstMatchDates) {
 
 			String strDate = matchDate.getText();
-			Date date = sdf.parse(strDate);
-
-			if (date.compareTo(oldDate) >= 0) {
+			
+			System.out.println("first date: "+ oldDateValue);
+			System.out.println("match date: "+ strDate);
+			
+			System.out.println("comparision result:"+ (strDate.compareTo(oldDateValue) >= 0));
+			
+			if (strDate.compareTo(oldDateValue) >= 0) {
 				oldToNewDates = true;
 			} else {
 				oldToNewDates = false;
@@ -621,7 +646,7 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 	public void clickOnClearFiltersButton() {
 		log.info("Starting of clickOnClearFiltersButton method");
 
-		clickOnElement(btnClearFilters);
+		clickOnWebElement(btnClearFilters);
 
 		log.info("Ending of clickOnClearFiltersButton method");
 	}

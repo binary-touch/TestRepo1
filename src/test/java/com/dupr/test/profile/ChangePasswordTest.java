@@ -59,14 +59,15 @@ public class ChangePasswordTest extends CommonBaseTest {
 		logger.info("Ending of verifySecurityTab method");
 	}
 
-	@Test(priority = 2, description = "Verify change password with valid data ", groups = "sanity")
+	@Parameters({ "validPassword" })
+	//@Test(priority = 2, description = "Verify change password with valid data ", groups = "sanity")
 	@Description("Test case #2, Verify change password with valid data ")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #2, Verify change password with valid data ")
-	public void verifyChangePasswordWithValidData() {
+	public void verifyChangePasswordWithValidData(String validPassword) {
 		logger.info("Starting of verifyChangePasswordWithValidData method");
 
-		changePasswordPage.setOldPassword(testDataProp.getProperty("old.password"));
+		changePasswordPage.setOldPassword(validPassword);
 		changePasswordPage.setNewPassword(testDataProp.getProperty("new.password"));
 		changePasswordPage.setConfirmPassword(testDataProp.getProperty("new.password"));
 		changePasswordPage.clickOnSaveButton();
@@ -137,16 +138,17 @@ public class ChangePasswordTest extends CommonBaseTest {
 		logger.info("Ending of verifyOldPasswordByWrongPassword method");
 	}
 
+	@Parameters({ "validPassword" })
 	@Test(priority = 6, description = "Verify new password field with less than minimum characters", groups = "sanity")
 	@Description("Test case #6, Verify new password field with less than minimum characters")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #6, Verify new password field with less than minimum characters")
-	public void verifyNewPasswordWithLessThanMinimumCharacters() {
+	public void verifyNewPasswordWithLessThanMinimumCharacters(String validPassword) {
 		logger.info("Starting of verifyNewPasswordWithLessThanMinimumCharacters method");
 
 		driver.navigate().refresh();
 		changePasswordPage.clickOnSecurityTab();
-		changePasswordPage.setOldPassword(testDataProp.getProperty("old.password"));
+		changePasswordPage.setOldPassword(validPassword);
 		changePasswordPage.setNewPassword(testDataProp.getProperty("invalid.email"));
 
 		String newPasswordValidationText = changePasswordPage.getNewPasswordValidationText();
@@ -156,14 +158,15 @@ public class ChangePasswordTest extends CommonBaseTest {
 		logger.info("Ending of verifyNewPasswordWithLessThanMinimumCharacters method");
 	}
 
+	@Parameters({ "validPassword" })
 	@Test(priority = 7, description = "Verify new password field with only numbers", groups = "sanity")
 	@Description("Test case #7, Verify new password field with only numbers")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #7, Verify new password field with only numbers")
-	public void verifyNewPasswordWithNumbers() {
+	public void verifyNewPasswordWithNumbers(String validPassword) {
 		logger.info("Starting of verifyNewPasswordWithNumbers method");
 
-		changePasswordPage.setOldPassword(testDataProp.getProperty("old.password"));
+		changePasswordPage.setOldPassword(validPassword);
 		changePasswordPage.setNewPassword(testDataProp.getProperty("full.name.with.numbers"));
 
 		String newPasswordValidationText = changePasswordPage.getNewPasswordValidationText();
@@ -173,14 +176,15 @@ public class ChangePasswordTest extends CommonBaseTest {
 		logger.info("Ending of verifyNewPasswordWithNumbers method");
 	}
 
+	@Parameters({ "validPassword" })
 	@Test(priority = 8, description = "Verify new password field with only special characters", groups = "sanity")
 	@Description("Test case #8, Verify new password field with only special characters")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #8, Verify new password field with only special characters")
-	public void verifyNewPasswordWithSpecialCharacters() {
+	public void verifyNewPasswordWithSpecialCharacters(String validPassword) {
 		logger.info("Starting of verifyNewPasswordWithSpecialCharacters method");
 
-		changePasswordPage.setOldPassword(testDataProp.getProperty("old.password"));
+		changePasswordPage.setOldPassword(validPassword);
 		changePasswordPage.setNewPassword(testDataProp.getProperty("full.name.with.special.characters"));
 
 		String newPasswordValidationText = changePasswordPage.getNewPasswordValidationText();
@@ -208,14 +212,15 @@ public class ChangePasswordTest extends CommonBaseTest {
 		logger.info("Ending of verifyOldPasswordWithWhiteSpaces method");
 	}
 
+	@Parameters({ "validPassword" })
 	@Test(priority = 10, description = "Verify new  password field with white spaces", groups = "sanity")
 	@Description("Test case #10, Verify new password field with white spaces")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #10, Verify new password field with white spaces")
-	public void verifyNewPasswordWithWhiteSpaces() {
+	public void verifyNewPasswordWithWhiteSpaces(String validPassword) {
 		logger.info("Starting of verifyNewPasswordWithWhiteSpaces method");
 
-		changePasswordPage.setOldPassword(testDataProp.getProperty("old.password"));
+		changePasswordPage.setOldPassword(validPassword);
 		changePasswordPage.setNewPasswordWithWhiteSpaces(testDataProp.getProperty("spaces.value"));
 
 		String newPasswordValidationText = changePasswordPage.getNewPasswordValidationText();
@@ -225,13 +230,14 @@ public class ChangePasswordTest extends CommonBaseTest {
 		logger.info("Ending of verifyNewPasswordWithWhiteSpaces method");
 	}
 
+	@Parameters({ "validPassword" })
 	@Test(priority = 11, description = "Verify validation message shown when Maximum characters exceeded at  New Password field", groups = "sanity")
 	@Description("Test case #11,Verify validation message shown when Maximum characters exceeded at  New Password field")
 	@Severity(SeverityLevel.NORMAL)
-	public void verifyNewPasswordWithMoreThanMaximumCharacters() {
+	public void verifyNewPasswordWithMoreThanMaximumCharacters(String validPassword) {
 		logger.info("Starting of verifyNewPasswordWithMoreThanMaximumCharacters method");
 
-		changePasswordPage.setOldPassword(testDataProp.getProperty("old.password"));
+		changePasswordPage.setOldPassword(validPassword);
 		changePasswordPage.setNewPassword(testDataProp.getProperty("more.than.max.characters.in.new.password"));
 
 		String newPasswordValidationText = changePasswordPage.getNewPasswordValidationText();
@@ -241,14 +247,15 @@ public class ChangePasswordTest extends CommonBaseTest {
 		logger.info("Ending of verifyNewPasswordWithMoreThanMaximumCharacters method");
 	}
 
+	@Parameters({ "validPassword" })
 	@Test(priority = 12, description = "Verify confirm password functionality with unmatched data", groups = "sanity")
 	@Description("Test case #12,Verify confirm password functionality with unmatched data")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #12,Verify confirm password functionality with unmatched data")
-	public void verifyConfirmPasswordWithUnmatchedData() {
+	public void verifyConfirmPasswordWithUnmatchedData(String validPassword) {
 		logger.info("Starting of verifyConfirmPasswordWithUnmatchedData method");
 
-		changePasswordPage.setOldPassword(testDataProp.getProperty("old.password"));
+		changePasswordPage.setOldPassword(validPassword);
 		changePasswordPage.setNewPassword(testDataProp.getProperty("new.password"));
 		changePasswordPage.setConfirmPassword(testDataProp.getProperty("password.unmatched"));
 
@@ -259,16 +266,17 @@ public class ChangePasswordTest extends CommonBaseTest {
 		logger.info("Ending of verifyConfirmPasswordWithUnmatchedData method");
 	}
 
+	@Parameters({ "validPassword" })
 	@Test(priority = 13, description = "Verify eye icon  functionality", groups = "sanity")
 	@Description("Test case #13,Verify eye icon  functionality")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #13,Verify eye icon  functionality")
-	public void VerifyEyeIcon() {
+	public void VerifyEyeIcon(String validPassword) {
 		logger.info("Starting of VerifyEyeIcon method");
 
 		driver.navigate().refresh();
 		changePasswordPage.clickOnSecurityTab();
-		changePasswordPage.setOldPassword(testDataProp.getProperty("old.password"));
+		changePasswordPage.setOldPassword(validPassword);
 		changePasswordPage.clickOnEyeIcon();
 
 		Assert.assertTrue(changePasswordPage.isEyeIconInHiddenMode());

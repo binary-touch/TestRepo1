@@ -25,53 +25,56 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 
 	private static final Logger log = LogManager.getLogger(DUPRLoginPage.class);
 
-	@B2BFindBy(xpath = "//div[@class ='MuiBox-root css-xev8c9']/button")
+	@B2BFindBy(xpath = "//button[@aria-label='Open settings']")
 	private WebElement mnuOpenSettings;
 
-	@B2BFindBys(@B2BFindBy(xpath = "//div[@class='py-2 flex flex-row text-base']/div[@class='text-dark_blue']"))
+	@B2BFindBys(@B2BFindBy(xpath = "//div[@class='text-dark_blue']"))
 	private List<WebElement> lstProfileOptions;
 
-	@B2BFindBy(xpath = "//ul[@class ='MuiList-root MuiList-padding MuiMenu-list css-r8u8y9']//div/child::div/following-sibling::div")
+	@B2BFindBy(xpath = "//div[text()='Edit Profile']")
 	private WebElement btnEditProfile;
 
-	@B2BFindBy(xpath = "//h3[@class='MuiTypography-root MuiTypography-h3 css-hyqj8z']")
+	@B2BFindBy(xpath = "//h3[text()='Edit Profile']")
 	private WebElement lblEditProfile;
 
-	@B2BFindBy(xpath = "//div[@class='MuiGrid-root MuiGrid-container css-1d3bbye']/descendant::h2")
+	@B2BFindBy(xpath = "//div[contains(@class,'MuiGrid-root MuiGrid-container')]/descendant::h2")
 	private WebElement lblPlayerName;
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-q5fqw0']//span[contains(@class,'MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary MuiIconButton-sizeMedium')]/*")
+	@B2BFindBy(xpath = "//div[contains(@class,'MuiBox-root')]//span[contains(@class,'MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary MuiIconButton-sizeMedium')]/span")
 	private WebElement iconCamera;
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-1eupesm']/button")
+	@B2BFindBy(xpath = "//div[contains(@class,'MuiBox-root')]/button[text()='View Public Profile']")
 	private WebElement btnViewPublicProfile;
 
-	@B2BFindBy(xpath = "//button[@class='MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary Mui-selected css-1tymec1']")
+	@B2BFindBy(xpath = "//button[text()='Profile']")
 	private WebElement tabProfile;
 
-	@B2BFindBy(xpath = "//h5[text()='Full Name']/../following-sibling::div//input")
-	private WebElement txtBoxFullName;
+	@B2BFindBy(xpath = "//h5[text()='First Name']/../following-sibling::div//input")
+	private WebElement txtBoxFirstName;
 
-	@B2BFindBy(xpath = "//h5[text()='Full Name']/../following-sibling::div//p")
+	@B2BFindBy(xpath = "//h5[text()='First Name']/../following-sibling::div//p")
 	private WebElement txtValidationFullName;
 
 	@B2BFindBy(xpath = "//h5[text()='Address']/../following-sibling::div//input")
 	private WebElement txtBoxAddress;
 
-	@B2BFindBys(@B2BFindBy(xpath = "//li[@class='MuiListItem-root MuiListItem-gutters MuiListItem-divider css-1vzmadc']/*/*/span"))
+	@B2BFindBys(@B2BFindBy(xpath = "//li[contains(@class,'MuiListItem-gutters MuiListItem-divider')]/*/*/span"))
 	private List<WebElement> lstAddress;
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-sjnho']/button")
+	@B2BFindBy(xpath = "//button[text()='Save']")
 	private WebElement btnSave;
 
 	@B2BFindBy(xpath = "//h4[@id='customized-dialog-title']")
 	private WebElement lblUpdateProfile;
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-1e1mp32']/h6")
+	@B2BFindBy(xpath = "//h6[text()='Please enter your street address or city name']")
 	private WebElement lblInvalidAddressValidation;
 
-	@B2BFindBy(xpath = "//div[@class='MuiDialogActions-root MuiDialogActions-spacing css-v0512d']/button")
+	@B2BFindBy(xpath = "//button[text()='ok']")
 	private WebElement btnOk;
+
+	@B2BFindBy(xpath = "//button[text()='OK']")
+	private WebElement btnOK;
 
 	@B2BFindBy(xpath = "//h4[@id='customized-dialog-title']/button")
 	private WebElement iconClose;
@@ -79,7 +82,7 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-0']/p")
 	private WebElement txtValidationStreetAddress;
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-1e1mp32']/h2")
+	@B2BFindBy(xpath = "//h2[text()='Congratulations!']")
 	private WebElement txtValidationCongratulations;
 
 	@B2BFindBy(xpath = "//h5[text()='Birth Date']/../following-sibling::div//input")
@@ -100,7 +103,7 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h5[text()='Gender']/../following-sibling::div/div/div")
 	private WebElement ddGender;
 
-	@B2BFindBys(@B2BFindBy(xpath = "(//ul[@class='MuiList-root MuiList-padding MuiMenu-list css-r8u8y9'])[2]/li"))
+	@B2BFindBys(@B2BFindBy(xpath = "(//ul[contains(@class,'MuiList-root MuiList-padding MuiMenu-list')])[2]/li"))
 	private List<WebElement> lstGender;
 
 	@B2BFindBy(xpath = "//h5[text()='Default Rating']/../following-sibling::div//label//input[@value='DOUBLES']")
@@ -118,7 +121,7 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h5[text()='Phone Number']/../following-sibling::div//div[contains(@class,'MuiInputAdornment-positionStart')]/button")
 	private WebElement btnCountryCode;
 
-	@B2BFindBys(@B2BFindBy(xpath = "//div[@class='MuiPopover-root  MuiModal-root css-1sucic7']//ul/li/div/following-sibling::span[@class='country-name']"))
+	@B2BFindBys(@B2BFindBy(xpath = "//div[contains(@class,'MuiPopover-root  MuiModal-root')]//ul/li/div/following-sibling::span[@class='country-name']"))
 	private List<WebElement> lstCountryNames;
 
 	@B2BFindBy(xpath = "//h4[@id='customized-dialog-title']")
@@ -130,19 +133,19 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//input[@aria-label='Please enter verification code. Character 1']")
 	private WebElement txtBoxOTPFirst;
 
-	@B2BFindBy(xpath = "//div[@class='MuiDialogActions-root MuiDialogActions-spacing css-v0512d']/button[contains(@class,'MuiButton-whitecontained')]")
+	@B2BFindBy(xpath = "//button[text()='Resend Code']")
 	private WebElement btnResendCode;
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-t91h8u']//p")
+	@B2BFindBy(xpath = "//div[contains(@class,'MuiBox-root')]//p[text()='An OTP was sent to your new number!']")
 	private WebElement txtValidationOTPResend;
 
-	@B2BFindBy(xpath = "//div[@class='MuiDialogActions-root MuiDialogActions-spacing css-v0512d']/button[contains(@class,'MuiButton-contained')]")
+	@B2BFindBy(xpath = "//div[contains(@class, 'MuiDialogActions-root MuiDialogActions-spacing')]/button[text()='Verify Now']")
 	private WebElement btnVerifyNow;
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-t91h8u']/p")
+	@B2BFindBy(xpath = "//p[text()='Mobile Successfully Verified.']")
 	private WebElement txtPhoneNumberVerified;
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-1a6l843']/div/following-sibling::div/following-sibling::div/*[local-name()='svg']")
+	@B2BFindBy(xpath = "//div[contains(@class,'MuiBox-root')]/div/following-sibling::div/following-sibling::div/*[local-name()='svg']")
 	private WebElement iconPhoneNumberVerified;
 
 	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-t91h8u']/p")
@@ -151,7 +154,7 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h5[text()='Dominant Hand']/../following-sibling::div/div/div")
 	private WebElement ddDominantHand;
 
-	@B2BFindBys(@B2BFindBy(xpath = "//div[@class='MuiPopover-root MuiMenu-root MuiModal-root css-1sucic7']//ul[@class='MuiList-root MuiList-padding MuiMenu-list css-r8u8y9']/li"))
+	@B2BFindBys(@B2BFindBy(xpath = "(//div[contains(@class,'MuiPaper-rounded MuiPaper-elevation8 MuiPopover-paper')])[2]//ul[contains(@class,'MuiList-padding MuiMenu-list')]/li"))
 	private List<WebElement> lstDominantHandOptions;
 
 	@B2BFindBy(xpath = "//h5[text()='Paddle Brand']/../following-sibling::div//input")
@@ -169,7 +172,7 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h5[text()='Preferred Side']/../following-sibling::div/div/div")
 	private WebElement ddPreferredSide;
 
-	@B2BFindBys(@B2BFindBy(xpath = "//div[@class='MuiPopover-root MuiMenu-root MuiModal-root css-1sucic7']//ul/li"))
+	@B2BFindBys(@B2BFindBy(xpath = "(//div[contains(@class,'MuiMenu-root MuiModal-root')])[2]//ul/li"))
 	private List<WebElement> lstPreferredSideOptions;
 
 	public EditProfilePage(WebDriver driver) {
@@ -216,7 +219,7 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 		boolean isEditProfilePageContains = false;
 
 		if (isDisplayed(lblEditProfile) && isDisplayed(lblPlayerName) && isDisplayed(iconCamera)
-				&& isDisplayed(btnViewPublicProfile) && tabProfile.isEnabled() && isDisplayed(txtBoxFullName)
+				&& isDisplayed(btnViewPublicProfile) && tabProfile.isEnabled() && isDisplayed(txtBoxFirstName)
 				&& isDisplayed(txtBoxAddress) && isDisplayed(txtBoxBirthDate)) {
 			isEditProfilePageContains = true;
 		}
@@ -231,7 +234,7 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 
 		boolean isProfileTabContains = false;
 
-		if (isDisplayed(txtBoxFullName) && isDisplayed(txtBoxAddress) && isDisplayed(txtBoxBirthDate)
+		if (isDisplayed(txtBoxFirstName) && isDisplayed(txtBoxAddress) && isDisplayed(txtBoxBirthDate)
 				&& isDisplayed(txtBoxPhoneNumber) && isDisplayed(btnCountryCode) && isDisplayed(rdoDoubles)
 				&& isDisplayed(txtBoxDuprId) && isDisplayed(ddDominantHand) && isDisplayed(txtBoxPaddleBrand)
 				&& isDisplayed(txtBoxShoeBrand) && isDisplayed(txtBoxApparelBrand) && isDisplayed(txtBoxPrefferedBall)
@@ -247,9 +250,9 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 	public void setFullName(String fullName) {
 		log.info("Starting of setFullName method");
 
-		clickOnElement(txtBoxFullName);
-		this.txtBoxFullName.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
-		sendKeys(txtBoxFullName, fullName);
+		clickOnWebElement(txtBoxFirstName);
+		this.txtBoxFirstName.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
+		sendKeys(txtBoxFirstName, fullName);
 
 		log.info("Ending of setFullName method");
 	}
@@ -264,7 +267,7 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 	public void setAddress(String stateOrCountryName, String Address) {
 		log.info("Starting of setAddress method");
 
-		clickOnElement(txtBoxAddress);
+		clickOnWebElement(txtBoxAddress);
 		this.txtBoxAddress.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		sendKeys(txtBoxAddress, stateOrCountryName);
 
@@ -332,6 +335,16 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 		}
 
 		log.info("Ending of clickOnOkButton method");
+	}
+
+	public void clickOnOKButton() {
+		log.info("Starting of clickOnOKButton method");
+
+		if (btnOK.isEnabled()) {
+			clickOnElement(btnOK);
+		}
+
+		log.info("Ending of clickOnOKButton method");
 	}
 
 	public String getStreetAddresValidationText() {
@@ -432,7 +445,7 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 
 		boolean isReviewDUPRPoliciesPopupContains = false;
 
-		if (isDisplayed(lblReviewPolicies) && isDisplayed(btnOk)) {
+		if (isDisplayed(lblReviewPolicies) && isDisplayed(btnOK)) {
 			isReviewDUPRPoliciesPopupContains = true;
 		}
 
@@ -453,7 +466,7 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 		log.info("Starting of isOkButtonEnabled method");
 
 		boolean status = false;
-		if (btnOk.isEnabled()) {
+		if (btnOK.isEnabled()) {
 			status = true;
 		}
 
@@ -539,7 +552,7 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 	public void clearPhoneNumber() {
 		log.info("Starting of clearPhoneNumber method");
 
-		clickOnElement(txtBoxPhoneNumber);
+		clickOnWebElement(txtBoxPhoneNumber);
 		String s = txtBoxPhoneNumber.getAttribute("value");
 
 		int numberLenght = s.length();
@@ -726,7 +739,7 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 			try {
 
 				if (!(preferredSide.getText().equals(ddText))) {
-					
+
 					clickOnWebElement(preferredSide);
 					break;
 				}

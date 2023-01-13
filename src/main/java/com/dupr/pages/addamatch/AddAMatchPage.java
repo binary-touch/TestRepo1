@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,46 +17,53 @@ import com.dupr.pages.DUPRBaseAutomationPage;
 public class AddAMatchPage extends DUPRBaseAutomationPage {
 	private static final Logger log = LogManager.getLogger(AddAMatchPage.class);
 
-	@B2BFindBy(xpath = "//div[@class='MuiButtonBase-root MuiListItemButton-root MuiListItemButton-gutters MuiListItemButton-root MuiListItemButton-gutters css-o5pjoi'] //h6[text()='Add a Match']")
+	@B2BFindBy(xpath = "//h6[text()='Add a Match']")
 	private WebElement tabAddAMatch;
 
 	@B2BFindBy(xpath = "//input[@name='location']")
 	private WebElement txtBoxLocation;
 
-	@B2BFindBy(xpath = "//input[@class='MuiInputBase-input MuiOutlinedInput-input css-1x5jdmq' and @placeholder='Enter Event Name']")
+	@B2BFindBy(xpath = "//h5[text()='Event Name']/parent::div/following-sibling::div[1]/*/*/input")
 	private WebElement txtBoxEventName;
 
-	@B2BFindBy(xpath = "//input[@placeholder='mm/dd/yyyy']")
+	@B2BFindBy(xpath = "//h5[text()='Match Date']/parent::div/following-sibling::div/*/div/input")
 	private WebElement txtBoxMatchDate;
 
 	@B2BFindBy(xpath = "//button[text()='Add Your Partner']")
 	private WebElement btnAddPartner;
 
-	@B2BFindBy(xpath = "//ul[@class='MuiList-root MuiList-padding css-1xifowx']/li")
+	@B2BFindBy(xpath = "//ul[contains(@class,'MuiList-root MuiList-padding')]/li[contains(@class, 'MuiListItem-gutters MuiListItem-divider')]")
 	private List<WebElement> lstLocations;
 
-	@B2BFindBy(xpath = "//input[@class='PrivateSwitchBase-input css-1m9pwf3']")
+	@B2BFindBy(xpath = "//p[text()='Location is required. ']")
+	private WebElement txtLocationRequired;
+
+	@B2BFindBy(xpath = "//span[contains(@class, 'MuiRadio-colorPrimary')]/input[contains(@class,'PrivateSwitchBase-input')]")
 	private WebElement rdoPlayer;
 
 	@B2BFindBy(xpath = "//button[text()='Add Player']")
 	private WebElement btnAddPlayer;
 
-	@B2BFindBy(xpath = "//input[@class='MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd css-1uvydh2']")
+	@B2BFindBy(xpath = "//input[contains(@class, 'MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd')]")
 	private WebElement txtBoxMatchdate;
 
-	@B2BFindBy(xpath = "//h3[@class='MuiTypography-root MuiTypography-h3 css-hyqj8z']")
+	@B2BFindBy(xpath = "//h3[text()='Add a Score']")
 	private WebElement lblAddScore;
 
-	@B2BFindBy(xpath = "//h2[@class='MuiTypography-root MuiTypography-h2 css-ir0jjf']")
+	@B2BFindBy(xpath = "//h2[text()='Match Details']")
 	private WebElement lblMatchDetails;
 
-	@B2BFindBy(xpath = "//div[@class='MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation3 css-m85v0k']/div")
+	@B2BFindBy(xpath = "//div[contains(@class, 'MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation3')]/div")
 	private WebElement addPartnerPlayer;
 
-	@B2BFindBy(xpath = "//button[contains(@class,'MuiButton-containedPrimary')]")
+	// @B2BFindBy(xpath = "//button[contains(@class,'MuiButton-containedPrimary')]")
+	@B2BFindBy(xpath = "//button[@type='submit' and text()='Submit']")
 	private WebElement btnSubmit;
 
-	@B2BFindBy(xpath = "//button[@class='MuiButtonBase-root MuiIconButton-root MuiIconButton-colorSuccess MuiIconButton-sizeLarge css-11yeg47']")
+	@B2BFindBy(xpath = "//div[contains(@class, 'MuiDialogActions-root')]/button[text()='Submit']")
+	private WebElement btnSubmitInFinalScoresPopup;
+
+	@B2BFindBy(xpath = "//button[contains(@class, 'MuiIconButton-colorPrimary MuiIconButton-sizeLarge')]")
 	private WebElement iconPlus;
 
 	@B2BFindBy(xpath = "//button[text()='Add Player' and @disabled]")
@@ -73,17 +81,20 @@ public class AddAMatchPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//button[ text()='Cancel']")
 	private WebElement btnCancel;
 
-	@B2BFindBy(xpath = "//input[@id='Search' and @class='MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart css-1ixds2g']")
+	@B2BFindBy(xpath = "//input[@id='Search']")
 	private WebElement txtBoxSearch;
 
-	@B2BFindBy(xpath = "//input[@id='Search']/ancestor::div[@class='MuiBox-root css-i9gxme']/following-sibling::button")
+	@B2BFindBy(xpath = "//button[text()='Invite']")
 	private WebElement btnInvite;
 
-	@B2BFindBys(@B2BFindBy(xpath = "//h4[@class='MuiTypography-root MuiTypography-h4 css-131o6ft']"))
+	@B2BFindBys(@B2BFindBy(xpath = "//span[contains(@class, 'MuiFormControlLabel-label')]/div"))
 	private List<WebElement> lstPlayersNames;
 
-	@B2BFindBys(@B2BFindBy(xpath = "//button[contains(@class,'MuiButton-containedPrimary')]/ancestor::div/preceding-sibling::Div[@class='MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 css-iol86l']/button[contains(@class,'MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium css-ec5xjy')]"))
+	@B2BFindBys(@B2BFindBy(xpath = "//button[contains(@class,'MuiButton-containedPrimary')]/ancestor::div/preceding-sibling::div[contains(@class, 'MuiGrid-grid-md-6')]/button[contains(@class,'MuiButton-outlinedSizeMedium')]"))
 	private List<WebElement> lstOfAddYourPartnersButtons;
+	
+	@B2BFindBy(xpath = "(//button[text()='Add Your Opponent'])[1]")
+	private WebElement btnAddOpponent;
 
 	@B2BFindBy(xpath = "//h4[@id='customized-dialog-title']")
 	private WebElement lblInviteAPlayer;
@@ -100,38 +111,44 @@ public class AddAMatchPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//button[text()='Back']")
 	private WebElement btnBack;
 
-	@B2BFindBy(xpath = "//div[@class='MuiDialogActions-root MuiDialogActions-spacing css-v0512d']/button/following-sibling::button")
+	@B2BFindBy(xpath = "//button[text()='Send Invite']")
 	private WebElement btnSendInvite;
 
 	@B2BFindBy(xpath = "//h4[@id='customized-dialog-title']")
 	private WebElement lblInviteSent;
 
-	@B2BFindBy(xpath = "//button[@class='MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-1971f2t']")
+	@B2BFindBy(xpath = "//button[text()='OK']")
+	private WebElement btnOK;
+
+	@B2BFindBy(xpath = "//button[text()='Ok']")
 	private WebElement btnOk;
 
-	@B2BFindBy(xpath = "//h4[text()='Team 2']/parent::div/following-sibling::div/div[@class='MuiBox-root css-79elbk']")
+	@B2BFindBy(xpath = "//h4[text()='Team 2']/parent::div/following-sibling::div/div[contains(@class,'MuiBox-root')]")
 	private WebElement firstOpponent;
 
-	@B2BFindBy(xpath = "//span[text()='Game 1']/parent::div/following-sibling::div/child::div/following-sibling::div[@class='MuiFormControl-root css-1tqbe2y']//input")
+	@B2BFindBy(xpath = "(//span[text()='Game 1']/parent::div/following-sibling::div/child::div/following-sibling::div[contains(@class, 'MuiFormControl-root')])[1]//input")
 	private WebElement txtBoxGameOneScoreTeamOne;
 
-	@B2BFindBy(xpath = "//span[@class='MuiChip-label MuiChip-labelSmall css-tavflp']/parent::div/following-sibling::div/following-sibling::div//input")
+	@B2BFindBy(xpath = "//span[contains(@class, 'MuiChip-label MuiChip-labelSmall')]/parent::div/following-sibling::div/following-sibling::div//input")
 	private WebElement txtBoxGameOneScoreTeamTwo;
 
-	@B2BFindBy(xpath = "//span[text()='Game 2']/parent::div/following-sibling::div/child::div[@class='MuiFormControl-root css-1tqbe2y']//input")
+	@B2BFindBy(xpath = "(//span[text()='Game 2']/parent::div/following-sibling::div/child::div//input)[1]")
 	private WebElement txtBoxGameTwoScoreTeamOne;
 
-	@B2BFindBy(xpath = "//span[text()='Game 2']/parent::div/following-sibling::div/following-sibling::div//input")
+	@B2BFindBy(xpath = "(//span[text()='Game 2']/parent::div/following-sibling::div/child::div//input)[2]")
 	private WebElement txtBoxGameTwoScoreTeamTwo;
 
-	@B2BFindBy(xpath = "//span[text()='Game 3']/parent::div/following-sibling::div/child::div/following-sibling::div[@class='MuiFormControl-root css-1tqbe2y']//input")
+	@B2BFindBy(xpath = "(//span[text()='Game 3']/parent::div/following-sibling::div/child::div//input)[1]")
 	private WebElement txtBoxGameThreeScoreTeamone;
 
-	@B2BFindBy(xpath = "//span[text()='Game 3']/parent::div/following-sibling::div/following-sibling::div//input")
+	@B2BFindBy(xpath = "(//span[text()='Game 3']/parent::div/following-sibling::div/child::div//input)[2]")
 	private WebElement txtBoxGameThreeScoreTeamTwo;
 
 	@B2BFindBy(xpath = "//h4[@id='customized-dialog-title' and text()='Success']")
 	private WebElement lblSuccess;
+
+	@B2BFindBy(xpath = "//h4[text()='Submit Scores for All Games']")
+	private WebElement lblSubmitScores;
 
 	@B2BFindBy(xpath = "//div[@class='MuiDialogActions-root MuiDialogActions-spacing css-v0512d']//button[text()='OK']")
 	private WebElement btnOkInSuccessPopup;
@@ -139,13 +156,13 @@ public class AddAMatchPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//button[@class='MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiPhoneNumber-flagButton css-1yxmbwk']//*[local-name()='svg']")
 	private WebElement iconFlog;
 
-	@B2BFindBy(xpath = "//p[@class='MuiTypography-root MuiTypography-body1 css-wpw8h9']")
+	@B2BFindBy(xpath = "//p[text()='The winner of the first game must score a minimum of 6 points. ']")
 	private WebElement txtValidationScoreLessThanSixInFirstGame;
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-163woa2']/*/following-sibling::p")
+	@B2BFindBy(xpath = "//p[text()='Score is required.']")
 	private WebElement txtValidationScoreRequired;
 
-	@B2BFindBy(xpath = "//p[@class='MuiTypography-root MuiTypography-body1 css-wpw8h9']")
+	@B2BFindBy(xpath = "//p[text()='Either team must be a winner']")
 	private WebElement txtValidationEitherTeamMustWinner;
 
 	@B2BFindBy(xpath = "//h6[text()='Players']")
@@ -182,9 +199,17 @@ public class AddAMatchPage extends DUPRBaseAutomationPage {
 	public void clickOnSubmitButton() {
 		log.info("Starting of clickOnSubmitButton method");
 
-		elementClick(btnSubmit);
+		btnSubmit.submit();
 
 		log.info("Ending of clickOnSubmitButton method");
+	}
+
+	public void clickOnSubmitButtonInFinalScoresPopup() {
+		log.info("Starting of clickOnSubmitButtonInFinalScoresPopup method");
+
+		clickOnWebElement(btnSubmitInFinalScoresPopup);
+
+		log.info("Ending of clickOnSubmitButtonInFinalScoresPopup method");
 	}
 
 	public void clickOnAddAMatchTab() {
@@ -199,6 +224,20 @@ public class AddAMatchPage extends DUPRBaseAutomationPage {
 		log.info("Starting of isAddAMatchPageContains method");
 
 		boolean isAddAMatchPageContains = false;
+
+		System.out.println(isDisplayed(btnSubmit));
+		System.out.println(isDisplayed(lblAddScore));
+		System.out.println(isDisplayed(lblMatchDetails));
+		System.out.println(isDisplayed(txtBoxMatchdate));
+		System.out.println(isDisplayed(iconPlus));
+		System.out.println(isDisplayed(txtBoxLocation));
+		System.out.println(isDisplayed(txtBoxEventName));
+		System.out.println(isDisplayed(btnAddPartner));
+		System.out.println(isDisplayed(btnSingles));
+		System.out.println(isDisplayed(btnDoubles));
+		System.out.println(isDisplayed(txtBoxGameOneScoreTeamOne));
+		System.out.println(isDisplayed(txtBoxGameOneScoreTeamTwo));
+		System.out.println(isDisplayed(btnDoubles));
 
 		if (isDisplayed(btnSubmit) && isDisplayed(lblAddScore) && isDisplayed(lblMatchDetails)
 				&& isDisplayed(txtBoxMatchdate) && isDisplayed(iconPlus) && isDisplayed(txtBoxLocation)
@@ -245,14 +284,25 @@ public class AddAMatchPage extends DUPRBaseAutomationPage {
 	public void setLocationInDoubles(String location) {
 		log.info("Starting of setLocationInDoubles method");
 
-		this.impicitWait();
+		this.implicitWait();
 		this.clickOnWebElement(txtBoxLocation);
 		txtBoxLocation.sendKeys(location);
+		hardWait(3);
 
-		for (WebElement citylocation : lstLocations) {
-			if (citylocation.getText().equalsIgnoreCase("Hyderabad, Telangana, India")) {
-				citylocation.click();
-				break;
+		try {
+			for (WebElement citylocation : lstLocations) {
+				this.implicitWait();
+				if (citylocation.getText().equalsIgnoreCase("Hyderabad, Telangana, India")) {
+					citylocation.click();
+					break;
+				}
+			}
+		} catch (Exception e) {
+			if (txtLocationRequired.isDisplayed() == true) {
+				for (WebElement citylocation : lstLocations) {
+					this.implicitWait();
+					clickOnWebElement(citylocation);
+				}
 			}
 		}
 
@@ -262,7 +312,7 @@ public class AddAMatchPage extends DUPRBaseAutomationPage {
 	public void setLocationInSingles(String location) {
 		log.info("Starting of setLocationInSingles method");
 
-		this.impicitWait();
+		this.implicitWait();
 		this.clickOnWebElement(txtBoxLocation);
 		txtBoxLocation.sendKeys(location);
 
@@ -289,23 +339,23 @@ public class AddAMatchPage extends DUPRBaseAutomationPage {
 	public String setEventName(String eventName) {
 		log.info("Starting of setEventName method");
 
-		this.impicitWait();
+		this.implicitWait();
 		this.clickOnWebElement(txtBoxEventName);
 
-		String newEventName = eventName + randomNumber(2);
+		String newEventName = eventName + randomNumber(3);
 		txtBoxEventName.sendKeys(newEventName);
 
 		log.info("Ending of setEventName method");
 		return newEventName;
 	}
 
-	public void setMatchDate(String matchDate) {
+	public void setMatchDate() {
 		log.info("Starting of setMatchDate method");
 
-		this.impicitWait();
+		this.implicitWait();
 		this.clickOnWebElement(txtBoxMatchDate);
-		txtBoxMatchDate.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
-		txtBoxMatchDate.sendKeys(matchDate);
+		//txtBoxMatchDate.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
+		//txtBoxMatchDate.sendKeys(matchDate);
 
 		log.info("Ending of setMatchDate method");
 	}
@@ -444,7 +494,7 @@ public class AddAMatchPage extends DUPRBaseAutomationPage {
 		log.info("Starting of isOkButtonDisplayed method");
 		log.info("Ending of isOkButtonDisplayed method");
 
-		return isDisplayed(btnOk);
+		return isDisplayed(btnOK);
 	}
 
 	public boolean isFlogIconDisplayed() {
@@ -454,10 +504,26 @@ public class AddAMatchPage extends DUPRBaseAutomationPage {
 		return isDisplayed(iconFlog);
 	}
 
+	public void clickOnOkButtonInInviteSentPopup() {
+		log.info("Starting of clickOnOkButtonInInviteSentPopup method");
+
+		try {
+			btnOk.click();
+		} catch (ElementClickInterceptedException e) {
+			clickOnWebElement(btnOk);
+		}
+
+		log.info("Ending of clickOnOkButtonInInviteSentPopup method");
+	}
+
 	public void clickOnOkButton() {
 		log.info("Starting of clickOnOKButton method");
 
-		elementClick(btnOk);
+		try {
+			btnOK.click();
+		} catch (ElementClickInterceptedException e) {
+			clickOnWebElement(btnOK);
+		}
 
 		log.info("Ending of clickOnOKButton method");
 	}
@@ -474,7 +540,9 @@ public class AddAMatchPage extends DUPRBaseAutomationPage {
 		log.info("Starting of setGameOneScores method");
 
 		scrollDown(500);
+		txtBoxGameOneScoreTeamOne.click();
 		sendKeys(txtBoxGameOneScoreTeamOne, gameOneScoreTeamOne);
+		txtBoxGameOneScoreTeamTwo.click();
 		sendKeys(txtBoxGameOneScoreTeamTwo, gameOneScoreTeamTwo);
 
 		log.info("Ending of setGameOneScores method");
@@ -502,6 +570,13 @@ public class AddAMatchPage extends DUPRBaseAutomationPage {
 		log.info("Ending of getSuccessText method");
 
 		return getText(lblSuccess);
+	}
+
+	public String getSubmitScoresText() {
+		log.info("Starting of getSubmitScoresText method");
+		log.info("Ending of getSubmitScoresText method");
+
+		return getText(lblSubmitScores);
 	}
 
 	public void clickOnOKButtonInSuccessPopup() {
@@ -611,7 +686,7 @@ public class AddAMatchPage extends DUPRBaseAutomationPage {
 	public String getPlayerName(String name) {
 		log.info("Starting of getPlayerName method");
 
-		this.impicitWait();
+		this.implicitWait();
 		String playerName = null;
 
 		for (int i = 0; i <= lstPlayersNamesInBrowsePlayers.size() - 1; i++) {
@@ -632,5 +707,13 @@ public class AddAMatchPage extends DUPRBaseAutomationPage {
 		elementClick(btnCancel);
 
 		log.info("Ending of clickOnCancelButton method");
+	}
+
+	public void clickOnAddOpponentButton() {
+		log.info("Starting of clickOnAddOpponentButton method");
+
+		elementClick(btnAddOpponent);
+
+		log.info("Ending of clickOnAddOpponentButton method");
 	}
 }

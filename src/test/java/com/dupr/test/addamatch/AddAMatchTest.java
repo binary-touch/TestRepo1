@@ -54,7 +54,7 @@ public class AddAMatchTest extends CommonBaseTest {
 	public void verifySetMatchDetails() {
 		logger.info("Starting of verifySetMatchDetails method");
 
-		addAMatchPage.setMatchDate(testDataProp.getProperty("match.date"));
+		//addAMatchPage.setMatchDate(testDataProp.getProperty("match.date"));
 		addAMatchPage.setLocationInDoubles(testDataProp.getProperty("location.city.name"));
 		addAMatchPage.setEventName(testDataProp.getProperty("event.name.in.doubles"));
 
@@ -92,6 +92,10 @@ public class AddAMatchTest extends CommonBaseTest {
 		Assert.assertEquals(NoResultFoundMessage, expectedAssertionsProp.getProperty("no.results.found"));
 
 		addAMatchPage.clickOnCancelButton();
+		
+		searchPlayersPage.hardWait(2);
+		
+		Assert.assertTrue(addAMatchPage.isAddAMatchPageContains());
 
 		logger.info("Ending of verifySearchPlayerByInvalidName method");
 	}
@@ -116,7 +120,7 @@ public class AddAMatchTest extends CommonBaseTest {
 
 		Assert.assertEquals(addAMatchPage.getInviteSentText(), expectedAssertionsProp.getProperty("invite.sent.label"));
 
-		addAMatchPage.clickOnOkButton();
+		addAMatchPage.clickOnOkButtonInInviteSentPopup();
 
 		Assert.assertTrue(addAMatchPage.isFirstOpponentDisplayed());
 
@@ -150,6 +154,10 @@ public class AddAMatchTest extends CommonBaseTest {
 		addAMatchPage.clickOnSubmitButton();
 
 		addAMatchPage.hardWait(2);
+		Assert.assertEquals(addAMatchPage.getSubmitScoresText(),
+				expectedAssertionsProp.getProperty("submit.final.score.label"));
+		addAMatchPage.clickOnSubmitButtonInFinalScoresPopup();
+
 		Assert.assertEquals(addAMatchPage.getSuccessText(), expectedAssertionsProp.getProperty("success.label"));
 		Assert.assertTrue(addAMatchPage.isOkButtonDisplayed());
 
@@ -171,7 +179,7 @@ public class AddAMatchTest extends CommonBaseTest {
 
 		this.verifySetMatchDetails();
 		addAMatchPage.clickOnSinglesButton();
-		addAMatchPage.clickOnAddPlayer();
+		addAMatchPage.clickOnAddOpponentButton();
 
 		Assert.assertTrue(addAMatchPage.isAddPlayerPageContains());
 
@@ -321,14 +329,14 @@ public class AddAMatchTest extends CommonBaseTest {
 	@Description("Test case #15,After sending invite, verify player is visible in browse player list")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #15, After sending invite, verify player is visible in browse player list")
-	public void verifyInvitePalyerIsInBrowserPlayersList() {
-		logger.info("Starting of verifyInvitePalyerIsInBrowserPlayersList method");
+	public void verifyInvitePlayerIsInBrowserPlayersList() {
+		logger.info("Starting of verifyInvitePlayerIsInBrowserPlayersList method");
 
 		driver.navigate().refresh();
 
 		addAMatchPage.clickOnSinglesButton();
 
-		addAMatchPage.clickOnAddPlayer();
+		addAMatchPage.clickOnAddOpponentButton();
 
 		addAMatchPage.clickOnInviteButton();
 		addAMatchPage.setFullName(testDataProp.getProperty("full.name"));
@@ -336,25 +344,26 @@ public class AddAMatchTest extends CommonBaseTest {
 		addAMatchPage.clickOnSendInviteButton();
 
 		addAMatchPage.hardWait(2);
-		addAMatchPage.clickOnOkButton();
+		addAMatchPage.clickOnOkButtonInInviteSentPopup();
 
 		addAMatchPage.clickOnPlayersTab();
 		browsePlayersPage.hardWait(4);
 
 		searchPlayersPage.searchWithPlayerName(testDataProp.getProperty("player.name.in.browse.players"));
+		browsePlayersPage.hardWait(2);
 
 		String PlayerName = browsePlayersPage.getPlayerName(testDataProp.getProperty("player.name.in.browse.players"));
 		Assert.assertEquals(PlayerName, expectedAssertionsProp.getProperty("search.player.name.in.browse.players"));
 
-		logger.info("Ending of verifyInvitePalyerIsInBrowserPlayersList method");
+		logger.info("Ending of verifyInvitePlayerIsInBrowserPlayersList method");
 	}
 
 	@Test(priority = 16, description = "Verify player is visible in search player list After sending invite to palyer", groups = "sanity")
 	@Description("Test case #16,After sending invite, verify player is visible in search player list")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #16,After sending invite, verify player is visible in search player list")
-	public void verifyInvitePalyerIsInSearchPlayersList() {
-		logger.info("Starting of verifyInvitePalyerIsInSearchPlayersList method");
+	public void verifyInvitePlayerIsInSearchPlayersList() {
+		logger.info("Starting of verifyInvitePlayerIsInSearchPlayersList method");
 
 		driver.get("https://stage.gamestoppedout.com/");
 		searchPlayersPage.clickOnSearchLink();
@@ -366,7 +375,7 @@ public class AddAMatchTest extends CommonBaseTest {
 		String playerName = searchPlayersPage.getPlayerName(testDataProp.getProperty("player.name.in.browse.players"));
 		Assert.assertEquals(playerName, expectedAssertionsProp.getProperty("search.player.name"));
 
-		logger.info("Ending of verifyInvitePalyerIsInSearchPlayersList method");
+		logger.info("Ending of verifyInvitePlayerIsInSearchPlayersList method");
 	}
 
 	public void verifyAddPlayer() {

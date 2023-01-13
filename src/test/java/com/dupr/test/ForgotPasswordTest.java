@@ -147,7 +147,7 @@ public class ForgotPasswordTest extends DUPRBaseAutomationTest {
 		forgotPasswordPage.clickOnSendEmailButton();
 
 		String emailValidationText = this.forgotPasswordPage.getEmailValidationText();
-		Assert.assertEquals(emailValidationText, expectedAssertionsProp.getProperty("invalid.email.text"));
+		Assert.assertEquals(emailValidationText, expectedAssertionsProp.getProperty("invalid.email"));
 
 		logger.info("Ending of verifySendEmailWithInvalidEmailID method");
 	}
@@ -181,7 +181,7 @@ public class ForgotPasswordTest extends DUPRBaseAutomationTest {
 		forgotPasswordPage.clickOnSendEmailButton();
 		forgotPasswordPage.hardWait(3);
 
-		String emailValidationText = this.forgotPasswordPage.getEmailValidationText();
+		String emailValidationText = this.forgotPasswordPage.getAccountDoesnotExistValidationText();
 		Assert.assertEquals(emailValidationText, expectedAssertionsProp.getProperty("account.not.existed"));
 
 		logger.info("Ending of verifySendEmailWithNotRegisteredEmailInDupr method");
@@ -283,6 +283,10 @@ public class ForgotPasswordTest extends DUPRBaseAutomationTest {
 		forgotPasswordPage.setPasswordWithWhiteSpaces(testDataProp.getProperty("spaces.value"));
 		forgotPasswordPage.setConfirmPasswordWithWhiteSpaces(testDataProp.getProperty("spaces.value"));
 		forgotPasswordPage.clickOnConfirmPasswordButton();
+		
+		String passwordValidationMessage = this.forgotPasswordPage.getPasswordValidationText();
+		Assert.assertEquals(passwordValidationMessage,
+				expectedAssertionsProp.getProperty("white.space.password.validation"));
 
 		logger.info("Ending of verifyConfirmPasswordWithWhiteSpaces method");
 	}

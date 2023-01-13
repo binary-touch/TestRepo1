@@ -18,19 +18,19 @@ import com.dupr.pages.DUPRLoginPage;
 
 public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-gmuwbf']/a[text()='Search Players']")
+	@B2BFindBy(xpath = "(//a[text()='Search Players'])[1]")
 	private WebElement lblSearchPlayers;
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-gmuwbf']/a[text()='Sign Up']")
+	@B2BFindBy(xpath = "(//a[text()='Sign Up'])[2]")
 	private WebElement btnSignUP;
 
-	@B2BFindBy(xpath = "//h1[@class='MuiTypography-root MuiTypography-h1 MuiTypography-gutterBottom css-1hlv3ti']")
+	@B2BFindBy(xpath = "//h1[contains(@class, 'MuiTypography-gutterBottom') and text()='Claim Your Account']")
 	private WebElement lblClaimYourAccount;
 
 	@B2BFindBy(xpath = "(//p[contains(@class,'css-af81j8')])[1]")
 	private WebElement txtPlayerName;
 
-	@B2BFindBy(xpath = "//h4[@class='MuiTypography-root MuiTypography-h4 css-12grqhn']")
+	@B2BFindBy(xpath = "//h4[contains(@class,'MuiTypography-h4')]")
 	private WebElement txtSearchPlayerName;
 
 	@B2BFindBy(xpath = "//input[@id='Search']")
@@ -39,7 +39,7 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//button[text()='Claim Account']")
 	private WebElement btnClaimAccount;
 
-	@B2BFindBy(xpath = "//h1[@class='MuiTypography-root MuiTypography-h1 css-16r2ge5']")
+	@B2BFindBy(xpath = "//h1[contains(@class,'MuiTypography-h1') and text()='Player Details']")
 	private WebElement lblPlayerDetails;
 
 	@B2BFindBy(xpath = "//button[text()='Create an Account']")
@@ -48,40 +48,43 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 	@B2BFindBys(@B2BFindBy(xpath = "//div[@class='MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation3 css-111nsqi'] //button"))
 	private List<WebElement> lstClaimAccountButtons;
 
-	@B2BFindBy(xpath = "//h5[text()='Full Name']/parent::div/parent::Div //parent::div //input")
+	@B2BFindBy(xpath = "//h5[text()='Full Name']/parent::div/parent::div//parent::div//input")
 	private WebElement txtBoxFullName;
 
-	@B2BFindBy(xpath = "//h5[text()='Birth Date']/parent::div //parent::div[@class='MuiBox-root css-8atqhb']/descendant::input")
+	@B2BFindBy(xpath = "//h5[text()='Birth Date']/parent::div//parent::div/descendant::input")
 	private WebElement txtBoxBirthDate;
 
-	@B2BFindBy(xpath = "//h5[text()='Email']/parent::div //parent::div[@class='MuiBox-root css-0']/descendant::input")
+	@B2BFindBy(xpath = "//h5[text()='Email']/parent::div//parent::div/descendant::input")
 	private WebElement txtBoxEmail;
 
-	@B2BFindBy(xpath = "//h5[text()='Confirm Email']/parent::div //parent::div[@class='MuiBox-root css-0']/descendant::input")
+	@B2BFindBy(xpath = "//h5[text()='Confirm Email']/parent::div//parent::div/descendant::input")
 	private WebElement txtBoxConfirmEmail;
 
 	@B2BFindBy(xpath = "//input[@value='MALE']")
 	private WebElement rdoGender;
 
-	@B2BFindBy(xpath = "//h5[text()='Location (City or Zip)']/parent::Div //parent::div[@class='MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-lg-6 css-tletg0']/descendant::input")
+	@B2BFindBy(xpath = "//h5[text()='Location (City or Zip)']/parent::div//parent::div[contains(@class,'MuiGrid-grid-lg-6')]/descendant::input")
 	private WebElement txtBoxLocation;
+
+	@B2BFindBy(xpath = "//ul[contains(@class,'MuiList-root MuiList-padding')]/li[contains(@class, 'MuiListItem-gutters MuiListItem-divider')]")
+	private List<WebElement> lstLocations;
 
 	@B2BFindBy(xpath = "//span[text()='Hyderabad, Telangana, India']")
 	private WebElement btnLocationAddress;
 
-	@B2BFindBy(xpath = "//h5[text()='Password']/parent::div //parent::div[@class='MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-lg-6 css-tletg0']/descendant::input")
+	@B2BFindBy(xpath = "//h5[text()='Password']/parent::div//parent::div/descendant::input")
 	private WebElement txtBoxPassword;
 
-	@B2BFindBy(xpath = "//h5[text()='Confirm Password']/parent::div //parent::div[@class='MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-lg-6 css-tletg0']/descendant::input")
+	@B2BFindBy(xpath = "//h5[text()='Confirm Password']/parent::div//parent::div/descendant::input")
 	private WebElement txtBoxConfirmPassword;
 
-	@B2BFindBy(xpath = "//input[@class='PrivateSwitchBase-input css-1m9pwf3' and @type='checkbox']")
+	@B2BFindBy(xpath = "//input[contains(@class,'PrivateSwitchBase') and @type='checkbox']")
 	private WebElement chkReviewDUPRPolicies;
 
 	@B2BFindBys({ @B2BFindBy(xpath = "//li/div[@role='button']") })
 	protected List<WebElement> lstLocationOptions;
 
-	@B2BFindBy(xpath = "//span[text()='India']")
+	@B2BFindBy(xpath = "//span[text()='Indianapolis, IN, USA']")
 	private WebElement lblCountry;
 
 	@B2BFindBy(xpath = "//button[@type='submit']")
@@ -93,16 +96,16 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h5[text()='Full Name']")
 	private WebElement lblFullName;
 
-	@B2BFindBy(xpath = "//h4[@class='MuiTypography-root MuiTypography-h4 css-22xj42']")
+	@B2BFindBy(xpath = "//h4[text()='Please enter your street address or city name']")
 	private WebElement lblStreetAddress;
 
-	@B2BFindBy(xpath = "//button[contains(@class,'css-1971f2t') and text()='OK']")
-	private WebElement btnOk;
+	@B2BFindBy(xpath = "//button[text()='OK']")
+	private WebElement btnOK;
 
-	@B2BFindBy(xpath = "//div[@class='MuiDialogContent-root MuiDialogContent-dividers css-1r09u4m']/h3")
+	@B2BFindBy(xpath = "//h3[text()='Success']")
 	private WebElement lblSuccess;
 
-	@B2BFindBy(xpath = "//div[@class='MuiDialogContent-root MuiDialogContent-dividers css-1r09u4m']/h4/following-sibling::h4/preceding-sibling::h4")
+	@B2BFindBy(xpath = "//h4[text()='Your account has been created. Welcome to DUPR.']")
 	private WebElement lblWelcomeToDUPR;
 
 	@B2BFindBy(xpath = "//p[contains(@class,' MuiFormHelperText-filled')]")
@@ -123,7 +126,7 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//input[@name='phoneNumber']")
 	private WebElement txtBoxMobileNumber;
 
-	@B2BFindBy(xpath = "//p[@class='MuiFormHelperText-root Mui-error MuiFormHelperText-contained MuiFormHelperText-filled css-tcj1fs']")
+	@B2BFindBy(xpath = "//p[text()='No numbers or special characters are allowed.']")
 	private WebElement txtValidationFullName;
 
 	@B2BFindBy(xpath = "//p[contains(@class, 'css-vbgz6h') and contains(text(), 'players under age 13')]")
@@ -180,23 +183,26 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 	 * ) private WebElement btnResendLink;
 	 */
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-0']/button[contains(@class,'MuiButton-textPrimary')]")
+	@B2BFindBy(xpath = "//button[text()='Edit']")
 	private WebElement btnEdit;
 
 	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-uvat92']/h5")
 	private WebElement txtEmail;
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-uvat92']//input")
+	@B2BFindBy(xpath = "//input[contains(@class, 'MuiInputBase-input MuiOutlinedInput-input')]")
 	private WebElement txtBoxEmailEnabled;
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-1dp55xe']/p")
+	@B2BFindBy(xpath = "//p[text()='You must verify your email to access this feature.']")
 	private WebElement txtValidationEmail;
 
 	@B2BFindBy(xpath = "//p[text()='A link was sent to your new email!']")
 	private WebElement txtLinkSentValidation;
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-1dp55xe']/p")
+	@B2BFindBy(xpath = "//p[text()='That DUPR account already exists']")
 	private WebElement txtAlreadyExistAccountValidation;
+
+	@B2BFindBy(xpath = "//p[text()='Invalid email address']")
+	private WebElement txtInvalidEmailValidation;
 
 	@B2BFindBy(xpath = "//h4[text()='Email changed successfully']")
 	private WebElement lblEmailChangedSuccessFully;
@@ -204,7 +210,7 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//button[text()='Logout']")
 	private WebElement btnLogout;
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-hp68mp']/button")
+	@B2BFindBy(xpath = "//button[text()='Verify']")
 	private WebElement btnVerify;
 
 	@B2BFindBy(xpath = "//button[@disabled]")
@@ -265,7 +271,7 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 	public void clickOnSignUpButton() {
 		logger.info("Starting of clickOnSignUpButton method");
 
-		this.impicitWait();
+		this.implicitWait();
 		this.btnSignUP.click();
 
 		logger.info("Ending of clickOnSignUpButton method");
@@ -274,7 +280,7 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 	public void clickOnCreateAccountButton() {
 		logger.info("Starting of clickOnCreateAccountButton method");
 
-		this.impicitWait();
+		this.implicitWait();
 		this.btnCreateAnAccount.click();
 
 		logger.info("Ending of clickOnCreateAccountButton method");
@@ -283,7 +289,7 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 	public void setMobileNumber(String mobileNumber) {
 		logger.info("Starting of setFullName method");
 
-		this.impicitWait();
+		this.implicitWait();
 		txtBoxMobileNumber.click();
 		txtBoxMobileNumber.sendKeys(mobileNumber);
 
@@ -293,7 +299,7 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 	public void setFullName(String fullName) {
 		logger.info("Starting of setFullName method");
 
-		this.impicitWait();
+		this.implicitWait();
 		clickOnWebElement(txtBoxFullName);
 		txtBoxFullName.sendKeys(fullName);
 
@@ -302,7 +308,7 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 
 	public void setBirthDate(String BirthDate) {
 		logger.info("Starting of setBirthDate method");
-		this.impicitWait();
+		this.implicitWait();
 		// clickOnElement(txtBirthDateField);
 		sendKeys(txtBoxBirthDate, BirthDate);
 
@@ -311,8 +317,8 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 
 	public void searchPlayerName(String name) {
 		logger.info("Starting of searchPlayerName method");
-		
-		this.impicitWait();
+
+		this.implicitWait();
 		this.txtBoxSearch.sendKeys(Keys.CONTROL + "a", Keys.DELETE);
 		this.txtBoxSearch.sendKeys(name);
 		/*
@@ -337,7 +343,7 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 	public void setInvalidEmail(String email) {
 		logger.info("Starting of setFullName method");
 
-		this.impicitWait();
+		this.implicitWait();
 		txtBoxEmail.click();
 		txtBoxEmail.sendKeys(email);
 
@@ -349,7 +355,7 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 
 		String email = txtBoxEmail.getAttribute("value");
 		logger.debug(email);
-		this.impicitWait();
+		this.implicitWait();
 		clickOnElement(txtBoxConfirmEmail);
 		txtBoxConfirmEmail.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		txtBoxConfirmEmail.sendKeys(email);
@@ -360,7 +366,7 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 	public void clickOnGenderRadioButton() {
 		logger.info("Starting od clickOnGenderRadioButton method");
 
-		this.impicitWait();
+		this.implicitWait();
 		this.rdoGender.click();
 
 		logger.info("Ending of clickOnGenderRadioButton method");
@@ -369,7 +375,7 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 	public void setInvalidLocation(String location) {
 		logger.info("Starting of setInvalidLocation method");
 
-		this.impicitWait();
+		this.implicitWait();
 		clickOnElement(txtBoxLocation);
 		txtBoxLocation.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		txtBoxLocation.sendKeys(location);
@@ -393,20 +399,13 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 	public void setLocation(String location) {
 		logger.info("Starting of setLocation method");
 
-		this.impicitWait();
+		this.implicitWait();
 		clickOnElement(txtBoxLocation);
 		txtBoxLocation.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		txtBoxLocation.sendKeys(location);
 		hardWait(3);
-		try {
-			for (WebElement option : lstLocationOptions) {
-				option.click();
-				break;
-			}
-
-		} catch (Exception e) {
-			clickOnElement(lblCountry);
-		}
+		
+		clickOnWebElement(lblCountry);
 
 		logger.info("Ending of setLocation method");
 	}
@@ -414,7 +413,7 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 	public void setPassword(String password) {
 		logger.info("Starting of setPassword method");
 
-		this.impicitWait();
+		this.implicitWait();
 		txtBoxPassword.click();
 		txtBoxPassword.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		txtBoxPassword.sendKeys(password);
@@ -428,7 +427,7 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 		String password = txtBoxPassword.getAttribute("value");
 		logger.debug(password);
 
-		this.impicitWait();
+		this.implicitWait();
 		scrollDown(200);
 		txtBoxConfirmPassword.click();
 		txtBoxConfirmPassword.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
@@ -440,7 +439,7 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 	public void clickOnReviewDUPRPoliciesCheckBox() {
 		logger.info("Starting od clickOnReviewDUPRPoliciesCheckBox method");
 
-		this.impicitWait();
+		this.implicitWait();
 		scrollIntoView(chkReviewDUPRPolicies);
 		this.chkReviewDUPRPolicies.click();
 
@@ -449,7 +448,7 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 
 	public boolean isCreateAccountButtonDisplayed() {
 		logger.info("Starting of isCreateAccountButtonDisplayed method");
-		this.impicitWait();
+		this.implicitWait();
 		logger.info("Ending of isCreateAccountButtonDisplayed method");
 
 		return isDisplayed(btnCreateAnAccount);
@@ -457,7 +456,7 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 
 	public boolean isGoBackButtonDisplayed() {
 		logger.info("Starting of isGoBackButtonDisplayed method");
-		this.impicitWait();
+		this.implicitWait();
 		logger.info("Ending of isGoBackButtonDisplayed method");
 
 		return isDisplayed(btnGoBack);
@@ -465,7 +464,7 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 
 	public String getPlayerDetailsText() {
 		logger.info("Starting of getPlayerDetailsText method");
-		this.impicitWait();
+		this.implicitWait();
 		logger.info("Ending of getPlayerDetailsText method");
 
 		return lblPlayerDetails.getText();
@@ -473,7 +472,7 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 
 	public boolean isFullNameAutoPopulated() {
 		logger.info("Starting of isFullNameDisplayed method");
-		this.impicitWait();
+		this.implicitWait();
 		logger.info("Ending of isFullNameAutoPopulated method");
 
 		return getText(txtBoxFullName).equals(playerName);
@@ -499,7 +498,7 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 	public void clickOnFinishButton() {
 		logger.info("Starting of clickOnFinishButton method");
 
-		this.impicitWait();
+		this.implicitWait();
 		this.btnFinish.click();
 
 		logger.info("Ending of clickOnFinishButton method");
@@ -523,9 +522,9 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 		logger.info("Starting of setFullNameInSearchTextField method ");
 
 		// playerName = getText(txtPlayerName);
-		this.impicitWait();
+		this.implicitWait();
 		txtBoxSearch.click();
-		this.impicitWait();
+		this.implicitWait();
 		sendKeys(txtBoxSearch, strFullName);
 
 		logger.info("Ending of setFullNameInSearchTextField method ");
@@ -574,7 +573,7 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 	public void clickOnLocationAddressButton() {
 		logger.info("Starting of clickOnLocationAddressButton method");
 
-		this.impicitWait();
+		this.implicitWait();
 		this.clickOnElement(btnLocationAddress);
 
 		logger.info("Ending of clickOnLocationAddressButton method");
@@ -583,7 +582,7 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 	public void setConfirmPassword(String strConfirmPassword) {
 		logger.info("Starting of setConfirmPassword method");
 
-		this.impicitWait();
+		this.implicitWait();
 		txtBoxConfirmPassword.click();
 		txtBoxConfirmPassword.sendKeys(strConfirmPassword);
 
@@ -593,7 +592,7 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 	public void selelctReviewDUPRPoliciesCheckBox() {
 		logger.info("Starting of selelctReviewDUPRPoliciesCheckBox method");
 
-		this.impicitWait();
+		this.implicitWait();
 		chkReviewDUPRPolicies.click();
 
 		logger.info("Ending of selelctReviewDUPRPoliciesCheckBox method");
@@ -609,7 +608,7 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 	public void clickOnOKButton() {
 		logger.info("Starting of clickOnOKButton method");
 
-		clickOnElement(btnOk);
+		clickOnElement(btnOK);
 
 		logger.info("Ending of clickOnOKButton method");
 	}
@@ -682,7 +681,7 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 
 	public boolean isDUPRReviewCheckBox() {
 		logger.info("Starting of isDUPRReviewCheckBox method");
-		this.impicitWait();
+		this.implicitWait();
 		this.scrollDown(700);
 		logger.info("Ending of isDUPRReviewCheckBox method");
 
@@ -750,7 +749,7 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 		logger.info("Starting of getPlayerSinglesRating method");
 
 		boolean flag = false;
-		this.impicitWait();
+		this.implicitWait();
 
 		try {
 			for (int i = 0; i < lstPlayersSinglesRatings.size() - 1; i++) {
@@ -786,7 +785,7 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 		logger.info("Starting of getPlayerDoublesRating method");
 
 		boolean flag = false;
-		this.impicitWait();
+		this.implicitWait();
 
 		try {
 			for (int i = 0; i < lstPlayersDoublesRatings.size() - 1; i++) {
@@ -855,11 +854,20 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 		return getText(txtAlreadyExistAccountValidation);
 	}
 
+	public String getInvalidEmailValidationText() {
+		logger.info("Starting of getInvalidEmailValidationText method");
+		System.out.println(txtInvalidEmailValidation.getText());
+		logger.info("Ending of getInvalidEmailValidationText method");
+
+		return getText(txtInvalidEmailValidation);
+	}
+
 	public String getlinkSentEmailValidation() {
 		logger.info("Starting of getlinkSentEmailValidation method");
+		System.out.println("Link Sent Email: " + txtLinkSentValidation.getText());
 		logger.info("Ending of getlinkSentEmailValidation method");
 
-		return getText(txtLinkSentValidation);
+		return txtLinkSentValidation.getText();
 	}
 
 	public void clickOnEmailTextBox() {

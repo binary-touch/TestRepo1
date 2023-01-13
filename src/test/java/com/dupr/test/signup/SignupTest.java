@@ -117,7 +117,7 @@ public class SignupTest extends DUPRBaseAutomationTest {
 		signupPage.setInvalidEmail(testDataProp.getProperty("invalid.email.in.signup"));
 
 		String FullnameIncorrectText = loginPage.getInvalidEmailText();
-		Assert.assertEquals(FullnameIncorrectText, expectedAssertionsProp.getProperty("invalid.email.text"));
+		Assert.assertEquals(FullnameIncorrectText, expectedAssertionsProp.getProperty("invalid.email"));
 
 		logger.info("Starting of verifyEmailWithInvalidEmail method");
 	}
@@ -318,7 +318,7 @@ public class SignupTest extends DUPRBaseAutomationTest {
 		signupPage.clickOnResendLinkButton();
 
 		signupPage.hardWait(3);
-		String duprAccountExistsValidation = signupPage.getAlreadyExistDuprAccountValidationText();
+		String duprAccountExistsValidation = signupPage.getInvalidEmailValidationText();
 		Assert.assertEquals(duprAccountExistsValidation, expectedAssertionsProp.getProperty("invalid.email.address"));
 
 		logger.info("Ending of verifyEmailFieldWithNumbers method");
@@ -330,7 +330,7 @@ public class SignupTest extends DUPRBaseAutomationTest {
 	@Story("Test case #14, Verify Resend link  button functionality with DUPR account already exists")
 	public void verifyResendLinkWithEmailNotExistedDUPRAccount() {
 		logger.info("Starting of verifyResendLinkWithEmailNotExistedDUPRAccount method");
-		emailid = testDataProp.getProperty("email") + DUPRSignUpPage.randomNumber(3) + "@gmail.com";
+		emailid = testDataProp.getProperty("email") + DUPRSignUpPage.randomNumber(4) + "@gmail.com";
 
 		signupPage.setEmailTextBox(emailid);
 		signupPage.hardWait(3);

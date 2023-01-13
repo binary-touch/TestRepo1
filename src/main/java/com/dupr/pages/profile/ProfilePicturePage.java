@@ -12,34 +12,35 @@ import com.dupr.pages.DUPRBaseAutomationPage;
 public class ProfilePicturePage extends DUPRBaseAutomationPage {
 	private static final Logger log = LogManager.getLogger(ProfilePicturePage.class);
 
-	@B2BFindBy(xpath = "//div[@class ='MuiBox-root css-xev8c9']/button")
+	@B2BFindBy(xpath = "//button[@aria-label='Open settings']")
 	private WebElement mnuOpenSettings;
 
-	@B2BFindBy(xpath = "//ul[@class ='MuiList-root MuiList-padding MuiMenu-list css-r8u8y9']//div/child::div/following-sibling::div")
+	@B2BFindBy(xpath = "//div[text()='Edit Profile']")
 	private WebElement btnEditProfile;
 
 	@B2BFindBy(xpath = "//input[@type='file']")
 	private WebElement fileChoose;
-
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-1srz93r']/label")
+	
+	@B2BFindBy(xpath = "//div[contains(@class, 'MuiBox-root css-')]/label[text()='Choose file']")
 	private WebElement btnChooseFile;
 
-	@B2BFindBy(xpath = "//label/span[@class='MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary MuiIconButton-sizeMedium css-1xfy1su']")
+	@B2BFindBy(xpath = "//div[contains(@class,'MuiBox-root')]//span[contains(@class,'MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary MuiIconButton-sizeMedium')]/span")
 	private WebElement iconCamera;
 
-	@B2BFindBy(xpath = "//div[@class='MuiDialogActions-root MuiDialogActions-spacing css-v0512d']/button[contains(@class,'MuiButton-contained')]")
+	@B2BFindBy(xpath = "//div[contains(@class,'MuiDialogActions-root MuiDialogActions-spacing')]/button[text()='Save']")
 	private WebElement btnSave;
 
-	@B2BFindBy(xpath = "//div[@class='MuiDialogActions-root MuiDialogActions-spacing css-v0512d']/button[@disabled]")
+	@B2BFindBy(xpath = "//div[contains(@class,'MuiDialogActions-root MuiDialogActions-spacing')]/button[text()='Save' and @disabled]")
 	private WebElement btnSaveInDisabled;
 
-	@B2BFindBy(xpath = "//h2[@id='customized-dialog-title']/h4[@class='MuiTypography-root MuiTypography-h4 css-12grqhn']")
+	@B2BFindBy(xpath = "//h4[text()='Profile Picture']")
 	private WebElement lblProfilePicture;
 
-	@B2BFindBy(xpath = "//button[@class='MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1d07y9m']")
+	@B2BFindBy(xpath = "//button[@aria-label=\"close\"]")
 	private WebElement iconClose;
 
-	@B2BFindBy(xpath = "//div[@class='MuiDialogActions-root MuiDialogActions-spacing css-v0512d']/button[contains(@class,'MuiButton-contained')]/preceding-sibling::button")
+	//@B2BFindBy(xpath = "//div[@class='MuiDialogActions-root MuiDialogActions-spacing css-v0512d']/button[contains(@class,'MuiButton-contained')]/preceding-sibling::button")
+	@B2BFindBy(xpath = "//button[text()='Cancel']")
 	private WebElement btnCancel;
 
 	@B2BFindBy(xpath = "//ul[@id='composition-menu']/li/following-sibling::li")
@@ -54,25 +55,25 @@ public class ProfilePicturePage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//div[@class='MuiDialogActions-root MuiDialogActions-spacing css-v0512d']/button[contains(@class,'MuiButton-contained')]")
 	private WebElement btnYes;
 
-	@B2BFindBy(xpath = "//div[@class='MuiDialogActions-root MuiDialogActions-spacing css-v0512d']/button[contains(@class,'MuiButton-contained')]/preceding-sibling::button")
+	@B2BFindBy(xpath = "//button[text()='No']")
 	private WebElement btnNo;
 
-	@B2BFindBy(xpath = "//div[@class='MuiAvatar-root MuiAvatar-circular css-wanb4l']/img")
+	@B2BFindBy(xpath = "//span[contains(@class, 'MuiBadge-root MuiBadge-root')]/div[contains(@class,'MuiAvatar-root MuiAvatar-circular')]/img")
 	private WebElement imgProfilePicture;
 
-	@B2BFindBy(xpath = "//div[@class='MuiDialogContent-root MuiDialogContent-dividers css-1r09u4m'] //div[@class='cropper-container'] //div[@class='cropper-canvas']/img")
+	@B2BFindBy(xpath = "//div[contains(@class,'MuiDialogContent-root MuiDialogContent-dividers')]//div[@class='cropper-container'] //div[@class='cropper-canvas']/img")
 	private WebElement imgPreviouslyUploaded;
 
-	@B2BFindBy(xpath = "//h3[@class='MuiTypography-root MuiTypography-h3 css-hyqj8z']")
+	@B2BFindBy(xpath = "//h3[text()='Edit Profile']")
 	private WebElement lblEditProfile;
 
-	@B2BFindBy(xpath = "//div[@class='MuiGrid-root MuiGrid-container css-1d3bbye']/descendant::h2")
+	@B2BFindBy(xpath = "//div[contains(@class,'MuiGrid-root MuiGrid-container')]/descendant::h2")
 	private WebElement lblPlayerName;
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-q5fqw0']//span[contains(@class,'MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary MuiIconButton-sizeMedium')]/*")
+	@B2BFindBy(xpath = "//div[contains(@class,'MuiBox-root')]//span[contains(@class,'MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary MuiIconButton-sizeMedium')]/span")
 	private WebElement iconEditProfileImage;
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-1eupesm']/button")
+	@B2BFindBy(xpath = "//div[contains(@class,'MuiBox-root')]/button[text()='View Public Profile']")
 	private WebElement btnViewPublicProfile;
 
 	@B2BFindBy(xpath = "//img[@class='MuiAvatar-img css-1hy9t21']")
@@ -110,6 +111,10 @@ public class ProfilePicturePage extends DUPRBaseAutomationPage {
 	public boolean isProfilePicturePopupContains() {
 		log.info("Starting of isProfilePicturePopupContains method");
 
+		System.out.println(isDisplayed(iconClose));
+		System.out.println(isDisplayed(btnCancel));
+		System.out.println(isDisplayed(btnChooseFile));
+		
 		boolean isProfilePicturePopupContains = false;
 
 		if (isDisplayed(iconClose) && isDisplayed(btnCancel) && isDisplayed(btnChooseFile)) {

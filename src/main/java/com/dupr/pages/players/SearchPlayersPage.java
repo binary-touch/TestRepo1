@@ -17,10 +17,10 @@ public class SearchPlayersPage extends DUPRBaseAutomationPage {
 
 	private static final Logger logger = LogManager.getLogger(SearchPlayersPage.class);
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-gmuwbf']//a[text()='Search Players']")
+	@B2BFindBy(xpath = "(//a[text()='Search Players'])[1]")
 	private WebElement lnkSearch;
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-1510wke']/preceding-sibling::div/p")
+	@B2BFindBy(xpath = "//p[text()='Search Players']")
 	private WebElement lblSearch;
 
 	@B2BFindBy(xpath = "//input[@id='Search']")
@@ -38,16 +38,16 @@ public class SearchPlayersPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//div[@id='select-Age']")
 	private WebElement ddAge;
 
-	@B2BFindBy(xpath = "//input[@class='PrivateSwitchBase-input css-1m9pwf3' and @value='SINGLES']")
+	@B2BFindBy(xpath = "//input[@value='SINGLES']")
 	private WebElement rdoSingles;
 
-	@B2BFindBy(xpath = "//input[@class='PrivateSwitchBase-input css-1m9pwf3' and @value='DOUBLES']")
+	@B2BFindBy(xpath = "//input[@value='DOUBLES']")
 	private WebElement rdoDoubles;
 
-	@B2BFindBy(xpath = "//button[contains(@class,'MuiButton-contained')]")
+	@B2BFindBy(xpath = "//button[text()='Apply']")
 	private WebElement btnApply;
 
-	@B2BFindBy(xpath = "//button[contains(@class,'MuiButton-outlinedPrimary') and text()='Reset']")
+	@B2BFindBy(xpath = "//button[text()='Reset']")
 	private WebElement btnReset;
 
 	@B2BFindBys(@B2BFindBy(xpath = "//ul[@class='MuiList-root MuiList-padding css-1xifowx']/li //span[@class='MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-jygkuw']"))
@@ -59,26 +59,23 @@ public class SearchPlayersPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(tagName = "b")
 	private WebElement msgResult;
 
-	@B2BFindBys(@B2BFindBy(xpath = "//div[@class='MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation3 w-full flex gap-2 rounded-md p-2 items-center css-1b9p2lz'] //p[@class='MuiTypography-root MuiTypography-body1 MuiTypography-noWrap text-base max-w-full font-medium font-robo css-af81j8']"))
+	@B2BFindBys(@B2BFindBy(xpath = "//div[contains(@class, 'MuiPaper-rounded MuiPaper-elevation3')]/div[2]/div/div/p[contains(@class,'font-medium font-robo')]"))
 	private List<WebElement> lstPlayersNames;
 
-	@B2BFindBys(@B2BFindBy(xpath = "//div[@class='MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation3 w-full flex gap-2 rounded-md p-2 items-center css-1b9p2lz'] //p[@class='MuiTypography-root MuiTypography-body1 MuiTypography-noWrap text-sm text-gray-600 font-robo css-z5o8kd']"))
+	@B2BFindBys(@B2BFindBy(xpath = "//div[contains(@class, 'MuiPaper-rounded MuiPaper-elevation3')]/div[2]/div/div/p[contains(@class, 'MuiTypography-noWrap text-sm')]"))
 	private List<WebElement> lstPlayersLocation;
 
-	@B2BFindBys(@B2BFindBy(xpath = "//div[@class='MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation3 w-full flex gap-2 rounded-md p-2 items-center css-1b9p2lz'] //div[@class='MuiBox-root css-fhxiwe']/p/following-sibling::p"))
+	@B2BFindBys(@B2BFindBy(xpath = "//div[contains(@class, 'MuiPaper-rounded MuiPaper-elevation3')]/div[2]/div/div[1]/div"))
 	private List<WebElement> lstPlayersAge;
 
-	@B2BFindBys(@B2BFindBy(xpath = "//li //div[@class='MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2 css-o0rlmm']/following-sibling::div/descendant::p"))
+	@B2BFindBys(@B2BFindBy(xpath = "//div[contains(@class, 'MuiPaper-rounded MuiPaper-elevation3')]//following-sibling::div[2]/div/p[contains(@class, 'font-robo text-dark_blue')]"))
 	private List<WebElement> lstPlayersRatingsInSingles;
 
-	@B2BFindBys(@B2BFindBy(xpath = "//li //div[@class='MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2 css-o0rlmm']/following-sibling::div/descendant::p/ancestor::div[@class='MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2 css-o0rlmm']/preceding-sibling::div[@class='MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2 css-o0rlmm'] //p"))
+	@B2BFindBys(@B2BFindBy(xpath = "//div[contains(@class, 'MuiPaper-rounded MuiPaper-elevation3')]//following-sibling::div/div[2]/div[1]/p[contains(@class, 'font-robo text-dark_blue')]"))
 	private List<WebElement> lstPlayersRatingsInDoubles;
 
-	@B2BFindBys(@B2BFindBy(xpath = "//ul[@class='MuiList-root MuiList-padding MuiMenu-list css-r8u8y9']/li"))
-	private List<WebElement> lstGender;
-
-	@B2BFindBys(@B2BFindBy(xpath = "//ul[@class='MuiList-root MuiList-padding MuiMenu-list css-r8u8y9']/li"))
-	private List<WebElement> lstAge;
+	@B2BFindBys(@B2BFindBy(xpath = "//ul[contains(@class, 'MuiList-padding MuiMenu-list')]/li"))
+	private List<WebElement> lstGenderAndAge;
 
 	public SearchPlayersPage(WebDriver driver) {
 		super(driver);
@@ -96,7 +93,7 @@ public class SearchPlayersPage extends DUPRBaseAutomationPage {
 	public void clickAndDragSliderNode() {
 		logger.info("Starting of clickAndDragSliderNode method");
 
-		this.impicitWait();
+		this.implicitWait();
 		Actions action = new Actions(driver);
 		action.clickAndHold(silderNode);
 		action.moveByOffset(100, 0).build().perform();
@@ -123,7 +120,7 @@ public class SearchPlayersPage extends DUPRBaseAutomationPage {
 	public void searchWithPlayerLocation(String location) {
 		logger.info("Starting of searchWithPlayerLocation method");
 
-		this.impicitWait();
+		this.implicitWait();
 		txtBoxLocation.click();
 		txtBoxLocation.sendKeys(location);
 
@@ -148,7 +145,7 @@ public class SearchPlayersPage extends DUPRBaseAutomationPage {
 	public void clickOnRatingDropDown() {
 		logger.info("Starting of clickOnRatingDropDown method");
 
-		this.impicitWait();
+		this.implicitWait();
 		ddRating.click();
 
 		logger.info("Ending of clickOnRatingDropDown method");
@@ -157,22 +154,22 @@ public class SearchPlayersPage extends DUPRBaseAutomationPage {
 	public void clickOnGenderDropDown() {
 		logger.info("Starting of clickOnGenderDropDown method");
 
-		this.impicitWait();
-		//elementClick(ddGender);
+		this.implicitWait();
+		// elementClick(ddGender);
 		ddGender.click();
-		
+
 		logger.info("Ending of clickOnGenderDropDown method");
 	}
 
 	public void clickOnMenInGenderDropDown() {
 		logger.info("Staring of clickOnMenInGenderDropDown method");
 
-		for (int i = 0; i < lstGender.size() - 1; i++) {
-			String gender = lstGender.get(i).getText();
+		for (int i = 0; i < lstGenderAndAge.size() - 1; i++) {
+			String gender = lstGenderAndAge.get(i).getText();
 
 			if (gender.contains("Men")) {
 
-				lstGender.get(i).click();
+				lstGenderAndAge.get(i).click();
 				break;
 			}
 		}
@@ -183,11 +180,11 @@ public class SearchPlayersPage extends DUPRBaseAutomationPage {
 	public void clickOnViewAllOption() {
 		logger.info("Ending of clickOnViewAllOption method");
 
-		for (int i = 0; i < lstGender.size() - 1; i++) {
-			String gender = lstGender.get(i).getText();
+		for (int i = 0; i < lstGenderAndAge.size() - 1; i++) {
+			String gender = lstGenderAndAge.get(i).getText();
 
 			if (gender.contains("View All")) {
-				lstGender.get(i).click();
+				lstGenderAndAge.get(i).click();
 				break;
 			}
 		}
@@ -198,21 +195,21 @@ public class SearchPlayersPage extends DUPRBaseAutomationPage {
 	public void clickOnAgeDropDown() {
 		logger.info("Starting of clickOnAgeDropDown method");
 
-		this.impicitWait();
-		//elementClick(ddAge);
+		this.implicitWait();
+		// elementClick(ddAge);
 		ddAge.click();
-		
+
 		logger.info("Ending of clickOnAgeDropDown method");
 	}
 
 	public void clickOnOptionAgeRangeInAgeDropDown() {
 		logger.info("Ending of clickOnOptionAgeRangeInDropDown method");
 
-		for (int i = 0; i < lstAge.size() - 1; i++) {
-			String gender = lstAge.get(i).getText();
+		for (int i = 0; i < lstGenderAndAge.size() - 1; i++) {
+			String gender = lstGenderAndAge.get(i).getText();
 
 			if (gender.contains("35 - 49")) {
-				lstAge.get(i).click();
+				lstGenderAndAge.get(i).click();
 				break;
 			}
 		}
@@ -223,7 +220,7 @@ public class SearchPlayersPage extends DUPRBaseAutomationPage {
 	public void clickOnSinglesRadioButton() {
 		logger.info("Starting of clickOnSinglesRadioButton method");
 
-		this.impicitWait();
+		this.implicitWait();
 		rdoSingles.click();
 
 		logger.info("Ending of clickOnSinglesRadioButton method");
@@ -232,7 +229,7 @@ public class SearchPlayersPage extends DUPRBaseAutomationPage {
 	public void clickOnDoublesRadioButton() {
 		logger.info("Starting of clickOnDoublesRadioButton method");
 
-		this.impicitWait();
+		this.implicitWait();
 		rdoDoubles.click();
 
 		logger.info("Ending of clickOnDoublesRadioButton method");
@@ -241,7 +238,7 @@ public class SearchPlayersPage extends DUPRBaseAutomationPage {
 	public void clickOnApplyButton() {
 		logger.info("starting of clickOnApplyButton method");
 
-		this.impicitWait();
+		this.implicitWait();
 		btnApply.click();
 
 		logger.info("Ending of clickOnApplyButton method");
@@ -273,7 +270,7 @@ public class SearchPlayersPage extends DUPRBaseAutomationPage {
 	public String getPlayerName(String name) {
 		logger.info("Starting of getPlayerName method");
 
-		this.impicitWait();
+		this.implicitWait();
 		String playerName = null;
 
 		for (int i = 0; i <= lstPlayersNames.size() - 1; i++) {
@@ -312,7 +309,7 @@ public class SearchPlayersPage extends DUPRBaseAutomationPage {
 		logger.info("Starting of getPlayerAge method");
 
 		boolean flag = false;
-		this.impicitWait();
+		this.implicitWait();
 		try {
 			for (int i = 0; i <= lstPlayersAge.size() - 1; i++) {
 				String Age = lstPlayersAge.get(i).getText();
@@ -333,7 +330,7 @@ public class SearchPlayersPage extends DUPRBaseAutomationPage {
 		logger.info("Starting of getPlayerSinglesRating method");
 
 		boolean flag = false;
-		this.impicitWait();
+		this.implicitWait();
 		try {
 
 			for (int i = 0; i < lstPlayersRatingsInSingles.size() - 1; i++) {
@@ -359,7 +356,7 @@ public class SearchPlayersPage extends DUPRBaseAutomationPage {
 		logger.info("Starting of getPlayerDoublesRating method");
 
 		boolean flag = false;
-		this.impicitWait();
+		this.implicitWait();
 		try {
 			for (int i = 0; i < lstPlayersRatingsInDoubles.size() - 1; i++) {
 				String Rating = lstPlayersRatingsInDoubles.get(i).getText();
@@ -381,7 +378,7 @@ public class SearchPlayersPage extends DUPRBaseAutomationPage {
 
 	public String getNoResultFoundMessage() {
 		logger.info("Starting of getNoResultFoundMessage method");
-		this.impicitWait();
+		this.implicitWait();
 		logger.info("Ending of getNoResultFoundMessage method");
 
 		return getText(msgResult);

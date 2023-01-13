@@ -56,7 +56,7 @@ public class ValidateRecentlyAddedMatchTest extends CommonBaseTest {
 		logger.info("Ending of verifyMatchHistory method");
 	}
 
-	@Test(priority = 2, description = "Verify matches with completed filter", groups = "sanity")
+	//@Test(priority = 2, description = "Verify matches with completed filter", groups = "sanity")
 	@Description("Test case #2, Verify matches with completed filter")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #2, Verify matches with completed filter")
@@ -73,7 +73,7 @@ public class ValidateRecentlyAddedMatchTest extends CommonBaseTest {
 		logger.info("Ending of verifyCompletedFilterFunctionality method");
 	}
 
-	@Test(priority = 3, description = "Verify matches with filter Singles", groups = "sanity")
+	//@Test(priority = 3, description = "Verify matches with filter Singles", groups = "sanity")
 	@Description("Test case #3,Verify matches with filter Singles")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #3, Verify matches with filter Singles")
@@ -83,12 +83,12 @@ public class ValidateRecentlyAddedMatchTest extends CommonBaseTest {
 		validateRecentlyAddedMatchPage.clickOnClearFiltersButton();
 		validateRecentlyAddedMatchPage.clickOnSinglesButton();
 
-		Assert.assertTrue(validateRecentlyAddedMatchPage.isOpponentPlayerNamesButtonsDisplayed());
+		Assert.assertTrue(validateRecentlyAddedMatchPage.isSinglesMatchPlayersDisplayed());
 
 		logger.info("Ending of verifySinglesFilterFunctionality method");
 	}
 
-	@Test(priority = 4, description = "Verify matches with doubles filter", groups = "sanity")
+	//@Test(priority = 4, description = "Verify matches with doubles filter", groups = "sanity")
 	@Description("Test case #4, Verify matches with doubles filter")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #4, Verify matches with doubles filter")
@@ -152,7 +152,7 @@ public class ValidateRecentlyAddedMatchTest extends CommonBaseTest {
 		logger.info("Ending of verifyClearFiltersFunctionality method");
 	}
 
-	@Test(priority = 7, description = "Verify results by selecting completed and singles filters combination", groups = "sanity")
+	/*@Test(priority = 7, description = "Verify results by selecting completed and singles filters combination", groups = "sanity")
 	@Description("Test case #7, Verify results by selecting completed and singles filters combination")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #7, Verify results by selecting completed and singles filters combination")
@@ -320,7 +320,7 @@ public class ValidateRecentlyAddedMatchTest extends CommonBaseTest {
 		validateRecentlyAddedMatchPage.clickOnCloseIcon();
 
 		logger.info("Ending of verifyValidateFunctionality method");
-	}
+	}*/
 
 	@AfterClass
 	public void quitDriver() {

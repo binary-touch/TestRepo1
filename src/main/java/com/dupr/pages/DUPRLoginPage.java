@@ -13,10 +13,10 @@ public class DUPRLoginPage extends DUPRBaseAutomationPage {
 
 	private static final Logger log = LogManager.getLogger(DUPRLoginPage.class);
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-gmuwbf']/a[text()='Search Players']")
+	@B2BFindBy(xpath = "(//a[text()='Search Players'])[1]")
 	private WebElement lblSearchPlayers;
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-gmuwbf']/a[text()='Log In']")
+	@B2BFindBy(xpath = "(//a[text()='Log In'])[2]")
 	private WebElement lnkLogIn;
 
 	@B2BFindBy(xpath = "//h1[text()='Welcome Back']")
@@ -34,7 +34,7 @@ public class DUPRLoginPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h6[text()='Add a Match']")
 	private WebElement lblAddaMatch;
 
-	@B2BFindBy(xpath = "//button[@class='MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-148fdm8']")
+	@B2BFindBy(xpath = "//button[@aria-label='Open settings']")
 	private WebElement mnuOpenSettings;
 
 	@B2BFindBy(xpath = "//div[text()='Logout']")
@@ -44,6 +44,9 @@ public class DUPRLoginPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//h5[text()='Email']/../following-sibling::div//p")
 	private WebElement txtEmailValidation;
+
+	@B2BFindBy(xpath = "//p[text()='Invalid email address']")
+	private WebElement txtInvalidEmail;
 
 	@B2BFindBy(xpath = "//h5[text()='Password']/../following-sibling::div//p")
 	private WebElement txtPasswordValidation;
@@ -129,9 +132,16 @@ public class DUPRLoginPage extends DUPRBaseAutomationPage {
 		return getText(txtEmailValidation);
 	}
 
+	public String getInvalidEmailValidationText() {
+		log.info("Starting of getInvalidEmailValidationText method");
+		log.info("Ending of getInvalidEmailValidationText method");
+
+		return getText(txtInvalidEmail);
+	}
+
 	public String getPasswordErrorMessageText() {
 		log.info("Starting of getPasswordErrorMessageText method");
-		this.impicitWait();
+		this.implicitWait();
 		log.info("Ending of getPasswordErrorMessageText method");
 
 		return getText(txtPasswordValidation);
@@ -139,7 +149,7 @@ public class DUPRLoginPage extends DUPRBaseAutomationPage {
 
 	public String getEmailRequiredText() {
 		log.info("Starting of getEmailRequiredText method");
-		this.impicitWait();
+		this.implicitWait();
 		log.info("Ending of getEmailRequiredText method");
 
 		return getText(txtEmailValidation);
@@ -147,7 +157,7 @@ public class DUPRLoginPage extends DUPRBaseAutomationPage {
 
 	public String getPasswordRequiredText() {
 		log.info("Starting of getPasswordRequiredText method");
-		this.impicitWait();
+		this.implicitWait();
 		log.info("Ending of getPasswordRequiredText method");
 
 		return getText(txtPasswordValidation);
@@ -155,7 +165,7 @@ public class DUPRLoginPage extends DUPRBaseAutomationPage {
 
 	public String getWhiteSpacesNotAllowedValidationText() {
 		log.info("Starting of getWhiteSpacesNotAllowedValidationText method");
-		this.impicitWait();
+		this.implicitWait();
 		log.info("Ending of getWhiteSpacesNotAllowedValidationText method");
 
 		return getText(txtPasswordValidation);
@@ -163,7 +173,7 @@ public class DUPRLoginPage extends DUPRBaseAutomationPage {
 
 	public String getInvalidPasswordValidationText() {
 		log.info("starting of getInvalidPasswordValidationText method");
-		this.impicitWait();
+		this.implicitWait();
 		log.info("Ending of getInvalidPasswordValidationText method");
 
 		return getText(txtPasswordValidation);

@@ -65,10 +65,8 @@ public class ValidateStatsChangeOnNewMatchTest extends CommonBaseTest {
 		String pendingCount = validateStats.getPendingCountLabelText();
 
 		addAMatchPage.clickOnAddAMatchTab();
-		addAMatchPage.setEventName(testDataProp.getProperty("event.name"));
 
 		verifySetMatchDetails();
-
 		verifyAddAMatchInSinglesWonGame();
 
 		addAMatchPage.clickOnOkButton();
@@ -415,7 +413,7 @@ public class ValidateStatsChangeOnNewMatchTest extends CommonBaseTest {
 
 			if (this.driver != null) {
 				Thread.sleep(5000);
-				this.quitDriver(this.driver, WebDriversEnum.SIGNUP_DRIVER);
+				this.quitDriver(this.driver, WebDriversEnum.VALIDATE_STATS_CHANGE_ON_NEW_MATCH_DRIVER);
 
 				log.info("Driver quit successfully");
 			}
