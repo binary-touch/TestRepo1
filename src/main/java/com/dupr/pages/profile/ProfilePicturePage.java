@@ -236,16 +236,16 @@ public class ProfilePicturePage extends DUPRBaseAutomationPage {
 		return isDisplayed(imgPreviouslyUploaded);
 	}
 
-	public boolean isSaveButtonInDisableDisplayed() {
-		log.info("Starting of isSaveButtonInDisableDisplayed method");
-		log.info("Ending of isSaveButtonInDisableDisplayed method");
+	public boolean isSaveButtonDisabled() {
+		log.info("Starting of isSaveButtonDisabled method");
+		log.info("Ending of isSaveButtonDisabled method");
 
 		return isDisplayed(btnSaveInDisabled);
 	}
 
-	public boolean isSaveButtonInEnableDisplayed() {
-		log.info("Starting of isSaveButtonInEnableDisplayed method");
-		log.info("Ending of isSaveButtonInEnableDisplayed method");
+	public boolean isSaveButtonDisplayed() {
+		log.info("Starting of isSaveButtonDisplayed method");
+		log.info("Ending of isSaveButtonDisplayed method");
 
 		return isDisplayed(btnSave);
 	}

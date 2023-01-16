@@ -19,6 +19,9 @@
 	<parameter name="opponent2Email"
 		value="chandraiah.kathera@binarytouch.com" />
 	<parameter name="ChangePassword" value="qwer12345" />
+	
+	<parameter name="directorEmail" value="adok@yopmail.com" />
+	<parameter name="directorPassword" value="qwer1234" />
 
 	<suite-files>
 		<suite-file path="CommonUISuite.xml" />

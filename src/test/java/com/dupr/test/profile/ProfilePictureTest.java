@@ -54,7 +54,7 @@ public class ProfilePictureTest extends CommonBaseTest {
 		String profilePictureText = profilePicturePage.getProfilePictureText();
 		Assert.assertEquals(profilePictureText, expectedAssertionsProp.getProperty("profile.picture.label"));
 
-		Assert.assertTrue(profilePicturePage.isSaveButtonInDisableDisplayed());
+		Assert.assertTrue(profilePicturePage.isSaveButtonDisabled());
 
 		logger.info("Ending of verifyAddProfilePicture method");
 	}
@@ -102,7 +102,7 @@ public class ProfilePictureTest extends CommonBaseTest {
 		profilePicturePage.clickOnChangeProfilePictureButton();
 
 		Assert.assertTrue(profilePicturePage.isProfilePicturePopupContains());
-		Assert.assertTrue(profilePicturePage.isSaveButtonInEnableDisplayed());
+		Assert.assertTrue(profilePicturePage.isSaveButtonDisplayed());
 		Assert.assertTrue(profilePicturePage.ispreviousUploadedImageDisplayed());
 		profilePicturePage.hardWait(2);
 		profilePicturePage.uploadProfilePicture(

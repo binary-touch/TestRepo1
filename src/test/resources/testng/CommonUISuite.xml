@@ -49,7 +49,27 @@
 			<class name="com.dupr.test.profile.NotificationsTest" />
 			<class name="com.dupr.test.profile.PlayerProfileTest" />
 			<class name="com.dupr.test.profile.ProfilePictureTest" />
-			<!-- <class name="com.dupr.test.profile.ChangePasswordTest" /> -->
+			<class name="com.dupr.test.profile.ChangePasswordTest" />
+		</classes>
+	</test>
+
+	<test name="Clubs">
+		<classes>
+			<class name="com.dupr.test.clubs.AddRemoveOrganizerTest" />
+			<class name="com.dupr.test.clubs.ClubLogoTest" />
+			<class name="com.dupr.test.clubs.EditClubInfoTest" />
+			<class name="com.dupr.test.clubs.RemoveMemberTest" />
+			<class name="com.dupr.test.clubs.importPlayerViaCSVTest" />
+			<class name="com.dupr.test.addamatch.AddClubMatchTest" />
+		</classes>
+	</test>
+
+	<test name="Events">
+		<classes>
+			<class name="com.dupr.test.events.AddEventTest" />
+			<class name="com.dupr.test.events.BrowseEventsTest" />
+			<class name="com.dupr.test.events.EditEventsTest" />
+			<class name="com.dupr.test.events.EditBracketsTest" />
 		</classes>
 	</test>
 </suite>
