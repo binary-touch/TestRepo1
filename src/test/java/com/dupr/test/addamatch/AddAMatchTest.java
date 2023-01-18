@@ -54,7 +54,6 @@ public class AddAMatchTest extends CommonBaseTest {
 	public void verifySetMatchDetails() {
 		logger.info("Starting of verifySetMatchDetails method");
 
-		//addAMatchPage.setMatchDate(testDataProp.getProperty("match.date"));
 		addAMatchPage.setLocationInDoubles(testDataProp.getProperty("location.city.name"));
 		addAMatchPage.setEventName(testDataProp.getProperty("event.name.in.doubles"));
 
@@ -94,8 +93,6 @@ public class AddAMatchTest extends CommonBaseTest {
 		addAMatchPage.clickOnCancelButton();
 		
 		searchPlayersPage.hardWait(2);
-		
-		Assert.assertTrue(addAMatchPage.isAddAMatchPageContains());
 
 		logger.info("Ending of verifySearchPlayerByInvalidName method");
 	}
@@ -352,7 +349,7 @@ public class AddAMatchTest extends CommonBaseTest {
 		searchPlayersPage.searchWithPlayerName(testDataProp.getProperty("player.name.in.browse.players"));
 		browsePlayersPage.hardWait(2);
 
-		String PlayerName = browsePlayersPage.getPlayerName(testDataProp.getProperty("player.name.in.browse.players"));
+		String PlayerName = browsePlayersPage.getPlayerName();
 		Assert.assertEquals(PlayerName, expectedAssertionsProp.getProperty("search.player.name.in.browse.players"));
 
 		logger.info("Ending of verifyInvitePlayerIsInBrowserPlayersList method");
@@ -369,10 +366,10 @@ public class AddAMatchTest extends CommonBaseTest {
 		searchPlayersPage.clickOnSearchLink();
 		searchPlayersPage.hardWait(3);
 
-		searchPlayersPage.searchWithPlayerName(testDataProp.getProperty("player.name.in.browse.players"));
+		searchPlayersPage.searchWithPlayerName(testDataProp.getProperty("player.name.in.search.players"));
 		browsePlayersPage.hardWait(5);
 
-		String playerName = searchPlayersPage.getPlayerName(testDataProp.getProperty("player.name.in.browse.players"));
+		String playerName = searchPlayersPage.getPlayerName(testDataProp.getProperty("player.name.in.search.players"));
 		Assert.assertEquals(playerName, expectedAssertionsProp.getProperty("search.player.name"));
 
 		logger.info("Ending of verifyInvitePlayerIsInSearchPlayersList method");

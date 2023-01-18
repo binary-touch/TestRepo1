@@ -40,7 +40,7 @@ public class ValidateStatsChangeOnNewMatchPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//p[contains(@id,'-legend-datagroup-2-title') and text()='Pending']/preceding-sibling::div")
 	private WebElement chkPending;
 
-	@B2BFindBy(xpath = "(//div[contains(@class, 'MuiBox-root')]//button/*[contains(@class, 'MuiSvgIcon-root MuiSvgIcon-colorPrimary MuiSvgIcon-fontSizeMedium')])[2]")
+	@B2BFindBy(xpath = "//h3[contains(text(),'Result Overview')]/child::button")
 	private WebElement iconInfo;
 
 	@B2BFindBy(xpath = "//h4[@id='customized-dialog-title']")
@@ -184,8 +184,12 @@ public class ValidateStatsChangeOnNewMatchPage extends DUPRBaseAutomationPage {
 		log.info("Ending of clickOnViewProfileButton method");
 	}
 
-	public boolean isPlayerProfilePageContains() {
+	public boolean isPlayerProfilePageContains() throws InterruptedException {
 		log.info("Starting of isPlayerProfilePageContains method");
+		
+		
+		driver.navigate().refresh();
+		Thread.sleep(2000);
 
 		boolean isPlayerProfilePageContains = false;
 

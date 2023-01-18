@@ -1,5 +1,7 @@
 package com.dupr.test.events;
 
+import static org.testng.Assert.assertTrue;
+
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -31,7 +33,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	@BeforeClass
 	@Parameters({ "browser", "siteURL", "directorEmail", "directorPassword" })
 	public void initMethod(String browser, String siteURL, String email, String password) throws Exception {
-		logger.info("Starting of initMethod in EditClubInfoTest");
+		logger.info("Starting of initMethod in AddEventTest");
 
 		this.driver = super.getWebDriver(WebDriversEnum.ADD_EVENT_DRIVER);
 		this.siteLogin(siteURL, email, password, this.driver);
@@ -40,7 +42,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 
 		this.addEventPage = new AddEventPage(this.driver);
 		this.addBracketPage = new AddBracketPage(this.driver);
-		logger.info("Ending of initMethod in EditClubInfoTest");
+		logger.info("Ending of initMethod in AddEventTest");
 	}
 
 	@Test(priority = 1, description = "Verify Add Event functionality", groups = "sanity")
@@ -51,12 +53,12 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Starting of VerifyAddEventFunctionality method");
 
 		clubLogoPage.clickOnMyClubsTab();
-
 		editClubInfoPage.selectDirectorFromDirectorsList();
+		editClubInfoPage.isClubPageContains();
 
 		addEventPage.clickonAddEventButton();
 
-		Assert.assertTrue(addEventPage.isDisplayedEventInformationPageContains());
+		Assert.assertTrue(addEventPage.isEventInformationPageContains());
 
 		logger.info("Ending of VerifyAddEventFunctionality method");
 	}
@@ -68,21 +70,15 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	public void VerifyEventInformationPageWithValidDetails() {
 		logger.info("Starting of VerifyEventInformationPageWithValidDetails method");
 
-		addEventPage.setEventName(testDataProp.getProperty("event.name"));
-
-		addEventPage.setUploadImageButton(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("edit.club.logo.path"));
-
+		eventName = addEventPage.setEventName(testDataProp.getProperty("event.name"));
+		addEventPage.uploadEventLogo(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("edit.club.logo.path"));
 		addEventPage.setMemberPrice(testDataProp.getProperty("memberPrice.value"));
-
 		addEventPage.setNonMemberPrice(testDataProp.getProperty("nonMemberPrice.value"));
-
 		addEventPage.setAboutTheEvent(testDataProp.getProperty("about.the.Event"));
-
 		addEventPage.clickonTextFormattingButtons();
-
 		addEventPage.clickonNextButton();
 
-		Assert.assertTrue(addEventPage.isDisplayedEventPliciesPageContains());
+		Assert.assertTrue(addEventPage.isEventPoliciesPageContains());
 
 		logger.info("Ending of VerifyEventInformationPageWithValidDetails method");
 	}
@@ -95,8 +91,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Starting of VerifyExitEventCreationPopup method");
 
 		addEventPage.clickonExitButton();
-
-		addEventPage.isDisplayedExitEventCreationPopupContains();
+		assertTrue(addEventPage.isExitEventCreationPopupContains());
 
 		logger.info("Ending of VerifyExitEventCreationPopup method");
 	}
@@ -109,8 +104,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Starting of VerifyExitEventCreationPopup method");
 
 		addEventPage.clickonEventPolicieDiscardButton();
-
-		addEventPage.isDisplayedClubContains();
+		assertTrue(addEventPage.isClubPageContains());
 
 		logger.info("Ending of VerifyExitEventCreationPopup method");
 	}
@@ -123,14 +117,12 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Starting of VerifyEventPolicieSaveAsDraftFunctionality method");
 
 		addEventPage.clickonAddEventButton();
-
 		this.VerifyEventInformationPageWithValidDetails();
 
 		addEventPage.clickonExitButton();
-
 		addEventPage.clickonSaveAsDraftButton();
 
-		addEventPage.isDisplayedClubContains();
+		assertTrue(addEventPage.isClubPageContains());
 
 		logger.info("Ending of VerifyEventPolicieSaveAsDraftFunctionality method");
 	}
@@ -142,15 +134,15 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	public void VerifyDraftEvenInClubsPageEventsTabFunctionality() {
 		logger.info("Starting of VerifyDraftEvenInClubsPageEventsTabFunctionality method");
 
-		addEventPage.clickonEventButton();
-		addEventPage.selectDraftFromDraftsList(testDataProp.getProperty("event.name"));
-		addEventPage.selectDeleteEventFromList(testDataProp.getProperty("event.name"));
+		addEventPage.clickonEventTab();
+		Assert.assertTrue(addEventPage.isDraftEventDisplayed(eventName));
+		Assert.assertTrue(addEventPage.isDeleteEventDisplayedForDraftEvent(eventName));
+
 		/*
 		 * String eventName = addEventPage.getEventName();
 		 * Assert.assertEquals(eventName,
 		 * expectedAssertionsProp.getProperty("event.name"));
 		 */
-
 		logger.info("Ending of VerifyDraftEvenInClubsPageEventsTabFunctionality method");
 	}
 
@@ -166,10 +158,9 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		this.VerifyEventInformationPageWithValidDetails();
 
 		addEventPage.clickonExitButton();
-
 		addEventPage.clickonExitEventCreationCloseIcon();
 
-		// Assert.assertTrue(addEventPage.isDisplayedEventPliciesPageContains());
+		Assert.assertTrue(addEventPage.isEventPoliciesPageContains());
 
 		logger.info("Ending of VerifyCloseIconInExitEventCreationpopup method");
 	}
@@ -183,7 +174,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 
 		addEventPage.clickonGoBackButton();
 
-		Assert.assertTrue(addEventPage.isDisplayedEventInformationPageContains());
+		Assert.assertTrue(addEventPage.isEventInformationPageContains());
 
 		logger.info("Ending of VerifyGoBackButtonFunctionality method");
 	}
@@ -198,7 +189,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		addEventPage.clickonNextButton();
 		addEventPage
 				.setUploadaLiabilityWaiverButton(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("upload.image"));
-		Assert.assertTrue(addEventPage.isDisplayedRemoveAndReplaceContains());
+		Assert.assertTrue(addEventPage.isLiabilityWaiverFileUploaded());
 
 		logger.info("Ending of VerifyGoBackButtonFunctionality method");
 	}
@@ -207,32 +198,32 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	@Description("Test case #10, Verify Liability Waiver Remove Icon")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #10, Verify Liability Waiver Remove Icon")
-	public void VerifyLiabilityWaiverRemoveIcon() {
-		logger.info("Starting of VerifyLiabilityWaiverRemoveIcon method");
+	public void verifyRemoveLiabilityFileFunctionality() {
+		logger.info("Starting of verifyRemoveLiabilityFileFunctionality method");
 
 		addEventPage.clickonLiabilityWaiverRemoveButton();
 
-		Assert.assertTrue(addEventPage.isDisplayedEventPliciesPageContains());
+		Assert.assertTrue(addEventPage.isLiabilityWaiverButtonDisplayed());
 
-		logger.info("Ending of VerifyLiabilityWaiverRemoveIcon method");
+		logger.info("Ending of verifyRemoveLiabilityFileFunctionality method");
 	}
 
 	@Test(priority = 11, description = "Verify Liability Waiver Replace Button", groups = "sanity")
 	@Description("Test case #11, Verify Liability Waiver Replace Button")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #11, Verify Liability Waiver Replace Button")
-	public void VerifyLiabilityWaiverReplaceButton() {
-		logger.info("Starting of VerifyLiabilityWaiverReplaceButton method");
+	public void verifyReplaceLiabilityWaiverFunctionality() {
+		logger.info("Starting of verifyReplaceLiabilityWaiverFunctionality method");
 
 		addEventPage
 				.setUploadaLiabilityWaiverButton(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("upload.image"));
 
-		addEventPage.isDisplayedRemoveAndReplaceContains();
+		Assert.assertTrue(addEventPage.isLiabilityWaiverFileUploaded());
 
-		addEventPage.clickonReplaceButton();
+		// addEventPage.clickonReplaceButton();
 
-		addEventPage
-				.setUploadaLiabilityWaiverButton(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("upload.image"));
+		// addEventPage.setUploadaLiabilityWaiverButton(BASE_DIR + FILE_SEPARATOR +
+		// testDataProp.getProperty("upload.image"));
 
 		addEventPage.setRefundPolicyEdit(testDataProp.getProperty("about.the.Event"));
 
@@ -240,7 +231,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 
 		addEventPage.clickonNextButton();
 
-		logger.info("Ending of VerifyLiabilityWaiverReplaceButton method");
+		logger.info("Ending of verifyReplaceLiabilityWaiverFunctionality method");
 	}
 
 	@Test(priority = 12, description = "Verify AddBrackets Page With Valid Details", groups = "sanity")
@@ -265,8 +256,8 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		addBracketPage.clickOnCompetitionStartDate();
 		addBracketPage.clickOnCompetitionEndDate();
 		addBracketPage.clickOnTimeZoneDropdown();
-		addBracketPage.setBracketPriceClubMemberPrice(testDataProp.getProperty("clubmember.price"));
-		addBracketPage.setBracketPriceNonClubMemberPrice(testDataProp.getProperty("nonclubmember.price"));
+		addBracketPage.setBracketPriceClubMemberPrice(testDataProp.getProperty("memberPrice.value"));
+		addBracketPage.setBracketPriceNonClubMemberPrice(testDataProp.getProperty("nonMemberPrice.value"));
 		addBracketPage.setNumberOfTerms(testDataProp.getProperty("number.of.terms"));
 		addBracketPage.setWaitlist(testDataProp.getProperty("wait.list"));
 		addEventPage.clickonNextButton();
@@ -309,6 +300,8 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 
 		addBracketPage.clickonBracket1Button();
 
+		addEventPage.setEditEventName(testDataProp.getProperty("edit.event.name"));
+
 		addEventPage.clickonNextButton();
 
 		addBracketPage.clickOnNoContinueToSummary();
@@ -323,6 +316,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	public void VerifyPublishEventButton() {
 		logger.info("Starting of VerifyPublishEventButton method");
 
+		addBracketPage.clickOnNoContinueToSummary();
 		addBracketPage.clickOnPublishEventButton();
 
 		logger.info("Ending of VerifyPublishEventButton method");
@@ -335,9 +329,28 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	public void VerifyCloseIconInYourEventIsNowPublishedSuccessPopup() {
 		logger.info("Starting of VerifyCloseIconInYourEventIsNowPublishedSuccessPopup method");
 
-		addBracketPage.clickOnPublishEventButton();
+		addBracketPage.clickOnEventSuccessClosePopupButton();
 
 		logger.info("Ending of VerifyCloseIconInYourEventIsNowPublishedSuccessPopup method");
+	}
+
+	@Test(priority = 18, description = "Verify Recently Added Event Under Events Tab", groups = "sanity")
+	@Description("Test case #18, Verify Recently Added Event Under Events Tab")
+	@Severity(SeverityLevel.NORMAL)
+	@Story("Test case #18, Verify Recently Added Event Under Events Tab")
+	public void VerifyRecentlyAddedEventUnderEventsTab() {
+		logger.info("Starting of VerifyRecentlyAddedEventUnderEventsTab method");
+
+		addEventPage.clickonEventTab();
+		addEventPage.selectRecentlyAddedEvent(eventName);
+		Assert.assertTrue(addEventPage.isDeleteEventDisplayedForDraftEvent(eventName));
+		/*
+		 * String eventName = addEventPage.getEventName();
+		 * Assert.assertEquals(eventName,
+		 * expectedAssertionsProp.getProperty("event.name"));
+		 */
+
+		logger.info("Ending of VerifyRecentlyAddedEventUnderEventsTab method");
 	}
 
 	@AfterClass

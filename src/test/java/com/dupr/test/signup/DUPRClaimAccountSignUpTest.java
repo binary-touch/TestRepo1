@@ -98,6 +98,7 @@ public class DUPRClaimAccountSignUpTest extends DUPRBaseAutomationTest {
 		duprSignUpPage.setEmail(testDataProp.getProperty("email"));
 		duprSignUpPage.setConfirmEmail();
 		duprSignUpPage.clickOnGenderRadioButton();
+		duprSignUpPage.hardWait(3);
 		duprSignUpPage.setLocation(testDataProp.getProperty("location"));
 
 		duprSignUpPage.setPassword(testDataProp.getProperty("password"));
@@ -133,10 +134,12 @@ public class DUPRClaimAccountSignUpTest extends DUPRBaseAutomationTest {
 	public void verifyRatingsOfPlayerAfterClaimAccount() {
 		logger.info("Starting of verifyRatingsOfPlayerAfterClaimAccount method");
 
+		duprSignUpPage.hardWait(3);
 		float singlesActualValue = Float.parseFloat(duprSignUpPage.getPlayerSinglesRatingInPlayerDashBoard());
 		float singlesExpectedValue = Float.parseFloat(DUPRSignUpPage.singlesRatings.substring(0, 3));
 		Assert.assertEquals(singlesActualValue, singlesExpectedValue);
 
+		duprSignUpPage.hardWait(3);
 		float doublesActualValue = Float.parseFloat(duprSignUpPage.getPlayersDoublesRatingInPlayerDashBoard());
 		float doublesExpectedValue = Float.parseFloat(DUPRSignUpPage.doublesRatings.substring(0, 3));
 		Assert.assertEquals(doublesActualValue, doublesExpectedValue);
@@ -174,7 +177,7 @@ public class DUPRClaimAccountSignUpTest extends DUPRBaseAutomationTest {
 		logger.info("Starting of verifyButtonInPlayerCardAfterClaimedTheirAccount method");
 
 		driver.get(testDataProp.getProperty("claim.your.account.page.url"));
-		// duprSignUpPage.clickOnGoBackButton();
+
 		duprSignUpPage.searchPlayerName(searchPlayerName);
 		Assert.assertFalse(duprSignUpPage.isClaimAccountButtonDisplayed());
 

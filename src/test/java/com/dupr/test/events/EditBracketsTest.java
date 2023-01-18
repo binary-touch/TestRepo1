@@ -54,6 +54,7 @@ public class EditBracketsTest extends DUPRBaseAutomationTest {
 	@Story("Test case #1, Verify edit Bracket functionality")
 	public void verifyEditBracketFunctionality() {
 		logger.info("Starting of verifyAddLogoFunctionality method");
+		
 		browseEventsPage.clickOnMyEventButton();
 		clubLogoPage.hardWait(3);
 		editEventsPage.clickOnEventLabel();

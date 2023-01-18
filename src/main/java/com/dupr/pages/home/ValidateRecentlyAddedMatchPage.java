@@ -74,7 +74,8 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h4[@id='customized-dialog-title']/button")
 	private WebElement iconClose;
 
-	//@B2BFindBy(xpath = "//h4[contains(@class,'MuiTypography-root MuiTypography-h4 MuiDialogTitle-root')]")
+	// @B2BFindBy(xpath = "//h4[contains(@class,'MuiTypography-root MuiTypography-h4
+	// MuiDialogTitle-root')]")
 	@B2BFindBy(xpath = "//h4[text()='Validate Match?']")
 	private WebElement lblValidateMatchInValidateMatchPopup;
 
@@ -89,7 +90,7 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBys(@B2BFindBy(xpath = "//div[@class='MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 css-1efqb7s'] //div[@class='MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-12 css-15j76c0']/following-sibling::div[@class='MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-12 css-15j76c0']"))
 	private List<WebElement> lstPlayerNames;
-	
+
 	@B2BFindBys(@B2BFindBy(xpath = "//div[@class='MuiBox-root css-0']/div/div[contains(@class, 'MuiGrid-spacing-xs-2')]/div[3]/div/div[contains(@class, 'MuiGrid-grid-sm-12')]"))
 	private List<WebElement> lstSingleMatchPlayers;
 
@@ -149,7 +150,8 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 	public void clickOnDeleteButton(String eventName) {
 		log.info("Ending of clickOnDeleteButton method");
 
-		WebElement btnDeleteDisplayed = driver.findElement(By.xpath("//p[contains(text(),'"+eventName+"')]/ancestor::div[contains(@class, 'MuiGrid-grid-xs-8')]/following-sibling::div//button"));
+		WebElement btnDeleteDisplayed = driver.findElement(By.xpath("//p[contains(text(),'" + eventName
+				+ "')]/ancestor::div[contains(@class, 'MuiGrid-grid-xs-8')]/following-sibling::div//button"));
 
 		elementClick(btnDeleteDisplayed);
 
@@ -161,6 +163,13 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 
 		explicitWait(lstMatchDetailsBoxes);
 		boolean isMatchHistoryOptionsPageContains = false;
+
+		System.out.println(isDisplayed(lblMatchHistory));
+		System.out.println(isDisplayed(btnPending));
+		System.out.println(isDisplayed(btnCompleted));
+		System.out.println(isDisplayed(btnSingles));
+		System.out.println(isDisplayed(btnDoubles));
+		System.out.println(isDisplayed(lblMatchId));
 
 		if (isDisplayed(lblMatchHistory) && isDisplayed(btnPending) && isDisplayed(btnCompleted)
 				&& isDisplayed(btnSingles) && isDisplayed(btnDoubles) && isDisplayed(lblMatchId))
@@ -262,10 +271,11 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 		explicitWait(lstMatchDetailsBoxes);
 		boolean validateButtonState = false;
 
-		WebElement btnDeleteDisplayed = driver.findElement(By.xpath("//p[contains(text(),'"+eventName+"')]/ancestor::div[contains(@class, 'MuiGrid-grid-xs-8')]/following-sibling::div//button"));
+		WebElement btnDeleteDisplayed = driver.findElement(By.xpath("//p[contains(text(),'" + eventName
+				+ "')]/ancestor::div[contains(@class, 'MuiGrid-grid-xs-8')]/following-sibling::div//button"));
 
 		try {
-			if (isDisplayed(btnDeleteDisplayed) == true) {
+			if (btnDeleteDisplayed.isDisplayed() == true) {
 				validateButtonState = true;
 			}
 		} catch (Exception e) {
@@ -280,10 +290,16 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 	public void clickOnValidateButton(String eventName) {
 		log.info("Starting of clickOnValidateButton method");
 
-		WebElement btnValidateDisplayed = driver.findElement(By.xpath("//p[contains(text(),'"+eventName+"')]/ancestor::div[contains(@class, 'MuiGrid-grid-xs-8')]/following-sibling::div//button"));
-
-		elementClick(btnValidateDisplayed);
-
+		for (int i = 0; i <= 4; i++) {
+			try {
+				hardWait(2);
+				driver.findElement(By.xpath("//p[contains(text(),'"+eventName+"')]/ancestor::div[contains(@class, 'MuiGrid-grid-xs-8')]/following-sibling::div//button"))
+						.click();
+				break;
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
 		log.info("Ending of clickOnValidateButton method");
 	}
 
@@ -402,7 +418,8 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 		explicitWait(lstMatchDetailsBoxes);
 		boolean deleteButtonState = false;
 
-		WebElement btnDeleteDisplayed = driver.findElement(By.xpath("//p[contains(text(),'"+eventName+"')]/ancestor::div[contains(@class, 'MuiGrid-grid-xs-8')]/following-sibling::div//button"));
+		WebElement btnDeleteDisplayed = driver.findElement(By.xpath("//p[contains(text(),'" + eventName
+				+ "')]/ancestor::div[contains(@class, 'MuiGrid-grid-xs-8')]/following-sibling::div//button"));
 
 		try {
 			if (isDisplayed(btnDeleteDisplayed) == true) {
@@ -441,7 +458,7 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 
 		return teamOneButton;
 	}
-	
+
 	public boolean isSinglesMatchPlayersDisplayed() {
 		log.info("Starting of isSinglesMatchPlayersDisplayed method");
 
@@ -460,7 +477,7 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 
 		return singlesPlayersStatus;
 	}
-	
+
 	public boolean isOpponentPlayerNamesButtonsDisplayed() {
 		log.info("Starting of isOpponentPlayerNamesButtonsDisplayed method");
 
@@ -617,20 +634,20 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 		SimpleDateFormat sdf = new SimpleDateFormat("MMMM dd, yyyy");
 
 		Date oldDate = sdf.parse(firstDate);
-		
+
 		String oldDateValue = sdf.format(oldDate);
 
 		boolean oldToNewDates = false;
-System.out.println("List size: "+ lstMatchDates.size());
+		System.out.println("List size: " + lstMatchDates.size());
 		for (WebElement matchDate : lstMatchDates) {
 
 			String strDate = matchDate.getText();
-			
-			System.out.println("first date: "+ oldDateValue);
-			System.out.println("match date: "+ strDate);
-			
-			System.out.println("comparision result:"+ (strDate.compareTo(oldDateValue) >= 0));
-			
+
+			System.out.println("first date: " + oldDateValue);
+			System.out.println("match date: " + strDate);
+
+			System.out.println("comparision result:" + (strDate.compareTo(oldDateValue) >= 0));
+
 			if (strDate.compareTo(oldDateValue) >= 0) {
 				oldToNewDates = true;
 			} else {

@@ -25,11 +25,12 @@ public class RemoveMemberTest extends DUPRBaseAutomationTest {
 
 	@BeforeClass
 	@Parameters({ "browser", "siteURL", "directorEmail", "directorPassword" })
-	public void initMethod(String browser, String siteURL, String email, String password) throws Exception {
+	public void initMethod(String browser, String siteURL, String directorEmail, String directorPassword)
+			throws Exception {
 		logger.info("Starting of initMethod in RemoveMemberTest");
 
 		this.driver = super.getWebDriver(WebDriversEnum.REMOVE_CLUB_MEMBER_DRIVER);
-		this.siteLogin(siteURL, email, password, this.driver);
+		this.siteLogin(siteURL, directorEmail, directorPassword, this.driver);
 		this.clubLogoPage = new ClubLogoPage(this.driver);
 		this.removeMemberPage = new RemoveMemberPage(this.driver);
 
@@ -57,13 +58,11 @@ public class RemoveMemberTest extends DUPRBaseAutomationTest {
 	@Story("Test case #2, Verify club member details")
 	public void verifyClubMember() {
 		logger.info("Starting of verifyClubMember method");
-
 		if (removeMemberPage.getDoubles() == false) {
 			Assert.assertTrue(removeMemberPage.isClubMemberContains());
 			Assert.assertEquals(removeMemberPage.getDoublesTxt(), expectedAssertionsProp.getProperty("member.doubles"));
 			Assert.assertEquals(removeMemberPage.getSinglesTxt(), expectedAssertionsProp.getProperty("member.singles"));
 		}
-
 		logger.info("Ending of verifyClubMember method");
 	}
 
@@ -73,7 +72,6 @@ public class RemoveMemberTest extends DUPRBaseAutomationTest {
 	@Story("Test case #3, Verify kebab menu functionality")
 	public void verifyKebabMenu() {
 		logger.info("Starting of verifyKebabMenu method");
-
 		if (removeMemberPage.getDoubles() == false) {
 			clubMemberName = removeMemberPage.getMemberNameTxt();
 
@@ -82,7 +80,6 @@ public class RemoveMemberTest extends DUPRBaseAutomationTest {
 			clubLogoPage.hardWait(1);
 			removeMemberPage.clickOnRemoveButton();
 		}
-
 		logger.info("Ending of verifyKebabMenu method");
 	}
 
@@ -92,26 +89,24 @@ public class RemoveMemberTest extends DUPRBaseAutomationTest {
 	@Story("Test case #4, Verify removed club member")
 	public void verifyRemovedMember() {
 		logger.info("Starting of verifyKebabMenu method");
+		String removedMemberName = removeMemberPage.getRemovedMemberNameTxt();
 
-		if (removeMemberPage.getDoubles() == false) {
-			removeMemberPage.clickOnSearch(clubMemberName);
-			clubLogoPage.hardWait(2);
-			Assert.assertEquals(removeMemberPage.getNoResultsTxt(),
-					expectedAssertionsProp.getProperty("member.removed"));
-		}
+		removeMemberPage.clickOnBackArrowButton();
+		removeMemberPage.clickOnSearch(removedMemberName);
+
+		Assert.assertEquals(removeMemberPage.getNoResultsTxt(), expectedAssertionsProp.getProperty("member.removed"));
 
 		logger.info("Ending of verifyKebabMenu method");
 	}
 
 	@AfterClass
 	public void quitDriver() {
-
 		try {
+			if (this.driver != null)
 
-			if (this.driver != null) {
+			{
 				Thread.sleep(5000);
 				this.quitDriver(this.driver, WebDriversEnum.REMOVE_CLUB_MEMBER_DRIVER);
-
 				logger.info("Driver quit successfully");
 			}
 		} catch (Exception ex) {

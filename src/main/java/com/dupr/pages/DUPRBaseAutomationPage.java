@@ -77,4 +77,14 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 		
 		log.info("Ending of clickOnElementUsingActionClass method");
 	}
+	
+	public void mouseHoverAndClick(WebElement webElement) {
+		log.info("Starting of mouseHoverAndClick method");
+
+		Actions action = new Actions(driver);
+		action.moveToElement(webElement).click().build().perform();
+
+		log.info("Ending of mouseHoverAndClick method");
+	}
+	
 }

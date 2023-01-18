@@ -21,6 +21,8 @@ public abstract class DUPRBaseAutomationTest extends B2BBaseAutomationTest {
 
 	protected WebDriver driver = null;
 	protected DUPRLoginPage loginPage = null;
+	
+	protected static String eventName = null;
 	private static final Logger log = Logger.getLogger(DUPRBaseAutomationTest.class);
 
 	@BeforeSuite

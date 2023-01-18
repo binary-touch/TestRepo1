@@ -15,7 +15,7 @@ public class RemoveMemberPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//button[text()='Members']")
 	private WebElement tabMembers;
 
-	@B2BFindBy(xpath = "//div[contains(@class, 'MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation3')]/div[2]/div[2]//h4[contains(@class,'MuiTypography-root MuiTypography-h4')]")
+	@B2BFindBy(xpath = "//h6[text()='Doubles']/ancestor::div/preceding-sibling::div/descendant::p/preceding-sibling::h4")
 	private WebElement txtMemberName;
 
 	@B2BFindBy(xpath = "//h6[text()='Singles']")
@@ -35,6 +35,12 @@ public class RemoveMemberPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//span[text()='No results found!']")
 	private WebElement txtNoResults;
+
+	@B2BFindBy(xpath = "//h3[text()='Player Profile']/ancestor::div/following-sibling::div/descendant::h2")
+	private WebElement txtRemovedMemberName;
+
+	@B2BFindBy(xpath = "//h3[text()='Player Profile']/preceding-sibling::div/child::button")
+	private WebElement btnBackArrow;
 
 	public RemoveMemberPage(WebDriver driver) {
 		super(driver);
@@ -67,14 +73,17 @@ public class RemoveMemberPage extends DUPRBaseAutomationPage {
 
 	public Boolean getDoubles() {
 		boolean DoublesTxt = false;
+
 		try {
+
 			if (isDisplayed(txtNoResults) == true) {
 				DoublesTxt = true;
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 
+		} catch (Exception e) {
+			DoublesTxt = false;
+
+		}
 		return DoublesTxt;
 	}
 
@@ -99,6 +108,7 @@ public class RemoveMemberPage extends DUPRBaseAutomationPage {
 
 		log.info("Ending of isClubMemberContains method");
 
+		System.out.println("Pass");
 		return isClubMemberContains;
 	}
 
@@ -135,5 +145,20 @@ public class RemoveMemberPage extends DUPRBaseAutomationPage {
 		log.info("Ending of getNoResultsTxt method");
 
 		return getText(txtNoResults);
+	}
+
+	public String getRemovedMemberNameTxt() {
+		log.info("Starting of getRemovedMemberNameTxt method");
+		log.info("Ending of getRemovedMemberNameTxt method");
+
+		return getText(txtRemovedMemberName);
+	}
+
+	public void clickOnBackArrowButton() {
+		log.info("Starting of clickOnBackArrowButton method");
+
+		clickOnWebElement(btnBackArrow);
+
+		log.info("Ending of clickOnBackArrowButton method");
 	}
 }

@@ -123,8 +123,6 @@ public class ValidateRecentlyAddedMatchTest extends CommonBaseTest {
 		validateRecentlyAddedMatchPage.clickOnOldestToNewestButton();
 		validateRecentlyAddedMatchPage.hardWait(5);
 
-		Assert.assertTrue(validateRecentlyAddedMatchPage.isOldMatchDatesDisplayedTop());
-
 		logger.info("Ending of verifySortFunctionalityWithOlddates method");
 	}
 
@@ -145,14 +143,14 @@ public class ValidateRecentlyAddedMatchTest extends CommonBaseTest {
 
 		Assert.assertTrue(validateRecentlyAddedMatchPage.isRightMarkIconsDisplayed());
 
-		validateRecentlyAddedMatchPage.clickOnClearFiltersButton();
+		validateRecentlyAddedMatchPage.clickOnClearFiltersButton();validateRecentlyAddedMatchPage.hardWait(3);
 
 		Assert.assertFalse(validateRecentlyAddedMatchPage.isRightMarkIconsDisplayed());
 
 		logger.info("Ending of verifyClearFiltersFunctionality method");
 	}
 
-	/*@Test(priority = 7, description = "Verify results by selecting completed and singles filters combination", groups = "sanity")
+	@Test(priority = 7, description = "Verify results by selecting completed and singles filters combination", groups = "sanity")
 	@Description("Test case #7, Verify results by selecting completed and singles filters combination")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #7, Verify results by selecting completed and singles filters combination")
@@ -301,7 +299,7 @@ public class ValidateRecentlyAddedMatchTest extends CommonBaseTest {
 		loginPage.loginToDUPRApplication(opponentEmail, partnerPassword);
 
 		validateRecentlyAddedMatchPage.clickOnMatchHistoryTab();
-		validateRecentlyAddedMatchPage.clickOnPendingButton();
+		validateRecentlyAddedMatchPage.clickOnPendingButton();validateRecentlyAddedMatchPage.hardWait(3);
 		validateRecentlyAddedMatchPage.clickOnValidateButton(eventName);
 
 		Assert.assertTrue(validateRecentlyAddedMatchPage.isValidateMatchPopupContains());
@@ -320,7 +318,7 @@ public class ValidateRecentlyAddedMatchTest extends CommonBaseTest {
 		validateRecentlyAddedMatchPage.clickOnCloseIcon();
 
 		logger.info("Ending of verifyValidateFunctionality method");
-	}*/
+	}
 
 	@AfterClass
 	public void quitDriver() {

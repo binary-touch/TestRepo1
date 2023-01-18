@@ -62,16 +62,16 @@ public class SearchPlayersPage extends DUPRBaseAutomationPage {
 	@B2BFindBys(@B2BFindBy(xpath = "//div[contains(@class, 'MuiPaper-rounded MuiPaper-elevation3')]/div[2]/div/div/p[contains(@class,'font-medium font-robo')]"))
 	private List<WebElement> lstPlayersNames;
 
-	@B2BFindBys(@B2BFindBy(xpath = "//div[contains(@class, 'MuiPaper-rounded MuiPaper-elevation3')]/div[2]/div/div/p[contains(@class, 'MuiTypography-noWrap text-sm')]"))
+	@B2BFindBys(@B2BFindBy(xpath = "//h6[contains(text(),'Doubles')]/ancestor::li/descendant::p[contains(text(),' VA, US')]"))
 	private List<WebElement> lstPlayersLocation;
 
 	@B2BFindBys(@B2BFindBy(xpath = "//div[contains(@class, 'MuiPaper-rounded MuiPaper-elevation3')]/div[2]/div/div[1]/div"))
 	private List<WebElement> lstPlayersAge;
 
-	@B2BFindBys(@B2BFindBy(xpath = "//div[contains(@class, 'MuiPaper-rounded MuiPaper-elevation3')]//following-sibling::div[2]/div/p[contains(@class, 'font-robo text-dark_blue')]"))
+	@B2BFindBys(@B2BFindBy(xpath = "//h6[contains(text(),'Singles')]/parent::div/descendant::h2"))
 	private List<WebElement> lstPlayersRatingsInSingles;
 
-	@B2BFindBys(@B2BFindBy(xpath = "//div[contains(@class, 'MuiPaper-rounded MuiPaper-elevation3')]//following-sibling::div/div[2]/div[1]/p[contains(@class, 'font-robo text-dark_blue')]"))
+	@B2BFindBys(@B2BFindBy(xpath = "//h6[contains(text(),'Doubles')]/parent::div/descendant::h2"))
 	private List<WebElement> lstPlayersRatingsInDoubles;
 
 	@B2BFindBys(@B2BFindBy(xpath = "//ul[contains(@class, 'MuiList-padding MuiMenu-list')]/li"))
@@ -267,15 +267,15 @@ public class SearchPlayersPage extends DUPRBaseAutomationPage {
 		return isSearchPlayersPageContains;
 	}
 
-	public String getPlayerName(String name) {
+	public String getPlayerName(String playerName) {
 		logger.info("Starting of getPlayerName method");
 
 		this.implicitWait();
-		String playerName = null;
+		//String playerName = null;
 
 		for (int i = 0; i <= lstPlayersNames.size() - 1; i++) {
 
-			if (lstPlayersNames.get(i).getText().equalsIgnoreCase(name)) {
+			if (lstPlayersNames.get(i).getText().equalsIgnoreCase(playerName)) {
 				playerName = lstPlayersNames.get(i).getText();
 			}
 		}
@@ -341,6 +341,7 @@ public class SearchPlayersPage extends DUPRBaseAutomationPage {
 				if (rating >= 3.0 && rating <= 4.0) {
 					flag = true;
 					// break;
+					
 				}
 			}
 		} catch (Exception e) {

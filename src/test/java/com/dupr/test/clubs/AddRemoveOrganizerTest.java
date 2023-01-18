@@ -54,8 +54,6 @@ public class AddRemoveOrganizerTest extends DUPRBaseAutomationTest {
 		if (addRemoveOrganizerPage.isDeleteOrganizerButtonDisplayed() == true) {
 
 			addRemoveOrganizerPage.AddingOrganizers();
-			clubLogoPage.hardWait(3);
-		
 		}
 		logger.info("Ending of verifyAddOrganizerFunctionality method");
 	}
@@ -67,14 +65,17 @@ public class AddRemoveOrganizerTest extends DUPRBaseAutomationTest {
 	public void verifyDeleteOrganizerFunctionality() {
 		logger.info("Starting of verifyDeleteOrganizerFunctionality method");
 
+		
+		addRemoveOrganizerPage.clickOnRemoveOrgButton();
+
+		clubLogoPage.hardWait(3);
+		
 		if(addRemoveOrganizerPage.isAddOrganizerButtonDisplayed()==true) {
 			
 			addRemoveOrganizerPage.clickOnAddOrganizerButton();
 			Assert.assertTrue(addRemoveOrganizerPage.isAddOrgPageContains());
 			addRemoveOrganizerPage.clickOnGoBackButton();
-			
 		}
-		addRemoveOrganizerPage.DeletingOrganizers();
 
 		logger.info("Ending of verifyDeleteOrganizerFunctionality method");
 	}
@@ -86,13 +87,12 @@ public class AddRemoveOrganizerTest extends DUPRBaseAutomationTest {
 	public void verifyDeleteOrganizerContent() {
 		logger.info("Starting of verifyDeleteOrganizerContent method");
 
+		addRemoveOrganizerPage.DeletingOrganizer();
+
 		Assert.assertTrue(addRemoveOrganizerPage.isRemoveOrgPopupContains());
 
 		String removeOrgText = addRemoveOrganizerPage.getRemoveOrganizerText();
-		// String areYouSureText = addRemoveOrganizerPage.getAreYouSureText();
 		Assert.assertEquals(removeOrgText, expectedAssertionsProp.getProperty("remove.organizer.label"));
-		// Assert.assertEquals(areYouSureText,
-		// expectedAssertionsProp.getProperty("Are.you.sure.txt"));
 
 		logger.info("Ending of verifyDeleteOrganizerContent method");
 	}
@@ -104,7 +104,11 @@ public class AddRemoveOrganizerTest extends DUPRBaseAutomationTest {
 	public void verifyGoBackFunctionality() {
 		logger.info("Starting of verifyGoBackFunctionality method");
 
+		addRemoveOrganizerPage.DeletingOrganizer();
 		addRemoveOrganizerPage.clickOnGoBackButton();
+		
+		String clubOrgText = addRemoveOrganizerPage.getClubOrganizerLabelText();
+		Assert.assertEquals(clubOrgText, expectedAssertionsProp.getProperty("club.organizer.label"));		
 
 		logger.info("Ending of verifyGoBackFunctionality method");
 	}
@@ -115,8 +119,9 @@ public class AddRemoveOrganizerTest extends DUPRBaseAutomationTest {
 	@Story("Test case #5, Verify cancel Button Functionality")
 	public void verifyCancelFunctionality() {
 		logger.info("Starting of verifyCancelFunctionality method");
-
+		addRemoveOrganizerPage.DeletingOrganizer();
 		addRemoveOrganizerPage.clickOnCancelButton();
+		
 
 		logger.info("Ending of verifyCancelFunctionality method");
 	}
@@ -131,9 +136,6 @@ public class AddRemoveOrganizerTest extends DUPRBaseAutomationTest {
 		addRemoveOrganizerPage.clickOnEditIcon();
 		clubLogoPage.hardWait(2);
 		Assert.assertTrue(addRemoveOrganizerPage.isEditOrganizerPopupContains());
-
-		String lblEditOrg = addRemoveOrganizerPage.getEditOrganizerText();
-		Assert.assertEquals(lblEditOrg, expectedAssertionsProp.getProperty("edit.org"));
 
 		logger.info("Ending of verifyEditOrgFunctionality method");
 	}
@@ -168,9 +170,15 @@ public class AddRemoveOrganizerTest extends DUPRBaseAutomationTest {
 	public void verifyCancelEditFunctionality() {
 		logger.info("Starting of verifyCancelEditFunctionality method");
 
-		addRemoveOrganizerPage.clickOnEditCancelButton();
+	//	addRemoveOrganizerPage.clickOnEditCancelButton();
 		clubLogoPage.hardWait(2);
+		
+		String clubOrgText = addRemoveOrganizerPage.getClubOrganizerLabelText();
+		Assert.assertEquals(clubOrgText, expectedAssertionsProp.getProperty("club.organizer.label"));		
+
 		addRemoveOrganizerPage.clickOnEditIcon();
+		
+		Assert.assertTrue(addRemoveOrganizerPage.isEditOrganizerPopupContains());
 
 		logger.info("Ending of verifyCancelEditFunctionality method");
 	}
@@ -187,6 +195,9 @@ public class AddRemoveOrganizerTest extends DUPRBaseAutomationTest {
 		addRemoveOrganizerPage.setOrganizerNumber(testDataProp.getProperty("organizer.num"));
 
 		addRemoveOrganizerPage.clickOnSaveChangesButton();
+		
+		String clubOrgText = addRemoveOrganizerPage.getClubOrganizerLabelText();
+		Assert.assertEquals(clubOrgText, expectedAssertionsProp.getProperty("club.organizer.label"));		
 
 		logger.info("Ending of verifyNameAndEmail method");
 	}

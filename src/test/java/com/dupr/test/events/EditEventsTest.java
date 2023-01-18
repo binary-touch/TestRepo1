@@ -26,22 +26,23 @@ public class EditEventsTest extends DUPRBaseAutomationTest {
 
 	@BeforeClass
 	@Parameters({ "browser", "siteURL", "directorEmail", "directorPassword" })
-	public void initMethod(String browser, String siteURL, String email, String password) throws Exception {
-		logger.info("Starting of initMethod in EditEventsTest");
+	public void initMethod(String browser, String siteURL, String directorEmail, String directorPassword) throws Exception {
+		logger.info("Starting of initMethod in ClubLogoTest");
 
 		this.driver = super.getWebDriver(WebDriversEnum.EDIT_EVENTS_DRIVER);
-		this.siteLogin(siteURL, email, password, this.driver);
+		this.siteLogin(siteURL, directorEmail, directorPassword, this.driver);
 		this.clubLogoPage = new ClubLogoPage(this.driver);
 		this.editEventsPage = new EditEventsPage(this.driver);
 		this.browseEventsPage = new BrowseEventsPage(this.driver);
 
-		logger.info("Ending of initMethod in EditEventsTest");
+		logger.info("Ending of initMethod in ClubLogoTest");
 	}
 
 	@Test(priority = 1, description = "Verify Edit event functionality", groups = "sanity")
 	@Description("Test case #1, Verify Edit events functionality")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #1, Verify Edit events functionality")
+
 	public void verifyEditEventsFunctionality() {
 		logger.info("Starting of verifyEditEventsFunctionality method");
 
@@ -51,7 +52,7 @@ public class EditEventsTest extends DUPRBaseAutomationTest {
 		editEventsPage.hardWait(2);
 		editEventsPage.clickOnEditEvent();
 		editEventsPage.hardWait(2);
-		editEventsPage.clickOnCancelButton();
+		editEventsPage.clickOnCancel();
 		editEventsPage.hardWait(2);
 		editEventsPage.clickOnEditEvent();
 		editEventsPage.hardWait(2);
@@ -65,6 +66,7 @@ public class EditEventsTest extends DUPRBaseAutomationTest {
 	@Description("Test case #2, Verify event name field")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #2, Verify event name field")
+
 	public void verifyEditName() {
 		logger.info("Starting of verifyEditName method");
 
@@ -83,10 +85,8 @@ public class EditEventsTest extends DUPRBaseAutomationTest {
 		logger.info("Starting of verifyAboutTheEvent method");
 
 		Assert.assertEquals(editEventsPage.getAboutEventText(), expectedAssertionsProp.getProperty("about.event.txt"));
-		clubLogoPage.hardWait(2);
 
 		editEventsPage.clickOnAboutEvent(testDataProp.getProperty("about.the.event"));
-		clubLogoPage.hardWait(2);
 
 		logger.info("Ending of verifyAboutTheEvent method");
 	}
@@ -115,16 +115,18 @@ public class EditEventsTest extends DUPRBaseAutomationTest {
 
 	public void verifyLiabilityWaiver() {
 		logger.info("Starting of verifyLiabilityWaiver method");
-		if (editEventsPage.isUploadButtonDisplayed() == true) {
-			// need to upload photo
-			editEventsPage.clickOnUploadLiabilityFile();
-			clubLogoPage.uploadProfilePicture(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("club.logo.path"));
-		}
-		if (editEventsPage.isReplaceButtonDisplayed() == true) {
-			// need to upload photo
 
-			editEventsPage.ClickOnReplace();
+		try {
+			if (editEventsPage.btnReplace() == true) {
+
+				editEventsPage.ClickOnRemoveButton();
+				clubLogoPage
+						.uploadProfilePicture(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("club.logo.path"));
+			}
+
+		} catch (Exception e) {
 			clubLogoPage.uploadProfilePicture(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("club.logo.path"));
+
 		}
 
 		logger.info("Ending of verifyLiabilityWaiver method");
@@ -134,13 +136,13 @@ public class EditEventsTest extends DUPRBaseAutomationTest {
 	@Description("Test case #6, Verify Refund Policy field")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #6, Verify Refund Policy field")
+
 	public void verifyRefundPolicy() {
 		logger.info("Starting of verifyRefundPolicy method");
-
 		Assert.assertEquals(editEventsPage.getRefundPolicyText(),
 				expectedAssertionsProp.getProperty("refunt.policy.txt"));
-		clubLogoPage.hardWait(2);
-		editEventsPage.clickOnRefundPolicy(testDataProp.getProperty("refunt.policy"));
+
+		editEventsPage.editRefundPolicy(testDataProp.getProperty("refund.policy"));
 
 		logger.info("Ending of verifyRefundPolicy method");
 	}
@@ -149,15 +151,13 @@ public class EditEventsTest extends DUPRBaseAutomationTest {
 	@Description("Test case #7, Verify Health and Safety Policy field")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #7, Verify Health and Safety Policy field")
+
 	public void verifyHealthAndSafetyPolicy() {
 		logger.info("Starting of verifyHealthAndSafetyPolicy method");
-
 		Assert.assertEquals(editEventsPage.getHealthSafetyText(),
 				expectedAssertionsProp.getProperty("health.policy.txt"));
-		clubLogoPage.hardWait(2);
 
 		editEventsPage.clickOnHealthSafety(testDataProp.getProperty("health.policy"));
-		clubLogoPage.hardWait(2);
 
 		logger.info("Ending of verifyHealthAndSafetyPolicy method");
 	}
@@ -166,10 +166,11 @@ public class EditEventsTest extends DUPRBaseAutomationTest {
 	@Description("Test case #8, Verify save changes button")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #8, Verify save changes button")
+
 	public void verifySaveChanges() {
 		logger.info("Starting of verifySaveChanges method");
 
-		editEventsPage.clickOnSaveChangesButton();
+		editEventsPage.clickOnSaveChanges();
 
 		logger.info("Ending of verifySaveChanges method");
 	}

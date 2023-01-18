@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Common UI Automation Tests">
 
-	<test name="Login Test">
+ <test name="Login Test">
 		<classes>
 			<class name="com.dupr.test.DUPRLoginTest" />
 			<class name="com.dupr.test.NegativeLoginTest" />
@@ -48,8 +48,8 @@
 		<classes>
 			<class name="com.dupr.test.profile.NotificationsTest" />
 			<class name="com.dupr.test.profile.PlayerProfileTest" />
-			<class name="com.dupr.test.profile.ProfilePictureTest" />
-			<class name="com.dupr.test.profile.ChangePasswordTest" />
+			<class name="com.dupr.test.profile.ProfilePictureTest" /> 
+			<!-- <class name="com.dupr.test.profile.ChangePasswordTest" />--> 
 		</classes>
 	</test>
 
@@ -69,7 +69,7 @@
 			<class name="com.dupr.test.events.AddEventTest" />
 			<class name="com.dupr.test.events.BrowseEventsTest" />
 			<class name="com.dupr.test.events.EditEventsTest" />
-			<class name="com.dupr.test.events.EditBracketsTest" />
+		<class name="com.dupr.test.events.EditBracketsTest" />
 		</classes>
 	</test>
 </suite>

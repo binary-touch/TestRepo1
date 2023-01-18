@@ -72,7 +72,7 @@ public class SignupTest extends DUPRBaseAutomationTest {
 		signupPage.setMobileNumber(testDataProp.getProperty("invalid.mobile.number"));
 		signupPage.setEmail(testDataProp.getProperty("email"));
 		signupPage.setConfirmEmail();
-		signupPage.clickOnGenderRadioButton();
+		signupPage.clickOnGenderRadioButton();signupPage.hardWait(3);
 		signupPage.setInvalidLocation(testDataProp.getProperty("location"));
 		signupPage.setPassword(testDataProp.getProperty("password"));
 		signupPage.setConfirmPassword();
@@ -80,7 +80,7 @@ public class SignupTest extends DUPRBaseAutomationTest {
 
 		Assert.assertTrue(signupPage.isFinishButtonEnabled());
 
-		signupPage.clickOnFinishButton();
+		signupPage.clickOnFinishButton();signupPage.hardWait(2);
 
 		String streetAddressText = this.signupPage.getStreetAddressText();
 		Assert.assertEquals(streetAddressText, expectedAssertionsProp.getProperty("enter.you.street.address"));
@@ -227,7 +227,7 @@ public class SignupTest extends DUPRBaseAutomationTest {
 		signupPage.setMobileNumber(testDataProp.getProperty("mobile.number"));
 		signupPage.setEmail(testDataProp.getProperty("email"));
 		signupPage.setConfirmEmail();
-		signupPage.clickOnGenderRadioButton();
+		signupPage.clickOnGenderRadioButton();signupPage.hardWait(3);
 		signupPage.setLocation(testDataProp.getProperty("location"));
 		signupPage.setPassword(testDataProp.getProperty("password"));
 		signupPage.setConfirmPassword();
@@ -363,7 +363,7 @@ public class SignupTest extends DUPRBaseAutomationTest {
 
 		editProfilePage.clickOnEditProfileButton();
 
-		signupPage.clickOnVerifyButton();
+		signupPage.clickOnVerifyButton();signupPage.hardWait(3);
 
 		Assert.assertEquals(signupPage.getlinkSentEmailValidation(),
 				expectedAssertionsProp.getProperty("link.was.sent.mail"));

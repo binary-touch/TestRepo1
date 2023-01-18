@@ -225,25 +225,11 @@ public class AddAMatchPage extends DUPRBaseAutomationPage {
 
 		boolean isAddAMatchPageContains = false;
 
-		System.out.println(isDisplayed(btnSubmit));
-		System.out.println(isDisplayed(lblAddScore));
-		System.out.println(isDisplayed(lblMatchDetails));
-		System.out.println(isDisplayed(txtBoxMatchdate));
-		System.out.println(isDisplayed(iconPlus));
-		System.out.println(isDisplayed(txtBoxLocation));
-		System.out.println(isDisplayed(txtBoxEventName));
-		System.out.println(isDisplayed(btnAddPartner));
-		System.out.println(isDisplayed(btnSingles));
-		System.out.println(isDisplayed(btnDoubles));
-		System.out.println(isDisplayed(txtBoxGameOneScoreTeamOne));
-		System.out.println(isDisplayed(txtBoxGameOneScoreTeamTwo));
-		System.out.println(isDisplayed(btnDoubles));
-
-		if (isDisplayed(btnSubmit) && isDisplayed(lblAddScore) && isDisplayed(lblMatchDetails)
-				&& isDisplayed(txtBoxMatchdate) && isDisplayed(iconPlus) && isDisplayed(txtBoxLocation)
-				&& isDisplayed(txtBoxEventName) && isDisplayed(btnAddPartner) && isDisplayed(btnSingles)
-				&& isDisplayed(btnDoubles) && isDisplayed(txtBoxGameOneScoreTeamOne)
-				&& isDisplayed(txtBoxGameOneScoreTeamTwo) && isDisplayed(btnDoubles)) {
+		if (btnSubmit.isDisplayed() && lblAddScore.isDisplayed() && lblMatchDetails.isDisplayed()
+				&& txtBoxMatchdate.isDisplayed() && iconPlus.isDisplayed() && txtBoxLocation.isDisplayed()
+				&& txtBoxEventName.isDisplayed() && btnAddPartner.isDisplayed() && btnSingles.isDisplayed()
+				&& btnDoubles.isDisplayed() && txtBoxGameOneScoreTeamOne.isDisplayed()
+				&& txtBoxGameOneScoreTeamTwo.isDisplayed() && btnDoubles.isDisplayed()) {
 			isAddAMatchPageContains = true;
 		}
 

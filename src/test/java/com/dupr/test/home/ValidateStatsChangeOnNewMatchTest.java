@@ -213,6 +213,13 @@ public class ValidateStatsChangeOnNewMatchTest extends CommonBaseTest {
 		Assert.assertEquals(lossesCount, strUpdatedlossesCount);
 
 		String updatedpendingCount = validateStats.getPendingCountLabelText();
+		
+		/*
+		 * int intPendingCount = Integer.parseInt(updatedpendingCount);
+		 * intPendingCountAfterAddingNewMatch = intPendingCount - 1; String
+		 * updatedpendingCount2 = Integer.toString(intPendingCountAfterAddingNewMatch);
+		 */
+		
 
 		Assert.assertEquals(pendingCount, updatedpendingCount);
 
@@ -396,7 +403,7 @@ public class ValidateStatsChangeOnNewMatchTest extends CommonBaseTest {
 	@Description("Test case #12, Verify View profile functionality")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #12 , Verify View profile functionality")
-	public void verifyViewProfileFunctionality() {
+	public void verifyViewProfileFunctionality() throws InterruptedException {
 		log.info("Starting of verifyViewProfileFunctionality method");
 
 		validateStats.clickOnViewProfileButton();

@@ -437,7 +437,7 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 	}
 
 	public void clickOnReviewDUPRPoliciesCheckBox() {
-		logger.info("Starting od clickOnReviewDUPRPoliciesCheckBox method");
+		logger.info("Starting of clickOnReviewDUPRPoliciesCheckBox method");
 
 		this.implicitWait();
 		scrollIntoView(chkReviewDUPRPolicies);

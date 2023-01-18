@@ -2,8 +2,8 @@ package com.dupr.pages.players;
 
 import java.util.List;
 
-import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -15,12 +15,12 @@ import com.dupr.pages.DUPRBaseAutomationPage;
 
 public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 
-	private static final Logger log = LogManager.getLogger(BrowsePlayersPage.class);
+	private static final Logger logger = Logger.getLogger(BrowsePlayersPage.class);
 
 	@B2BFindBy(xpath = "//button[contains(@class,'MuiButton-sizeMedium') and text()='Filters']")
 	private WebElement btnFilters;
 
-	@B2BFindBy(xpath = "//button[contains(@class,'MuiButton-sizeLarge') and text()='Invite a Player to DUPR']")
+	@B2BFindBy(xpath = "//button[text()='Invite a Player to DUPR']")
 	private WebElement tabInvitePlayerToDUPR;
 
 	@B2BFindBy(xpath = "//input[contains(@class, 'PrivateSwitchBase-input MuiSwitch-input') and @type='checkbox']")
@@ -29,16 +29,16 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 	@B2BFindBys(@B2BFindBy(xpath = "//div[contains(@class, 'MuiPaper-rounded MuiPaper-elevation3')]/div/following-sibling::div[1]//following-sibling::div[1]//h4"))
 	private List<WebElement> lstPlayerNames;
 
-	@B2BFindBys(@B2BFindBy(xpath = "//div[@class='MuiBox-root css-hp68mp'] //div/preceding-sibling::p"))
+	@B2BFindBys(@B2BFindBy(xpath = "//p[contains(text(),'Age')]/parent::div/preceding-sibling::div/descendant::p"))
 	private List<WebElement> lstPlayersLocations;
 
-	@B2BFindBys(@B2BFindBy(xpath = "//div[contains(@class,'MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation3')]/div/following-sibling::div[1]/div/following-sibling::div/*/*/div/div/p"))
+	@B2BFindBys(@B2BFindBy(xpath = "//p[contains(text(),'Age')]"))
 	private List<WebElement> lstPlayersAge;
 
-	@B2BFindBys(@B2BFindBy(xpath = "//div[contains(@class, 'MuiPaper-rounded MuiPaper-elevation3')]/div/following-sibling::div[1]/*/following-sibling::div/*/*/following-sibling::div/div/h6[text()='Singles']/parent::div/div"))
+	@B2BFindBys(@B2BFindBy(xpath = "//h6[text()='Singles']/preceding-sibling::div/child::h2"))
 	private List<WebElement> lstPlayersSingleMatchRatings;
 
-	@B2BFindBys(@B2BFindBy(xpath = "//div[contains(@class, 'MuiPaper-rounded MuiPaper-elevation3')]/div/following-sibling::div[1]/*/following-sibling::div/*/*/following-sibling::div/div/h6[text()='Doubles']/parent::div/div"))
+	@B2BFindBys(@B2BFindBy(xpath = "//h6[text()='Doubles']/preceding-sibling::div/child::h2"))
 	private List<WebElement> lstPlayersDoublesMatchRatings;
 
 	@B2BFindBys(@B2BFindBy(xpath = "//div[contains(@class,'MuiBox-root')]//div/following-sibling::p"))
@@ -83,13 +83,14 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//div/button[contains(@class,'MuiButton-whitecontained')]/following-sibling::button[text()='Send Invite']")
 	private WebElement btnSendInvite;
 
-	@B2BFindBy(xpath = "//h4[@id='customized-dialog-title']")
+	@B2BFindBy(xpath = "//h4[@id='customized-diaLog-title']")
 	private WebElement lblInviteSent;
 
 	@B2BFindBy(css = ".MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.css-1971f2t")
 	private WebElement btnOk;
 
 	@B2BFindBy(xpath = "//h5[text()='Location']")
+
 	private WebElement lblLocation;
 
 	@B2BFindBy(xpath = "//h5[text()='Distance']")
@@ -146,7 +147,7 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//p[text()='Email is invalid.']")
 	private WebElement txtValidationEmailIsInvalid;
 
-	@B2BFindBy(xpath = "(//button[@type='button' and contains(@class, 'MuiIconButton-root MuiIconButton-sizeMedium')]/span[contains(@class, 'MuiTouchRipple-root')])[2]")
+	@B2BFindBy(xpath = "//h3[text()='Browse Players']/preceding-sibling::div/child::button")
 	private WebElement btnBackArrow;
 
 	public BrowsePlayersPage(WebDriver driver) {
@@ -155,32 +156,41 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 	}
 
 	public void clickOnFilterButton() {
-		log.info("Starting of clickOnFilterButton method");
+		logger.info("Starting of clickOnFilterButton method");
 
 		elementClick(btnFilters);
 
-		log.info("Ending of clickOnFilterButton method");
+		logger.info("Ending of clickOnFilterButton method");
 	}
 
-	public String getPlayerName(String name) {
-		log.info("Starting of getPlayerName method");
+	public String getPlayerName() {
+		logger.info("Starting of getPlayerName method");
 
 		String playerName = null;
-		for (int i = 0; i <= lstPlayerNames.size() - 1; i++) {
 
-			if (lstPlayerNames.get(i).getText().equalsIgnoreCase(name)) {
+		WebElement element = driver.findElement(By.xpath("//input[@id='Search']"));
+		String name = element.getAttribute("value");
+
+		List<WebElement> element2 = driver.findElements(By.xpath("//h4[contains(text(),'" + name + "')]"));
+
+		List<WebElement> lstPlayerNames = element2;
+		System.out.println("No Of Records:" + lstPlayerNames.size());
+
+		for (int i = 0; i < lstPlayerNames.size(); i++) {
+			if (lstPlayerNames.get(i).getText().equalsIgnoreCase(name) == true) {
 				playerName = lstPlayerNames.get(i).getText();
-				break;
+				System.out.println(playerName);
+
 			}
 		}
 
-		log.info("Ending of getPlayerName method");
+		logger.info("Ending of getPlayerName method");
 
 		return playerName;
 	}
 
 	public boolean isBrowsePlayersPageContains() {
-		log.info("Starting of isBrowsePlayersPageContains method");
+		logger.info("Starting of isBrowsePlayersPageContains method");
 
 		boolean isBrowsePlayersPageContains = false;
 
@@ -189,13 +199,13 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 			isBrowsePlayersPageContains = true;
 		}
 
-		log.info("Ending of isBrowsePlayersPageContains method");
+		logger.info("Ending of isBrowsePlayersPageContains method");
 
 		return isBrowsePlayersPageContains;
 	}
 
 	public boolean isInvitePlayerPageContains() {
-		log.info("Starting of isInvitePlayerPageContains method");
+		logger.info("Starting of isInvitePlayerPageContains method");
 
 		boolean isInvitePlayerPageContains = false;
 
@@ -205,29 +215,29 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 			isInvitePlayerPageContains = true;
 		}
 
-		log.info("Ending of isInvitePlayerPageContains method");
+		logger.info("Ending of isInvitePlayerPageContains method");
 
 		return isInvitePlayerPageContains;
 	}
 
 	public void clickOnInvitePlayerToDUPRTab() {
-		log.info("Starting of clickOnInvitePlayerToDUPRTab method");
+		logger.info("Starting of clickOnInvitePlayerToDUPRTab method");
 
 		elementClick(tabInvitePlayerToDUPR);
 
-		log.info("Ending of clickOnInvitePlayerToDUPRTab method");
+		logger.info("Ending of clickOnInvitePlayerToDUPRTab method");
 	}
 
 	public void clickOnFindNearMeToggleButton() {
-		log.info("Starting of clickOnFindNearMeToggleButton method");
+		logger.info("Starting of clickOnFindNearMeToggleButton method");
 
 		elementClick(tglFindNearMePlayer);
 
-		log.info("Ending of clickOnFindNearMeToggleButton method");
+		logger.info("Ending of clickOnFindNearMeToggleButton method");
 	}
 
 	public boolean isFiltersPageContains() {
-		log.info("Starting of isFiltersPageContains method");
+		logger.info("Starting of isFiltersPageContains method");
 
 		boolean isFiltersPageContains = false;
 
@@ -238,22 +248,23 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 			isFiltersPageContains = true;
 		}
 
-		log.info("Ending of isFiltersPageContains method");
+		logger.info("Ending of isFiltersPageContains method");
 
 		return isFiltersPageContains;
 	}
 
-	public void setLocationInFilters(String location) {
-		log.info("Starting of setLocationInFilters method");
+	public void setLocationInFilters(String location) throws InterruptedException {
+		logger.info("Starting of setLocationInFilters method");
 
 		clickOnWebElement(txtBoxLocationInFilters);
 		txtBoxLocationInFilters.sendKeys(location);
+		Thread.sleep(2000);
 
-		log.info("Ending of setLocationInFilters method");
+		logger.info("Ending of setLocationInFilters method");
 	}
 
 	public void clickOnlocationOption() {
-		log.info("Starting of clickOnlocationOption method");
+		logger.info("Starting of clickOnlocationOption method");
 
 		for (int i = 0; i < lstLocationOptions.size() - 1; i++) {
 			String location = lstLocationOptions.get(i).getText();
@@ -265,25 +276,30 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 			}
 		}
 
-		log.info("Ending of clickOnlocationOption method");
+		logger.info("Ending of clickOnlocationOption method");
 	}
 
 	public void clickOnApplyButton() {
-		log.info("Starting of clickOnApplyButton method");
+		logger.info("Starting of clickOnApplyButton method");
 
 		elementClick(btnApply);
 
-		log.info("Ending of clickOnApplyButton method");
+		logger.info("Ending of clickOnApplyButton method");
 	}
 
-	public boolean getPlayerLocation() {
-		log.info("Starting of getPlayerLocation method");
+	public boolean getPlayerLocation() throws InterruptedException {
+		logger.info("Starting of getPlayerLocation method");
+		Thread.sleep(2000);
+		elementClick(btnApply);
 
 		boolean flag = false;
 
 		try {
+			
+			System.out.println(lstPlayersLocations.size());
 			for (int i = 0; i < lstPlayersLocations.size() - 1; i++) {
 				String locations = lstPlayersLocations.get(i).getText();
+				
 				if (locations.contains("Pune")) {
 					flag = true;
 				}
@@ -291,31 +307,32 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			flag = false;
 		}
-		log.info("Ending of getPlayerLocation method");
+		logger.info("Ending of getPlayerLocation method");
 
 		return flag;
 	}
 
+
 	public void clickOnClearAllButton() {
-		log.info("Starting of clickOnClearAllButton method");
+		logger.info("Starting of clickOnClearAllButton method");
 
 		elementClick(btnClearAll);
 
-		log.info("Ending of clickOnClearAllButton method");
+		logger.info("Ending of clickOnClearAllButton method");
 	}
 
 	public void moveDistanceSlider() {
-		log.info("Starting of moveDistanceSlider method");
+		logger.info("Starting of moveDistanceSlider method");
 
 		Actions act = new Actions(driver);
 		act.moveToElement(distanceSliderNode).perform();
 		act.dragAndDropBy(distanceSliderNode, 100, 0).perform();
 
-		log.info("Ending of moveDistanceSlider method");
+		logger.info("Ending of moveDistanceSlider method");
 	}
 
 	public boolean getPlayersDistance() {
-		log.info("Starting of getPlayersDistance method");
+		logger.info("Starting of getPlayersDistance method");
 
 		boolean flag = false;
 
@@ -330,28 +347,29 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 			flag = false;
 		}
 
-		log.info("Ending of getPlayersDistance method");
+		logger.info("Ending of getPlayersDistance method");
 
 		return flag;
 	}
 
 	public void moveRatingSecondSlider() {
-		log.info("Starting of moveRatingSecondSlider method");
+		logger.info("Starting of moveRatingSecondSlider method");
 
 		Actions act = new Actions(driver);
 		act.moveToElement(ratingSecondNode).perform();
 		act.dragAndDropBy(ratingSecondNode, -100, 0).perform();
 
-		log.info("Ending of moveRatingSecondSlider method");
+		logger.info("Ending of moveRatingSecondSlider method");
 	}
 
 	public boolean getPlayersRatings() {
-		log.info("Starting of getPlayersRatings method");
+		logger.info("Starting of getPlayersRatings method");
 
 		boolean flag = false;
 		try {
 			for (int i = 0; i < lstPlayerRatings.size() - 1; i++) {
 				String rating = lstPlayerRatings.get(i).getText();
+				Thread.sleep(2000);
 				float num = Float.parseFloat(rating);
 
 				if (num >= 2.00 && num <= 5.00) {
@@ -362,37 +380,42 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 			flag = false;
 		}
 
-		log.info("Ending of getPlayersRatings method");
+		logger.info("Ending of getPlayersRatings method");
 
 		return flag;
 	}
 
 	public void clickOnDoublesCheckBox() {
-		log.info("Starting of clickOnDoublesCheckBox method");
+		logger.info("Starting of clickOnDoublesCheckBox method");
 
 		elementClick(chkBoxDoubles);
 
-		log.info("Ending of clickOnDoublesCheckBox method");
+		logger.info("Ending of clickOnDoublesCheckBox method");
 	}
 
 	public void clickOnSinglesCheckBox() {
-		log.info("Starting of clickOnSinglesCheckBox method");
+		logger.info("Starting of clickOnSinglesCheckBox method");
 
 		elementClick(chkBoxSingles);
 
-		log.info("Ending of clickOnSinglesCheckBox method");
+		logger.info("Ending of clickOnSinglesCheckBox method");
 	}
 
 	public boolean getPlayersSinglesRating() {
-		log.info("Starting of getPlayersSinglesRating method");
+		logger.info("Starting of getPlayersSinglesRating method");
 
 		boolean flag = false;
+		
+		
+		System.out.println("No Of Singles No Rating List Is: "+lstPlayersSingleMatchRatings.size());
 
 		try {
 			for (int i = 0; i < lstPlayersSingleMatchRatings.size() - 1; i++) {
 				String Rating = lstPlayersSingleMatchRatings.get(i).getText();
+				Thread.sleep(2000);
 				if (Rating.equals("NR")) {
 					flag = true;
+					System.out.println(flag);
 				} else {
 					float rating = Float.parseFloat(Rating);
 
@@ -406,13 +429,13 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 			flag = false;
 		}
 
-		log.info("Ending of getPlayersSinglesRating method");
+		logger.info("Ending of getPlayersSinglesRating method");
 
 		return flag;
 	}
 
 	public boolean getPlayersDoublesRating() {
-		log.info("Starting of getPlayersDoublesRating method");
+		logger.info("Starting of getPlayersDoublesRating method");
 
 		boolean flag = false;
 
@@ -433,29 +456,29 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 			flag = false;
 		}
 
-		log.info("Ending of getPlayersDoublesRating method");
+		logger.info("Ending of getPlayersDoublesRating method");
 
 		return flag;
 	}
 
 	public void selectGender() {
-		log.info("Starting of selectGender method");
+		logger.info("Starting of selectGender method");
 
 		elementClick(btnMale);
 
-		log.info("Ending of selectGender method");
+		logger.info("Ending of selectGender method");
 	}
 
 	public void clickOnAgeOptionRadioButton() {
-		log.info("Starting of clickOnAgeOptionRadioButton method");
+		logger.info("Starting of clickOnAgeOptionRadioButton method");
 
 		elementClick(rdoUnder19);
 
-		log.info("Ending of clickOnAgeOptionRadioButton method");
+		logger.info("Ending of clickOnAgeOptionRadioButton method");
 	}
 
 	public boolean getPlayersAge() {
-		log.info("Starting of getPlayersAge method");
+		logger.info("Starting of getPlayersAge method");
 
 		boolean flag = false;
 		try {
@@ -472,13 +495,13 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 			flag = false;
 		}
 
-		log.info("Ending of getPlayersAge method");
+		logger.info("Ending of getPlayersAge method");
 
 		return flag;
 	}
 
 	public boolean getPlayersDistances() {
-		log.info("Starting of getPlayersDistances method");
+		logger.info("Starting of getPlayersDistances method");
 
 		boolean flag = false;
 
@@ -500,58 +523,58 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 			flag = false;
 		}
 
-		log.info("Ending of getPlayersDistances method");
+		logger.info("Ending of getPlayersDistances method");
 
 		return flag;
 	}
 
 	public boolean isUnder19RadioButtonSeleceted() {
-		log.info("Starting of isUnder19RadioButtonSeleceted method");
-		log.info("Ending of isUnder19RadioButtonSeleceted method");
+		logger.info("Starting of isUnder19RadioButtonSeleceted method");
+		logger.info("Ending of isUnder19RadioButtonSeleceted method");
 
 		return rdoUnder19.isSelected();
 	}
 
 	public boolean isViewAllRadioButtonSeleceted() {
-		log.info("Starting of isViewAllRadioButtonSeleceted method");
-		log.info("Ending of isViewAllRadioButtonSeleceted method");
+		logger.info("Starting of isViewAllRadioButtonSeleceted method");
+		logger.info("Ending of isViewAllRadioButtonSeleceted method");
 
 		return rdoViewAll.isSelected();
 	}
 
 	public String getFullNameIsRequiredText() {
-		log.info("Starting of getFullNameIsRequiredText method");
-		log.info("Ending of getFullNameIsRequiredText method");
+		logger.info("Starting of getFullNameIsRequiredText method");
+		logger.info("Ending of getFullNameIsRequiredText method");
 
 		return getText(txtValidationFullNameRequired);
 	}
 
 	public String getEmailIsRequiredText() {
-		log.info("Starting of getEmailIsRequiredText method");
-		log.info("Ending of getEmailIsRequiredText method");
+		logger.info("Starting of getEmailIsRequiredText method");
+		logger.info("Ending of getEmailIsRequiredText method");
 
 		return getText(txtValidationEmailIsRequired);
 	}
 
 	public String getNoNumbersOrSpecialCharatersAreAllowedRequiredText() {
-		log.info("Starting of getNoNumbersOrSpecialCharatersAreAllowedRequiredText method");
-		log.info("Ending of getNoNumbersOrSpecialCharatersAreAllowedRequiredText method");
+		logger.info("Starting of getNoNumbersOrSpecialCharatersAreAllowedRequiredText method");
+		logger.info("Ending of getNoNumbersOrSpecialCharatersAreAllowedRequiredText method");
 
 		return getText(txtValidationNoNumbersOrSpecialCharactersAllowed);
 	}
 
 	public String getInvalidEmailText() {
-		log.info("Starting of getInvalidEmailText method");
-		log.info("Ending of getInvalidEmailText method");
+		logger.info("Starting of getInvalidEmailText method");
+		logger.info("Ending of getInvalidEmailText method");
 
 		return getText(txtValidationEmailIsInvalid);
 	}
 
 	public void clickOnBackArrowButton() {
-		log.info("Starting of clickOnBackArrowButton method");
+		logger.info("Starting of clickOnBackArrowButton method");
 
 		elementClick(btnBackArrow);
 
-		log.info("Ending of clickOnBackArrowButton method");
+		logger.info("Ending of clickOnBackArrowButton method");
 	}
 }

@@ -64,7 +64,7 @@ public class NotificationsPage extends DUPRBaseAutomationPage {
 
 		boolean isNotifcationsTabContains = false;
 		if (isDisplayed(tglAppNotificationsInEnabled) && isDisplayed(tglEmaillNotificationsInEnabled)
-				&& isDisplayed(tglSMSNotificationsInEnabled) && !(btnSave.isEnabled()))
+				&& isDisplayed(tglSMSNotificationsInEnabled) && !(btnSave.isEnabled()== true))
 
 			isNotifcationsTabContains = true;
 

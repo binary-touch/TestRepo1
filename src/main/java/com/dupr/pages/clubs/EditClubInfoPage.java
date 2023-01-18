@@ -160,7 +160,7 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//div[@title='Underline']")
 	private WebElement ImgUnderlineText;
 
-	@B2BFindBy(xpath = "//h4[contains(@class,'MuiTypography-root MuiTypography-h4')]")
+	@B2BFindBy(xpath = "//h5[text()='As a Director']/following-sibling::div//div[contains(@class,'MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation3')]")
 	private List<WebElement> lstDirectors;
 
 	@B2BFindBy(xpath = "//h4[text()='yemeni rial']")
@@ -169,7 +169,7 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//div[contains(text(),'demo')]/button")
 	private WebElement iconEditDirector;
 
-	@B2BFindBy(xpath = "//div[contains(@class,'MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation3')]//h4[contains(@class,'MuiTypography-root MuiTypography-h4')]")
+	@B2BFindBy(xpath = "//h5[text()='As a Director']/following-sibling::div//h4[contains(@class,'MuiTypography-root MuiTypography-h4')]")
 	private List<WebElement> lstDirectorNames;
 
 	@B2BFindBy(xpath = "//div[contains(@class,'MuiBox-root')]/button[contains(@class,'MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium')]/*[contains(@class,'MuiSvgIcon-root MuiSvgIcon-colorPrimary')]")
@@ -264,14 +264,13 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 		return btnShowLess.isDisplayed();
 	}
 
-	/*
-	 * public void clickOnDirectorButton() {
-	 * log.info("Starting of clickOnDirectorButton method");
-	 * 
-	 * elementClick(btnDirector);
-	 * 
-	 * log.info("Ending of clickOnDirectorButton method"); }
-	 */
+	public void clickOnDirectorButton() {
+		log.info("Starting of clickOnDirectorButton method");
+
+		lstDirectorNames.get(1).click();
+
+		log.info("Ending of clickOnDirectorButton method");
+	}
 
 	public void clickOnEditContactIcon() {
 		log.info("Starting of clickOnEditContactIcon method");
@@ -420,7 +419,7 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 
 		// this.txtBoxClubName.clear();
 		this.txtBoxClubName.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
-		this.txtBoxClubName.sendKeys(name+"_"+randomNumber(2));
+		this.txtBoxClubName.sendKeys(name + "_" + randomNumber(2));
 
 		log.info("Ending of setClubName method");
 	}
@@ -495,7 +494,7 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 
 		this.txtBoxAddress.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		this.txtBoxAddress.sendKeys(address);
-		
+
 		hardWait(2);
 		this.clickOnSelectedAddressOption();
 
@@ -681,9 +680,15 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 		hardWait(3);
 		String s = btnYemenirialDirector.getText();
 
-		for (WebElement director : lstDirectors) {
+		for (WebElement director : lstDirectorNames) {
+			System.out.println(s);
+			System.out.println(director.getText());
 			if (director.getText().equals(s)) {
-				elementClick(director);
+				try {
+					clickOnWebElement(director);
+				} catch (Exception e) {
+					clickOnElement(director);
+				}
 				break;
 			}
 		}
