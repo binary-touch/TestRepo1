@@ -308,6 +308,8 @@ public class BrowsePlayersTest extends CommonBaseTest {
 		browsePlayersPage.clickOnClearAllButton();
 		browsePlayersPage.clickOnAgeOptionRadioButton();
 		browsePlayersPage.clickOnApplyButton();
+		
+		browsePlayersPage.hardWait(2);
 		Assert.assertTrue(browsePlayersPage.getPlayersAge());
 
 		

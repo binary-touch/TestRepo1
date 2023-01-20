@@ -365,7 +365,7 @@ public class SearchPlayersPage extends DUPRBaseAutomationPage {
 				logger.debug("Doubles Rating: " + Rating);
 				if (rating >= 3.0 && rating <= 4.0) {
 					flag = true;
-					// break;
+					break;
 				}
 			}
 		} catch (Exception e) {

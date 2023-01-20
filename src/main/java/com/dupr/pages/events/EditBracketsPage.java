@@ -161,7 +161,7 @@ public class EditBracketsPage extends DUPRBaseAutomationPage {
 	public void selectAlaskan() {
 		log.info("Starting of clickOnAlaskan method");
 
-		clickOnElement(listAlaskan);
+		clickOnWebElement(listAlaskan);
 
 		log.info("Ending of clickOnAlaskan method");
 	}

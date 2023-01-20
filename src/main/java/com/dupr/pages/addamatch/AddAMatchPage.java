@@ -20,7 +20,7 @@ public class AddAMatchPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h6[text()='Add a Match']")
 	private WebElement tabAddAMatch;
 
-	@B2BFindBy(xpath = "//input[@name='location']")
+	@B2BFindBy(xpath = "//h5[text()='Location']/parent::div//following-sibling::div//input")
 	private WebElement txtBoxLocation;
 
 	@B2BFindBy(xpath = "//h5[text()='Event Name']/parent::div/following-sibling::div[1]/*/*/input")
