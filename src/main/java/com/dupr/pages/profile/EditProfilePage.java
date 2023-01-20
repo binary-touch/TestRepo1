@@ -330,6 +330,7 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 	public void clickOnOkButton() {
 		log.info("Starting of clickOnOkButton method");
 
+		waitForElementVisibilty(btnOk, 3);
 		if (btnOk.isEnabled()) {
 			clickOnElement(btnOk);
 		}
@@ -530,7 +531,7 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 	public void clickOnCountryCodePhoneNumber(String code) {
 		log.info("Starting of clickOnCountryCodePhoneNumber method");
 
-		clickOnElement(btnCountryCode);
+		clickOnWebElement(btnCountryCode);
 
 		for (WebElement countryName : lstCountryNames) {
 
@@ -553,11 +554,15 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 		log.info("Starting of clearPhoneNumber method");
 
 		clickOnWebElement(txtBoxPhoneNumber);
+		
 		String s = txtBoxPhoneNumber.getAttribute("value");
+		log.debug("Derived Phone number from the field: " + s);
 
-		int numberLenght = s.length();
-		for (int i = 0; i <= numberLenght - 1; i++) {
-			hardWait(1);
+		int numberLength = s.length();
+		log.debug("Phone number length: " + numberLength);
+
+		for (int i = 0; i <= numberLength - 1; i++) {
+			hardWait(2);
 			this.txtBoxPhoneNumber.sendKeys(Keys.BACK_SPACE);
 		}
 

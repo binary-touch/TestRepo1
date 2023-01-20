@@ -29,11 +29,11 @@ public class ValidateRecentlyAddedMatchTest extends CommonBaseTest {
 
 	@BeforeClass
 	@Parameters({ "browser", "siteURL", "validEmail", "validPassword" })
-	public void initMethod(String browser, String siteURL, String email, String password) throws Exception {
+	public void initMethod(String browser, String siteURL, String validEmail, String validPassword) throws Exception {
 		logger.info("Starting of initMethod in ValidateRecentlyAddedMatchTest");
 
 		this.driver = super.getWebDriver(WebDriversEnum.VALIDATE_RECENTLY_ADDED_MATCH_DRIVER);
-		super.initCommonBaseTest(siteURL, email, password);
+		super.initCommonBaseTest(siteURL, validEmail, validPassword);
 
 		this.validateRecentlyAddedMatchPage = new ValidateRecentlyAddedMatchPage(this.driver);
 
@@ -56,7 +56,7 @@ public class ValidateRecentlyAddedMatchTest extends CommonBaseTest {
 		logger.info("Ending of verifyMatchHistory method");
 	}
 
-	//@Test(priority = 2, description = "Verify matches with completed filter", groups = "sanity")
+	@Test(priority = 2, description = "Verify matches with completed filter", groups = "sanity")
 	@Description("Test case #2, Verify matches with completed filter")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #2, Verify matches with completed filter")
@@ -73,7 +73,7 @@ public class ValidateRecentlyAddedMatchTest extends CommonBaseTest {
 		logger.info("Ending of verifyCompletedFilterFunctionality method");
 	}
 
-	//@Test(priority = 3, description = "Verify matches with filter Singles", groups = "sanity")
+	@Test(priority = 3, description = "Verify matches with filter Singles", groups = "sanity")
 	@Description("Test case #3,Verify matches with filter Singles")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #3, Verify matches with filter Singles")
@@ -88,14 +88,15 @@ public class ValidateRecentlyAddedMatchTest extends CommonBaseTest {
 		logger.info("Ending of verifySinglesFilterFunctionality method");
 	}
 
-	//@Test(priority = 4, description = "Verify matches with doubles filter", groups = "sanity")
+	@Test(priority = 4, description = "Verify matches with doubles filter", groups = "sanity")
 	@Description("Test case #4, Verify matches with doubles filter")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #4, Verify matches with doubles filter")
 	public void verifyDoublesFilterFunctionality() {
 		logger.info("Starting of verifyDoublesFilterFunctionality method");
+		
+		driver.navigate().refresh();
 
-		validateRecentlyAddedMatchPage.clickOnClearFiltersButton();
 		validateRecentlyAddedMatchPage.clickOnDoublesButton();
 		validateRecentlyAddedMatchPage.hardWait(3);
 
@@ -122,7 +123,7 @@ public class ValidateRecentlyAddedMatchTest extends CommonBaseTest {
 		validateRecentlyAddedMatchPage.hardWait(2);
 		validateRecentlyAddedMatchPage.clickOnOldestToNewestButton();
 		validateRecentlyAddedMatchPage.hardWait(5);
-
+		
 		logger.info("Ending of verifySortFunctionalityWithOlddates method");
 	}
 
@@ -143,7 +144,7 @@ public class ValidateRecentlyAddedMatchTest extends CommonBaseTest {
 
 		Assert.assertTrue(validateRecentlyAddedMatchPage.isRightMarkIconsDisplayed());
 
-		validateRecentlyAddedMatchPage.clickOnClearFiltersButton();validateRecentlyAddedMatchPage.hardWait(3);
+		validateRecentlyAddedMatchPage.clickOnClearFiltersButton();
 
 		Assert.assertFalse(validateRecentlyAddedMatchPage.isRightMarkIconsDisplayed());
 
@@ -299,7 +300,7 @@ public class ValidateRecentlyAddedMatchTest extends CommonBaseTest {
 		loginPage.loginToDUPRApplication(opponentEmail, partnerPassword);
 
 		validateRecentlyAddedMatchPage.clickOnMatchHistoryTab();
-		validateRecentlyAddedMatchPage.clickOnPendingButton();validateRecentlyAddedMatchPage.hardWait(3);
+		validateRecentlyAddedMatchPage.clickOnPendingButton();
 		validateRecentlyAddedMatchPage.clickOnValidateButton(eventName);
 
 		Assert.assertTrue(validateRecentlyAddedMatchPage.isValidateMatchPopupContains());

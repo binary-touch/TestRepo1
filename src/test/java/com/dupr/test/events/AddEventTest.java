@@ -53,8 +53,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Starting of VerifyAddEventFunctionality method");
 
 		clubLogoPage.clickOnMyClubsTab();
-		editClubInfoPage.selectDirectorFromDirectorsList();
-		editClubInfoPage.isClubPageContains();
+		editClubInfoPage.clickOnSimbaOrganizerButton();
 
 		addEventPage.clickonAddEventButton();
 
@@ -179,19 +178,19 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of VerifyGoBackButtonFunctionality method");
 	}
 
-	@Test(priority = 9, description = "Verify Upload A Liability Wavier Functionality", groups = "sanity")
-	@Description("Test case #9, Verify Upload A Liability Wavier Functionality")
+	@Test(priority = 9, description = "Verify Upload A Liability Waiver Functionality", groups = "sanity")
+	@Description("Test case #9, Verify Upload A Liability Waiver Functionality")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #9, Verify Upload A Liability Wavier Functionality")
-	public void VerifyUploadALiabilityWavierFunctionality() {
-		logger.info("Starting of VerifyGoBackButtonFunctionality method");
+	@Story("Test case #9, Verify Upload A Liability Waiver Functionality")
+	public void VerifyUploadALiabilityWaiverFunctionality() {
+		logger.info("Starting of VerifyUploadALiabilityWaiverFunctionality method");
 
 		addEventPage.clickonNextButton();
 		addEventPage
 				.setUploadaLiabilityWaiverButton(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("upload.image"));
 		Assert.assertTrue(addEventPage.isLiabilityWaiverFileUploaded());
 
-		logger.info("Ending of VerifyGoBackButtonFunctionality method");
+		logger.info("Ending of VerifyUploadALiabilityWaiverFunctionality method");
 	}
 
 	@Test(priority = 10, description = "Verify Liability Waiver Remove Icon", groups = "sanity")

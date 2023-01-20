@@ -155,7 +155,7 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//button[@aria-label='remove player']")
 	private WebElement btnLiabilityWaiverRemove;
 	
-	@B2BFindBy(xpath = "//button[text()='Upload a Liability Waiver'])")
+	@B2BFindBy(xpath = "//button[text()='Upload a Liability Waiver']")
 	private WebElement btnLiabilityWaiver;
 
 	@B2BFindBy(xpath = "//button[contains(text(),'Replace')]")
@@ -631,8 +631,14 @@ boolean eventStatus = false;
 	public void clickonLiabilityWaiverRemoveButton() {
 		log.info("Starting of clickonLiabilityWaiverRemoveButton method");
 
-		elementClick(btnLiabilityWaiverRemove);
+		scrollDown(-400);
+		try {
+			elementClick(btnLiabilityWaiverRemove);
 
+		} catch (Exception e) {
+			clickOnWebElement(btnLiabilityWaiverRemove);
+		}
+	
 		log.info("Ending of clickonLiabilityWaiverRemoveButton�method");
 	}
 	

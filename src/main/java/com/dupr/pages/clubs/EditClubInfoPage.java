@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 import com.b2b.support.B2BFindBy;
 import com.b2b.support.B2BFindBys;
@@ -15,6 +17,12 @@ import com.dupr.pages.DUPRBaseAutomationPage;
 
 public class EditClubInfoPage extends DUPRBaseAutomationPage {
 	private static final Logger log = LogManager.getLogger(EditClubInfoPage.class);
+
+	@B2BFindBys(@B2BFindBy(xpath = "//h5[text()='As a Director']/..//div[contains(@class,'MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12')]/div"))
+	private List<WebElement> lstClubs;
+
+	@B2BFindBy(xpath = "//*[contains(@class,'MuiSvgIcon-root MuiSvgIcon-colorPrimary MuiSvgIcon-fontSizeMedium')]")
+	private WebElement btnBack;
 
 	@B2BFindBy(xpath = "//button[text()='See Club Details']")
 	private WebElement btnSeeClubDetails;
@@ -130,9 +138,6 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h4[text()='Invalid email address']")
 	private WebElement txtInvalidEmailValidation;
 
-	@B2BFindBy(xpath = "//h3[contains(text(),'About')]/parent::div/button")
-	private WebElement IconAbout;
-
 	@B2BFindBy(xpath = "//button[text()='Add Club Description']")
 	private WebElement btnAddDescription;
 
@@ -166,7 +171,7 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h4[text()='yemeni rial']")
 	private WebElement btnYemenirialDirector;
 
-	@B2BFindBy(xpath = "//div[contains(text(),'demo')]/button")
+	@B2BFindBy(xpath = "//h3[contains(@class,'MuiTypography-root MuiTypography-h3')]/button")
 	private WebElement iconEditDirector;
 
 	@B2BFindBy(xpath = "//h5[text()='As a Director']/following-sibling::div//h4[contains(@class,'MuiTypography-root MuiTypography-h4')]")
@@ -241,13 +246,13 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 		return getText(lblClubOrganizers);
 	}
 
-	public void clickSeeClubDetailsDropdown() {
-		log.info("Starting of clickSeeClubDetailsDropdown method");
+	public void clickOnSeeClubDetailsDropdown() {
+		log.info("Starting of clickOnSeeClubDetailsDropdown method");
 
 		this.waitForElementToBeVisible(btnSeeClubDetails);
 		elementClick(btnSeeClubDetails);
 
-		log.info("Ending of clickSeeClubDetailsDropdown method");
+		log.info("Ending of clickOnSeeClubDetailsDropdown method");
 	}
 
 	public boolean isClubAddressDisplayed() {
@@ -562,13 +567,13 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 		return getText(lblError);
 	}
 
-	public void clickOnEditAboutUcon() {
-		log.info("Starting of clickOnEditAboutUcon method");
+	public void clickOnEditAboutIcon() {
+		log.info("Starting of clickOnEditAboutIcon method");
 
 		this.scrollDown(8);
-		elementClick(IconAbout);
+		clickOnWebElement(iconEditAbout);
 
-		log.info("Ending of clickOnEditAboutUcon method");
+		log.info("Ending of clickOnEditAboutIcon method");
 	}
 
 	public boolean isExportCSVButtonDisplayed() {
@@ -613,9 +618,35 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 	public void clickOnAddDescriptionButton() {
 		log.info("Starting of clickOnAddDescriptionButton method");
 
-		elementClick(btnAddDescription);
+		for (int i = 1; i < lstClubs.size(); i++) {
+			this.hardWait(2);
+			driver.findElement(By.xpath(
+					(("(//h5[text()='As a Director']/..//div[contains(@class,'MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12')]/div)["
+							+ i + "]"))))
+					.click();
 
+			this.hardWait(3);
+			try {
+				this.clickOnSeeClubDetailsDropdown();
+				if ((isDisplayed(btnAddDescription) == true)) {
+					clickOnElement(btnAddDescription);
+					break;
+				}
+			} catch (Exception e) {
+				clickOnEditAboutIcon();
+				break;
+			}
+
+		}
 		log.info("Ending of clickOnAddDescriptionButton method");
+	}
+
+	public void clickOnBackButtonInClubPage() {
+		log.info("Starting of clickOnBackButtonInClubPage method");
+
+		clickOnWebElement(btnBack);
+
+		log.info("Ending of clickOnBackButtonInClubPage method");
 	}
 
 	public boolean isEditClubDescriptionPopUpContains() {
@@ -678,20 +709,18 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 		log.info("Starting of selectDirectorFromDirectorsList method");
 
 		hardWait(3);
-		String s = btnYemenirialDirector.getText();
+		//String s = btnYemenirialDirector.getText();
 
 		for (WebElement director : lstDirectorNames) {
-			System.out.println(s);
+			//System.out.println(s);
 			System.out.println(director.getText());
-			if (director.getText().equals(s)) {
-				try {
-					clickOnWebElement(director);
-				} catch (Exception e) {
-					clickOnElement(director);
-				}
+			director.click();
+			/*
+			 * if (director.getText().equals(s)) { try { clickOnWebElement(director); }
+			 * catch (Exception e) { clickOnElement(director); }
+			 */
 				break;
 			}
-		}
 		log.info("Ending of selectDirectorFromDirectorsList method");
 	}
 
@@ -706,7 +735,13 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 		log.info("Starting of clickOnBackButtonInDirectorsPage method");
 
 		this.waitForElementToBeVisible(btnBackInDirectorsPage);
-		elementClick(btnBackInDirectorsPage);
+		try {
+			Actions action = new Actions(driver);
+			action.moveToElement(btnBackInDirectorsPage).click().build().perform();
+		} catch (Exception e) {
+			clickOnWebElement(btnBackInDirectorsPage);
+		}
+		
 
 		log.info("Ending of clickOnBackButtonInDirectorsPage method");
 	}

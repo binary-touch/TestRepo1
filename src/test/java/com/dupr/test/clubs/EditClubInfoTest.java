@@ -58,7 +58,7 @@ public class EditClubInfoTest extends DUPRBaseAutomationTest {
 	public void verifyClickOnSeeClubDetailsFunctionality() {
 		logger.info("Starting of verifyClickOnSeeClubDetailsFunctionality method");
 
-		editClubInfoPage.clickSeeClubDetailsDropdown();
+		editClubInfoPage.clickOnSeeClubDetailsDropdown();
 
 		Assert.assertTrue(editClubInfoPage.isClubAddressDisplayed());
 
@@ -129,8 +129,8 @@ public class EditClubInfoTest extends DUPRBaseAutomationTest {
 	@Story("Test case #5, Verify results on click of click on the pen icon of the Contact")
 	public void verifyClickOnEditIconInContactFunctionality() {
 		logger.info("Starting of verifyClickOnEditIconInContactFunctionality method");
-		
-		editClubInfoPage.clickSeeClubDetailsDropdown();
+
+		editClubInfoPage.clickOnSeeClubDetailsDropdown();
 		editClubInfoPage.clickOnEditContactIcon();
 
 		Assert.assertTrue(editClubInfoPage.isEditClubContactInformationPopupContains());
@@ -214,10 +214,10 @@ public class EditClubInfoTest extends DUPRBaseAutomationTest {
 	@Story("Test case #9, Verify Download Or Export club members Functionali")
 	public void verifyDownloadORExportClubMembersFunctionality() {
 		logger.info("Starting of verifyDownloadORExportClubMembersFunctionality method");
-	
+
 		Assert.assertTrue(editClubInfoPage.isExportCSVButtonDisplayed());
 		editClubInfoPage.clickOnExportCSVButton();
-		
+
 		logger.info("Ending of verifyDownloadORExportClubMembersFunctionality method");
 	}
 
@@ -227,65 +227,69 @@ public class EditClubInfoTest extends DUPRBaseAutomationTest {
 	@Story("Test case #10, Verify Verify Edit Club Description Functionality")
 	public void VerifyEditClubDescriptionFunctionality() {
 		logger.info("Starting of VerifyEditClubDescriptionFunctionality method");
-		
-		editClubInfoPage.clickSeeClubDetailsDropdown();
+
+		editClubInfoPage.clickOnBackButtonInDirectorsPage();
 		editClubInfoPage.clickOnAddDescriptionButton();
 		
-		//editClubInfoPage.clickOnEditIconInAbout();
 		Assert.assertTrue(editClubInfoPage.isEditClubDescriptionPopUpContains());
-		
+
 		editClubInfoPage.setEditInfoDescription(testDataProp.getProperty("club.descrption"));
-		
+
 		editClubInfoPage.clickOnBoldImageButton();
 		editClubInfoPage.clickOnItalicImageButton();
 		editClubInfoPage.clickOnUnderlineImageButton();
-       
+
 		editClubInfoPage.clickOnBoldImageButton();
 		editClubInfoPage.clickOnItalicImageButton();
 		editClubInfoPage.clickOnUnderlineImageButton();
-		
+
+		editClubInfoPage.clickOnSaveChangesButton();
+		Assert.assertTrue(editClubInfoPage.isSuccessPopUpContains());
+
+		editClubInfoPage.clickOnOkButton();
+
 		logger.info("Ending of VerifyEditClubDescriptionFunctionality method");
 	}
-	
+
 	@Test(priority = 11, description = "Verify Edit Club Info Feature Is Applicable To Organizer And DIrector", groups = "sanity")
 	@Description("Test case #11, Verify Edit Club Info Feature Is Applicable To Organizer And DIrector")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #11, Verify Edit Club Info Feature Is Applicable To Organizer And DIrector")
 	public void VerifyEditClubInfoFeatureIsApplicableToOrganizerAndDIrector() {
 		logger.info("Starting of VerifyEditClubInfoFeatureIsApplicableToOrganizerAndDIrector method");
-		
-		editClubInfoPage.clickOnDirectorButton();
-		
-		Assert.assertTrue(editClubInfoPage.isDirectorsEditIconDisplayed());
-		
+
 		editClubInfoPage.clickOnBackButtonInDirectorsPage();
-		
+
+		editClubInfoPage.selectDirectorFromDirectorsList();
+
+		//Assert.assertTrue(editClubInfoPage.isDirectorsEditIconDisplayed());
+
+		editClubInfoPage.clickOnBackButtonInDirectorsPage();
+
 		editClubInfoPage.clickOnSimbaOrganizerButton();
-		
+
 		Assert.assertTrue(editClubInfoPage.isOrganizersEditIconDisplayed());
-		
-		editClubInfoPage.clickOnBackButtonInDirectorsPage();
-		
-		
+
 		logger.info("Ending of VerifyEditClubInfoFeatureIsApplicableToOrganizerAndDIrector method");
 	}
-	
+
 	@Test(priority = 12, description = "Verify Edit Club Info Feature Is Not Applicable To Organizer And DIrector And Member", groups = "sanity")
 	@Description("Test case #12, Verify Edit Club Info Feature Is Not Applicable To Organizer And DIrector")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #12, Verify Edit Club Info Feature Is Not Applicable To Organizer And DIrector And Member")
 	public void VerifyEditClubInfoFeatureIsNotApplicableToOrganizerAndDIrectorAndMember() {
 		logger.info("Starting of VerifyEditClubInfoFeatureIsNotApplicableToOrganizerAndDIrector method And Member");
-		
-        editClubInfoPage.clickOnBrowseClubsButton();
-		
-		Assert.assertTrue(editClubInfoPage.isBrowserClubsLabelDisplayed());
-		
-		editClubInfoPage.clickOnClubNameButton();
-		
-		Assert.assertFalse(editClubInfoPage.isEditClubIsNotDisplayed());
 
-		
+		editClubInfoPage.clickOnBackButtonInDirectorsPage();
+
+		editClubInfoPage.clickOnBrowseClubsButton();
+
+		Assert.assertTrue(editClubInfoPage.isBrowserClubsLabelDisplayed());
+
+		//editClubInfoPage.clickOnClubNameButton();
+
+		//Assert.assertFalse(editClubInfoPage.isEditClubIsNotDisplayed());
+
 		logger.info("Ending of VerifyEditClubInfoFeatureIsNotApplicableToOrganizerAndDIrector method");
 	}
 

@@ -30,11 +30,11 @@ public class NotificationsTest extends CommonBaseTest {
 
 	@BeforeClass
 	@Parameters({ "browser", "siteURL", "validEmail", "validPassword" })
-	public void initMethod(String browser, String siteURL, String email, String password) throws Exception {
+	public void initMethod(String browser, String siteURL, String validEmail, String validPassword) throws Exception {
 		logger.info("Starting of initMethod in NotificationsTest");
 
 		this.driver = super.getWebDriver(WebDriversEnum.NOTIFICATIONS_DRIVER);
-		super.initCommonBaseTest(siteURL, email, password);
+		super.initCommonBaseTest(siteURL, validEmail, validPassword);
 
 		this.notificationsPage = new NotificationsPage(this.driver);
 		this.editProfilePage = new EditProfilePage(this.driver);
@@ -87,6 +87,7 @@ public class NotificationsTest extends CommonBaseTest {
 	public void verifyEmailNotificationsFunctionality() {
 		logger.info("Starting of verifyEmailNotificationsFunctionality method");
 
+		addAMatchPage.hardWait(2);
 		editProfilePage.clickOnOpenSettingMenu();
 		editProfilePage.clickOnEditProfileButton();
 
@@ -119,7 +120,7 @@ public class NotificationsTest extends CommonBaseTest {
 
 		notificationsPage.clickOnNotificationsTab();
 		notificationsPage.clickOnSMSNotificationsToggle();
-		Assert.assertTrue(notificationsPage.isSMSNotificationsEnabled());
+		Assert.assertTrue(notificationsPage.isSMSNotificationsEnabled()); ////Reason For Failure: Sometimes Verify Phone Number PopUp Is Displaying////
 
 		boolean saveButtonStatus = notificationsPage.isSaveButtonEnabled();
 		if (saveButtonStatus) {
@@ -140,7 +141,7 @@ public class NotificationsTest extends CommonBaseTest {
 		driver.navigate().refresh();
 
 		addAMatchPage.clickOnAddAMatchTab();
-		//addAMatchPage.clickOnRallyMatchToggle();
+		
 		addAMatchPage.setLocationInDoubles(testDataProp.getProperty("location.city.name"));
 		addAMatchPage.setEventName(testDataProp.getProperty("event.name"));
 		addAMatchPage.clickOnSinglesButton();

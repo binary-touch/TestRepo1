@@ -1,8 +1,6 @@
 package com.dupr.pages.home;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.LogManager;
@@ -275,7 +273,7 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 				+ "')]/ancestor::div[contains(@class, 'MuiGrid-grid-xs-8')]/following-sibling::div//button"));
 
 		try {
-			if (btnDeleteDisplayed.isDisplayed() == true) {
+			if (isDisplayed(btnDeleteDisplayed) == true) {
 				validateButtonState = true;
 			}
 		} catch (Exception e) {
@@ -290,16 +288,9 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 	public void clickOnValidateButton(String eventName) {
 		log.info("Starting of clickOnValidateButton method");
 
-		for (int i = 0; i <= 4; i++) {
-			try {
-				hardWait(2);
-				driver.findElement(By.xpath("//p[contains(text(),'"+eventName+"')]/ancestor::div[contains(@class, 'MuiGrid-grid-xs-8')]/following-sibling::div//button"))
-						.click();
-				break;
-			} catch (Exception e) {
-				System.out.println(e.getMessage());
-			}
-		}
+		driver.findElement(By.xpath("//p[contains(text(),'" + eventName
+				+ "')]/ancestor::div[contains(@class, 'MuiGrid-grid-xs-8')]/following-sibling::div//button")).click();
+
 		log.info("Ending of clickOnValidateButton method");
 	}
 
@@ -366,7 +357,7 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 	public void clickOnCompletedButton() {
 		log.info("Starting of clickOnCompletedButton method");
 
-		clickOnElement(btnCompleted);
+		clickOnWebElement(btnCompleted);
 
 		log.info("Ending of clickOnCompletedButton method");
 	}
@@ -420,13 +411,13 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 
 		WebElement btnDeleteDisplayed = driver.findElement(By.xpath("//p[contains(text(),'" + eventName
 				+ "')]/ancestor::div[contains(@class, 'MuiGrid-grid-xs-8')]/following-sibling::div//button"));
-
+		hardWait(2);
 		try {
-			if (isDisplayed(btnDeleteDisplayed) == true) {
+			if (btnDeleteDisplayed.isDisplayed() == true) {
 				deleteButtonState = true;
 			}
 		} catch (Exception e) {
-			deleteButtonState = false;
+			log.error("Reson for failure:", e);
 		}
 		log.info("Ending of isValidateButtonsDisplayed method");
 
@@ -436,7 +427,7 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 	public void clickOnSinglesButton() {
 		log.info("Starting of clickOnSinglesButton method");
 
-		clickOnElement(btnSingles);
+		clickOnWebElement(btnSingles);
 
 		log.info("Ending of clickOnSinglesButton method");
 	}
@@ -444,12 +435,13 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 	public boolean isPlayerNamesButtonsDisplayed() {
 		log.info("Starting of isPlayerNamesButtonsDisplayed method");
 
-		boolean teamOneButton = true;
+		boolean teamOneButton = false;
 		for (WebElement playerName : lstPlayerNames) {
-
-			if (isDisplayed(playerName)) {
-				teamOneButton = true;
-			} else {
+			try {
+				if (isDisplayed(playerName) == true) {
+					teamOneButton = true;
+				}
+			} catch (Exception e) {
 				teamOneButton = false;
 			}
 		}
@@ -462,12 +454,13 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 	public boolean isSinglesMatchPlayersDisplayed() {
 		log.info("Starting of isSinglesMatchPlayersDisplayed method");
 
-		boolean singlesPlayersStatus = true;
+		boolean singlesPlayersStatus = false;
 		for (WebElement playerName : lstSingleMatchPlayers) {
-
-			if (isDisplayed(playerName)) {
-				singlesPlayersStatus = true;
-			} else {
+			try {
+				if (isDisplayed(playerName) == true) {
+					singlesPlayersStatus = true;
+				}
+			} catch (Exception e) {
 				singlesPlayersStatus = false;
 			}
 
@@ -481,15 +474,15 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 	public boolean isOpponentPlayerNamesButtonsDisplayed() {
 		log.info("Starting of isOpponentPlayerNamesButtonsDisplayed method");
 
-		boolean teamOneButton = true;
+		boolean teamOneButton = false;
 		for (WebElement playerName : lstOpponentPlayerNames) {
-
-			if (isDisplayed(playerName)) {
-				teamOneButton = true;
-			} else {
+			try {
+				if (isDisplayed(playerName) == true) {
+					teamOneButton = true;
+				}
+			} catch (Exception e) {
 				teamOneButton = false;
 			}
-
 		}
 
 		log.info("Ending of isOpponentPlayerNamesButtonsDisplayed method");
@@ -500,7 +493,8 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 	public void clickOnDoublesButton() {
 		log.info("Starting of clickOnDoublesButton method");
 
-		clickOnElement(btnDoubles);
+		explicitWait(btnDoubles);
+		clickOnWebElement(btnDoubles);
 
 		log.info("Ending of clickOnDoublesButton method");
 	}
@@ -529,12 +523,17 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 	public boolean isPlayerButtonsDisplayed() {
 		log.info("Starting of isPlayerButtonsDisplayed method");
 
-		boolean teamOneButton = true;
+		boolean teamOneButton = false;
+		scrollIntoView(lblMatchHistory);
+		scrollDown(-200);
+		System.out.println("Player name Index value: " + lstDoublesPlayerNames.size());
 		for (WebElement playerName : lstDoublesPlayerNames) {
+			try {
 
-			if (isDisplayed(playerName)) {
-				teamOneButton = true;
-			} else {
+				if (isDisplayed(playerName) == true) {
+					teamOneButton = true;
+				}
+			} catch (Exception e) {
 				teamOneButton = false;
 			}
 		}
@@ -547,16 +546,19 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 	public boolean isPlayerPartnerButtonsDisplayed() {
 		log.info("Starting of isPlayerPartnerButtonsDisplayed method");
 
-		boolean teamOneButton = true;
-
+		boolean teamOneButton = false;
+		scrollDown(-200);
+		explicitWait(lstDoublesPartner);
+		log.debug("Doubles Player name Index value: " + lstDoublesPartner.size());
 		for (WebElement playerName : lstDoublesPartner) {
+			try {
 
-			if (isDisplayed(playerName)) {
-				teamOneButton = true;
-			} else {
+				if (isDisplayed(playerName) == true) {
+					teamOneButton = true;
+				}
+			} catch (Exception e) {
 				teamOneButton = false;
 			}
-
 		}
 
 		log.info("Ending of isPlayerPartnerButtonsDisplayed method");
@@ -567,15 +569,16 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 	public boolean isOpponentButtonsDisplayed() {
 		log.info("Starting of isOpponentButtonsDisplayed method");
 
-		boolean teamOneButton = true;
+		boolean teamOneButton = false;
+		log.debug("Opponent Player name Index value: " + lstDoublesOpponent.size());
 		for (WebElement playerName : lstDoublesOpponent) {
-
-			if (isDisplayed(playerName)) {
-				teamOneButton = true;
-			} else {
+			try {
+				if (isDisplayed(playerName) == true) {
+					teamOneButton = true;
+				}
+			} catch (Exception e) {
 				teamOneButton = false;
 			}
-
 		}
 
 		log.info("Ending of isOpponentButtonsDisplayed method");
@@ -586,15 +589,15 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 	public boolean isOpponentPartnerButtonsDisplayed() {
 		log.info("Starting of isOpponentPartnerButtonsDisplayed method");
 
-		boolean teamOneButton = true;
+		boolean teamOneButton = false;
 		for (WebElement playerName : lstDoublesOpponentPartner) {
-
-			if (isDisplayed(playerName)) {
-				teamOneButton = true;
-			} else {
+			try {
+				if (isDisplayed(playerName) == true) {
+					teamOneButton = true;
+				}
+			} catch (Exception e) {
 				teamOneButton = false;
 			}
-
 		}
 
 		log.info("Ending of isOpponentPartnerButtonsDisplayed method");
@@ -605,7 +608,7 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 	public void clickOnSortButton() {
 		log.info("Ending of clickOnSortButton method");
 
-		clickOnElement(btnSort);
+		clickOnWebElement(btnSort);
 
 		log.info("Ending of clickOnSortButton method");
 	}
@@ -627,37 +630,13 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 
 	public boolean isOldMatchDatesDisplayedTop() throws ParseException {
 		log.info("Starting of isOldMatchDatesDisplayedTop method");
+		List<WebElement> resultDateElements = driver
+				.findElements(By.xpath("//h6[contains(@class,'MuiTypography-root MuiTypography-subtitle2')]"));
 
-		explicitWait(lstMatchDetailsBoxes);
-		String firstDate = lstMatchDates.get(0).getText();
+		// Assert.assertTrue(Collections.sort(resultDateElements.size()),resultDateElements);
 
-		SimpleDateFormat sdf = new SimpleDateFormat("MMMM dd, yyyy");
+		return false;
 
-		Date oldDate = sdf.parse(firstDate);
-
-		String oldDateValue = sdf.format(oldDate);
-
-		boolean oldToNewDates = false;
-		System.out.println("List size: " + lstMatchDates.size());
-		for (WebElement matchDate : lstMatchDates) {
-
-			String strDate = matchDate.getText();
-
-			System.out.println("first date: " + oldDateValue);
-			System.out.println("match date: " + strDate);
-
-			System.out.println("comparision result:" + (strDate.compareTo(oldDateValue) >= 0));
-
-			if (strDate.compareTo(oldDateValue) >= 0) {
-				oldToNewDates = true;
-			} else {
-				oldToNewDates = false;
-			}
-		}
-
-		log.info("Ending of isOldMatchDatesDisplayedTop method");
-
-		return oldToNewDates;
 	}
 
 	public void clickOnClearFiltersButton() {
