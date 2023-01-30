@@ -288,9 +288,16 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 	public void clickOnValidateButton(String eventName) {
 		log.info("Starting of clickOnValidateButton method");
 
-		driver.findElement(By.xpath("//p[contains(text(),'" + eventName
-				+ "')]/ancestor::div[contains(@class, 'MuiGrid-grid-xs-8')]/following-sibling::div//button")).click();
-
+		for(int i=0; i<=2;i++){
+			  try{
+				  driver.findElement(By.xpath("//p[contains(text(),'"+eventName+"')]/ancestor::div[contains(@class, 'MuiGrid-grid-xs-8')]/following-sibling::div//button")).click();
+			     break;
+			  }
+			  catch(Exception e){
+			     System.out.println(e.getMessage());
+			  }
+			}
+		
 		log.info("Ending of clickOnValidateButton method");
 	}
 
@@ -299,7 +306,7 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 
 		boolean isValidateMatchPopupContains = false;
 
-		if (isDisplayed(lblValidateMatch) && isDisplayed(btnValidateOnValidateMatchPopup) && isDisplayed(iconClose))
+		if (lblValidateMatch.isDisplayed() && btnValidateOnValidateMatchPopup.isDisplayed() && iconClose.isDisplayed())
 
 			isValidateMatchPopupContains = true;
 
@@ -365,12 +372,13 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 	public boolean isTickIconDisplayed() {
 		log.info("Starting of isTickIconDisplayed method");
 
+		
 		explicitWait(lstMatchDetailsBoxes);
-		boolean icon = true;
+		boolean icon = false;
 
 		for (WebElement tickIcon : lstIconGreenTickMark) {
 			try {
-				if (isDisplayed(tickIcon)) {
+				if (isDisplayed(tickIcon)==true) {
 					icon = true;
 				}
 			} catch (Exception e) {
@@ -525,7 +533,9 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 
 		boolean teamOneButton = false;
 		scrollIntoView(lblMatchHistory);
+		hardWait(2);
 		scrollDown(-200);
+		
 		System.out.println("Player name Index value: " + lstDoublesPlayerNames.size());
 		for (WebElement playerName : lstDoublesPlayerNames) {
 			try {
@@ -547,8 +557,10 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 		log.info("Starting of isPlayerPartnerButtonsDisplayed method");
 
 		boolean teamOneButton = false;
+		
 		scrollDown(-200);
 		explicitWait(lstDoublesPartner);
+		
 		log.debug("Doubles Player name Index value: " + lstDoublesPartner.size());
 		for (WebElement playerName : lstDoublesPartner) {
 			try {

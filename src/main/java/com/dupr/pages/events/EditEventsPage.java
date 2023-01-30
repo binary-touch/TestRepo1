@@ -12,7 +12,7 @@ public class EditEventsPage extends DUPRBaseAutomationPage {
 
 	private static final Logger log = LogManager.getLogger(EditEventsPage.class);
 
-	@B2BFindBy(xpath = "//span[contains(text(),'Ongoing')]/ancestor::div/following-sibling::div/descendant::h4")
+	@B2BFindBy(xpath = "//span[contains(text(),'Open')]/ancestor::div/following-sibling::div/descendant::h4")
 	private WebElement lblEvent;
 
 	@B2BFindBy(xpath = "//button[text()='Edit Event']")

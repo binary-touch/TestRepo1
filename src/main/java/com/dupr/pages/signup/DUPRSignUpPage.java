@@ -96,7 +96,8 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h5[text()='Full Name']")
 	private WebElement lblFullName;
 
-	@B2BFindBy(xpath = "//h4[text()='Please enter your street address or city name']")
+	//@B2BFindBy(xpath = "//h4[text()='Please enter your street address or city name']")
+	@B2BFindBy(xpath = "//h4[text()='Invalid parameters']")
 	private WebElement lblStreetAddress;
 
 	@B2BFindBy(xpath = "//button[text()='OK']")

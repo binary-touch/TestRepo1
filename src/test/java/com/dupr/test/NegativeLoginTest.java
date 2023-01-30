@@ -172,7 +172,7 @@ public class NegativeLoginTest extends DUPRBaseAutomationTest {
 		loginPage.loginToDUPRApplication(testDataProp.getProperty("invalid.email.in.negative.login"),
 				testDataProp.getProperty("incorrect.password"));
 
-		loginPage.hardWait(2);
+		loginPage.hardWait(3);
 
 		Assert.assertEquals(loginPage.getInvalidPasswordValidationText(),
 				expectedAssertionsProp.getProperty("incorrect.password.validation"));

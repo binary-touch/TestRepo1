@@ -34,6 +34,9 @@
 				name="com.dupr.test.home.ValidateStatsChangeOnNewMatchTest" />
 			<class name="com.dupr.test.home.ValidateRecentlyAddedMatchTest" />
 			<class name="com.dupr.test.home.DeleteRecentlyAddedMatchTest" />
+			<class name="com.dupr.test.home.AdditionOfChartAndShopTabTest" />
+			<class name="com.dupr.test.home.UserDashboardTest" />
+			<class name="com.dupr.test.home.AntiScrappingCaptchaTest" />
 		</classes>
 	</test>
 
@@ -71,6 +74,15 @@
 			<class name="com.dupr.test.events.EditEventsTest" />
 			<class name="com.dupr.test.events.EditBracketsTest" />
 			<class name="com.dupr.test.events.AddEditRemoveEventLogoTest" />
+			<class name="com.dupr.test.events.AddAnnouncementTest" />
+			<class name="com.dupr.test.events.EndEventTest" />
+			<class name="com.dupr.test.events.AddParticipantsInBracketTest" />
+			<class
+				name="com.dupr.test.events.DirectorEventRegistrationTest" />
+			<class name="com.dupr.test.events.PlayerEventRegistrationTest" />
+			<class name="com.dupr.test.events.WithdrawPlayerTest" />
+			<class name="com.dupr.test.events.EditOrRemovePartnerTest" />
+			<class name="com.dupr.test.events.Create_Edit_Split_TeamTest" />
 		</classes>
 	</test>
 </suite>

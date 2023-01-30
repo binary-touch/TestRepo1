@@ -9,9 +9,7 @@ package com.dupr.pages.common;
  */
 public enum TestDataPropertiesEnum {
 
-	EXPECTED_ASSERTIONS("expectedassertions"),
-	TEST_DATA("testdata"),
-	XPATHS("xpaths");
+	EXPECTED_ASSERTIONS("expectedassertions"), TEST_DATA("testdata"), XPATHS("xpaths");
 
 	private final String status;
 
@@ -23,7 +21,7 @@ public enum TestDataPropertiesEnum {
 	public String toString() {
 		return this.status;
 	}
-	
+
 	public String value() {
 		return this.status;
 	}

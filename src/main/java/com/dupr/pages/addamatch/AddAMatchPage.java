@@ -92,7 +92,7 @@ public class AddAMatchPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBys(@B2BFindBy(xpath = "//button[contains(@class,'MuiButton-containedPrimary')]/ancestor::div/preceding-sibling::div[contains(@class, 'MuiGrid-grid-md-6')]/button[contains(@class,'MuiButton-outlinedSizeMedium')]"))
 	private List<WebElement> lstOfAddYourPartnersButtons;
-	
+
 	@B2BFindBy(xpath = "(//button[text()='Add Your Opponent'])[1]")
 	private WebElement btnAddOpponent;
 
@@ -270,7 +270,7 @@ public class AddAMatchPage extends DUPRBaseAutomationPage {
 	public void setLocationInDoubles(String location) {
 		log.info("Starting of setLocationInDoubles method");
 
-		this.implicitWait();
+		explicitWait(txtBoxLocation);
 		this.clickOnWebElement(txtBoxLocation);
 		txtBoxLocation.sendKeys(location);
 		hardWait(3);
@@ -342,8 +342,8 @@ public class AddAMatchPage extends DUPRBaseAutomationPage {
 
 		this.implicitWait();
 		this.clickOnWebElement(txtBoxMatchDate);
-		//txtBoxMatchDate.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
-		//txtBoxMatchDate.sendKeys(matchDate);
+		// txtBoxMatchDate.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
+		// txtBoxMatchDate.sendKeys(matchDate);
 
 		log.info("Ending of setMatchDate method");
 	}

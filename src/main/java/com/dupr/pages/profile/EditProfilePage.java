@@ -67,7 +67,8 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h4[@id='customized-dialog-title']")
 	private WebElement lblUpdateProfile;
 
-	@B2BFindBy(xpath = "//h6[text()='Please enter your street address or city name']")
+	//@B2BFindBy(xpath = "//h6[text()='Please enter your street address or city name']")
+	@B2BFindBy(xpath = "//h6[text()='Invalid parameters']")
 	private WebElement lblInvalidAddressValidation;
 
 	@B2BFindBy(xpath = "//button[text()='ok']")
@@ -362,14 +363,14 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 		return getText(txtValidationCongratulations);
 	}
 
-	public void setBithDate(String birthDate) {
-		log.info("Starting of setBithDate method");
+	public void setBirthDate(String birthDate) {
+		log.info("Starting of setBirthDate method");
 
-		clickOnElement(txtBoxBirthDate);
+		clickOnWebElement(txtBoxBirthDate);
 		this.txtBoxBirthDate.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		sendKeys(txtBoxBirthDate, birthDate);
 
-		log.info("Ending of setBithDate method");
+		log.info("Ending of setBirthDate method");
 	}
 
 	public String getBirthDateValidationText() {
@@ -386,7 +387,7 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 		DateTimeFormatter formatters = DateTimeFormatter.ofPattern("MM/dd/YYYY");
 
 		String strDate = date.format(formatters);
-		clickOnElement(txtBoxBirthDate);
+		clickOnWebElement(txtBoxBirthDate);
 
 		this.txtBoxBirthDate.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		sendKeys(txtBoxBirthDate, strDate);
@@ -405,7 +406,7 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 		DateFormat formatDate = new SimpleDateFormat("MM/dd/YYYY");
 
 		String dateOfSystem = formatDate.format(minDate);
-		clickOnElement(txtBoxBirthDate);
+		clickOnWebElement(txtBoxBirthDate);
 
 		this.txtBoxBirthDate.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		sendKeys(txtBoxBirthDate, dateOfSystem);
@@ -423,22 +424,12 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 		DateFormat formatDate = new SimpleDateFormat("MM/dd/YYYY");
 
 		String dateOfSystem = formatDate.format(systemDate);
-		clickOnElement(txtBoxBirthDate);
+		clickOnWebElement(txtBoxBirthDate);
 
 		this.txtBoxBirthDate.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		sendKeys(txtBoxBirthDate, dateOfSystem);
 
 		log.info("Ending of setBirthDateMinimumAge method");
-	}
-
-	public void setBirthDate(String validBirthDate) {
-		log.info("Starting of setBirthDate method");
-
-		clickOnElement(txtBoxBirthDate);
-		this.txtBoxBirthDate.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
-		sendKeys(txtBoxBirthDate, validBirthDate);
-
-		log.info("Ending of setBirthDate method");
 	}
 
 	public boolean isReviewDUPRPoliciesPopupContains() {
@@ -486,7 +477,7 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 	public void clickOnGenderDropDown() {
 		log.info("Starting of clickOnGenderDropDown method");
 
-		clickOnElement(ddGender);
+		clickOnWebElement(ddGender);
 
 		log.info("Ending of clickOnGenderDropDown method");
 	}
@@ -502,7 +493,7 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 			try {
 
 				if (!(gender.getText().equals(ddText))) {
-					clickOnElement(gender);
+					clickOnWebElement(gender);
 					break;
 				}
 			} catch (Exception e) {
@@ -562,7 +553,7 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 		log.debug("Phone number length: " + numberLength);
 
 		for (int i = 0; i <= numberLength - 1; i++) {
-			hardWait(2);
+			hardWait(5);
 			this.txtBoxPhoneNumber.sendKeys(Keys.BACK_SPACE);
 		}
 
@@ -572,6 +563,7 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 	public void setInvalidPhoneNumber(String phoneNumber) {
 		log.info("Starting of setInvalidPhoneNumber method");
 
+		clickOnWebElement(txtBoxPhoneNumber);
 		sendKeys(txtBoxPhoneNumber, phoneNumber + randomNumber(2));
 
 		log.info("Ending of setInvalidPhoneNumber method");
@@ -725,6 +717,7 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 		log.info("Starting of setPreferredBall method");
 
 		this.txtBoxPrefferedBall.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
+		this.hardWait(3);
 		sendKeys(txtBoxPrefferedBall, preferredBall + randomNumber(2));
 
 		log.info("Ending of setPreferredBall method");

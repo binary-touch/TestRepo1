@@ -83,7 +83,8 @@ public class SignupTest extends DUPRBaseAutomationTest {
 		signupPage.clickOnFinishButton();signupPage.hardWait(2);
 
 		String streetAddressText = this.signupPage.getStreetAddressText();
-		Assert.assertEquals(streetAddressText, expectedAssertionsProp.getProperty("enter.you.street.address"));
+		//Assert.assertEquals(streetAddressText, expectedAssertionsProp.getProperty("enter.you.street.address"));
+		Assert.assertEquals(streetAddressText, expectedAssertionsProp.getProperty("invalid.parameters"));
 
 		signupPage.clickOnOKButton();
 

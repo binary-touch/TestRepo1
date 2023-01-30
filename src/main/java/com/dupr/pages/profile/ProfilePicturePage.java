@@ -176,7 +176,7 @@ public class ProfilePicturePage extends DUPRBaseAutomationPage {
 	public void clickOnChangeProfilePictureButton() {
 		log.info("Starting of clickOnChangeProfilePictureButton method");
 
-		elementClick(btnChangeProfilePicture);
+		clickOnWebElement(btnChangeProfilePicture);
 
 		log.info("Ending of clickOnChangeProfilePictureButton method");
 	}

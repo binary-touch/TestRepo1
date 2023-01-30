@@ -210,7 +210,7 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 	public void clickOnMyClubsTab() {
 		log.info("Starting of clickOnMyClubsTab method");
 
-		elementClick(tabMyClubs);
+		clickOnWebElement(tabMyClubs);
 
 		log.info("Ending of clickOnMyClubsTab method");
 	}

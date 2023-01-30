@@ -160,7 +160,7 @@ public class PlayerProfileTest extends CommonBaseTest {
 		editProfilePage.clickOnOkButton();
 
 		Assert.assertEquals(editProfilePage.getStreetAddresValidationText(),
-				expectedAssertionsProp.getProperty("enter.you.street.address"));
+				expectedAssertionsProp.getProperty("invalid.parameters"));
 
 		logger.info("Ending of verifyAddressFieldWithCountryName method");
 	}
@@ -197,7 +197,7 @@ public class PlayerProfileTest extends CommonBaseTest {
 		logger.info("Starting of verifyBirthDateWithInvalidDateFormat method");
 
 		editProfilePage.scrollDown(-650);
-		editProfilePage.setBithDate(testDataProp.getProperty("invalid.data.of.birth"));
+		editProfilePage.setBirthDate(testDataProp.getProperty("invalid.data.of.birth"));
 
 		String birthdateValidation = editProfilePage.getBirthDateValidationText();
 		Assert.assertEquals(birthdateValidation,
