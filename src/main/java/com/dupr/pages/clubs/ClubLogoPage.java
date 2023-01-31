@@ -87,7 +87,7 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//div/h4[text()='My Clubs']")
 	private WebElement tabMyClubs;
 
-	@B2BFindBys(@B2BFindBy(xpath = "//h5[text()='As a Director']/..//div[contains(@class,'MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12')]/div"))
+	@B2BFindBys(@B2BFindBy(xpath = "//h5[text()='As a Director']/..//div[contains(@class,'MuiGrid-item MuiGrid-grid-xs-12')]/div//h4"))
 	private List<WebElement> lstClubs;
 
 	@B2BFindBy(xpath = "//span[contains(@class,'MuiBadge-root MuiBadge-root')]/div[contains(@class,'MuiAvatar-root MuiAvatar-circular')]/img")
@@ -219,7 +219,7 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 		log.info("Starting of clickOnClub method");
 
 		for (WebElement club : lstClubs) {
-			elementClick(club);
+			clickOnWebElement(club);
 			break;
 		}
 		log.info("Ending of clickOnClub method");

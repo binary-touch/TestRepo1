@@ -12,6 +12,7 @@ import com.dupr.pages.clubs.BrowseClubsPage;
 import com.dupr.pages.clubs.ClubLogoPage;
 import com.dupr.pages.events.AddParticipantsInBracketsPage;
 import com.dupr.pages.events.BrowseEventsPage;
+import com.dupr.pages.events.EditOrRemovePartnerPage;
 import com.dupr.pages.home.AntiScrappingCaptchaPage;
 import com.dupr.pages.players.BrowsePlayersPage;
 import com.dupr.test.DUPRBaseAutomationTest;
@@ -28,6 +29,7 @@ public class AntiScrappingCaptchaTest extends DUPRBaseAutomationTest {
 	private BrowseClubsPage browseClubsPage = null;
 	private BrowsePlayersPage browsePlayersPage = null;
 	private AddParticipantsInBracketsPage addparticipantsPage = null;
+	EditOrRemovePartnerPage editOrRemovePartnerPage = null;
 
 	private AntiScrappingCaptchaPage antiScrappingCaptchaPage = null;
 
@@ -46,6 +48,7 @@ public class AntiScrappingCaptchaTest extends DUPRBaseAutomationTest {
 		this.browseClubsPage = new BrowseClubsPage(this.driver);
 		this.browsePlayersPage = new BrowsePlayersPage(this.driver);
 		this.addparticipantsPage = new AddParticipantsInBracketsPage(this.driver);
+		this.editOrRemovePartnerPage = new EditOrRemovePartnerPage(this.driver);
 
 		logger.info("Ending of initMethod in AntiScrappingCaptchaTest");
 	}
@@ -108,7 +111,7 @@ public class AntiScrappingCaptchaTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of VerifyCaptchaOnBrowsePlayers method");
 	}
 
-	//@Test(priority = 4, description = "Verify AntiScrapping Captcha In Add Partner Page", groups = "sanity")
+	@Test(priority = 4, description = "Verify AntiScrapping Captcha In Add Partner Page", groups = "sanity")
 	@Description("Test case #4, Verify AntiScrapping Captcha In Add Partner Page")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #4, Verify AntiScrapping Captcha In Add Partner Page")
@@ -119,9 +122,30 @@ public class AntiScrappingCaptchaTest extends DUPRBaseAutomationTest {
 
 		antiScrappingCaptchaPage.clickOnHomeMenu();
 		antiScrappingCaptchaPage.clickOnMyBrackets();
-		antiScrappingCaptchaPage.clickOnBracketLabel();
 
-		Assert.assertTrue(antiScrappingCaptchaPage.isAntiScrappingCaptchaDisplayed());
+		antiScrappingCaptchaPage.clickOnBracketKebabButton();
+		try {
+			if (antiScrappingCaptchaPage.isAddPartnerDisplayedInBracketsPage()) {
+				antiScrappingCaptchaPage.clickOnAddPartberFromKebabMenu();
+
+				Assert.assertTrue(antiScrappingCaptchaPage.isAntiScrappingCaptchaDisplayed());
+
+				antiScrappingCaptchaPage.clickOnRadioButton();
+				antiScrappingCaptchaPage.clickOnAddAPartnerButton();
+			}
+		} catch (Exception e) {
+			logger.info("****Add Partner Button not displayed****");
+
+			editOrRemovePartnerPage.clickOnRemovePartnerButton();
+			antiScrappingCaptchaPage.hardWait(3);
+			antiScrappingCaptchaPage.clickOnBracketKebabButton();
+			antiScrappingCaptchaPage.clickOnAddPartberFromKebabMenu();
+
+			Assert.assertTrue(antiScrappingCaptchaPage.isAntiScrappingCaptchaDisplayed());
+
+			antiScrappingCaptchaPage.clickOnRadioButton();
+			antiScrappingCaptchaPage.clickOnAddAPartnerButton();
+		}
 
 		logger.info("Ending of VerifyCaptchaOnAddPartner method");
 	}
@@ -134,15 +158,32 @@ public class AntiScrappingCaptchaTest extends DUPRBaseAutomationTest {
 		logger.info("Starting of VerifyCaptchaOnEditPartner method");
 
 		antiScrappingCaptchaPage.goTodefaultContent();
-		
+
 		driver.get("https://stage.gamestoppedout.com/dashboard");
 		antiScrappingCaptchaPage.hardWait(3);
 		antiScrappingCaptchaPage.clickOnMyBrackets();
-		
-		antiScrappingCaptchaPage.clickOnBracketKebabButton();
-		antiScrappingCaptchaPage.clickOnEditPartner();
 
-		Assert.assertTrue(antiScrappingCaptchaPage.isAntiScrappingCaptchaDisplayed());
+		antiScrappingCaptchaPage.clickOnBracketKebabButton();
+
+		try {
+			if (antiScrappingCaptchaPage.isEditPartnerDisplayedInBracketsPage()) {
+				antiScrappingCaptchaPage.clickOnEditPartner();
+
+				Assert.assertTrue(antiScrappingCaptchaPage.isAntiScrappingCaptchaDisplayed());
+			}
+		} catch (Exception e) {
+			logger.info("****Edit Partner Button not displayed****");
+
+			antiScrappingCaptchaPage.clickOnAddPartberFromKebabMenu();
+			antiScrappingCaptchaPage.clickOnRadioButton();
+			antiScrappingCaptchaPage.clickOnAddAPartnerButton();
+
+			antiScrappingCaptchaPage.hardWait(3);
+			antiScrappingCaptchaPage.clickOnBracketKebabButton();
+			antiScrappingCaptchaPage.clickOnEditPartner();
+
+			Assert.assertTrue(antiScrappingCaptchaPage.isAntiScrappingCaptchaDisplayed());
+		}
 
 		logger.info("Ending of VerifyCaptchaOnEditPartner method");
 	}
@@ -158,7 +199,7 @@ public class AntiScrappingCaptchaTest extends DUPRBaseAutomationTest {
 
 		antiScrappingCaptchaPage.clickOnBracketCancelButon();
 		addparticipantsPage.clickOnBracketNameLink();
-		
+
 		Assert.assertTrue(addparticipantsPage.isAddBracketParticipantPageContains());
 
 		Assert.assertTrue(antiScrappingCaptchaPage.isAntiScrappingCaptchaDisplayed());
@@ -195,15 +236,16 @@ public class AntiScrappingCaptchaTest extends DUPRBaseAutomationTest {
 		antiScrappingCaptchaPage.goTodefaultContent();
 
 		driver.get("https://stage.gamestoppedout.com/dashboard");
-		antiScrappingCaptchaPage.hardWait(3);
-		
+		antiScrappingCaptchaPage.hardWait(5);
+
 		antiScrappingCaptchaPage.clickOnAddAMatchMenu();
 		antiScrappingCaptchaPage.clickOnAddYourPartnerButton();
-		
+
 		antiScrappingCaptchaPage.hardWait(3);
 		Assert.assertTrue(antiScrappingCaptchaPage.isAntiScrappingCaptchaDisplayed());
 
 		driver.navigate().back();
+		antiScrappingCaptchaPage.hardWait(3);
 		antiScrappingCaptchaPage.clickOnAddAMatchMenu();
 		antiScrappingCaptchaPage.clickOnAddYourOpponentButton();
 		Assert.assertTrue(antiScrappingCaptchaPage.isAntiScrappingCaptchaDisplayed());
@@ -220,8 +262,8 @@ public class AntiScrappingCaptchaTest extends DUPRBaseAutomationTest {
 
 		antiScrappingCaptchaPage.goTodefaultContent();
 		driver.get("https://stage.gamestoppedout.com/dashboard");
-		antiScrappingCaptchaPage.hardWait(3);
-		
+		antiScrappingCaptchaPage.hardWait(5);
+
 		clubLogoPage.clickOnMyClubsTab();
 		clubLogoPage.clickOnClub();
 		antiScrappingCaptchaPage.clickOnAddPlayersDropdown();

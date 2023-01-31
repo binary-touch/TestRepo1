@@ -43,6 +43,9 @@ public class AntiScrappingCaptchaPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//button[text()='Add Partner']")
 	private WebElement btnAddPartner;
+	
+	@B2BFindBy(xpath = "//span[text()='Add Partner']")
+	private WebElement btnAddPartnerInKebabMenu;
 
 	@B2BFindBy(xpath = "//input[@type='radio']")
 	private WebElement rdoButton;
@@ -202,6 +205,28 @@ public class AntiScrappingCaptchaPage extends DUPRBaseAutomationPage {
 		}
 
 		log.info("Ending of clickOnBracketLabel method");
+	}
+	
+	public void clickOnAddPartberFromKebabMenu() {
+		log.info("Starting of clickOnAddPartberFromKebabMenu method");
+
+		clickOnWebElement(btnAddPartnerInKebabMenu);
+
+		log.info("Ending of clickOnAddPartberFromKebabMenu method");
+	}
+	
+	public boolean isAddPartnerDisplayedInBracketsPage() {
+		log.info("Starting of isAddPartnerDisplayedInBracketsPage method");
+		log.info("Ending of isAddPartnerDisplayedInBracketsPage method");
+		
+		return btnAddPartnerInKebabMenu.isDisplayed();
+	}
+	
+	public boolean isEditPartnerDisplayedInBracketsPage() {
+		log.info("Starting of isEditPartnerDisplayedInBracketsPage method");
+		log.info("Ending of isEditPartnerDisplayedInBracketsPage method");
+		
+		return btnEditPartner.isDisplayed();
 	}
 
 	public void clickOnBracketKebabButton() {

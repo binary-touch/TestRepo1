@@ -206,7 +206,7 @@ public class EditOrRemovePartnerPage extends DUPRBaseAutomationPage {
 	public void clickOnRemovePartnerButton() {
 		log.info("Starting of clickOnRemovePartnerButton method");
 
-		elementClick(btnRemovePartner);
+		clickOnWebElement(btnRemovePartner);
 
 		log.info("Ending of clickOnRemovePartnerButton method");
 
