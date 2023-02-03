@@ -1,5 +1,8 @@
 package com.dupr.pages.events;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 import java.util.List;
 
 import org.apache.log4j.LogManager;
@@ -16,8 +19,11 @@ import com.dupr.pages.DUPRBaseAutomationPage;
 public class AddEventPage extends DUPRBaseAutomationPage {
 	private static final Logger log = LogManager.getLogger(AddEventPage.class);
 
-	@B2BFindBy(xpath = "//button[contains(text(),'Add Event')]")
-	private WebElement btnAddEvent;
+	@B2BFindBy(xpath = "//div[contains(@class,'MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0')]//h6")
+	private List<WebElement> lstClubDetails;
+
+	@B2BFindBy(xpath = "//h3[text()='Browse Clubs']")
+	private WebElement lblBrowseClubs;
 
 	@B2BFindBy(xpath = "//h1[contains(text(),'Event Information')]")
 	private WebElement lblEventInformation;
@@ -159,41 +165,65 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h3[text()='Club']")
 	private WebElement lblClub;
 
+	@B2BFindBy(xpath = "//h3//button[contains(@class,'MuiIconButton-root MuiIconButton-sizeSmall')]")
+	private WebElement iconEdit;
+
+	@B2BFindBy(xpath = "//button[text()='See Club Details']")
+	private WebElement btnSeeClubDetails;
+
+	@B2BFindBy(xpath = "//button[contains(text(),'Add Players')]/span")
+	private WebElement btnAddPlayers;
+
+	@B2BFindBy(xpath = "//button[contains(text(),'Add a Match')]")
+	private WebElement btnAddAMatch;
+
+	@B2BFindBy(xpath = "//div/button[text()='Add Event']")
+	private WebElement btnAddEvent;
+
+	@B2BFindBy(xpath = "//div/following-sibling::button[text()='Share']")
+	private WebElement btnShare;
+
+	@B2BFindBy(xpath = "//span[text()='Export CSV']")
+	private WebElement btnExportCSV;
+
+	@B2BFindBy(xpath = "(//div[contains(@class,'MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0')]//h3)[1]")
+	private WebElement lblClubName;
+
 	@B2BFindBy(xpath = "//button[text()='Members']")
-	private WebElement btnMembers;
+	private WebElement tabMembers;
 
 	@B2BFindBy(xpath = "//button[text()='Matches']")
-	private WebElement btnMatchess;
+	private WebElement tabMatches;
 
 	@B2BFindBy(xpath = "//button[text()='Events']")
-	private WebElement btnEvents;
+	private WebElement tabEvents;
 
 	@B2BFindBy(xpath = "//button[text()='Save as Draft']")
 	private WebElement btnSaveAsDraft;
 
-	@B2BFindBy(xpath = "//div[contains(@class,'MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-17d30pw')]/following-sibling::div//h4")
+	@B2BFindBy(xpath = "//div[contains(@class,'MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation3')]//following-sibling::div//h4")
 	private List<WebElement> lstEvents;
 
 	@B2BFindBy(xpath = "//div[contains(@class,'MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-17d30pw')]/following-sibling::div//h4")
 	private WebElement btnEvent;
 
-	@B2BFindBy(xpath = "//div[@class='MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-17d30pw']//span[text()='Draft']")
+	@B2BFindBy(xpath = "//div[contains(@class, 'MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation3')]//span[text()='Draft']")
 	private List<WebElement> lstDrafts;
 
 	@B2BFindBy(xpath = "//div[@class='MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-17d30pw']//span[text()='Open']")
 	private List<WebElement> lstOpen;
 
-	@B2BFindBy(xpath = "//div[@class='MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-17d30pw']//button[text()='Delete Event'] ")
+	@B2BFindBy(xpath = "//div[contains(@class, 'MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation3')]//button[text()='Delete Event']")
 	private List<WebElement> lstDeleteEvent;
 
 	@B2BFindBy(xpath = "//h4[@class='MuiTypography-root MuiTypography-h4 css-12grqhn']")
 	private List<WebElement> btnEventNames;
 
 	@B2BFindBy(xpath = "//button[contains(text(),'Upload a Liability Waiver')]")
-	private WebElement btnUploadaLiabilityWaiver;
+	private WebElement btnUploadLiabilityWaiver;
 
 	@B2BFindBy(xpath = "//input[@type='file']")
-	private WebElement inpUploadaLiabilityWaiver;
+	private WebElement inpUploadLiabilityWaiver;
 
 	@B2BFindBy(xpath = "//button[@aria-label='remove player']")
 	private WebElement btnLiabilityWaiverRemove;
@@ -202,22 +232,22 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 	private WebElement btnReplace;
 
 	@B2BFindBy(xpath = "//h5[text()='Refund Policy']/parent::div/following-sibling::div/div/div/following-sibling::div")
-	private WebElement txtRefundPolicy;
+	private WebElement txtBoxRefundPolicy;
 
 	@B2BFindBy(xpath = "//h5[text()='Refund Policy']/parent::div/following-sibling::div/div/div/following-sibling::div/div/div/div/div/div/div/span")
-	private WebElement txtRefundPolicyEdit;
+	private WebElement txtBoxRefundPolicyEdit;
 
 	@B2BFindBy(xpath = "//h5[text()='Health and Safety Policy']/parent::div/following-sibling::div/div/div/following-sibling::div")
-	private WebElement txtHealthAndSaftyPolicy;
+	private WebElement txtBoxHealthAndSafetyPolicy;
 
 	@B2BFindBy(xpath = "//h5[text()='Health and Safety Policy']/parent::div/following-sibling::div/div/div/following-sibling::div/div/div/div/div/div/div/span")
-	private WebElement txtHealthAndSaftyPolicyEdit;
+	private WebElement txtBoxHealthAndSafetyPolicyEdit;
 
 	@B2BFindBy(xpath = "//span[@aria-label='upload picture']")
-	private WebElement btnUploadlogo;
+	private WebElement btnUploadLogo;
 
 	@B2BFindBy(xpath = "//li[text()='Remove Logo']")
-	private WebElement btnRemovelogo;
+	private WebElement btnRemoveLogo;
 
 	@B2BFindBy(xpath = "//button[text()='Yes']")
 	private WebElement btnRemoveLogoYes;
@@ -229,76 +259,161 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 	private WebElement btnSave;
 
 	@B2BFindBy(xpath = "//p[text()='Event refund policy is required.']")
-	private WebElement msgisEventRefundPolicyRequired;
+	private WebElement msgEventRefundPolicyRequired;
 
 	@B2BFindBy(xpath = "//p[text()='File type must be image/jpeg, image/png']")
 	private WebElement lblInvalidUploadLogo;
+
+	// Add Event Negative Scenario XPATHS
+
+	@B2BFindBy(xpath = "//p[contains(text(),'Event name is required.')]")
+	private WebElement msgEventNameisRequired;
+
+	@B2BFindBy(xpath = "//h5[contains(text(),'Member Price')]/parent::div/following-sibling::div/div/p[contains(text(),'Club member price is required.')]")
+	private WebElement msgMemberPriceOnlyNumbersAreAllowed;
+
+	@B2BFindBy(xpath = "//h5[contains(text(),'Member Price')]/parent::div/following-sibling::div//p[text()='price field must have 2 digits after decimal or less']")
+	private WebElement msgMemberPriceFieldDigitsAfterDecimal;
+
+	@B2BFindBy(xpath = "//h5[contains(text(),'Nonmember Price')]/parent::div/following-sibling::div//p[text()='price field must have 2 digits after decimal or less']")
+	private WebElement msgNonmemberPriceFieldDigitsAfterDecimal;
+
+	@B2BFindBy(xpath = "//h5[contains(text(),'Nonmember Price')]/parent::div/following-sibling::div/div/p[contains(text(),'Club non-member price is required.')]")
+	private WebElement msgNonMemberPriceOnlyNumbersAreAllowed;
+
+	@B2BFindBy(xpath = "//p[contains(text(),'Event description is required.')]")
+	private WebElement msgEventDescriptionisRequired;
+
+	@B2BFindBy(xpath = "//p[text()='Club member price is required.']")
+	private WebElement msgClubMemberPriceisRequired;
+
+	@B2BFindBy(xpath = "//p[text()='Club non-member price is required.']")
+	private WebElement msgNonClubMemberPriceisRequired;
+
+	@B2BFindBy(xpath = "//h5[contains(text(),'Member Price')]/parent::div/following-sibling::div/div/p[contains(text(),'Price should be either 0 or greater than 1.00.')]")
+	private WebElement msgMemberPriceGreaterThantwo;
+
+	@B2BFindBy(xpath = "//h5[contains(text(),'Nonmember Price')]/parent::div/following-sibling::div/div/p[contains(text(),'Price should be either 0 or greater than 1.00.')]")
+	private WebElement msgNonMemberPriceGreaterThantwo;
+
+	@B2BFindBy(xpath = "//p[contains(text(),'Minimum 10 characters.')]")
+	private WebElement msgMinimumTenCharsValidation;
+
+	@B2BFindBy(xpath = "//p[contains(text(),'Maximum 4500 characters')]")
+	private WebElement msgMaximumCharsValidation;
+
+	@B2BFindBy(xpath = "//button[@aria-label='remove picture']")
+	private WebElement iconRemovelogo;
+
+	@B2BFindBy(xpath = "//p[contains(text(),'Only PDF or WORD files and JPG or PNG images are allowed.')]")
+	private WebElement msgLiabilityWaiverInvalidLogo;
 
 	public AddEventPage(WebDriver driver) {
 		super(driver);
 		B2BPageFactory.initElements(driver, this);
 	}
 
-	public boolean isDisplayedRemoveAndReplaceContains() {
-		log.info("Starting of isDisplayedRemoveAndReplaceContains method");
+	public boolean isRemoveAndReplaceOptionsDisplayed() {
+		log.info("Starting of isRemoveAndReplaceOptionsDisplayed method");
 
-		boolean isDisplayedRemoveAndReplaceContains = false;
+		boolean isRemoveAndReplaceOptionsDisplayed = false;
 
 		if (isDisplayed(btnLiabilityWaiverRemove) && isDisplayed(btnReplace)) {
 
-			isDisplayedRemoveAndReplaceContains = true;
+			isRemoveAndReplaceOptionsDisplayed = true;
 		}
 
-		log.info("Ending of isDisplayedRemoveAndReplaceContains method");
+		log.info("Ending of isRemoveAndReplaceOptionsDisplayed method");
 
-		return isDisplayedRemoveAndReplaceContains;
+		return isRemoveAndReplaceOptionsDisplayed;
 	}
 
-	public boolean isDisplayedClubContains() {
-		log.info("Starting of isDisplayedClubContains method");
+	public boolean isClubDetailsDisplayed() {
+		log.info("Starting of isClubDetailsDisplayed method");
 
-		boolean isDisplayedClubContains = false;
+		boolean isClubDetailsDisplayed = false;
 
-		if (isDisplayed(lblClub) && isDisplayed(btnMembers) && isDisplayed(btnMatchess) && isDisplayed(btnEvents)) {
-
-			isDisplayedClubContains = true;
+		for (WebElement club : lstClubDetails) {
+			if (club.isDisplayed()) {
+				isClubDetailsDisplayed = true;
+			}
 		}
 
-		log.info("Ending of isDisplayedClubContains method");
+		log.info("Ending of isClubDetailsDisplayed method");
 
-		return isDisplayedClubContains;
+		return isClubDetailsDisplayed;
+	}
+
+	public boolean isClubPageContains() {
+		log.info("Starting of isClubPageContains method");
+
+		boolean isClubPageContains = false;
+		this.waitForElementToBeVisible(lblClub);
+
+		if (isDisplayed(lblClub) && isDisplayed(iconEdit) && isDisplayed(btnAddEvent) && isDisplayed(btnShare)
+				&& isDisplayed(btnAddPlayers) && isDisplayed(btnAddAMatch) && isDisplayed(btnExportCSV)
+				&& isDisplayed(tabMembers) && isDisplayed(tabEvents) && isDisplayed(tabMatches)
+				&& isDisplayed(btnSeeClubDetails)) {
+
+			isClubPageContains = true;
+		}
+
+		log.info("Ending of isClubPageContains method");
+
+		return isClubPageContains;
+	}
+
+	public void clickOnReplaceButton() {
+		log.info("Starting of clickOnReplaceButton method");
+
+		elementClick(btnReplace);
+
+		log.info("Ending of clickOnReplaceButton method");
 	}
 
 	public void clickonAddEventButton() {
 		log.info("Starting of clickonAddEventButton method");
+
 		this.waitForElementToBeVisible(btnAddEvent);
 		elementClick(btnAddEvent);
 
 		log.info("Ending of clickonAddEventButton method");
 	}
 
-	public void clickonSimbaClubNameButton() {
-		log.info("Starting of clickonSimbaClubNameButton method");
+	public void clickOnSimbaClubName() {
+		log.info("Starting of clickOnSimbaClubName method");
 
-		elementClick(lblSimbaClubName);
+		try {
+			if (lblBrowseClubs.isDisplayed() == true) {
+				this.txtBoxSearch.click();
+				this.txtBoxSearch.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 
-		log.info("Ending of clickonSimbaClubNameButton method");
+				sendKeys(txtBoxSearch, "Simba");
+				this.txtBoxSearch.sendKeys(Keys.ENTER);
+				elementClick(lblSimbaClubName);
+			}
+		} catch (Exception e) {
+			elementClick(lblSimbaClubName);
+		}
+
+		log.info("Ending of clickOnSimbaClubName method");
 	}
 
-	public void clickonEventcard() {
-		log.info("Starting of clickonAddEventButton method");
+	public void clickOnEventCard() {
+		log.info("Starting of clickOnEventCard method");
 
 		elementClick(btnEvent);
 
-		log.info("Ending of clickonAddEventButton method");
+		log.info("Ending of clickOnEventCard method");
 	}
 
-	public void clickonUploadlogoButton() {
-		log.info("Starting of clickonUploadlogoButton method");
-		hardWait(2);
-		elementClick(btnUploadlogo);
+	public void clickOnUploadLogoButton() {
+		log.info("Starting of clickOnUploadLogoButton method");
 
-		log.info("Ending of clickonUploadlogoButton method");
+		hardWait(2);
+		elementClick(btnUploadLogo);
+
+		log.info("Ending of clickOnUploadLogoButton method");
 	}
 
 	public boolean isDragandDropImageTextDispalyed() {
@@ -308,96 +423,87 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 		return this.btnDragandDropImage.isDisplayed();
 	}
 
-	public void clickonRemovelogoButton() {
-		log.info("Starting of clickonRemovelogoButton method");
+	public void clickOnRemoveLogoButton() {
+		log.info("Starting of clickOnRemoveLogoButton method");
 
-		elementClick(btnRemovelogo);
+		elementClick(btnRemoveLogo);
 
-		log.info("Ending of clickonRemovelogoButton method");
+		log.info("Ending of clickOnRemoveLogoButton method");
 	}
 
-	public void clickonRemoveLogoYesButton() {
-		log.info("Starting of clickonRemoveLogoYesButton method");
+	public void clickOnRemoveLogoYesButton() {
+		log.info("Starting of clickOnRemoveLogoYesButton method");
 
 		elementClick(btnRemoveLogoYes);
 
-		log.info("Ending of clickonRemoveLogoYesButton method");
+		log.info("Ending of clickOnRemoveLogoYesButton method");
 	}
 
-	public void clickonExitEventCreationCloseIcon() {
-		log.info("Starting of clickonAddEventButton method");
+	public void clickOnExitEventCreationCloseIcon() {
+		log.info("Starting of clickOnExitEventCreationCloseIcon method");
 
 		elementClick(iconExitEventCreationClose);
 
-		log.info("Ending of clickonAddEventButton method");
+		log.info("Ending of clickOnExitEventCreationCloseIcon method");
 	}
 
-	public void clickonSaveButton() {
-		log.info("Starting of clickonSaveButton method");
+	public void clickOnSaveButton() {
+		log.info("Starting of clickOnSaveButton method");
+
 		hardWait(2);
 		elementClick(btnSave);
 
-		log.info("Ending of clickonSaveButton method");
+		log.info("Ending of clickOnSaveButton method");
 	}
 
-	public void clickonSaveAsDraftButton() {
-		log.info("Starting of clickonSaveAsDraftButton method");
+	public void clickOnSaveAsDraftButton() {
+		log.info("Starting of clickOnSaveAsDraftButton method");
 
 		elementClick(btnSaveAsDraft);
 
-		log.info("Ending of clickonSaveAsDraftButton method");
+		log.info("Ending of clickOnSaveAsDraftButton method");
 	}
 
-	public void clickonEventButton() {
-		log.info("Starting of clickonEventButton method");
+	public void clickOnEventsTab() {
+		log.info("Starting of clickOnEventsTab method");
 
-		elementClick(btnEvents);
+		elementClick(tabEvents);
 
-		log.info("Ending of clickonEventButton method");
+		log.info("Ending of clickOnEventsTab method");
 	}
 
-	public void setUploadImageButton(String uploadimage) {
-		String osPath = System.getProperty("os.name");
-		if (osPath.contains("Linux")) {
-			txtBoxUploadImage.sendKeys(TEST_FILE_PATH + "/" + uploadimage);
-		} else {
-			hardWait(5);
-			txtBoxUploadImage.sendKeys(TEST_FILE_PATH + "/" + uploadimage);
-		}
-	}
+	public boolean isEventInformationPageContains() {
+		log.info("Starting of isEventInformationPageContains method");
 
-	public boolean isDisplayedEventInformationPageContains() {
-		log.info("Starting of isDisplayedEventInformationPageContains method");
-
-		boolean isDisplayedEventInformationPageContains = false;
+		boolean isEventInformationPageContains = false;
 
 		if (isDisplayed(lblEventInformation) && isDisplayed(lblEventName) && isDisplayed(lblEventLogo)
 				&& isDisplayed(lblEntryFee) && isDisplayed(lblMemberPrice) && isDisplayed(lblNonMemberPrice)
 				&& isDisplayed(lblAboutTheEvents) && isDisplayed(btnNextStep) && isDisplayed(btnExit)) {
 
-			isDisplayedEventInformationPageContains = true;
+			isEventInformationPageContains = true;
 		}
 
-		log.info("Ending of isDisplayedEventInformationPageContains method");
+		log.info("Ending of isEventInformationPageContains method");
 
-		return isDisplayedEventInformationPageContains;
+		return isEventInformationPageContains;
 	}
 
-	public boolean isDisplayedEventDeletePopUpContains() {
-		log.info("Starting of isDisplayedEventDeletePopUpContains method");
+	public boolean isDeleteEventPopUpContains() {
+		log.info("Starting of isDeleteEventPopUpContains method");
 
-		boolean isDisplayedEventDeletePopUpContains = false;
+		boolean isDeleteEventPopUpContains = false;
 
 		if (isDisplayed(lblDeleteEvent) && isDisplayed(btnDeleteBracketClose)
 				&& isDisplayed(btnDeleteBracketDescription) && isDisplayed(btnDeleteBracketCancel)
 				&& isDisplayed(btnDeleteBracketConfirm)) {
 
-			isDisplayedEventDeletePopUpContains = true;
+			isDeleteEventPopUpContains = true;
 		}
 
-		log.info("Ending of isDisplayedEventDeletePopUpContains method");
+		log.info("Ending of isDeleteEventPopUpContains method");
 
-		return isDisplayedEventDeletePopUpContains;
+		return isDeleteEventPopUpContains;
 	}
 
 	public void clickOnDeleteEventCancelButton() {
@@ -432,20 +538,21 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 		log.info("Ending of clickOnDeleteEventOKButton method");
 	}
 
-	public boolean isDisplayedEventDeleteSuccessPopUpContains() {
-		log.info("Starting of isDisplayedEventDeleteSuccessPopUpContains method");
+	public boolean isEventDeletedSuccessPopUpContains() {
+		log.info("Starting of isEventDeletedSuccessPopUpContains method");
 
-		boolean isDisplayedEventDeleteSuccessPopUpContains = false;
+		boolean isEventDeletedSuccessPopUpContains = false;
+
 		hardWait(2);
 		if (isDisplayed(lblDeleteBracketSuccess) && isDisplayed(btnDeleteBracketClose)
 				&& isDisplayed(lblDeleteBracketSuccessDescription) && isDisplayed(btnDeleteBracketSuccessOK)) {
 
-			isDisplayedEventDeleteSuccessPopUpContains = true;
+			isEventDeletedSuccessPopUpContains = true;
 		}
 
-		log.info("Ending of isDisplayedEventDeletePopUpContains method");
+		log.info("Ending of isEventDeletedSuccessPopUpContains method");
 
-		return isDisplayedEventDeleteSuccessPopUpContains;
+		return isEventDeletedSuccessPopUpContains;
 	}
 
 	public String getEventInformation() {
@@ -548,30 +655,31 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 		log.info("Ending of clickOnEventName method");
 	}
 
-	public boolean selectDraftFromDraftsList(String eventName) {
-		hardWait(3);
-		log.info("Starting of selectDraftFromDraftsList method");
+	public boolean isDraftEventDisplayed(String draftEventName) {
+		log.info("Starting of isDraftEventDisplayed method");
 
-		// String s1=btnEventNames.getText();
+		boolean isDraftEventDisplayed = false;
+
+		hardWait(3);
+
 		for (int i = 0; i <= lstEvents.size(); i++) {
 			System.out.println(lstEvents.get(i).getText());
-			if (lstEvents.get(i).getText().equals(eventName)) {
+			if (lstEvents.get(i).getText().equals(draftEventName)) {
 				if (lstDrafts.get(i).getText().contains("Draft")) {
-					return true;
+					isDraftEventDisplayed = true;
+					break;
 				}
-				break;
 			}
-			break;
 		}
-		log.info("Ending of selectDraftFromDraftsList method");
-		return false;
 
+		log.info("Ending of isDraftEventDisplayed method");
+		return isDraftEventDisplayed;
 	}
 
 	public boolean selectRecentlyAddedEvent(String eventName) {
 		hardWait(3);
 		log.info("Starting of selectRecentlyAddedEvent method");
-		for (int i = 0; i <= lstEvents.size(); i++) {
+		for (int i = 0; i <= lstEvents.size();) {
 			System.out.println(lstEvents.get(i).getText());
 			if (lstEvents.get(i).getText().equals(eventName)) {
 				if (lstOpen.get(i).getText().contains("Open")) {
@@ -588,7 +696,7 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 	public void clickonRecentlyAddedEvent(String eventName) {
 		hardWait(3);
 		log.info("Starting of clickonRecentlyAddedEvent method");
-		for (int i = 0; i <= lstEvents.size(); i++) {
+		for (int i = 0; i <= lstEvents.size();) {
 			System.out.println(lstEvents.get(i).getText());
 			if (lstEvents.get(i).getText().equals(eventName)) {
 				if (lstOpen.get(i).getText().contains("Open")) {
@@ -602,25 +710,26 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 
 	}
 
-	public boolean selectDeleteEventFromList(String eventName) {
-		log.info("Starting of selectDeleteEventFromList method");
+	public boolean isDeleteEventButtonDisplayedForDraftEvent(String eventName) {
+		log.info("Starting of isDeleteEventButtonDisplayedForDraftEvent method");
 
-		for (int i = 0; i <= lstEvents.size(); i++) {
+		hardWait(3);
+
+		for (int i = 0; i <= lstEvents.size();) {
 			if (lstEvents.get(i).getText().equals(eventName)) {
 				if (lstDeleteEvent.get(i).getText().contains("Delete Event")) {
 					return true;
 				}
-				break;
 			}
-			break;
 		}
-		log.info("Ending of selectDeleteEventFromList method");
+		log.info("Ending of isDeleteEventButtonDisplayedForDraftEvent method");
 		return false;
 	}
 
-	public void ClickOnDeleteEventFromList(String eventName) {
+	public void clickOnDeleteEventFromList(String eventName) {
+		log.info("Starting of clickOnDeleteEventFromList method");
+
 		hardWait(3);
-		log.info("Starting of ClickOnDeleteEventFromList method");
 		for (int i = 0; i <= lstEvents.size(); i++) {
 			if (lstEvents.get(i).getText().equals(eventName)) {
 				if (lstDeleteEvent.get(i).getText().contains("Delete Event")) {
@@ -628,9 +737,8 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 				}
 				break;
 			}
-			// break;
 		}
-		log.info("Ending of ClickOnDeleteEventFromList method");
+		log.info("Ending of clickOnDeleteEventFromList method");
 	}
 
 	public String getEveltLogoTitle() {
@@ -670,8 +778,9 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 	public void setMemberPrice(String memberPrice) {
 		log.info("Starting of setMemberPrice method");
 
+		scrollIntoView(txtBoxMemberPrice);
 		this.txtBoxMemberPrice.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
-		txtBoxMemberPrice.click();
+		clickOnWebElement(txtBoxMemberPrice);
 
 		this.txtBoxMemberPrice.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		txtBoxMemberPrice.sendKeys(memberPrice);
@@ -696,7 +805,7 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 		log.info("Starting of setNonMemberPrice method");
 
 		this.txtBoxNonMemberPrice.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
-		txtBoxNonMemberPrice.click();
+		clickOnWebElement(txtBoxNonMemberPrice);
 
 		this.txtBoxNonMemberPrice.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		txtBoxNonMemberPrice.sendKeys(nonMemberPrice);
@@ -938,10 +1047,10 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 		log.info("Ending of clickonBoldAndItalicTextFormattingButton��method");
 	}
 
-	public boolean isDisplayedEventPoliciesPageContains() {
-		log.info("Starting of isDisplayedEventPoliciesPageContains method");
+	public boolean isEventPoliciesPageContains() {
+		log.info("Starting of isEventPoliciesPageContains method");
 
-		boolean isDisplayedEventPoliciesPageContains = false;
+		boolean isEventPoliciesPageContains = false;
 
 		System.out.println(isDisplayed(btnExit));
 		System.out.println(isDisplayed(btnGoBack));
@@ -954,16 +1063,16 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 				&& isDisplayed(lblLiabilityWaiver) && isDisplayed(lblRefundPolicy)
 				&& isDisplayed(lblHealthAndSafetyPolicy) && isDisplayed(btnNextStep)) {
 
-			isDisplayedEventPoliciesPageContains = true;
+			isEventPoliciesPageContains = true;
 		}
 
-		log.info("Ending of isDisplayedEventPoliciesPageContains method");
+		log.info("Ending of isEventPoliciesPageContains method");
 
-		return isDisplayedEventPoliciesPageContains;
+		return isEventPoliciesPageContains;
 	}
 
-	public void clickonNextButton() {
-		log.info("Starting of clickonNextButton method");
+	public void clickOnNextStepButton() {
+		log.info("Starting of clickOnNextStepButton method");
 
 		try {
 			elementClick(btnNextStep);
@@ -971,7 +1080,7 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 			btnNextStep.click();
 		}
 
-		log.info("Ending of clickonNextButton method");
+		log.info("Ending of clickOnNextStepButton method");
 	}
 
 	public String getEventPoliciesTitle() {
@@ -1054,23 +1163,23 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 		log.info("Ending of clickonExitButton method");
 	}
 
-	public boolean isDisplayedExitEventCreationPopupContains() {
-		log.info("Starting of isDisplayedExitEventCreationPopupContains method");
+	public boolean isExitEventCreationPopupContains() {
+		log.info("Starting of isExitEventCreationPopupContains method");
 
-		boolean isDisplayedExitEventCreationPopupContains = false;
+		boolean isExitEventCreationPopupContains = false;
 
 		if (isDisplayed(lblExitEventCreation) && isDisplayed(btnSaveAsDraft) && isDisplayed(btnExitEventCreationDiscard)
 				&& isDisplayed(iconExitEventCreationClose) && isDisplayed(lblExitEventCreationProcess)) {
 
-			isDisplayedExitEventCreationPopupContains = true;
+			isExitEventCreationPopupContains = true;
 		}
 
-		log.info("Ending of isDisplayedExitEventCreationPopupContains method");
+		log.info("Ending of isExitEventCreationPopupContains method");
 
-		return isDisplayedExitEventCreationPopupContains;
+		return isExitEventCreationPopupContains;
 	}
 
-	public void clickonEventPolicieDiscardButton() {
+	public void clickOnEventPoliciesDiscardButton() {
 		log.info("Starting of clickonEventPolicieDiscardButton method");
 
 		elementClick(btnExitEventCreationDiscard);
@@ -1078,47 +1187,50 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 		log.info("Ending of clickonEventPolicieDiscardButton method");
 	}
 
-	public void clickonLiabilityWaiverRemoveButton() {
-		log.info("Starting of clickonLiabilityWaiverRemoveButton method");
+	public void clickOnLiabilityWaiverRemoveButton() {
+		log.info("Starting of clickOnLiabilityWaiverRemoveButton method");
 
 		elementClick(btnLiabilityWaiverRemove);
 
-		log.info("Ending of clickonLiabilityWaiverRemoveButton method");
+		log.info("Ending of clickOnLiabilityWaiverRemoveButton method");
 	}
 
-	public void setReplaceButton(String filepath) {
-		log.info("Starting of setReplaceButton method");
+	public void replaceLiabilityWaiver(String filepath) {
+		log.info("Starting of replaceLiabilityWaiver method");
 
-		btnReplace.sendKeys(filepath);
+		hardWait(3);
+		this.inpUploadLiabilityWaiver.sendKeys(filepath);
 
-		log.info("Ending of setReplaceButton method");
+		log.info("Ending of replaceLiabilityWaiver method");
 	}
 
-	public void setHealthandSafetyPolicyEdit(String event) {
-		log.info("Starting of setHealthandSafetyPolicyEdit method");
+	public void setHealthAndSafetyPolicyEdit(String event) {
+		log.info("Starting of setHealthAndSafetyPolicyEdit method");
 
-		txtHealthAndSaftyPolicy.click();
-		// txtHealthAndSaftyPolicyEdit.clear();
-		this.txtHealthAndSaftyPolicyEdit.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
-		txtHealthAndSaftyPolicyEdit.sendKeys(event);
-		txtHealthAndSaftyPolicy.click();
+		txtBoxHealthAndSafetyPolicy.click();
 
-		log.info("Ending of setHealthandSafetyPolicyEdit method");
+		this.txtBoxHealthAndSafetyPolicyEdit.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
+		txtBoxHealthAndSafetyPolicyEdit.sendKeys(event);
+		txtBoxHealthAndSafetyPolicy.click();
+
+		log.info("Ending of setHealthAndSafetyPolicyEdit method");
 	}
 
 	public void setRefundPolicyEdit(String event) {
 		log.info("Starting of setRefundPolicyEdit method");
 
-		txtRefundPolicy.click();
-		// txtRefundPolicyEdit.clear();
-		this.txtRefundPolicyEdit.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
-		txtRefundPolicyEdit.sendKeys(event);
-		txtRefundPolicy.click();
+		txtBoxRefundPolicy.click();
+
+		this.txtBoxRefundPolicyEdit.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
+		txtBoxRefundPolicyEdit.sendKeys(event);
+		txtBoxRefundPolicy.click();
+
 		log.info("Ending of setRefundPolicyEdit method");
 	}
 
 	public void uploadEventLogo(String filepath) {
 		log.info("Starting of uploadEventLogo method");
+
 		hardWait(2);
 		this.txtBoxUploadImage.sendKeys(filepath);
 
@@ -1136,17 +1248,17 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 	public void clickOnLiabilityWaiverButton() {
 		log.info("Starting of clickOnLiabilityWaiverButton method");
 
-		clickOnWebElement(btnUploadaLiabilityWaiver);
+		clickOnWebElement(btnUploadLiabilityWaiver);
 
 		log.info("Ending of clickOnLiabilityWaiverButton�method");
 	}
 
-	public void setUploadaLiabilityWaiverButton(String filepath) {
-		log.info("Starting of setUploadaLiabilityWaiverButton method");
+	public void uploadLiabilityWaiverFile(String filepath) {
+		log.info("Starting of uploadLiabilityWaiverFile method");
 
-		this.inpUploadaLiabilityWaiver.sendKeys(filepath);
+		this.inpUploadLiabilityWaiver.sendKeys(filepath);
 
-		log.info("Ending of setUploadaLiabilityWaiverButton�method");
+		log.info("Ending of uploadLiabilityWaiverFile method");
 	}
 
 	public boolean isFileExplorerContains() {
@@ -1156,13 +1268,14 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 		return txtBoxUploadImage.isDisplayed();
 	}
 
-	public void setUploadaLiabilityWaiverReplaceButton(String filepath) {
-		log.info("Starting of setUploadaLiabilityWaiverButton method");
-		btnReplace.click();
-		hardWait(3);
-		this.inpUploadaLiabilityWaiver.sendKeys(filepath);
+	public void pressEscapeKey() throws AWTException {
+		log.info("Starting of pressEscapeKey method");
 
-		log.info("Ending of setUploadaLiabilityWaiverButton�method");
+		Robot robot = new Robot();
+		robot.keyPress(KeyEvent.VK_ESCAPE);
+		robot.keyRelease(KeyEvent.VK_ESCAPE);
+
+		log.info("Ending of pressEscapeKey method");
 	}
 
 	public boolean isEventRefundPolicyRequiredDisplayed() {
@@ -1170,14 +1283,112 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 
 		log.info("Ending of isEventRefundPolicyRequiredDisplayed method");
 
-		return msgisEventRefundPolicyRequired.isDisplayed();
+		return msgEventRefundPolicyRequired.isDisplayed();
 	}
 
 	public boolean isInvalidUploadLogoDisplayed() {
 		log.info("Starting of isInvalidUploadLogoDisplayed method");
-
 		log.info("Ending of isInvalidUploadLogoDisplayed method");
-		return lblInvalidUploadLogo.isDisplayed();
 
+		return lblInvalidUploadLogo.isDisplayed();
+	}
+
+	// Add Events Negative Scenario Methods
+
+	public boolean isEventInfoPageValidationsDisplayed() {
+		log.info("Starting of isEventInfoPageValidationsDisplayed method");
+
+		boolean isEventInfoPageValidationsDisplayed = false;
+
+		if (msgEventNameisRequired.isDisplayed() && msgMemberPriceOnlyNumbersAreAllowed.isDisplayed()
+				&& msgNonMemberPriceOnlyNumbersAreAllowed.isDisplayed()
+				&& msgEventDescriptionisRequired.isDisplayed()) {
+
+			isEventInfoPageValidationsDisplayed = true;
+		}
+
+		log.info("Ending of isEventInfoPageValidationsDisplayed method");
+
+		return isEventInfoPageValidationsDisplayed;
+	}
+
+	public boolean isMemberAndNonMemberPriceFieldsWithInvalidDetailsDisplayed() {
+		log.info("Starting of isMemberAndNonMemberPriceFieldsWithInvalidDetailsDisplayed method");
+
+		boolean isMemberAndNonMemberPriceFieldsWithInvalidDetailsDisplayed = false;
+
+		if (msgClubMemberPriceisRequired.isDisplayed() && msgNonClubMemberPriceisRequired.isDisplayed()) {
+
+			isMemberAndNonMemberPriceFieldsWithInvalidDetailsDisplayed = true;
+		}
+
+		log.info("Ending of isMemberAndNonMemberPriceFieldsWithInvalidDetailsDisplayed method");
+
+		return isMemberAndNonMemberPriceFieldsWithInvalidDetailsDisplayed;
+	}
+
+	public boolean isMemberAndNonMemberPriceFieldsWithNegativeDetailsDisplayed() {
+		log.info("Starting of isMemberAndNonMemberPriceFieldsWithNegativeDetailsDisplayed method");
+
+		boolean isMemberAndNonMemberPriceFieldsWithNegativeDetailsDisplayed = false;
+
+		System.out.println(msgMemberPriceGreaterThantwo.isDisplayed());
+		System.out.println(msgNonMemberPriceGreaterThantwo.isDisplayed());
+
+		if (msgMemberPriceGreaterThantwo.isDisplayed() && msgNonMemberPriceGreaterThantwo.isDisplayed()) {
+
+			isMemberAndNonMemberPriceFieldsWithNegativeDetailsDisplayed = true;
+		}
+
+		log.info("Ending of isMemberAndNonMemberPriceFieldsWithNegativeDetailsDisplayed method");
+
+		return isMemberAndNonMemberPriceFieldsWithNegativeDetailsDisplayed;
+	}
+
+	public boolean isMemberAndNonMemberPriceFieldsWithMaxDetailsDisplayed() {
+		log.info("Starting of isMemberAndNonMemberPriceFieldsWithMaxDetailsDisplayed method");
+
+		boolean isMemberAndNonMemberPriceFieldsWithMaxDetailsDisplayed = false;
+
+		if (msgMemberPriceFieldDigitsAfterDecimal.isDisplayed()
+				&& msgNonmemberPriceFieldDigitsAfterDecimal.isDisplayed()) {
+
+			isMemberAndNonMemberPriceFieldsWithMaxDetailsDisplayed = true;
+		}
+
+		log.info("Ending of isMemberAndNonMemberPriceFieldsWithMaxDetailsDisplayed method");
+
+		return isMemberAndNonMemberPriceFieldsWithMaxDetailsDisplayed;
+	}
+
+	public boolean isMinimumTenCharsValidationDisplayed() {
+		log.info("Starting of isMinimumTenCharsValidationDisplayed method");
+
+		log.info("Ending of isMinimumTenCharsValidationDisplayed method");
+		return msgMinimumTenCharsValidation.isDisplayed();
+
+	}
+
+	public boolean isMaximumCharsValidationDisplayed() {
+		log.info("Starting of isMaximumCharsValidationDisplayed method");
+		log.info("Ending of isMaximumCharsValidationDisplayed method");
+
+		return msgMaximumCharsValidation.isDisplayed();
+	}
+
+	public boolean isLiabilityWaiverInvalidValidationDisplayed() {
+		log.info("Starting of isLiabilityWaiverInvalidValidationDisplayed method");
+		log.info("Ending of isLiabilityWaiverInvalidValidationDisplayed method");
+
+		return msgLiabilityWaiverInvalidLogo.isDisplayed();
+	}
+
+	public void clickonRemovelogoIcon() {
+		log.info("Starting of clickonDragandDropImageButton method");
+
+		this.waitForElementToBeVisible(iconRemovelogo);
+		elementClick(iconRemovelogo);
+
+		log.info("Ending of clickonDragandDropImageButton method");
 	}
 }

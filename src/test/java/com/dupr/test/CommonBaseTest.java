@@ -130,7 +130,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		editClubInfoPage.clickOnSimbaOrganizerButton();
 		addEventPage.clickonAddEventButton();
 
-	 Assert.assertTrue(addEventPage.isDisplayedEventInformationPageContains());
+	 Assert.assertTrue(addEventPage.isEventInformationPageContains());
 
 		logger.info("Ending of VerifyAddEventFunctionality method");
 	}
@@ -139,15 +139,15 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		logger.info("Starting of VerifyEventPoliciesPageByEnteringValidDetails method");
 
 		addEventPage
-				.setUploadaLiabilityWaiverButton(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("upload.image"));
+				.uploadLiabilityWaiverFile(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("upload.image"));
 
-		addEventPage.isDisplayedRemoveAndReplaceContains();
+		 Assert.assertTrue(addEventPage.isRemoveAndReplaceOptionsDisplayed());
 
 		addEventPage.setRefundPolicyEdit(testDataProp.getProperty("refund.policy"));
 
-		addEventPage.setHealthandSafetyPolicyEdit(testDataProp.getProperty("health.and.safety"));
+		addEventPage.setHealthAndSafetyPolicyEdit(testDataProp.getProperty("health.and.safety"));
 
-		addEventPage.clickonNextButton();
+		addEventPage.clickOnNextStepButton();
 
 		logger.info("Ending of VerifyEventPoliciesPageByEnteringValidDetails method");
 	}
@@ -175,52 +175,50 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of VerifyPublishEventButton method");
 	}
 
-	public void VerifyFreeBracketWithEventTypeAsRoundRobin() {
-		logger.info("Starting of VerifyFreeBracketWithEventTypeAsRoundRobin method");
-
-		// addEventPage.clickonAddEventButton();
+	public void verifyFreeBracketWithRoundRobinEventType() {
+		logger.info("Starting of verifyFreeBracketWithRoundRobinEventType method");
 
 		event = addEventPage.setEventName(testDataProp.getProperty("event.name"));
 		addEventPage.setLocation(testDataProp.getProperty("state.address"));
 		addEventPage.uploadEventLogo(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("edit.club.logo.path"));
-		addEventPage.setMemberPrice(testDataProp.getProperty("free.event.bracket.value"));
-		addEventPage.setNonMemberPrice(testDataProp.getProperty("free.event.bracket.value"));
-		addEventPage.setAboutTheEvent(testDataProp.getProperty("about.the.Event"));
+		addEventPage.setMemberPrice(testDataProp.getProperty("zero.value"));
+		addEventPage.setNonMemberPrice(testDataProp.getProperty("zero.value"));
+		addEventPage.setAboutTheEvent(testDataProp.getProperty("about.the.event"));
 		addEventPage.clickonTextFormattingButtons();
-		addEventPage.clickonNextButton();
+		addEventPage.clickOnNextStepButton();
 
-		Assert.assertTrue(addEventPage.isDisplayedEventPoliciesPageContains());
+		Assert.assertTrue(addEventPage.isEventPoliciesPageContains());
 
 		this.verifyEventPoliciesPageByEnteringValidDetails();
 
-		addBracketPage.clickonTypeDropdown();
-		Assert.assertTrue(addBracketPage.isBracketListDisplayed());
-		addBracketPage.clickOnDoublesBracketTypeButton();
-		Assert.assertTrue(addBracketPage.isSelectedBracketTypeDisplayed());
+		addBracketPage.clickOnMatchTypeDropdown();
+		Assert.assertTrue(addBracketPage.isMatchTypeListContains());
+		addBracketPage.selectDoublesMatchType();
+		Assert.assertTrue(addBracketPage.isSelectedMatchTypeDisplayed());
 
-		addBracketPage.clickonPlayGroupDropdown();
+		addBracketPage.clickOnPlayGroupDropdown();
 		Assert.assertTrue(addBracketPage.isPlayerGroupListDisplayed());
-		addBracketPage.clickOnMixedMatchGroupButton();
+		addBracketPage.selectMixedPlayerGroup();
 		Assert.assertTrue(addBracketPage.isSelectedPlayerGroupTypeDisplayed());
 
-		addBracketPage.setAgeRangeMinimum(testDataProp.getProperty("age.range.minimum"));
-		Assert.assertTrue(addBracketPage.isEnteredMinimumAgeDisplayed(testDataProp.getProperty("age.range.minimum")));
+		addBracketPage.setMinimumAgeRange(testDataProp.getProperty("min.age.range"));
+		Assert.assertTrue(addBracketPage.isEnteredMinimumAgeDisplayed(testDataProp.getProperty("min.age.range")));
 
-		addBracketPage.setAgeRangeMaximum(testDataProp.getProperty("age.range.maximum"));
-		Assert.assertTrue(addBracketPage.isEnteredMaximumAgeDisplayed(testDataProp.getProperty("age.range.maximum")));
+		addBracketPage.setMaximumAgeRange(testDataProp.getProperty("max.age.range"));
+		Assert.assertTrue(addBracketPage.isEnteredMaximumAgeDisplayed(testDataProp.getProperty("max.age.range")));
 
-		addBracketPage.setRatingRangeMinimum(testDataProp.getProperty("Rating.range.minimum"));
-		Assert.assertTrue(addBracketPage.isEnteredMinimumRatingRangeDisplayed(testDataProp.getProperty("Rating.range.minimum")));
+		addBracketPage.setMinimumRatingRange(testDataProp.getProperty("min.rating.range"));
+		Assert.assertTrue(addBracketPage.isEnteredMinimumRatingRangeDisplayed(testDataProp.getProperty("min.rating.range")));
 
-		addBracketPage.setRatingRangeMaximum(testDataProp.getProperty("Rating.range.maximum"));
-		Assert.assertTrue(addBracketPage.isEnteredMaximumRatingRangeDisplayed(testDataProp.getProperty("Rating.range.maximum")));
+		addBracketPage.setMaximumRatingRange(testDataProp.getProperty("max.rating.range"));
+		Assert.assertTrue(addBracketPage.isEnteredMaximumRatingRangeDisplayed(testDataProp.getProperty("max.rating.range")));
 
 		Assert.assertTrue(addBracketPage.isAutoGenerateButtonEnabled());
-		addBracketPage.clickOnAutoGenerate();
+		addBracketPage.clickOnAutoGenerateButton();
 
 		addBracketPage.clickOnEventTypeDropdown();
-		Assert.assertTrue(addBracketPage.isEventTypeListDisplayed());
-		addBracketPage.clickOnRoundRobinEventTypeButton();
+		Assert.assertTrue(addBracketPage.isEventTypeListContains());
+		addBracketPage.selectRoundRobinEvent();
 		Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
 
 		addBracketPage.clickOnRegistrationStartDate();
@@ -232,16 +230,16 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		// Assert.assertTrue(addBracketPage.isTimeZoneListDisplayed());
 		// addBracketPage.clickOnCentalAmericanTimeZoneButton();
 
-		addBracketPage.setBracketPriceClubMemberPrice(testDataProp.getProperty("free.event.bracket.value"));
-		addBracketPage.setBracketPriceNonClubMemberPrice(testDataProp.getProperty("free.event.bracket.value"));
+		addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("zero.value"));
+		addBracketPage.setBracketNonClubMemberPrice(testDataProp.getProperty("zero.value"));
 
-		addBracketPage.setNumberOfTerms(testDataProp.getProperty("number.of.teams"));
+		addBracketPage.setNumberOfTeams(testDataProp.getProperty("min.age.range"));
 		Assert.assertTrue(addBracketPage.isNumberOfTeamsCountDisplayed());
 
-		addBracketPage.setWaitlist(testDataProp.getProperty("wait.list"));
+		addBracketPage.setWaitlist(testDataProp.getProperty("number.of.courts"));
 		Assert.assertTrue(addBracketPage.isWaitListCountDisplayed());
 
-		addEventPage.clickonNextButton();
+		addEventPage.clickOnNextStepButton();
 
 		this.VerifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
 
@@ -249,55 +247,53 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 
 		addBracketPage.clickOnEventSuccessClosePopupButton();
 
-		logger.info("Ending of VerifyFreeBracketWithEventTypeAsRoundRobin method");
+		logger.info("Ending of verifyFreeBracketWithRoundRobinEventType method");
 	}
 
-	public void VerifyFreeBracketWithEventSinglesTypeAsRoundRobin() {
-		logger.info("Starting of VerifyFreeBracketWithEventSinglesTypeAsRoundRobin method");
-
-		// addEventPage.clickonAddEventButton();
+	public void verifyFreeBracketWithSinglesTypeAndRoundRobinEvent() {
+		logger.info("Starting of verifyFreeBracketWithSinglesTypeAndRoundRobinEvent method");
 
 		event = addEventPage.setEventName(testDataProp.getProperty("event.name"));
 		addEventPage.setLocation(testDataProp.getProperty("state.address"));
 		addEventPage.uploadEventLogo(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("edit.club.logo.path"));
-		addEventPage.setMemberPrice(testDataProp.getProperty("free.event.bracket.value"));
-		addEventPage.setNonMemberPrice(testDataProp.getProperty("free.event.bracket.value"));
-		addEventPage.setAboutTheEvent(testDataProp.getProperty("about.the.Event"));
+		addEventPage.setMemberPrice(testDataProp.getProperty("zero.value"));
+		addEventPage.setNonMemberPrice(testDataProp.getProperty("zero.value"));
+		addEventPage.setAboutTheEvent(testDataProp.getProperty("about.the.event"));
 		addEventPage.clickonTextFormattingButtons();
-		addEventPage.clickonNextButton();
+		addEventPage.clickOnNextStepButton();
 
-		Assert.assertTrue(addEventPage.isDisplayedEventPoliciesPageContains());
+		Assert.assertTrue(addEventPage.isEventPoliciesPageContains());
 
 		this.verifyEventPoliciesPageByEnteringValidDetails();
 
-		addBracketPage.clickonTypeDropdown();
-		Assert.assertTrue(addBracketPage.isBracketListDisplayed());
-		addBracketPage.clickOnSinglesBracketTypeButton();
-		Assert.assertTrue(addBracketPage.isSelectedBracketTypeDisplayed());
+		addBracketPage.clickOnMatchTypeDropdown();
+		Assert.assertTrue(addBracketPage.isMatchTypeListContains());
+		addBracketPage.selectSinglesMatchType();
+		Assert.assertTrue(addBracketPage.isSelectedMatchTypeDisplayed());
 
-		addBracketPage.clickonPlayGroupDropdown();
+		addBracketPage.clickOnPlayGroupDropdown();
 		Assert.assertTrue(addBracketPage.isPlayerGroupListDisplayed());
-		addBracketPage.clickOnOpenMatchButton();
+		addBracketPage.selectOpenPlayerGroup();
 		Assert.assertTrue(addBracketPage.isSelectedPlayerGroupTypeDisplayed());
 
-		addBracketPage.setAgeRangeMinimum(testDataProp.getProperty("age.range.minimum"));
-		Assert.assertTrue(addBracketPage.isEnteredMinimumAgeDisplayed(testDataProp.getProperty("age.range.minimum")));
+		addBracketPage.setMinimumAgeRange(testDataProp.getProperty("min.age.range"));
+		Assert.assertTrue(addBracketPage.isEnteredMinimumAgeDisplayed(testDataProp.getProperty("min.age.range")));
 
-		addBracketPage.setAgeRangeMaximum(testDataProp.getProperty("age.range.maximum"));
-		Assert.assertTrue(addBracketPage.isEnteredMaximumAgeDisplayed(testDataProp.getProperty("age.range.maximum")));
+		addBracketPage.setMaximumAgeRange(testDataProp.getProperty("max.age.range"));
+		Assert.assertTrue(addBracketPage.isEnteredMaximumAgeDisplayed(testDataProp.getProperty("max.age.range")));
 
-		addBracketPage.setRatingRangeMinimum(testDataProp.getProperty("Rating.range.minimum"));
-		Assert.assertTrue(addBracketPage.isEnteredMinimumRatingRangeDisplayed(testDataProp.getProperty("Rating.range.minimum")));
+		addBracketPage.setMinimumRatingRange(testDataProp.getProperty("min.rating.range"));
+		Assert.assertTrue(addBracketPage.isEnteredMinimumRatingRangeDisplayed(testDataProp.getProperty("min.rating.range")));
 
-		addBracketPage.setRatingRangeMaximum(testDataProp.getProperty("Rating.range.maximum"));
-		Assert.assertTrue(addBracketPage.isEnteredMaximumRatingRangeDisplayed(testDataProp.getProperty("Rating.range.maximum")));
+		addBracketPage.setMaximumRatingRange(testDataProp.getProperty("max.rating.range"));
+		Assert.assertTrue(addBracketPage.isEnteredMaximumRatingRangeDisplayed(testDataProp.getProperty("max.rating.range")));
 
 		Assert.assertTrue(addBracketPage.isAutoGenerateButtonEnabled());
-		addBracketPage.clickOnAutoGenerate();
+		addBracketPage.clickOnAutoGenerateButton();
 
 		addBracketPage.clickOnEventTypeDropdown();
-		Assert.assertTrue(addBracketPage.isEventTypeListDisplayed());
-		addBracketPage.clickOnRoundRobinEventTypeButton();
+		Assert.assertTrue(addBracketPage.isEventTypeListContains());
+		addBracketPage.selectRoundRobinEvent();
 		Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
 
 		addBracketPage.clickOnRegistrationStartDate();
@@ -309,21 +305,21 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		// Assert.assertTrue(addBracketPage.isTimeZoneListDisplayed());
 		// addBracketPage.clickOnCentalAmericanTimeZoneButton();
 
-		addBracketPage.setBracketPriceClubMemberPrice(testDataProp.getProperty("free.event.bracket.value"));
-		addBracketPage.setBracketPriceNonClubMemberPrice(testDataProp.getProperty("free.event.bracket.value"));
+		addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("zero.value"));
+		addBracketPage.setBracketNonClubMemberPrice(testDataProp.getProperty("zero.value"));
 
-		addBracketPage.setNumberOfTerms(testDataProp.getProperty("number.of.teams"));
+		addBracketPage.setNumberOfTeams(testDataProp.getProperty("min.age.range"));
 		Assert.assertTrue(addBracketPage.isNumberOfTeamsCountDisplayed());
 
-		addBracketPage.setWaitlist(testDataProp.getProperty("wait.list"));
+		addBracketPage.setWaitlist(testDataProp.getProperty("number.of.courts"));
 		Assert.assertTrue(addBracketPage.isWaitListCountDisplayed());
 
-		addEventPage.clickonNextButton();
+		addEventPage.clickOnNextStepButton();
 
 		this.VerifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
 		this.VerifyPublishEventButton();
 		addBracketPage.clickOnEventSuccessClosePopupButton();
-		logger.info("Ending of VerifyFreeBracketWithEventSinglesTypeAsRoundRobin method");
+		
+		logger.info("Ending of verifyFreeBracketWithSinglesTypeAndRoundRobinEvent method");
 	}
-
 }

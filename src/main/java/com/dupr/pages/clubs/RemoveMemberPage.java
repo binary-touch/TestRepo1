@@ -1,11 +1,15 @@
 package com.dupr.pages.clubs;
 
+import java.util.List;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.b2b.support.B2BFindBy;
+import com.b2b.support.B2BFindBys;
 import com.b2b.support.B2BPageFactory;
 import com.dupr.pages.DUPRBaseAutomationPage;
 
@@ -23,6 +27,9 @@ public class RemoveMemberPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//h6[text()='Doubles']")
 	private WebElement txtDoubles;
+	
+	@B2BFindBys(@B2BFindBy(xpath = "//h5[text()='As a Director']/..//div[contains(@class,'MuiGrid-item MuiGrid-grid-xs-12')]/div//h4"))
+	private List<WebElement> lstClubs;
 
 	@B2BFindBy(xpath = "//div[contains(@class, 'MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation3')]//button[@id='composition-button']")
 	private WebElement menuKebab;
@@ -41,6 +48,9 @@ public class RemoveMemberPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//h3[text()='Player Profile']/preceding-sibling::div/child::button")
 	private WebElement btnBackArrow;
+	
+	@B2BFindBy(xpath = "//*[contains(@class,'MuiSvgIcon-root MuiSvgIcon-colorPrimary MuiSvgIcon-fontSizeMedium')]")
+	private WebElement btnBack;
 
 	public RemoveMemberPage(WebDriver driver) {
 		super(driver);
@@ -70,13 +80,37 @@ public class RemoveMemberPage extends DUPRBaseAutomationPage {
 
 		return getText(txtDoubles);
 	}
+	
+	public void clickOnClubNameLink() {
+		log.info("Starting of clickOnClubNameLink method");
 
-	public Boolean getDoubles() {
+		for (int i = 1; i < lstClubs.size(); i++) {
+			this.hardWait(2);
+			driver.findElement(
+					By.xpath((("(//h5[text()='As a Director']/..//div[contains(@class,'MuiGrid-item MuiGrid-grid-xs-12')]/div//h4)["
+							+ i + "]"))))
+					.click();
+
+			this.hardWait(5);
+			try {
+				if ((isDisplayed(menuKebab) == true)) {
+					break;
+				}
+			} catch (Exception e) {
+				clickOnElement(btnBack);
+			}
+		}
+
+		log.info("Ending of clickOnClubNameLink method");
+	}
+
+
+	public boolean getDoubles() {
 		boolean DoublesTxt = false;
 
 		try {
 
-			if (isDisplayed(txtNoResults) == true) {
+			if (isDisplayed(menuKebab) == true) {
 				DoublesTxt = true;
 			}
 

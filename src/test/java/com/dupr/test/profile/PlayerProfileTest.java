@@ -8,6 +8,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.b2b.common.WebDriversEnum;
+import com.dupr.pages.DUPRBaseAutomationPage;
 import com.dupr.pages.profile.EditProfilePage;
 import com.dupr.test.CommonBaseTest;
 
@@ -313,9 +314,10 @@ public class PlayerProfileTest extends CommonBaseTest {
 
 		editProfilePage.scrollDown(-700);
 		editProfilePage.clickOnGenderDropDown();
+		editProfilePage.hardWait(3);
 		editProfilePage.clickOnGenderDropDownListOption();
 
-		//Assert.assertTrue(editProfilePage.isSaveEnabled());
+		Assert.assertTrue(editProfilePage.isSaveEnabled());
 		editProfilePage.clickOnSaveButton();
 		editProfilePage.clickOnOkButton();
 
@@ -349,6 +351,7 @@ public class PlayerProfileTest extends CommonBaseTest {
 
 		editProfilePage.scrollDown(-500);
 		editProfilePage.clickOnCountryCodePhoneNumber(testDataProp.getProperty("country.name.for.phone.number"));
+		editProfilePage.hardWait(3);
 		editProfilePage.clearPhoneNumber();
 		editProfilePage.setInvalidPhoneNumber(testDataProp.getProperty("mobile.number"));
 		editProfilePage.clickOnSaveButton();
@@ -375,6 +378,7 @@ public class PlayerProfileTest extends CommonBaseTest {
 
 		editProfilePage.scrollDown(-400);
 		editProfilePage.clickOnCountryCodePhoneNumber(testDataProp.getProperty("country.name.for.phone.number"));
+		editProfilePage.hardWait(3);
 		editProfilePage.clearPhoneNumber();
 		editProfilePage.setValidPhoneNumber(testDataProp.getProperty("valid.phone.number"));
 		editProfilePage.hardWait(2);
@@ -412,6 +416,8 @@ public class PlayerProfileTest extends CommonBaseTest {
 		logger.info("Starting of verifyDominantHandDropdown method");
 
 		editProfilePage.clickOnDominantHandDropDownListOption();
+		
+		Assert.assertTrue(editProfilePage.isSaveEnabled());
 		editProfilePage.clickOnSaveButton();
 		
 		editProfilePage.hardWait(3);

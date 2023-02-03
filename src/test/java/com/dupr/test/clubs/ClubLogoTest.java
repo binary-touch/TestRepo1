@@ -8,7 +8,9 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.b2b.common.WebDriversEnum;
+import com.dupr.pages.clubs.BrowseClubsPage;
 import com.dupr.pages.clubs.ClubLogoPage;
+import com.dupr.pages.clubs.MyClubsPage;
 import com.dupr.pages.profile.ProfilePicturePage;
 import com.dupr.test.DUPRBaseAutomationTest;
 
@@ -21,6 +23,8 @@ public class ClubLogoTest extends DUPRBaseAutomationTest {
 	private static final Logger logger = Logger.getLogger(ClubLogoTest.class.getName());
 	private ClubLogoPage clubLogoPage = null;
 	private ProfilePicturePage profilePicturePage = null;
+	private MyClubsPage myClubsPage = null;
+	private BrowseClubsPage browseClubsPage = null;
 
 	@BeforeClass
 	@Parameters({ "browser", "siteURL", "directorEmail", "directorPassword" })
@@ -32,6 +36,8 @@ public class ClubLogoTest extends DUPRBaseAutomationTest {
 
 		this.clubLogoPage = new ClubLogoPage(this.driver);
 		this.profilePicturePage = new ProfilePicturePage(this.driver);
+		this.myClubsPage = new MyClubsPage(this.driver);
+		this.browseClubsPage = new BrowseClubsPage(this.driver);
 
 		logger.info("Ending of initMethod in ClubLogoTest");
 	}
@@ -42,8 +48,21 @@ public class ClubLogoTest extends DUPRBaseAutomationTest {
 	@Story("Test case #1, Verify Add Club logo functionality")
 	public void verifyAddLogoFunctionality() {
 		logger.info("Starting of verifyAddLogoFunctionality method");
+
+		clubLogoPage.hardWait(3);
 		clubLogoPage.clickOnMyClubsTab();
-		clubLogoPage.clickOnClub();
+		try {
+			if (clubLogoPage.isClubsDisplayedInMyClubs()) {
+				clubLogoPage.clickOnClub();
+			} else {
+				myClubsPage.clickOnBrowseClubsButton();
+				Assert.assertTrue(browseClubsPage.isBrowseClubsPageContains());
+				clubLogoPage.searchClubWithClubName();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		clubLogoPage.hardWait(3);
 		profilePicturePage.clickOnCameraIcon();
 

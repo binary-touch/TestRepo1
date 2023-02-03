@@ -173,7 +173,7 @@ public class ImportPlayerViaCSVPage extends DUPRBaseAutomationPage {
 		log.info("Ending of clickOnBrowseFiles method");
 	}
 	
-	public void setBrowseFilesButton(String filepath) {
+	public void uploadPlayerCSVFile(String filepath) {
 		log.info("Starting of setBrowseFilesButton method");
 
 		this.inpBrowseFile.sendKeys(filepath);

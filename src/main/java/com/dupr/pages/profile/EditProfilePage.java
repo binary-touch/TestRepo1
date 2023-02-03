@@ -477,8 +477,8 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 	public void clickOnGenderDropDown() {
 		log.info("Starting of clickOnGenderDropDown method");
 
-		clickOnWebElement(ddGender);
-
+		clickOnElementUsingActionClass(ddGender);
+		
 		log.info("Ending of clickOnGenderDropDown method");
 	}
 
@@ -572,7 +572,7 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 	public void setValidPhoneNumber(String phoneNumber) {
 		log.info("Starting of setValidPhoneNumber method");
 
-		sendKeys(txtBoxPhoneNumber, phoneNumber);
+		sendKeys(txtBoxPhoneNumber, phoneNumber+randomNumber(2));
 
 		log.info("Ending of setValidPhoneNumber method");
 	}
@@ -667,9 +667,9 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 		log.info("Starting of clickOnDominantHandDropDownListOption method");
 
 		String ddText = ddDominantHand.getText();
-		Actions action = new Actions(driver);
-		action.moveToElement(ddDominantHand).click().perform();
-
+		log.debug(ddText);
+		hardWait(3);
+		clickOnElementUsingActionClass(ddDominantHand);
 		for (WebElement dominantHand : lstDominantHandOptions) {
 			try {
 				if (!(dominantHand.getText().equals(ddText))) {

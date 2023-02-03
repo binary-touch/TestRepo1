@@ -206,10 +206,10 @@ public class EditOrRemovePartnerPage extends DUPRBaseAutomationPage {
 	public void clickOnRemovePartnerButton() {
 		log.info("Starting of clickOnRemovePartnerButton method");
 
+		hardWait(3);
 		clickOnWebElement(btnRemovePartner);
 
 		log.info("Ending of clickOnRemovePartnerButton method");
-
 	}
 
 	public void clickOnAddPartnerRadioButton() {

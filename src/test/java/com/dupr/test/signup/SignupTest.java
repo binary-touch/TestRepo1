@@ -331,7 +331,7 @@ public class SignupTest extends DUPRBaseAutomationTest {
 	@Story("Test case #14, Verify Resend link  button functionality with DUPR account already exists")
 	public void verifyResendLinkWithEmailNotExistedDUPRAccount() {
 		logger.info("Starting of verifyResendLinkWithEmailNotExistedDUPRAccount method");
-		emailid = testDataProp.getProperty("email") + DUPRSignUpPage.randomNumber(4) + "@gmail.com";
+		emailid = testDataProp.getProperty("email") + signupPage.randomNumber(4) + "@gmail.com";
 
 		signupPage.setEmailTextBox(emailid);
 		signupPage.hardWait(3);

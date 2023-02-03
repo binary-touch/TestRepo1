@@ -158,7 +158,6 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 			} catch (Exception e) {
 				clickOnElement(btnBack);
 			}
-
 		}
 
 		log.info("Ending of clickOnBracketNameLink method");

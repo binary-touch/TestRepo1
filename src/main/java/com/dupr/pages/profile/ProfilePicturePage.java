@@ -20,7 +20,7 @@ public class ProfilePicturePage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//input[@type='file']")
 	private WebElement fileChoose;
-	
+
 	@B2BFindBy(xpath = "//div[contains(@class, 'MuiBox-root css-')]/label[text()='Choose file']")
 	private WebElement btnChooseFile;
 
@@ -39,7 +39,9 @@ public class ProfilePicturePage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//button[@aria-label=\"close\"]")
 	private WebElement iconClose;
 
-	//@B2BFindBy(xpath = "//div[@class='MuiDialogActions-root MuiDialogActions-spacing css-v0512d']/button[contains(@class,'MuiButton-contained')]/preceding-sibling::button")
+	// @B2BFindBy(xpath = "//div[@class='MuiDialogActions-root
+	// MuiDialogActions-spacing
+	// css-v0512d']/button[contains(@class,'MuiButton-contained')]/preceding-sibling::button")
 	@B2BFindBy(xpath = "//button[text()='Cancel']")
 	private WebElement btnCancel;
 
@@ -102,8 +104,12 @@ public class ProfilePicturePage extends DUPRBaseAutomationPage {
 
 	public void clickOnCameraIcon() {
 		log.info("Starting of clickOnCameraIcon method");
-
-		elementClick(iconCamera);
+		
+		try {
+			clickOnElementUsingActionClass(iconCamera);
+		} catch (Exception e) {
+			clickOnWebElement(iconCamera);
+		}
 
 		log.info("Ending of clickOnCameraIcon method");
 	}
@@ -114,7 +120,7 @@ public class ProfilePicturePage extends DUPRBaseAutomationPage {
 		System.out.println(isDisplayed(iconClose));
 		System.out.println(isDisplayed(btnCancel));
 		System.out.println(isDisplayed(btnChooseFile));
-		
+
 		boolean isProfilePicturePopupContains = false;
 
 		if (isDisplayed(iconClose) && isDisplayed(btnCancel) && isDisplayed(btnChooseFile)) {

@@ -1,6 +1,5 @@
 package com.dupr.pages.home;
 
-import java.text.ParseException;
 import java.util.List;
 
 import org.apache.log4j.LogManager;
@@ -288,16 +287,17 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 	public void clickOnValidateButton(String eventName) {
 		log.info("Starting of clickOnValidateButton method");
 
-		for(int i=0; i<=2;i++){
-			  try{
-				  driver.findElement(By.xpath("//p[contains(text(),'"+eventName+"')]/ancestor::div[contains(@class, 'MuiGrid-grid-xs-8')]/following-sibling::div//button")).click();
-			     break;
-			  }
-			  catch(Exception e){
-			     System.out.println(e.getMessage());
-			  }
+		for (int i = 0; i <= 2; i++) {
+			try {
+				driver.findElement(By.xpath("//p[contains(text(),'" + eventName
+						+ "')]/ancestor::div[contains(@class, 'MuiGrid-grid-xs-8')]/following-sibling::div//button"))
+						.click();
+				break;
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
 			}
-		
+		}
+
 		log.info("Ending of clickOnValidateButton method");
 	}
 
@@ -372,13 +372,12 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 	public boolean isTickIconDisplayed() {
 		log.info("Starting of isTickIconDisplayed method");
 
-		
 		explicitWait(lstMatchDetailsBoxes);
 		boolean icon = false;
 
 		for (WebElement tickIcon : lstIconGreenTickMark) {
 			try {
-				if (isDisplayed(tickIcon)==true) {
+				if (isDisplayed(tickIcon) == true) {
 					icon = true;
 				}
 			} catch (Exception e) {
@@ -535,7 +534,7 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 		scrollIntoView(lblMatchHistory);
 		hardWait(2);
 		scrollDown(-200);
-		
+
 		System.out.println("Player name Index value: " + lstDoublesPlayerNames.size());
 		for (WebElement playerName : lstDoublesPlayerNames) {
 			try {
@@ -557,10 +556,10 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 		log.info("Starting of isPlayerPartnerButtonsDisplayed method");
 
 		boolean teamOneButton = false;
-		
+
 		scrollDown(-200);
 		explicitWait(lstDoublesPartner);
-		
+
 		log.debug("Doubles Player name Index value: " + lstDoublesPartner.size());
 		for (WebElement playerName : lstDoublesPartner) {
 			try {
@@ -640,16 +639,20 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 		log.info("Ending of clickOnOldestToNewestButton method");
 	}
 
-	public boolean isOldMatchDatesDisplayedTop() throws ParseException {
-		log.info("Starting of isOldMatchDatesDisplayedTop method");
-		List<WebElement> resultDateElements = driver
-				.findElements(By.xpath("//h6[contains(@class,'MuiTypography-root MuiTypography-subtitle2')]"));
-
-		// Assert.assertTrue(Collections.sort(resultDateElements.size()),resultDateElements);
-
-		return false;
-
-	}
+	/*
+	 * public boolean isOldMatchDatesDisplayedTop() throws ParseException {
+	 * log.info("Starting of isOldMatchDatesDisplayedTop method"); List<WebElement>
+	 * resultDateElements = driver .findElements(By.
+	 * xpath("//h6[contains(@class,'MuiTypography-root MuiTypography-subtitle2')]"))
+	 * ;
+	 * 
+	 * Assert.assertTrue(Collections.sort(resultDateElements.size()),
+	 * resultDateElements);
+	 * 
+	 * return false;
+	 * 
+	 * }
+	 */
 
 	public void clickOnClearFiltersButton() {
 		log.info("Starting of clickOnClearFiltersButton method");

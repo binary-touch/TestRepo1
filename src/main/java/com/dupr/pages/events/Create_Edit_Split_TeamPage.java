@@ -463,12 +463,14 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 		this.txtBoxSearchParticipant.sendKeys(randomAlphabet(1));
 
 		clickOnWebElement(rdoSelectParticipant);
+		clickOnWebElement(btnAddParticipant);
 		clickOnWebElement(btnAdd);
 
 		clickOnElement(btnAddParticipants);
 		this.txtBoxSearchParticipant.sendKeys(randomAlphabet(1));
 
 		clickOnWebElement(rdoSelectParticipant);
+		clickOnWebElement(btnAddParticipant);
 		clickOnWebElement(btnAdd);
 		clickOnWebElement(tabUnmatchedPlayes);
 

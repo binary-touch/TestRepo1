@@ -5,8 +5,10 @@ import java.util.List;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 import com.b2b.support.B2BFindBy;
 import com.b2b.support.B2BFindBys;
@@ -43,24 +45,27 @@ public class AntiScrappingCaptchaPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//button[text()='Add Partner']")
 	private WebElement btnAddPartner;
-	
+
 	@B2BFindBy(xpath = "//span[text()='Add Partner']")
 	private WebElement btnAddPartnerInKebabMenu;
 
-	@B2BFindBy(xpath = "//input[@type='radio']")
-	private WebElement rdoButton;
+	@B2BFindBy(xpath = "//div[text()='Add a Partner']/parent::div//following-sibling::div//div[contains(@class,'MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0')]//div[contains(@class,'MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6')]//h4[contains(@class,'MuiTypography-root MuiTypography-h4')]")
+	private WebElement rdoPartner;
 
 	@B2BFindBy(xpath = "//div[contains(@class,'MuiToolbar-gutters MuiToolbar-regular')]//button[text()='Add Partner']")
 	private WebElement btnAddAPartner;
 
-	@B2BFindBy(xpath = "//button[text()='Remove Partner']")
-	private WebElement btnRemovePartner;
-
 	@B2BFindBy(xpath = "//h4[text()='My Brackets']")
 	private WebElement btnMyBrackets;
 
+	@B2BFindBy(xpath = "//span[text()='Remove Partner']")
+	private WebElement btnRemovePartner;
+
 	@B2BFindBy(xpath = "//span[text()='Edit Partner']")
 	private WebElement btnEditPartner;
+
+	@B2BFindBys(@B2BFindBy(xpath = "//h4[contains(@class,'MuiTypography-root MuiTypography-h4 MuiTypography-noWrap')]"))
+	private List<WebElement> lnkBracketNames;
 
 	@B2BFindBy(xpath = "//button[text()='Cancel']")
 	private WebElement btnBracketcancel;
@@ -93,7 +98,7 @@ public class AntiScrappingCaptchaPage extends DUPRBaseAutomationPage {
 	private WebElement btnAddSingleDURPUser;
 
 	@B2BFindBy(xpath = "//button[text()='Cancel']")
-	private WebElement btnCancle;
+	private WebElement btnCancelInClubMemberPage;
 
 	@B2BFindBy(xpath = "//button[text()='Add a Match']")
 	private WebElement btnAddAMatch;
@@ -206,7 +211,7 @@ public class AntiScrappingCaptchaPage extends DUPRBaseAutomationPage {
 
 		log.info("Ending of clickOnBracketLabel method");
 	}
-	
+
 	public void clickOnAddPartberFromKebabMenu() {
 		log.info("Starting of clickOnAddPartberFromKebabMenu method");
 
@@ -214,18 +219,18 @@ public class AntiScrappingCaptchaPage extends DUPRBaseAutomationPage {
 
 		log.info("Ending of clickOnAddPartberFromKebabMenu method");
 	}
-	
+
 	public boolean isAddPartnerDisplayedInBracketsPage() {
 		log.info("Starting of isAddPartnerDisplayedInBracketsPage method");
 		log.info("Ending of isAddPartnerDisplayedInBracketsPage method");
-		
+
 		return btnAddPartnerInKebabMenu.isDisplayed();
 	}
-	
+
 	public boolean isEditPartnerDisplayedInBracketsPage() {
 		log.info("Starting of isEditPartnerDisplayedInBracketsPage method");
 		log.info("Ending of isEditPartnerDisplayedInBracketsPage method");
-		
+
 		return btnEditPartner.isDisplayed();
 	}
 
@@ -235,7 +240,6 @@ public class AntiScrappingCaptchaPage extends DUPRBaseAutomationPage {
 		clickOnWebElement(btnkebabBracket);
 
 		log.info("Ending of clickOnBracketKebabButton method");
-
 	}
 
 	public void clickOnEditPartner() {
@@ -249,12 +253,51 @@ public class AntiScrappingCaptchaPage extends DUPRBaseAutomationPage {
 
 	}
 
-	public void clickOnRadioButton() {
-		log.info("Starting of clickOnRadioButton Method");
+	public void clickOnAddPartnerRadioButton() {
+		log.info("Starting of clickOnAddPartnerRadioButton method");
 
-		elementClick(rdoButton);
+		hardWait(5);
+		try {
 
-		log.info("Ending of clickOnRadioButton Method");
+			Actions act = new Actions(driver);
+
+			for (int i = 0; i < 7; i++) {
+				hardWait(2);
+				act.sendKeys(Keys.TAB).build().perform();
+			}
+
+			act.sendKeys(Keys.SPACE).build().perform();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		log.info("Ending of clickOnAddPartnerRadioButton method");
+
+	}
+
+	public void clickOnBracketNameLink() {
+		log.info("Starting of clickOnBracketNameLink method");
+
+		for (int i = 1; i < lnkBracketNames.size(); i++) {
+			this.hardWait(2);
+			driver.findElement(
+					By.xpath((("(//h4[contains(@class,'MuiTypography-root MuiTypography-h4 MuiTypography-noWrap')])["
+							+ i + "]"))))
+					.click();
+
+			this.hardWait(5);
+			try {
+				if ((isDisplayed(btnAddParticipants) == true)) {
+					clickOnElement(btnAddParticipants);
+					break;
+				}
+			} catch (Exception e) {
+				clickOnElement(btnBack);
+			}
+		}
+
+		log.info("Ending of clickOnBracketNameLink method");
 	}
 
 	public void clickOnMyBrackets() {
@@ -271,7 +314,20 @@ public class AntiScrappingCaptchaPage extends DUPRBaseAutomationPage {
 	public void clickOnAddAPartnerButton() {
 		log.info("Starting of clickOnAddAPartnerButton method");
 
-		clickOnWebElement(btnAddAPartner);
+		try {
+
+			Actions act = new Actions(driver);
+
+			for (int i = 0; i < 2; i++) {
+				hardWait(2);
+				act.sendKeys(Keys.TAB).build().perform();
+			}
+
+			act.sendKeys(Keys.SPACE).build().perform();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		log.info("Ending of clickOnAddAPartnerButton method");
 	}
@@ -355,6 +411,14 @@ public class AntiScrappingCaptchaPage extends DUPRBaseAutomationPage {
 		log.info("Ending of clickOnAddYourOpponentButton method");
 	}
 
+	public void clickOnRemovePartnerButton() {
+		log.info("Starting of clickOnRemovePartnerButton method");
+
+		clickOnWebElement(btnRemovePartner);
+
+		log.info("Ending of clickOnRemovePartnerButton method");
+	}
+
 	public void clickOnAddPlayersDropdown() {
 		log.info("Starting of clickOnAddPlayersDropdown method");
 
@@ -371,12 +435,12 @@ public class AntiScrappingCaptchaPage extends DUPRBaseAutomationPage {
 		log.info("Ending of clickOnAddSingleDURPUserButton method");
 	}
 
-	public void clickOnCancelButtonInClunMemberPage() {
-		log.info("Starting of clickOnCancelButtonInClunMemberPage method");
+	public void clickOnCancelButtonInClubMemberPage() {
+		log.info("Starting of clickOnCancelButtonInClubMemberPage method");
 
-		clickOnWebElement(btnCancle);
+		clickOnWebElement(btnCancelInClubMemberPage);
 
-		log.info("Ending of clickOnCancelButtonInClunMemberPage method");
+		log.info("Ending of clickOnCancelButtonInClubMemberPage method");
 	}
 
 	public void clickOnAddAMatchButton() {

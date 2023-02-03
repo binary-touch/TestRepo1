@@ -813,6 +813,15 @@ public class UserDashboardPage extends DUPRBaseAutomationPage {
 
 		log.info("Ending of clickOnResultsInstructionIcon method");
 	}
+	
+	public void clickOnSearchPlayers() {
+		log.info("Starting of clickOnSearchPlayers method");
+
+		clickOnWebElement(mnuSearchPlayers);
+		this.hardWait(3);
+
+		log.info("Ending of clickOnSearchPlayers method");
+	}
 
 	public String getResultsInstructionDecription() {
 		log.info("Starting of getResultsInstructionDecription method");
@@ -840,5 +849,39 @@ public class UserDashboardPage extends DUPRBaseAutomationPage {
 		log.info("Ending of getUserInstructionDecription method");
 
 		return getText(txtPerformance);
+	}
+	
+	public void clickOnShareButton() {
+		log.info("Starting of clickOnSettings method");
+
+		this.hardWait(3);
+		clickOnWebElement(iconShare);
+		this.hardWait(2);
+
+		log.info("Ending of clickOnSettings method");
+	}
+
+	public void clickOnMessageIcon() {
+		log.info("Starting of clickOnMessageIcon method");
+		
+		this.hardWait(3);
+
+		try {
+			btnMessage.click();
+			this.hardWait(3);
+			
+		} catch (Exception e) {
+			
+			elementClick(btnMessage);
+		}
+		log.info("Ending of clickOnMessageIcon method");
+	}
+	
+	public void clickOnSettings() {
+		log.info("Starting of clickOnSettings method");
+
+		clickOnWebElement(btnSettings);
+
+		log.info("Ending of clickOnSettings method");
 	}
 }

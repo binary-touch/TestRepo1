@@ -45,7 +45,7 @@ public class RemoveMemberTest extends DUPRBaseAutomationTest {
 		logger.info("Starting of verifyMembersTab method");
 
 		clubLogoPage.clickOnMyClubsTab();
-		clubLogoPage.clickOnClub();
+		removeMemberPage.clickOnClubNameLink();
 		clubLogoPage.hardWait(3);
 		removeMemberPage.clickOnMembersTab();
 
@@ -58,11 +58,11 @@ public class RemoveMemberTest extends DUPRBaseAutomationTest {
 	@Story("Test case #2, Verify club member details")
 	public void verifyClubMember() {
 		logger.info("Starting of verifyClubMember method");
-		if (removeMemberPage.getDoubles() == false) {
-			Assert.assertTrue(removeMemberPage.isClubMemberContains());
-			Assert.assertEquals(removeMemberPage.getDoublesTxt(), expectedAssertionsProp.getProperty("member.doubles"));
-			Assert.assertEquals(removeMemberPage.getSinglesTxt(), expectedAssertionsProp.getProperty("member.singles"));
-		}
+
+		Assert.assertTrue(removeMemberPage.isClubMemberContains());
+		Assert.assertEquals(removeMemberPage.getDoublesTxt(), expectedAssertionsProp.getProperty("member.doubles"));
+		Assert.assertEquals(removeMemberPage.getSinglesTxt(), expectedAssertionsProp.getProperty("member.singles"));
+
 		logger.info("Ending of verifyClubMember method");
 	}
 
@@ -72,14 +72,14 @@ public class RemoveMemberTest extends DUPRBaseAutomationTest {
 	@Story("Test case #3, Verify kebab menu functionality")
 	public void verifyKebabMenu() {
 		logger.info("Starting of verifyKebabMenu method");
-		if (removeMemberPage.getDoubles() == false) {
-			clubMemberName = removeMemberPage.getMemberNameTxt();
 
-			clubLogoPage.hardWait(2);
-			removeMemberPage.clickOnKebabMenu();
-			clubLogoPage.hardWait(1);
-			removeMemberPage.clickOnRemoveButton();
-		}
+		clubMemberName = removeMemberPage.getMemberNameTxt();
+
+		clubLogoPage.hardWait(2);
+		removeMemberPage.clickOnKebabMenu();
+		clubLogoPage.hardWait(1);
+		removeMemberPage.clickOnRemoveButton();
+
 		logger.info("Ending of verifyKebabMenu method");
 	}
 
@@ -89,10 +89,8 @@ public class RemoveMemberTest extends DUPRBaseAutomationTest {
 	@Story("Test case #4, Verify removed club member")
 	public void verifyRemovedMember() {
 		logger.info("Starting of verifyKebabMenu method");
-		String removedMemberName = removeMemberPage.getRemovedMemberNameTxt();
 
-		removeMemberPage.clickOnBackArrowButton();
-		removeMemberPage.clickOnSearch(removedMemberName);
+		removeMemberPage.clickOnSearch(clubMemberName);
 
 		Assert.assertEquals(removeMemberPage.getNoResultsTxt(), expectedAssertionsProp.getProperty("member.removed"));
 

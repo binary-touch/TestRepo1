@@ -10,8 +10,10 @@ import org.testng.annotations.Test;
 import com.b2b.common.WebDriversEnum;
 import com.dupr.pages.addamatch.AddAMatchPage;
 import com.dupr.pages.addamatch.AddClubMatchPage;
+import com.dupr.pages.clubs.BrowseClubsPage;
 import com.dupr.pages.clubs.ClubLogoPage;
 import com.dupr.pages.clubs.EditClubInfoPage;
+import com.dupr.pages.clubs.MyClubsPage;
 import com.dupr.pages.players.SearchPlayersPage;
 import com.dupr.test.CommonBaseTest;
 
@@ -28,6 +30,8 @@ public class AddClubMatchTest extends CommonBaseTest {
 	private EditClubInfoPage editClubInfoPage = null;
 	protected SearchPlayersPage searchPlayersPage = null;
 	private AddClubMatchPage addClubMatchDirectorOnlyPage = null;
+	private MyClubsPage myClubsPage = null;
+	private BrowseClubsPage browseClubsPage = null;
 
 	@BeforeClass
 	@Parameters({ "browser", "siteURL", "directorEmail", "directorPassword" })
@@ -40,6 +44,8 @@ public class AddClubMatchTest extends CommonBaseTest {
 		this.clubLogoPage = new ClubLogoPage(this.driver);
 		this.editClubInfoPage = new EditClubInfoPage(this.driver);
 		this.searchPlayersPage = new SearchPlayersPage(this.driver);
+		this.myClubsPage = new MyClubsPage(this.driver);
+		this.browseClubsPage = new BrowseClubsPage(this.driver);
 
 		this.addClubMatchDirectorOnlyPage = new AddClubMatchPage(this.driver);
 
@@ -68,6 +74,18 @@ public class AddClubMatchTest extends CommonBaseTest {
 
 		driver.navigate().back();
 		clubLogoPage.clickOnMyClubsTab();
+		clubLogoPage.hardWait(3);
+		try {
+			if (clubLogoPage.isClubsDisplayedInMyClubs()) {
+				clubLogoPage.clickOnClub();
+			} else {
+				myClubsPage.clickOnBrowseClubsButton();
+				Assert.assertTrue(browseClubsPage.isBrowseClubsPageContains());
+				clubLogoPage.searchClubWithClubName();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		clubLogoPage.clickOnClub();
 		Assert.assertTrue(editClubInfoPage.isClubPageContains());
@@ -88,7 +106,7 @@ public class AddClubMatchTest extends CommonBaseTest {
 
 		addClubMatchDirectorOnlyPage.clickOnAddYourselfAsPlayerCheckbox();
 		Assert.assertTrue(addClubMatchDirectorOnlyPage.isDirectorNameDisplayedItSelf());
-		
+
 		addAMatchPage.clickOnSinglesButton();
 		addClubMatchDirectorOnlyPage.clickOnAddFirstOpponentButton();
 		// Assert.assertTrue(addAMatchPage.isAddPlayerPageContains());
@@ -260,7 +278,7 @@ public class AddClubMatchTest extends CommonBaseTest {
 		logger.info("Starting of ValidatClubMatchFunctionalityInMatchesTab method");
 
 		addClubMatchDirectorOnlyPage.clickOnMatchesButton();
-		//addClubMatchDirectorOnlyPage.isMatchesTabContains();
+		// addClubMatchDirectorOnlyPage.isMatchesTabContains();
 
 		logger.info("Ending of ValidatClubMatchFunctionalityInMatchesTab method");
 	}

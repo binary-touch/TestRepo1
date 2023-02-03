@@ -600,8 +600,8 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 	}
 
 	public String getStreetAddressText() {
-		logger.info("Starting of selelctReviewDUPRPoliciesCheckBox method");
-		logger.info("Ending of selelctReviewDUPRPoliciesCheckBox method");
+		logger.info("Starting of getStreetAddressText method");
+		logger.info("Ending of getStreetAddressText method");
 
 		return getText(lblStreetAddress);
 	}

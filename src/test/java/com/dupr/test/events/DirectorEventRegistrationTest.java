@@ -50,9 +50,9 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 		logger.info("Starting of VerifyRegisterFunctionalityWithFreeEventAndBracket method");
 
 		this.VerifyAddEventFunctionality();
-		this.VerifyFreeBracketWithEventSinglesTypeAsRoundRobin();
+		this.verifyFreeBracketWithSinglesTypeAndRoundRobinEvent();
 
-		addEventPage.clickonEventButton();
+		addEventPage.clickOnEventsTab();
 
 		logger.info("Ending of VerifyRegisterFunctionalityWithFreeEventAndBracket method");
 	}
@@ -192,14 +192,14 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 		logger.info("Starting of VerifyRegisterFunctionalityInRegistrationClosedEvent method");
 
 		this.VerifyAddEventFunctionality();
-		this.VerifyFreeBracketWithEventTypeAsRoundRobin();
+		this.verifyFreeBracketWithRoundRobinEventType();
 
-		addEventPage.clickonEventButton();
+		addEventPage.clickOnEventsTab();
 		// directorEventRegistrationPage.isRegisterButtonDisplayedForOnGoingEventCard();
 		Assert.assertFalse(directorEventRegistrationPage.isRegisterButtonDisplayedForRegistrationClosedEventCard());
 		logger.info("Ending of VerifyRegisterFunctionalityInRegistrationClosedEvent method");
-		addBracketPage.clickonBackButton();
-		addEventPage.clickonEventButton();
+		addBracketPage.clickOnBackButton();
+		addEventPage.clickOnEventsTab();
 	}
 
 	@Test(priority = 9, description = "Verify Register Functionality In Upcoming Event", groups = "sanity")
@@ -212,12 +212,12 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 		// this.VerifyAddEventFunctionality();
 		// this.VerifyFreeBracketWithEventTypeAsRoundRobin();
 
-		addEventPage.clickonEventButton();
+		addEventPage.clickOnEventsTab();
 		// directorEventRegistrationPage.isRegisterButtonDisplayedForOnGoingEventCard();
 		Assert.assertFalse(directorEventRegistrationPage.isRegisterButtonDisplayedForUpcomingEventCard());
 		logger.info("Ending of VerifyRegisterFunctionalityInUpcomingEvent method");
-		addBracketPage.clickonBackButton();
-		addEventPage.clickonEventButton();
+		addBracketPage.clickOnBackButton();
+		addEventPage.clickOnEventsTab();
 	}
 
 	@Test(priority = 10, description = "Verify Register Functionality In Ongoing Event", groups = "sanity")
@@ -230,12 +230,12 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 		this.VerifyAddEventFunctionality();
 		// this.VerifyFreeBracketWithEventTypeAsRoundRobin();
 
-		addEventPage.clickonEventButton();
+		addEventPage.clickOnEventsTab();
 		// directorEventRegistrationPage.isRegisterButtonDisplayedForOnGoingEventCard();
 		Assert.assertFalse(directorEventRegistrationPage.isRegisterButtonDisplayedForOnGoingEventCard());
 		logger.info("Ending of VerifyRegisterFunctionalityInOngoingEvent method");
-		addBracketPage.clickonBackButton();
-		addEventPage.clickonEventButton();
+		addBracketPage.clickOnBackButton();
+		addEventPage.clickOnEventsTab();
 	}
 
 	@Test(priority = 11, description = "Verify Register Functionality In Complete Event", groups = "sanity")
@@ -248,12 +248,12 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 		// this.VerifyAddEventFunctionality();
 		// this.VerifyFreeBracketWithEventTypeAsRoundRobin();
 
-		addEventPage.clickonEventButton();
+		addEventPage.clickOnEventsTab();
 		// directorEventRegistrationPage.isRegisterButtonDisplayedForOnGoingEventCard();
 		Assert.assertFalse(directorEventRegistrationPage.isRegisterButtonDisplayedForCompleteEventCard());
 		logger.info("Ending of VerifyRegisterFunctionalityInCompleteEvent method");
-		addBracketPage.clickonBackButton();
-		addEventPage.clickonEventButton();
+		addBracketPage.clickOnBackButton();
+		addEventPage.clickOnEventsTab();
 	}
 
 	@Test(priority = 12, description = "Verify Register Functionality In Open Registered Player Event", groups = "sanity")
@@ -266,11 +266,11 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 		// this.VerifyAddEventFunctionality();
 		// this.VerifyFreeBracketWithEventTypeAsRoundRobin();
 
-		addEventPage.clickonEventButton();
+		addEventPage.clickOnEventsTab();
 		// directorEventRegistrationPage.isRegisterButtonDisplayedForOnGoingEventCard();
 		Assert.assertFalse(directorEventRegistrationPage.isRegisterButtonDisplayedForOpenEventCard());
 		logger.info("Ending of VerifyRegisterFunctionalityInCompleteEvent method");
-		addBracketPage.clickonBackButton();
+		addBracketPage.clickOnBackButton();
 		// addEventPage.clickonEventButton();
 	}
 
@@ -283,9 +283,9 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 
 		addEventPage.clickonAddEventButton();
 		this.VerifyAddEventFunctionality();
-		this.VerifyFreeBracketWithEventTypeAsRoundRobin();
+		this.verifyFreeBracketWithRoundRobinEventType();
 
-		addEventPage.clickonEventButton();
+		addEventPage.clickOnEventsTab();
 		addEventPage.selectRecentlyAddedEvent(testDataProp.getProperty("event.name"));
 
 		this.VerifyRegisterFunctionality();

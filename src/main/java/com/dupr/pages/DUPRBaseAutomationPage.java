@@ -28,14 +28,14 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 		log.info("Ending of DUPRBaseAutomationPage");
 	}
 
-	public static String randomNumber(int digits) {
+	public String randomNumber(int digits) {
 		log.info("Starting of randomNumber method");
 		log.info("Ending of randomNumber method");
 
 		return String.valueOf(RandomStringUtils.randomNumeric(digits));
 	}
 
-	public static String randomAlphabet(int noOfAlphabets) {
+	public String randomAlphabet(int noOfAlphabets) {
 		log.info("Starting of randomAlphabet method");
 		log.info("Ending of randomAlphabet method");
 

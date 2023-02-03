@@ -18,7 +18,7 @@ public class AddClubMatchPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//input[@data-indeterminate='false']")
 	private WebElement chkAddYourselfAsPlayerInThisMatch;
 
-	@B2BFindBy(xpath = "//h4[@class='MuiTypography-root MuiTypography-h4 css-12grqhn']")
+	@B2BFindBy(xpath = "(//h4[text()='Team 1']/parent::div//following-sibling::div//h4[contains(@class,'MuiTypography-root MuiTypography-h4')])[1]")
 	private WebElement btnDirectorAddedItSelf;
 
 	@B2BFindBy(xpath = "//button[text()='Add First Opponent']")

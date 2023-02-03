@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -90,12 +91,18 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 	@B2BFindBys(@B2BFindBy(xpath = "//h5[text()='As a Director']/..//div[contains(@class,'MuiGrid-item MuiGrid-grid-xs-12')]/div//h4"))
 	private List<WebElement> lstClubs;
 
+	@B2BFindBys(@B2BFindBy(xpath = "//div/div[contains(@class,'MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation3')]//h4"))
+	private List<WebElement> lstClubsInBrowseClubsPage;
+	
+	@B2BFindBy(xpath = "//input[@id='Search']")
+	private WebElement txtBoxSearch;
+
 	@B2BFindBy(xpath = "//span[contains(@class,'MuiBadge-root MuiBadge-root')]/div[contains(@class,'MuiAvatar-root MuiAvatar-circular')]/img")
 	private WebElement imgClubLogo;
 
 	@B2BFindBy(xpath = "//*[name()='path' and contains(@data-name,'Path 1260')]")
 	private WebElement imgEmptyClubLogo;
-	
+
 	@B2BFindBy(xpath = "//p[text()='Select an image to upload']")
 	private WebElement lblSelectAnImageToUpload;
 
@@ -191,7 +198,7 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 
 		return isDisplayed(imgEmptyClubLogo);
 	}
-	
+
 	public String getSelectImageToUploadText() {
 		log.info("Starting of getSelectImageToUploadText method");
 		System.out.println(getText(lblSelectAnImageToUpload));
@@ -210,7 +217,11 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 	public void clickOnMyClubsTab() {
 		log.info("Starting of clickOnMyClubsTab method");
 
-		clickOnWebElement(tabMyClubs);
+		try {
+			clickOnElement(tabMyClubs);
+		} catch (Exception e) {
+			clickOnWebElement(tabMyClubs);
+		}
 
 		log.info("Ending of clickOnMyClubsTab method");
 	}
@@ -219,10 +230,84 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 		log.info("Starting of clickOnClub method");
 
 		for (WebElement club : lstClubs) {
-			clickOnWebElement(club);
+			hardWait(5);
+			try {
+				clickOnElementUsingActionClass(club);
+			} catch (Exception e) {
+				for (int i = 0; i <= 3;) {
+					this.lstClubs.get(i).click();
+					break;
+				}
+			}
+
 			break;
 		}
 		log.info("Ending of clickOnClub method");
+	}
+	
+	public void searchClubWithClubName() {
+		log.info("Starting of searchClubWithClubName method");
+
+		this.txtBoxSearch.click();
+		this.txtBoxSearch.sendKeys(Keys.CONTROL + "A", Keys.BACK_SPACE);
+		try {
+			sendKeys(txtBoxSearch, "jvdvdn");
+			this.txtBoxSearch.sendKeys(Keys.ENTER);
+			try {
+				hardWait(3);
+				clickOnElementUsingActionClass(lstClubsInBrowseClubsPage.get(0));
+			} catch (Exception e) {
+				hardWait(3);
+				this.lstClubsInBrowseClubsPage.get(0).click();
+			}
+			
+		} catch (Exception e) {
+			sendKeys(txtBoxSearch, "gegegerge");
+			this.txtBoxSearch.sendKeys(Keys.ENTER);
+			try {
+				clickOnElementUsingActionClass(lstClubsInBrowseClubsPage.get(0));
+			} catch (Exception e1) {
+				this.lstClubsInBrowseClubsPage.get(0).click();
+			}
+		}
+
+		log.info("Ending of searchClubWithClubName method");
+	}
+	
+	public void clickOnClubInBrowsePlayersPage() {
+		log.info("Starting of clickOnClubInBrowsePlayersPage method");
+
+		
+		for (WebElement club : lstClubsInBrowseClubsPage) {
+			hardWait(5);
+			try {
+				clickOnElementUsingActionClass(club);
+			} catch (Exception e) {
+				for (int i = 0; i <= 3;) {
+					this.lstClubsInBrowseClubsPage.get(i).click();
+					break;
+				}
+			}
+
+			break;
+		}
+		log.info("Ending of clickOnClubInBrowsePlayersPage method");
+	}
+
+	public boolean isClubsDisplayedInMyClubs() {
+		log.info("Starting of isClubsDisplayedInMyClubs method");
+
+		boolean clubState = false;
+		for (WebElement club : lstClubs) {
+			hardWait(5);
+			if (club.isDisplayed() == true) {
+				clubState = true;
+				break;
+			}
+		}
+		log.info("Ending of isClubsDisplayedInMyClubs method");
+
+		return clubState;
 	}
 
 	public boolean isProfilePictureDisplayed() {

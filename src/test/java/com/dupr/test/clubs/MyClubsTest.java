@@ -48,7 +48,6 @@ public class MyClubsTest extends CommonBaseTest {
 		Assert.assertTrue(myClubsPage.isClubsPageContains());
 
 		if (myClubsPage.isClubsAvailableOnClubsPage() == true) {
-
 			Assert.assertTrue(true);
 		} else {
 			Assert.assertFalse(false);
