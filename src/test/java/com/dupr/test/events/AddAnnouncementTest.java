@@ -111,6 +111,7 @@ public class AddAnnouncementTest extends DUPRBaseAutomationTest {
 		addAnnouncementPage.clickOnAddAnnouncementButton();
 		endEventpage.hardWait(2);
 		addAnnouncementPage.setDescription(testDataProp.getProperty("primary.location"));
+		addAnnouncementPage.clickOnSendButton();
 		endEventpage.hardWait(2);
 
 		Assert.assertEquals(addAnnouncementPage.getMinimumCharactersTxt(),

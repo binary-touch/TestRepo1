@@ -58,8 +58,8 @@ public class AntiScrappingCaptchaTest extends DUPRBaseAutomationTest {
 	@Description("Test case #1, Verify AntiScrapping Captcha In Browse Events Page")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #1, Verify Add Announcement functionality")
-	public void VerifyCaptchaOnBrowseEvents() {
-		logger.info("Starting of VerifyCaptchaOnBrowseEvents method");
+	public void verifyAntiScrappingCaptchaOnBrowseEvents() {
+		logger.info("Starting of verifyAntiScrappingCaptchaOnBrowseEvents method");
 
 		browseEventsPage.clickOnMyEventButton();
 
@@ -73,15 +73,15 @@ public class AntiScrappingCaptchaTest extends DUPRBaseAutomationTest {
 
 		Assert.assertTrue(antiScrappingCaptchaPage.isAntiScrappingCaptchaDisplayed());
 
-		logger.info("Ending of VerifyCaptchaOnBrowseEvents method");
+		logger.info("Ending of verifyAntiScrappingCaptchaOnBrowseEvents method");
 	}
 
 	@Test(priority = 2, description = "Verify AntiScrapping Captcha In Browse Club Page", groups = "sanity")
 	@Description("Test case #1, Verify AntiScrapping Captcha In Browse Club Page")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #1, Verify AntiScrapping Captcha In Browse Club Page")
-	public void VerifyCaptchaOnBrowseClub() {
-		logger.info("Starting of VerifyCaptchaOnBrowseClub method");
+	public void verifyAntiScrappingCaptchaOnBrowseClub() {
+		logger.info("Starting of verifyAntiScrappingCaptchaOnBrowseClub method");
 
 		antiScrappingCaptchaPage.goTodefaultContent();
 
@@ -91,15 +91,15 @@ public class AntiScrappingCaptchaTest extends DUPRBaseAutomationTest {
 
 		Assert.assertTrue(antiScrappingCaptchaPage.isAntiScrappingCaptchaDisplayed());
 
-		logger.info("Ending of VerifyCaptchaOnBrowseClub method");
+		logger.info("Ending of verifyAntiScrappingCaptchaOnBrowseClub method");
 	}
 
 	@Test(priority = 3, description = "Verify AntiScrapping Captcha In Browse Players Page", groups = "sanity")
 	@Description("Test case #3, Verify AntiScrapping Captcha In Browse Players Page")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #3, Verify AntiScrapping Captcha In Browse Players Page")
-	public void VerifyCaptchaOnBrowsePlayers() {
-		logger.info("Starting of VerifyCaptchaOnBrowsePlayers method");
+	public void verifyAntiScrappingCaptchaOnBrowsePlayers() {
+		logger.info("Starting of verifyAntiScrappingCaptchaOnBrowsePlayers method");
 
 		antiScrappingCaptchaPage.goTodefaultContent();
 
@@ -109,15 +109,15 @@ public class AntiScrappingCaptchaTest extends DUPRBaseAutomationTest {
 
 		Assert.assertTrue(antiScrappingCaptchaPage.isAntiScrappingCaptchaDisplayed());
 
-		logger.info("Ending of VerifyCaptchaOnBrowsePlayers method");
+		logger.info("Ending of verifyAntiScrappingCaptchaOnBrowsePlayers method");
 	}
 
 	@Test(priority = 4, description = "Verify AntiScrapping Captcha In Add Partner Page", groups = "sanity")
 	@Description("Test case #4, Verify AntiScrapping Captcha In Add Partner Page")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #4, Verify AntiScrapping Captcha In Add Partner Page")
-	public void VerifyCaptchaOnAddPartner() {
-		logger.info("Starting of VerifyCaptchaOnAddPartner method");
+	public void verifyAntiScrappingCaptchaOnAddPartner() {
+		logger.info("Starting of verifyAntiScrappingCaptchaOnAddPartner method");
 
 		antiScrappingCaptchaPage.goTodefaultContent();
 
@@ -148,15 +148,15 @@ public class AntiScrappingCaptchaTest extends DUPRBaseAutomationTest {
 			antiScrappingCaptchaPage.clickOnAddAPartnerButton();
 		}
 
-		logger.info("Ending of VerifyCaptchaOnAddPartner method");
+		logger.info("Ending of verifyAntiScrappingCaptchaOnAddPartner method");
 	}
 
 	@Test(priority = 5, description = "Verify AntiScrapping Captcha In Edit Partner Page", groups = "sanity")
 	@Description("Test case #5, Verify AntiScrapping Captcha In Edit Partner Page")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #5, Verify AntiScrapping Captcha In Edit Partner Page")
-	public void VerifyCaptchaOnEditPartner() {
-		logger.info("Starting of VerifyCaptchaOnEditPartner method");
+	public void verifyAntiScrappingCaptchaOnEditPartner() {
+		logger.info("Starting of verifyAntiScrappingCaptchaOnEditPartner method");
 
 		antiScrappingCaptchaPage.goTodefaultContent();
 
@@ -186,15 +186,15 @@ public class AntiScrappingCaptchaTest extends DUPRBaseAutomationTest {
 			Assert.assertTrue(antiScrappingCaptchaPage.isAntiScrappingCaptchaDisplayed());
 		}
 
-		logger.info("Ending of VerifyCaptchaOnEditPartner method");
+		logger.info("Ending of verifyAntiScrappingCaptchaOnEditPartner method");
 	}
 
-	@Test(priority = 6, description = "Verify AntiScrapping Captcha On  Adds Participants ", groups = "sanity")
-	@Description("Test case #6, Verify AntiScrapping Captcha On  Adds Participants ")
+	@Test(priority = 6, description = "Verify AntiScrapping Captcha On Add Participants", groups = "sanity")
+	@Description("Test case #6, Verify AntiScrapping Captcha On Add Participants")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #6, Verify AntiScrapping Captcha On  Adds Participants ")
-	public void VerifyAntiScrappingCaptchaOnAddParticipants() {
-		logger.info("Starting of VerifyAntiScrappingCaptchaOnAddParticipants method");
+	@Story("Test case #6, Verify AntiScrapping Captcha On Add Participants")
+	public void verifyAntiScrappingCaptchaOnAddParticipants() {
+		logger.info("Starting of verifyAntiScrappingCaptchaOnAddParticipants method");
 
 		antiScrappingCaptchaPage.goTodefaultContent();
 
@@ -207,15 +207,15 @@ public class AntiScrappingCaptchaTest extends DUPRBaseAutomationTest {
 
 		Assert.assertTrue(antiScrappingCaptchaPage.isAntiScrappingCaptchaDisplayed());
 
-		logger.info("Ending of VerifyAntiScrappingCaptchaOnAddParticipants method");
+		logger.info("Ending of verifyAntiScrappingCaptchaOnAddParticipants method");
 	}
 
-	@Test(priority = 7, description = "Verify AntiScrapping Captcha On  Edit Team Page ", groups = "sanity")
-	@Description("Test case #7, Verify AntiScrapping Captcha On   Edit Team Page ")
+	@Test(priority = 7, description = "Verify AntiScrapping Captcha On Edit Team Page ", groups = "sanity")
+	@Description("Test case #7, Verify AntiScrapping Captcha On Edit Team Page ")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #7, Verify AntiScrapping Captcha On  Edit Team Page")
-	public void VerifyAntiScrappingCaptchaOnEditTeamPage() {
-		logger.info("Starting of VerifyAntiScrappingCaptchaOnEditTeamPage method");
+	@Story("Test case #7, Verify AntiScrapping Captcha On Edit Team Page")
+	public void verifyAntiScrappingCaptchaOnEditTeamPage() {
+		logger.info("Starting of verifyAntiScrappingCaptchaOnEditTeamPage method");
 
 		antiScrappingCaptchaPage.goTodefaultContent();
 
@@ -253,15 +253,15 @@ public class AntiScrappingCaptchaTest extends DUPRBaseAutomationTest {
 		antiScrappingCaptchaPage.clickOnAddPlayerButton();
 		Assert.assertTrue(antiScrappingCaptchaPage.isAntiScrappingCaptchaDisplayed());
 
-		logger.info("Ending of VerifyAntiScrappingCaptchaOnEditTeamPage method");
+		logger.info("Ending of verifyAntiScrappingCaptchaOnEditTeamPage method");
 	}
 
 	@Test(priority = 8, description = "Verify AntiScrapping Captcha On Add Partner/Opponent ", groups = "sanity")
 	@Description("Test case #8, Verify AntiScrapping Captcha OnAdd Partner/Opponent")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #8, Verify AntiScrapping Captcha On Add Partner/Opponent")
-	public void VerifyAntiScrappingCaptchaOnAddPartnerOrOpponent() throws InterruptedException {
-		logger.info("Starting of VerifyAntiScrappingCaptchaOnAddPartnerOrOpponent method");
+	public void verifyAntiScrappingCaptchaOnAddPartnerOrOpponent() {
+		logger.info("Starting of verifyAntiScrappingCaptchaOnAddPartnerOrOpponent method");
 
 		antiScrappingCaptchaPage.goTodefaultContent();
 
@@ -280,15 +280,15 @@ public class AntiScrappingCaptchaTest extends DUPRBaseAutomationTest {
 		antiScrappingCaptchaPage.clickOnAddYourOpponentButton();
 		Assert.assertTrue(antiScrappingCaptchaPage.isAntiScrappingCaptchaDisplayed());
 
-		logger.info("Ending of VerifyAntiScrappingCaptchaOnAddPartnerOrOpponent method");
+		logger.info("Ending of verifyAntiScrappingCaptchaOnAddPartnerOrOpponent method");
 	}
 
 	@Test(priority = 9, description = "Verify AntiScrapping Captcha On Director Add Players ", groups = "sanity")
 	@Description("Test case #9, Verify AntiScrapping Captcha On Director Add Players")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #9, Verify AntiScrapping Captcha On Director Add Players")
-	public void VerifyAntiScrappingCaptchaOnDirectorAddPlayers() {
-		logger.info("Starting of VerifyAntiScrappingCaptchaOnDirectorAddPlayers method");
+	public void verifyAntiScrappingCaptchaOnDirectorAddPlayers() {
+		logger.info("Starting of verifyAntiScrappingCaptchaOnDirectorAddPlayers method");
 
 		antiScrappingCaptchaPage.goTodefaultContent();
 		driver.get("https://stage.gamestoppedout.com/dashboard");
@@ -300,34 +300,50 @@ public class AntiScrappingCaptchaTest extends DUPRBaseAutomationTest {
 		antiScrappingCaptchaPage.clickOnAddSingleDURPUserButton();
 		Assert.assertTrue(antiScrappingCaptchaPage.isAntiScrappingCaptchaDisplayed());
 
-		logger.info("Ending of VerifyAntiScrappingCaptchaOnDirectorAddPlayers method");
+		logger.info("Ending of verifyAntiScrappingCaptchaOnDirectorAddPlayers method");
 	}
 
 	@Test(priority = 10, description = "Verify AntiScrapping Captcha On Club add a Match Add a player/opponent", groups = "sanity")
 	@Description("Test case #10, Verify AntiScrapping Captcha On Club add a Match Add a player/opponent")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #10, Verify AntiScrapping Captcha On Club add a Match Add a player/opponent")
-	public void VerifyAntiScrappingCaptchaOnClubAddAMatchAddAPlayerOrOpponent() {
-		logger.info("Starting of VerifyAntiScrappingCaptchaOnClubAddAMatchAddAPlayerOrOpponent method");
+	public void verifyAntiScrappingCaptchaInAddAPlayerOrOpponentWhileAddingAClubMatch() {
+		logger.info("Starting of verifyAntiScrappingCaptchaInAddAPlayerOrOpponentWhileAddingAClubMatch method");
 
 		antiScrappingCaptchaPage.goTodefaultContent();
 
 		driver.get("https://stage.gamestoppedout.com/dashboard");
 		antiScrappingCaptchaPage.hardWait(5);
 		
+		clubLogoPage.clickOnMyClubsTab();
+		clubLogoPage.hardWait(3);
+		try {
+			if (clubLogoPage.isClubsDisplayedInMyClubs()) {
+				clubLogoPage.clickOnClub();
+			} else {
+				antiScrappingCaptchaPage.clickOnBrowseClubsButton();
+				Assert.assertTrue(browseClubsPage.isBrowseClubsPageContains());
+				clubLogoPage.searchClubWithClubName();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		antiScrappingCaptchaPage.clickOnAddAMatchButton();
+		antiScrappingCaptchaPage.hardWait(2);
 		antiScrappingCaptchaPage.clickOnAddFirstPlayerButton();
 		Assert.assertTrue(antiScrappingCaptchaPage.isAntiScrappingCaptchaDisplayed());
 
-		logger.info("Ending of VerifyAntiScrappingCaptchaOnClubAddAMatchAddAPlayerOrOpponent method");
+		logger.info("Ending of verifyAntiScrappingCaptchaInAddAPlayerOrOpponentWhileAddingAClubMatch method");
 	}
 
-	@Test(priority = 11, description = "Verify AntiScrapping Captcha On Claim accounts on Sign up page", groups = "sanity")
-	@Description("Test case #11, Verify AntiScrapping Captcha On Claim accounts on Sign up page")
+	@Test(priority = 11, description = "Verify AntiScrapping Captcha On Claim accounts page", groups = "sanity")
+	@Description("Test case #11, Verify AntiScrapping Captcha On Claim accounts page")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #11, Verify AntiScrapping Captcha On Claim accounts on Sign up page")
-	public void VerifyAntiScrappingCaptchaOnClaimAccountOnSignUpPage() {
-		logger.info("Starting of VerifyAntiScrappingCaptchaOnClaimAccountOnSignUpPage method");
+	@Story("Test case #11, Verify AntiScrapping Captcha On Claim accounts page")
+	public void verifyAntiScrappingCaptchaOnClaimAccountPage() {
+		logger.info("Starting of verifyAntiScrappingCaptchaOnClaimAccountPage method");
+		
 		antiScrappingCaptchaPage.goTodefaultContent();
 
 		driver.get("https://stage.gamestoppedout.com/dashboard");
@@ -338,7 +354,7 @@ public class AntiScrappingCaptchaTest extends DUPRBaseAutomationTest {
 		antiScrappingCaptchaPage.clickOnSignUpButton();
 		Assert.assertTrue(antiScrappingCaptchaPage.isAntiScrappingCaptchaDisplayed());
 
-		logger.info("Ending of VerifyAntiScrappingCaptchaOnClaimAccountOnSignUpPage method");
+		logger.info("Ending of verifyAntiScrappingCaptchaOnClaimAccountPage method");
 	}
 
 	@AfterClass

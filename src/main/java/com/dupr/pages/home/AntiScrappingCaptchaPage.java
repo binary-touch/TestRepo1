@@ -100,8 +100,11 @@ public class AntiScrappingCaptchaPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//button[text()='Cancel']")
 	private WebElement btnCancelInClubMemberPage;
 
-	@B2BFindBy(xpath = "//button[text()='Add a Match']")
+	@B2BFindBy(xpath = "//button[contains(text(),'Add a Match')]")
 	private WebElement btnAddAMatch;
+	
+	@B2BFindBy(xpath = "//button[text()='Browse Clubs']")
+	private WebElement btnBrowseClubs;
 
 	@B2BFindBy(xpath = "//button[text()='Add First Player']")
 	private WebElement btnAddFirstPlayer;
@@ -258,7 +261,6 @@ public class AntiScrappingCaptchaPage extends DUPRBaseAutomationPage {
 
 		hardWait(5);
 		try {
-
 			Actions act = new Actions(driver);
 
 			for (int i = 0; i < 7; i++) {
@@ -449,6 +451,14 @@ public class AntiScrappingCaptchaPage extends DUPRBaseAutomationPage {
 		clickOnWebElement(btnAddAMatch);
 
 		log.info("Ending of clickOnAddAMatchButton method");
+	}
+	
+	public void clickOnBrowseClubsButton() {
+		log.info("Starting of clickOnBrowseClubsButton method");
+
+		clickOnWebElement(btnBrowseClubs);
+
+		log.info("Ending of clickOnBrowseClubsButton method");
 	}
 
 	public void clickOnAddFirstPlayerButton() {

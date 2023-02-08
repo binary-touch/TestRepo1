@@ -58,7 +58,7 @@ public class AddAnnouncementPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//div[@title='Underline']")
 	private WebElement btnUnderline;
 
-	@B2BFindBy(xpath = "//p[text()='Title is required']")
+	@B2BFindBy(xpath = "//p[text()='Subject is required']")
 	private WebElement txtTitleRequired;
 
 	@B2BFindBy(xpath = "//p[text()='Minimum 10 characters.']")

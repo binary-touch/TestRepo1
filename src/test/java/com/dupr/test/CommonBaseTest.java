@@ -128,7 +128,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 
 		clubLogoPage.clickOnMyClubsTab();
 		editClubInfoPage.clickOnSimbaOrganizerButton();
-		addEventPage.clickonAddEventButton();
+		addEventPage.clickOnAddEventButton();
 
 	 Assert.assertTrue(addEventPage.isEventInformationPageContains());
 
@@ -143,9 +143,8 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 
 		 Assert.assertTrue(addEventPage.isRemoveAndReplaceOptionsDisplayed());
 
-		addEventPage.setRefundPolicyEdit(testDataProp.getProperty("refund.policy"));
-
-		addEventPage.setHealthAndSafetyPolicyEdit(testDataProp.getProperty("health.and.safety"));
+		addEventPage.setRefundPolicy(testDataProp.getProperty("refund.policy"));
+		addEventPage.setHealthAndSafetyPolicy(testDataProp.getProperty("health.and.safety"));
 
 		addEventPage.clickOnNextStepButton();
 
@@ -221,14 +220,14 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		addBracketPage.selectRoundRobinEvent();
 		Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
 
-		addBracketPage.clickOnRegistrationStartDate();
-		addBracketPage.clickOnRegistrationEndDate();
-		addBracketPage.clickOnCompetitionStartDate();
-		addBracketPage.clickOnCompetitionEndDate();
+		addBracketPage.setRegistrationStartDate();
+		addBracketPage.setRegistrationEndDate();
+		addBracketPage.setCompetitionStartDate();
+		addBracketPage.setCompetitionEndDate();
 
 		addBracketPage.clickOnTimeZoneDropdown();
 		// Assert.assertTrue(addBracketPage.isTimeZoneListDisplayed());
-		// addBracketPage.clickOnCentalAmericanTimeZoneButton();
+		addBracketPage.clickOnCentalAmericanTimeZone();
 
 		addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("zero.value"));
 		addBracketPage.setBracketNonClubMemberPrice(testDataProp.getProperty("zero.value"));
@@ -296,14 +295,13 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		addBracketPage.selectRoundRobinEvent();
 		Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
 
-		addBracketPage.clickOnRegistrationStartDate();
-		addBracketPage.clickOnRegistrationEndDate();
-		addBracketPage.clickOnCompetitionStartDate();
-		addBracketPage.clickOnCompetitionEndDate();
+		addBracketPage.setRegistrationStartDate();
+		addBracketPage.setRegistrationEndDate();
+		addBracketPage.setCompetitionStartDate();
+		addBracketPage.setCompetitionEndDate();
 
 		addBracketPage.clickOnTimeZoneDropdown();
-		// Assert.assertTrue(addBracketPage.isTimeZoneListDisplayed());
-		// addBracketPage.clickOnCentalAmericanTimeZoneButton();
+		addBracketPage.clickOnCentalAmericanTimeZone();
 
 		addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("zero.value"));
 		addBracketPage.setBracketNonClubMemberPrice(testDataProp.getProperty("zero.value"));

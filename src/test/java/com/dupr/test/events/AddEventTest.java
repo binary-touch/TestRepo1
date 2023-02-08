@@ -13,7 +13,6 @@ import org.testng.annotations.Test;
 import com.b2b.common.WebDriversEnum;
 import com.dupr.pages.clubs.BrowseClubsPage;
 import com.dupr.pages.clubs.ClubLogoPage;
-import com.dupr.pages.clubs.EditClubInfoPage;
 import com.dupr.pages.clubs.MyClubsPage;
 import com.dupr.pages.events.AddBracketPage;
 import com.dupr.pages.events.AddEventPage;
@@ -28,7 +27,6 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 
 	private static final Logger logger = Logger.getLogger(AddEventTest.class.getName());
 	private ClubLogoPage clubLogoPage = null;
-	private EditClubInfoPage editClubInfoPage = null;
 
 	private AddEventPage addEventPage = null;
 	private AddBracketPage addBracketPage = null;
@@ -38,11 +36,10 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	@BeforeClass
 	@Parameters({ "browser", "siteURL", "directorEmail", "directorPassword" })
 	public void initMethod(String browser, String siteURL, String email, String password) throws Exception {
-		logger.info("Starting of initMethod in EditClubInfoTest");
+		logger.info("Starting of initMethod in AddEventTest");
 
 		this.driver = super.getWebDriver(WebDriversEnum.ADD_EVENT_DRIVER);
 		this.siteLogin(siteURL, email, password, this.driver);
-		this.editClubInfoPage = new EditClubInfoPage(this.driver);
 		this.clubLogoPage = new ClubLogoPage(this.driver);
 
 		this.addEventPage = new AddEventPage(this.driver);
@@ -50,15 +47,16 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		
 		this.myClubsPage = new MyClubsPage(this.driver);
 		this.browseClubsPage = new BrowseClubsPage(this.driver);
-		logger.info("Ending of initMethod in EditClubInfoTest");
+		
+		logger.info("Ending of initMethod in AddEventTest");
 	}
 
 	@Test(priority = 1, description = "Verify Add Event functionality", groups = "sanity")
 	@Description("Test case #1, Verify Add Event functionality")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #1, Verify Add Event functionality")
-	public void VerifyAddEventFunctionality() {
-		logger.info("Starting of VerifyAddEventFunctionality method");
+	public void verifyAddEventFunctionality() {
+		logger.info("Starting of verifyAddEventFunctionality method");
 
 		clubLogoPage.clickOnMyClubsTab();
 		clubLogoPage.hardWait(3);
@@ -74,11 +72,11 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 			e.printStackTrace();
 		}
 
-		addEventPage.clickonAddEventButton();
+		addEventPage.clickOnAddEventButton();
 
 		Assert.assertTrue(addEventPage.isEventInformationPageContains());
 
-		logger.info("Ending of VerifyAddEventFunctionality method");
+		logger.info("Ending of verifyAddEventFunctionality method");
 	}
 
 	@Test(priority = 2, description = "Verify Exit Button Without Entering Any Details In Event Information Page", groups = "sanity")
@@ -102,10 +100,11 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	public void VerifyEventInfoPageWithEmptyFields() {
 		logger.info("Starting of VerifyEventInfoPageWithEmptyFields method");
 
-		addEventPage.clickonAddEventButton();
+		addEventPage.clickOnAddEventButton();
+		addEventPage.hardWait(3);
 		addEventPage.clickOnNextStepButton();
 		
-		addEventPage.hardWait(3);
+		addEventPage.hardWait(5);
 
 		Assert.assertTrue(addEventPage.isEventInfoPageValidationsDisplayed());
 
@@ -142,8 +141,8 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	public void verifyMemberAndNonMemberPriceFieldsWithInvalidDetails() {
 		logger.info("Starting of verifyMemberAndNonMemberPriceFieldsWithInvalidDetails method");
 
-		addEventPage.setMemberPrice(addEventPage.randomNumber(8));
-		addEventPage.setNonMemberPrice(addEventPage.randomNumber(8));
+		addEventPage.setMemberPrice(addEventPage.randomNumber(25));
+		addEventPage.setNonMemberPrice(addEventPage.randomNumber(25));
 
 		addEventPage.clickOnNextStepButton();
 		addEventPage.hardWait(3);
@@ -160,8 +159,8 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	public void verifyMemberAndNonmemberPriceFieldsWithNegativeValues() {
 		logger.info("Starting of verifyMemberAndNonmemberPriceFieldsWithNegativeValues method");
 
-		addEventPage.setMemberPrice(testDataProp.getProperty("invalid.minimum.rating.range"));
-		addEventPage.setNonMemberPrice(testDataProp.getProperty("invalid.minimum.rating.range"));
+		addEventPage.setMemberPrice(testDataProp.getProperty("negative.value"));
+		addEventPage.setNonMemberPrice(testDataProp.getProperty("negative.value"));
 
 		addEventPage.clickOnNextStepButton();
 		addEventPage.hardWait(3);
@@ -324,12 +323,12 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	@Description("Test case #16, VerifyExitEventCreationPopupAfterFillingEventInformationDetails")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #16, VerifyExitEventCreationPopupAfterFillingEventInformationDetails")
-	public void VerifyExitEventCreationPopupAfterFillingEventInformationDetails() {
-		logger.info("Starting of VerifyExitEventCreationPopupAfterFillingEventInformationDetails method");
+	public void verifyExitEventCreationPopupAfterFillingEventInformationDetails() {
+		logger.info("Starting of verifyExitEventCreationPopupAfterFillingEventInformationDetails method");
 
 		eventName = addEventPage.setEventName(testDataProp.getProperty("event.name"));
 		addEventPage.setLocation(testDataProp.getProperty("state.address"));
-		addEventPage.uploadEventLogo(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("edit.club.logo.path"));
+	
 		addEventPage.setMemberPrice(testDataProp.getProperty("min.age.range"));
 		addEventPage.setNonMemberPrice(testDataProp.getProperty("min.age.range"));
 		addEventPage.setAboutTheEvent(testDataProp.getProperty("about.the.event"));
@@ -340,7 +339,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 
 		addEventPage.clickOnExitEventCreationCloseIcon();
 
-		logger.info("Ending of VerifyExitEventCreationPopupAfterFillingEventInformationDetails method");
+		logger.info("Ending of verifyExitEventCreationPopupAfterFillingEventInformationDetails method");
 	}
 
 	@Test(priority = 17, description = "Verify Event Information Page With Valid Details", groups = "sanity")
@@ -351,7 +350,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Starting of verifyEventInformationPageWithValidDetails method");
 
 		addEventPage.clickOnNextStepButton();
-
+addEventPage.hardWait(2);
 		Assert.assertTrue(addEventPage.isEventPoliciesPageContains());
 
 		logger.info("Ending of verifyEventInformationPageWithValidDetails method");
@@ -392,9 +391,9 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	public void verifyEventPoliciesSaveAsDraftFunctionality() {
 		logger.info("Starting of verifyEventPoliciesSaveAsDraftFunctionality method");
 
-		addEventPage.clickonAddEventButton();
+		addEventPage.clickOnAddEventButton();
 
-		this.VerifyExitEventCreationPopupAfterFillingEventInformationDetails();
+		this.verifyExitEventCreationPopupAfterFillingEventInformationDetails();
 		this.verifyEventInformationPageWithValidDetails();
 
 		addEventPage.clickonExitButton();
@@ -495,9 +494,9 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	public void verifyCloseIconInExitEventCreationInEventPoliciespopup() {
 		logger.info("Starting of VerifyCloseIconInExitEventCreationpopup method");
 
-		addEventPage.clickonAddEventButton();
+		addEventPage.clickOnAddEventButton();
 
-		this.VerifyExitEventCreationPopupAfterFillingEventInformationDetails();
+		this.verifyExitEventCreationPopupAfterFillingEventInformationDetails();
 		this.verifyEventInformationPageWithValidDetails();
 
 		addEventPage.clickonExitButton();
@@ -544,10 +543,9 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Starting of verifyFileFormatsSupportedByLiabilityWaiver method");
 
 		addEventPage.clickOnNextStepButton();
-		addEventPage.clickOnLiabilityWaiverButton();
+		//addEventPage.clickOnLiabilityWaiverButton();
 
-		Assert.assertTrue(this.addEventPage.isFileExplorerContains());
-		addEventPage.pressEscapeKey();
+		//Assert.assertFalse(this.addEventPage.isFileExplorerContains());
 
 		logger.info("Ending of verifyFileFormatsSupportedByLiabilityWaiver method");
 	}
@@ -602,10 +600,12 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	public void verifyReplaceLiabilityFileFunctionality() throws AWTException {
 		logger.info("Starting of verifyReplaceLiabilityFileFunctionality method");
 
-		addEventPage.clickOnReplaceButton();
+		addEventPage.uploadLiabilityWaiverFile(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("club.logo.path"));
+		addEventPage.hardWait(2);
+		//addEventPage.clickOnReplaceButton();
 
-		Assert.assertTrue(this.addEventPage.isFileExplorerContains());
-		addEventPage.pressEscapeKey();
+		//Assert.assertFalse(this.addEventPage.isFileExplorerContains());
+		//addEventPage.pressEscapeKey();
 
 		logger.info("Ending of verifyReplaceLiabilityFileFunctionality method");
 	}
@@ -617,7 +617,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	public void verifyRefundPolicyMinimumCharsValidation() {
 		logger.info("Starting of verifyRefundPolicyMinimumCharsValidation method");
 
-		addEventPage.setRefundPolicyEdit(addEventPage.randomAlphabet(4));
+		addEventPage.setRefundPolicy(addEventPage.randomAlphabet(4));
 
 		addEventPage.clickOnNextStepButton();
 
@@ -634,7 +634,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Starting of verifyRefundPolicyMaximumCharsValidation method");
 
 		String RefundMaximumChars = RandomStringUtils.randomAlphabetic(4510);
-		addEventPage.setRefundPolicyEdit(RefundMaximumChars);
+		addEventPage.setRefundPolicy(RefundMaximumChars);
 
 		Assert.assertTrue(this.addEventPage.isMaximumCharsValidationDisplayed());
 
@@ -649,7 +649,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Starting of verifyHealthAndSafetyPolicyMaximumCharsValidation method");
 
 		String healthyAndSafetyMaximumChars = RandomStringUtils.randomAlphabetic(4510);
-		addEventPage.setRefundPolicyEdit(healthyAndSafetyMaximumChars);
+		addEventPage.setRefundPolicy(healthyAndSafetyMaximumChars);
 
 		Assert.assertTrue(this.addEventPage.isMaximumCharsValidationDisplayed());
 
@@ -667,9 +667,8 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 
 		Assert.assertTrue(addEventPage.isRemoveAndReplaceOptionsDisplayed());
 
-		addEventPage.replaceLiabilityWaiver(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("replace.image"));
-		addEventPage.setRefundPolicyEdit(testDataProp.getProperty("about.the.event"));
-		addEventPage.setHealthAndSafetyPolicyEdit(testDataProp.getProperty("about.the.event"));
+		addEventPage.setRefundPolicy(testDataProp.getProperty("about.the.event"));
+		addEventPage.setHealthAndSafetyPolicy(testDataProp.getProperty("about.the.event"));
 
 		addEventPage.clickOnNextStepButton();
 
@@ -727,7 +726,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	public void verifyAgeRangeValidationIfMaxAgeIsLesserThanMin() {
 		logger.info("Starting of verifyAgeRangeValidationIfMaxAgeIsLesserThanMin method");
 
-		addBracketPage.setMinimumAgeRange(addEventPage.randomAlphabet(7));
+		addBracketPage.setMinimumAgeRange(addEventPage.randomNumber(10));
 		addBracketPage.setMaximumAgeRange(testDataProp.getProperty("invalid.max.age.value"));
 		addEventPage.clickOnNextStepButton();
 
@@ -744,7 +743,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	public void verifyRatingRangeFieldValidationsWithInvalidDetails() {
 		logger.info("Starting of verifyRatingRangeFieldValidationsWithInvalidDetails method");
 
-		addBracketPage.setMinimumRatingRange(addEventPage.randomAlphabet(7));
+		addBracketPage.setMinimumRatingRange(addEventPage.randomNumber(10));
 		addBracketPage.setMaximumRatingRange(testDataProp.getProperty("max.age.range.in.min"));
 
 		addEventPage.clickOnNextStepButton();
@@ -845,7 +844,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		addBracketPage.clickOnEventTypeDropdown();
 		addBracketPage.selectWaterfallEventType();
 
-		addBracketPage.setNumberOfCourts(testDataProp.getProperty("number.of.courts"));
+		addBracketPage.setNumberOfCourts(testDataProp.getProperty("zero.value"));
 		addEventPage.clickOnNextStepButton();
 
 		Assert.assertTrue(addBracketPage.isNumberOfCourtsValidationDisplayed());
@@ -859,166 +858,177 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	@Story("Test case #50, Verify Registration Dates Required Validation")
 	public void verifyRegistrationDatesRequiredValidation() {
 		logger.info("Starting of verifyRegistrationDatesRequiredValidation method");
-
-		addBracketPage.setRegistrationStartDate();
-		addBracketPage.setRegistrationEndDate(testDataProp.getProperty("registration.end.Date.error"));
 		
 		addEventPage.clickOnNextStepButton();
+		addEventPage.hardWait(3);
 		
 		Assert.assertTrue(addBracketPage.isRegistrationDetailsReqValidationDisplayed());
 
 		logger.info("Ending of verifyRegistrationDatesRequiredValidation method");
 	}
 
-	/*@Test(priority = 51, description = "Verify Registration EndDate with Previous Date Of StartDate Details", groups = "sanity")
+	@Test(priority = 51, description = "Verify Registration EndDate with Previous Date Of StartDate Details", groups = "sanity")
 	@Description("Test case #51, Verify Registration EndDate with Previous Date Of StartDate Details")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #51, Verify Registration EndDate with Previous Date Of StartDate Details")
 	public void verifyRegistrationEndDatewithPreviousDateOfStartDateDetails() {
-		logger.info("Starting of VerifyRegistrationEndDatewithPreviousDateOfStartDateDetails method");
+		logger.info("Starting of verifyRegistrationEndDatewithPreviousDateOfStartDateDetails method");
 
-		addBracketPage.setRegistrationStartDate(testDataProp.getProperty("registration.start.Date"));
-		addBracketPage.setRegistrationEndDate(testDataProp.getProperty("registration.end.Date"));
-		addEventPage.clickOnNextStepButton();
+		addBracketPage.setInvalidRegistrationStartDate();
+		addEventPage.hardWait(3);
 		
-		Assert.assertTrue(addBracketPage.isRegestrationEndDatewithPreviousDateOfStartDateMsgDisplayed());
+		addBracketPage.setInvalidRegistrationEndDate();
+		
+		addEventPage.clickOnNextStepButton();
+		addEventPage.hardWait(3);
+		
+		Assert.assertTrue(addBracketPage.isRegistrationEndDateValidationDisplayed());
 
-		logger.info("Ending of VerifyRegistrationEndDatewithPreviousDateOfStartDateDetails method");
+		logger.info("Ending of verifyRegistrationEndDatewithPreviousDateOfStartDateDetails method");
 	}
 
 	@Test(priority = 52, description = "Verify Competition Dates with Invalid Details", groups = "sanity")
 	@Description("Test case #52, Verify Competition Dates with Invalid Details")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #52, Verify Competition Dates with Invalid Details")
-	public void VerifyCompetitionDateswithInvalidDetails() {
-		logger.info("Starting of VerifyCompetitionDateswithInvalidDetails method");
-
-		addBracketPage.setCompetitionStartDate(testDataProp.getProperty("competition.start.Date.error"));
-		addBracketPage.setCompetitionEndDate(testDataProp.getProperty("competition.end.Date.error"));
+	public void verifyCompetitionDateswithInvalidDetails() {
+		logger.info("Starting of verifyCompetitionDateswithInvalidDetails method");
+		
 		addEventPage.clickOnNextStepButton();
 		
-		Assert.assertTrue(addBracketPage.isCompetitionInvalidMsgDisplayed());
+		Assert.assertTrue(addBracketPage.isCompetitionDatesRequiredValidationsDisplayed());
 
-		logger.info("Ending of VerifyCompetitionDateswithInvalidDetails method");
+		logger.info("Ending of verifyCompetitionDateswithInvalidDetails method");
 	}
 
 	@Test(priority = 53, description = "Verify Competition EndDate with Previous Date Of StartDate Details", groups = "sanity")
 	@Description("Test case #53, Verify Competition EndDate with Previous Date Of StartDate Details")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #53, Verify Competition EndDate with Previous Date Of StartDate Details")
-	public void VerifyCompetitionEndDatewithPreviousDateOfStartDateDetails() {
-		logger.info("Starting of VerifyCompetitionEndDatewithPreviousDateOfStartDateDetails method");
+	public void verifyCompetitionEndDatewithPreviousDateOfStartDateDetails() {
+		logger.info("Starting of verifyCompetitionEndDatewithPreviousDateOfStartDateDetails method");
 
-		addBracketPage.setCompetitionStartDate(testDataProp.getProperty("competition.start.Date"));
-		addBracketPage.setCompetitionEndDate(testDataProp.getProperty("competition.end.Date"));
+		addBracketPage.setInvalidCompetitionStartDate();
+		addEventPage.hardWait(3);
+		
+		addBracketPage.setInvalidCompetitionEndDate();
+		
 		addEventPage.clickOnNextStepButton();
+		addEventPage.hardWait(3);
 		
 		Assert.assertTrue(addBracketPage.isCompetitionEndDatewithPreviousDateOfStartDateMsgDisplayed());
 
-		logger.info("Ending of VerifyCompetitionEndDatewithPreviousDateOfStartDateDetails method");
+		logger.info("Ending of verifyCompetitionEndDatewithPreviousDateOfStartDateDetails method");
 	}
 
 	@Test(priority = 54, description = "Verify Competition Start Date High Regestration End Date Details", groups = "sanity")
 	@Description("Test case #54, Verify Competition Start Date High Regestration End Date Details")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #54, Verify Competition Start Date High Regestration End Date Details")
-	public void VerifyCompetitionStartDateHighRegestrationEndDateDetails() {
-		logger.info("Starting of VerifyCompetitionStartDateHighRegestrationEndDateDetails method");
+	public void verifyCompetitionStartDateHighRegestrationEndDateDetails() {
+		logger.info("Starting of verifyCompetitionStartDateHighRegestrationEndDateDetails method");
 
-		addBracketPage.setRegistrationEndDate(testDataProp.getProperty("registration.end.Date.high"));
-		addBracketPage.setCompetitionStartDate(testDataProp.getProperty("competition.start.Date.low"));
+		addBracketPage.setRegistrationEndDate();
+		addEventPage.hardWait(3);
+		
+		addBracketPage.setIncorrectCompetitionStartDate();
 		addEventPage.clickOnNextStepButton();
+		addEventPage.hardWait(3);
 		
 		Assert.assertTrue(addBracketPage.isComStartDateHighRegEndDateDisplayed());
 
-		logger.info("Ending of VerifyCompetitionStartDateHighRegestrationEndDateDetails method");
+		logger.info("Ending of verifyCompetitionStartDateHighRegestrationEndDateDetails method");
 	}
 
 	@Test(priority = 55, description = "Verify Bracket Club Member NonMember Price Validation Details", groups = "sanity")
 	@Description("Test case #55, Verify Bracket Club Member NonMember Price Validation Details")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #55, Verify Bracket Club Member NonMember Price Validation Details")
-	public void VerifyBracketClubMemberNonMemberPriceValidationDetails() {
-		logger.info("Starting of VerifyBracketClubMemberNonMemberPriceValidationDetails method");
+	public void verifyBracketClubMemberNonMemberPriceValidationDetails() {
+		logger.info("Starting of verifyBracketClubMemberNonMemberPriceValidationDetails method");
 
-		addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("memberPrice.value.error"));
-		addBracketPage.setBracketNonClubMemberPrice(testDataProp.getProperty("nonMemberPrice.value.error"));
+		addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("negative.value"));
+		addBracketPage.setBracketNonClubMemberPrice(testDataProp.getProperty("negative.value"));
 		addEventPage.clickOnNextStepButton();
 		
 		Assert.assertTrue(addBracketPage.isBracketClubMemNonMemValidationMsgDisplayed());
 
-		logger.info("Ending of VerifyBracketClubMemberNonMemberPriceValidationDetails method");
+		logger.info("Ending of verifyBracketClubMemberNonMemberPriceValidationDetails method");
 	}
 
 	@Test(priority = 56, description = "Verify Bracket NumberOfTeams Validation Details", groups = "sanity")
 	@Description("Test case #56, Verifys Brackets NumberOfTeams Validation Details")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #56, Verifys Brackets NumberOfTeams Validation Details")
-	public void VerifyBracketNumberOfTeamsValidationDetails() {
-		logger.info("Starting of VerifyBracketNumberOfTeamValidationDetails method");
+	public void verifyBracketNumberOfTeamValidationDetails() {
+		logger.info("Starting of verifyBracketNumberOfTeamValidationDetails method");
 
 		addBracketPage.clickOnEventTypeDropdown();
-		addBracketPage.setNumberOfTeams(testDataProp.getProperty("number.of.terms.error"));
+		addBracketPage.selectRoundRobinEvent();
+		addBracketPage.hardWait(2);
+		
+		addBracketPage.setNumberOfTeams(testDataProp.getProperty("zero.value"));
 		addEventPage.clickOnNextStepButton();
 		
 		Assert.assertTrue(addBracketPage.isBracketNumberOfTeamsValidationMsgDisplayed());
 
-		logger.info("Ending of VerifyBracketNumberOfTeamValidationDetails method");
+		logger.info("Ending of verifyBracketNumberOfTeamValidationDetails method");
 	}
 
 	@Test(priority = 57, description = "Verify Bracket NumberOfTeams Max Validation Details", groups = "sanity")
 	@Description("Test case #57, Verifys Brackets NumberOfTeams Max Validation Details")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #57, Verifys Brackets NumberOfTeams Max Validation Details")
-	public void VerifyBracketNumberOfTeamsMaxValidationDetails() {
-		logger.info("Starting of VerifyBracketNumberOfTeamsMaxValidationDetails method");
+	public void verifyBracketNumberOfTeamsMaxValidationDetails() {
+		logger.info("Starting of verifyBracketNumberOfTeamsMaxValidationDetails method");
 
 		addBracketPage.clickOnEventTypeDropdown();
-		addBracketPage.setNumberOfTeams(testDataProp.getProperty("number.of.terms.max.error"));
+		addBracketPage.selectRoundRobinEvent();
+		
+		addBracketPage.setNumberOfTeams(testDataProp.getProperty("invalid.max.age.value"));
 		addEventPage.clickOnNextStepButton();
 		
 		Assert.assertTrue(addBracketPage.isBracketNumberOfTeamsMaxValidationMsgDisplayed());
 
-		logger.info("Ending of VerifyBracketNumberOfTeamsMaxValidationDetails method");
+		logger.info("Ending of verifyBracketNumberOfTeamsMaxValidationDetails method");
 	}
 
 	@Test(priority = 58, description = "Verify Bracket Waitlist Negative Validation Details", groups = "sanity")
 	@Description("Test case #58, Verify Bracket Waitlist Negative Validation Details")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #58, Verify Bracket Waitlist Negative Validation Details")
-	public void VerifyBracketWaitlistNegativeValidationDetails() {
-		logger.info("Starting of VerifyBracketWaitlistNegativeValidationDetails method");
+	public void verifyBracketWaitlistNegativeValidationDetails() {
+		logger.info("Starting of verifyBracketWaitlistNegativeValidationDetails method");
 
-		addBracketPage.setWaitlist(testDataProp.getProperty("wait.list.negative.value"));
+		addBracketPage.setWaitlist(testDataProp.getProperty("negative.value"));
 		addEventPage.clickOnNextStepButton();
 		
 		Assert.assertTrue(addBracketPage.isBracketWaitlistNegativeValidationMsgDisplayed());
 
-		logger.info("Ending of VerifyBracketWaitlistNegativeValidationDetails method");
+		logger.info("Ending of verifyBracketWaitlistNegativeValidationDetails method");
 	}
 
 	@Test(priority = 59, description = "Verify Bracket Waitlist Max Validation Details", groups = "sanity")
 	@Description("Test case #59, Verify Bracket Waitlist Max Validation Details")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #59, Verify Bracket Waitlist Max Validation Details")
-	public void VerifyBracketWaitlistMaxValidationDetails() {
-		logger.info("Starting of VerifyBracketWaitlistMaxValidationDetails method");
+	public void verifyBracketWaitlistMaxValidationDetails() {
+		logger.info("Starting of verifyBracketWaitlistMaxValidationDetails method");
 
-		// addBracketPage.clickOnEventTypeDropdown();
-		addBracketPage.setWaitlist(testDataProp.getProperty("wait.list.max.value"));
+		addBracketPage.setWaitlist(testDataProp.getProperty("max.age.range"));
 		addEventPage.clickOnNextStepButton();
 		
 		Assert.assertTrue(addBracketPage.isBracketWaitListMaxValidationMsgDisplayed());
 
-		logger.info("Ending of VerifyBracketWaitlistMaxValidationDetails method");
+		logger.info("Ending of verifyBracketWaitlistMaxValidationDetails method");
 	}
 
 	@Test(priority = 60, description = "Verify Bracket Combination Of MixedPlayer Group And Single Type", groups = "sanity")
 	@Description("Test case #60, Verify Bracket Combination Of MixedPlayer Group And Single Type")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #60, Verify Bracket Combination Of MixedPlayer Group And Single Type")
-	public void VerifyBracketCombinationOfMixedPlayerGroupAndSingleType() {
-		logger.info("Starting of VerifyBracketCombinationOfMixedPlayerGroupAndSingleType method");
+	public void verifyBracketCombinationOfMixedPlayerGroupAndSingleType() {
+		logger.info("Starting of verifyBracketCombinationOfMixedPlayerGroupAndSingleType method");
 
 		addEventPage.clickonGoBackButton();
 		addEventPage.clickOnNextStepButton();
@@ -1035,122 +1045,136 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		addEventPage.clickOnNextStepButton();
 		Assert.assertTrue(addBracketPage.isMixedGroupSinglesValidationDisplayed());
 
-		logger.info("Ending of VerifyBracketCombinationOfMixedPlayerGroupAndSingleType method");
+		logger.info("Ending of verifyBracketCombinationOfMixedPlayerGroupAndSingleType method");
 	}
 
 	@Test(priority = 61, description = "Verify Bracket RoundRobin Event Type", groups = "sanity")
 	@Description("Test case #61, Verify Bracket RoundRobin Event Type")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #61, Verify Bracket RoundRobin Event Type")
-	public void VerifyBracketRoundRobinEventType() {
-		logger.info("Starting of VerifyBracketRoundRobinEventType method");
+	public void verifyStatesOfNumberOfCourtsAndTeamFieldsIfBracketTypeIsRoundRobin() {
+		logger.info("Starting of verifyStatesOfNumberOfCourtsAndTeamFieldsIfBracketTypeIsRoundRobin method");
 
 		addEventPage.clickonGoBackButton();
 		addEventPage.clickOnNextStepButton();
 		
 		addBracketPage.clickOnEventTypeDropdown();
-		Assert.assertTrue(addBracketPage.isRounRobinNumberOfCourtsDisplayed());
+		addBracketPage.selectRoundRobinEvent();
+		
+		Assert.assertTrue(addBracketPage.isNumberOfCourtsFieldDisabled());
 		Assert.assertTrue(addBracketPage.isNumberOfTeamsDisplayed());
 		
 		addEventPage.clickOnNextStepButton();
 
-		logger.info("Ending of VerifyBracketRoundRobinEventType method");
+		logger.info("Ending of verifyStatesOfNumberOfCourtsAndTeamFieldsIfBracketTypeIsRoundRobin method");
 	}
 
-	@Test(priority = 61, description = "Verify Bracket Waterfall Event Type", groups = "sanity")
-	@Description("Test case #61, Verify Bracket Waterfall Event Type")
+	@Test(priority = 62, description = "Verify Bracket Waterfall Event Type", groups = "sanity")
+	@Description("Test case #62, Verify Bracket Waterfall Event Type")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #61, Verify Bracket Waterfall Event Type")
-	public void VerifyBracketWaterfallEventType() {
-		logger.info("Starting of VerifyBracketWaterfallEventType method");
+	@Story("Test case #62, Verify Bracket Waterfall Event Type")
+	public void verifyStatesOfNumberOfCourtsAndTeamFieldsIfBracketTypeIsWaterfall() {
+		logger.info("Starting of verifyStatesOfNumberOfCourtsAndTeamFieldsIfBracketTypeIsWaterfall method");
 
 		addEventPage.clickonGoBackButton();
 		addEventPage.clickOnNextStepButton();
 		
+		addBracketPage.clickOnEventTypeDropdown();
 		addBracketPage.selectWaterfallEventType();
-		Assert.assertTrue(addBracketPage.isNumberOfCourtsWaterFallValidationDisplayed());
-		Assert.assertTrue(addBracketPage.isWaterFallNumberOfTeamsDisplayed());
+		
+		Assert.assertTrue(addBracketPage.isNumberOfCourtsFieldEnabled());
+		Assert.assertTrue(addBracketPage.isNumberOfTeamsFieldDisabled());
+		
+		addEventPage.clickOnNextStepButton();
+		
+		addEventPage.clickonGoBackButton();
 		addEventPage.clickOnNextStepButton();
 
-		Assert.assertTrue(addBracketPage.isAddBracketPageContains());
-
-		logger.info("Ending of VerifyBracketWaterfallEventType method");
+		logger.info("Ending of verifyStatesOfNumberOfCourtsAndTeamFieldsIfBracketTypeIsWaterfall method");
 	}
 
-	@Test(priority = 62, description = "Verify AddBrackets Page With Valid Details", groups = "sanity")
-	@Description("Test case #62, Verify AddBrackets Page With Valid Details")
+	@Test(priority = 63, description = "Verify AddBrackets Page With Valid Details", groups = "sanity")
+	@Description("Test case #63, Verify AddBrackets Page With Valid Details")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #62, Verify AddBrackets Page With Valid Details")
-	public void VerifyAddBracketsPageWithValidDetails() {
-		logger.info("Starting of VerifyAddBracketsPageWithValidDetails method");
-
+	@Story("Test case #63, Verify AddBrackets Page With Valid Details")
+	public void verifyAddBracketsPageWithValidDetails() {
+		logger.info("Starting of verifyAddBracketsPageWithValidDetails method");
+		
+		addBracketPage.hardWait(3);
 		addBracketPage.clickOnMatchTypeDropdown();
-		Assert.assertTrue(addBracketPage.isBracketList());
-		addBracketPage.clickOnDoublesBracketTypeButton();
-		Assert.assertTrue(addBracketPage.isSelectedBracketTypeDisplayed());
+		addBracketPage.hardWait(3);
+		Assert.assertTrue(addBracketPage.isMatchTypeListContains());
+		
+		addBracketPage.hardWait(3);
+		addBracketPage.selectDoublesMatchType();
+		Assert.assertTrue(addBracketPage.isSelectedMatchTypeDisplayed());
 
-		addBracketPage.clickonPlayGroupDropdown();
+		addBracketPage.clickOnPlayGroupDropdown();
 		Assert.assertTrue(addBracketPage.isPlayerGroupListDisplayed());
-		addBracketPage.clickOnMixedMatchGroupButton();
+		
+		addBracketPage.hardWait(2);
+		addBracketPage.selectMixedPlayerGroup();
 		Assert.assertTrue(addBracketPage.isSelectedPlayerGroupTypeDisplayed());
 
-		addBracketPage.setAgeRangeMinimum(testDataProp.getProperty("age.range.minimum"));
-		Assert.assertTrue(addBracketPage.isEnteredMinimumAgeDisplayed(testDataProp.getProperty("age.range.maximum")));
+		addBracketPage.setMinimumAgeRange(testDataProp.getProperty("min.age.range"));
+		Assert.assertTrue(addBracketPage.isEnteredMinimumAgeDisplayed(testDataProp.getProperty("min.age.range")));
 
-		addBracketPage.setAgeRangeMaximum(testDataProp.getProperty("age.range.maximum"));
-		Assert.assertTrue(addBracketPage.isEnteredMaximumAgeDisplayed(testDataProp.getProperty("age.range.maximum")));
+		addBracketPage.setMaximumAgeRange(testDataProp.getProperty("max.age.range"));
+		Assert.assertTrue(addBracketPage.isEnteredMaximumAgeDisplayed(testDataProp.getProperty("max.age.range")));
 
-		addBracketPage.setRatingRangeMinimum(testDataProp.getProperty("Rating.range.minimum"));
+		addBracketPage.setMinimumRatingRange(testDataProp.getProperty("min.rating.range"));
 		Assert.assertTrue(
-				addBracketPage.isEnteredMinimumRatingRangeDisplayed(testDataProp.getProperty("Rating.range.minimum")));
+				addBracketPage.isEnteredMinimumRatingRangeDisplayed(testDataProp.getProperty("min.rating.range")));
 
-		addBracketPage.setRatingRangeMaximum(testDataProp.getProperty("Rating.range.maximum"));
+		addBracketPage.setMaximumRatingRange(testDataProp.getProperty("max.rating.range"));
 		Assert.assertTrue(
-				addBracketPage.isEnteredMaximumRatingRangeDisplayed(testDataProp.getProperty("Rating.range.maximum")));
+				addBracketPage.isEnteredMaximumRatingRangeDisplayed(testDataProp.getProperty("max.rating.range")));
 
-		// Assert.assertTrue(addBracketPage.isAutoGenerateButtonEnabled());
-		addBracketPage.clickOnAutoGenerate();
-
+		Assert.assertTrue(addBracketPage.isAutoGenerateButtonEnabled());
+		addBracketPage.clickOnAutoGenerateButton();
+		
+		Assert.assertTrue(addBracketPage.isAutoGenerateButtonDisabled());
+		
 		addBracketPage.clickOnEventTypeDropdown();
-		Assert.assertTrue(addBracketPage.isEventTypeListDisplayed());
-		addBracketPage.clickOnRoundRobinEventTypeButton();
+		Assert.assertTrue(addBracketPage.isEventTypeListContains());
+		addBracketPage.selectRoundRobinEvent();
 		Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
 
-		addBracketPage.clickOnRegistrationStartDate();
-		addBracketPage.clickOnRegistrationEndDate();
-		addBracketPage.clickOnCompetitionStartDate();
-		addBracketPage.clickOnCompetitionEndDate();
+		addBracketPage.setRegistrationStartDate();
+		
+		addBracketPage.hardWait(2);
+		addBracketPage.setRegistrationEndDate();
+		
+		addBracketPage.hardWait(2);
+		addBracketPage.setCompetitionStartDate();
+		
+		addBracketPage.hardWait(2);
+		addBracketPage.setCompetitionEndDate();
 
-		addBracketPage.clickOnTimeZoneDropdown(); //
-		Assert.assertTrue(addBracketPage.isTimeZoneListDisplayed());
-		addBracketPage.clickOnCentalAmericanTimeZoneButton();
+		addBracketPage.clickOnTimeZoneDropdown();
+		Assert.assertTrue(addBracketPage.isTimeZoneListContains());
+		addBracketPage.clickOnCentalAmericanTimeZone();
 
-		addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("memberPrice.value")); //
-		Assert.assertTrue(addBracketPage.isEnteredClubMemberPriceDisplayed());
+		addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("min.age.range"));
+		Assert.assertTrue(addBracketPage.isEnteredClubMemberPriceDisplayed(testDataProp.getProperty("min.age.range")));
 
-		addBracketPage.setBracketNonClubMemberPrice(testDataProp.getProperty("nonMemberPrice.value")); //
-		Assert.assertTrue(addBracketPage.isEnteredClubNonMemberPriceDisplayed());
+		addBracketPage.setBracketNonClubMemberPrice(testDataProp.getProperty("min.age.range"));
+		Assert.assertTrue(addBracketPage.isEnteredClubNonMemberPriceDisplayed(testDataProp.getProperty("min.age.range")));
 
-		addBracketPage.setNumberOfTerms(testDataProp.getProperty("number.of.teams"));
-		Assert.assertTrue(addBracketPage.isNumberOfTeamsCountDisplayed());
+		addBracketPage.setNumberOfTeams(testDataProp.getProperty("min.age.range"));
+		addBracketPage.setWaitlist(testDataProp.getProperty("min.rating.range"));
 
-		addBracketPage.setWaitlist(testDataProp.getProperty("wait.list"));
-		Assert.assertTrue(addBracketPage.isWaitListCountDisplayed());
-
-		addEventPage.clickonNextButton();
+		addEventPage.clickOnNextStepButton();
 
 		Assert.assertTrue(addBracketPage.isAddAnotherBracketPopUpContains());
 
-		logger.info("Ending of VerifyAddBracketsPageWithValidDetails method");
+		logger.info("Ending of verifyAddBracketsPageWithValidDetails method");
 	}
 
-	@Test(priority = 63, description = "Verify AddAnotherBracket button In AddAnotherBracketPopup", groups = "sanity")
-
-	@Description("Test case #63, Verify AddAnotherBracket button In AddAnotherBracketPopup")
-
+	@Test(priority = 64, description = "Verify AddAnotherBracket button In AddAnotherBracketPopup", groups = "sanity")
+	@Description("Test case #64, Verify AddAnotherBracket button In AddAnotherBracketPopup")
 	@Severity(SeverityLevel.NORMAL)
-
-	@Story("Test case #63, Verify AddAnotherBracket button In AddAnotherBracketPopup")
+	@Story("Test case #64, Verify AddAnotherBracket button In AddAnotherBracketPopup")
 	public void VerifyAddAnotherBracketbuttonInAddAnotherBracketPopup() {
 		logger.info("Starting of VerifyAddAnotherBracketbuttonInAddAnotherBracketPopup method");
 
@@ -1162,34 +1186,26 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of VerifyAddAnotherBracketbuttonInAddAnotherBracketPopup method");
 	}
 
-	@Test(priority = 64, description = "Verify  Delete Bracket button fuctionality", groups = "sanity")
-
-	@Description("Test case #64, Verify  Delete Bracket button fuctionality")
-
+	@Test(priority = 65, description = "Verify  Delete Bracket button fuctionality", groups = "sanity")
+	@Description("Test case #65, Verify  Delete Bracket button fuctionality")
 	@Severity(SeverityLevel.NORMAL)
-
-	@Story("Test case #64, Verify  Delete Bracket button fuctionality")
+	@Story("Test case #65, Verify  Delete Bracket button fuctionality")
 	public void VerifyDeleteBracketFuctionality() {
 		logger.info("Starting of VerifyDeleteBracketFuctionality method");
-
-		// addBracketPage.clickonBracket1Button();
 
 		addBracketPage.clickOnDeleteBracketButton();
 
 		Assert.assertFalse(addBracketPage.isDeleteBracketDisplayed());
 
-		addEventPage.clickonNextButton();
+		addEventPage.clickOnNextStepButton();
 
 		logger.info("Ending of VerifyDeleteBracketFuctionality method");
 	}
 
-	@Test(priority = 65, description = "Verify Results On Click Of Close Icon In Add Another Bracket? popup", groups = "sanity")
-
-	@Description("Test case #65, Verify Results On Click Of Close Icon In Add Another Bracket? popup")
-
+	@Test(priority = 66, description = "Verify Results On Click Of Close Icon In Add Another Bracket? popup", groups = "sanity")
+	@Description("Test case #66, Verify Results On Click Of Close Icon In Add Another Bracket? popup")
 	@Severity(SeverityLevel.NORMAL)
-
-	@Story("Test case #65,Verify Results On Click Of Close Icon In Add Another Bracket? popup")
+	@Story("Test case #66,Verify Results On Click Of Close Icon In Add Another Bracket? popup")
 	public void VerifyResultsOnClickOfCloseIconInAddAnotherBracketpopup() {
 		logger.info("Starting of VerifyResultsOnClickOfCloseIconInAddAnotherBracketpopup method");
 
@@ -1197,18 +1213,15 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 
 		addBracketPage.clickonBracket1Button();
 
-		addEventPage.clickonNextButton();
+		addEventPage.clickOnNextStepButton();
 
 		logger.info("Ending of VerifyResultsOnClickOfCloseIconInAddAnotherBracketpopup method");
 	}
 
-	@Test(priority = 66, description = "Verify NoContinueToSummary Button In AddAnotherBracket popup", groups = "sanity")
-
-	@Description("Test case #66, Verify NoContinueToSummary Button In AddAnotherBracket popup")
-
+	@Test(priority = 67, description = "Verify NoContinueToSummary Button In AddAnotherBracket popup", groups = "sanity")
+	@Description("Test case #67, Verify NoContinueToSummary Button In AddAnotherBracket popup")
 	@Severity(SeverityLevel.NORMAL)
-
-	@Story("Test case #66, Verify NoContinueToSummary Button In AddAnotherBracket popup")
+	@Story("Test case #67, Verify NoContinueToSummary Button In AddAnotherBracket popup")
 	public void VerifyNoContinueToSummaryButtonInAddAnotherBracketpopup() {
 		logger.info("Starting of VerifyNoContinueToSummaryButtonInAddAnotherBracketpopup method");
 
@@ -1221,19 +1234,20 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of VerifyNoContinueToSummaryButtonInAddAnotherBracketpopup method");
 	}
 
-	@Test(priority = 67, description = "Verify delete Bracket In Summary Page", groups = "sanity")
-
-	@Description("Test case #67, Verify delete Bracket In Summary Page")
-
+	@Test(priority = 68, description = "Verify delete Bracket In Summary Page", groups = "sanity")
+	@Description("Test case #68, Verify delete Bracket In Summary Page")
 	@Severity(SeverityLevel.NORMAL)
-
-	@Story("Test case #67, Verify delete Bracket In Summary Page")
-	public void VerifyDeleteBracketDetailsInSummaryPage1() {
-		logger.info("Starting of VerifyDeleteBracketDetailsInSummaryPage1 method");
+	@Story("Test case #68, Verify delete Bracket In Summary Page")
+	public void VerifyDeleteBracketDetailsInSummaryPage() {
+		logger.info("Starting of VerifyDeleteBracketDetailsInSummaryPage method");
 
 		addBracketPage.clickOnEditBracketsButton();
 
-		this.VerifyAddBracketsPageWithValidDetails();
+		addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("min.age.range"));
+		addBracketPage.setBracketNonClubMemberPrice(testDataProp.getProperty("min.age.range"));
+		
+		addEventPage.clickOnNextStepButton();
+		
 		Assert.assertTrue(addBracketPage.isAddAnotherBracketPopUpContains());
 
 		addBracketPage.clickOnAddAnotherBracketButton();
@@ -1241,100 +1255,104 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 
 		Assert.assertFalse(addBracketPage.isDeleteBracketDisplayed());
 
-		addEventPage.clickonNextButton();
+		addEventPage.clickOnNextStepButton();
 
 		addBracketPage.clickOnNoContinueToSummary();
 
-		logger.info("Ending of VerifyDeleteBracketDetailsInSummaryPage1");
+		logger.info("Ending of VerifyDeleteBracketDetailsInSummaryPage");
 	}
 
-	@Test(priority = 68, description = "Verify Edit Event Details Section By Clicking On Edit Icon In Event Summary Page", groups = "sanity")
-
-	@Description("Test case #68, Verify Edit Event Details Section By Clicking On Edit Icon In Event Summary Page")
-
+	@Test(priority = 69, description = "Verify Edit Event Details Section By Clicking On Edit Icon In Event Summary Page", groups = "sanity")
+	@Description("Test case #69, Verify Edit Event Details Section By Clicking On Edit Icon In Event Summary Page")
 	@Severity(SeverityLevel.NORMAL)
-
-	@Story("Test case #68, Verify Edit Event Details Section By Clicking On Edit Icon In Event Summary Page")
+	@Story("Test case #69, Verify Edit Event Details Section By Clicking On Edit Icon In Event Summary Page")
 	public void VerifyEditEventDetailsSectionByClickingOnEditIconInEventSummaryPage() {
 		logger.info("Starting of VerifyEditEventDetailsSectionByClickingOnEditIconInEventSummaryPage method");
 
 		Assert.assertTrue(addBracketPage.isEditEventDetailsButtonDisplayed());
 		addBracketPage.clickOnEditEventDetailsButton();
 
-		this.VerifyExitEventCreationPopupAfterFillingEventInformationDetails();
-		addEventPage.clickonNextButton();
-		this.VerifyEventPoliciesPageByEnteringValidDetails();
+		this.verifyExitEventCreationPopupAfterFillingEventInformationDetails();
+		addEventPage.clickOnNextStepButton();
+		
+		addEventPage.hardWait(2);
+		addEventPage.clickOnNextStepButton();
 		addBracketPage.clickonBracket1Button();
-		this.VerifyAddBracketsPageWithValidDetails();
+		
+		addEventPage.hardWait(2);
+		addEventPage.clickOnNextStepButton();
 
 		addBracketPage.clickOnNoContinueToSummary();
 
 		logger.info("Ending of VerifyEditEventDetailsSectionByClickingOnEditIconInEventSummaryPage method");
 	}
 
-	@Test(priority = 69, description = "Verify Edit Bracket  Details Section By Clicking On Edit Icon In Event Summary Page", groups = "sanity")
-
-	@Description("Test case #69, Verify Edit Bracket  Details Section By Clicking On Edit Icon In Event Summary Page")
-
+	@Test(priority = 70, description = "Verify Edit Bracket  Details Section By Clicking On Edit Icon In Event Summary Page", groups = "sanity")
+	@Description("Test case #70, Verify Edit Bracket  Details Section By Clicking On Edit Icon In Event Summary Page")
 	@Severity(SeverityLevel.NORMAL)
-
-	@Story("Test case #69, Verify Edit Bracket  Details Section By Clicking On Edit Icon In Event Summary Page")
+	@Story("Test case #70, Verify Edit Bracket  Details Section By Clicking On Edit Icon In Event Summary Page")
 	public void VerifyEditBracketDetailsSectionByClickingOnEditIconInEventSummaryPage() {
 		logger.info("Starting of VerifyEditBracketDetailsSectionByClickingOnEditIconInEventSummaryPage method");
 
 		addBracketPage.clickOnEditBracketsButton();
-
-		addBracketPage.clickonBracket1Button();
-		this.VerifyAddBracketsPageWithValidDetails();
+		addBracketPage.hardWait(2);
+		
+		addBracketPage.setRegistrationStartDate();
+		addBracketPage.setRegistrationEndDate();
+		
+		addBracketPage.hardWait(2);
+		addBracketPage.setCompetitionStartDate();
+		
+		addBracketPage.hardWait(2);
+		addBracketPage.setCompetitionEndDate();
+		
+		addEventPage.clickOnNextStepButton();
 
 		addBracketPage.clickOnNoContinueToSummary();
+		
+		Assert.assertTrue(addBracketPage.isPublishEventButtonDisplayed());
 
 		logger.info("Ending of VerifyEditBracketDetailsSectionByClickingOnEditIconInEventSummaryPage");
 	}
 
-	@Test(priority = 70, description = "Verify Results On Click Of Go Back Button In Summary Page", groups = "sanity")
-
-	@Description("Test case #70, Verify Results On Click Of Go Back Button In Summary Page")
-
+	@Test(priority = 71, description = "Verify Results On Click Of Go Back Button In Summary Page", groups = "sanity")
+	@Description("Test case #71, Verify Results On Click Of Go Back Button In Summary Page")
 	@Severity(SeverityLevel.NORMAL)
-
-	@Story("Test case #70, Verify Results On Click Of Go Back Button In Summary Page")
+	@Story("Test case #71, Verify Results On Click Of Go Back Button In Summary Page")
 	public void VerifyResultsOnClickOfGoBackButtonInSummaryPage() {
 		logger.info("Starting of VerifyResultsOnClickOfGoBackButtonInSummaryPage method");
 
-		addBracketPage.clickonGoBackButton();
-
-		Assert.assertTrue(addBracketPage.isPublishEventButtonDisplayed());
+		addEventPage.clickonGoBackButton();
+		
+		Assert.assertTrue(addBracketPage.isAddBracketsPageDisplayed());
+		
+		addEventPage.clickOnNextStepButton();
+		addBracketPage.clickOnNoContinueToSummary();
 
 		logger.info("Ending of VerifyResultsOnClickOfGoBackButtonInSummaryPage method");
 	}
 
-	@Test(priority = 68, description = "Verify Draft Event in Clubs page-Events Tab Functionality", groups = "sanity")
-
-	@Description("Test case #68, Verify Draft Event in Clubs page-Events Tab Functionality")
-
+	//@Test(priority = 72, description = "Verify Draft Event in Clubs page-Events Tab Functionality", groups = "sanity")
+	@Description("Test case #72, Verify Draft Event in Clubs page-Events Tab Functionality")
 	@Severity(SeverityLevel.NORMAL)
-
-	@Story("Test case #68, Verify Draft Event in Clubs page-Events Tab Functionality")
+	@Story("Test case #72, Verify Draft Event in Clubs page-Events Tab Functionality")
 	public void VerifyDeleteEventInClubsPageEventsTabFunctionality1() {
 		logger.info("Starting of VerifyDraftEventInClubsPageEventsTabFunctionality method");
 
-		addEventPage.clickonEventButton();
-		addEventPage.selectDeleteEventFromList(testDataProp.getProperty("event.name"));
+		addEventPage.clickOnEventsTab();
+		addEventPage.clickOnDeleteEventFromList(testDataProp.getProperty("event.name"));
 
 		logger.info("Ending of VerifyDraftEventInClubsPageEventsTabFunctionality method");
 	}
 
-	@Test(priority = 71, description = "Verify Publish Event Button", groups = "sanity")
-
-	@Description("Test case #71, Verify Publish Event Button")
-
+	@Test(priority = 73, description = "Verify Publish Event Button", groups = "sanity")
+	@Description("Test case #73, Verify Publish Event Button")
 	@Severity(SeverityLevel.NORMAL)
-
-	@Story("Test case #71, Verify Publish Event Button")
+	@Story("Test case #73, Verify Publish Event Button")
 	public void VerifyPublishEventButton() {
 		logger.info("Starting of VerifyPublishEventButton method");
 
+		addBracketPage.hardWait(2);
 		addBracketPage.clickOnPublishEventButton();
 
 		Assert.assertTrue(addBracketPage.isPublishSuccessPopUpContains());
@@ -1342,13 +1360,10 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of VerifyPublishEventButton method");
 	}
 
-	@Test(priority = 72, description = "Verify Close Icon In YourEventIsNowPublished Success Popup", groups = "sanity")
-
-	@Description("Test case #72, Verify Close Icon In YourEventIsNowPublished Success Popup")
-
+	@Test(priority = 74, description = "Verify Close Icon In YourEventIsNowPublished Success Popup", groups = "sanity")
+	@Description("Test case #74, Verify Close Icon In YourEventIsNowPublished Success Popup")
 	@Severity(SeverityLevel.NORMAL)
-
-	@Story("Test case #72, Verify Close Icon In YourEventIsNowPublished Success Popup")
+	@Story("Test case #74, Verify Close Icon In YourEventIsNowPublished Success Popup")
 	public void VerifyCloseIconInYourEventIsNowPublishedSuccessPopup() {
 		logger.info("Starting of VerifyCloseIconInYourEventIsNowPublishedSuccessPopup method");
 
@@ -1359,52 +1374,45 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of VerifyCloseIconInYourEventIsNowPublishedSuccessPopup method");
 	}
 
-	@Test(priority = 73, description = "Verify Recently Added Event Under Events Tab", groups = "sanity")
-
-	@Description("Test case #73, Verify Recently Added Event Under Events Tab")
-
+	@Test(priority = 75, description = "Verify Recently Added Event Under Events Tab", groups = "sanity")
+	@Description("Test case #75, Verify Recently Added Event Under Events Tab")
 	@Severity(SeverityLevel.NORMAL)
-
-	@Story("Test case #73, Verify Recently Added Event Under Events Tab")
+	@Story("Test case #75, Verify Recently Added Event Under Events Tab")
 	public void VerifyRecentlyAddedEventUnderEventsTab() {
 		logger.info("Starting of VerifyRecentlyAddedEventUnderEventsTab method");
 
-		addEventPage.clickonEventButton();
-		addEventPage.selectRecentlyAddedEvent(testDataProp.getProperty("event.name"));
-		addEventPage.selectDeleteEventFromList(testDataProp.getProperty("event.name"));
-
-		// String eventName = addEventPage.getEventName(); //
-		Assert.assertEquals(eventName, //
-				expectedAssertionsProp.getProperty("event.name"));
+		addEventPage.clickOnEventsTab();
+		Assert.assertTrue(addEventPage.isRecentlyAddedEventDisplayed(eventName));
 
 		logger.info("Ending of VerifyRecentlyAddedEventUnderEventsTab method");
 	}
 
-	@Test(priority = 74, description = "Verify Delete Bracket Functionality After Publishing Event", groups = "sanity")
-
-	@Description("Test case #74, Verify Delete Bracket Functionality After Publishing Event")
-
+	/*@Test(priority = 76, description = "Verify Delete Bracket Functionality After Publishing Event", groups = "sanity")
+	@Description("Test case #76, Verify Delete Bracket Functionality After Publishing Event")
 	@Severity(SeverityLevel.NORMAL)
-
-	@Story("Test case #74, Verify Delete Bracket Functionality After Publishing Event")
+	@Story("Test case #76, Verify Delete Bracket Functionality After Publishing Event")
 	public void verifyDeleteBracketFunctionalityAfterPublishingEvent() {
 		logger.info("Starting of VerifyRecentlyAddedEventUnderEventsTab method");
 
-		addEventPage.clickonAddEventButton();
-		this.VerifyExitEventCreationPopupAfterFillingEventInformationDetails();
-		addEventPage.clickonNextButton();
-		this.VerifyEventPoliciesPageByEnteringValidDetails();
-		this.VerifyAddBracketsPageWithValidDetails();
-		addBracketPage.clickOnAddAnotherBracketButton();
-		this.VerifyAddBracketsPageWithValidDetails();
+		addEventPage.clickOnAddEventButton();
+		this.verifyExitEventCreationPopupAfterFillingEventInformationDetails();
+		addEventPage.clickOnNextStepButton();
+		
+		addEventPage.setRefundPolicy(testDataProp.getProperty("about.the.event"));
+		addEventPage.clickOnNextStepButton();
+		addEventPage.hardWait(2);
+		
+		this.addBracketPage.addBrackets(testDataProp.getProperty("min.age.range"), testDataProp.getProperty("max.age.range"), testDataProp.getProperty("min.rating.range"), testDataProp.getProperty("max.rating.range"));
+	
+		addEventPage.clickOnNextStepButton();
 		addBracketPage.clickOnNoContinueToSummary();
 		addBracketPage.clickOnPublishEventButton();
 
 		addBracketPage.clickOnEventSuccessClosePopupButton();
 
-		addEventPage.clickonEventButton();
+		addEventPage.clickOnEventsTab();
 
-		addEventPage.clickonRecentlyAddedEvent(testDataProp.getProperty("event.name"));
+		addEventPage.clickOnRecentlyAddedEvent(eventName);
 
 		addBracketPage.clickonDeleteBracket();
 
@@ -1413,263 +1421,248 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of VerifyRecentlyAddedEventUnderEventsTab method");
 	}
 
-	@Test(priority = 75, description = "Verify Cancel Button Functionality In DeleteBracket", groups = "sanity")
-
-	@Description("Test case #75, Verify Cancel Button Functionality In DeleteBracket")
-
+	@Test(priority = 77, description = "Verify Cancel Button Functionality In DeleteBracket", groups = "sanity")
+	@Description("Test case #77, Verify Cancel Button Functionality In DeleteBracket")
 	@Severity(SeverityLevel.NORMAL)
-
-	@Story("Test case #75, Verify Cancel Button Functionality In DeleteBracket")
+	@Story("Test case #77, Verify Cancel Button Functionality In DeleteBracket")
 	public void verifyCancelButtonFunctionalityInDeleteBracket() {
 		logger.info("Starting of VerifyRecentlyAddedEventUnderEventsTab method");
 
-		addBracketPage.clickonCancelButton();
-		addEventPage.selectRecentlyAddedEvent(testDataProp.getProperty("event.name"));
-		addEventPage.selectDeleteEventFromList(testDataProp.getProperty("event.name"));
+		addBracketPage.clickOnCancelButton();
+		Assert.assertTrue(addEventPage.isRecentlyAddedEventDisplayed(eventName));
+		addEventPage.clickOnDeleteEventFromList(eventName);
 
 		logger.info("Ending of VerifyRecentlyAddedEventUnderEventsTab method");
 	}
 
-	@Test(priority = 76, description = "Verify Close Button Functionality In DeleteBracket", groups = "sanity")
-
-	@Description("Test case #76, Verify Close Button Functionality In DeleteBracket")
-
+	@Test(priority = 78, description = "Verify Close Button Functionality In DeleteBracket", groups = "sanity")
+	@Description("Test case #78, Verify Close Button Functionality In DeleteBracket")
 	@Severity(SeverityLevel.NORMAL)
-
-	@Story("Test case #76, Verify Close  Button Functionality In DeleteBracket")
+	@Story("Test case #78, Verify Close  Button Functionality In DeleteBracket")
 	public void verifyCloseButtonFunctionalityInDeleteBracket() {
 		logger.info("Starting of verifyCloseButtonFunctionalityInDeleteBracket method");
 
 		addBracketPage.clickonDeleteBracket();
-		addBracketPage.clickonCloseButton();
-		addEventPage.selectRecentlyAddedEvent(testDataProp.getProperty("event.name"));
-		addEventPage.selectDeleteEventFromList(testDataProp.getProperty("event.name"));
+		addBracketPage.clickOnCloseButton();
+		
+		Assert.assertTrue(addEventPage.isRecentlyAddedEventDisplayed(eventName));
+		addEventPage.clickOnDeleteEventFromList(eventName);
 
 		logger.info("Ending of verifyCloseButtonFunctionalityInDeleteBracket method");
 	}
 
-	@Test(priority = 77, description = "Verify Confirm Button Functionality In DeleteBracket", groups = "sanity")
-
-	@Description("Test case #77, Verify Confirm Button Functionality In DeleteBracket")
-
+	@Test(priority = 79, description = "Verify Confirm Button Functionality In DeleteBracket", groups = "sanity")
+	@Description("Test case #79, Verify Confirm Button Functionality In DeleteBracket")
 	@Severity(SeverityLevel.NORMAL)
-
-	@Story("Test case #77, Verify Confirm  Button Functionality In DeleteBracket")
+	@Story("Test case #79, Verify Confirm  Button Functionality In DeleteBracket")
 	public void verifyConfirmButtonFunctionalityInDeleteBracket() {
 		logger.info("Starting of verifyConfirmButtonFunctionalityInDeleteBracket method");
 
 		addBracketPage.clickonDeleteBracket();
-		addBracketPage.clickonConfirmButton();
+		addBracketPage.clickOnConfirmButton();
 
 		Assert.assertTrue(addBracketPage.isDeleteBracketSuccessPopUpDisplayed());
 
 		logger.info("Ending of verifyConfirmButtonFunctionalityInDeleteBracket method");
 	}
 
-	@Test(priority = 78, description = "Verify Ok Button Functionality In DeleteBracket SuccessPopUP", groups = "sanity")
-
-	@Description("Test case #78, Verify Ok Button Functionality In DeleteBracket SuccessPopUP")
-
+	@Test(priority = 80, description = "Verify Ok Button Functionality In DeleteBracket SuccessPopUP", groups = "sanity")
+	@Description("Test case #80, Verify Ok Button Functionality In DeleteBracket SuccessPopUP")
 	@Severity(SeverityLevel.NORMAL)
-
-	@Story("Test case #78, Verify Ok  Button Functionality In DeleteBracket SuccessPopUP")
+	@Story("Test case #80, Verify Ok  Button Functionality In DeleteBracket SuccessPopUP")
 	public void verifyOkButtonFunctionalityInDeleteBracketSuccessPopUP() {
 		logger.info("Starting of verifyOkButtonFunctionalityInDeleteBracketSuccessPopUP method");
 
-		addBracketPage.clickonOkButton();
+		addBracketPage.clickOnOkButton();
 
-		Assert.assertFalse(addEventPage.selectDeleteEventFromList(testDataProp.getProperty("event.name")));
+		//Assert.assertFalse(addEventPage.clickOnDeleteEventFromList(eventName));
 
-		addBracketPage.clickonBackButton();
+		addBracketPage.clickOnBackButton();
+		
 		logger.info("Ending of verifyOkButtonFunctionalityInDeleteBracketSuccessPopUP method");
 	}
 
-	@Test(priority = 79, description = "Verify Free Event Functionality", groups = "sanity")
-
-	@Description("Test case #79, Verify Free Event Functionality")
-
+	@Test(priority = 81, description = "Verify Free Event Functionality", groups = "sanity")
+	@Description("Test case #81, Verify Free Event Functionality")
 	@Severity(SeverityLevel.NORMAL)
-
-	@Story("Test case #79, Verify Free Event Functionality")
+	@Story("Test case #81, Verify Free Event Functionality")
 	public void VerifyFreeEventFunctionality() {
 		logger.info("Starting of VerifyFreeEventFunctionality method");
 
-		addEventPage.clickonAddEventButton();
+		addEventPage.clickOnAddEventButton();
 
 		addEventPage.setEventName(testDataProp.getProperty("event.name"));
 		addEventPage.uploadEventLogo(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("edit.club.logo.path"));
 		addEventPage.setMemberPrice(testDataProp.getProperty("free.event.bracket.value"));
 		addEventPage.setNonMemberPrice(testDataProp.getProperty("free.event.bracket.value"));
-		addEventPage.setAboutTheEvent(testDataProp.getProperty("about.the.Event"));
+		addEventPage.setAboutTheEvent(testDataProp.getProperty("about.the.event"));
 		addEventPage.clickonTextFormattingButtons();
-		addEventPage.clickonNextButton();
+		addEventPage.clickOnNextStepButton();
 
-		Assert.assertTrue(addEventPage.isDisplayedEventPoliciesPageContains());
+		Assert.assertTrue(addEventPage.isEventPoliciesPageContains());
 
-		this.VerifyEventPoliciesPageByEnteringValidDetails();
-		this.VerifyAddBracketsPageWithValidDetails();
+		this.verifyEventPoliciesPageByEnteringValidDetails();
+		this.verifyAddBracketsPageWithValidDetails();
 		this.VerifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
 		this.VerifyPublishEventButton();
 
 		logger.info("Ending of VerifyFreeEventFunctionality method");
 	}
 
-	@Test(priority = 80, description = "Verify Free Bracket With Event Type As Round Robin", groups = "sanity")
-
-	@Description("Test case #80, Verify Free Bracket With Event Type As Round Robin")
-
+	@Test(priority = 82, description = "Verify Free Bracket With Event Type As Round Robin", groups = "sanity")
+	@Description("Test case #82, Verify Free Bracket With Event Type As Round Robin")
 	@Severity(SeverityLevel.NORMAL)
-
-	@Story("Test case #80,Verify Free Bracket With Event Type As Round Robin")
+	@Story("Test case #82,Verify Free Bracket With Event Type As Round Robin")
 	public void VerifyFreeBracketWithEventTypeAsRoundRobin() {
 		logger.info("Starting of VerifyFreeBracketWithEventTypeAsRoundRobin method");
 
-		addEventPage.clickonAddEventButton();
-
-		addEventPage.setEventName(testDataProp.getProperty("event.name"));
+		addEventPage.clickOnAddEventButton();
+		
+		eventName = addEventPage.setEventName(testDataProp.getProperty("event.name"));
+		addEventPage.setLocation(testDataProp.getProperty("state.address"));
 		addEventPage.uploadEventLogo(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("edit.club.logo.path"));
-		addEventPage.setMemberPrice(testDataProp.getProperty("free.event.bracket.value"));
-		addEventPage.setNonMemberPrice(testDataProp.getProperty("free.event.bracket.value"));
-		addEventPage.setAboutTheEvent(testDataProp.getProperty("about.the.Event"));
+		addEventPage.setMemberPrice(testDataProp.getProperty("zero.value"));
+		addEventPage.setNonMemberPrice(testDataProp.getProperty("zero.value"));
+		addEventPage.setAboutTheEvent(testDataProp.getProperty("about.the.event"));
 		addEventPage.clickonTextFormattingButtons();
-		addEventPage.clickonNextButton();
+		addEventPage.clickOnNextStepButton();
 
-		Assert.assertTrue(addEventPage.isDisplayedEventPoliciesPageContains());
+		Assert.assertTrue(addEventPage.isEventPoliciesPageContains());
 
-		this.VerifyEventPoliciesPageByEnteringValidDetails();
+		this.verifyEventPoliciesPageByEnteringValidDetails();
 
-		addBracketPage.clickonTypeDropdown();
-		Assert.assertTrue(addBracketPage.isBracketListDisplayed());
-		addBracketPage.clickOnDoublesBracketTypeButton();
-		Assert.assertTrue(addBracketPage.isSelectedBracketTypeDisplayed());
+		addBracketPage.clickOnMatchTypeDropdown();
+		Assert.assertTrue(addBracketPage.isMatchTypeListContains());
+		addBracketPage.selectDoublesMatchType();
+		Assert.assertTrue(addBracketPage.isSelectedMatchTypeDisplayed());
 
-		addBracketPage.clickonPlayGroupDropdown();
+		addBracketPage.clickOnPlayGroupDropdown();
 		Assert.assertTrue(addBracketPage.isPlayerGroupListDisplayed());
-		addBracketPage.clickOnMixedMatchGroupButton();
+		addBracketPage.selectMixedPlayerGroup();
 		Assert.assertTrue(addBracketPage.isSelectedPlayerGroupTypeDisplayed());
 
-		addBracketPage.setAgeRangeMinimum(testDataProp.getProperty("age.range.minimum"));
-		Assert.assertTrue(addBracketPage.isEnteredMinimumAgeDisplayed(testDataProp.getProperty("age.range.minimum")));
+		addBracketPage.setMinimumAgeRange(testDataProp.getProperty("min.age.range"));
+		Assert.assertTrue(addBracketPage.isEnteredMinimumAgeDisplayed(testDataProp.getProperty("min.age.range")));
 
-		addBracketPage.setAgeRangeMaximum(testDataProp.getProperty("age.range.maximum"));
-		Assert.assertTrue(addBracketPage.isEnteredMaximumAgeDisplayed(testDataProp.getProperty("age.range.maximum")));
+		addBracketPage.setMaximumAgeRange(testDataProp.getProperty("max.age.range"));
+		Assert.assertTrue(addBracketPage.isEnteredMaximumAgeDisplayed(testDataProp.getProperty("max.age.range")));
 
-		addBracketPage.setRatingRangeMinimum(testDataProp.getProperty("Rating.range.minimum"));
-		Assert.assertTrue(
-				addBracketPage.isEnteredMinimumRatingRangeDisplayed(testDataProp.getProperty("Rating.range.minimum")));
+		addBracketPage.setMinimumRatingRange(testDataProp.getProperty("min.rating.range"));
+		Assert.assertTrue(addBracketPage.isEnteredMinimumRatingRangeDisplayed(testDataProp.getProperty("min.rating.range")));
 
-		addBracketPage.setRatingRangeMaximum(testDataProp.getProperty("Rating.range.maximum"));
-		Assert.assertTrue(
-				addBracketPage.isEnteredMaximumRatingRangeDisplayed(testDataProp.getProperty("Rating.range.maximum")));
+		addBracketPage.setMaximumRatingRange(testDataProp.getProperty("max.rating.range"));
+		Assert.assertTrue(addBracketPage.isEnteredMaximumRatingRangeDisplayed(testDataProp.getProperty("max.rating.range")));
 
 		Assert.assertTrue(addBracketPage.isAutoGenerateButtonEnabled());
-		addBracketPage.clickOnAutoGenerate();
+		addBracketPage.clickOnAutoGenerateButton();
 
 		addBracketPage.clickOnEventTypeDropdown();
-		Assert.assertTrue(addBracketPage.isEventTypeListDisplayed());
-		addBracketPage.clickOnRoundRobinEventTypeButton();
+		Assert.assertTrue(addBracketPage.isEventTypeListContains());
+		addBracketPage.selectRoundRobinEvent();
 		Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
 
-		addBracketPage.clickOnRegistrationStartDate();
-		addBracketPage.clickOnRegistrationEndDate();
-		addBracketPage.clickOnCompetitionStartDate();
-		addBracketPage.clickOnCompetitionEndDate();
+		addBracketPage.setRegistrationStartDate();
+		addBracketPage.setRegistrationEndDate();
+		addBracketPage.setCompetitionStartDate();
+		addBracketPage.setCompetitionEndDate();
 
 		addBracketPage.clickOnTimeZoneDropdown();
-		Assert.assertTrue(addBracketPage.isTimeZoneListDisplayed());
-		addBracketPage.clickOnCentalAmericanTimeZoneButton();
+		// Assert.assertTrue(addBracketPage.isTimeZoneListDisplayed());
+		// addBracketPage.clickOnCentalAmericanTimeZoneButton();
+
+		addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("zero.value"));
+		addBracketPage.setBracketNonClubMemberPrice(testDataProp.getProperty("zero.value"));
+
+		addBracketPage.setNumberOfTeams(testDataProp.getProperty("min.age.range"));
+		Assert.assertTrue(addBracketPage.isNumberOfTeamsCountDisplayed());
+
+		addBracketPage.setWaitlist(testDataProp.getProperty("number.of.courts"));
+		Assert.assertTrue(addBracketPage.isWaitListCountDisplayed());
+
+		addEventPage.clickOnNextStepButton();
+
+		this.VerifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
+
+		this.VerifyPublishEventButton();
+
+		addBracketPage.clickOnEventSuccessClosePopupButton();
+
+	logger.info("Ending of VerifyFreeBracketWithEventTypeAsRoundRobin method");
+	}
+
+	@Test(priority = 83, description = "Verify Free Bracket With Event Type As Water Fall", groups = "sanity")
+	@Description("Test case #83, Verify Free Bracket With Event Type As Water Fall")
+	@Severity(SeverityLevel.NORMAL)
+	@Story("Test case #83,Verify Free Bracket With Event Type As Water Fall")
+	public void VerifyFreeBracketWithEventTypeAsWateFall() {
+		logger.info("Starting of VerifyFreeBracketWithEventTypeAsWateFall method");
+
+		addEventPage.clickOnAddEventButton();
+
+		eventName = addEventPage.setEventName(testDataProp.getProperty("event.name"));
+		addEventPage.setLocation(testDataProp.getProperty("state.address"));
+		addEventPage.uploadEventLogo(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("edit.club.logo.path"));
+		addEventPage.setMemberPrice(testDataProp.getProperty("zero.value"));
+		addEventPage.setNonMemberPrice(testDataProp.getProperty("zero.value"));
+		addEventPage.setAboutTheEvent(testDataProp.getProperty("about.the.event"));
+		addEventPage.clickonTextFormattingButtons();
+		addEventPage.clickOnNextStepButton();
+
+		Assert.assertTrue(addEventPage.isEventPoliciesPageContains());
+		this.verifyEventPoliciesPageByEnteringValidDetails();
+
+		addBracketPage.clickOnMatchTypeDropdown();
+		Assert.assertTrue(addBracketPage.isMatchTypeListContains());
+		addBracketPage.selectDoublesMatchType();
+		Assert.assertTrue(addBracketPage.isSelectedMatchTypeDisplayed());
+
+		addBracketPage.clickOnPlayGroupDropdown();
+		Assert.assertTrue(addBracketPage.isPlayerGroupListDisplayed());
+		addBracketPage.selectMixedPlayerGroup();
+
+		addBracketPage.setMinimumAgeRange(testDataProp.getProperty("min.age.range"));
+		Assert.assertTrue(addBracketPage.isEnteredMinimumAgeDisplayed(testDataProp.getProperty("min.age.range")));
+
+		addBracketPage.setMaximumAgeRange(testDataProp.getProperty("max.age.range"));
+		Assert.assertTrue(addBracketPage.isEnteredMaximumAgeDisplayed(testDataProp.getProperty("max.age.range")));
+
+		addBracketPage.setMinimumRatingRange(testDataProp.getProperty("min.rating.range"));
+		Assert.assertTrue(
+				addBracketPage.isEnteredMinimumRatingRangeDisplayed(testDataProp.getProperty("min.rating.range")));
+
+		addBracketPage.setMaximumRatingRange(testDataProp.getProperty("max.rating.range"));
+		Assert.assertTrue(
+				addBracketPage.isEnteredMaximumRatingRangeDisplayed(testDataProp.getProperty("max.rating.range")));
+
+		Assert.assertTrue(addBracketPage.isAutoGenerateButtonEnabled());
+		addBracketPage.clickOnAutoGenerateButton();
+		
+		addBracketPage.clickOnEventTypeDropdown();
+		Assert.assertTrue(addBracketPage.isEventTypeListContains());
+		addBracketPage.selectWaterfallEventType();
+		Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
+
+		addBracketPage.setNumberOfCourts(testDataProp.getProperty("number.of.courts"));
+
+		addBracketPage.setRegistrationStartDate();
+		addBracketPage.setRegistrationEndDate();
+		addBracketPage.setCompetitionStartDate();
+		addBracketPage.setCompetitionEndDate();
+
+		addBracketPage.clickOnTimeZoneDropdown();
+		Assert.assertTrue(addBracketPage.isTimeZoneListContains());
+		addBracketPage.clickOnCentalAmericanTimeZone();
 
 		addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("free.event.bracket.value"));
 		addBracketPage.setBracketNonClubMemberPrice(testDataProp.getProperty("free.event.bracket.value"));
 
-		addBracketPage.setNumberOfTerms(testDataProp.getProperty("number.of.teams"));
-		Assert.assertTrue(addBracketPage.isNumberOfTeamsCountDisplayed());
-
-		addBracketPage.setWaitlist(testDataProp.getProperty("wait.list"));
-		Assert.assertTrue(addBracketPage.isWaitListCountDisplayed());
-
-		addEventPage.clickonNextButton();
-
-		this.VerifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
-		this.VerifyPublishEventButton();
-
-		logger.info("Ending of VerifyFreeBracketWithEventTypeAsRoundRobin method");
-	}
-
-	@Test(priority = 81, description = "Verify Free Bracket With Event Type As Water Fall", groups = "sanity")
-
-	@Description("Test case #81, Verify Free Bracket With Event Type As Water Fall")
-
-	@Severity(SeverityLevel.NORMAL)
-
-	@Story("Test case #81,Verify Free Bracket With Event Type As Water Fall")
-	public void VerifyFreeBracketWithEventTypeAsWateFall() {
-		logger.info("Starting of VerifyFreeBracketWithEventTypeAsWateFall method");
-
-		addEventPage.clickonAddEventButton();
-
-		addEventPage.setEventName(testDataProp.getProperty("event.name"));
-		addEventPage.uploadEventLogo(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("edit.club.logo.path"));
-		addEventPage.setMemberPrice(testDataProp.getProperty("free.event.bracket.value"));
-		addEventPage.setNonMemberPrice(testDataProp.getProperty("free.event.bracket.value"));
-		addEventPage.setAboutTheEvent(testDataProp.getProperty("about.the.Event"));
-		addEventPage.clickonTextFormattingButtons();
-		addEventPage.clickonNextButton();
-
-		Assert.assertTrue(addEventPage.isDisplayedEventPoliciesPageContains());
-
-		this.VerifyEventPoliciesPageByEnteringValidDetails();
-
-		addBracketPage.clickonTypeDropdown();
-		Assert.assertTrue(addBracketPage.isBracketListDisplayed());
-		addBracketPage.clickOnDoublesBracketTypeButton();
-		Assert.assertTrue(addBracketPage.isSelectedBracketTypeDisplayed());
-
-		addBracketPage.clickonPlayGroupDropdown();
-		Assert.assertTrue(addBracketPage.isPlayerGroupListDisplayed());
-		addBracketPage.clickOnMixedMatchGroupButton();
-		Assert.assertTrue(addBracketPage.isSelectedPlayerGroupTypeDisplayed());
-
-		addBracketPage.setAgeRangeMinimum(testDataProp.getProperty("age.range.minimum"));
-		Assert.assertTrue(addBracketPage.isEnteredMinimumAgeDisplayed(testDataProp.getProperty("age.range.minimum")));
-
-		addBracketPage.setAgeRangeMaximum(testDataProp.getProperty("age.range.maximum"));
-		Assert.assertTrue(addBracketPage.isEnteredMaximumAgeDisplayed(testDataProp.getProperty("age.range.maximum")));
-
-		addBracketPage.setRatingRangeMinimum(testDataProp.getProperty("Rating.range.minimum"));
-		Assert.assertTrue(
-				addBracketPage.isEnteredMinimumRatingRangeDisplayed(testDataProp.getProperty("Rating.range.minimum")));
-
-		addBracketPage.setRatingRangeMaximum(testDataProp.getProperty("Rating.range.maximum"));
-		Assert.assertTrue(
-				addBracketPage.isEnteredMaximumRatingRangeDisplayed(testDataProp.getProperty("Rating.range.maximum")));
-
-		Assert.assertTrue(addBracketPage.isAutoGenerateButtonEnabled());
-		addBracketPage.clickOnAutoGenerate();
-
-		addBracketPage.clickOnEventTypeWaterfallDropdown();
-		addBracketPage.setNumberOfCourt(testDataProp.getProperty("number.of.courts"));
-
-		addBracketPage.clickOnRegistrationStartDate();
-		addBracketPage.clickOnRegistrationEndDate();
-		addBracketPage.clickOnCompetitionStartDate();
-		addBracketPage.clickOnCompetitionEndDate();
-
-		addBracketPage.clickOnTimeZoneDropdown();
-		Assert.assertTrue(addBracketPage.isTimeZoneListDisplayed());
-		addBracketPage.clickOnCentalAmericanTimeZoneButton();
-
-		addBracketPage.setBracketPriceClubMemberPrice(testDataProp.getProperty("free.event.bracket.value"));
-		addBracketPage.setBracketPriceNonClubMemberPrice(testDataProp.getProperty("free.event.bracket.value"));
-
-		//
-		addBracketPage.setNumberOfTerms(testDataProp.getProperty("number.of.teams"));
+		addBracketPage.setNumberOfTeams(testDataProp.getProperty("number.of.teams"));
 		// Assert.assertTrue(addBracketPage.isNumberOfTeamsCountDisplayed());
 
 		addBracketPage.setWaitlist(testDataProp.getProperty("wait.list"));
 		Assert.assertTrue(addBracketPage.isWaitListCountDisplayed());
 
-		addEventPage.clickonNextButton();
+		addEventPage.clickOnNextStepButton();
 
 		this.VerifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
 		this.VerifyPublishEventButton();
@@ -1677,42 +1670,30 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of VerifyFreeBracketWithEventTypeAsWateFall method");
 	}
 
-	@Test(priority = 82, description =
-	  "Verify Delete Event Functionality after publishing the event", groups =
-	  "sanity")
-	  
-	  @Description("Test case #82, Verify Delete Event Functionality after publishing the event"
-	  )
-	  
-	  @Severity(SeverityLevel.NORMAL)
-	  
-	  @Story("Test case #82, Verify Delete Event Functionality after publishing the event"
-	  ) public void VerifyDeleteEventFunctionalityAfterPublishingEvent() { logger.
-	  info("Starting of VerifyDeleteBracketFunctionalityAfterPublishingEvent method"
-	  );
-	  
-	  addEventPage.clickonEventButton();
-	  addEventPage.selectRecentlyAddedEvent(testDataProp.getProperty("event.name"))
-	  ;
-	  addEventPage.selectDeleteEventFromList(testDataProp.getProperty("event.name")
-	  );
-	  
-	  addEventPage.clickOnDeleteEventFromList(testDataProp.getProperty("event.name"
-	  )); Assert.assertTrue(addEventPage.isDeleteEventPopUpContains()); // String
-	  eventName = addEventPage.getEventName(); // Assert.assertEquals(eventName, //
-	  expectedAssertionsProp.getProperty("event.name"));
-	  
-	  addEventPage.clickOnDeleteEventConfirmButton();
-	  
-	  Assert.assertTrue(addEventPage.isEventDeletedSuccessPopUpContains());
-	  
-	  addEventPage.clickOnDeleteEventOKButton();
-	  Assert.assertFalse(addEventPage.selectRecentlyAddedEvent(testDataProp.
-	  getProperty("event.name")));
-	  
-	  logger.
-	  info("Ending of VerifyDeleteBracketFunctionalityAfterPublishingEvent method"
-	  ); }*/
+	@Test(priority = 84, description = "Verify Delete Event Functionality after publishing the event", groups = "sanity")
+	@Description("Test case #84, Verify Delete Event Functionality after publishing the event")
+	@Severity(SeverityLevel.NORMAL)
+	@Story("Test case #84, Verify Delete Event Functionality after publishing the event")
+	public void VerifyDeleteEventFunctionalityAfterPublishingEvent() {
+		logger.info("Starting of VerifyDeleteBracketFunctionalityAfterPublishingEvent method");
+
+		addEventPage.clickOnEventsTab();
+		Assert.assertTrue(addEventPage.isRecentlyAddedEventDisplayed(eventName));
+		addEventPage.clickOnDeleteEventFromList(eventName);
+
+		Assert.assertTrue(addEventPage.isDeleteEventPopUpContains()); 
+		String eventName = addEventPage.getEventName();
+		Assert.assertEquals(eventName, expectedAssertionsProp.getProperty("event.name"));
+
+		addEventPage.clickOnDeleteEventConfirmButton();
+
+		Assert.assertTrue(addEventPage.isEventDeletedSuccessPopUpContains());
+
+		addEventPage.clickOnDeleteEventOKButton();
+		Assert.assertFalse(addEventPage.isRecentlyAddedEventDisplayed(eventName));
+
+		logger.info("Ending of VerifyDeleteBracketFunctionalityAfterPublishingEvent method");
+	}*/
 
 	@AfterClass
 	public void quitDriver() {

@@ -25,6 +25,7 @@
 	<test name="Add A Match">
 		<classes>
 			<class name="com.dupr.test.addamatch.AddAMatchTest" />
+			<class name="com.dupr.test.addamatch.AddClubMatchTest" />
 		</classes>
 	</test>
 
@@ -67,22 +68,21 @@
 			<class name="com.dupr.test.clubs.EditClubInfoTest" />
 			<class name="com.dupr.test.clubs.RemoveMemberTest" />
 			<class name="com.dupr.test.clubs.ImportPlayerViaCSVTest" />
-			<class name="com.dupr.test.addamatch.AddClubMatchTest" />
 		</classes>
 	</test>
 
 	<test name="Events">
-	<classes>
-		<class name="com.dupr.test.events.BrowseEventsTest" />
-		<class name="com.dupr.test.events.EditEventsTest" />
-		<class name="com.dupr.test.events.EditBracketsTest" />
-		<class name="com.dupr.test.events.AddEditRemoveEventLogoTest" />
-		<class name="com.dupr.test.events.AddAnnouncementTest" />
-		<class name="com.dupr.test.events.EndEventTest" />
-		<class name="com.dupr.test.events.AddParticipantsInBracketTest" />
-		<class name="com.dupr.test.events.WithdrawPlayerTest" />
-		<class name="com.dupr.test.events.Create_Edit_Split_TeamTest" />
-		<class name="com.dupr.test.events.AddEventTest" />
-	</classes>
-</test>
+		<classes>
+			<class name="com.dupr.test.events.BrowseEventsTest" />
+			<class name="com.dupr.test.events.EditEventsTest" />
+			<class name="com.dupr.test.events.EditBracketsTest" />
+			<class name="com.dupr.test.events.AddEditRemoveEventLogoTest" />
+			<class name="com.dupr.test.events.AddAnnouncementTest" />
+			<class name="com.dupr.test.events.EndEventTest" />
+			<class name="com.dupr.test.events.AddParticipantsInBracketTest" />
+			<class name="com.dupr.test.events.WithdrawPlayerTest" />
+			<class name="com.dupr.test.events.Create_Edit_Split_TeamTest" />
+			<class name="com.dupr.test.events.AddEventTest" />
+		</classes>
+	</test>
 </suite>

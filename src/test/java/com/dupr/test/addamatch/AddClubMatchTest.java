@@ -29,17 +29,17 @@ public class AddClubMatchTest extends CommonBaseTest {
 	private ClubLogoPage clubLogoPage = null;
 	private EditClubInfoPage editClubInfoPage = null;
 	protected SearchPlayersPage searchPlayersPage = null;
-	private AddClubMatchPage addClubMatchDirectorOnlyPage = null;
+	private AddClubMatchPage addClubMatchPage = null;
 	private MyClubsPage myClubsPage = null;
 	private BrowseClubsPage browseClubsPage = null;
 
 	@BeforeClass
 	@Parameters({ "browser", "siteURL", "directorEmail", "directorPassword" })
-	public void initMethod(String browser, String siteURL, String email, String password) throws Exception {
-		logger.info("Starting of initMethod in AddAMatchTest");
+	public void initMethod(String browser, String siteURL, String directorEmail, String directorPassword) throws Exception {
+		logger.info("Starting of initMethod in AddClubMatchTest");
 
 		this.driver = super.getWebDriver(WebDriversEnum.ADD_CLUB_MATCH_TEST);
-		this.siteLogin(siteURL, email, password, this.driver);
+		this.siteLogin(siteURL, directorEmail, directorPassword, this.driver);
 		this.addAMatchPage = new AddAMatchPage(this.driver);
 		this.clubLogoPage = new ClubLogoPage(this.driver);
 		this.editClubInfoPage = new EditClubInfoPage(this.driver);
@@ -47,30 +47,30 @@ public class AddClubMatchTest extends CommonBaseTest {
 		this.myClubsPage = new MyClubsPage(this.driver);
 		this.browseClubsPage = new BrowseClubsPage(this.driver);
 
-		this.addClubMatchDirectorOnlyPage = new AddClubMatchPage(this.driver);
+		this.addClubMatchPage = new AddClubMatchPage(this.driver);
 
-		logger.info("Ending of initMethod in AddAMatchTest");
+		logger.info("Ending of initMethod in AddClubMatchTest");
 	}
 
 	@Test(priority = 1, description = "Verify Add a Match Tab functionality", groups = "sanity")
-	@Description("Test case #1,Verify Add a Match Tab functionality")
+	@Description("Test case #1, Verify Add a Match Tab functionality")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #1,Verify Add a Match Tab functionality")
-	public void verifyAddAMatchTabFuntionality() {
-		logger.info("Starting of verifyAddAMatchFuntionality method");
+	@Story("Test case #1, Verify Add a Match Tab functionality")
+	public void verifyAddAMatchTabFunctionality() {
+		logger.info("Starting of verifyAddAMatchTabFunctionality method");
 
 		addAMatchPage.clickOnAddAMatchTab();
 		Assert.assertTrue(addAMatchPage.isAddAMatchPageContains());
 
-		logger.info("Ending of verifyAddAMatchFuntionality method");
+		logger.info("Ending of verifyAddAMatchTabFunctionality method");
 	}
 
-	@Test(priority = 2, description = "Verify Add a Match functionality ", groups = "sanity")
-	@Description("Test case #2,Verify Add a Match functionality From A Specific Club")
+	@Test(priority = 2, description = "Verify Add a Match functionality From A Specific Club", groups = "sanity")
+	@Description("Test case #2, Verify Add a Match functionality From A Specific Club")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #2,Verify Add a Match functionality From A Specific Club")
-	public void verifyAddAMatchFuntionalityFromASpecificClub() {
-		logger.info("Starting of verifyAddAMatchFuntionalityFromASpecificClub method");
+	@Story("Test case #2, Verify Add a Match functionality From A Specific Club")
+	public void verifyAddAMatchFunctionalityFromASpecificClub() {
+		logger.info("Starting of verifyAddAMatchFunctionalityFromASpecificClub method");
 
 		driver.navigate().back();
 		clubLogoPage.clickOnMyClubsTab();
@@ -87,28 +87,27 @@ public class AddClubMatchTest extends CommonBaseTest {
 			e.printStackTrace();
 		}
 
-		clubLogoPage.clickOnClub();
 		Assert.assertTrue(editClubInfoPage.isClubPageContains());
 
-		addClubMatchDirectorOnlyPage.clickOnAddAMatchButton();
+		addClubMatchPage.clickOnAddAMatchButton();
 		addAMatchPage.setLocationInDoubles(testDataProp.getProperty("location.city.name"));
 		addAMatchPage.setEventName(testDataProp.getProperty("event.name.in.doubles"));
 
-		logger.info("Ending of verifyAddAMatchFuntionalityFromASpecificClub method");
+		logger.info("Ending of verifyAddAMatchFunctionalityFromASpecificClub method");
 	}
 
-	@Test(priority = 3, description = "verify Add A Match Funtionality For Singles By Selecting Add Your self Checkbox", groups = "sanity")
-	@Description("Test case #3,verify Add A Match Funtionality For Singles By Selecting Add Your self Checkbox ")
+	@Test(priority = 3, description = "verify Add A Match Functionality For Singles By Selecting Add Your self Checkbox", groups = "sanity")
+	@Description("Test case #3,verify Add A Match Functionality For Singles By Selecting Add Your self Checkbox ")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #3, verify Add A Match Funtionality For Singles By Selecting Add Your self Checkbox")
-	public void verifyAddAMatchFuntionalityForSinglesBySelectingAddYourselfCheckbox() {
-		logger.info("Starting of verifyAddAMatchFuntionalityForSinglesBySelectingAddYourselfCheckbox method");
+	@Story("Test case #3, verify Add A Match Functionality For Singles By Selecting Add Your self Checkbox")
+	public void verifyAddAMatchFunctionalityForSinglesBySelectingAddYourselfCheckbox() {
+		logger.info("Starting of verifyAddAMatchFunctionalityForSinglesBySelectingAddYourselfCheckbox method");
 
-		addClubMatchDirectorOnlyPage.clickOnAddYourselfAsPlayerCheckbox();
-		Assert.assertTrue(addClubMatchDirectorOnlyPage.isDirectorNameDisplayedItSelf());
+		addClubMatchPage.clickOnAddYourselfAsPlayerCheckbox();
+		Assert.assertTrue(addClubMatchPage.isDirectorNameDisplayedItSelf());
 
 		addAMatchPage.clickOnSinglesButton();
-		addClubMatchDirectorOnlyPage.clickOnAddFirstOpponentButton();
+		addClubMatchPage.clickOnAddFirstOpponentButton();
 		// Assert.assertTrue(addAMatchPage.isAddPlayerPageContains());
 
 		addAMatchPage.clickOnPlayerRadioButton();
@@ -129,37 +128,37 @@ public class AddClubMatchTest extends CommonBaseTest {
 
 		addAMatchPage.clickOnOKButtonInSuccessPopup();
 
-		logger.info("Ending of verifyAddAMatchFuntionalityForSinglesBySelectingAddYourselfCheckbox method");
+		logger.info("Ending of verifyAddAMatchFunctionalityForSinglesBySelectingAddYourselfCheckbox method");
 	}
 
-	@Test(priority = 4, description = "verify Add A Match Funtionality For Doubles By Selecting Add Your self Checkbox", groups = "sanity")
-	@Description("Test case #4,verify Add A Match Funtionality For Doubles By Selecting Add Your self Checkbox ")
+	@Test(priority = 4, description = "verify Add A Match Functionality For Doubles By Selecting Add Your self Checkbox", groups = "sanity")
+	@Description("Test case #4,verify Add A Match Functionality For Doubles By Selecting Add Your self Checkbox ")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #4, verify Add A Match Funtionality For Doubles By Selecting Add Your self Checkbox")
-	public void verifyAddAMatchFuntionalityForDoublesBySelectingAddYourselfCheckbox() {
-		logger.info("Starting of verifyAddAMatchFuntionalityForDoublesBySelectingAddYourselfCheckbox method");
+	@Story("Test case #4, verify Add A Match Functionality For Doubles By Selecting Add Your self Checkbox")
+	public void verifyAddAMatchFunctionalityForDoublesBySelectingAddYourselfCheckbox() {
+		logger.info("Starting of verifyAddAMatchFunctionalityForDoublesBySelectingAddYourselfCheckbox method");
 
-		addClubMatchDirectorOnlyPage.clickOnAddAMatchButton();
+		addClubMatchPage.clickOnAddAMatchButton();
 		addAMatchPage.setLocationInDoubles(testDataProp.getProperty("location.city.name"));
 		addAMatchPage.setEventName(testDataProp.getProperty("event.name.in.doubles"));
 
-		addClubMatchDirectorOnlyPage.clickOnAddYourselfAsPlayerCheckbox();
-		Assert.assertTrue(addClubMatchDirectorOnlyPage.isDirectorNameDisplayedItSelf());
+		addClubMatchPage.clickOnAddYourselfAsPlayerCheckbox();
+		Assert.assertTrue(addClubMatchPage.isDirectorNameDisplayedItSelf());
 
-		addClubMatchDirectorOnlyPage.clickOnAddDoublesButton();
+		addClubMatchPage.clickOnAddDoublesButton();
 
-		addClubMatchDirectorOnlyPage.clickOnAddFirstOpponentButton();
-		addClubMatchDirectorOnlyPage.clickOnPlayerRadioButton();
+		addClubMatchPage.clickOnAddFirstOpponentButton();
+		addClubMatchPage.clickOnPlayerRadioButton();
 		Assert.assertTrue(addAMatchPage.isAddPlayerButtonEnabled());
 		addAMatchPage.clickOnAddPlayerButton();
 
-		addClubMatchDirectorOnlyPage.clickOnAddSecondPlayerButton();
-		addClubMatchDirectorOnlyPage.clickOnPlayerRadioButton();
+		addClubMatchPage.clickOnAddSecondPlayerButton();
+		addClubMatchPage.clickOnPlayerRadioButton();
 		Assert.assertTrue(addAMatchPage.isAddPlayerButtonEnabled());
 		addAMatchPage.clickOnAddPlayerButton();
 
-		addClubMatchDirectorOnlyPage.clickOnAddSecondOpponentButton();
-		addClubMatchDirectorOnlyPage.clickOnPlayerRadioButton();
+		addClubMatchPage.clickOnAddSecondOpponentButton();
+		addClubMatchPage.clickOnPlayerRadioButton();
 		Assert.assertTrue(addAMatchPage.isAddPlayerButtonEnabled());
 		addAMatchPage.clickOnAddPlayerButton();
 
@@ -177,29 +176,29 @@ public class AddClubMatchTest extends CommonBaseTest {
 
 		addAMatchPage.clickOnOKButtonInSuccessPopup();
 
-		logger.info("Ending of verifyAddAMatchFuntionalityForDoublesBySelectingAddYourselfCheckbox method");
+		logger.info("Ending of verifyAddAMatchFunctionalityForDoublesBySelectingAddYourselfCheckbox method");
 	}
 
-	@Test(priority = 5, description = "verify Add A Match Funtionality For Singles By WithOut Selecting Add Your self Checkbox", groups = "sanity")
-	@Description("Test case #5,verify Add A Match Funtionality For Singles By WithOut Selecting Add Your self Checkbox ")
+	@Test(priority = 5, description = "verify Add A Match Functionality For Singles By WithOut Selecting Add Your self Checkbox", groups = "sanity")
+	@Description("Test case #5,verify Add A Match Functionality For Singles By WithOut Selecting Add Your self Checkbox ")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #5, verify Add A Match Funtionality For Singles By WithOut Selecting Add Your self Checkbox")
-	public void verifyAddAMatchFuntionalityForSinglesByWithOutSelectingAddYourselfCheckbox() {
-		logger.info("Starting of verifyAddAMatchFuntionalityForSinglesByWithOutSelectingAddYourselfCheckbox method");
+	@Story("Test case #5, verify Add A Match Functionality For Singles By WithOut Selecting Add Your self Checkbox")
+	public void verifyAddAMatchFunctionalityForSinglesByWithOutSelectingAddYourselfCheckbox() {
+		logger.info("Starting of verifyAddAMatchFunctionalityForSinglesByWithOutSelectingAddYourselfCheckbox method");
 
-		addClubMatchDirectorOnlyPage.clickOnAddAMatchButton();
+		addClubMatchPage.clickOnAddAMatchButton();
 		addAMatchPage.setLocationInDoubles(testDataProp.getProperty("location.city.name"));
 		addAMatchPage.setEventName(testDataProp.getProperty("event.name.in.doubles"));
 
 		addAMatchPage.clickOnSinglesButton();
 
-		addClubMatchDirectorOnlyPage.clickOnAddFirstPlayerButton();
-		addClubMatchDirectorOnlyPage.clickOnPlayerRadioButton();
+		addClubMatchPage.clickOnAddFirstPlayerButton();
+		addClubMatchPage.clickOnPlayerRadioButton();
 		Assert.assertTrue(addAMatchPage.isAddPlayerButtonEnabled());
 		addAMatchPage.clickOnAddPlayerButton();
 
-		addClubMatchDirectorOnlyPage.clickOnAddFirstOpponentButton();
-		addClubMatchDirectorOnlyPage.clickOnPlayerRadioButton();
+		addClubMatchPage.clickOnAddFirstOpponentButton();
+		addClubMatchPage.clickOnPlayerRadioButton();
 		Assert.assertTrue(addAMatchPage.isAddPlayerButtonEnabled());
 		addAMatchPage.clickOnAddPlayerButton();
 
@@ -217,39 +216,39 @@ public class AddClubMatchTest extends CommonBaseTest {
 
 		addAMatchPage.clickOnOKButtonInSuccessPopup();
 
-		logger.info("Ending of verifyAddAMatchFuntionalityForSinglesByWithOutSelectingAddYourselfCheckbox method");
+		logger.info("Ending of verifyAddAMatchFunctionalityForSinglesByWithOutSelectingAddYourselfCheckbox method");
 	}
 
-	@Test(priority = 6, description = "verify Add A Match Funtionality For Doubles By WithOut Selecting Add Your self Checkbox", groups = "sanity")
-	@Description("Test case #6,verify Add A Match Funtionality For Doubles By WithOut Selecting Add Your self Checkbox ")
+	@Test(priority = 6, description = "verify Add A Match Functionality For Doubles By WithOut Selecting Add Your self Checkbox", groups = "sanity")
+	@Description("Test case #6,verify Add A Match Functionality For Doubles By WithOut Selecting Add Your self Checkbox ")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #6, verify Add A Match Funtionality For Doubles By WithOut Selecting Add Your self Checkbox")
-	public void verifyAddAMatchFuntionalityForDoublesByWithOutSelectingAddYourselfCheckbox() {
-		logger.info("Starting of verifyAddAMatchFuntionalityForDoublesByWithOutSelectingAddYourselfCheckbox method");
+	@Story("Test case #6, verify Add A Match Functionality For Doubles By WithOut Selecting Add Your self Checkbox")
+	public void verifyAddAMatchFunctionalityForDoublesByWithOutSelectingAddYourselfCheckbox() {
+		logger.info("Starting of verifyAddAMatchFunctionalityForDoublesByWithOutSelectingAddYourselfCheckbox method");
 
-		addClubMatchDirectorOnlyPage.clickOnAddAMatchButton();
+		addClubMatchPage.clickOnAddAMatchButton();
 		addAMatchPage.setLocationInDoubles(testDataProp.getProperty("location.city.name"));
 		addAMatchPage.setEventName(testDataProp.getProperty("event.name.in.doubles"));
 
-		addClubMatchDirectorOnlyPage.clickOnAddDoublesButton();
+		addClubMatchPage.clickOnAddDoublesButton();
 
-		addClubMatchDirectorOnlyPage.clickOnAddFirstPlayerButton();
-		addClubMatchDirectorOnlyPage.clickOnPlayerRadioButton();
+		addClubMatchPage.clickOnAddFirstPlayerButton();
+		addClubMatchPage.clickOnPlayerRadioButton();
 		Assert.assertTrue(addAMatchPage.isAddPlayerButtonEnabled());
 		addAMatchPage.clickOnAddPlayerButton();
 
-		addClubMatchDirectorOnlyPage.clickOnAddFirstOpponentButton();
-		addClubMatchDirectorOnlyPage.clickOnPlayerRadioButton();
+		addClubMatchPage.clickOnAddFirstOpponentButton();
+		addClubMatchPage.clickOnPlayerRadioButton();
 		Assert.assertTrue(addAMatchPage.isAddPlayerButtonEnabled());
 		addAMatchPage.clickOnAddPlayerButton();
 
-		addClubMatchDirectorOnlyPage.clickOnAddSecondPlayerButton();
-		addClubMatchDirectorOnlyPage.clickOnPlayerRadioButton();
+		addClubMatchPage.clickOnAddSecondPlayerButton();
+		addClubMatchPage.clickOnPlayerRadioButton();
 		Assert.assertTrue(addAMatchPage.isAddPlayerButtonEnabled());
 		addAMatchPage.clickOnAddPlayerButton();
 
-		addClubMatchDirectorOnlyPage.clickOnAddSecondOpponentButton();
-		addClubMatchDirectorOnlyPage.clickOnPlayerRadioButton();
+		addClubMatchPage.clickOnAddSecondOpponentButton();
+		addClubMatchPage.clickOnPlayerRadioButton();
 		Assert.assertTrue(addAMatchPage.isAddPlayerButtonEnabled());
 		addAMatchPage.clickOnAddPlayerButton();
 
@@ -267,82 +266,82 @@ public class AddClubMatchTest extends CommonBaseTest {
 
 		addAMatchPage.clickOnOKButtonInSuccessPopup();
 
-		logger.info("Ending of verifyAddAMatchFuntionalityForDoublesByWithOutSelectingAddYourselfCheckbox method");
+		logger.info("Ending of verifyAddAMatchFunctionalityForDoublesByWithOutSelectingAddYourselfCheckbox method");
 	}
 
 	@Test(priority = 7, description = "Validate club match functionality in matches Tab ", groups = "sanity")
 	@Description("Test case #7,Validate club match functionality in matches Tab  ")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #7, Validate club match functionality in matches Tab ")
-	public void ValidatClubMatchFunctionalityInMatchesTab() {
-		logger.info("Starting of ValidatClubMatchFunctionalityInMatchesTab method");
+	public void validateClubMatchFunctionalityInMatchesTab() {
+		logger.info("Starting of validateClubMatchFunctionalityInMatchesTab method");
 
-		addClubMatchDirectorOnlyPage.clickOnMatchesButton();
+		addClubMatchPage.clickOnMatchesButton();
 		// addClubMatchDirectorOnlyPage.isMatchesTabContains();
 
-		logger.info("Ending of ValidatClubMatchFunctionalityInMatchesTab method");
+		logger.info("Ending of validateClubMatchFunctionalityInMatchesTab method");
 	}
 
 	@Test(priority = 8, description = "Validate club match Sort functionality in matches Tab ", groups = "sanity")
 	@Description("Test case #8,Validate club match Sort functionality in matches Tab  ")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #8, Validate club match Sort functionality in matches Tab ")
-	public void ValidatClubMatchSortFunctionalityInMatchesTab() {
-		logger.info("Starting of ValidatClubMatchSortFunctionalityInMatchesTab method");
+	public void validateClubMatchSortFunctionalityInMatchesTab() {
+		logger.info("Starting of validateClubMatchSortFunctionalityInMatchesTab method");
 
-		addClubMatchDirectorOnlyPage.clickOnMatchesButton();
-		addClubMatchDirectorOnlyPage.clickOnSortButton();
-		Assert.assertTrue(addClubMatchDirectorOnlyPage.isSortFilterContains());
-		addClubMatchDirectorOnlyPage.clickOnOldestToNewestButton();
-		addClubMatchDirectorOnlyPage.clickOnSortButton();
-		addClubMatchDirectorOnlyPage.clickOnNewestToOldestButton();
+		addClubMatchPage.clickOnMatchesButton();
+		addClubMatchPage.clickOnSortButton();
+		Assert.assertTrue(addClubMatchPage.isSortFilterContains());
+		addClubMatchPage.clickOnOldestToNewestButton();
+		addClubMatchPage.clickOnSortButton();
+		addClubMatchPage.clickOnNewestToOldestButton();
 
-		logger.info("Ending of ValidatClubMatchSortFunctionalityInMatchesTab method");
+		logger.info("Ending of validateClubMatchSortFunctionalityInMatchesTab method");
 	}
 
 	@Test(priority = 9, description = "Validate club match Single functionality in matches Tab ", groups = "sanity")
 	@Description("Test case #9,Validate club match Single functionality in matches Tab  ")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #9, Validate club match Single functionality in matches Tab ")
-	public void ValidatClubMatchSingleFunctionalityInMatchesTab() {
-		logger.info("Starting of ValidatClubMatchSingleFunctionalityInMatchesTab method");
+	public void validateClubMatchSinglesFunctionalityInMatchesTab() {
+		logger.info("Starting of validateClubMatchSinglesFunctionalityInMatchesTab method");
 
-		addClubMatchDirectorOnlyPage.clickOnSinglesButton();
-		Assert.assertTrue(addClubMatchDirectorOnlyPage.isRightMarkSinglesDisplayed());
+		addClubMatchPage.clickOnSinglesButton();
+		Assert.assertTrue(addClubMatchPage.isRightMarkSinglesDisplayed());
 
-		logger.info("Ending of ValidatClubMatchSingleFunctionalityInMatchesTab method");
+		logger.info("Ending of validateClubMatchSinglesFunctionalityInMatchesTab method");
 	}
 
 	@Test(priority = 10, description = "Validate club match Doubles functionality in matches Tab ", groups = "sanity")
 	@Description("Test case #10,Validate club match Doubles functionality in matches Tab  ")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #10, Validate club match Doubles functionality in matches Tab ")
-	public void ValidatClubMatchDoublesFunctionalityInMatchesTab() {
-		logger.info("Starting of ValidatClubMatchDoublesFunctionalityInMatchesTab method");
+	public void validateClubMatchDoublesFunctionalityInMatchesTab() {
+		logger.info("Starting of validateClubMatchDoublesFunctionalityInMatchesTab method");
 
-		addClubMatchDirectorOnlyPage.clickOnSinglesButton();
-		addClubMatchDirectorOnlyPage.clickOnDoublesButton();
+		addClubMatchPage.clickOnSinglesButton();
+		addClubMatchPage.clickOnDoublesButton();
 
-		Assert.assertTrue(addClubMatchDirectorOnlyPage.isRightMarkDoublesDisplayed());
+		Assert.assertTrue(addClubMatchPage.isRightMarkDoublesDisplayed());
 
-		logger.info("Ending of ValidatClubMatchDoublesFunctionalityInMatchesTab method");
+		logger.info("Ending of validateClubMatchDoublesFunctionalityInMatchesTab method");
 	}
 
 	@Test(priority = 11, description = "Validate club match Clear Filters functionality in matches Tab ", groups = "sanity")
 	@Description("Test case #11,Validate club match Clear Filters functionality in matches Tab  ")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #11, Validate club match Clear Filters functionality in matches Tab ")
-	public void ValidatClubMatchClearFiltersFunctionalityInMatchesTab() {
-		logger.info("Starting of ValidatClubMatchClearFiltersFunctionalityInMatchesTab method");
+	public void validateClubMatchClearFiltersFunctionalityInMatchesTab() {
+		logger.info("Starting of validateClubMatchClearFiltersFunctionalityInMatchesTab method");
 
-		addClubMatchDirectorOnlyPage.clickOnSinglesButton();
-		Assert.assertTrue(addClubMatchDirectorOnlyPage.isRightMarkSinglesDisplayed());
-		Assert.assertTrue(addClubMatchDirectorOnlyPage.isRightMarkDoublesDisplayed());
-		addClubMatchDirectorOnlyPage.clickOnClearFiltersButton();
+		addClubMatchPage.clickOnSinglesButton();
+		Assert.assertTrue(addClubMatchPage.isRightMarkSinglesDisplayed());
+		Assert.assertTrue(addClubMatchPage.isRightMarkDoublesDisplayed());
+		addClubMatchPage.clickOnClearFiltersButton();
 
-		Assert.assertFalse(addClubMatchDirectorOnlyPage.isSingleAndDoubleRightMarkDisplayed());
+		Assert.assertFalse(addClubMatchPage.isSingleAndDoubleRightMarkDisplayed());
 
-		logger.info("Ending of ValidatClubMatchClearFiltersFunctionalityInMatchesTab method");
+		logger.info("Ending of validateClubMatchClearFiltersFunctionalityInMatchesTab method");
 	}
 
 	@AfterClass

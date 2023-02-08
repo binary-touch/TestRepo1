@@ -2,6 +2,7 @@ package com.dupr.pages.events;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -104,6 +105,9 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//li[text()='Waterfall']")
 	private WebElement btnWaterfallEventType;
 
+	@B2BFindBy(xpath = "//button[text()='OK']")
+	private WebElement btnOK;
+
 	@B2BFindBy(xpath = "//h3[text()='Registration Date']")
 	private WebElement lblRegistrationDate;
 
@@ -165,7 +169,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	private WebElement btnRegEndDateNextYearSelectDateTime;
 
 	@B2BFindBy(xpath = "//span[text()='55']")
-	private WebElement btnRegEndDateNextYearSelectDateTimeMinutes;
+	private WebElement btnTimeInMinutes;
 
 	@B2BFindBy(xpath = "//h3[text()='Time Zone']")
 	private WebElement lblTimeZone;
@@ -173,11 +177,14 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h3[text()='Time Zone']/parent::div/div/div/div")
 	private WebElement ddTimeZone;
 
+	@B2BFindBy(xpath = "//ul[contains(@class,'MuiList-root MuiList-padding MuiMenu-list')]")
+	private WebElement ddListTimeZone;
+
 	@B2BFindBy(xpath = "//li[contains(@class,'MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-xo32vf')]")
 	private List<WebElement> lstTimeZone;
 
 	@B2BFindBy(xpath = "//li[text()='(GMT-06:00) Central America']")
-	private WebElement btnCentalAmericaTimeZone;
+	private WebElement btnCentralAmericaTimeZone;
 
 	@B2BFindBy(xpath = "//li[text()='(GMT-11:00) Coordinated Universal Time-11']")
 	private WebElement btnCoordinatedUniversalTime;
@@ -230,10 +237,10 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h2[text()='Bracket #1']/parent::div/parent::div/parent::div")
 	private WebElement drpBracket1;
 
-	@B2BFindBy(xpath = "//p[text()='Registration start date is required.']")
+	@B2BFindBy(xpath = "//p[text()='Registration start date and time is required.']")
 	private WebElement msgRegStartDateRequired;
 
-	@B2BFindBy(xpath = "//p[text()='Registration end date is required.']")
+	@B2BFindBy(xpath = "//p[text()='Registration end date and time is required.']")
 	private WebElement msgRegEndDateRequired;
 
 	@B2BFindBy(xpath = "//p[text()='Registration end date must be after registration start date.']")
@@ -242,10 +249,10 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//p[text()='Competition end date should be higher than competition start date.']")
 	private WebElement msgCompEndDateofPrevStartDate;
 
-	@B2BFindBy(xpath = "//p[text()='Competition start date is required.']")
+	@B2BFindBy(xpath = "//p[text()='Competition start date and time is required.']")
 	private WebElement msgCompStartDateRequired;
 
-	@B2BFindBy(xpath = "//p[text()='Competition start date is required.']")
+	@B2BFindBy(xpath = "//p[text()='Competition end date and time is required.']")
 	private WebElement msgCompEndDateRequired;
 
 	@B2BFindBy(xpath = "//p[text()='Competition start date should be higher than Registration end date.']")
@@ -258,7 +265,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	private WebElement txtBoxNumberOfTeams;
 
 	@B2BFindBy(xpath = "//h3[text()='Waitlist']/parent::div/div/div/div/div/div/input")
-	private WebElement txtWaitlist;
+	private WebElement txtBoxWaitlist;
 
 	@B2BFindBy(xpath = "//button[text()='No, Continue to Summary']")
 	private WebElement btnNoContinueToSummary;
@@ -515,7 +522,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	private WebElement msgMixedGroupSinglesValidation;
 
 	@B2BFindBy(xpath = "//h3[contains(text(),'Number of Courts')]//following-sibling::div//input[@disabled]")
-	private WebElement lblRounRobinNumberOfCourts;
+	private WebElement txtBoxNumberOfCourtsDisabled;
 
 	@B2BFindBy(xpath = "//h3[contains(text(),'Number of Teams')]//following-sibling::div//input[@value='16' and @disabled]")
 	private WebElement txtWaterFallNumberOfTeams;
@@ -541,15 +548,14 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	}
 
 	public void clickOnMatchTypeDropdown() {
-		log.info("Starting of clickonTypeDropdown method");
+		log.info("Starting of clickOnMatchTypeDropdown method");
 
-		try {
-			ddMatchType.click();
-		} catch (Exception e) {
-			clickOnElementUsingActionClass(ddMatchType);
-		}
-
-		log.info("Ending of clickonTypeDropdown method");
+		scrollDown(-200);
+		hardWait(2);
+		clickUsingActionsClass(ddMatchType);
+		hardWait(2);
+		
+		log.info("Ending of clickOnMatchTypeDropdown method");
 	}
 
 	public boolean isMatchTypeListContains() {
@@ -815,6 +821,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		log.info("Starting of isAutoGenerateButtonEnabled method");
 
 		hardWait(2);
+		scrollDown(200);
 		this.waitForElementToBeVisible(btnAutoGenerate);
 		log.info("Ending of isAutoGenerateButtonEnabled method");
 
@@ -842,6 +849,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	public void clickOnEventTypeDropdown() {
 		log.info("Starting of clickOnEventTypeDropdown method");
 
+		scrollDown(300);
 		try {
 			clickOnElementUsingActionClass(ddEventType);
 		} catch (Exception e) {
@@ -904,7 +912,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		return EventType;
 	}
 
-	public void clickOnRegistrationStartDate() {
+	public void setFutureRegistrationStartDate() {
 		log.info("Starting of clickOnRegistrationStartDate method");
 
 		hardWait(2);
@@ -916,45 +924,76 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 		elementClick(btnRegCompetitionStartDateNextYearSelectDate);
 		clickOnElementUsingActionClass(btnRegEndDateNextYearSelectDateTime);
-		clickOnElementUsingActionClass(btnRegEndDateNextYearSelectDateTimeMinutes);
+		clickOnElementUsingActionClass(btnTimeInMinutes);
 
 		log.info("Ending of clickOnRegistrationStartDate method");
 	}
 
+	public void clickOnRegistrationStartDateField() {
+		log.info("Starting of clickOnRegistrationStartDateField method");
+
+		scrollDown(200);
+		try {
+			clickOnElementUsingActionClass(txtBoxRegistrationStartDate);
+			hardWait(2);
+		} catch (Exception e) {
+			txtBoxRegistrationStartDate.click();
+		}
+
+		log.info("Ending of clickOnRegistrationStartDateField method");
+	}
+
 	public void setRegistrationStartDate() {
 		log.info("Starting of setRegistrationStartDate method");
+
 		scrollDown(200);
 		clickOnWebElement(txtBoxRegistrationStartDate);
 
 		LocalDateTime dateTime = LocalDateTime.now();
-		int date = dateTime.getDayOfYear();
-		dateTime.plusDays(1);
-		int minutes = dateTime.getMinute();
+		int date = dateTime.getDayOfMonth();
 
 		SimpleDateFormat simpleformat = new SimpleDateFormat("E, dd MMM yyyy HH:mm:ss Z");
 		simpleformat = new SimpleDateFormat("h");
 		String strHour = simpleformat.format(new Date());
 		System.out.println("Hour in h format = " + strHour);
 
-		driver.findElement(By.xpath("//button[text()='" + date + "']")).click();
+		try {
+			driver.findElement(By.xpath("//button[text()='" + date + "']")).click();
+		} catch (Exception e) {
+			clickOnElementUsingActionClass(driver.findElement(By.xpath("//button[text()='" + date + "']")));
+		}
 
-		driver.findElement(By.xpath("//span[text()='" + strHour + "']")).click();
+		try {
+			driver.findElement(By.xpath("//span[text()='" + strHour + "']")).click();
+		} catch (Exception e) {
+			clickOnElementUsingActionClass(driver.findElement(By.xpath("//span[text()='" + strHour + "']")));
+		}
 
-		driver.findElement(By.xpath("//span[text()='" + minutes + "']")).click();
+		try {
+			driver.findElement(By.xpath("//span[text()='AM']")).click();
+		} catch (Exception e) {
+			clickOnElementUsingActionClass(driver.findElement(By.xpath("//span[text()='AM']")));
+		}
 
-		driver.findElement(By.xpath("//span[text()='AM']")).click();
-
-		/*
-		 * this.txtRegistrationStartDate.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
-		 * 
-		 * txtRegistrationStartDate.sendKeys(registrationStartDate);
-		 */
+		this.clickOnElementUsingActionClass(btnOK);
 
 		log.info("Ending of setRegistrationStartDate method");
-
 	}
 
-	public void clickOnRegistrationEndDate() {
+	public void clickOnRegistrationEndDateField() {
+		log.info("Starting of clickOnRegistrationEndDateField method");
+
+		try {
+			clickOnElementUsingActionClass(btnRegistrationEndDate);
+			hardWait(2);
+		} catch (Exception e) {
+			btnRegistrationEndDate.click();
+		}
+
+		log.info("Ending of clickOnRegistrationEndDateField method");
+	}
+
+	public void setFutureRegistrationEndDate() {
 		log.info("Starting of clickOnRegistrationEndDate method");
 
 		hardWait(2);
@@ -970,19 +1009,256 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		clickOnElementUsingActionClass(btnRegEndDateNextYear);
 		elementClick(btnRegCompetitionStartDateNextYearSelectDate);
 		clickOnElementUsingActionClass(btnRegEndDateNextYearSelectDateTime);
-		clickOnElementUsingActionClass(btnRegEndDateNextYearSelectDateTimeMinutes);
+		clickOnElementUsingActionClass(btnTimeInMinutes);
 
 		log.info("Ending of clickOnRegistrationEndDate method");
 	}
 
-	public void setRegistrationEndDate(String registrationEndDate) {
+	public int getCurrentDate() {
+		log.info("Starting of getCurrentDate method");
+
+		LocalDateTime dateTime = LocalDateTime.now();
+		int date = dateTime.getDayOfMonth();
+
+		System.out.println("Date Value = " + date);
+
+		log.info("Starting of getCurrentDate method");
+
+		return date;
+	}
+
+	public int getFutureDate(int days) {
+		log.info("Starting of getFutureDate method");
+
+		LocalDateTime dateTime = LocalDateTime.now();
+		LocalDateTime date = dateTime.plusDays(days);
+		int dateValue = date.getDayOfMonth();
+		System.out.println("Date Value = " + dateValue);
+
+		log.info("Starting of getFutureDate method");
+
+		return dateValue;
+	}
+
+	public String getCurrentHour() {
+		log.info("Starting of getCurrentHour method");
+
+		SimpleDateFormat simpleformat = new SimpleDateFormat("dd-MMM-yyyy hh:mm:ss a z");
+
+		simpleformat = new SimpleDateFormat("h");
+		String strHour = simpleformat.format(new Date());
+		System.out.println("Hour in h format = " + strHour);
+
+		log.info("Ending of getCurrentHour method");
+		return strHour;
+	}
+
+	public String getCurrentMinute() {
+		log.info("Starting of getCurrentMinute method");
+
+		SimpleDateFormat simpleformat = new SimpleDateFormat("dd-MMM-yyyy hh:mm:ss a z");
+
+		simpleformat = new SimpleDateFormat("m");
+		String strMinutes = simpleformat.format(new Date());
+		System.out.println("Minutes format = " + strMinutes);
+
+		log.info("Ending of getCurrentMinute method");
+		return strMinutes;
+	}
+
+	public String getCurrentMeridiem() {
+		log.info("Starting of getCurrentMeridiem method");
+
+		SimpleDateFormat simpleformat = new SimpleDateFormat("dd-MMM-yyyy hh:mm:ss a z");
+
+		simpleformat = new SimpleDateFormat("a");
+		String meridiem = simpleformat.format(new Date());
+		System.out.println("Meridiem format = " + meridiem);
+
+		log.info("Ending of getCurrentMeridiem method");
+		return meridiem;
+	}
+
+	public String getCurrentZone() {
+		log.info("Starting of getCurrentZone method");
+
+		SimpleDateFormat simpleformat = new SimpleDateFormat("dd-MMM-yyyy hh:mm:ss a z");
+
+		simpleformat = new SimpleDateFormat("z");
+		String zone = simpleformat.format(new Date());
+		System.out.println("Zone format = " + zone);
+
+		log.info("Ending of clickOnRegistrationEndDate method");
+		return zone;
+	}
+
+	public void clickOnCurrentDate(int date) {
+		try {
+			clickOnElementUsingActionClass(driver.findElement(By.xpath("//button[text()='" + date + "']")));
+		} catch (Exception e) {
+			driver.findElement(By.xpath("//button[text()='" + date + "']")).click();
+		}
+	}
+
+	public void clickOnCurrentTime(String strHour) {
+		try {
+			driver.findElement(By.xpath("//span[text()='" + strHour + "']")).click();
+		} catch (Exception e) {
+			clickOnElementUsingActionClass(driver.findElement(By.xpath("//span[text()='" + strHour + "']")));
+		}
+	}
+
+	public void setRegistrationEndDate() {
 		log.info("Starting of setRegistrationEndDate method");
 
 		clickOnWebElement(txtBoxRegistrationEndDate);
-		this.txtBoxRegistrationEndDate.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
-		txtBoxRegistrationEndDate.sendKeys(registrationEndDate);
+
+		ZonedDateTime zonedDateTime = ZonedDateTime.now();
+		System.out.println("Current Zoned date/time is :- \n" + zonedDateTime);
+
+		int date = this.getFutureDate(1);
+		String hours = this.getCurrentHour();
+		String meridiem = this.getCurrentMeridiem();
+
+		this.clickOnCurrentDate(date);
+		this.clickOnCurrentTime(hours);
+		clickOnElementUsingActionClass(btnTimeInMinutes);
+		this.clickOnCurrentTime(meridiem);
+		this.clickOnElementUsingActionClass(btnOK);
 
 		log.info("Ending of setRegistrationEndDate method");
+	}
+
+	public void setInvalidRegistrationStartDate() {
+		log.info("Starting of setInvalidRegistrationStartDate method");
+
+		scrollDown(200);
+		clickOnWebElement(txtBoxRegistrationStartDate);
+
+		try {
+			int date = this.getFutureDate(1);
+			String hours = this.getCurrentHour();
+			String meridiem = this.getCurrentMeridiem();
+
+			this.clickOnCurrentDate(date);
+			this.clickOnCurrentTime(hours);
+			clickOnElementUsingActionClass(btnTimeInMinutes);
+			this.clickOnCurrentTime(meridiem);
+			this.clickOnElementUsingActionClass(btnOK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		log.info("Ending of setInvalidRegistrationStartDate method");
+	}
+
+	public void setInvalidRegistrationEndDate() {
+		log.info("Starting of setInvalidRegistrationEndDate method");
+
+		clickOnWebElement(txtBoxRegistrationEndDate);
+
+		int date = this.getCurrentDate();
+		String hours = this.getCurrentHour();
+		String meridiem = this.getCurrentMeridiem();
+
+		this.clickOnCurrentDate(date);
+		this.clickOnCurrentTime(hours);
+		clickOnElementUsingActionClass(btnTimeInMinutes);
+		this.clickOnCurrentTime(meridiem);
+		this.clickOnElementUsingActionClass(btnOK);
+
+		log.info("Ending of setInvalidRegistrationEndDate method");
+	}
+
+	public void setInvalidCompetitionStartDate() {
+		log.info("Starting of setInvalidCompetitionStartDate method");
+
+		clickOnElementUsingActionClass(txtBoxCompetitionStartDate);
+
+		int date = this.getFutureDate(1);
+		String hours = this.getCurrentHour();
+		String meridiem = this.getCurrentMeridiem();
+
+		this.clickOnCurrentDate(date);
+		this.clickOnCurrentTime(hours);
+		clickOnElementUsingActionClass(btnTimeInMinutes);
+		this.clickOnCurrentTime(meridiem);
+		this.clickOnElementUsingActionClass(btnOK);
+
+		log.info("Ending of setInvalidCompetitionStartDate method");
+	}
+
+	public void setInvalidCompetitionEndDate() {
+		log.info("Starting of setInvalidCompetitionEndDate method");
+
+		clickOnElementUsingActionClass(txtBoxCompetitionEndDate);
+
+		int date = this.getCurrentDate();
+		String hours = this.getCurrentHour();
+		String meridiem = this.getCurrentMeridiem();
+
+		this.clickOnCurrentDate(date);
+		this.clickOnCurrentTime(hours);
+		clickOnElementUsingActionClass(btnTimeInMinutes);
+		this.clickOnCurrentTime(meridiem);
+		this.clickOnElementUsingActionClass(btnOK);
+
+		log.info("Ending of setInvalidCompetitionEndDate method");
+	}
+
+	public void setIncorrectCompetitionStartDate() {
+		log.info("Starting of setIncorrectCompetitionStartDate method");
+
+		clickOnElementUsingActionClass(txtBoxCompetitionStartDate);
+
+		int date = this.getCurrentDate();
+		String hours = this.getCurrentHour();
+		String meridiem = this.getCurrentMeridiem();
+
+		this.clickOnCurrentDate(date);
+		this.clickOnCurrentTime(hours);
+		clickOnElementUsingActionClass(btnTimeInMinutes);
+		this.clickOnCurrentTime(meridiem);
+		this.clickOnElementUsingActionClass(btnOK);
+
+		log.info("Ending of setIncorrectCompetitionStartDate method");
+	}
+
+	public void setCompetitionStartDate() {
+		log.info("Starting of setCompetitionStartDate method");
+
+		clickOnElementUsingActionClass(txtBoxCompetitionStartDate);
+
+		int date = this.getFutureDate(2);
+		String hours = this.getCurrentHour();
+		String meridiem = this.getCurrentMeridiem();
+
+		this.clickOnCurrentDate(date);
+		this.clickOnCurrentTime(hours);
+		clickOnElementUsingActionClass(btnTimeInMinutes);
+		this.clickOnCurrentTime(meridiem);
+		this.clickOnElementUsingActionClass(btnOK);
+
+		log.info("Ending of setCompetitionStartDate method");
+	}
+
+	public void setCompetitionEndDate() {
+		log.info("Starting of setCompetitionEndDate method");
+
+		clickOnElementUsingActionClass(txtBoxCompetitionEndDate);
+
+		int date = this.getFutureDate(3);
+		String hours = this.getCurrentHour();
+		String meridiem = this.getCurrentMeridiem();
+
+		this.clickOnCurrentDate(date);
+		this.clickOnCurrentTime(hours);
+		clickOnElementUsingActionClass(btnTimeInMinutes);
+		this.clickOnCurrentTime(meridiem);
+		this.clickOnElementUsingActionClass(btnOK);
+
+		log.info("Ending of setCompetitionEndDate method");
 	}
 
 	public void clickOnCompetitionStartDate() {
@@ -1005,19 +1281,9 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		elementClick(btnRegCompetitionStartDateNextYear);
 		elementClick(btnRegCompetitionStartDateNextYearSelectDate);
 		clickOnElementUsingActionClass(btnRegEndDateNextYearSelectDateTime);
-		clickOnElementUsingActionClass(btnRegEndDateNextYearSelectDateTimeMinutes);
+		clickOnElementUsingActionClass(btnTimeInMinutes);
 
 		log.info("Ending of clickOnCompetitionStartDate method");
-	}
-
-	public void setCompetitionStartDate(String competitionStartDate) {
-		log.info("Starting of setCompetitionStartDate method");
-
-		txtBoxCompetitionStartDate.click();
-		this.txtBoxCompetitionStartDate.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
-		txtBoxCompetitionStartDate.sendKeys(competitionStartDate);
-
-		log.info("Ending of setCompetitionStartDate method");
 	}
 
 	public void clickOnCompetitionEndDate() {
@@ -1040,28 +1306,36 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		elementClick(btnRegCompetitionEndDateNextYear);
 		clickOnElementUsingActionClass(btnRegCompetitionStartDateNextYearSelectDate);
 		clickOnElementUsingActionClass(btnRegEndDateNextYearSelectDateTime);
-		clickOnElementUsingActionClass(btnRegEndDateNextYearSelectDateTimeMinutes);
+		clickOnElementUsingActionClass(btnTimeInMinutes);
 
 		log.info("Ending of clickOnCompetitionEndDate method");
 	}
 
-	public void setCompetitionEndDate(String competitionEndDate) {
-		log.info("Starting of setCompetitionEndDate method");
+	public void setTimeZone() {
+		log.info("Starting of setTimeZone method");
 
-		txtBoxCompetitionEndDate.click();
-		this.txtBoxCompetitionEndDate.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
-		txtBoxCompetitionEndDate.sendKeys(competitionEndDate);
+		hardWait(2);
+		try {
+			clickOnElementUsingActionClass(ddTimeZone);
+		} catch (Exception e) {
+			ddTimeZone.click();
+		}
 
-		log.info("Ending of setCompetitionEndDate method");
+		elementClick(btnCentralAmericaTimeZone);
+
+		log.info("Ending of setTimeZone method");
 	}
 
 	public void clickOnTimeZoneDropdown() {
 		log.info("Starting of clickOnTimeZoneDropdown method");
 
 		hardWait(2);
-		clickOnElementUsingActionClass(ddTimeZone);
-		ddTimeZone.click();
-		elementClick(btnCentalAmericaTimeZone);
+		scrollDown(200);
+		try {
+			clickOnElementUsingActionClass(ddTimeZone);
+		} catch (Exception e) {
+			ddTimeZone.click();
+		}
 
 		log.info("Ending of clickOnTimeZoneDropdown method");
 	}
@@ -1069,28 +1343,30 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	public boolean isTimeZoneListContains() {
 		log.info("Starting of isTimeZoneListContains method");
 
-		boolean isTimeZoneListContains = false;
-
-		if (btnCoordinatedUniversalTime.isDisplayed() && btnHawaiiTime.isDisplayed()
-				&& btnAlaskanStandardTime.isDisplayed() && btnPacificStandardTime.isDisplayed()
-				&& btnArizona.isDisplayed() && btnCentralAmericaTimeTime.isDisplayed()
-				&& btnCentalAmericaTimeZone.isDisplayed() && btnSaskatchewanTime.isDisplayed()
-				&& btnBogotaLimaQuitoTime.isDisplayed() && btnEasternTime.isDisplayed()) {
-
-			isTimeZoneListContains = true;
-		}
+		/*
+		 * boolean isTimeZoneListContains = false;
+		 * 
+		 * if (btnCoordinatedUniversalTime.isDisplayed() && btnHawaiiTime.isDisplayed()
+		 * && btnAlaskanStandardTime.isDisplayed() &&
+		 * btnPacificStandardTime.isDisplayed() && btnArizona.isDisplayed() &&
+		 * btnCentralAmericaTimeTime.isDisplayed() &&
+		 * btnCentalAmericaTimeZone.isDisplayed() && btnSaskatchewanTime.isDisplayed()
+		 * && btnBogotaLimaQuitoTime.isDisplayed() && btnEasternTime.isDisplayed()) {
+		 * 
+		 * isTimeZoneListContains = true; }
+		 */
 
 		log.info("Ending of isTimeZoneListContains method");
 
-		return isTimeZoneListContains;
+		return ddListTimeZone.isDisplayed();
 	}
 
-	public void clickOnCentalAmericanTimeZoneButton() {
-		log.info("Starting of clickOnCentalAmericanTimeZoneButton method");
+	public void clickOnCentalAmericanTimeZone() {
+		log.info("Starting of clickOnCentalAmericanTimeZone method");
 
-		elementClick(btnCentalAmericaTimeZone);
+		elementClick(btnCentralAmericaTimeZone);
 
-		log.info("Ending of clickOnCentalAmericanTimeZoneButton method");
+		log.info("Ending of clickOnCentalAmericanTimeZone method");
 	}
 
 	public boolean isSelectedTimeZoneDisplayed() {
@@ -1115,54 +1391,56 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		log.info("Starting of setBracketClubMemberPrice method");
 
 		txtBoxClubMemberPrice.click();
+		txtBoxClubMemberPrice.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		txtBoxClubMemberPrice.sendKeys(clubMemberPrice);
 
 		log.info("Ending of setBracketClubMemberPrice method");
 	}
 
-	public boolean isEnteredClubMemberPriceDisplayed() {
+	public boolean isEnteredClubMemberPriceDisplayed(String clubmemberprice) {
 		log.info("Starting of isEnteredClubMemberPriceDisplayed method");
 
-		boolean BracketClubMemberPrice = false;
+		boolean clubMemberPriceDisplayed = false;
 		try {
-			if (txtBoxClubMemberPrice.getAttribute("value").equals("0")) {
-				System.out.println(txtBoxClubMemberPrice.getAttribute("value").equals("0"));
-				BracketClubMemberPrice = true;
+			if (txtBoxClubMemberPrice.getAttribute("value").equals(clubmemberprice)) {
+				System.out.println(txtBoxClubMemberPrice.getAttribute("value").equals(clubmemberprice));
+				clubMemberPriceDisplayed = true;
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			clubMemberPriceDisplayed = false;
 		}
 
 		log.info("Ending of isEnteredClubMemberPriceDisplayed method");
 
-		return BracketClubMemberPrice;
+		return clubMemberPriceDisplayed;
 	}
 
 	public void setBracketNonClubMemberPrice(String nonclubMemberPrice) {
 		log.info("Starting of setBracketNonClubMemberPrice method");
 
 		txtBoxNonClubMemberPrice.click();
+		txtBoxNonClubMemberPrice.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		txtBoxNonClubMemberPrice.sendKeys(nonclubMemberPrice);
 
 		log.info("Ending of setBracketNonClubMemberPrice method");
 	}
 
-	public boolean isEnteredClubNonMemberPriceDisplayed() {
+	public boolean isEnteredClubNonMemberPriceDisplayed(String clubnonmemberprice) {
 		log.info("Starting of isEnteredClubNonMemberPriceDisplayed method");
 
-		boolean BracketClubNonMemberPrice = false;
+		boolean clubNonMemberPriceDisplayed = false;
 		try {
-			if (txtBoxNonClubMemberPrice.getAttribute("value").equals("0")) {
-				System.out.println(txtBoxNonClubMemberPrice.getAttribute("value").equals("0"));
-				BracketClubNonMemberPrice = true;
+			if (txtBoxNonClubMemberPrice.getAttribute("value").equals(clubnonmemberprice)) {
+				System.out.println(txtBoxNonClubMemberPrice.getAttribute("value").equals(clubnonmemberprice));
+				clubNonMemberPriceDisplayed = true;
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			clubNonMemberPriceDisplayed = false;
 		}
 
 		log.info("Ending of isEnteredClubNonMemberPriceDisplayed method");
 
-		return BracketClubNonMemberPrice;
+		return clubNonMemberPriceDisplayed;
 	}
 
 	public void setNumberOfTeams(String numberOfTeams) {
@@ -1200,11 +1478,11 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		return NumberOfTeamsCount;
 	}
 
-	public boolean isNumberOfCourtsWaterFallValidationDisplayed() {
-		log.info("Starting of isNumberOfCourtsValidationDisplayed method");
-		log.info("Ending of isNumberOfCourtsValidationDisplayed method");
+	public boolean isNumberOfCourtsFieldEnabled() {
+		log.info("Starting of isNumberOfCourtsFieldEnabled method");
+		log.info("Ending of isNumberOfCourtsFieldEnabled method");
 
-		return txtBoxNumberOfTeams.isDisplayed();
+		return txtBoxNumberOfCourts.isEnabled();
 	}
 
 	public void setNumberOfCourts(String numberOfCourts) {
@@ -1227,9 +1505,9 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	public void setWaitlist(String waitlist) {
 		log.info("Starting of setWaitlist method");
 
-		txtWaitlist.click();
-		this.txtWaitlist.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
-		txtWaitlist.sendKeys(waitlist);
+		txtBoxWaitlist.click();
+		this.txtBoxWaitlist.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
+		txtBoxWaitlist.sendKeys(waitlist);
 
 		log.info("Ending of setWaitlist method");
 
@@ -1240,8 +1518,8 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 		boolean WaitListCount = false;
 		try {
-			if (txtWaitlist.getAttribute("value").equals("3")) {
-				System.out.println(txtWaitlist.getAttribute("value").equals("3"));
+			if (txtBoxWaitlist.getAttribute("value").equals("3")) {
+				System.out.println(txtBoxWaitlist.getAttribute("value").equals("3"));
 				WaitListCount = true;
 			}
 		} catch (Exception e) {
@@ -1405,31 +1683,30 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		return isRegistrationDetailsReqValidationDisplayed;
 	}
 
-	public boolean isRegistrationEndDatewithPreviousDateOfStartDateMsgDisplayed() {
-		log.info("Starting of isRegistrationEndDatewithPreviousDateOfStartDateMsgDisplayed method");
-		log.info("Ending of isRegistrationEndDatewithPreviousDateOfStartDateMsgDisplayed method");
+	public boolean isRegistrationEndDateValidationDisplayed() {
+		log.info("Starting of isRegistrationEndDateValidationDisplayed method");
+		log.info("Ending of isRegistrationEndDateValidationDisplayed method");
 
 		return msgRegEndDateofPrevStartDate.isDisplayed();
 	}
 
-	public boolean isCompetitionInvalidMsgDisplayed() {
-		log.info("Starting of isCompetitionInvalidMsgDisplayed method");
+	public boolean isCompetitionDatesRequiredValidationsDisplayed() {
+		log.info("Starting of isCompetitionDatesRequiredValidationsDisplayed method");
 
-		boolean isCompetitionInvalidMsgDisplayed = false;
+		boolean isCompetitionDatesRequiredValidationsDisplayed = false;
 
 		if (msgCompStartDateRequired.isDisplayed() && msgCompEndDateRequired.isDisplayed()) {
 
-			isCompetitionInvalidMsgDisplayed = true;
+			isCompetitionDatesRequiredValidationsDisplayed = true;
 		}
 
-		log.info("Ending of isRegestrationInvalidMsgDisplayed method");
+		log.info("Ending of isCompetitionDatesRequiredValidationsDisplayed method");
 
-		return isCompetitionInvalidMsgDisplayed;
+		return isCompetitionDatesRequiredValidationsDisplayed;
 	}
 
 	public boolean isCompetitionEndDatewithPreviousDateOfStartDateMsgDisplayed() {
 		log.info("Starting of isCompetitionEndDatewithPreviousDateOfStartDateMsgDisplayed method");
-
 		log.info("Ending of isCompetitionEndDatewithPreviousDateOfStartDateMsgDisplayed method");
 
 		return msgCompEndDateofPrevStartDate.isDisplayed();
@@ -1437,7 +1714,6 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	public boolean isComStartDateHighRegEndDateDisplayed() {
 		log.info("Starting of isComStartDateHighRegEndDateDisplayed method");
-
 		log.info("Ending of isComStartDateHighRegEndDateDisplayed method");
 
 		return msgCompStartDateHighRegEndDate.isDisplayed();
@@ -1942,17 +2218,184 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		return msgMixedGroupSinglesValidation.isDisplayed();
 	}
 
-	public boolean isRounRobinNumberOfCourtsDisplayed() {
-		log.info("Starting of isMixedGroupSinglesValidationDisplayed method");
-		log.info("Ending of isMixedGroupSinglesValidationDisplayed method");
+	public boolean isNumberOfCourtsFieldDisabled() {
+		log.info("Starting of isNumberOfCourtsFieldDisabled method");
+		log.info("Ending of isNumberOfCourtsFieldDisabled method");
 
-		return lblRounRobinNumberOfCourts.isDisplayed();
+		return txtBoxNumberOfCourtsDisabled.isDisplayed();
 	}
 
-	public boolean isWaterFallNumberOfTeamsDisplayed() {
-		log.info("Starting of isWaterFallNumberOfTeamsDisplayed method");
-		log.info("Ending of isWaterFallNumberOfTeamsDisplayed method");
+	public boolean isNumberOfTeamsFieldDisabled() {
+		log.info("Starting of isNumberOfTeamsFieldDisabled method");
+		log.info("Ending of isNumberOfTeamsFieldDisabled method");
 
 		return txtWaterFallNumberOfTeams.isDisplayed();
+	}
+
+	public boolean isAddBracketsPageDisplayed() {
+		log.info("Starting of isAddBracketsPageDisplayed method");
+		log.info("Ending of isAddBracketsPageDisplayed method");
+
+		return lblAddBrackets.isDisplayed();
+	}
+
+	public void addBrackets(String minAgeRange, String maxAgeRange, String minRatingRange, String maxRatingRange) {
+		this.hardWait(3);
+
+		for (int i = 1; i <= 4; i++) {
+
+			this.clickUsingActionsClass(
+					driver.findElement(By.xpath("(//h2[contains(text(),'Bracket #')])[" + i + "]")));
+
+			scrollDown(-400);
+			hardWait(2);
+
+			this.clickUsingActionsClass(driver.findElement(By.xpath(
+					"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Type']/parent::div/div/div/div/div)["
+							+ i + "]")));
+			this.hardWait(3);
+			this.selectDoublesMatchType();
+
+			this.clickUsingActionsClass(driver.findElement(By.xpath(
+					"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Player Group']/parent::div/div/div/div/div//following-sibling::input)["
+							+ i + "]")));
+			this.hardWait(2);
+			this.selectMixedPlayerGroup();
+
+			WebElement txtBoxMinAgeRange = driver.findElement(By.xpath(
+					"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Age Range']/parent::div/div/div/div/div/h5[text()='Minimum']/parent::div/following-sibling::div/div/div/input)["
+							+ i + "]"));
+
+			this.clickUsingActionsClass(txtBoxMinAgeRange);
+			this.sendKeys(txtBoxMinAgeRange, minAgeRange);
+			hardWait(2);
+			
+			WebElement txtBoxMaxAgeRange = driver.findElement(By.xpath(
+					"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Age Range']/parent::div/div/div/div/div/h5[text()='Maximum']/parent::div/following-sibling::div/div/div/input)["
+							+ i + "]"));
+
+			this.clickUsingActionsClass(txtBoxMaxAgeRange);
+			this.sendKeys(txtBoxMaxAgeRange, maxAgeRange);
+
+			hardWait(2);
+			WebElement txtBoxMinRatingRange = driver.findElement(By.xpath(
+					"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Rating Range']/parent::div/div/div/div/div/h5[text()='Minimum']/parent::div/following-sibling::div/div/div/input)["
+							+ i + "]"));
+
+			this.clickUsingActionsClass(txtBoxMinRatingRange);
+			this.sendKeys(txtBoxMinRatingRange, minRatingRange);
+
+			hardWait(2);
+			WebElement txtBoxMaxRatingRange = driver.findElement(By.xpath(
+					"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Rating Range']/parent::div/div/div/div/div/h5[text()='Maximum']/parent::div/following-sibling::div/div/div/input)[1]"));
+
+			this.clickUsingActionsClass(txtBoxMaxRatingRange);
+			this.sendKeys(txtBoxMaxRatingRange, maxRatingRange);
+
+			this.hardWait(2);
+			this.clickUsingActionsClass(driver.findElement(By.xpath(
+					"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//button[text()='Auto Generate']/parent::div)["
+							+ i + "]")));
+
+			scrollDown(300);
+			hardWait(2);
+			this.clickUsingActionsClass(driver.findElement(By.xpath(
+					"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Event Type']/parent::div/div/div/div/input)["
+							+ i + "]")));
+			this.selectRoundRobinEvent();
+
+			scrollDown(200);
+			hardWait(2);
+			this.clickUsingActionsClass(driver.findElement(By.xpath(
+					"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Registration Date']/following-sibling::div//h5[text()='Start Date & Time']/parent::div/following-sibling::div//input)["
+							+ i + "]")));
+
+			int date = this.getCurrentDate();
+			int regEndDate = this.getFutureDate(1);
+			int compStartDate = this.getFutureDate(2);
+			int compEndDate = this.getFutureDate(3);
+			String hours = this.getCurrentHour();
+			String meridiem = this.getCurrentMeridiem();
+
+			this.clickOnCurrentDate(date);
+			this.clickOnCurrentTime(hours);
+			this.clickOnCurrentTime(meridiem);
+			this.clickOnElementUsingActionClass(btnOK);
+
+			this.hardWait(2);
+			this.clickUsingActionsClass(driver.findElement(By.xpath(
+					"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Registration Date']/following-sibling::div//h5[text()='End Date & Time']/parent::div/following-sibling::div//input)["
+							+ i + "]")));
+
+			this.clickOnCurrentDate(regEndDate);
+			this.clickOnCurrentTime(hours);
+			clickOnElementUsingActionClass(btnTimeInMinutes);
+			this.clickOnCurrentTime(meridiem);
+			this.clickOnElementUsingActionClass(btnOK);
+
+			this.hardWait(2);
+			this.clickUsingActionsClass(driver.findElement(By.xpath(
+					"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Competition Date']/following-sibling::div//h5[text()='Start Date & Time']/parent::div/following-sibling::div//input)["
+							+ i + "]")));
+
+			this.clickOnCurrentDate(compStartDate);
+			this.clickOnCurrentTime(hours);
+			clickOnElementUsingActionClass(btnTimeInMinutes);
+			this.clickOnCurrentTime(meridiem);
+			this.clickOnElementUsingActionClass(btnOK);
+
+			this.hardWait(2);
+			this.clickUsingActionsClass(driver.findElement(By.xpath(
+					"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Competition Date']/following-sibling::div//h5[text()='End Date & Time']/parent::div/following-sibling::div//input)["
+							+ i + "]")));
+
+			this.clickOnCurrentDate(compEndDate);
+			this.clickOnCurrentTime(hours);
+			clickOnElementUsingActionClass(btnTimeInMinutes);
+			this.clickOnCurrentTime(meridiem);
+			this.clickOnElementUsingActionClass(btnOK);
+
+			scrollDown(300);
+			hardWait(2);
+			this.clickUsingActionsClass(driver.findElement(By.xpath(
+					"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Time Zone']/parent::div/div/div/div)["
+							+ i + "]")));
+			this.clickOnCentalAmericanTimeZone();
+
+			hardWait(2);
+			WebElement txtBoxClubMemberPrice = driver.findElement(By.xpath(
+					"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Bracket Price']/parent::div/div/div/div/div/h5[text()='Club Member Price']/parent::div/following-sibling::div/div/div/div/following-sibling::input)["
+							+ i + "]"));
+			this.clickUsingActionsClass(txtBoxClubMemberPrice);
+			this.sendKeys(txtBoxClubMemberPrice, minAgeRange);
+
+			hardWait(2);
+			WebElement txtBoxNonClubMemberPrice = driver.findElement(By.xpath(
+					"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Bracket Price']/parent::div/div/div/div/div/h5[text()='Club nonmember Price']/parent::div/following-sibling::div/div/div/div/following-sibling::input)["
+							+ i + "]"));
+			this.clickUsingActionsClass(txtBoxNonClubMemberPrice);
+			this.sendKeys(txtBoxNonClubMemberPrice, minAgeRange);
+
+			hardWait(2);
+			WebElement txtBoxNumberOfTeams = driver.findElement(By.xpath(
+					"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Number of Teams']/parent::div/div/div/div/div/div/input)["
+							+ i + "]"));
+			this.clickUsingActionsClass(txtBoxNumberOfTeams);
+			this.sendKeys(txtBoxNumberOfTeams, minAgeRange);
+
+			hardWait(2);
+			WebElement txtBoxWaitlist = driver.findElement(By.xpath(
+					"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Waitlist']/parent::div/div/div/div/div/div/input)["
+							+ i + "]"));
+			this.clickUsingActionsClass(txtBoxWaitlist);
+			this.sendKeys(txtBoxWaitlist, minRatingRange);
+
+			this.clickUsingActionsClass(driver.findElement(By.xpath("//button[text()='Next Step']")));
+
+			this.clickOnAddAnotherBracketButton();
+			this.clickUsingActionsClass(
+					driver.findElement(By.xpath("(//h2[contains(text(),'Bracket #')])[" + i + "]")));
+		}
+
 	}
 }

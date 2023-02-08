@@ -281,12 +281,12 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 	public void VerifyRegisterFunctionalityWithOPenDoubleBracket() {
 		logger.info("Starting of VerifyRegisterFunctionalityWithOPenDoubleBracket method");
 
-		addEventPage.clickonAddEventButton();
+		addEventPage.clickOnAddEventButton();
 		this.VerifyAddEventFunctionality();
 		this.verifyFreeBracketWithRoundRobinEventType();
 
 		addEventPage.clickOnEventsTab();
-		addEventPage.selectRecentlyAddedEvent(testDataProp.getProperty("event.name"));
+		//Assert.assertTrue(addEventPage.selectRecentlyAddedEvent(eventName));
 
 		this.VerifyRegisterFunctionality();
 		this.VerifyEventRegistrationBackButtonFunctionality();
