@@ -118,7 +118,7 @@ public class ForgotPasswordTest extends DUPRBaseAutomationTest {
 		forgotPasswordPage.setOTP(textOne, textTwo, textThree, textFour);
 		forgotPasswordPage.setPassword(testDataProp.getProperty("password"));
 		forgotPasswordPage.setConfirmPassword(testDataProp.getProperty("password"));
-		forgotPasswordPage.clickOnConfirmPasswordButton();
+		forgotPasswordPage.clickOnResetPasswordButton();
 
 		String successValidationText = this.forgotPasswordPage.getSuccessLabel();
 		Assert.assertEquals(successValidationText, expectedAssertionsProp.getProperty("success.label"));
@@ -201,7 +201,7 @@ public class ForgotPasswordTest extends DUPRBaseAutomationTest {
 		Assert.assertEquals(createANewPasswordValidationText,
 				expectedAssertionsProp.getProperty("create.a.new.password"));
 
-		forgotPasswordPage.clickOnConfirmPasswordButton();
+		forgotPasswordPage.clickOnResetPasswordButton();
 
 		String passwordValidationText = this.forgotPasswordPage.getPasswordValidationText();
 		Assert.assertEquals(passwordValidationText, expectedAssertionsProp.getProperty("password.required.validation"));
@@ -218,7 +218,7 @@ public class ForgotPasswordTest extends DUPRBaseAutomationTest {
 
 		forgotPasswordPage.setPassword(testDataProp.getProperty("invalid.email"));
 		forgotPasswordPage.setConfirmPassword(testDataProp.getProperty("invalid.email.in.negative.login"));
-		forgotPasswordPage.clickOnConfirmPasswordButton();
+		forgotPasswordPage.clickOnResetPasswordButton();
 
 		String passwordValidationMessage = this.forgotPasswordPage.getPasswordValidationText();
 		Assert.assertEquals(passwordValidationMessage,
@@ -246,7 +246,7 @@ public class ForgotPasswordTest extends DUPRBaseAutomationTest {
 		forgotPasswordPage.setOTP(textFour, textThree, textTwo, textOne);
 		forgotPasswordPage.setPassword(testDataProp.getProperty("password.without.numbers"));
 		forgotPasswordPage.setConfirmPassword(testDataProp.getProperty("password.without.numbers"));
-		forgotPasswordPage.clickOnConfirmPasswordButton();
+		forgotPasswordPage.clickOnResetPasswordButton();
 
 		String passwordValidationMessage = this.forgotPasswordPage.getPasswordValidationText();
 		Assert.assertEquals(passwordValidationMessage,
@@ -264,7 +264,7 @@ public class ForgotPasswordTest extends DUPRBaseAutomationTest {
 
 		forgotPasswordPage.setPassword(testDataProp.getProperty("password.unmatched"));
 		forgotPasswordPage.setConfirmPassword(testDataProp.getProperty("confirmpassword.unmatched"));
-		forgotPasswordPage.clickOnConfirmPasswordButton();
+		forgotPasswordPage.clickOnResetPasswordButton();
 
 		String confirmPasswordValidationMessage = this.forgotPasswordPage.getConfirmPasswordValidationText();
 		Assert.assertEquals(confirmPasswordValidationMessage,
@@ -282,8 +282,8 @@ public class ForgotPasswordTest extends DUPRBaseAutomationTest {
 
 		forgotPasswordPage.setPasswordWithWhiteSpaces(testDataProp.getProperty("spaces.value"));
 		forgotPasswordPage.setConfirmPasswordWithWhiteSpaces(testDataProp.getProperty("spaces.value"));
-		forgotPasswordPage.clickOnConfirmPasswordButton();
-		
+		forgotPasswordPage.clickOnResetPasswordButton();
+
 		String passwordValidationMessage = this.forgotPasswordPage.getPasswordValidationText();
 		Assert.assertEquals(passwordValidationMessage,
 				expectedAssertionsProp.getProperty("white.space.password.validation"));

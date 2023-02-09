@@ -102,7 +102,7 @@ public class AddAMatchPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h5[text()='Full Name']/parent::div/following-sibling::div//input")
 	private WebElement txtBoxFullName;
 
-	@B2BFindBy(xpath = "//h5[text()='Email Address']/parent::div/following-sibling::div//input")
+	@B2BFindBy(xpath = "//h5[text()='Email']/parent::div/following-sibling::div//input")
 	private WebElement txtBoxEmailAddress;
 
 	@B2BFindBy(xpath = "//h5[text()='Phone Number']/parent::div/following-sibling::div//input")

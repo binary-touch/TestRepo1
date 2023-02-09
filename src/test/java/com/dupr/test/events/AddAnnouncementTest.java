@@ -67,7 +67,7 @@ public class AddAnnouncementTest extends DUPRBaseAutomationTest {
 				expectedAssertionsProp.getProperty("announcement.txt"));
 		Assert.assertTrue(addAnnouncementPage.isTitleFieldEmpty());
 		Assert.assertTrue(addAnnouncementPage.isDescriptionFieldEmpty());
-		Assert.assertTrue(addAnnouncementPage.isSendButtonDisabled());
+		Assert.assertTrue(addAnnouncementPage.isSendButtonEnabled());
 
 		logger.info("Ending of verifyAddAnnouncementFunctionality method");
 	}
@@ -329,7 +329,7 @@ public class AddAnnouncementTest extends DUPRBaseAutomationTest {
 	public void verifyTitleFieldFunctionality() {
 		logger.info("Starting of verifyTitleFieldFunctionality method");
 
-		addAnnouncementPage.setTitle(testDataProp.getProperty("edit.title.txt"));
+		addAnnouncementPage.setTitle(testDataProp.getProperty("title.txt"));
 		Assert.assertTrue(addAnnouncementPage.isSendButtonEnabled());
 
 		logger.info("Ending of verifyTitleFieldFunctionality method");
@@ -348,10 +348,10 @@ public class AddAnnouncementTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyDescriptionFieldFunctionality method");
 	}
 
-	@Test(priority = 18, description = "Verify the results on click of send button ", groups = "sanity")
-	@Description("Test case #18, Verify the result of Subject Description field by entering new data")
+	@Test(priority = 18, description = "Verify Send Functionality", groups = "sanity")
+	@Description("Test case #18, Verify Send Functionality")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #18, Verify the SUbject Description Functionality")
+	@Story("Test case #18, Verify Send Functionality")
 	public void verifySendFunctionality() {
 		logger.info("Starting of verifySendButtonFunctionality method");
 

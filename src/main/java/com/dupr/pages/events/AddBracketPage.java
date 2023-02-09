@@ -12,6 +12,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 import com.b2b.support.B2BFindBy;
 import com.b2b.support.B2BFindBys;
@@ -23,6 +24,9 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//h1[text()='Add Brackets']")
 	private WebElement lblAddBrackets;
+
+	@B2BFindBy(xpath = "//div[contains(@class, 'MuiButtonBase-root MuiAccordionSummary-root Mui-expanded MuiAccordionSummary-gutters')]")
+	private WebElement ddBracket;
 
 	@B2BFindBy(xpath = "//h3[text()='Bracket Name']")
 	private WebElement lblBracketName;
@@ -402,7 +406,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h3[text()='Event']")
 	private WebElement lblEvent;
 
-	@B2BFindBy(xpath = "//button[@fdprocessedid='t4hyej']")
+	@B2BFindBy(xpath = "(//button[contains(@class,'MuiIconButton-root MuiIconButton-sizeMedium') and @type='button'])[2]")
 	private WebElement btnBack;
 
 	@B2BFindBy(xpath = "//button[text()='Next Step']")
@@ -550,11 +554,19 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	public void clickOnMatchTypeDropdown() {
 		log.info("Starting of clickOnMatchTypeDropdown method");
 
+		try {
+			if (ddBracket.isDisplayed() == true) {
+				log.info("***Bracket dropdown is expanded***");
+			}
+		} catch (Exception e) {
+			clickUsingActionsClass(drpBracket1);
+		}
+
 		scrollDown(-200);
 		hardWait(2);
 		clickUsingActionsClass(ddMatchType);
 		hardWait(2);
-		
+
 		log.info("Ending of clickOnMatchTypeDropdown method");
 	}
 
@@ -929,20 +941,6 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		log.info("Ending of clickOnRegistrationStartDate method");
 	}
 
-	public void clickOnRegistrationStartDateField() {
-		log.info("Starting of clickOnRegistrationStartDateField method");
-
-		scrollDown(200);
-		try {
-			clickOnElementUsingActionClass(txtBoxRegistrationStartDate);
-			hardWait(2);
-		} catch (Exception e) {
-			txtBoxRegistrationStartDate.click();
-		}
-
-		log.info("Ending of clickOnRegistrationStartDateField method");
-	}
-
 	public void setRegistrationStartDate() {
 		log.info("Starting of setRegistrationStartDate method");
 
@@ -978,19 +976,6 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		this.clickOnElementUsingActionClass(btnOK);
 
 		log.info("Ending of setRegistrationStartDate method");
-	}
-
-	public void clickOnRegistrationEndDateField() {
-		log.info("Starting of clickOnRegistrationEndDateField method");
-
-		try {
-			clickOnElementUsingActionClass(btnRegistrationEndDate);
-			hardWait(2);
-		} catch (Exception e) {
-			btnRegistrationEndDate.click();
-		}
-
-		log.info("Ending of clickOnRegistrationEndDateField method");
 	}
 
 	public void setFutureRegistrationEndDate() {
@@ -1390,7 +1375,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	public void setBracketClubMemberPrice(String clubMemberPrice) {
 		log.info("Starting of setBracketClubMemberPrice method");
 
-		txtBoxClubMemberPrice.click();
+		clickUsingActionsClass(txtBoxClubMemberPrice);
 		txtBoxClubMemberPrice.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		txtBoxClubMemberPrice.sendKeys(clubMemberPrice);
 
@@ -1418,7 +1403,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	public void setBracketNonClubMemberPrice(String nonclubMemberPrice) {
 		log.info("Starting of setBracketNonClubMemberPrice method");
 
-		txtBoxNonClubMemberPrice.click();
+		clickUsingActionsClass(txtBoxNonClubMemberPrice);
 		txtBoxNonClubMemberPrice.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		txtBoxNonClubMemberPrice.sendKeys(nonclubMemberPrice);
 
@@ -1446,8 +1431,26 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	public void setNumberOfTeams(String numberOfTeams) {
 		log.info("Starting of setNumberOfTeams method");
 
-		txtBoxNumberOfTeams.click();
-		this.txtBoxNumberOfTeams.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
+		clickUsingActionsClass(txtBoxNumberOfTeams);
+		int teamsFieldValue = txtBoxNumberOfTeams.getAttribute("value").length();
+		try {
+
+			log.debug("Number of teams value length: " + teamsFieldValue);
+
+			while (teamsFieldValue != 0) {
+				teamsFieldValue = txtBoxNumberOfTeams.getAttribute("value").length();
+				System.out.println(teamsFieldValue);
+
+				clickUsingActionsClass(txtBoxNumberOfTeams);
+				txtBoxNumberOfTeams.sendKeys(Keys.BACK_SPACE);
+
+				System.out.println(teamsFieldValue = txtBoxNumberOfTeams.getAttribute("value").length());
+			}
+		} catch (Exception e) {
+			Actions action = new Actions(driver);
+			action.moveToElement(txtBoxNumberOfTeams).sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE).build().perform();
+		}
+
 		txtBoxNumberOfTeams.sendKeys(numberOfTeams);
 
 		log.info("Ending of setNumberOfTeams method");
@@ -1460,13 +1463,13 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		return txtBoxNumberOfTeams.isEnabled();
 	}
 
-	public boolean isNumberOfTeamsCountDisplayed() {
+	public boolean isNumberOfTeamsCountDisplayed(String teams) {
 		log.info("Starting of isNumberOfTeamsCountDisplayed method");
 
 		boolean NumberOfTeamsCount = false;
 		try {
-			if (txtBoxNumberOfTeams.getAttribute("value").equals("5")) {
-				System.out.println(txtBoxNumberOfTeams.getAttribute("value").equals("5"));
+			if (txtBoxNumberOfTeams.getAttribute("value").equals(teams)) {
+				System.out.println(txtBoxNumberOfTeams.getAttribute("value").equals(teams));
 				NumberOfTeamsCount = true;
 			}
 		} catch (Exception e) {
@@ -1505,7 +1508,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	public void setWaitlist(String waitlist) {
 		log.info("Starting of setWaitlist method");
 
-		txtBoxWaitlist.click();
+		clickUsingActionsClass(txtBoxWaitlist);
 		this.txtBoxWaitlist.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		txtBoxWaitlist.sendKeys(waitlist);
 
@@ -1513,13 +1516,13 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	}
 
-	public boolean isWaitListCountDisplayed() {
+	public boolean isWaitListCountDisplayed(String waitlist) {
 		log.info("Starting of isWaitListCountDisplayed method");
 
 		boolean WaitListCount = false;
 		try {
-			if (txtBoxWaitlist.getAttribute("value").equals("3")) {
-				System.out.println(txtBoxWaitlist.getAttribute("value").equals("3"));
+			if (txtBoxWaitlist.getAttribute("value").equals(waitlist)) {
+				System.out.println(txtBoxWaitlist.getAttribute("value").equals(waitlist));
 				WaitListCount = true;
 			}
 		} catch (Exception e) {
@@ -2080,11 +2083,16 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 		boolean isDeleteBracketSuccessPopUpDisplayed = false;
 
-		if (lblBracketDeleteSuccess.isDisplayed() && lblEventSuccess.isDisplayed()
-				&& lblEventSuccessClosePopup.isDisplayed() && btnSuccessOk.isDisplayed()) {
+		try {
+			if (lblBracketDeleteSuccess.isDisplayed() && lblEventSuccess.isDisplayed()
+					&& lblEventSuccessClosePopup.isDisplayed() && btnSuccessOk.isDisplayed()) {
 
-			isDeleteBracketSuccessPopUpDisplayed = true;
+				isDeleteBracketSuccessPopUpDisplayed = true;
+			}
+		} catch (Exception e) {
+			isDeleteBracketSuccessPopUpDisplayed = false;
 		}
+		
 
 		log.info("Ending of isDeleteBracketSuccessPopUpDisplayed method");
 
@@ -2242,160 +2250,168 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	public void addBrackets(String minAgeRange, String maxAgeRange, String minRatingRange, String maxRatingRange) {
 		this.hardWait(3);
 
-		for (int i = 1; i <= 4; i++) {
+		try {
+			for (int i = 1; i <= 3; i++) {
 
-			this.clickUsingActionsClass(
-					driver.findElement(By.xpath("(//h2[contains(text(),'Bracket #')])[" + i + "]")));
+				// this.clickUsingActionsClass(driver.findElement(By.xpath("(//h2[contains(text(),'Bracket
+				// #')])[" + i + "]")));
 
-			scrollDown(-400);
-			hardWait(2);
+				scrollDown(-400);
+				hardWait(2);
 
-			this.clickUsingActionsClass(driver.findElement(By.xpath(
-					"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Type']/parent::div/div/div/div/div)["
-							+ i + "]")));
-			this.hardWait(3);
-			this.selectDoublesMatchType();
+				this.clickUsingActionsClass(driver.findElement(By.xpath(
+						"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Type']/parent::div/div/div/div/div)["
+								+ i + "]")));
+				this.hardWait(3);
+				this.selectDoublesMatchType();
 
-			this.clickUsingActionsClass(driver.findElement(By.xpath(
-					"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Player Group']/parent::div/div/div/div/div//following-sibling::input)["
-							+ i + "]")));
-			this.hardWait(2);
-			this.selectMixedPlayerGroup();
+				this.clickUsingActionsClass(driver.findElement(By.xpath(
+						"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Player Group']/parent::div/div/div/div/div//following-sibling::input)["
+								+ i + "]")));
+				this.hardWait(2);
+				this.selectMixedPlayerGroup();
 
-			WebElement txtBoxMinAgeRange = driver.findElement(By.xpath(
-					"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Age Range']/parent::div/div/div/div/div/h5[text()='Minimum']/parent::div/following-sibling::div/div/div/input)["
-							+ i + "]"));
+				WebElement txtBoxMinAgeRange = driver.findElement(By.xpath(
+						"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Age Range']/parent::div/div/div/div/div/h5[text()='Minimum']/parent::div/following-sibling::div/div/div/input)["
+								+ i + "]"));
 
-			this.clickUsingActionsClass(txtBoxMinAgeRange);
-			this.sendKeys(txtBoxMinAgeRange, minAgeRange);
-			hardWait(2);
-			
-			WebElement txtBoxMaxAgeRange = driver.findElement(By.xpath(
-					"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Age Range']/parent::div/div/div/div/div/h5[text()='Maximum']/parent::div/following-sibling::div/div/div/input)["
-							+ i + "]"));
+				this.clickUsingActionsClass(txtBoxMinAgeRange);
+				this.sendKeys(txtBoxMinAgeRange, minAgeRange);
+				hardWait(2);
 
-			this.clickUsingActionsClass(txtBoxMaxAgeRange);
-			this.sendKeys(txtBoxMaxAgeRange, maxAgeRange);
+				WebElement txtBoxMaxAgeRange = driver.findElement(By.xpath(
+						"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Age Range']/parent::div/div/div/div/div/h5[text()='Maximum']/parent::div/following-sibling::div/div/div/input)["
+								+ i + "]"));
 
-			hardWait(2);
-			WebElement txtBoxMinRatingRange = driver.findElement(By.xpath(
-					"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Rating Range']/parent::div/div/div/div/div/h5[text()='Minimum']/parent::div/following-sibling::div/div/div/input)["
-							+ i + "]"));
+				this.clickUsingActionsClass(txtBoxMaxAgeRange);
+				this.sendKeys(txtBoxMaxAgeRange, maxAgeRange);
 
-			this.clickUsingActionsClass(txtBoxMinRatingRange);
-			this.sendKeys(txtBoxMinRatingRange, minRatingRange);
+				hardWait(2);
+				WebElement txtBoxMinRatingRange = driver.findElement(By.xpath(
+						"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Rating Range']/parent::div/div/div/div/div/h5[text()='Minimum']/parent::div/following-sibling::div/div/div/input)["
+								+ i + "]"));
 
-			hardWait(2);
-			WebElement txtBoxMaxRatingRange = driver.findElement(By.xpath(
-					"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Rating Range']/parent::div/div/div/div/div/h5[text()='Maximum']/parent::div/following-sibling::div/div/div/input)[1]"));
+				this.clickUsingActionsClass(txtBoxMinRatingRange);
+				this.sendKeys(txtBoxMinRatingRange, minRatingRange);
 
-			this.clickUsingActionsClass(txtBoxMaxRatingRange);
-			this.sendKeys(txtBoxMaxRatingRange, maxRatingRange);
+				hardWait(2);
+				WebElement txtBoxMaxRatingRange = driver.findElement(By.xpath(
+						"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Rating Range']/parent::div/div/div/div/div/h5[text()='Maximum']/parent::div/following-sibling::div/div/div/input)["
+								+ i + "]"));
 
-			this.hardWait(2);
-			this.clickUsingActionsClass(driver.findElement(By.xpath(
-					"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//button[text()='Auto Generate']/parent::div)["
-							+ i + "]")));
+				this.clickUsingActionsClass(txtBoxMaxRatingRange);
+				this.sendKeys(txtBoxMaxRatingRange, maxRatingRange);
 
-			scrollDown(300);
-			hardWait(2);
-			this.clickUsingActionsClass(driver.findElement(By.xpath(
-					"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Event Type']/parent::div/div/div/div/input)["
-							+ i + "]")));
-			this.selectRoundRobinEvent();
+				this.hardWait(2);
+				this.clickUsingActionsClass(driver.findElement(By.xpath(
+						"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//button[text()='Auto Generate']/parent::div)["
+								+ i + "]")));
 
-			scrollDown(200);
-			hardWait(2);
-			this.clickUsingActionsClass(driver.findElement(By.xpath(
-					"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Registration Date']/following-sibling::div//h5[text()='Start Date & Time']/parent::div/following-sibling::div//input)["
-							+ i + "]")));
+				scrollDown(300);
+				hardWait(2);
+				this.clickUsingActionsClass(driver.findElement(By.xpath(
+						"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Event Type']/parent::div/div/div/div/input)["
+								+ i + "]")));
+				this.selectRoundRobinEvent();
 
-			int date = this.getCurrentDate();
-			int regEndDate = this.getFutureDate(1);
-			int compStartDate = this.getFutureDate(2);
-			int compEndDate = this.getFutureDate(3);
-			String hours = this.getCurrentHour();
-			String meridiem = this.getCurrentMeridiem();
+				scrollDown(200);
+				hardWait(2);
+				this.clickUsingActionsClass(driver.findElement(By.xpath(
+						"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Registration Date']/following-sibling::div//h5[text()='Start Date & Time']/parent::div/following-sibling::div//input)["
+								+ i + "]")));
 
-			this.clickOnCurrentDate(date);
-			this.clickOnCurrentTime(hours);
-			this.clickOnCurrentTime(meridiem);
-			this.clickOnElementUsingActionClass(btnOK);
+				int date = this.getCurrentDate();
+				int regEndDate = this.getFutureDate(1);
+				int compStartDate = this.getFutureDate(2);
+				int compEndDate = this.getFutureDate(3);
+				String hours = this.getCurrentHour();
+				String meridiem = this.getCurrentMeridiem();
 
-			this.hardWait(2);
-			this.clickUsingActionsClass(driver.findElement(By.xpath(
-					"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Registration Date']/following-sibling::div//h5[text()='End Date & Time']/parent::div/following-sibling::div//input)["
-							+ i + "]")));
+				this.clickOnCurrentDate(date);
+				this.clickOnCurrentTime(hours);
+				this.clickOnCurrentTime(meridiem);
+				this.clickOnElementUsingActionClass(btnOK);
 
-			this.clickOnCurrentDate(regEndDate);
-			this.clickOnCurrentTime(hours);
-			clickOnElementUsingActionClass(btnTimeInMinutes);
-			this.clickOnCurrentTime(meridiem);
-			this.clickOnElementUsingActionClass(btnOK);
+				this.hardWait(2);
+				this.clickUsingActionsClass(driver.findElement(By.xpath(
+						"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Registration Date']/following-sibling::div//h5[text()='End Date & Time']/parent::div/following-sibling::div//input)["
+								+ i + "]")));
 
-			this.hardWait(2);
-			this.clickUsingActionsClass(driver.findElement(By.xpath(
-					"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Competition Date']/following-sibling::div//h5[text()='Start Date & Time']/parent::div/following-sibling::div//input)["
-							+ i + "]")));
+				this.clickOnCurrentDate(regEndDate);
+				this.clickOnCurrentTime(hours);
+				clickOnElementUsingActionClass(btnTimeInMinutes);
+				this.clickOnCurrentTime(meridiem);
+				this.clickOnElementUsingActionClass(btnOK);
 
-			this.clickOnCurrentDate(compStartDate);
-			this.clickOnCurrentTime(hours);
-			clickOnElementUsingActionClass(btnTimeInMinutes);
-			this.clickOnCurrentTime(meridiem);
-			this.clickOnElementUsingActionClass(btnOK);
+				this.hardWait(2);
+				this.clickUsingActionsClass(driver.findElement(By.xpath(
+						"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Competition Date']/following-sibling::div//h5[text()='Start Date & Time']/parent::div/following-sibling::div//input)["
+								+ i + "]")));
 
-			this.hardWait(2);
-			this.clickUsingActionsClass(driver.findElement(By.xpath(
-					"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Competition Date']/following-sibling::div//h5[text()='End Date & Time']/parent::div/following-sibling::div//input)["
-							+ i + "]")));
+				this.clickOnCurrentDate(compStartDate);
+				this.clickOnCurrentTime(hours);
+				clickOnElementUsingActionClass(btnTimeInMinutes);
+				this.clickOnCurrentTime(meridiem);
+				this.clickOnElementUsingActionClass(btnOK);
 
-			this.clickOnCurrentDate(compEndDate);
-			this.clickOnCurrentTime(hours);
-			clickOnElementUsingActionClass(btnTimeInMinutes);
-			this.clickOnCurrentTime(meridiem);
-			this.clickOnElementUsingActionClass(btnOK);
+				this.hardWait(2);
+				this.clickUsingActionsClass(driver.findElement(By.xpath(
+						"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Competition Date']/following-sibling::div//h5[text()='End Date & Time']/parent::div/following-sibling::div//input)["
+								+ i + "]")));
 
-			scrollDown(300);
-			hardWait(2);
-			this.clickUsingActionsClass(driver.findElement(By.xpath(
-					"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Time Zone']/parent::div/div/div/div)["
-							+ i + "]")));
-			this.clickOnCentalAmericanTimeZone();
+				this.clickOnCurrentDate(compEndDate);
+				this.clickOnCurrentTime(hours);
+				clickOnElementUsingActionClass(btnTimeInMinutes);
+				this.clickOnCurrentTime(meridiem);
+				this.clickOnElementUsingActionClass(btnOK);
 
-			hardWait(2);
-			WebElement txtBoxClubMemberPrice = driver.findElement(By.xpath(
-					"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Bracket Price']/parent::div/div/div/div/div/h5[text()='Club Member Price']/parent::div/following-sibling::div/div/div/div/following-sibling::input)["
-							+ i + "]"));
-			this.clickUsingActionsClass(txtBoxClubMemberPrice);
-			this.sendKeys(txtBoxClubMemberPrice, minAgeRange);
+				scrollDown(300);
+				hardWait(2);
+				this.clickUsingActionsClass(driver.findElement(By.xpath(
+						"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Time Zone']/parent::div/div/div/div)["
+								+ i + "]")));
+				this.clickOnCentalAmericanTimeZone();
 
-			hardWait(2);
-			WebElement txtBoxNonClubMemberPrice = driver.findElement(By.xpath(
-					"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Bracket Price']/parent::div/div/div/div/div/h5[text()='Club nonmember Price']/parent::div/following-sibling::div/div/div/div/following-sibling::input)["
-							+ i + "]"));
-			this.clickUsingActionsClass(txtBoxNonClubMemberPrice);
-			this.sendKeys(txtBoxNonClubMemberPrice, minAgeRange);
+				hardWait(2);
+				WebElement txtBoxClubMemberPrice = driver.findElement(By.xpath(
+						"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Bracket Price']/parent::div/div/div/div/div/h5[text()='Club Member Price']/parent::div/following-sibling::div/div/div/div/following-sibling::input)["
+								+ i + "]"));
+				this.clickUsingActionsClass(txtBoxClubMemberPrice);
+				this.sendKeys(txtBoxClubMemberPrice, minAgeRange);
 
-			hardWait(2);
-			WebElement txtBoxNumberOfTeams = driver.findElement(By.xpath(
-					"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Number of Teams']/parent::div/div/div/div/div/div/input)["
-							+ i + "]"));
-			this.clickUsingActionsClass(txtBoxNumberOfTeams);
-			this.sendKeys(txtBoxNumberOfTeams, minAgeRange);
+				hardWait(2);
+				WebElement txtBoxNonClubMemberPrice = driver.findElement(By.xpath(
+						"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Bracket Price']/parent::div/div/div/div/div/h5[text()='Club nonmember Price']/parent::div/following-sibling::div/div/div/div/following-sibling::input)["
+								+ i + "]"));
+				this.clickUsingActionsClass(txtBoxNonClubMemberPrice);
+				this.sendKeys(txtBoxNonClubMemberPrice, minAgeRange);
 
-			hardWait(2);
-			WebElement txtBoxWaitlist = driver.findElement(By.xpath(
-					"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Waitlist']/parent::div/div/div/div/div/div/input)["
-							+ i + "]"));
-			this.clickUsingActionsClass(txtBoxWaitlist);
-			this.sendKeys(txtBoxWaitlist, minRatingRange);
+				hardWait(2);
+				WebElement txtBoxNumberOfTeams = driver.findElement(By.xpath(
+						"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Number of Teams']/parent::div/div/div/div/div/div/input)["
+								+ i + "]"));
+				this.clickUsingActionsClass(txtBoxNumberOfTeams);
+				this.sendKeys(txtBoxNumberOfTeams, minAgeRange);
 
-			this.clickUsingActionsClass(driver.findElement(By.xpath("//button[text()='Next Step']")));
+				hardWait(2);
+				WebElement txtBoxWaitlist = driver.findElement(By.xpath(
+						"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Waitlist']/parent::div/div/div/div/div/div/input)["
+								+ i + "]"));
+				this.clickUsingActionsClass(txtBoxWaitlist);
+				this.sendKeys(txtBoxWaitlist, minRatingRange);
 
-			this.clickOnAddAnotherBracketButton();
-			this.clickUsingActionsClass(
-					driver.findElement(By.xpath("(//h2[contains(text(),'Bracket #')])[" + i + "]")));
+				this.clickUsingActionsClass(driver.findElement(By.xpath("//button[text()='Next Step']")));
+
+				this.clickOnAddAnotherBracketButton();
+				// this.clickUsingActionsClass(
+				// driver.findElement(By.xpath("(//h2[contains(text(),'Bracket #')])[" + i +
+				// "]")));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-
+		this.hardWait(2);
+		this.clickUsingActionsClass(driver.findElement(By.xpath("(//button[text()='Delete Bracket'])[3]")));
 	}
 }

@@ -24,7 +24,7 @@
 
 	<test name="Add A Match">
 		<classes>
-			<class name="com.dupr.test.addamatch.AddAMatchTest" />
+			 <class name="com.dupr.test.addamatch.AddAMatchTest" />
 			<class name="com.dupr.test.addamatch.AddClubMatchTest" />
 		</classes>
 	</test>

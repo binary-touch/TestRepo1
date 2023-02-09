@@ -37,16 +37,16 @@ public class ForgotPasswordPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h1[text()='Create a New Password']")
 	private WebElement lblCreateANewPassword;
 
-	@B2BFindBy(xpath = "//h5[text()='Verification code (OTP)*']/parent::div/following-sibling::div//input[@aria-label='Please enter verification code. Digit 1']")
+	@B2BFindBy(xpath = "//h4[text()='Verification code (OTP)*']/parent::div//input[@aria-label='Please enter verification code. Digit 1']")
 	private WebElement txtBoxOTPOne;
 
-	@B2BFindBy(xpath = "//h5[text()='Verification code (OTP)*']/parent::div/following-sibling::div//input[@aria-label='Digit 2']")
+	@B2BFindBy(xpath = "//h4[text()='Verification code (OTP)*']/parent::div//input[@aria-label='Digit 2']")
 	private WebElement txtBoxOTPtwo;
 
-	@B2BFindBy(xpath = "//h5[text()='Verification code (OTP)*']/parent::div/following-sibling::div//input[@aria-label='Digit 3']")
+	@B2BFindBy(xpath = "//h4[text()='Verification code (OTP)*']/parent::div//input[@aria-label='Digit 3']")
 	private WebElement txtBoxOTPThree;
 
-	@B2BFindBy(xpath = "//h5[text()='Verification code (OTP)*']/parent::div/following-sibling::div//input[@aria-label='Digit 4']")
+	@B2BFindBy(xpath = "//h4[text()='Verification code (OTP)*']/parent::div//input[@aria-label='Digit 4']")
 	private WebElement txtBoxOTPFour;
 
 	@B2BFindBy(xpath = "//h5[text()='Password']/parent::div/following-sibling::div[1]/*/following-sibling::div//input")
@@ -55,8 +55,9 @@ public class ForgotPasswordPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h5[text()='Confirm Password']/parent::div/following-sibling::div//input")
 	private WebElement txtBoxConfirmPassword;
 
-	@B2BFindBy(xpath = "//button[contains(@class ,'MuiButton-contained') and text()='Confirm Password']")
-	private WebElement btnConfirmPassword;
+	//@B2BFindBy(xpath = "//button[contains(@class ,'MuiButton-contained') and text()='Confirm Password']")
+	@B2BFindBy(xpath = "//button[text()='Reset Password']")
+	private WebElement btnResetPassword;
 
 	@B2BFindBy(xpath = "//h4[@id='customized-dialog-title']")
 	private WebElement lblSuccess;
@@ -185,13 +186,13 @@ public class ForgotPasswordPage extends DUPRBaseAutomationPage {
 		log.info("Ending of setConfirmPassword method");
 	}
 
-	public void clickOnConfirmPasswordButton() {
-		log.info("Starting of clickOnConfirmPasswordButton method");
+	public void clickOnResetPasswordButton() {
+		log.info("Starting of clickOnResetPasswordButton method");
 
 		this.implicitWait();
-		this.btnConfirmPassword.click();
+		this.btnResetPassword.click();
 
-		log.info("Ending of clickOnConfirmPasswordButton method");
+		log.info("Ending of clickOnResetPasswordButton method");
 	}
 
 	public String getSuccessLabel() {

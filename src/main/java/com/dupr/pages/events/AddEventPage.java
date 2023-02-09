@@ -551,11 +551,16 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 		boolean isEventDeletedSuccessPopUpContains = false;
 
 		hardWait(2);
-		if (isDisplayed(lblDeleteBracketSuccess) && isDisplayed(btnDeleteBracketClose)
-				&& isDisplayed(lblDeleteBracketSuccessDescription) && isDisplayed(btnDeleteBracketSuccessOK)) {
+		try {
+			if (isDisplayed(lblDeleteBracketSuccess) && isDisplayed(btnDeleteBracketClose)
+					&& isDisplayed(lblDeleteBracketSuccessDescription) && isDisplayed(btnDeleteBracketSuccessOK)) {
 
-			isEventDeletedSuccessPopUpContains = true;
+				isEventDeletedSuccessPopUpContains = true;
+			}
+		} catch (Exception e) {
+			isEventDeletedSuccessPopUpContains = false;
 		}
+		
 
 		log.info("Ending of isEventDeletedSuccessPopUpContains method");
 
@@ -702,6 +707,15 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 		log.info("Ending of isRecentlyAddedEventDisplayed method");
 		return eventStatus;
 	}
+	
+	public boolean isRecentlyCreatedEventDisplayed(String eventname) {
+		log.info("Starting of isRecentlyCreatedEventDisplayed method");
+		WebElement eventNameInEventPage = driver.findElement(By.xpath("//h3[text()='" + eventname + "']"));
+		log.info("Ending of isRecentlyCreatedEventDisplayed method");
+		
+		return eventNameInEventPage.isDisplayed();
+	}
+	
 
 	public void clickOnRecentlyAddedEvent(String eventName) {
 		log.info("Starting of clickOnRecentlyAddedEvent method");

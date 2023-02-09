@@ -63,7 +63,7 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//input[@value='MALE']")
 	private WebElement rdoGender;
 
-	@B2BFindBy(xpath = "//h5[text()='Location (City or Zip)']/parent::div//parent::div[contains(@class,'MuiGrid-grid-lg-6')]/descendant::input")
+	@B2BFindBy(xpath = "//h5[text()='Address']/parent::div//parent::div[contains(@class,'MuiGrid-grid-lg-6')]/descendant::input")
 	private WebElement txtBoxLocation;
 
 	@B2BFindBy(xpath = "//ul[contains(@class,'MuiList-root MuiList-padding')]/li[contains(@class, 'MuiListItem-gutters MuiListItem-divider')]")
@@ -103,10 +103,10 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//button[text()='OK']")
 	private WebElement btnOK;
 
-	@B2BFindBy(xpath = "//h3[text()='Success']")
+	@B2BFindBy(xpath = "//h4[text()='Success']")
 	private WebElement lblSuccess;
 
-	@B2BFindBy(xpath = "//h4[text()='Your account has been created. Welcome to DUPR.']")
+	@B2BFindBy(xpath = "//h6[text()='Your account has been created.']")
 	private WebElement lblWelcomeToDUPR;
 
 	@B2BFindBy(xpath = "//p[contains(@class,' MuiFormHelperText-filled')]")

@@ -61,8 +61,8 @@ public class PreservingPageVisitsTest extends CommonBaseTest {
 	@Description("Test case #1, Verify the preserving page vistis on Browse players")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #1, Verify the preserving page vistis on Browse players")
-	public void verifyPreservingPageOnBrowsePlayers() {
-		logger.info("Starting of verifyPreservingPageOnBrowsePlayers method");
+	public void verifyPreservingPageVisitsFeatureInBrowsePlayers() {
+		logger.info("Starting of verifyPreservingPageVisitsFeatureInBrowsePlayers method");
 
 		addAMatchPage.clickOnPlayersTab();
 		addAMatchPage.hardWait(3);
@@ -73,15 +73,15 @@ public class PreservingPageVisitsTest extends CommonBaseTest {
 		preservingPageVisitsPage.hardWait(3);
 		preservingPageVisitsPage.clickOnBackButton();
 		Assert.assertTrue(preservingPageVisitsPage.getPlayerName(testDataProp.getProperty("player.name.txt")));
-		logger.info("Ending of verifyPreservingPageOnBrowsePlayers method");
+		logger.info("Ending of verifyPreservingPageVisitsFeatureInBrowsePlayers method");
 	}
 
 	@Test(priority = 2, description = "Verify the preserving page vistis on Search Clubs", groups = "sanity")
 	@Description("Test case #2, Verify the preserving page vistis on Search Clubs")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #2, Verify the preserving page vistis on Search Clubs")
-	public void verifyPreservingPageOnSearchClubs() {
-		logger.info("Starting of verifyPreservingPageOnSearchClubs method");
+	public void verifyPreservingPageVisitsFeatureInSearchClubs() {
+		logger.info("Starting of verifyPreservingPageVisitsFeatureInSearchClubs method");
 
 		browseClubsPage.clickOnBrowseClubsTab();
 		browseEventsPage.hardWait(3);
@@ -92,15 +92,15 @@ public class PreservingPageVisitsTest extends CommonBaseTest {
 		preservingPageVisitsPage.clickOnBackButton();
 		Assert.assertTrue(preservingPageVisitsPage.getPlayerName(testDataProp.getProperty("club.name.txt")));
 
-		logger.info("Ending of verifyPreservingPageOnSearchClubs method");
+		logger.info("Ending of verifyPreservingPageVisitsFeatureInSearchClubs method");
 	}
 
 	@Test(priority = 3, description = "Verify the preserving page vistis on Search Events", groups = "sanity")
 	@Description("Test case #3, Verify the preserving page vistis on Search Events")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #3, Verify the preserving page vistis on Search Events")
-	public void verifyPreservingPageOnSearchEvents() {
-		logger.info("Starting of verifyPreservingPageOnSearchEvents method");
+	public void verifyPreservingPageVisitsFeatureInSearchEvents() {
+		logger.info("Starting of verifyPreservingPageVisitsFeatureInSearchEvents method");
 
 		userDashboardPage.clickOnEventsMenu();
 		browseEventsPage.hardWait(3);
@@ -111,15 +111,15 @@ public class PreservingPageVisitsTest extends CommonBaseTest {
 		preservingPageVisitsPage.clickOnBackButton();
 		Assert.assertTrue(preservingPageVisitsPage.getPlayerName(testDataProp.getProperty("event.name.txt")));
 
-		logger.info("Ending of verifyPreservingPageOnSearchEvents method");
+		logger.info("Ending of verifyPreservingPageVisitsFeatureInSearchEvents method");
 	}
 
 	@Test(priority = 4, description = "Verify the preserving page vistis on Search Players", groups = "sanity")
 	@Description("Test case #4, Verify the preserving page vistis on Search Players")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #4, Verify the preserving page vistis on Search Players")
-	public void verifyPreservingPageOnSearchPlayers() {
-		logger.info("Starting of verifyPreservingPageOnSearchPlayers method");
+	public void verifyPreservingPageVisitsFeatureInSearchPlayers() {
+		logger.info("Starting of verifyPreservingPageVisitsFeatureInSearchPlayers method");
 
 		userDashboardPage.clickOnDUPRLogoLink();
 		browseEventsPage.hardWait(3);
@@ -134,15 +134,15 @@ public class PreservingPageVisitsTest extends CommonBaseTest {
 		Assert.assertTrue(preservingPageVisitsPage.getPlayerName(testDataProp.getProperty("player.name.txt")));
 		Assert.assertTrue(preservingPageVisitsPage.getLocation(testDataProp.getProperty("location.txt")));
 
-		logger.info("Ending of verifyPreservingPageOnSearchPlayers method");
+		logger.info("Ending of verifyPreservingPageVisitsFeatureInSearchPlayers method");
 	}
 
-	@Test(priority = 5, description = "Verify the preserving page vistis on Clam Account", groups = "sanity")
-	@Description("Test case #5, Verify the preserving page vistis on Clam Account")
+	@Test(priority = 5, description = "Verify the preserving page vistis on Claim Account", groups = "sanity")
+	@Description("Test case #5, Verify the preserving page vistis on Claim Account")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #5, Verify the preserving page vistis on Clam Account")
-	public void verifyPreservingPageOnClamAccount() {
-		logger.info("Starting of verifyPreservingPageOnClamAccount method");
+	@Story("Test case #5, Verify the preserving page vistis on Claim Account")
+	public void verifyPreservingPageVisitsFeatureInClaimAccountPage() {
+		logger.info("Starting of verifyPreservingPageVisitsFeatureInClaimAccountPage method");
 
 		editProfilePage.clickOnOpenSettingMenu();
 		browseEventsPage.hardWait(2);
@@ -157,7 +157,7 @@ public class PreservingPageVisitsTest extends CommonBaseTest {
 		browseEventsPage.hardWait(3);
 		Assert.assertTrue(preservingPageVisitsPage.getPlayerName(testDataProp.getProperty("clam.account.txt")));
 
-		logger.info("Ending of verifyPreservingPageOnClamAccount method");
+		logger.info("Ending of verifyPreservingPageVisitsFeatureInClaimAccountPage method");
 	}
 
 	@AfterClass

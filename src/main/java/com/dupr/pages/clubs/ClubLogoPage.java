@@ -90,12 +90,18 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBys(@B2BFindBy(xpath = "//h5[text()='As a Director']/..//div[contains(@class,'MuiGrid-item MuiGrid-grid-xs-12')]/div//h4"))
 	private List<WebElement> lstClubs;
+	
+	@B2BFindBy(xpath = "//h3[text()='Browse Clubs']")
+	private WebElement lblBrowseClubs;
 
 	@B2BFindBys(@B2BFindBy(xpath = "//div/div[contains(@class,'MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation3')]//h4"))
 	private List<WebElement> lstClubsInBrowseClubsPage;
 	
 	@B2BFindBy(xpath = "//input[@id='Search']")
 	private WebElement txtBoxSearch;
+	
+	@B2BFindBy(xpath = "//h4[text()='Simba']")
+	private WebElement lblSimbaClubName;
 
 	@B2BFindBy(xpath = "//span[contains(@class,'MuiBadge-root MuiBadge-root')]/div[contains(@class,'MuiAvatar-root MuiAvatar-circular')]/img")
 	private WebElement imgClubLogo;
@@ -308,6 +314,25 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 		log.info("Ending of isClubsDisplayedInMyClubs method");
 
 		return clubState;
+	}
+	
+	public void clickOnSimbaClubName() {
+		log.info("Starting of clickOnSimbaClubName method");
+
+		try {
+			if (lblBrowseClubs.isDisplayed() == true) {
+				this.txtBoxSearch.click();
+				this.txtBoxSearch.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
+
+				sendKeys(txtBoxSearch, "Simba");
+				this.txtBoxSearch.sendKeys(Keys.ENTER);
+				elementClick(lblSimbaClubName);
+			}
+		} catch (Exception e) {
+			elementClick(lblSimbaClubName);
+		}
+
+		log.info("Ending of clickOnSimbaClubName method");
 	}
 
 	public boolean isProfilePictureDisplayed() {
