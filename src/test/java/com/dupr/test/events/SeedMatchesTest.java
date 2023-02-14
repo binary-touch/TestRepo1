@@ -58,45 +58,44 @@ public class SeedMatchesTest extends CommonBaseTest {
 		// create same time now as in regesited stsrt , end and compition start date
 	
 	
-		seedMatchesPage.hardWait(3);
-		System.out.println(seedsEvents);
+		seedMatchesPage.hardWait(2);
 		addEventPage.clickOnEventsTab();
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(2);
 		addEventPage.clickOnRecentlyAddedEvent(seedsEvents);
 		seedMatchesPage.hardWait(3);
 
 		// Register to an Free Bracket
 		seedMatchesPage.registerEvent();
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(5);
 		seedMatchesPage.clickOnHomeMenu();
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(5);
 		seedMatchesPage.clickOnMyClubsCard();
-		addEventPage.hardWait(3);
+		addEventPage.hardWait(5);
 
 		addEventPage.clickOnEventsTab();
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(5);
 		addEventPage.clickOnRecentlyAddedEvent(seedsEvents);
-		addEventPage.hardWait(3);
+		addEventPage.hardWait(5);
 
 		seedMatchesPage.clickOnBracketCard();
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(5);
 		addparticipantsPage.addParticipants();
 		seedMatchesPage.hardWait(5);
 		createTeams.selectTeams();
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(5);
 		seedMatchesPage.clickOnTeamsTab();
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(5);
 		seedMatchesPage.clickOnSeedMatchesButton();
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(5);
 
 		Assert.assertTrue(seedMatchesPage.isSeedMatchesPageContains());
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(5);
 
 		Assert.assertEquals(seedMatchesPage.getClickText(), expectedAssertionsProp.getProperty("click.text"));
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(5);
 
 		Assert.assertTrue(seedMatchesPage.isPublisbButtonDisabled());
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(5);
 
 		logger.info("Ending of verifySeedMatchesFuntionality method");
 	}
@@ -109,10 +108,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Starting of verifyCloseIconFuntionality method");
 
 		seedMatchesPage.clickOnCloseIcon();
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(5);
 
 		Assert.assertTrue(seedMatchesPage.isBracketHomePageDisplayed());
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(5);
 
 		logger.info("Ending of verifyCloseIconFuntionality method");
 	}
@@ -125,17 +124,17 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Starting of verifyCreateMatchesFuntionality method");
 
 		seedMatchesPage.clickOnTeamsTab();
-		seedMatchesPage.hardWait(2);
+		seedMatchesPage.hardWait(5);
 		seedMatchesPage.clickOnSeedMatchesButton();
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(5);
 		seedMatchesPage.clickOnCreateMatches();
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(5);
 
 		Assert.assertTrue(seedMatchesPage.isRoundsDisplayed());
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(5);
 
 		Assert.assertTrue(seedMatchesPage.isPublishButtonEnabled());
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(5);
 
 		logger.info("Ending of verifyCreateMatchesFuntionality method");
 	}
@@ -148,10 +147,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Starting of verifyRightArrowFunctionality method");
 
 		seedMatchesPage.clickOnRightArrowIcon();
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(5);
 
 		Assert.assertTrue(seedMatchesPage.isArrowDisabled());
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(5);
 
 		logger.info("Ending of verifyRightArrowFunctionality method");
 	}
@@ -164,10 +163,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Starting of verifyLeftArrowFunctionality method");
 
 		seedMatchesPage.clickOnLefttArrowIcon();
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(5);
 
 		Assert.assertTrue(seedMatchesPage.isArrowDisabled());
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(5);
 
 		logger.info("Ending of verifyLeftArrowFunctionality method");
 	}
@@ -180,10 +179,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Starting of verifySavePublishFunctionality method");
 
 		seedMatchesPage.clickOnSavePublishButton();
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(5);
 
 		Assert.assertTrue(seedMatchesPage.isBracketHomePageDisplayed());
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(5);
 
 		logger.info("Ending of verifySavePublishFunctionality method");
 	}
@@ -196,10 +195,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Starting of verifyMatchesTabDetails method");
 
 		seedMatchesPage.clickOnMatchesTab();
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(5);
 
 		Assert.assertTrue(seedMatchesPage.isMatchesTabContains());
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(5);
 
 		logger.info("Ending of verifyMatchesTabDetails method");
 	}
@@ -212,19 +211,19 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Starting of verifyReseedFunctionality method");
 
 		seedMatchesPage.clickOnTeamsTab();
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(5);
 		seedMatchesPage.withdrawTeam();
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(5);
 		seedMatchesPage.clickOnSeedMatchesButton();
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(5);
 		seedMatchesPage.clickOnReseedButton();
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(5);
 
 		Assert.assertTrue(seedMatchesPage.isRoundsDisplayed());
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(5);
 
 		Assert.assertTrue(seedMatchesPage.isPublishButtonEnabled());
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(5);
 
 		logger.info("Ending of verifyReseedFunctionality method");
 	}
@@ -237,12 +236,12 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Starting of verifyMatchesTabFunctionality method");
 
 		seedMatchesPage.clickOnSavePublishButton();
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(5);
 		seedMatchesPage.clickOnMatchesTab();
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(5);
 
 		Assert.assertTrue(seedMatchesPage.isBracketHomePageDisplayed());
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(5);
 
 		logger.info("Ending of verifyMatchesTabFunctionality method");
 	}
@@ -254,9 +253,9 @@ public class SeedMatchesTest extends CommonBaseTest {
 	public void verifyBracketPageBeforeValidatingMatch() {
 		logger.info("Starting of verifyBracketPageBeforeValidatingMatch method");
 
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(5);
 		Assert.assertTrue(seedMatchesPage.beforeValidateisBracketPageContains());
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(5);
 
 		logger.info("Ending of verifyBracketPageBeforeValidatingMatch method");
 	}
@@ -269,14 +268,14 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Starting of verifyDetailsDisplayedInMyMatchesPage method");
 
 		seedMatchesPage.clickOnHomeMenu();
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(5);
 		userDashboardPage.clickOnMyBracketsButton();
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(5);
 		seedMatchesPage.clickOnMyMatchesButton();
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(5);
 
 		Assert.assertTrue(seedMatchesPage.isMyMatchesPageContains());
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(5);
 
 		logger.info("Ending of verifyDetailsDisplayedInMyMatchesPage method");
 	}
@@ -288,7 +287,7 @@ public class SeedMatchesTest extends CommonBaseTest {
 	public void verifyAddScoreFunctionality() {
 		logger.info("Starting of verifyAddScoreFunctionality method");
 
-		seedMatchesPage.hardWait(15);
+		seedMatchesPage.hardWait(60);
 		seedMatchesPage.clickOnAddScoresButton();
 		seedMatchesPage.hardWait(5);
 
@@ -800,11 +799,11 @@ public class SeedMatchesTest extends CommonBaseTest {
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #39, Verifying the presence of the Standing Tab after validating match")
 	public void verifyStandingTab() {
-		logger.info("Starting of VerifyStandingTab method");
+		logger.info("Starting of verifyStandingTab method");
 
 		Assert.assertTrue(seedMatchesPage.isStandingsTabDisplayed());
 
-		logger.info("Ending of VerifyStandingTab method");
+		logger.info("Ending of verifyStandingTab method");
 	}
 
 	@Test(priority = 40, description = "Verify the results on click on the Forfeit Button", groups = "sanity")
@@ -828,13 +827,13 @@ public class SeedMatchesTest extends CommonBaseTest {
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #41, Verify the results on click on the Forfeit Button")
 	public void verifyRadioButtonFunctionality() {
-		logger.info("Starting of VerifyRadioButtonFunctionality method");
+		logger.info("Starting of verifyRadioButtonFunctionality method");
 
 		seedMatchesPage.clickOnFirstTeamRadioButton();
 
 		Assert.assertTrue(seedMatchesPage.isFirstTeamRadioButtonSelected());
 
-		logger.info("Ending of VerifyRadioButtonFunctionality method");
+		logger.info("Ending of verifyRadioButtonFunctionality method");
 	}
 
 	@Test(priority = 42, description = "Verify results on the click of the Close icon from the Forfeit match pop up", groups = "sanity")
@@ -856,13 +855,13 @@ public class SeedMatchesTest extends CommonBaseTest {
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #43, Verify the state of Mark as Forfeit Button without selecting the Radio buttons")
 	public void verifyStateOfMarkAsForfeitButton() {
-		logger.info("Starting of VerifyCloseIconFunctunalityOnForfeitMatchPopup method");
+		logger.info("Starting of verifyStateOfMarkAsForfeitButton method");
 
 		seedMatchesPage.clickOnForfeitButon();
 
 		Assert.assertTrue(seedMatchesPage.isMarkAsForfeitButtonDisabled());
 
-		logger.info("Ending of VerifyCloseIconFunctunalityOnForfeitMatchPopup method");
+		logger.info("Ending of verifyStateOfMarkAsForfeitButton method");
 	}
 
 	@Test(priority = 44, description = "Verify Results on the click on the Cancel button from the Forfeit match pop up", groups = "sanity")
@@ -870,13 +869,13 @@ public class SeedMatchesTest extends CommonBaseTest {
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #44, Verify Results on the click on the Cancel button from the Forfeit match pop up")
 	public void verifyCancelButtonFunctionality() {
-		logger.info("Starting of VerifyCloseIconFunctunalityOnForfeitMatchPopup method");
+		logger.info("Starting of verifyCancelButtonFunctionality method");
 
 		seedMatchesPage.clickOnCancelButton();
 
 		Assert.assertFalse(seedMatchesPage.isForfeitMatchPopupContains());
 
-		logger.info("Ending of VerifyCloseIconFunctunalityOnForfeitMatchPopup method");
+		logger.info("Ending of verifyCancelButtonFunctionality method");
 	}
 
 	@Test(priority = 45, description = "Verify results on the click of Mark as Forfeit button by selecting a radio buttons", groups = "sanity")

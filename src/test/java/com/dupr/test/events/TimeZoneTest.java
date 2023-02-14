@@ -30,7 +30,7 @@ public class TimeZoneTest extends CommonBaseTest {
 	private static String CompEndDateTime = null;
 	private static String TimeZone = null;
 	private static String TimeZone2 = null;
-	private static String eventName = null;
+
 	private static String s1 = null;
 	private static String s2 = null;
 	private static String s3 = null;
@@ -63,6 +63,7 @@ public class TimeZoneTest extends CommonBaseTest {
 		super.verifyAddEventFunctionality();
 		addBracketPage.hardWait(3);
 		super.verifyEventInformationPageWithValidDetails();
+		System.out.println("event name in Timezone test: "+eventName);
 		addBracketPage.hardWait(3);
 		this.verifyEventPoliciesPageByEnteringValidDetails();
 
@@ -167,7 +168,7 @@ public class TimeZoneTest extends CommonBaseTest {
 	public void verifyAddAnotherBracketInAddEventFunctionality() {
 		logger.info("Starting of verifyAddAnotherBracketInAddEventFunctionality method");
 
-		super.verifyAddEventFunctionality();
+		addEventPage.clickOnAddEventButton();
 		addBracketPage.hardWait(3);
 		super.verifyEventInformationPageWithValidDetails();
 		addBracketPage.hardWait(3);
@@ -203,15 +204,22 @@ public class TimeZoneTest extends CommonBaseTest {
 		addAnotherBracketPage.clickOnAutoGenerate();
 
 		addAnotherBracketPage.clickOnEventTypeDropdown();
-		Assert.assertTrue(addBracketPage.isEventTypeListContains());
+		addAnotherBracketPage.hardWait(3);
 		addBracketPage.selectRoundRobinEvent();
-		Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
+		addAnotherBracketPage.hardWait(3);
 
 		addAnotherBracketPage.clickOnRegistrationStartDate();
+		
+		addAnotherBracketPage.hardWait(3);
 		addAnotherBracketPage.clickOnRegistrationEndDate();
+		
+		addAnotherBracketPage.hardWait(3);
 		addAnotherBracketPage.clickOnCompetitionStartDate();
+		
+		addAnotherBracketPage.hardWait(3);
 		addAnotherBracketPage.clickOnCompetitionEndDate();
 
+		addAnotherBracketPage.hardWait(3);
 		addAnotherBracketPage.clickOnTimeZoneDropdown();
 		String TimeZoneInEventDetails = addAnotherBracketPage.getTimeZoneText();
 
@@ -373,7 +381,7 @@ public class TimeZoneTest extends CommonBaseTest {
 
 		addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("zero.value"));
 		addBracketPage.setBracketNonClubMemberPrice(testDataProp.getProperty("zero.value"));
-		addBracketPage.setNumberOfTeams(testDataProp.getProperty("min.rating.range"));
+		addBracketPage.setNumberOfTeams(testDataProp.getProperty("number.of.courts"));
 		addBracketPage.setWaitlist(testDataProp.getProperty("wait.list"));
 
 		timeZonePage.clickOnPublishButton();

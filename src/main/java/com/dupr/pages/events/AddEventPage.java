@@ -731,7 +731,8 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 		hardWait(4);
 		for (int i = 0; i <= lstEvents.size();i++) {
 			System.out.println(lstEvents.get(i).getText());
-			this.hardWait(3);
+			
+			this.hardWait(2);
 			if (lstEvents.get(i).getText().equals(eventName)) {
 				System.out.println(lstEvents.get(i).getText());
 				try {

@@ -1524,9 +1524,16 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		this.clickOnCurrentDate(date);
 
 		this.clickOnCurrentTime(hours);
-
-		String min = String.valueOf(this.getMinutes());
-		this.clickOnCurrentTime(min);
+     String min=null;
+		try {
+			min = String.valueOf(this.getMinutes());
+		if(	driver.findElement(By.xpath("//span[text()='" + min + "']")).isDisplayed()) {
+			this.clickOnCurrentTime(min);
+		}
+		} catch (Exception e) {
+			min="05";
+			this.clickOnCurrentTime(min);
+		}
 
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnElementUsingActionClass(btnOK);
@@ -1545,10 +1552,17 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 		this.clickOnCurrentDate(date);
 		this.clickOnCurrentTime(hours);
-
-		String min = String.valueOf(this.getMinutes());
-		this.clickOnCurrentTime(min);
-
+		String min=null;
+		try {
+			min = String.valueOf(this.getMinutes());
+		if(	driver.findElement(By.xpath("//span[text()='" + min + "']")).isDisplayed()) {
+			this.clickOnCurrentTime(min);
+		}
+		} catch (Exception e) {
+			min="05";
+			this.clickOnCurrentTime(min);
+		}
+		 
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnElementUsingActionClass(btnOK);
 

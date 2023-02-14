@@ -417,6 +417,9 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		logger.info("Starting of verifyEventInformationPageWithValidDetails method");
 
 		eventName = addEventPage.setEventName(testDataProp.getProperty("event.name"));
+		
+		System.out.println("event name in Common base test: "+eventName);
+		
 		addEventPage.hardWait(2);
 		addEventPage.setLocation(testDataProp.getProperty("state.address"));
 		addEventPage.uploadEventLogo(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("edit.club.logo.path"));
