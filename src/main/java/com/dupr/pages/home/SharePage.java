@@ -80,7 +80,12 @@ public class SharePage extends DUPRBaseAutomationPage {
 	public void clickOnShareButton() {
 		log.info("Starting of clickOnShareButton method");
 
-		clickOnWebElement(btnShare);
+		try {
+			clickOnWebElement(btnShare);
+		} catch (Exception e) {
+			clickOnElementUsingActionClass(btnShare);
+		}
+		
 		this.hardWait(2);
 
 		log.info("Ending of clickOnShareButton method");

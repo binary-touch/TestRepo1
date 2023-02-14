@@ -8,11 +8,8 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.b2b.common.WebDriversEnum;
-import com.dupr.pages.clubs.ClubLogoPage;
-import com.dupr.pages.clubs.EditClubInfoPage;
-import com.dupr.pages.events.AddBracketPage;
-import com.dupr.pages.events.AddEventPage;
-import com.dupr.pages.events.DirectorEventRegistrationPage;
+import com.dupr.pages.events.BrowseEventsPage;
+import com.dupr.pages.events.EventRegistrationPage;
 import com.dupr.pages.events.PlayerEventRegistrationPage;
 import com.dupr.test.CommonBaseTest;
 
@@ -24,129 +21,140 @@ import io.qameta.allure.Story;
 public class PlayerEventRegistrationTest extends CommonBaseTest {
 
 	private static final Logger logger = Logger.getLogger(PlayerEventRegistrationTest.class.getName());
-	DirectorEventRegistrationPage directorEventRegistrationPage = null;
-	PlayerEventRegistrationPage playerEventRegistrationPage=null;
+	private EventRegistrationPage directorEventRegistrationPage = null;
+	private PlayerEventRegistrationPage playerEventRegistrationPage = null;
+	private BrowseEventsPage browseEventsPage = null;
+
 	@BeforeClass
 	@Parameters({ "browser", "siteURL", "validEmail", "validPassword" })
-	public void initMethod(String browser, String siteURL, String email, String password) throws Exception {
+	public void initMethod(String browser, String siteURL, String validEmail, String validPassword) throws Exception {
 		logger.info("Starting of initMethod in PlayerEventRegistrationTest");
 
 		this.driver = super.getWebDriver(WebDriversEnum.EVENT_REGISTRATION_DRIVER);
-		this.siteLogin(siteURL, email, password, this.driver);
-		
-		this.editClubInfoPage = new EditClubInfoPage(this.driver);
-		this.clubLogoPage = new ClubLogoPage(this.driver);
-		this.addEventPage = new AddEventPage(this.driver);
-		this.addBracketPage = new AddBracketPage(this.driver);
-		this.directorEventRegistrationPage= new DirectorEventRegistrationPage(this.driver);
-		this.playerEventRegistrationPage= new PlayerEventRegistrationPage(this.driver);
-		
+		super.initCommonBaseTest(siteURL, validEmail, validPassword);
+
+		this.directorEventRegistrationPage = new EventRegistrationPage(this.driver);
+		this.playerEventRegistrationPage = new PlayerEventRegistrationPage(this.driver);
+		this.browseEventsPage = new BrowseEventsPage(this.driver);
+
 		logger.info("Ending of initMethod in PlayerEventRegistrationTest");
 	}
 
-	@Test(priority = 1, description = "Verify Register Functionality With FreeEvent And Bracket", groups = "sanity")
-	@Description("Test case #1, Verify Register Functionality With FreeEvent And Bracket")
+	@Test(priority = 1, description = "Verify Events Menu Functionality in Player Account", groups = "sanity")
+	@Description("Test case #1, Verify Events Menu Functionality in Player Account")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #1, Verify Register Functionality With FreeEvent And Bracket")
-	public void VerifyRegisterFunctionalityWithFreeEventAndBracket() {
-		logger.info("Starting of VerifyRegisterFunctionalityWithFreeEventAndBracket method");
-		
-		playerEventRegistrationPage.clickonEventsTab();		
-		
-		playerEventRegistrationPage.clickonEventCard();
-		
-		Assert.assertEquals(playerEventRegistrationPage.getEventHeadingLabel(),expectedAssertionsProp.getProperty("event.text"));
-		
-		logger.info("Ending of VerifyRegisterFunctionalityWithFreeEventAndBracket method");
-	}
+	@Story("Test case #1, Verify Events Menu Functionality in Player Account")
+	public void verifyEventsMenuFunctionalityInPlayerAccount() {
+		logger.info("Starting of verifyEventsMenuFunctionalityInPlayerAccount method");
 
-	@Test(priority = 2, description = "Verify register Functionality", groups = "sanity")
-	@Description("Test case #2, Verify register Functionality")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #2, Verify register Functionality")
-	public void VerifyRegisterFunctionality() {
-		logger.info("Starting of VerifyRegisterFunctionality method");
-		
-	 
-		playerEventRegistrationPage.clickonRegisterButton();		
-		Assert.assertEquals(directorEventRegistrationPage.getEventRegistrationLabel(),expectedAssertionsProp.getProperty("Event.registration"));
+		playerEventRegistrationPage.clickOnEventsMenu();
+		playerEventRegistrationPage.hardWait(3);
+		Assert.assertTrue(browseEventsPage.isBrowseEventsPageContains());
 
-		Assert.assertEquals(playerEventRegistrationPage.getClubMembershipLabel(),expectedAssertionsProp.getProperty("club.membership"));
-		Assert.assertEquals(directorEventRegistrationPage.getHealthAndSafetyLabel(),expectedAssertionsProp.getProperty("health.and.safety"));
-		Assert.assertEquals(directorEventRegistrationPage.getLiabiltyPolicyLabel(),expectedAssertionsProp.getProperty("liabilty.policies"));
-		
-		
-		logger.info("Ending of VerifyRegisterFunctionality method");
-	}
-
-	
-	
-	@Test(priority = 4, description = "Verify Event Registration Back Button Functionality", groups = "sanity")
-	@Description("Test case #4, Verify Event Registration Back Button Functionality")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #4, Verify Event Registration Back Button Functionality")
-	public void VerifyEventRegistrationBackButtonFunctionality() {
-		logger.info("Starting of VerifyEventRegistrationBackButtonFunctionality method");
-		
-		directorEventRegistrationPage.clickonEventRegistrationBackButton();
-		
-		Assert.assertEquals(directorEventRegistrationPage.getEventLabel(),expectedAssertionsProp.getProperty("event.text"));
-
-		playerEventRegistrationPage.clickonRegisterButton();
-		
-		logger.info("Ending of VerifyEventRegistrationBackButtonFunctionality method");
+		logger.info("Ending of verifyEventsMenuFunctionalityInPlayerAccount method");
 	}
 	
-	@Test(priority = 5, description = "Verify register Functionality In Event Registration Page", groups = "sanity")
-	@Description("Test case #2, Verify register Functionality  In Event Registration Page")
+	@Test(priority = 2, description = "Verify details displayed on Event Card in Player Account", groups = "sanity")
+	@Description("Test case #2, Verify details displayed on Event Card in Player Account")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #2, Verify register Functionality  In Event Registration Page")
-	public void VerifyRegisterFunctionalityInEventRegistrationPage() {
-		logger.info("Starting of VerifyRegisterFunctionalityInEventRegistrationPage method");
+	@Story("Test case #2, Verify details displayed on Event Card in Player Account")
+	public void verifyDetailsDisplayedOnEventCardInPlayerAccount() {
+		logger.info("Starting of verifyDetailsDisplayedOnEventCardInPlayerAccount method");
+
+		playerEventRegistrationPage.clickOnEventCard();
+
+		Assert.assertEquals(playerEventRegistrationPage.getEventHeadingLabel(),
+				expectedAssertionsProp.getProperty("event.text"));
 		
-	 
-		playerEventRegistrationPage.clickonClubMemberYesButton();		
+		Assert.assertTrue(directorEventRegistrationPage.isEventPageContains());
+
+		logger.info("Ending of verifyDetailsDisplayedOnEventCardInPlayerAccount method");
+	}
+
+	@Test(priority = 3, description = "Verify Register Functionality in Player Account", groups = "sanity")
+	@Description("Test case #3, Verify Register Functionality in Player Account")
+	@Severity(SeverityLevel.NORMAL)
+	@Story("Test case #3, Verify Register Functionality in Player Account")
+	public void verifyRegisterFunctionalityInPlayerAccount() {
+		logger.info("Starting of verifyRegisterFunctionalityInPlayerAccount method");
+
+		playerEventRegistrationPage.clickOnRegisterButton();
+		
+		Assert.assertEquals(directorEventRegistrationPage.getEventRegistrationLabel(),
+				expectedAssertionsProp.getProperty("Event.registration"));
+
+		Assert.assertEquals(playerEventRegistrationPage.getClubMembershipLabel(),
+				expectedAssertionsProp.getProperty("club.membership"));
+		Assert.assertEquals(directorEventRegistrationPage.getHealthAndSafetyLabel(),
+				expectedAssertionsProp.getProperty("health.and.safety"));
+		Assert.assertEquals(directorEventRegistrationPage.getLiabiltyPolicyLabel(),
+				expectedAssertionsProp.getProperty("liabilty.policies"));
+
+		logger.info("Ending of verifyRegisterFunctionalityInPlayerAccount method");
+	}
+
+	@Test(priority = 4, description = "Verify Back Button Functionality in Player Account Event Registration page", groups = "sanity")
+	@Description("Test case #4, Verify Back Button Functionality in Player Account Event Registration page")
+	@Severity(SeverityLevel.NORMAL)
+	@Story("Test case #4, Verify Back Button Functionality in Player Account Event Registration page")
+	public void verifyBackButtonFunctionalityInPlayerAccountEventRegistrationPage() {
+		logger.info("Starting of verifyBackButtonFunctionalityInPlayerAccountEventRegistrationPage method");
+
+		directorEventRegistrationPage.clickOnEventRegistrationBackButton();
+
+		Assert.assertEquals(directorEventRegistrationPage.getEventLabel(),
+				expectedAssertionsProp.getProperty("event.text"));
+
+		logger.info("Ending of verifyBackButtonFunctionalityInPlayerAccountEventRegistrationPage method");
+	}
+
+	@Test(priority = 5, description = "Verify register Functionality in Player Account Event Registration Page", groups = "sanity")
+	@Description("Test case #5, Verify register Functionality in Player Account Event Registration Page")
+	@Severity(SeverityLevel.NORMAL)
+	@Story("Test case #5, Verify register Functionality in Player Account Event Registration Page")
+	public void verifyRegisterFunctionalityInPlayerAccountEventRegistrationPage() {
+		logger.info("Starting of verifyRegisterFunctionalityInPlayerAccountEventRegistrationPage method");
+		
+		this.verifyRegisterFunctionalityInPlayerAccount();
+		playerEventRegistrationPage.hardWait(3);
+
+		playerEventRegistrationPage.clickOnClubMemberYesButton();
 		Assert.assertTrue(playerEventRegistrationPage.isClubMemberYesRadioButtonSelected());
-		
-		directorEventRegistrationPage.clickonSelectYourBracketCheckbox();
 
-        Assert.assertTrue(directorEventRegistrationPage.isBracketCheckboxSelected());		
+		directorEventRegistrationPage.clickOnSelectYourBracketCheckbox();
+		Assert.assertTrue(directorEventRegistrationPage.isBracketCheckboxSelected());
 
-		directorEventRegistrationPage.clickonRefundPolicyCheckbox();
-		
-        Assert.assertTrue(directorEventRegistrationPage.isRefundPolicyCheckboxSelected());		
-        
-		directorEventRegistrationPage.clickonHealthSafetyPolicyCheckbox();
+		directorEventRegistrationPage.clickOnRefundPolicyCheckbox();
+		Assert.assertTrue(directorEventRegistrationPage.isRefundPolicyCheckboxSelected());
 
-        Assert.assertTrue(directorEventRegistrationPage.isHealthSafetyPolicyCheckboxSelected());		
+		directorEventRegistrationPage.clickOnHealthSafetyPolicyCheckbox();
+		Assert.assertTrue(directorEventRegistrationPage.isHealthSafetyPolicyCheckboxSelected());
 
-		directorEventRegistrationPage.clickonLaibilityCheckbox();
+		directorEventRegistrationPage.clickOnLiabilityCheckbox();
 
-        Assert.assertTrue(directorEventRegistrationPage.isLiabilityPolicyCheckboxSelected());		
+		Assert.assertTrue(directorEventRegistrationPage.isLiabilityPolicyCheckboxSelected());
+		playerEventRegistrationPage.clickOnRegisterButtonInEventRegPage();
 
-        playerEventRegistrationPage.clickonRegisterButton();
-		
-		logger.info("Ending of VerifyRegisterFunctionalityInEventRegistrationPage method");
+		logger.info("Ending of verifyRegisterFunctionalityInPlayerAccountEventRegistrationPage method");
 	}
 
-
-	@Test(priority = 6, description = "Verify Register Functionality Success PopUp", groups = "sanity")
-	@Description("Test case #6, Verify Register Functionality In Registration Closed Event")
+	@Test(priority = 6, description = "Verify Ok button Functionality in Success PopUp", groups = "sanity")
+	@Description("Test case #6, Verify Ok button Functionality in Success PopUp")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #6, Verify Register Functionality In Registration Closed Event")
-	public void VerifyRegisterFunctionalitySuccessPopUp() {
-		logger.info("Starting of VerifyRegisterFunctionalitySuccessPopUp method");
-		
-		Assert.assertEquals(directorEventRegistrationPage.getSuccessLabel(),expectedAssertionsProp.getProperty("success.text"));
-		Assert.assertEquals(directorEventRegistrationPage.getRegistrationCompletedLabel(),expectedAssertionsProp.getProperty("registration.completed"));
-		Assert.assertEquals(directorEventRegistrationPage.getOkLabel(),expectedAssertionsProp.getProperty("ok.text"));
-	
-		directorEventRegistrationPage.clickOnOkButton();
-    
-		logger.info("Ending of VerifyRegisterFunctionalityInEventRegistrationPage method");
-	}
+	@Story("Test case #6, Verify Ok button Functionality in Success PopUp")
+	public void verifyOKButtonFunctionalityInSuccessPopUp() {
+		logger.info("Starting of verifyOKButtonFunctionalityInSuccessPopUp method");
 
-	
+		Assert.assertEquals(directorEventRegistrationPage.getSuccessLabel(),
+				expectedAssertionsProp.getProperty("success.text"));
+		Assert.assertEquals(directorEventRegistrationPage.getRegistrationCompletedLabel(),
+				expectedAssertionsProp.getProperty("registration.completed"));
+		Assert.assertEquals(directorEventRegistrationPage.getOkLabel(), expectedAssertionsProp.getProperty("ok.text"));
+
+		directorEventRegistrationPage.clickOnOkButton();
+
+		logger.info("Ending of verifyOKButtonFunctionalityInSuccessPopUp method");
+	}
 
 	@AfterClass
 	public void quitDriver() {

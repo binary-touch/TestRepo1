@@ -8,11 +8,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.b2b.common.WebDriversEnum;
-import com.dupr.pages.clubs.ClubLogoPage;
-import com.dupr.pages.clubs.EditClubInfoPage;
-import com.dupr.pages.events.AddBracketPage;
-import com.dupr.pages.events.AddEventPage;
-import com.dupr.pages.events.DirectorEventRegistrationPage;
+import com.dupr.pages.events.EventRegistrationPage;
 import com.dupr.test.CommonBaseTest;
 
 import io.qameta.allure.Description;
@@ -23,279 +19,266 @@ import io.qameta.allure.Story;
 public class DirectorEventRegistrationTest extends CommonBaseTest {
 
 	private static final Logger logger = Logger.getLogger(DirectorEventRegistrationTest.class.getName());
-	DirectorEventRegistrationPage directorEventRegistrationPage = null;
+	EventRegistrationPage eventRegistrationPage = null;
 
 	@BeforeClass
 	@Parameters({ "browser", "siteURL", "directorEmail", "directorPassword" })
-	public void initMethod(String browser, String siteURL, String email, String password) throws Exception {
-		logger.info("Starting of initMethod in EditClubInfoTest");
+	public void initMethod(String browser, String siteURL, String directorEmail, String directorPassword)
+			throws Exception {
+		logger.info("Starting of initMethod in DirectorEventRegistrationTest");
 
 		this.driver = super.getWebDriver(WebDriversEnum.EVENT_REGISTRATION_DRIVER);
-		this.siteLogin(siteURL, email, password, this.driver);
+		super.initCommonBaseTest(siteURL, directorEmail, directorPassword);
 
-		this.editClubInfoPage = new EditClubInfoPage(this.driver);
-		this.clubLogoPage = new ClubLogoPage(this.driver);
-		this.addEventPage = new AddEventPage(this.driver);
-		this.addBracketPage = new AddBracketPage(this.driver);
-		this.directorEventRegistrationPage = new DirectorEventRegistrationPage(this.driver);
+		this.eventRegistrationPage = new EventRegistrationPage(this.driver);
 
-		logger.info("Ending of initMethod in EditClubInfoTest");
+		logger.info("Ending of initMethod in DirectorEventRegistrationTest");
 	}
 
-	@Test(priority = 1, description = "Verify Register Functionality With FreeEvent And Bracket", groups = "sanity")
-	@Description("Test case #1, Verify Register Functionality With FreeEvent And Bracket")
+	@Test(priority = 1, description = "Verify Events Tab for Open Status Event", groups = "sanity")
+	@Description("Test case #1, Verify Events Tab for Open Status Event")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #1, Verify Register Functionality With FreeEvent And Bracket")
-	public void VerifyRegisterFunctionalityWithFreeEventAndBracket() {
-		logger.info("Starting of VerifyRegisterFunctionalityWithFreeEventAndBracket method");
+	@Story("Test case #1, Verify Events Tab for Open Status Event")
+	public void verifyEventsTabForOpenStatusEvent() {
+		logger.info("Starting of verifyEventsTabForOpenStatusEvent method");
 
-		this.VerifyAddEventFunctionality();
-		this.verifyFreeBracketWithSinglesTypeAndRoundRobinEvent();
+		super.verifyAddEventFunctionality();
+		super.verifyFreeBracketWithSinglesTypeAndRoundRobinEvent();
 
 		addEventPage.clickOnEventsTab();
+		addEventPage.hardWait(3);
+		
+		Assert.assertTrue(this.eventRegistrationPage.isEventLogosDisplayed());
+		Assert.assertTrue(this.eventRegistrationPage.isEventNameDisplayed());
+		Assert.assertTrue(this.eventRegistrationPage.isEventLocationDisplayed());
+		Assert.assertTrue(this.eventRegistrationPage.isEventCompetitionDatesDisplayed());
+		addEventPage.hardWait(3);
+		Assert.assertTrue(this.eventRegistrationPage.isEventStatusesDisplayed());
+		Assert.assertTrue(this.eventRegistrationPage.isDeleteEventDisplayed());
 
-		logger.info("Ending of VerifyRegisterFunctionalityWithFreeEventAndBracket method");
+		logger.info("Ending of verifyEventsTabForOpenStatusEvent method");
 	}
 
-	@Test(priority = 2, description = "Verify Event Card Functionality With Open Status", groups = "sanity")
-	@Description("Test case #2, Verify Event Card Functionality With Open Status")
+	@Test(priority = 2, description = "Verify Details displayerd on Event Card With Open Status", groups = "sanity")
+	@Description("Test case #2, Verify Details displayerd on Event Card With Open Status")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #2, Verify Event Card Functionality With Open Status")
-	public void VerifyEventCardFunctionalityWithOpenStatus() {
-		logger.info("Starting of VerifyEventCardFunctionalityWithOpenStatus method");
+	@Story("Test case #2, Verify Details displayerd on Event Card With Open Status")
+	public void verifyDetailsDisplayedOnEventCardWithOpenStatus() {
+		logger.info("Starting of verifyDetailsDisplayedOnEventCardWithOpenStatus method");
 
-		addEventPage.clickOnEventName(event);
+		addEventPage.clickOnEventName(eventName);
 
-		// Assert.assertEquals(directorEventRegistrationPage.getEventLabel(),expectedAssertionsProp.getProperty("event.text"));
+		Assert.assertTrue(eventRegistrationPage.isEventPageContains());
 
-		Assert.assertTrue(directorEventRegistrationPage.isDisplayedEventPageContains());
-
-		logger.info("Ending of VerifyEventCardFunctionalityWithOpenStatus method");
+		logger.info("Ending of verifyDetailsDisplayedOnEventCardWithOpenStatus method");
 	}
 
 	@Test(priority = 3, description = "Verify Register Functionality", groups = "sanity")
 	@Description("Test case #3, Verify Register Functionality")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #3, Verify Register Functionality")
-	public void VerifyRegisterFunctionality() {
-		logger.info("Starting of VerifyRegisterFunctionality method");
+	public void verifyRegisterFunctionality() {
+		logger.info("Starting of verifyRegisterFunctionality method");
 
-		directorEventRegistrationPage.clickonRegisterButton();
+		eventRegistrationPage.clickOnRegisterButton();
 
-		Assert.assertTrue(directorEventRegistrationPage.isCheckBoxDisplayed());
+		Assert.assertTrue(eventRegistrationPage.isBracketsCheckBoxesDisplayed());
 
-		Assert.assertEquals(directorEventRegistrationPage.getEventRegistrationLabel(),
-				expectedAssertionsProp.getProperty("Event.registration"));
-		Assert.assertEquals(directorEventRegistrationPage.getRefundPolicyLabel(),
+		Assert.assertEquals(eventRegistrationPage.getEventRegistrationLabel(),
+				expectedAssertionsProp.getProperty("event.registration.text"));
+		
+		Assert.assertEquals(eventRegistrationPage.getRefundPolicyLabel(),
 				expectedAssertionsProp.getProperty("refund.policy"));
-		Assert.assertEquals(directorEventRegistrationPage.getHealthAndSafetyLabel(),
+		
+		Assert.assertEquals(eventRegistrationPage.getHealthAndSafetyLabel(),
 				expectedAssertionsProp.getProperty("health.and.safety"));
-		Assert.assertEquals(directorEventRegistrationPage.getLiabiltyPolicyLabel(),
+		
+		Assert.assertEquals(eventRegistrationPage.getLiabiltyPolicyLabel(),
 				expectedAssertionsProp.getProperty("liabilty.policies"));
 
-		Assert.assertTrue(directorEventRegistrationPage.isRegisterButtonDisplayed());
+		Assert.assertTrue(eventRegistrationPage.isRegisterButtonDisplayed());
 
-		logger.info("Ending of VerifyRegisterFunctionality method");
+		logger.info("Ending of verifyRegisterFunctionality method");
 	}
 
 	@Test(priority = 4, description = "Verify Event Registration Back Button Functionality", groups = "sanity")
 	@Description("Test case #4, Verify Event Registration Back Button Functionality")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #4, Verify Event Registration Back Button Functionality")
-	public void VerifyEventRegistrationBackButtonFunctionality() {
-		logger.info("Starting of VerifyEventRegistrationBackButtonFunctionality method");
+	public void verifyEventRegistrationBackButtonFunctionality() {
+		logger.info("Starting of verifyEventRegistrationBackButtonFunctionality method");
 
-		directorEventRegistrationPage.clickonEventRegistrationBackButton();
+		eventRegistrationPage.clickOnEventRegistrationBackButton();
 
-		Assert.assertEquals(directorEventRegistrationPage.getEventLabel(),
-				expectedAssertionsProp.getProperty("event.text"));
+		Assert.assertEquals(eventRegistrationPage.getEventLabel(), expectedAssertionsProp.getProperty("event.text"));
 
-		Assert.assertTrue(directorEventRegistrationPage.isDisplayedEventPageContains());
+		Assert.assertTrue(eventRegistrationPage.isEventPageContains());
 
-		directorEventRegistrationPage.clickonRegisterButton();
+		eventRegistrationPage.clickOnRegisterButton();
 
-		logger.info("Ending of VerifyEventRegistrationBackButtonFunctionality method");
+		logger.info("Ending of verifyEventRegistrationBackButtonFunctionality method");
 	}
 
-	@Test(priority = 5, description = "Verify Select Your Bracket Checkbox Functionality", groups = "sanity")
-	@Description("Test case #5, Verify Select Your Bracket Checkbox Functionality")
+	@Test(priority = 5, description = "Verify the results on selecting Bracket checkbox functionality under Select your Brackets for Singles Bracket", groups = "sanity")
+	@Description("Test case #5, Verify the results on selecting Bracket checkbox functionality under Select your Brackets for Singles Bracket")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #5, Verify Select Your Bracket Checkbox Functionality")
-	public void VerifySelectYourBracketCheckboxFunctionality() {
-		logger.info("Starting of VerifyEventRegistrationBackButtonFunctionality method");
+	@Story("Test case #5, Verify the results on selecting Bracket checkbox functionality under Select your Brackets for Singles Bracket")
+	public void verifySelectYourBracketCheckboxFunctionality() {
+		logger.info("Starting of verifySelectYourBracketCheckboxFunctionality method");
 
-		directorEventRegistrationPage.clickonSelectYourBracketCheckbox();
+		eventRegistrationPage.clickOnSelectYourBracketCheckbox();
 
-		Assert.assertTrue(directorEventRegistrationPage.isBracketCheckboxSelected());
+		Assert.assertTrue(eventRegistrationPage.isBracketCheckboxSelected());
 
-		directorEventRegistrationPage.clickonSelectYourBracketCheckbox();
+		eventRegistrationPage.clickOnSelectYourBracketCheckbox();
 
-		Assert.assertFalse(directorEventRegistrationPage.isBracketCheckboxSelected());
+		Assert.assertFalse(eventRegistrationPage.isBracketCheckboxSelected());
 
-		logger.info("Ending of VerifyEventRegistrationBackButtonFunctionality method");
+		logger.info("Ending of verifySelectYourBracketCheckboxFunctionality method");
 	}
 
 	@Test(priority = 6, description = "Verify League Policy Checkbox Functionality", groups = "sanity")
 	@Description("Test case #6, Verify League Policy Checkbox Functionality")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #6, Verify League Policy Checkbox Functionality")
-	public void VerifyLeaguePolicyCheckboxFunctionality() {
-		logger.info("Starting of VerifyLeaguePolicyCheckboxFunctionality method");
+	public void verifyLeaguePolicyCheckboxFunctionality() {
+		logger.info("Starting of verifyLeaguePolicyCheckboxFunctionality method");
 
-		directorEventRegistrationPage.clickonSelectYourBracketCheckbox();
+		eventRegistrationPage.clickOnSelectYourBracketCheckbox();
+		Assert.assertTrue(eventRegistrationPage.isBracketCheckboxSelected());
 
-		Assert.assertTrue(directorEventRegistrationPage.isBracketCheckboxSelected());
+		eventRegistrationPage.clickOnRefundPolicyCheckbox();
+		Assert.assertTrue(eventRegistrationPage.isRefundPolicyCheckboxSelected());
 
-		directorEventRegistrationPage.clickonRefundPolicyCheckbox();
+		eventRegistrationPage.clickOnHealthSafetyPolicyCheckbox();
+		Assert.assertTrue(eventRegistrationPage.isHealthSafetyPolicyCheckboxSelected());
 
-		Assert.assertTrue(directorEventRegistrationPage.isRefundPolicyCheckboxSelected());
+		eventRegistrationPage.clickOnLiabilityCheckbox();
+		Assert.assertTrue(eventRegistrationPage.isLiabilityPolicyCheckboxSelected());
 
-		directorEventRegistrationPage.clickonHealthSafetyPolicyCheckbox();
-
-		Assert.assertTrue(directorEventRegistrationPage.isHealthSafetyPolicyCheckboxSelected());
-
-		directorEventRegistrationPage.clickonLaibilityCheckbox();
-
-		Assert.assertTrue(directorEventRegistrationPage.isLiabilityPolicyCheckboxSelected());
-
-		logger.info("Ending of VerifyLeaguePolicyCheckboxFunctionality method");
-
+		logger.info("Ending of verifyLeaguePolicyCheckboxFunctionality method");
 	}
 
-	@Test(priority = 7, description = "Verify Register Functionality In Event Registration Page", groups = "sanity")
-	@Description("Test case #7, Verify Register Functionality In Event Registration Page")
+	@Test(priority = 7, description = "Verify Register Functionality in Event Registration Page", groups = "sanity")
+	@Description("Test case #7, Verify Register Functionality in Event Registration Page")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #7, Verify Register Functionality In Event Registration Page")
-	public void VerifyRegisterFunctionalityInEventRegistrationPage() {
-		logger.info("Starting of VerifyRegisterFunctionalityInEventRegistrationPage method");
+	@Story("Test case #7, Verify Register Functionality in Event Registration Page")
+	public void verifyRegisterFunctionalityInEventRegistrationPage() {
+		logger.info("Starting of verifyRegisterFunctionalityInEventRegistrationPage method");
 
-		directorEventRegistrationPage.clickonRegisterButton();
+		eventRegistrationPage.clickOnRegisterButton();
 
-		Assert.assertEquals(directorEventRegistrationPage.getSuccessLabel(),
+		Assert.assertEquals(eventRegistrationPage.getSuccessLabel(),
 				expectedAssertionsProp.getProperty("success.text"));
-		Assert.assertEquals(directorEventRegistrationPage.getRegistrationCompletedLabel(),
+		
+		Assert.assertEquals(eventRegistrationPage.getRegistrationCompletedLabel(),
 				expectedAssertionsProp.getProperty("registration.completed"));
-		Assert.assertEquals(directorEventRegistrationPage.getOkLabel(), expectedAssertionsProp.getProperty("ok.text"));
+		
+		Assert.assertEquals(eventRegistrationPage.getOkLabel(), expectedAssertionsProp.getProperty("ok.text"));
 
-		directorEventRegistrationPage.clickOnOkButton();
-		// Assert.assertTrue(directorEventRegistrationPage.isBracketCheckboxSelected());
-
-		logger.info("Ending of VerifyRegisterFunctionalityInEventRegistrationPage method");
-
+		eventRegistrationPage.clickOnOkButton();
+		
+		logger.info("Ending of verifyRegisterFunctionalityInEventRegistrationPage method");
 	}
 
-	@Test(priority = 8, description = "Verify Register Functionality In Registration Closed Event", groups = "sanity")
-	@Description("Test case #8, Verify Register Functionality In Registration Closed Event")
+	@Test(priority = 8, description = "Verify Register Functionality in Registration Closed Event", groups = "sanity")
+	@Description("Test case #8, Verify Register Functionality in Registration Closed Event")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #8, Verify Register Functionality In Registration Closed Event")
-	public void VerifyRegisterFunctionalityInRegistrationClosedEvent() {
-		logger.info("Starting of VerifyRegisterFunctionalityInRegistrationClosedEvent method");
+	@Story("Test case #8, Verify Register Functionality in Registration Closed Event")
+	public void verifyRegisterFunctionalityInRegistrationClosedEvent() {
+		logger.info("Starting of verifyRegisterFunctionalityInRegistrationClosedEvent method");
 
-		this.VerifyAddEventFunctionality();
-		this.verifyFreeBracketWithRoundRobinEventType();
+		super.verifyAddEventFunctionality();
+		super.verifyFreeBracketWithRoundRobinEventType();
 
 		addEventPage.clickOnEventsTab();
-		// directorEventRegistrationPage.isRegisterButtonDisplayedForOnGoingEventCard();
-		Assert.assertFalse(directorEventRegistrationPage.isRegisterButtonDisplayedForRegistrationClosedEventCard());
-		logger.info("Ending of VerifyRegisterFunctionalityInRegistrationClosedEvent method");
-		addBracketPage.clickOnBackButton();
-		addEventPage.clickOnEventsTab();
+	
+		Assert.assertFalse(eventRegistrationPage.isRegisterButtonDisplayedForRegistrationClosedEventCard());
+		
+		logger.info("Ending of verifyRegisterFunctionalityInRegistrationClosedEvent method");
 	}
 
-	@Test(priority = 9, description = "Verify Register Functionality In Upcoming Event", groups = "sanity")
-	@Description("Test case #8, Verify Register Functionality In Upcoming Event")
+	@Test(priority = 9, description = "Verify Register Functionality in Upcoming Event", groups = "sanity")
+	@Description("Test case #9, Verify Register Functionality in Upcoming Event")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #8, Verify Register Functionality In Upcoming Event")
-	public void VerifyRegisterFunctionalityInUpcomingEvent() {
-		logger.info("Starting of VerifyRegisterFunctionalityInUpcomingEvent method");
+	@Story("Test case #9, Verify Register Functionality in Upcoming Event")
+	public void verifyRegisterFunctionalityInUpcomingEvent() {
+		logger.info("Starting of verifyRegisterFunctionalityInUpcomingEvent method");
 
-		// this.VerifyAddEventFunctionality();
-		// this.VerifyFreeBracketWithEventTypeAsRoundRobin();
-
-		addEventPage.clickOnEventsTab();
-		// directorEventRegistrationPage.isRegisterButtonDisplayedForOnGoingEventCard();
-		Assert.assertFalse(directorEventRegistrationPage.isRegisterButtonDisplayedForUpcomingEventCard());
-		logger.info("Ending of VerifyRegisterFunctionalityInUpcomingEvent method");
 		addBracketPage.clickOnBackButton();
 		addEventPage.clickOnEventsTab();
+		
+		Assert.assertFalse(eventRegistrationPage.isRegisterButtonDisplayedForUpcomingEventCard());
+		
+		logger.info("Ending of verifyRegisterFunctionalityInUpcomingEvent method");
 	}
 
 	@Test(priority = 10, description = "Verify Register Functionality In Ongoing Event", groups = "sanity")
 	@Description("Test case #10, Verify Register Functionality In Ongoing Event")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #10, Verify Register Functionality In Ongoing Event")
-	public void VerifyRegisterFunctionalityInOngoingEvent() {
-		logger.info("Starting of VerifyRegisterFunctionalityInOngoingEvent method");
+	public void verifyRegisterFunctionalityInOngoingEvent() {
+		logger.info("Starting of verifyRegisterFunctionalityInOngoingEvent method");
 
-		this.VerifyAddEventFunctionality();
-		// this.VerifyFreeBracketWithEventTypeAsRoundRobin();
-
-		addEventPage.clickOnEventsTab();
-		// directorEventRegistrationPage.isRegisterButtonDisplayedForOnGoingEventCard();
-		Assert.assertFalse(directorEventRegistrationPage.isRegisterButtonDisplayedForOnGoingEventCard());
-		logger.info("Ending of VerifyRegisterFunctionalityInOngoingEvent method");
 		addBracketPage.clickOnBackButton();
 		addEventPage.clickOnEventsTab();
+		
+		Assert.assertFalse(eventRegistrationPage.isRegisterButtonDisplayedForOnGoingEventCard());
+		
+		logger.info("Ending of verifyRegisterFunctionalityInOngoingEvent method");
 	}
 
-	@Test(priority = 11, description = "Verify Register Functionality In Complete Event", groups = "sanity")
-	@Description("Test case #11, Verify Register Functionality In Complete Event")
+	@Test(priority = 11, description = "Verify Register Functionality In Complete status Event", groups = "sanity")
+	@Description("Test case #11, Verify Register Functionality In Complete status Event")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #11, Verify Register Functionality In Complete Event")
-	public void VerifyRegisterFunctionalityInCompleteEvent() {
-		logger.info("Starting of VerifyRegisterFunctionalityInCompleteEvent method");
+	@Story("Test case #11, Verify Register Functionality In Complete status Event")
+	public void verifyRegisterFunctionalityInCompleteStatusEvent() {
+		logger.info("Starting of verifyRegisterFunctionalityInCompleteStatusEvent method");
 
-		// this.VerifyAddEventFunctionality();
-		// this.VerifyFreeBracketWithEventTypeAsRoundRobin();
-
-		addEventPage.clickOnEventsTab();
-		// directorEventRegistrationPage.isRegisterButtonDisplayedForOnGoingEventCard();
-		Assert.assertFalse(directorEventRegistrationPage.isRegisterButtonDisplayedForCompleteEventCard());
-		logger.info("Ending of VerifyRegisterFunctionalityInCompleteEvent method");
 		addBracketPage.clickOnBackButton();
 		addEventPage.clickOnEventsTab();
+
+		Assert.assertFalse(eventRegistrationPage.isRegisterButtonDisplayedForCompleteEventCard());
+		
+		logger.info("Ending of verifyRegisterFunctionalityInCompleteStatusEvent method");
 	}
 
 	@Test(priority = 12, description = "Verify Register Functionality In Open Registered Player Event", groups = "sanity")
 	@Description("Test case #12, Verify Register Functionality In Complete EventVerify Register Functionality In Open Registered Player Event")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #12 , Verify Register Functionality In Open Registered Player Event")
-	public void VerifyRegisterFunctionalityInOpenRegisteredPlayerEvent() {
-		logger.info("Starting of VerifyRegisterFunctionalityInCompleteEvent method");
+	public void verifyRegisterFunctionalityInOpenRegisteredPlayerEvent() {
+		logger.info("Starting of verifyRegisterFunctionalityInOpenRegisteredPlayerEvent method");
 
-		// this.VerifyAddEventFunctionality();
-		// this.VerifyFreeBracketWithEventTypeAsRoundRobin();
-
-		addEventPage.clickOnEventsTab();
-		// directorEventRegistrationPage.isRegisterButtonDisplayedForOnGoingEventCard();
-		Assert.assertFalse(directorEventRegistrationPage.isRegisterButtonDisplayedForOpenEventCard());
-		logger.info("Ending of VerifyRegisterFunctionalityInCompleteEvent method");
 		addBracketPage.clickOnBackButton();
-		// addEventPage.clickonEventButton();
+		addEventPage.clickOnEventsTab();
+		
+		Assert.assertFalse(eventRegistrationPage.isRegisterButtonDisplayedForOpenEventCard());
+		
+		logger.info("Ending of verifyRegisterFunctionalityInOpenRegisteredPlayerEvent method");
 	}
 
-	@Test(priority = 13, description = "Verify Register Functionality With OPenDouble Bracket", groups = "sanity")
-	@Description("Test case #3, Verify Register Functionality With OPenDouble Bracket")
+	@Test(priority = 13, description = "Verify Register Functionality with Open Double Bracket", groups = "sanity")
+	@Description("Test case #13, Verify Register Functionality with Open Double Bracket")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #13, Verify Register Functionality With OPenDouble Bracket")
-	public void VerifyRegisterFunctionalityWithOPenDoubleBracket() {
-		logger.info("Starting of VerifyRegisterFunctionalityWithOPenDoubleBracket method");
+	@Story("Test case #13, Verify Register Functionality with Open Double Bracket")
+	public void verifyRegisterFunctionalityWithOpenDoubleBracket() {
+		logger.info("Starting of verifyRegisterFunctionalityWithOpenDoubleBracket method");
 
-		addEventPage.clickOnAddEventButton();
-		this.VerifyAddEventFunctionality();
-		this.verifyFreeBracketWithRoundRobinEventType();
+		super.verifyAddEventFunctionality();
+		super.verifyFreeBracketWithRoundRobinEventType();
 
 		addEventPage.clickOnEventsTab();
-		//Assert.assertTrue(addEventPage.selectRecentlyAddedEvent(eventName));
+		Assert.assertTrue(addEventPage.isRecentlyAddedEventDisplayed(eventName));
 
-		this.VerifyRegisterFunctionality();
-		this.VerifyEventRegistrationBackButtonFunctionality();
-		this.VerifySelectYourBracketCheckboxFunctionality();
-		this.VerifyLeaguePolicyCheckboxFunctionality();
-		this.VerifyRegisterFunctionalityInEventRegistrationPage();
-		this.VerifyRegisterFunctionalityInRegistrationClosedEvent();
+		this.verifyRegisterFunctionality();
+		this.verifyEventRegistrationBackButtonFunctionality();
+		this.verifySelectYourBracketCheckboxFunctionality();
+		this.verifyLeaguePolicyCheckboxFunctionality();
+		this.verifyRegisterFunctionalityInEventRegistrationPage();
+		this.verifyRegisterFunctionalityInRegistrationClosedEvent();
 
-		logger.info("Ending of VerifyRegisterFunctionalityWithOPenDoubleBracket method");
+		logger.info("Ending of verifyRegisterFunctionalityWithOpenDoubleBracket method");
 	}
 
 	@AfterClass

@@ -2,87 +2,73 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Common UI Automation Tests">
 
-	<test name="Login Test">
-		<classes>
-			<class name="com.dupr.test.DUPRLoginTest" />
-			<class name="com.dupr.test.NegativeLoginTest" />
-		</classes>
-	</test>
-
-	<test name="Signup Test">
-		<classes>
-			<class name="com.dupr.test.signup.SignupTest" />
-			<class name="com.dupr.test.signup.DUPRClaimAccountSignUpTest" />
-		</classes>
-	</test>
-
-	<test name="Forgot Password">
-		<classes>
-			<class name="com.dupr.test.ForgotPasswordTest" />
-		</classes>
-	</test>
-
-	<test name="Add A Match">
-		<classes>
-			 <class name="com.dupr.test.addamatch.AddAMatchTest" />
-			<class name="com.dupr.test.addamatch.AddClubMatchTest" />
-		</classes>
-	</test>
-
-	<test name="Home Menu">
-		<classes>
-			<class
-				name="com.dupr.test.home.ValidateStatsChangeOnNewMatchTest" />
-			<class name="com.dupr.test.home.ValidateRecentlyAddedMatchTest" />
-			<class name="com.dupr.test.home.DeleteRecentlyAddedMatchTest" />
-			<class name="com.dupr.test.home.AdditionOfChartAndShopTabTest" />
-			<class name="com.dupr.test.home.UserDashboardTest" />
-			<class name="com.dupr.test.home.AntiScrappingCaptchaTest" />
-			<class name="com.dupr.test.home.PreservingPageVisitsTest" />
-			<class name="com.dupr.test.home.ShareTest" />
-			<class name="com.dupr.test.home.ChatTest" />
-		</classes>
-	</test>
-
-	<test name="Search Players Menu">
+	<!-- <test name="Sprint 1">
 		<classes>
 			<class name="com.dupr.test.players.SearchPlayersTest" />
+			<class name="com.dupr.test.signup.SignupTest" />
+			<class name="com.dupr.test.signup.DUPRClaimAccountSignUpTest" />
+			<class name="com.dupr.test.DUPRLoginTest" />
+			<class name="com.dupr.test.NegativeLoginTest" />
+			<class name="com.dupr.test.ForgotPasswordTest" />
+			<class name="com.dupr.test.addamatch.AddAMatchTest" />
+			<class name="com.dupr.test.home.ValidateRecentlyAddedMatchTest" />
+			<class
+				name="com.dupr.test.home.ValidateStatsChangeOnNewMatchTest" />
+			<class name="com.dupr.test.home.DeleteRecentlyAddedMatchTest" />
 			<class name="com.dupr.test.players.BrowsePlayersTest" />
-		</classes>
-	</test>
-
-	<test name="Profile Menu">
-		<classes>
-			<class name="com.dupr.test.profile.NotificationsTest" />
 			<class name="com.dupr.test.profile.PlayerProfileTest" />
-			<class name="com.dupr.test.profile.ProfilePictureTest" />
+			<class name="com.dupr.test.profile.NotificationsTest" />
 			<class name="com.dupr.test.profile.ChangePasswordTest" />
+			<class name="com.dupr.test.profile.ProfilePictureTest" />
 		</classes>
 	</test>
 
-	<test name="Clubs">
+	<test name="Sprint 2">
 		<classes>
-			<class name="com.dupr.test.clubs.ClubLogoTest" />
-			<class name="com.dupr.test.clubs.MyClubsTest" />
 			<class name="com.dupr.test.clubs.BrowseClubsTest" />
+			<class name="com.dupr.test.clubs.MyClubsTest" />
 			<class name="com.dupr.test.clubs.EditClubInfoTest" />
+			<class name="com.dupr.test.clubs.ClubLogoTest" />
+			<class name="com.dupr.test.clubs.AddRemoveOrganizerTest" />
 			<class name="com.dupr.test.clubs.RemoveMemberTest" />
 			<class name="com.dupr.test.clubs.ImportPlayerViaCSVTest" />
-		</classes>
-	</test>
-
-	<test name="Events">
-		<classes>
+			<class name="com.dupr.test.addamatch.AddClubMatchTest" />
+			<class name="com.dupr.test.events.AddEventTest" />
 			<class name="com.dupr.test.events.BrowseEventsTest" />
 			<class name="com.dupr.test.events.EditEventsTest" />
 			<class name="com.dupr.test.events.EditBracketsTest" />
-			<class name="com.dupr.test.events.AddEditRemoveEventLogoTest" />
-			<class name="com.dupr.test.events.AddAnnouncementTest" />
-			<class name="com.dupr.test.events.EndEventTest" />
+		</classes>
+	</test>-->
+
+	<test name="Sprint 3">
+		<classes>
+			<!-- <class name="com.dupr.test.events.AddEditRemoveEventLogoTest" />
 			<class name="com.dupr.test.events.AddParticipantsInBracketTest" />
-			<class name="com.dupr.test.events.WithdrawPlayerTest" />
+			<class name="com.dupr.test.events.EndEventTest" />
+			<class name="com.dupr.test.events.AddAnnouncementTest" /> -->
+			<!--<class
+				name="com.dupr.test.events.PlayerEventRegistrationTest" />
+			 <class name="com.dupr.test.events.AcceptOrDeclinePartnerTest" />
+			<class
+				name="com.dupr.test.events.DirectorEventRegistrationTest" /> -->
+			<!-- <class name="com.dupr.test.events.EditOrRemovePartnerTest" /> -->
+			<!-- <class name="com.dupr.test.events.WithdrawPlayerTest" />
 			<class name="com.dupr.test.events.Create_Edit_Split_TeamTest" />
-			<class name="com.dupr.test.events.AddEventTest" />
+			<class name="com.dupr.test.home.AdditionOfChartAndShopTabTest" />
+			<class name="com.dupr.test.home.AntiScrappingCaptchaTest" />
+			<class name="com.dupr.test.home.UserDashboardTest" />
+			<class name="com.dupr.test.home.PreservingPageVisitsTest" /> -->
+			
+		</classes>
+	</test> 
+
+	 <test name="Sprint 4">
+		<classes>
+			<class name="com.dupr.test.home.ChatTest" />
+			<class name="com.dupr.test.home.ShareTest" /> 
+			<class name="com.dupr.test.events.SeedMatchesTest" />
+			<class name="com.dupr.test.events.CombinationOfMatchTypeAndPlayerGroupTest" />
+			<class name="com.dupr.test.events.FullRegistrationTest" />
 		</classes>
 	</test>
 </suite>

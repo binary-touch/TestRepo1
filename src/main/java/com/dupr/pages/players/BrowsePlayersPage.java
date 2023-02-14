@@ -65,32 +65,31 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h5[text()='Full Name']/../.. //input[contains(@class,'MuiInputBase-input MuiOutlinedInput-input')]")
 	private WebElement txtBoxFullName;
 
-	@B2BFindBy(xpath = "//h5[text()='Email Address']/../.. //input[contains(@class,'MuiInputBase-input MuiOutlinedInput-input')]")
+	@B2BFindBy(xpath = "//h5[text()='Email']/../.. //input[contains(@class,'MuiInputBase-input MuiOutlinedInput-input')]")
 	private WebElement txtBoxEmail;
 
 	@B2BFindBy(xpath = "//h5[text()='Full Name']")
 	private WebElement lblFullName;
 
-	@B2BFindBy(xpath = "//h5[text()='Email Address']")
-	private WebElement lblEmailAddress;
-
+	@B2BFindBy(xpath = "//h5[text()='Email']")
+	private WebElement lblEmail;
+	
 	@B2BFindBy(xpath = "//h4[@id='customized-dialog-title']")
 	private WebElement lblInvitePlayer;
 
-	@B2BFindBy(xpath = "//div/button[contains(@class,'MuiButton-whitecontained') and text()='Back']")
+	@B2BFindBy(xpath = "//h4[text()='Invite a Player']//button")
 	private WebElement btnBack;
 
-	@B2BFindBy(xpath = "//div/button[contains(@class,'MuiButton-whitecontained')]/following-sibling::button[text()='Send Invite']")
+	@B2BFindBy(xpath = "//button[text()='Send Invite']")
 	private WebElement btnSendInvite;
 
-	@B2BFindBy(xpath = "//h4[@id='customized-diaLog-title']")
+	@B2BFindBy(xpath = "//h4[text()='Invite Sent']")
 	private WebElement lblInviteSent;
 
-	@B2BFindBy(css = ".MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.css-1971f2t")
+	@B2BFindBy(xpath = "//button[text()='Ok']")
 	private WebElement btnOk;
 
 	@B2BFindBy(xpath = "//h5[text()='Location']")
-
 	private WebElement lblLocation;
 
 	@B2BFindBy(xpath = "//h5[text()='Distance']")
@@ -126,7 +125,7 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//input[@data-index='1']/following-sibling::span")
 	private WebElement ratingSecondNode;
 
-	@B2BFindBys(@B2BFindBy(xpath = "//h2[contains(@class,'MuiTypography-root MuiTypography-h2')]"))
+	@B2BFindBys(@B2BFindBy(xpath = "//h2[contains(@class,'MuiTypography-root MuiTypography-h2')]"))  
 	private List<WebElement> lstPlayerRatings;
 
 	@B2BFindBy(xpath = "//button[@value='MALE']")
@@ -144,8 +143,11 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//p[text()='No numbers or special characters are allowed.']")
 	private WebElement txtValidationNoNumbersOrSpecialCharactersAllowed;
 
-	@B2BFindBy(xpath = "//p[text()='Email is invalid.']")
-	private WebElement txtValidationEmailIsInvalid;
+	@B2BFindBy(xpath = "//p[text()='Invalid email address']")
+	private WebElement txtValidationInvalidEmailAddress;
+	
+	@B2BFindBy(xpath="//button[text()='Ok']")
+	private WebElement btnOK;
 
 	@B2BFindBy(xpath = "//h3[text()='Browse Players']/preceding-sibling::div/child::button")
 	private WebElement btnBackArrow;
@@ -210,7 +212,7 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 		boolean isInvitePlayerPageContains = false;
 
 		if (isDisplayed(txtBoxFullName) && isDisplayed(txtBoxEmail) && isDisplayed(lblFullName)
-				&& isDisplayed(lblEmailAddress) && isDisplayed(lblInvitePlayer) && isDisplayed(btnBack)
+				&& isDisplayed(lblEmail) && isDisplayed(lblInvitePlayer) && isDisplayed(btnBack)
 				&& isDisplayed(btnSendInvite)) {
 			isInvitePlayerPageContains = true;
 		}
@@ -567,7 +569,11 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 		logger.info("Starting of getInvalidEmailText method");
 		logger.info("Ending of getInvalidEmailText method");
 
-		return getText(txtValidationEmailIsInvalid);
+		return getText(txtValidationInvalidEmailAddress);
+	}
+	
+	public void clickOnOkButton() {
+		elementClick(btnOK);
 	}
 
 	public void clickOnBackArrowButton() {

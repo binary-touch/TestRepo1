@@ -1,20 +1,24 @@
 package com.dupr.pages.events;
 
+import java.util.List;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.b2b.support.B2BFindBy;
+import com.b2b.support.B2BFindBys;
 import com.b2b.support.B2BPageFactory;
 import com.dupr.pages.DUPRBaseAutomationPage;
 
 public class PlayerEventRegistrationPage extends DUPRBaseAutomationPage {
-	private static final Logger log = LogManager.getLogger(DirectorEventRegistrationPage.class);
+	private static final Logger log = LogManager.getLogger(EventRegistrationPage.class);
 
 	@B2BFindBy(xpath = "//h6[text()='Events']")
 	private WebElement tabEvents;
-	
+
 	@B2BFindBy(xpath = "//span[text()='Yes']/parent::label//input")
 	private WebElement rdoYes;
 
@@ -27,110 +31,121 @@ public class PlayerEventRegistrationPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h3[text()='Event']")
 	private WebElement lblEventHeading;
 
-	@B2BFindBy(xpath = "//span[text()='Open']/parent::div/parent::div/parent::div/following-sibling::div//h4")
-	private WebElement lblEventCard;
+	@B2BFindBys(@B2BFindBy(xpath = "//span[text()='Open']/parent::div/parent::div/parent::div/following-sibling::div//h4"))
+	private List<WebElement> lstEventNameLink;
+	
+	@B2BFindBy(xpath = "//button[@aria-label='close']")
+	private WebElement iconClose;
+	
+	@B2BFindBy(xpath = "//h3[text()='Event']/parent::div//button")
+	private WebElement btnBack;
 
 	@B2BFindBy(xpath = "//button[text()='Register']")
 	private WebElement btnRegister;
+
+	@B2BFindBy(xpath = "//h4[text()='No Qualifying Brackets']")
+	private WebElement lblNoQualifyingBrackets;
+
+	@B2BFindBy(xpath = "//h6[text()='Events']")
+	private WebElement mnuEvents;
 	
+	@B2BFindBy(xpath = "//button[text()='Register']")
+	private WebElement btnRegisterInEventRegistrationPage;
+
 	public PlayerEventRegistrationPage(WebDriver driver) {
 		super(driver);
 		B2BPageFactory.initElements(driver, this);
 	}
-	
-	/*
-	 * public boolean isDisplayedEventPageContains() {
-	 * log.info("Starting of isDisplayedEventPageContains method");
-	 * 
-	 * boolean isDisplayedRemoveAndReplaceContains = false;
-	 * 
-	 * if (isDisplayed(lblEvent) && isDisplayed(btnEventBack) &&
-	 * isDisplayed(btnRegister) && isDisplayed(btnAddABracket) &&
-	 * isDisplayed(btnEditEvent) && isDisplayed(btnEndEvent) &&
-	 * isDisplayed(btnAddAnnouncement) && isDisplayed(btnShare) &&
-	 * isDisplayed(btnShowDetails) && isDisplayed(tabBrackets) &&
-	 * isDisplayed(tabAnnouncements) && isDisplayed(tabPolicies)) {
-	 * 
-	 * isDisplayedRemoveAndReplaceContains = true; }
-	 * 
-	 * log.info("Ending of isDisplayedEventPageContains method");
-	 * 
-	 * return isDisplayedRemoveAndReplaceContains; }
-	 */
+
 	public String getClubMembershipLabel() {
 		log.info("Starting of getClubMembershipLabel method");
-		
 		log.info("Ending of getClubMembershipLabel method");
 
 		return lblClubMembership.getText();
 	}
-	
+
 	public String getPlayerClubNameLabel() {
 		log.info("Starting of getPlayerClubNameLabel method");
-		
 		log.info("Ending of getPlayerClubNameLabel method");
 
 		return lblPlayerClubName.getText();
 	}
 
-	
 	public String getEventHeadingLabel() {
 		log.info("Starting of getEventHeadingLabel method");
-		
 		log.info("Ending of getEventHeadingLabel method");
 
 		return lblEventHeading.getText();
 	}
 
-
-	public void clickonClubMemberYesButton() {
-		log.info("Starting of clickonClubMemberYesButton method");
+	public void clickOnClubMemberYesButton() {
+		log.info("Starting of clickOnClubMemberYesButton method");
 
 		elementClick(rdoYes);
 
-		log.info("Ending of clickonClubMemberYesButton method");
+		log.info("Ending of clickOnClubMemberYesButton method");
 	}
-	
+
 	public boolean isClubMemberYesRadioButtonSelected() {
 		log.info("Starting of isClubMemberYesRadioButtonSelected method");
-		
 		log.info("Ending of isClubMemberYesRadioButtonSelected method");
 
 		return rdoYes.isSelected();
 	}
 
-	public void clickonEventCard() {
-		log.info("Starting of clickonEventCard method");
+	public void clickOnEventCard() {
+		log.info("Starting of clickOnEventCard method");
 
-		try {
-			if (isDisplayed(lblEventCard)==true) {
-				hardWait(2);
-				clickOnElement(lblEventCard);
+		for (WebElement eventName : lstEventNameLink) {
+			try {
+				clickOnElementUsingActionClass(eventName);
+			} catch (Exception e) {
+				clickOnWebElement(eventName);
 			}
-				} catch (Exception e) {
-					lblEventCard.click();
-					e.printStackTrace();
-				
+		}
+
+		log.info("Ending of clickOnEventCard method");
+	}
+
+	public void clickOnRegisterButton() {
+		log.info("Starting of clickOnRegisterButton method");
+
+		for (int i = 1; i < lstEventNameLink.size(); i++) {
+			this.hardWait(2);
+			driver.findElement(
+					By.xpath((("(//span[text()='Open']/parent::div/parent::div/parent::div/following-sibling::div//h4)["
+							+ i + "]"))))
+					.click();
+
+			this.hardWait(5);
+			clickOnElementUsingActionClass(btnRegister);
+			try {
+				if ((isDisplayed(lblNoQualifyingBrackets) == true)) {
+					clickOnElementUsingActionClass(iconClose);
+					clickOnElementUsingActionClass(btnBack);
 				}
-		log.info("Ending of clickonEventCard method");
+			} catch (Exception e) {
+				log.info("Register Event Page displayed");
+				break;
+			}
+		}
+
+		log.info("Ending of clickOnRegisterButton method");
 	}
 
-	public void clickonEventsTab() {
-		log.info("Starting of clickonEventsTab method");
+	public void clickOnEventsMenu() {
+		log.info("Starting of clickOnEventsMenu method");
 
-		elementClick(tabEvents);
+		clickOnWebElement(mnuEvents);
 
-		log.info("Ending of clickonEventsTab method");
+		log.info("Ending of clickOnEventsMenu method");
 	}
 	
-	public void clickonRegisterButton() {
-		log.info("Starting of clickonRegisterButton method");
+	public void clickOnRegisterButtonInEventRegPage() {
+		log.info("Starting of clickOnRegisterButtonInEventRegPage method");
 
-		elementClick(btnRegister);
+		clickOnWebElement(btnRegisterInEventRegistrationPage);
 
-		log.info("Ending of clickonRegisterButton method");
+		log.info("Ending of clickOnRegisterButtonInEventRegPage method");
 	}
-
-	
-
 }

@@ -588,12 +588,13 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 
 	public String setEventName(String eventname) {
 		log.info("Starting of setEventName method");
+		
 		hardWait(2);
 		this.txtEventName.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		txtEventName.click();
 		this.txtEventName.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
-		// textboxEventName.clear();
-		txtEventName.sendKeys(eventname + "_" + randomNumber(3));
+	
+		txtEventName.sendKeys(eventname + "_" + randomNumber(5));
 
 		log.info("Ending of setEventName method");
 
@@ -603,16 +604,22 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 
 	public void setLocation(String location) {
 		log.info("Starting of setLocation method");
+		
 		hardWait(2);
 		this.txtLocation.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		txtLocation.click();
 		this.txtLocation.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
-		// textboxEventName.clear();
+
 		txtLocation.sendKeys(location);
 		// for(WebElement loc : lstEventLocations)
 		// if(loc.equals(lblEventLocation.getText()))
-		hardWait(2);
-		lstEventLocations.get(0).click();
+		hardWait(3);
+		try {
+			clickOnElementUsingActionClass(lstEventLocations.get(0));
+		} catch (Exception e) {
+			lstEventLocations.get(0).click();
+		}
+		
 		log.info("Ending of setLocation method");
 	}
 
@@ -694,15 +701,16 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 		boolean eventStatus = false;
 		hardWait(3);
 		
-		for (int i = 0; i <= lstEvents.size();) {
+		for (int i = 0; i <= lstEvents.size();i++) {
 			System.out.println(lstEvents.get(i).getText());
 			if (lstEvents.get(i).getText().equals(eventName)) {
 				if (lstOpen.get(i).getText().contains("Open")) {
 					eventStatus =  true;
+					break;
 				}
-				break;
+				
 			}
-			break;
+		
 		}
 		log.info("Ending of isRecentlyAddedEventDisplayed method");
 		return eventStatus;
@@ -720,18 +728,23 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 	public void clickOnRecentlyAddedEvent(String eventName) {
 		log.info("Starting of clickOnRecentlyAddedEvent method");
 		
-		hardWait(3);
-		for (int i = 0; i <= lstEvents.size();) {
+		hardWait(4);
+		for (int i = 0; i <= lstEvents.size();i++) {
 			System.out.println(lstEvents.get(i).getText());
+			this.hardWait(3);
 			if (lstEvents.get(i).getText().equals(eventName)) {
+				System.out.println(lstEvents.get(i).getText());
 				try {
 					clickOnWebElement(lstEvents.get(i));
+					this.hardWait(2);
+					break;
 				} catch (Exception e) {
 					lstEvents.get(i).click();
+					break;
 				}
 				
 			}
-			break;
+			i++;
 		}
 		log.info("Ending of clickOnRecentlyAddedEvent method");
 	}
@@ -760,8 +773,9 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 			if (lstEvents.get(i).getText().equals(eventName)) {
 				if (lstDeleteEvent.get(i).getText().contains("Delete Event")) {
 					lstDeleteEvent.get(i).click();
+					break;
 				}
-				break;
+				
 			}
 		}
 		log.info("Ending of clickOnDeleteEventFromList method");

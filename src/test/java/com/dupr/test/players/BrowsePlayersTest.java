@@ -143,13 +143,16 @@ public class BrowsePlayersTest extends CommonBaseTest {
 	public void verifyEmailAddressWithInvalidEmail() {
 		logger.info("Starting of verifyEmailAddressWithInvalidEmail method");
 
+		addAMatchPage.hardWait(2);
 		addAMatchPage.setFullName(testDataProp.getProperty("full.name"));
 		addAMatchPage.setEmailForNegativeScenarios(testDataProp.getProperty("invalid.email.in.signup"));
 		addAMatchPage.clickOnSendInviteButton();
 
+		addAMatchPage.hardWait(2);
 		String invalidEmailValidation = browsePlayersPage.getInvalidEmailText();
-		Assert.assertEquals(invalidEmailValidation, expectedAssertionsProp.getProperty("invalid.email"));
+		Assert.assertEquals(invalidEmailValidation, expectedAssertionsProp.getProperty("invalid.email.text"));
 
+		browsePlayersPage.clickOnOkButton();
 		logger.info("Ending of verifyEmailAddressWithInvalidEmail method");
 	}
 
@@ -160,6 +163,8 @@ public class BrowsePlayersTest extends CommonBaseTest {
 	public void verifyInvitePlayerInBrowsePlayers() {
 		logger.info("Starting of verifyInvitePlayerInBrowsePlayers method");
 
+		addAMatchPage.hardWait(2);
+		browsePlayersPage.clickOnInvitePlayerToDUPRTab();
 		addAMatchPage.setFullName(testDataProp.getProperty("full.name"));
 		addAMatchPage.setEmail(testDataProp.getProperty("invite.email"));
 		addAMatchPage.clickOnSendInviteButton();

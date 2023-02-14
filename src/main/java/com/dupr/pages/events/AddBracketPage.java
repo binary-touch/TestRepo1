@@ -2,7 +2,9 @@ package com.dupr.pages.events;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -72,6 +74,12 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//li[text()='Women']")
 	private WebElement btnWomenPlayerGroup;
+
+	@B2BFindBy(xpath = "//h3[text()='Match Type']/parent::div/div/div/div/div[@aria-label='Without label']")
+	private WebElement ddMatchTypeInAddABracket;
+
+	@B2BFindBy(xpath = "//button[contains(text(),'Save Changes')]")
+	private WebElement btnSaveChanges;
 
 	@B2BFindBy(xpath = "//h3[text()='Age Range']/parent::div/div/div/div/div/h5[text()='Minimum']/parent::div/following-sibling::div/div/div/input")
 	private WebElement txtBoxMinAgeRange;
@@ -180,6 +188,9 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//h3[text()='Time Zone']/parent::div/div/div/div")
 	private WebElement ddTimeZone;
+
+	@B2BFindBy(xpath = "//li[@data-value='Asia/Kolkata']")
+	private WebElement btnNewDelhiTimeZone;
 
 	@B2BFindBy(xpath = "//ul[contains(@class,'MuiList-root MuiList-padding MuiMenu-list')]")
 	private WebElement ddListTimeZone;
@@ -947,32 +958,13 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		scrollDown(200);
 		clickOnWebElement(txtBoxRegistrationStartDate);
 
-		LocalDateTime dateTime = LocalDateTime.now();
-		int date = dateTime.getDayOfMonth();
+		int date = this.getCurrentDate();
+		String hours = this.getCurrentHour();
+		String meridiem = this.getCurrentMeridiem();
 
-		SimpleDateFormat simpleformat = new SimpleDateFormat("E, dd MMM yyyy HH:mm:ss Z");
-		simpleformat = new SimpleDateFormat("h");
-		String strHour = simpleformat.format(new Date());
-		System.out.println("Hour in h format = " + strHour);
-
-		try {
-			driver.findElement(By.xpath("//button[text()='" + date + "']")).click();
-		} catch (Exception e) {
-			clickOnElementUsingActionClass(driver.findElement(By.xpath("//button[text()='" + date + "']")));
-		}
-
-		try {
-			driver.findElement(By.xpath("//span[text()='" + strHour + "']")).click();
-		} catch (Exception e) {
-			clickOnElementUsingActionClass(driver.findElement(By.xpath("//span[text()='" + strHour + "']")));
-		}
-
-		try {
-			driver.findElement(By.xpath("//span[text()='AM']")).click();
-		} catch (Exception e) {
-			clickOnElementUsingActionClass(driver.findElement(By.xpath("//span[text()='AM']")));
-		}
-
+		this.clickOnCurrentDate(date);
+		this.clickOnCurrentTime(hours);
+		this.clickOnCurrentTime(meridiem);
 		this.clickOnElementUsingActionClass(btnOK);
 
 		log.info("Ending of setRegistrationStartDate method");
@@ -1075,22 +1067,6 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 		log.info("Ending of clickOnRegistrationEndDate method");
 		return zone;
-	}
-
-	public void clickOnCurrentDate(int date) {
-		try {
-			clickOnElementUsingActionClass(driver.findElement(By.xpath("//button[text()='" + date + "']")));
-		} catch (Exception e) {
-			driver.findElement(By.xpath("//button[text()='" + date + "']")).click();
-		}
-	}
-
-	public void clickOnCurrentTime(String strHour) {
-		try {
-			driver.findElement(By.xpath("//span[text()='" + strHour + "']")).click();
-		} catch (Exception e) {
-			clickOnElementUsingActionClass(driver.findElement(By.xpath("//span[text()='" + strHour + "']")));
-		}
 	}
 
 	public void setRegistrationEndDate() {
@@ -1213,7 +1189,11 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	public void setCompetitionStartDate() {
 		log.info("Starting of setCompetitionStartDate method");
 
-		clickOnElementUsingActionClass(txtBoxCompetitionStartDate);
+		try {
+			clickOnWebElement(txtBoxCompetitionStartDate);
+		} catch (Exception e) {
+			clickOnElementUsingActionClass(txtBoxCompetitionStartDate);
+		}
 
 		int date = this.getFutureDate(2);
 		String hours = this.getCurrentHour();
@@ -1231,7 +1211,11 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	public void setCompetitionEndDate() {
 		log.info("Starting of setCompetitionEndDate method");
 
-		clickOnElementUsingActionClass(txtBoxCompetitionEndDate);
+		try {
+			clickOnWebElement(txtBoxCompetitionEndDate);
+		} catch (Exception e) {
+			clickOnElementUsingActionClass(txtBoxCompetitionEndDate);
+		}
 
 		int date = this.getFutureDate(3);
 		String hours = this.getCurrentHour();
@@ -1327,29 +1311,15 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	public boolean isTimeZoneListContains() {
 		log.info("Starting of isTimeZoneListContains method");
-
-		/*
-		 * boolean isTimeZoneListContains = false;
-		 * 
-		 * if (btnCoordinatedUniversalTime.isDisplayed() && btnHawaiiTime.isDisplayed()
-		 * && btnAlaskanStandardTime.isDisplayed() &&
-		 * btnPacificStandardTime.isDisplayed() && btnArizona.isDisplayed() &&
-		 * btnCentralAmericaTimeTime.isDisplayed() &&
-		 * btnCentalAmericaTimeZone.isDisplayed() && btnSaskatchewanTime.isDisplayed()
-		 * && btnBogotaLimaQuitoTime.isDisplayed() && btnEasternTime.isDisplayed()) {
-		 * 
-		 * isTimeZoneListContains = true; }
-		 */
-
 		log.info("Ending of isTimeZoneListContains method");
 
 		return ddListTimeZone.isDisplayed();
 	}
 
-	public void clickOnCentalAmericanTimeZone() {
+	public void clickOnNewDelhiTimeZone() {
 		log.info("Starting of clickOnCentalAmericanTimeZone method");
 
-		elementClick(btnCentralAmericaTimeZone);
+		elementClick(btnNewDelhiTimeZone);
 
 		log.info("Ending of clickOnCentalAmericanTimeZone method");
 	}
@@ -1359,12 +1329,12 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 		boolean TimeZone = false;
 		try {
-			if (btnCentralAmericaTimeTime.getAttribute("value").equals("America/Belize")) {
-				System.out.println(btnCentralAmericaTimeTime.getAttribute("value").equals("America/Belize"));
+			if (btnNewDelhiTimeZone.getAttribute("value").equals("Asia/Kolkata")) {
+				System.out.println(btnNewDelhiTimeZone.getAttribute("value").equals("Asia/Kolkata"));
 				TimeZone = true;
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			TimeZone = false;
 		}
 
 		log.info("Ending of isSelectedTimeZoneDisplayed method");
@@ -1375,6 +1345,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	public void setBracketClubMemberPrice(String clubMemberPrice) {
 		log.info("Starting of setBracketClubMemberPrice method");
 
+		scrollDown(300);
 		clickUsingActionsClass(txtBoxClubMemberPrice);
 		txtBoxClubMemberPrice.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		txtBoxClubMemberPrice.sendKeys(clubMemberPrice);
@@ -1431,6 +1402,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	public void setNumberOfTeams(String numberOfTeams) {
 		log.info("Starting of setNumberOfTeams method");
 
+		scrollDown(300);
 		clickUsingActionsClass(txtBoxNumberOfTeams);
 		int teamsFieldValue = txtBoxNumberOfTeams.getAttribute("value").length();
 		try {
@@ -2092,7 +2064,6 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			isDeleteBracketSuccessPopUpDisplayed = false;
 		}
-		
 
 		log.info("Ending of isDeleteBracketSuccessPopUpDisplayed method");
 
@@ -2370,7 +2341,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 				this.clickUsingActionsClass(driver.findElement(By.xpath(
 						"(//h2[contains(text(),'Bracket #')]/ancestor::div[@id='panel1a-header']//following-sibling::div[contains(@class, 'MuiCollapse-root MuiCollapse-vertical')]//h3[text()='Time Zone']/parent::div/div/div/div)["
 								+ i + "]")));
-				this.clickOnCentalAmericanTimeZone();
+				this.clickOnNewDelhiTimeZone();
 
 				hardWait(2);
 				WebElement txtBoxClubMemberPrice = driver.findElement(By.xpath(
@@ -2414,4 +2385,345 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		this.hardWait(2);
 		this.clickUsingActionsClass(driver.findElement(By.xpath("(//button[text()='Delete Bracket'])[3]")));
 	}
+
+	// Combinatu=ion methods
+
+	public void selectMenPlayerGroup() {
+		log.info("Starting of selectMenPlayerGroup method");
+
+		elementClick(btnMenPlayerGroup);
+
+		log.info("Ending of selectMenPlayerGroup method");
+	}
+
+	public void selectWomenPlayerGroup() {
+		log.info("Starting of selectWomenPlayerGroup method");
+
+		elementClick(btnWomenPlayerGroup);
+
+		log.info("Ending of selectWomenPlayerGroup method");
+	}
+
+	public boolean isRegstartDateDisplayed() {
+		log.info("Starting of isRegstartDateDisplayed method");
+		log.info("Ending of isRegstartDateDisplayed method");
+
+		return txtBoxRegistrationStartDate.isDisplayed();
+	}
+
+	public boolean isRegEndDateDisplayed() {
+		log.info("Starting of isRegEndDateDisplayed method");
+		log.info("Ending of isRegEndDateDisplayed method");
+
+		return txtBoxRegistrationEndDate.isDisplayed();
+	}
+
+	public boolean isCompstartDateDisplayed() {
+		log.info("Starting of isCompstartDateDisplayed method");
+		log.info("Ending of isCompstartDateDisplayed method");
+
+		return txtBoxCompetitionStartDate.isDisplayed();
+	}
+
+	public boolean isCompEndDateDisplayed() {
+		log.info("Starting of isCompEndDateDisplayed method");
+		log.info("Ending of isCompEndDateDisplayed method");
+
+		return txtBoxCompetitionEndDate.isDisplayed();
+	}
+
+	public boolean isTimeZoneDropdownDisplayed() {
+		log.info("Starting of isTimeZoneDropdownDisplayed method");
+		log.info("Ending of isTimeZoneDropdownDisplayed method");
+
+		return ddTimeZone.isDisplayed();
+	}
+
+	public String getRegistrationStartDateText() {
+		log.info("Starting of getRegistrationStartDateText method");
+		log.info("Ending of getRegistrationStartDateText method");
+
+		return txtBoxRegistrationStartDate.getAttribute("value");
+	}
+
+	public String getRegistrationEndDateText() {
+
+		log.info("Starting of getRegistrationEndDateText method");
+		log.info("Ending of getRegistrationEndDateText method");
+
+		return txtBoxRegistrationEndDate.getAttribute("value");
+	}
+
+	public String getCompetitionStartDateText() {
+		log.info("Starting of getCompetitionStartDateText method");
+		log.info("Ending of getCompetitionStartDateText method");
+
+		return txtBoxCompetitionStartDate.getAttribute("value");
+	}
+
+	public String getCompetitionEndDateText() {
+		log.info("Starting of getCompetitionEndDateText method");
+		log.info("Ending of getCompetitionEndDateText method");
+
+		return txtBoxCompetitionEndDate.getAttribute("value");
+	}
+
+	public void clickOnSaveChangesButton() {
+		log.info("Starting of clickOnSaveChangesButton method");
+
+		elementClick(btnSaveChanges);
+
+		log.info("Ending of clickOnSaveChangesButton method");
+	}
+
+	public String getTimeZoneText() {
+		log.info("Starting of getTimeZoneText method");
+		log.info("Ending of getTimeZoneText method");
+
+		return ddTimeZone.getText();
+	}
+
+	public void clickOnArizonaTimeZoneDropdown() {
+		log.info("Starting of clickOnArizonaTimeZoneDropdown method");
+
+		elementClick(btnArizona);
+
+		log.info("Ending of clickOnArizonaTimeZoneDropdown method");
+	}
+
+	public void clickOnMatchTypeDropDownInAddABracket() {
+		log.info("Starting of clickOnMatchTypeDropDownInAddABracket method");
+
+		this.scrollUp(-800);
+		this.waitForElementToBeVisible(ddMatchTypeInAddABracket);
+		try {
+			ddMatchTypeInAddABracket.click();
+		} catch (Exception e) {
+
+			clickOnWebElement(ddMatchTypeInAddABracket);
+		}
+		hardWait(2);
+
+		log.info("Ending of clickOnMatchTypeDropDownInAddABracket method");
+	}
+
+	public boolean isRegCompAndTimeFieldsWithEmptyDetailsDisplayed() {
+		log.info("Starting of isRegCompAndTimeFieldsWithEmptyDetailsDisplayed method");
+
+		boolean isRegCompAndTimeFieldsWithEmptyDetailsDisplayed = false;
+
+		if (msgRegistrationEndDateRequired.isDisplayed() && msgCompetitionStartDateRequired.isDisplayed()
+				&& msgCompetitionEndRequired.isDisplayed() && msgTimeZoneRequired.isDisplayed()) {
+
+			isRegCompAndTimeFieldsWithEmptyDetailsDisplayed = true;
+		}
+
+		log.info("Ending of isRegCompAndTimeFieldsWithEmptyDetailsDisplayed method");
+
+		return isRegCompAndTimeFieldsWithEmptyDetailsDisplayed;
+	}
+
+	public void setRegistrationStartDateBeforeFourDays() {
+		log.info("Starting of setRegistrationStartDateBeforeFourDays method");
+
+		scrollDown(500);
+		clickOnWebElement(txtBoxRegistrationStartDate);
+
+		try {
+			int date = this.getPastDate(4);
+			String hours = this.getCurrentHour();
+			String meridiem = this.getCurrentMeridiem();
+
+			this.clickOnCurrentDate(date);
+			this.clickOnCurrentTime(hours);
+			clickOnElementUsingActionClass(btnTimeInMinutes);
+			this.clickOnCurrentTime(meridiem);
+			this.clickOnElementUsingActionClass(btnOK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		log.info("Ending of setRegistrationStartDateBeforeFourDays method");
+	}
+
+	public int getPastDate(int days) {
+		log.info("Starting of getPastDate method");
+
+		LocalDateTime dateTime = LocalDateTime.now();
+		LocalDateTime date = dateTime.minusDays(days);
+		int dateValue = date.getDayOfMonth();
+		System.out.println("Date Value = " + dateValue);
+
+		log.info("Starting of getPastDate method");
+
+		return dateValue;
+	}
+
+	public void setRegistrationEndDateBeforeThreeDays() {
+		log.info("Starting of setRegistrationEndDateBeforeThreeDays method");
+
+		clickOnWebElement(txtBoxRegistrationEndDate);
+
+		int date = this.getPastDate(3);
+		String hours = this.getCurrentHour();
+		String meridiem = this.getCurrentMeridiem();
+
+		this.clickOnCurrentDate(date);
+		this.clickOnCurrentTime(hours);
+		clickOnElementUsingActionClass(btnTimeInMinutes);
+		this.clickOnCurrentTime(meridiem);
+		this.clickOnElementUsingActionClass(btnOK);
+
+		log.info("Ending of setRegistrationEndDateBeforeThreeDays method");
+	}
+
+	public void setCompetitionStartDateMoreThenSevenDays() {
+		log.info("Starting of setCompetitionStartDateMoreThenSevenDays method");
+
+		clickOnWebElement(txtBoxCompetitionStartDate);
+
+		int date = this.getFutureDate(9);
+		String hours = this.getCurrentHour();
+		String meridiem = this.getCurrentMeridiem();
+
+		this.clickOnCurrentDate(date);
+		this.clickOnCurrentTime(hours);
+		clickOnElementUsingActionClass(btnTimeInMinutes);
+		this.clickOnCurrentTime(meridiem);
+		this.clickOnElementUsingActionClass(btnOK);
+
+		log.info("Ending of setCompetitionStartDateMoreThenSevenDays method");
+	}
+
+	public void setCompetitionStartDateBeforeTwoDays() {
+		log.info("Starting of setCompetitionStartDateBeforeTwoDays method");
+
+		clickOnWebElement(txtBoxCompetitionStartDate);
+		hardWait(3);
+
+		int date = this.getPastDate(2);
+		String hours = this.getCurrentHour();
+		String meridiem = this.getCurrentMeridiem();
+		// hardWait(3);
+		this.clickOnCurrentDate(date);
+		System.out.println(date);
+		this.clickOnCurrentTime(hours);
+		clickOnElementUsingActionClass(btnTimeInMinutes);
+		this.clickOnCurrentTime(meridiem);
+		this.clickOnElementUsingActionClass(btnOK);
+
+		log.info("Ending of setCompetitionStartDateBeforeTwoDays method");
+	}
+
+	public void setCompetitionEndDateMoreThenSevenDays() {
+		log.info("Starting of setCompetitionEndDateMoreThenSevenDays method");
+
+		clickOnWebElement(txtBoxCompetitionEndDate);
+
+		int date = this.getFutureDate(10);
+		String hours = this.getCurrentHour();
+		String meridiem = this.getCurrentMeridiem();
+
+		this.clickOnCurrentDate(date);
+		this.clickOnCurrentTime(hours);
+		clickOnElementUsingActionClass(btnTimeInMinutes);
+		this.clickOnCurrentTime(meridiem);
+		this.clickOnElementUsingActionClass(btnOK);
+
+		log.info("Ending of setCompetitionEndDateMoreThenSevenDays method");
+	}
+
+	public void setCompetitionEndDateBeforeOneDay() {
+		log.info("Starting of setCompetitionEndDateBeforeOneDay method");
+
+		clickOnWebElement(txtBoxCompetitionEndDate);
+
+		int date = this.getPastDate(1);
+		String hours = this.getCurrentHour();
+		String meridiem = this.getCurrentMeridiem();
+
+		this.clickOnCurrentDate(date);
+		this.clickOnCurrentTime(hours);
+		clickOnElementUsingActionClass(btnTimeInMinutes);
+		this.clickOnCurrentTime(meridiem);
+		this.clickOnElementUsingActionClass(btnOK);
+
+		log.info("Ending of setCompetitionEndDateBeforeOneDay method");
+	}
+
+	public void scrollUp(int i) {
+		log.info("Starting of scrollUp method");
+		hardWait(2);
+		this.scrollDown(i);
+		hardWait(2);
+		log.info("Ending of scrollUp method");
+	}
+
+	public void setCompetitionEndDateOneDay() {
+		log.info("Starting of setCompetitionEndDateOneDay method");
+		clickOnElementUsingActionClass(txtBoxCompetitionEndDate);
+
+		int date = this.getFutureDate(1);
+		String hours = this.getCurrentHour();
+		String meridiem = this.getCurrentMeridiem();
+
+		this.clickOnCurrentDate(date);
+		this.clickOnCurrentTime(hours);
+		clickOnElementUsingActionClass(btnTimeInMinutes);
+		this.clickOnCurrentTime(meridiem);
+		this.clickOnElementUsingActionClass(btnOK);
+
+		log.info("Ending of setCompetitionEndDateOneDay method");
+	}
+
+	public void setRegistrationEndDateOneDay() {
+		log.info("Starting of setRegistrationEndDateOneDay method");
+		clickOnElementUsingActionClass(txtBoxRegistrationEndDate);
+
+		String pattern = "hh";
+
+		LocalTime currentHour = LocalTime.now();
+		LocalTime futureHour = currentHour.plusHours(8);
+		String futureHourValue = futureHour.format(DateTimeFormatter.ofPattern(pattern));
+		System.out.println(futureHourValue);
+
+		log.info("Ending of setRegistrationEndDateOneDay method");
+	}
+
+	public void setArizonaTimeZone() {
+		log.info("Starting of setArizonaTimeZone method");
+		hardWait(2);
+		try {
+			clickOnElementUsingActionClass(ddTimeZone);
+		} catch (Exception e) {
+			ddTimeZone.click();
+		}
+		hardWait(2);
+		elementClick(btnArizona);
+		hardWait(2);
+		log.info("Ending of setArizonaTimeZone method");
+	}
+
+	public void setRegistrationEndDateMoreThenSevenDays() {
+		log.info("Starting of setRegistrationEndDateMoreThenSevenDays method");
+
+		clickOnWebElement(txtBoxRegistrationEndDate);
+
+		ZonedDateTime zonedDateTime = ZonedDateTime.now();
+		System.out.println("Current Zoned date/time is :- \n" + zonedDateTime);
+
+		int date = this.getFutureDate(8);
+		String hours = this.getCurrentHour();
+		String meridiem = this.getCurrentMeridiem();
+
+		this.clickOnCurrentDate(date);
+		this.clickOnCurrentTime(hours);
+		clickOnElementUsingActionClass(btnTimeInMinutes);
+		this.clickOnCurrentTime(meridiem);
+		this.clickOnElementUsingActionClass(btnOK);
+
+		log.info("Ending of setRegistrationEndDateMoreThenSevenDays method");
+	}
+
 }

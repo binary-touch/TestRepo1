@@ -112,6 +112,8 @@ public class DeleteRecentlyAddedMatchTest extends CommonBaseTest {
 		loginPage.clickOnOpenSettingsMenu();
 		loginPage.clickOnLogoutButton();
 		loginPage.loginToDUPRApplication(opponentEmail, partnerPassword);
+		
+		loginPage.hardWait(5);
 
 		validateRecentlyAddedMatchPage.clickOnMatchHistoryTab();
 		validateRecentlyAddedMatchPage.hardWait(3);
@@ -125,12 +127,14 @@ public class DeleteRecentlyAddedMatchTest extends CommonBaseTest {
 	@Description("Test case #5, Verify Recently  Added Match status in Oppenent2 view")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #5, Verify Recently  Added Match  status in Oppenent2 view")
-	public void verifyRecentlyAddedMatchStatusInSecondOpponentView(String opponentEmail, String partnerPassword) {
+	public void verifyRecentlyAddedMatchStatusInSecondOpponentView(String opponent2Email, String partnerPassword) {
 		logger.info("Starting of verifyRecentlyAddedMatchStatusInSecondOpponentView method");
 
 		loginPage.clickOnOpenSettingsMenu();
 		loginPage.clickOnLogoutButton();
-		loginPage.loginToDUPRApplication(opponentEmail, partnerPassword);
+		loginPage.loginToDUPRApplication(opponent2Email, partnerPassword);
+		
+		loginPage.hardWait(5);
 
 		validateRecentlyAddedMatchPage.clickOnMatchHistoryTab();
 		validateRecentlyAddedMatchPage.hardWait(3);

@@ -58,7 +58,7 @@ public class ChatPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//span[contains(@class,'MuiBadge-root MuiBadge-root')]")
 	private WebElement btnMessageDashboard;
 
-	@B2BFindBy(xpath = "//h4[contains(text(),'Verify Your Email ID')]//button[contains(@class,'MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium')]")
+	@B2BFindBy(xpath = "//h4[contains(text(),'Verify your Email')]//button[contains(@class,'MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium')]")
 	private WebElement iconCloseOnVerifyEmail;
 
 	public ChatPage(WebDriver driver) {

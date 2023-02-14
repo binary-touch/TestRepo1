@@ -190,7 +190,7 @@ public class AddRemoveOrganizerTest extends DUPRBaseAutomationTest {
 	public void verifyNameAndEmail() {
 		logger.info("Starting of verifyNameAndEmail method");
 
-		addRemoveOrganizerPage.setOrganizerName(testDataProp.getProperty("orgamizer.name"));
+		addRemoveOrganizerPage.setOrganizerName(testDataProp.getProperty("organizer.name"));
 		addRemoveOrganizerPage.setOrganizerEmail(testDataProp.getProperty("organizer.email"));
 		addRemoveOrganizerPage.setOrganizerNumber(testDataProp.getProperty("organizer.num"));
 

@@ -127,7 +127,7 @@ public class AntiScrappingCaptchaTest extends DUPRBaseAutomationTest {
 		antiScrappingCaptchaPage.clickOnBracketKebabButton();
 		try {
 			if (antiScrappingCaptchaPage.isAddPartnerDisplayedInBracketsPage()) {
-				antiScrappingCaptchaPage.clickOnAddPartberFromKebabMenu();
+				antiScrappingCaptchaPage.clickOnAddPartnerFromKebabMenu();
 
 				Assert.assertTrue(antiScrappingCaptchaPage.isAntiScrappingCaptchaDisplayed());
 
@@ -140,7 +140,7 @@ public class AntiScrappingCaptchaTest extends DUPRBaseAutomationTest {
 			antiScrappingCaptchaPage.clickOnRemovePartnerButton();
 			antiScrappingCaptchaPage.hardWait(3);
 			antiScrappingCaptchaPage.clickOnBracketKebabButton();
-			antiScrappingCaptchaPage.clickOnAddPartberFromKebabMenu();
+			antiScrappingCaptchaPage.clickOnAddPartnerFromKebabMenu();
 
 			Assert.assertTrue(antiScrappingCaptchaPage.isAntiScrappingCaptchaDisplayed());
 
@@ -175,7 +175,7 @@ public class AntiScrappingCaptchaTest extends DUPRBaseAutomationTest {
 		} catch (Exception e) {
 			logger.info("****Edit Partner Button not displayed****");
 
-			antiScrappingCaptchaPage.clickOnAddPartberFromKebabMenu();
+			antiScrappingCaptchaPage.clickOnAddPartnerFromKebabMenu();
 			antiScrappingCaptchaPage.clickOnAddPartnerRadioButton();
 			antiScrappingCaptchaPage.clickOnAddAPartnerButton();
 

@@ -1,8 +1,13 @@
 package com.dupr.pages;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
+
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -97,6 +102,100 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 		}
 
 		log.info("Ending of clickUsingActionsClass method");
+	}
+	
+	public int getCurrentDate() {
+		log.info("Starting of getCurrentDate method");
+
+		LocalDateTime dateTime = LocalDateTime.now();
+		int date = dateTime.getDayOfMonth();
+
+		System.out.println("Date Value = " + date);
+
+		log.info("Starting of getCurrentDate method");
+
+		return date;
+	}
+
+	public int getFutureDate(int days) {
+		log.info("Starting of getFutureDate method");
+
+		LocalDateTime dateTime = LocalDateTime.now();
+		LocalDateTime date = dateTime.plusDays(days);
+		int dateValue = date.getDayOfMonth();
+		System.out.println("Date Value = " + dateValue);
+
+		log.info("Starting of getFutureDate method");
+
+		return dateValue;
+	}
+
+	public String getCurrentHour() {
+		log.info("Starting of getCurrentHour method");
+
+		SimpleDateFormat simpleformat = new SimpleDateFormat("dd-MMM-yyyy hh:mm:ss a z");
+
+		simpleformat = new SimpleDateFormat("h");
+		String strHour = simpleformat.format(new Date());
+		System.out.println("Hour in h format = " + strHour);
+
+		log.info("Ending of getCurrentHour method");
+		return strHour;
+	}
+
+	public String getCurrentMinute() {
+		log.info("Starting of getCurrentMinute method");
+
+		SimpleDateFormat simpleformat = new SimpleDateFormat("dd-MMM-yyyy hh:mm:ss a z");
+
+		simpleformat = new SimpleDateFormat("m");
+		String strMinutes = simpleformat.format(new Date());
+		System.out.println("Minutes format = " + strMinutes);
+
+		log.info("Ending of getCurrentMinute method");
+		return strMinutes;
+	}
+
+	public String getCurrentMeridiem() {
+		log.info("Starting of getCurrentMeridiem method");
+
+		SimpleDateFormat simpleformat = new SimpleDateFormat("dd-MMM-yyyy hh:mm:ss a z");
+
+		simpleformat = new SimpleDateFormat("a");
+		String meridiem = simpleformat.format(new Date());
+		System.out.println("Meridiem format = " + meridiem);
+
+		log.info("Ending of getCurrentMeridiem method");
+		return meridiem;
+	}
+
+	public String getCurrentZone() {
+		log.info("Starting of getCurrentZone method");
+
+		SimpleDateFormat simpleformat = new SimpleDateFormat("dd-MMM-yyyy hh:mm:ss a z");
+
+		simpleformat = new SimpleDateFormat("z");
+		String zone = simpleformat.format(new Date());
+		System.out.println("Zone format = " + zone);
+
+		log.info("Ending of clickOnRegistrationEndDate method");
+		return zone;
+	}
+	
+	public void clickOnCurrentDate(int date) {
+		try {
+			clickOnElementUsingActionClass(driver.findElement(By.xpath("//button[text()='" + date + "']")));
+		} catch (Exception e) {
+			driver.findElement(By.xpath("//button[text()='" + date + "']")).click();
+		}
+	}
+
+	public void clickOnCurrentTime(String strHour) {
+		try {
+			driver.findElement(By.xpath("//span[text()='" + strHour + "']")).click();
+		} catch (Exception e) {
+			clickOnElementUsingActionClass(driver.findElement(By.xpath("//span[text()='" + strHour + "']")));
+		}
 	}
 	
 }

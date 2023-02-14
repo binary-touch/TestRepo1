@@ -304,12 +304,7 @@ public class UserDashboardTest extends DUPRBaseAutomationTest {
 
 		logger.info("Ending of verifyMyEventsFunctionality method");
 	}
-
-	// priority = 18 first case of Add participants --- the first test case was not
-	// there in my project as it was added after
-	// and for back button -- userDashboardPage.clickOnBackButtonOnBrackets();
-	// --Assertion of home page
-	// Assert.assertTrue(userDashboardPage.isDashboardMenuContains());
+	
 	@Test(priority = 17, description = "Verify my Brackets functionality", groups = "sanity")
 	@Description("Test case #17, Verify my Brackets functionality")
 	@Severity(SeverityLevel.NORMAL)

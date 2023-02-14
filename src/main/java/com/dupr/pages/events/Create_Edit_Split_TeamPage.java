@@ -39,6 +39,9 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 	@B2BFindBys({ @B2BFindBy(xpath = "//input[@type='checkbox']") })
 	private List<WebElement> chkFirstPlayers;
 
+	@B2BFindBys(@B2BFindBy(xpath = "//input[@type='checkbox']"))
+	private WebElement chkFirstPlayer;
+
 	@B2BFindBy(xpath = "//input[@type='checkbox']/parent::span/parent::label/following-sibling::label//input[@type='checkbox']")
 	private WebElement chkSecondPlayers;
 
@@ -406,6 +409,20 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 		log.info("Starting of selectPlayerCheckbox method");
 
 		chkFirstPlayers.get(0).click();
+
+		clickOnWebElement(chkSecondPlayers);
+
+		log.info("Ending of selectPlayerCheckbox method");
+	}
+
+	public void selectPlayerCheckboxs() {
+		log.info("Starting of selectPlayerCheckbox method");
+		try {
+			clickOnWebElement(chkFirstPlayer);
+		} catch (Exception e) {
+			chkFirstPlayer.click();
+		}
+
 		clickOnWebElement(chkSecondPlayers);
 
 		log.info("Ending of selectPlayerCheckbox method");
@@ -830,6 +847,30 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 		clickOnElement(iconCloseCreateTeamPopup);
 
 		log.info("Ending of clickOnCloseIconInEditTeam method");
+	}
+
+	public void selectTeams() {
+		log.info("Starting of selectTeams method");
+		this.hardWait(5);
+		try {
+			clickOnWebElement(tabUnmatchedPlayes);
+		} catch (Exception e) {
+			clickOnElementUsingActionClass(tabUnmatchedPlayes);
+		}
+		
+		for (int i = 0; i < 8; i++) {
+
+			this.hardWait(3);
+			this.scrollDown(300);
+			selectPlayerCheckboxs();
+			this.hardWait(2);
+			clickOnWebElement(btnCreateTeam);
+			this.hardWait(2);
+			clickOnWebElement(btnCreate);
+			this.hardWait(4);
+		}
+		log.info("Ending of selectTeams method");
+
 	}
 
 }

@@ -140,7 +140,7 @@ public class EditEventsTest extends DUPRBaseAutomationTest {
 	public void verifyRefundPolicy() {
 		logger.info("Starting of verifyRefundPolicy method");
 		Assert.assertEquals(editEventsPage.getRefundPolicyText(),
-				expectedAssertionsProp.getProperty("refunt.policy.txt"));
+				expectedAssertionsProp.getProperty("refund.policy"));
 
 		editEventsPage.editRefundPolicy(testDataProp.getProperty("refund.policy"));
 
@@ -155,7 +155,7 @@ public class EditEventsTest extends DUPRBaseAutomationTest {
 	public void verifyHealthAndSafetyPolicy() {
 		logger.info("Starting of verifyHealthAndSafetyPolicy method");
 		Assert.assertEquals(editEventsPage.getHealthSafetyText(),
-				expectedAssertionsProp.getProperty("health.policy.txt"));
+				expectedAssertionsProp.getProperty("health.and.safety"));
 
 		editEventsPage.clickOnHealthSafety(testDataProp.getProperty("health.policy"));
 

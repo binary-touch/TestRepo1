@@ -1,5 +1,7 @@
 package com.dupr.pages.events;
 
+import java.util.List;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Keys;
@@ -7,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.b2b.support.B2BFindBy;
+import com.b2b.support.B2BFindBys;
 import com.b2b.support.B2BPageFactory;
 import com.dupr.pages.DUPRBaseAutomationPage;
 
@@ -23,7 +26,7 @@ public class EditOrRemovePartnerPage extends DUPRBaseAutomationPage {
 	private WebElement lblBrackets;
 
 	@B2BFindBy(xpath = "//button[@id='composition-button']")
-	private WebElement btnkebabBracket;
+	private WebElement btnKebabMenu;
 
 	@B2BFindBy(xpath = "//span[text()='Edit Partner']")
 	private WebElement lstEditPartner;
@@ -40,11 +43,23 @@ public class EditOrRemovePartnerPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//p[text()='Partner Pending']")
 	private WebElement lblPartnerPending;
 
+	@B2BFindBy(xpath = "//p[text()='Partner Pending']/ancestor::div[contains(@class,'MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation3')]//h4")
+	private WebElement lnkBracketCard;
+
 	@B2BFindBy(xpath = "//h3[text()='Bracket']")
 	private WebElement lblBracket;
 
 	@B2BFindBy(xpath = "//button[text()='Edit Bracket']")
 	private WebElement btnEditBracket;
+
+	@B2BFindBy(xpath = "(//div[@format=\"DOUBLES\"]//h3[contains(@class,'MuiTypography-root MuiTypography-h3')])[1]")
+	private WebElement lblBracketName;
+
+	@B2BFindBy(xpath = "//div[@format=\"DOUBLES\"]//h4")
+	private WebElement lblClubNameInBracketPage;
+
+	@B2BFindBys({ @B2BFindBy(xpath = "//div[@format=\"DOUBLES\"]//p") })
+	private List<WebElement> lblBracketDetails;
 
 	@B2BFindBy(xpath = "//button[text()='End Bracket']")
 	private WebElement btnEndBracket;
@@ -64,8 +79,32 @@ public class EditOrRemovePartnerPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//button[text()='Show Details']")
 	private WebElement btnShowDetails;
 
+	@B2BFindBy(id = "composition-button")
+	private WebElement btnSort;
+
+	@B2BFindBy(xpath = "//button[contains(text(),'Clear Filters')]")
+	private WebElement btnClearFilter;
+
+	@B2BFindBy(xpath = "//button[text()='Unmatched Players']")
+	private WebElement tabUnmatchedPlayes;
+
+	@B2BFindBy(xpath = "//button[text()='Teams']")
+	private WebElement tabTeams;
+
+	@B2BFindBy(xpath = "//button[text()='Players']")
+	private WebElement tabPlayers;
+
+	@B2BFindBy(xpath = "//button[text()='Matches']")
+	private WebElement tabMatches;
+
+	@B2BFindBy(xpath = "//button[text()='Information']")
+	private WebElement tabInformation;
+
 	@B2BFindBy(xpath = "//input[@type='radio']")
 	private WebElement rdoPartner;
+
+	@B2BFindBy(xpath = "//div[text()='Add a Partner']//parent::div//following-sibling::div[2]//b[text()='No more results.']")
+	private WebElement lblNoMoreResults;
 
 	@B2BFindBy(xpath = "//div[text()='Add a Partner']")
 	private WebElement lblAddAPartner;
@@ -80,65 +119,59 @@ public class EditOrRemovePartnerPage extends DUPRBaseAutomationPage {
 	private WebElement btnInvite;
 
 	@B2BFindBy(xpath = "//div[text()='Add a Partner']/parent::div//input[@id='Search']")
-	private WebElement txtSearch;
+	private WebElement txtBoxSearch;
 
-	@B2BFindBy(xpath = "//h4[contains(text(),'Spandana')]")
+	@B2BFindBy(xpath = "//div[@role='radiogroup']//div[contains(@class, 'MuiGrid-grid-xs-12 MuiGrid-grid-md-6')]//h4")
 	private WebElement lblValidPartner;
+
+	@B2BFindBy(xpath = "//p[text()='No partner Selected']")
+	private WebElement lblNoPartnerSelected;
 
 	public EditOrRemovePartnerPage(WebDriver driver) {
 		super(driver);
 		B2BPageFactory.initElements(driver, this);
 	}
 
-	public boolean isDisplayedBracketPageContains() {
-		log.info("Starting of isDisplayedBracketPageContains method");
+	public boolean isBracketPageContains() {
+		log.info("Starting of isBracketPageContains method");
 
-		boolean isDisplayedBracketPageContains = false;
+		boolean isBracketPageContains = false;
 
-		if (btnEditBracket.isDisplayed() && btnEndBracket.isDisplayed() && lblBracket.isDisplayed()
-				&& btnWithdraw.isDisplayed() && btnEditPartner.isDisplayed() && btnShare.isDisplayed()
-				&& btnShowDetails.isDisplayed()) {
+		if (lblBracketName.isDisplayed() && lblClubNameInBracketPage.isDisplayed()
+				&& lblBracketDetails.get(0).isDisplayed() && lblBracketDetails.get(1).isDisplayed()
+				&& lblBracketDetails.get(2).isDisplayed() && btnEditBracket.isDisplayed() && btnEndBracket.isDisplayed()
+				&& btnWithdraw.isDisplayed() && btnEditPartner.isDisplayed() && btnRemovePartner.isDisplayed()
+				&& tabUnmatchedPlayes.isDisplayed() && btnShare.isDisplayed() && btnShowDetails.isDisplayed()
+				&& isDisplayed(btnSort) && isDisplayed(btnClearFilter) && tabTeams.isDisplayed()
+				&& tabPlayers.isDisplayed() && tabMatches.isDisplayed() && tabInformation.isDisplayed()) {
 
-			isDisplayedBracketPageContains = true;
+			isBracketPageContains = true;
 		}
 
-		log.info("Ending of isDisplayedBracketPageContains method");
+		log.info("Ending of isBracketPageContains method");
 
-		return isDisplayedBracketPageContains;
-
+		return isBracketPageContains;
 	}
 
-	public boolean isDisplayedBracketPageAfterAddingPartnerContains() {
-		log.info("Starting of isDisplayedBracketPageContains method");
+	public boolean isBracketPageContainsAfterAddingPartner() {
+		log.info("Starting of isBracketPageContainsAfterAddingPartner method");
 
-		boolean isDisplayedBracketPageContains = false;
+		boolean isBracketPageContainsAfterAddingPartner = false;
 
 		if (btnEditBracket.isDisplayed() && btnEndBracket.isDisplayed() && btnWithdraw.isDisplayed()
 				&& btnEditPartner.isDisplayed() && btnRemovePartner.isDisplayed() && btnShare.isDisplayed()
 				&& btnShowDetails.isDisplayed()) {
 
-			isDisplayedBracketPageContains = true;
+			isBracketPageContainsAfterAddingPartner = true;
 		}
 
-		log.info("Ending of isDisplayedBracketPageContains method");
+		log.info("Ending of isBracketPageContainsAfterAddingPartner method");
 
-		return isDisplayedBracketPageContains;
-
+		return isBracketPageContainsAfterAddingPartner;
 	}
-
-	/*
-	 * public String getEventLabel() {
-	 * 
-	 * log.info("Starting of getEventLabel method");
-	 * 
-	 * log.info("Ending of getEventLabel method");
-	 * 
-	 * return lblEvent.getText(); }
-	 */
 
 	public String getBracketsLabel() {
 		log.info("Starting of getBracketsLabel method");
-
 		log.info("Ending of getBracketsLabel method");
 
 		return lblBrackets.getText();
@@ -154,7 +187,6 @@ public class EditOrRemovePartnerPage extends DUPRBaseAutomationPage {
 
 	public String getBrowseBracketsLabel() {
 		log.info("Starting of getBrowseBracketsLabel method");
-
 		log.info("Ending of getBrowseBracketsLabel method");
 
 		return btnBrowseAllEvents.getText();
@@ -162,7 +194,6 @@ public class EditOrRemovePartnerPage extends DUPRBaseAutomationPage {
 
 	public String getEditPartnerLabel() {
 		log.info("Starting of getEditPartnerLabel method");
-
 		log.info("Ending of getEditPartnerLabel method");
 
 		return lstEditPartner.getText();
@@ -170,10 +201,16 @@ public class EditOrRemovePartnerPage extends DUPRBaseAutomationPage {
 
 	public String getAddPartnerLabel() {
 		log.info("Starting of getAddPartnerLabel method");
-
 		log.info("Ending of getAddPartnerLabel method");
 
 		return btnAddPartner.getText();
+	}
+
+	public String getNoMoreResultsLabel() {
+		log.info("Starting of getNoMoreResultsLabel method");
+		log.info("Ending of getNoMoreResultsLabel method");
+
+		return lblNoMoreResults.getText();
 	}
 
 	public void clickOnAddPartnerButton() {
@@ -182,7 +219,6 @@ public class EditOrRemovePartnerPage extends DUPRBaseAutomationPage {
 		elementClick(btnAddPartner);
 
 		log.info("Ending of clickOnAddPartnerButton method");
-
 	}
 
 	public void clickOnAddPartnerEnabledButton() {
@@ -191,16 +227,23 @@ public class EditOrRemovePartnerPage extends DUPRBaseAutomationPage {
 		elementClick(btnAddPartnerEnabled);
 
 		log.info("Ending of clickOnAddPartnerEnabledButton method");
-
 	}
 
 	public void clickOnPartnerPendingBracketCard() {
 		log.info("Starting of clickOnPartnerPendingBracketCard method");
 
-		elementClick(lblPartnerPending);
+		scrollIntoView(lblPartnerPending);
+		hardWait(3);
+		clickOnElementUsingActionClass(lnkBracketCard);
 
 		log.info("Ending of clickOnPartnerPendingBracketCard method");
+	}
 
+	public boolean isPartnerPendingLabelDisplayed() {
+		log.info("Starting of isPartnerPendingLabelDisplayed method");
+		log.info("Ending of isPartnerPendingLabelDisplayed method");
+
+		return lblPartnerPending.isDisplayed();
 	}
 
 	public void clickOnRemovePartnerButton() {
@@ -218,12 +261,10 @@ public class EditOrRemovePartnerPage extends DUPRBaseAutomationPage {
 		elementClick(rdoPartner);
 
 		log.info("Ending of clickOnAddPartnerRadioButton method");
-
 	}
 
 	public String getRemovePartnerLabel() {
 		log.info("Starting of getRemovePartnerLabel method");
-
 		log.info("Ending of getRemovePartnerLabel method");
 
 		return lstRemovePartner.getText();
@@ -243,16 +284,13 @@ public class EditOrRemovePartnerPage extends DUPRBaseAutomationPage {
 		log.info("Ending of isPartnerRadioButtonDisplayed method");
 
 		return isPartnerRadioButtonDisplayed;
-
 	}
 
-	public boolean isAddPartnerDisabledButtonDisplayed() {
-		log.info("Starting of isAddPartnerDisabledButtonDisplayed method");
-
-		log.info("Ending of isAddPartnerDisabledButtonDisplayed method");
+	public boolean isAddPartnerButtonDisabled() {
+		log.info("Starting of isAddPartnerButtonDisabled method");
+		log.info("Ending of isAddPartnerButtonDisabled method");
 
 		return btnAddPartnerDisabled.isDisplayed();
-
 	}
 
 	public void clickOnMyBracketsLabel() {
@@ -261,27 +299,25 @@ public class EditOrRemovePartnerPage extends DUPRBaseAutomationPage {
 		elementClick(btnBrackets);
 
 		log.info("Ending of clickOnMyBracketsLabel method");
-
 	}
 
-	public void clickOnBracketKebabButton() {
+	public void clickOnBracketKebabMenu() {
 		log.info("Starting of clickOnBracketKebabButton method");
 
-		elementClick(btnkebabBracket);
+		elementClick(btnKebabMenu);
 
 		log.info("Ending of clickOnBracketKebabButton method");
-
 	}
 
 	public void clickOnEditPartnerButton() {
 		log.info("Starting of clickOnEditPartnerButton method");
+
 		try {
 			elementClick(btnEditPartner);
 		} catch (Exception e) {
 			btnEditPartner.click();
 		}
 		log.info("Ending of clickOnEditPartnerButton method");
-
 	}
 
 	public void clickOnCancelButton() {
@@ -290,50 +326,70 @@ public class EditOrRemovePartnerPage extends DUPRBaseAutomationPage {
 		elementClick(btnCancel);
 
 		log.info("Ending of clickOnCancelButton method");
-
 	}
 
-	public boolean isDisplayedEditPartnerBracketPageContains() {
-		log.info("Starting of isDisplayedEditPartnerBracketPageContains method");
+	public boolean isAddAPartnerPageContains() {
+		log.info("Starting of isAddAPartnerPageContains method");
 
-		boolean isDisplayedEditPartnerBracketPageContains = false;
+		boolean isAddAPartnerPageContains = false;
 
 		if (btnAddPartnerDisabled.isDisplayed() && btnCancel.isDisplayed() && btnInvite.isDisplayed()
-				&& txtSearch.isDisplayed()) {
+				&& txtBoxSearch.isDisplayed()) {
 
-			isDisplayedEditPartnerBracketPageContains = true;
+			isAddAPartnerPageContains = true;
 		}
 
-		log.info("Ending of isDisplayedEditPartnerBracketPageContains method");
+		log.info("Ending of isAddAPartnerPageContains method");
 
-		return isDisplayedEditPartnerBracketPageContains;
-
+		return isAddAPartnerPageContains;
 	}
 
 	public String getAddAPartnerLabel() {
 		log.info("Starting of getAddAPartnerLabel method");
-
 		log.info("Ending of getAddAPartnerLabel method");
 
 		return lblAddAPartner.getText();
 	}
 
-	public void setSearchPartner(String partnerName) {
-		log.info("Starting of setSearchPartner method");
+	public void searchPartner(String partnerName) {
+		log.info("Starting of searchPartner method");
 
-		clickOnWebElement(txtSearch);
-		this.txtSearch.sendKeys(Keys.CONTROL + "a", Keys.DELETE);
-		txtSearch.sendKeys(partnerName);
+		clickOnWebElement(txtBoxSearch);
+		this.txtBoxSearch.sendKeys(Keys.CONTROL + "a", Keys.DELETE);
+		txtBoxSearch.sendKeys(partnerName);
 
-		log.info("Ending of setSearchPartner method");
+		log.info("Ending of searchPartner method");
 	}
 
-	public String getvalidPartnerLabel() {
-		log.info("Starting of getvalidPartnerLabel method");
+	public boolean isValidPartnerDisplayed(String partnerName) {
+		log.info("Starting of isValidPartnerDisplayed method");
 		hardWait(5);
-		log.info("Ending of getvalidPartnerLabel method");
+		System.out.println(lblValidPartner.getText());
+		System.out.println(partnerName);
+		System.out.println(lblValidPartner.getText().contains(partnerName));
+		log.info("Ending of isValidPartnerDisplayed method");
 
-		return lblValidPartner.getText();
+		return lblValidPartner.getText().contains(partnerName);
 	}
 
+	public boolean isBracketPageContainsAfterRemovingPartner() {
+		log.info("Starting of isBracketPageContainsAfterRemovingPartner method");
+
+		boolean isBracketPageContainsAfterRemovingPartner = false;
+
+		if (lblBracketName.isDisplayed() && lblClubNameInBracketPage.isDisplayed()
+				&& lblBracketDetails.get(0).isDisplayed() && lblBracketDetails.get(1).isDisplayed()
+				&& lblBracketDetails.get(2).isDisplayed() && btnEditBracket.isDisplayed() && btnEndBracket.isDisplayed()
+				&& btnWithdraw.isDisplayed() && btnAddPartnerEnabled.isDisplayed() && lblNoPartnerSelected.isDisplayed()
+				&& tabUnmatchedPlayes.isDisplayed() && btnShare.isDisplayed() && btnShowDetails.isDisplayed()
+				&& isDisplayed(btnSort) && isDisplayed(btnClearFilter) && tabTeams.isDisplayed()
+				&& tabPlayers.isDisplayed() && tabMatches.isDisplayed() && tabInformation.isDisplayed()) {
+
+			isBracketPageContainsAfterRemovingPartner = true;
+		}
+
+		log.info("Ending of isBracketPageContainsAfterRemovingPartner method");
+
+		return isBracketPageContainsAfterRemovingPartner;
+	}
 }

@@ -214,7 +214,7 @@ public class AddParticipantsInBracketTest extends DUPRBaseAutomationTest {
 	public void verifyExportCsvFunctionality() throws IOException {
 		logger.info("Starting of verifyExportCsvFunctionality method");
 		
-		addparticipantsPage.clickOnExportCsvButton();
+		addparticipantsPage.clickOnExportCSVButton();
 		
 		driver.get("chrome://downloads/");
 

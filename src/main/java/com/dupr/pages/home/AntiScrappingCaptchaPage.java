@@ -215,12 +215,12 @@ public class AntiScrappingCaptchaPage extends DUPRBaseAutomationPage {
 		log.info("Ending of clickOnBracketLabel method");
 	}
 
-	public void clickOnAddPartberFromKebabMenu() {
-		log.info("Starting of clickOnAddPartberFromKebabMenu method");
+	public void clickOnAddPartnerFromKebabMenu() {
+		log.info("Starting of clickOnAddPartnerFromKebabMenu method");
 
 		clickOnWebElement(btnAddPartnerInKebabMenu);
 
-		log.info("Ending of clickOnAddPartberFromKebabMenu method");
+		log.info("Ending of clickOnAddPartnerFromKebabMenu method");
 	}
 
 	public boolean isAddPartnerDisplayedInBracketsPage() {

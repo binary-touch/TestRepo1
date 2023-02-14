@@ -102,19 +102,20 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 	private WebElement btnBackBrackets;
 
 	@B2BFindBy(xpath = "//span[text()='Export CSV']")
-	private WebElement btnExportCsv;
+	private WebElement btnExportCSV;
 
 	public AddParticipantsInBracketsPage(WebDriver driver) {
 		super(driver);
 		B2BPageFactory.initElements(driver, this);
 	}
 
-	public void clickOnExportCsvButton() {
-		log.info("Starting of clickOnExportCsvButton method");
-		this.hardWait(4);
-		clickOnWebElement(btnExportCsv);
+	public void clickOnExportCSVButton() {
+		log.info("Starting of clickOnExportCSVButton method");
 
-		log.info("Ending of clickOnExportCsvButton method");
+		this.hardWait(4);
+		clickOnWebElement(btnExportCSV);
+
+		log.info("Ending of clickOnExportCSVButton method");
 	}
 
 	public void clickOnMyBracketsDropdown() {
@@ -226,6 +227,7 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 	public void clickOnSelectParticipantRadioButton() {
 		log.info("Starting of clickOnSelectParticipantRadioButton method");
 
+		//this.waitForElementToBeVisible(rdoSelectParticipant);
 		clickOnWebElement(rdoSelectParticipant);
 
 		log.info("Ending of clickOnSelectParticipantRadioButton method");
@@ -248,6 +250,7 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 	public void clickOnAddParticipantButton() {
 		log.info("Starting of clickOnAddParticipantButton method");
 
+		this.waitForElementToBeVisible(btnAddParticipant);
 		clickOnWebElement(btnAddParticipant);
 
 		log.info("Ending of clickOnAddParticipantButton method");
@@ -362,10 +365,28 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 	public void clickOnAddParticipantsButton() {
 		log.info("Starting of clickOnAddParticipantsButton method");
 
+		this.waitForElementToBeVisible(btnAddParticipants);
 		clickOnWebElement(btnAddParticipants);
 
 		log.info("Ending of clickOnAddParticipantsButton method");
+	}
+	
+	public boolean isAddParticiPantsButtonDisplayed() {
+		log.info("Starting of isAddParticiPantsButtonDisplayed method");
+		
+		boolean isAddParticiPantsButtonDisplayed = false;
 
+		try {
+			if(btnAddParticipants.isDisplayed()==true) {
+				isAddParticiPantsButtonDisplayed = true;
+			}
+		} catch (Exception e) {
+			isAddParticiPantsButtonDisplayed = false;
+		}
+
+		log.info("Ending of isAddParticiPantsButtonDisplayed method");
+
+		return isAddParticiPantsButtonDisplayed;
 	}
 
 	public void searchByNameInPlayersTab(String Name) {
@@ -407,5 +428,25 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 		log.info("Ending of isDashboardPageContains method");
 
 		return isMyBracketsPageContains;
+	}
+
+	public void addParticipants() {
+		log.info("Starting of addParticipants method");
+
+		for (int i = 0; i < 16; i++) {
+
+			clickOnWebElement(btnAddParticipants);
+			this.hardWait(2);
+			clickOnWebElement(rdoSelectParticipant);
+			this.hardWait(2);
+			clickOnElement(btnAddParticipant);
+			this.hardWait(2);
+			clickOnWebElement(rdoNo);
+			this.hardWait(2);
+			clickOnWebElement(btnAdd);
+			this.hardWait(5);
+		}
+
+		log.info("Ending of addParticipants method");
 	}
 }

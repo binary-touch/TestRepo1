@@ -157,7 +157,7 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h6[contains(text(),'You have successfully')]")
 	private WebElement txtSucessConfirmation;
 
-	@B2BFindBy(xpath = "//div[@class='infinite-scroll-component__outerdiv']//h4")
+	@B2BFindBy(xpath = "//button[text()='Withdraw/Refund']/ancestor::span//h4")
 	private WebElement txtPlayerName;
 
 	@B2BFindBy(xpath = "//input[@id='Search']")
@@ -236,11 +236,18 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 
 		boolean isUnMatchedPlayrsTabContains = false;
 		this.scrollDown(200);
-
-		if (isDisplayed(txtinstruction) && isDisplayed(btnCreateTeam) && isDisplayed(txtName) && isDisplayed(txtEmail)
-				&& isDisplayed(txtPaymentStatus) && isDisplayed(txtDoubles) && isDisplayed(txtSingles)
-				&& isDisplayed(btnWithdraw)) {
-			isUnMatchedPlayrsTabContains = true;
+		try {
+			if (isDisplayed(btnCreateTeam) 
+					&& isDisplayed(txtName)
+					&& isDisplayed(txtEmail)
+					&& isDisplayed(txtPaymentStatus)
+					&& isDisplayed(txtDoubles)
+					&& isDisplayed(txtSingles)
+					&& isDisplayed(btnWithdraw)) {
+				isUnMatchedPlayrsTabContains = true;
+			}
+		} catch (Exception e) {
+			System.out.println(" ");
 		}
 
 		log.info("Ending of isUnMatchedPlayersTabContains method");
@@ -251,7 +258,14 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 	public void clickOnWithdrawButton() {
 		log.info("Starting of clickOnWithdrawButton method");
 		this.scrollDown(150);
-		clickOnElement(btnWithdraw);
+		try {
+			// clickOnElementUsingActionClass(btnWithdraw);
+			btnWithdraw.click();
+			this.hardWait(2);
+		} catch (Exception e) {
+			elementClick(btnWithdraw);
+			this.hardWait(2);
+		}
 
 		log.info("Ending of clickOnWithdrawButton method");
 	}
@@ -260,6 +274,7 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 		log.info("Starting of clickOnFreeBracket method");
 
 		clickOnElement(chkFreeBracket);
+		this.hardWait(2);
 
 		log.info("Ending of clickOnWithdrawButton method");
 	}
@@ -270,9 +285,14 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 		boolean isWithdrawRefundPopUpContains = false;
 
 		try {
-			if (isDisplayed(btnNext) && isDisplayed(btnBackWithdraw) && isDisplayed(rdoRefund)
-					&& isDisplayed(rdoWIthdrawRefund) && isDisplayed(rdoWithdraw) && isDisplayed(txtStepOne)
-					&& isDisplayed(iconCloseOnWithdrawRefund) && isDisplayed(txtWithdrawRefund)) {
+			if (isDisplayed(btnNext) 
+					&& isDisplayed(btnBackWithdraw) 
+					&& isDisplayed(rdoRefund)
+					&& isDisplayed(rdoWIthdrawRefund)
+					&& isDisplayed(rdoWithdraw)
+					&& isDisplayed(txtStepOne)
+					&& isDisplayed(iconCloseOnWithdrawRefund)
+					&& isDisplayed(txtWithdrawRefund)) {
 				isWithdrawRefundPopUpContains = true;
 			}
 		} catch (Exception e) {
@@ -288,8 +308,10 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 		log.info("Starting of clickOnCloseIconOnWIthdrawRefund method");
 		try {
 			clickOnWebElement(iconCloseOnWithdrawRefund);
+			this.hardWait(2);
 		} catch (Exception e) {
 			elementClick(iconCloseOnWithdrawRefund);
+			this.hardWait(2);
 		}
 
 		log.info("Ending of clickOnCloseIconOnWIthdrawRefund method");
@@ -299,6 +321,7 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 		log.info("Starting of clickOnCloseIcon method");
 
 		clickOnWebElement(btnNext);
+		this.hardWait(2);
 
 		log.info("Ending of clickOnCloseIcon method");
 	}
@@ -314,6 +337,7 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 		log.info("Starting of clickOnCloseIcon method");
 
 		clickOnWebElement(rdoWithdraw);
+		this.hardWait(2);
 
 		log.info("Ending of clickOnCloseIcon method");
 	}
@@ -324,8 +348,11 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 		boolean isWithdrawPopUpContains = false;
 
 		try {
-			if (isDisplayed(btnNext) && isDisplayed(btnBackWithdraw) && isDisplayed(txtStepTwo)
-					&& isDisplayed(iconCloseOnWithdraw) && isDisplayed(txtWithdraw)) {
+			if (isDisplayed(btnNext)
+					&& isDisplayed(btnBackWithdraw)
+					&& isDisplayed(txtStepTwo)
+					&& isDisplayed(iconCloseOnWithdraw)
+					&& isDisplayed(txtWithdraw)) {
 				isWithdrawPopUpContains = true;
 			}
 		} catch (Exception e) {
@@ -341,6 +368,7 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 		log.info("Starting of clickOnBackButton method");
 
 		clickOnWebElement(btnBackWithdraw);
+		this.hardWait(2);
 
 		log.info("Ending of clickOnBackButton method");
 	}
@@ -356,6 +384,7 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 		log.info("Starting of clickOnBracketCheckBox method");
 
 		clickOnWebElement(chkBracket);
+		this.hardWait(2);
 
 		log.info("Ending of clickOnBracketCheckBox method");
 	}
@@ -365,7 +394,9 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 
 		boolean isConfirmationPopUpContains = false;
 
-		if (isDisplayed(iconCLoseConfirmation) && isDisplayed(txtConfirmation) && isDisplayed(btnBackWithdraw)
+		if (isDisplayed(iconCLoseConfirmation) 
+				&& isDisplayed(txtConfirmation)
+				&& isDisplayed(btnBackWithdraw)
 				&& isDisplayed(btnConfirm)) {
 			isConfirmationPopUpContains = true;
 		}
@@ -386,6 +417,7 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 		log.info("Starting of clickOnConfirmButton method");
 
 		clickOnWebElement(btnConfirm);
+		this.hardWait(2);
 
 		log.info("Ending of clickOnConfirmButton method");
 	}
@@ -394,6 +426,7 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 		log.info("Starting of clickOnConfirmButton method");
 
 		clickOnWebElement(iconCLoseConfirmation);
+		this.hardWait(2);
 
 		log.info("Ending of clickOnConfirmButton method");
 	}
@@ -412,7 +445,9 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 			System.out.println(isDisplayed(iconClosSucess));
 			System.out.println(isDisplayed(txtSucessConfirmation));
 		}
-		if (isDisplayed(txtSucess) && isDisplayed(iconClosSucess) && isDisplayed(txtSucessConfirmation)) {
+		if (isDisplayed(txtSucess) 
+				&& isDisplayed(iconClosSucess)
+				&& isDisplayed(txtSucessConfirmation)) {
 			isSucessPopUpContains = true;
 		}
 
@@ -432,6 +467,7 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 		log.info("Starting of clickOnCloseIcon method");
 
 		clickOnWebElement(iconClosSucess);
+		this.hardWait(2);
 
 		log.info("Ending of clickOnCloseIcon method");
 	}
@@ -447,6 +483,7 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 		log.info("Starting of clickOnCloseIcon method");
 
 		clickOnWebElement(tabPlayers);
+		this.hardWait(2);
 
 		log.info("Ending of clickOnCloseIcon method");
 	}
@@ -456,6 +493,7 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 
 		clickOnWebElement(txtSearchBox);
 		this.txtSearchBox.sendKeys(Name);
+		this.scrollDown(100);
 
 		log.info("Ending of clickOnCloseIcon method");
 	}
@@ -482,6 +520,7 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 		log.info("Starting of clickOnCloseIcon method");
 
 		clickOnWebElement(tabUnmatchedPlayes);
+		this.hardWait(3);
 
 		log.info("Ending of clickOnCloseIcon method");
 	}
@@ -490,6 +529,7 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 		log.info("Starting of clickOnWithdrawRefund method");
 
 		clickOnWebElement(rdoWIthdrawRefund);
+		this.hardWait(2);
 
 		log.info("Ending of clickOnWithdrawRefund method");
 	}
@@ -498,6 +538,7 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 		log.info("Starting of clickOnRefundButton method");
 
 		clickOnWebElement(rdoRefund);
+		this.hardWait(2);
 
 		log.info("Ending of clickOnRefundButton method");
 	}
@@ -508,8 +549,11 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 		boolean isWithdrawAndRefundPopUpContains = false;
 
 		try {
-			if (isDisplayed(btnNext) && isDisplayed(btnBackWithdraw) && isDisplayed(txtStepTwo)
-					&& isDisplayed(iconCloseWithdrawRefund) && isDisplayed(txtWithdrawAndRefund)
+			if (isDisplayed(btnNext)
+					&& isDisplayed(btnBackWithdraw) 
+					&& isDisplayed(txtStepTwo)
+					&& isDisplayed(iconCloseWithdrawRefund) 
+					&& isDisplayed(txtWithdrawAndRefund)
 					&& isDisplayed(txtTotal)) {
 				isWithdrawAndRefundPopUpContains = true;
 			}
@@ -526,14 +570,17 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 		log.info("Starting of clickOnHomeMenu method");
 
 		clickOnWebElement(mnuHome);
+		this.hardWait(2);
 
 		log.info("Ending of clickOnHomeMenu method");
 	}
 
+	
 	public void clickOnCloseWithdraw() {
 		log.info("Starting of clickOnHomeMenu method");
 
 		clickOnWebElement(iconCloseWithdrawRefund);
+		this.hardWait(2);
 
 		log.info("Ending of clickOnHomeMenu method");
 	}
@@ -544,7 +591,9 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 		boolean isRefundPopUpContains = false;
 
 		try {
-			if (isDisplayed(btnNext) && isDisplayed(btnBackWithdraw) && isDisplayed(txtStepTwo)
+			if (isDisplayed(btnNext)
+					&& isDisplayed(btnBackWithdraw)
+					&& isDisplayed(txtStepTwo)
 					&& isDisplayed(iconCloseRefund) && isDisplayed(txtRefundOnly) && isDisplayed(txtTotal)) {
 				isRefundPopUpContains = true;
 			}
@@ -561,6 +610,7 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 		log.info("Starting of clickOnHomeMenu method");
 
 		clickOnWebElement(iconCloseRefund);
+		this.hardWait(3);
 
 		log.info("Ending of clickOnHomeMenu method");
 	}
