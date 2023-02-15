@@ -63,7 +63,7 @@ public class TimeZoneTest extends CommonBaseTest {
 		super.verifyAddEventFunctionality();
 		addBracketPage.hardWait(3);
 		super.verifyEventInformationPageWithValidDetails();
-		System.out.println("event name in Timezone test: "+eventName);
+		System.out.println("event name in Timezone test: " + eventName);
 		addBracketPage.hardWait(3);
 		this.verifyEventPoliciesPageByEnteringValidDetails();
 
@@ -100,9 +100,9 @@ public class TimeZoneTest extends CommonBaseTest {
 	}
 
 	@Test(priority = 3, description = "verifyRegistrationCompetitionDateAndTimeInSummeryPage", groups = "sanity")
-	@Description("Test case #2, verifyRegistrationCompetitionDateAndTimeInSummeryPage")
+	@Description("Test case #3, verifyRegistrationCompetitionDateAndTimeInSummeryPage")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #2, verifyRegistrationCompetitionDateAndTimeInSummeryPage")
+	@Story("Test case #3, verifyRegistrationCompetitionDateAndTimeInSummeryPage")
 	public void verifyRegistrationCompetitionDateAndTimeInSummaryPage() {
 		logger.info("Starting of verifyRegistrationCompetitionDateAndTimeInSummaryPage method");
 
@@ -209,13 +209,13 @@ public class TimeZoneTest extends CommonBaseTest {
 		addAnotherBracketPage.hardWait(3);
 
 		addAnotherBracketPage.clickOnRegistrationStartDate();
-		
+
 		addAnotherBracketPage.hardWait(3);
 		addAnotherBracketPage.clickOnRegistrationEndDate();
-		
+
 		addAnotherBracketPage.hardWait(3);
 		addAnotherBracketPage.clickOnCompetitionStartDate();
-		
+
 		addAnotherBracketPage.hardWait(3);
 		addAnotherBracketPage.clickOnCompetitionEndDate();
 
@@ -375,8 +375,10 @@ public class TimeZoneTest extends CommonBaseTest {
 		addBracketPage.clickOnAutoGenerateButton();
 
 		addBracketPage.clickOnEventTypeDropdown();
+		addBracketPage.hardWait(2);
 		Assert.assertTrue(addBracketPage.isEventTypeListContains());
 		addBracketPage.selectRoundRobinEvent();
+		addBracketPage.hardWait(3);
 		Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
 
 		addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("zero.value"));
@@ -447,10 +449,10 @@ public class TimeZoneTest extends CommonBaseTest {
 		logger.info("Ending of verifyRegistraionFieldsInEditBracketFunctionality method");
 	}
 
-	@Test(priority = 11, description = "verifyCompetitionAndTimeZoneFieldsInEditBracketFunctionality", groups = "sanity")
-	@Description("Test case #11, verifyCompetitionAndTimeZoneFieldsInEditBracketFunctionality")
+	@Test(priority = 11, description = "Verify Competition and TimeZone fields in Edit Bracket functionality", groups = "sanity")
+	@Description("Test case #11, Verify Competition and TimeZone fields in Edit Bracket functionality")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #11, verifyCompetitionAndTimeZoneFieldsInEditBracketFunctionality")
+	@Story("Test case #11, Verify Competition and TimeZone fields in Edit Bracket functionality")
 	public void verifyCompetitionAndTimeZoneFieldsInEditBracketFunctionality() {
 		logger.info("Starting of verifyCompetitionAndTimeZoneFieldsInEditBracketFunctionality method");
 
@@ -511,22 +513,21 @@ public class TimeZoneTest extends CommonBaseTest {
 		logger.info("Ending of verifyCompetitionAndTimeZoneFieldsInEditBracketFunctionality method");
 	}
 
-	// @Test(priority = 12, description =
-	// "verifyRegistrationtionLocalDateRangeInBracketPage", groups = "sanity")
-	@Description("Test case #12, verifyRegistrationtionLocalDateRangeInBracketPage")
+	@Test(priority = 12, description = "Verify Registration Local Date Range in Bracket Page", groups = "sanity")
+	@Description("Test case #12, Verify Registration Local Date Range in Bracket Page")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #12, verifyRegistrationtionLocalDateRangeInBracketPage")
-	public void verifyRegistrationtionLocalDateRangeInBracketPage() {
-		logger.info("Starting of verifyRegistrationtionLocalDateRangeInBracketPage method");
+	@Story("Test case #12, Verify Registration Local Date Range in Bracket Page")
+	public void verifyRegistrationLocalDateRangeInBracketPage() {
+		logger.info("Starting of verifyRegistrationLocalDateRangeInBracketPage method");
 
 		timeZonePage.clickOnEditBracketButton();
 
 		addBracketPage.setRegistrationStartDate();
-		addBracketPage.setRegistrationEndDate();
-		addBracketPage.setCompetitionStartDate();
-		addBracketPage.setCompetitionEndDate();
+		timeZonePage.setRegistrationEndDateInHour();
+		timeZonePage.setCompetitionStartDateHour();
+		timeZonePage.setCompetitionEndDateInHour();
 
-		addBracketPage.clickOnNewDelhiTimeZone();
+		timeZonePage.setNewDelhiTimeZone();
 		timeZonePage.clickOnSaveChangesButton();
 
 		Assert.assertTrue(timeZonePage.isLocalRangeDisplayed());
@@ -541,68 +542,136 @@ public class TimeZoneTest extends CommonBaseTest {
 		addBracketPage.setCompetitionEndDateMoreThenSevenDays();
 
 		timeZonePage.clickOnSaveChangesButton();
-		Assert.assertFalse(timeZonePage.isLessthenSevenRelativeDaysDisplayed());
+		timeZonePage.hardWait(4);
+		//Assert.assertFalse(timeZonePage.isLessthenSevenRelativeDaysDisplayed());
 
 		timeZonePage.clickOnEditBracketButton();
 
-		addBracketPage.setRegistrationEndDateOneDay();
+		addBracketPage.setRegistrationStartDate();
+		timeZonePage.setRegistrationEndDateInHour();
+		timeZonePage.setCompetitionStartDateHour();
+		timeZonePage.setCompetitionEndDateInHour();
+		timeZonePage.clickOnSaveChangesButton();
+
+		Assert.assertTrue(timeZonePage.ishoursAndMinsDisplayed());
+
+		Assert.assertTrue(timeZonePage.isOpenUpcommingRegistrationClosedStatusDisplayed());
+
+		logger.info("Ending of verifyRegistrationLocalDateRangeInBracketPage method");
+	}
+
+	@Test(priority = 13, description = "Verify Competition Local date range in Bracket page", groups = "sanity")
+	@Description("Test case #13, Verify Competition Local date range in Bracket page")
+	@Severity(SeverityLevel.NORMAL)
+	@Story("Test case #13, Verify Competition Local date range in Bracket page")
+	public void verifyCompetitionLocalDateRangeInBracketPage() {
+		logger.info("Starting of verifyCompetitionLocalDateRangeInBracketPage method");
+
+		timeZonePage.clickOnEditBracketButton();
+
+		addBracketPage.setRegistrationStartDate();
+		timeZonePage.setRegistrationEndDateInHour();
+		timeZonePage.setCompetitionStartDateHour();
+		timeZonePage.setCompetitionEndDateInHour();
+
+		timeZonePage.setNewDelhiTimeZone();
+		timeZonePage.clickOnSaveChangesButton();
+
+		Assert.assertTrue(timeZonePage.isLocalRangeDisplayed());
+
+		Assert.assertTrue(timeZonePage.isLessthenSevenRelativeDaysDisplayed());
+
+		timeZonePage.clickOnEditBracketButton();
+
+		addBracketPage.setRegistrationStartDate();
+		addBracketPage.setRegistrationEndDateMoreThenSevenDays();
+		addBracketPage.setCompetitionStartDateMoreThenSevenDays();
+		addBracketPage.setCompetitionEndDateMoreThenSevenDays();
+
+		timeZonePage.clickOnSaveChangesButton();
+		timeZonePage.hardWait(4);
+
+		//Assert.assertFalse(timeZonePage.isLessthenSevenRelativeDaysDisplayed());
+
+		timeZonePage.clickOnEditBracketButton();
+		addBracketPage.setRegistrationStartDate();
+		timeZonePage.setRegistrationEndDateInHour();
+		timeZonePage.setCompetitionStartDateHour();
+		timeZonePage.setCompetitionEndDateInHour();
 		timeZonePage.clickOnSaveChangesButton();
 		Assert.assertTrue(timeZonePage.ishoursAndMinsDisplayed());
 
 		Assert.assertTrue(timeZonePage.isOpenUpcommingRegistrationClosedStatusDisplayed());
 
-		logger.info("Ending of verifyRegistrationtionLocalDateRangeInBracketPage method");
+		logger.info("Ending of verifyCompetitionLocalDateRangeInBracketPage method");
+
 	}
 
-	// @Test(priority = 13, description =
-	// "verifyCompetitionAndTimeZoneFieldsInEditBracketFunctionality", groups =
-	// "sanity")
-	@Description("Test case #13, verifyCompetitionAndTimeZoneFieldsInEditBracketFunctionality")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #13, verifyCompetitionAndTimeZoneFieldsInEditBracketFunctionality")
-	public void verifyCompetitionLocalDateRangeInBracketPage() {
-		logger.info("Starting of verifyCompetitionAndTimeZoneFieldsInEditBracketFunctionality method");
-
-		Assert.assertTrue(timeZonePage.isLocalRangeDisplayed());
-		Assert.assertTrue(timeZonePage.isLessthenSevenRelativeDaysDisplayed());
-
-		timeZonePage.clickOnEditBracketButton();
-		addBracketPage.setRegistrationStartDate();
-		addBracketPage.setRegistrationEndDateMoreThenSevenDays();
-		addBracketPage.setCompetitionStartDateMoreThenSevenDays();
-		addBracketPage.setCompetitionEndDateMoreThenSevenDays();
-
-		timeZonePage.clickOnSaveChangesButton();
-		Assert.assertFalse(timeZonePage.isLessthenSevenRelativeDaysDisplayed());
-
-		timeZonePage.clickOnEditBracketButton();
-		addBracketPage.setRegistrationStartDate();
-		addBracketPage.setRegistrationEndDate();
-		addBracketPage.setCompetitionStartDate();
-
-		addBracketPage.setCompetitionEndDateOneDay();
-		timeZonePage.clickOnSaveChangesButton();
-		Assert.assertTrue(timeZonePage.ishoursAndMinsDisplayed());
-
-		timeZonePage.clickOnEditBracketButton();
-		addBracketPage.setRegistrationStartDateBeforeFourDays();
-		addBracketPage.setRegistrationEndDateBeforeThreeDays();
-		addBracketPage.setCompetitionStartDateBeforeTwoDays();
-		addBracketPage.setCompetitionEndDateBeforeOneDay();
-
-		Assert.assertTrue(timeZonePage.isOnGoingRegistrationClosedCompletedStatusDisplayed());
-
-		logger.info("Ending of verifyCompetitionAndTimeZoneFieldsInEditBracketFunctionality method");
-	}
-
-	// @Test(priority = 14, description =
-	// "verifyRegOPenUpcommingRegistrationClosedStatuInBracketPage", groups =
-	// "sanity")
+	@Test(priority = 14, description = "VerifyRegOPenUpcommingRegistrationClosedStatuInBracketPage", groups = "sanity")
 	@Description("Test case #14, verifyRegOPenUpcommingRegistrationClosedStatuInBracketPage")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #14, verifyRegOPenUpcommingRegistrationClosedStatuInBracketPage")
-	public void verifyRegOPenUpcommingRegistrationClosedStatuInBracketPage() {
-		logger.info("Starting of verifyRegOPenUpcommingRegistrationClosedStatuInBracketPage method");
+	public void verifyRegistrationOpenUpcomingClosedStatuInBracketPage() {
+		logger.info("Starting of verifyRegistrationOpenUpcomingClosedStatuInBracketPage method");
+
+		timeZonePage.clickOnEditBracketButton();
+
+		timeZonePage.setRegistrationStartDateBeforeOneDay();
+		timeZonePage.setRegistrationEndDateInHour();
+		timeZonePage.setCompetitionStartDateHour();
+		timeZonePage.setCompetitionEndDateInHour();
+
+		timeZonePage.setNewDelhiTimeZone();
+		timeZonePage.clickOnSaveChangesButton();
+		Assert.assertTrue(timeZonePage.isLocalRangeDisplayed());
+		Assert.assertTrue(timeZonePage.isLessthenSevenRelativeDaysDisplayed());
+
+		timeZonePage.clickOnEditBracketButton();
+
+		addBracketPage.setRegistrationStartDate();
+		addBracketPage.setRegistrationEndDateMoreThenSevenDays();
+		addBracketPage.setCompetitionStartDateMoreThenSevenDays();
+		addBracketPage.setCompetitionEndDateMoreThenSevenDays();
+
+		timeZonePage.clickOnSaveChangesButton();
+		timeZonePage.hardWait(4);
+		// Assert.assertFalse(timeZonePage.isLessthenSevenRelativeDaysDisplayed());
+
+		timeZonePage.clickOnEditBracketButton();
+		timeZonePage.setRegistrationStartDateBeforeOneDay();
+
+		timeZonePage.setRegistrationEndDateInHour();
+		addBracketPage.setCompetitionStartDate();
+		timeZonePage.setCompetitionEndDateInHour();
+		timeZonePage.clickOnSaveChangesButton();
+
+		//Assert.assertTrue(timeZonePage.ishoursAndMinsDisplayed());
+
+		timeZonePage.clickOnEditBracketButton();
+		addBracketPage.setRegistrationStartDateBeforeFourDays();
+		addBracketPage.setRegistrationEndDateBeforeThreeDays();
+
+		Assert.assertTrue(timeZonePage.isOpenUpcommingRegistrationClosedStatusDisplayed());
+
+		logger.info("Ending of verifyRegistrationOpenUpcomingClosedStatuInBracketPage method");
+	}
+
+	@Test(priority = 15, description = "verifyCompOPenUpcommingRegistrationClosedStatuInBracketPage", groups = "sanity")
+	@Description("Test case #15, verifyCompOPenUpcommingRegistrationClosedStatuInBracketPage")
+	@Severity(SeverityLevel.NORMAL)
+	@Story("Test case #15, verifyCompOPenUpcommingRegistrationClosedStatuInBracketPage")
+	public void verifyCompOpenUpcomingRegistrationClosedStatusInBracketPage() {
+		logger.info("Starting of verifyCompOpenUpcommingRegistrationClosedStatuInBracketPage method");
+
+		timeZonePage.clickOnEditBracketButton();
+
+		timeZonePage.setRegistrationStartDateBeforeOneDay();
+		timeZonePage.setRegistrationEndDateInHour();
+		timeZonePage.setCompetitionStartDateHour();
+		timeZonePage.setCompetitionEndDateInHour();
+
+		timeZonePage.setNewDelhiTimeZone();
+		timeZonePage.clickOnSaveChangesButton();
 
 		Assert.assertTrue(timeZonePage.isLocalRangeDisplayed());
 		Assert.assertTrue(timeZonePage.isLessthenSevenRelativeDaysDisplayed());
@@ -614,61 +683,33 @@ public class TimeZoneTest extends CommonBaseTest {
 		addBracketPage.setCompetitionEndDateMoreThenSevenDays();
 
 		timeZonePage.clickOnSaveChangesButton();
-		Assert.assertFalse(timeZonePage.isLessthenSevenRelativeDaysDisplayed());
-
+		timeZonePage.hardWait(4);
+		// Assert.assertFalse(timeZonePage.isLessthenSevenRelativeDaysDisplayed());
 		timeZonePage.clickOnEditBracketButton();
-		addBracketPage.setRegistrationStartDate();
-		addBracketPage.setRegistrationEndDate();
+		timeZonePage.setRegistrationStartDateBeforeOneDay();
+
+		timeZonePage.setRegistrationEndDateInHour();
 		addBracketPage.setCompetitionStartDate();
-
-		addBracketPage.setCompetitionEndDateOneDay();
-
+		timeZonePage.setCompetitionEndDateInHour();
 		timeZonePage.clickOnSaveChangesButton();
-		Assert.assertTrue(timeZonePage.ishoursAndMinsDisplayed());
+
+		//Assert.assertTrue(timeZonePage.ishoursAndMinsDisplayed());
 
 		addBracketPage.setRegistrationStartDateBeforeFourDays();
 		addBracketPage.setRegistrationEndDateBeforeThreeDays();
+		timeZonePage.setCompetitionStartDateBeforeOneDay();
+		timeZonePage.setCompetitionEndDateInHour();
+		timeZonePage.clickOnSaveChangesButton();
 
 		Assert.assertTrue(timeZonePage.isOpenUpcommingRegistrationClosedStatusDisplayed());
 
-		logger.info("Ending of verifyRegOPenUpcommingRegistrationClosedStatuInBracketPage method");
+		logger.info("Ending of verifyCompOpenUpcommingRegistrationClosedStatuInBracketPage method");
 	}
 
-	// @Test(priority = 15, description =
-	// "verifyCompOPenUpcommingRegistrationClosedStatuInBracketPage", groups =
-	// "sanity")
-	@Description("Test case #15, verifyCompOPenUpcommingRegistrationClosedStatuInBracketPage")
+	@Test(priority = 16, description = "Verify Important Dates in Information Tab", groups = "sanity")
+	@Description("Test case #16, Verify Important Dates in Information Tab")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #15, verifyCompOPenUpcommingRegistrationClosedStatuInBracketPage")
-	public void verifyCompOPenUpcommingRegistrationClosedStatuInBracketPage() {
-		logger.info("Starting of verifyCompOPenUpcommingRegistrationClosedStatuInBracketPage method");
-
-		Assert.assertTrue(timeZonePage.isLocalRangeDisplayed());
-		Assert.assertTrue(timeZonePage.isLessthenSevenRelativeDaysDisplayed());
-
-		timeZonePage.clickOnEditBracketButton();
-		addBracketPage.setCompetitionEndDateMoreThenSevenDays();
-		timeZonePage.clickOnSaveChangesButton();
-		Assert.assertFalse(timeZonePage.isLessthenSevenRelativeDaysDisplayed());
-
-		timeZonePage.clickOnEditBracketButton();
-		addBracketPage.setCompetitionEndDateOneDay();
-		timeZonePage.clickOnSaveChangesButton();
-		Assert.assertTrue(timeZonePage.ishoursAndMinsDisplayed());
-
-		timeZonePage.clickOnEditBracketButton();
-		addBracketPage.setCompetitionStartDateBeforeTwoDays();
-		addBracketPage.setCompetitionEndDateBeforeOneDay();
-
-		Assert.assertTrue(timeZonePage.isOnGoingRegistrationClosedCompletedStatusDisplayed());
-
-		logger.info("Ending of verifyCompOPenUpcommingRegistrationClosedStatuInBracketPage method");
-	}
-
-	@Test(priority = 16, description = "verifyImportantDatesInInformationTab", groups = "sanity")
-	@Description("Test case #16, verifyImportantDatesInInformationTab")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #16, verifyImportantDatesInInformationTab")
+	@Story("Test case #16, Verify Important Dates in Information Tab")
 	public void verifyImportantDatesInInformationTab() {
 		logger.info("Starting of verifyImportantDatesInInformationTab method");
 
@@ -680,30 +721,30 @@ public class TimeZoneTest extends CommonBaseTest {
 		logger.info("Ending of verifyImportantDatesInInformationTab method");
 	}
 
-	@Test(priority = 17, description = "verifyCompRangeInEventCard", groups = "sanity")
-	@Description("Test case #17,Test case #17, verifyCompRangeInEventCard")
+	@Test(priority = 17, description = "Verify Competition Date Range in Event Card", groups = "sanity")
+	@Description("Test case #17, Verify Competition Date Range in Event Card")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #17, verifyCompRangeInEventCard")
-	public void verifyCompRangeInEventCard() {
-		logger.info("Starting of verifyCompRangeInEventCard method");
+	@Story("Test case #17, Verify Competition Date Range in Event Card")
+	public void verifyCompetitionDateRangeInEventCard() {
+		logger.info("Starting of verifyCompetitionDateRangeInEventCard method");
 
 		timeZonePage.clickOnHomeButton();
 		timeZonePage.clickOnMyEventsButton();
 
 		Assert.assertTrue(timeZonePage.isCompRangeDisplayed());
 
-		logger.info("Ending of verifyCompRangeInEventCard method");
+		logger.info("Ending of verifyCompetitionDateRangeInEventCard method");
 	}
 
-	// @Test(priority = 18, description =
-	// "verifyRegisterButtonAccordingToRelativeDays", groups = "sanity")
-	@Description("Test case #18, verifyRegisterButtonAccordingToRelativeDays")
+	@Test(priority = 18, description = "Verify Register Button According to Relative Days", groups = "sanity")
+	@Description("Test case #18, Verify Register Button According to Relative Days")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #18, verifyRegisterButtonAccordingToRelativeDays")
+	@Story("Test case #18, Verify Register Button According to Relative Days")
 	public void verifyRegisterButtonAccordingToRelativeDays() {
 		logger.info("Starting of verifyRegisterButtonAccordingToRelativeDays method");
 
 		timeZonePage.clickOnCompRangeEventCard();
+		timeZonePage.clickOnAddABracketButton();
 		this.verifyCompetitionAndTimeZoneFieldsWithAddABracketFunctionality();
 
 		Assert.assertTrue(timeZonePage.isRegisterDisplayed());

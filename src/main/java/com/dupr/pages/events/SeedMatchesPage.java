@@ -3,6 +3,8 @@ package com.dupr.pages.events;
 import static org.testng.Assert.expectThrows;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import org.apache.log4j.LogManager;
@@ -337,6 +339,9 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//span[text()='05']")
 	private WebElement btnTimeInMinutes;
 
+	@B2BFindBy(xpath = "//div[@role='dialog']//button[text()='Cancel']")
+	private WebElement btnCancelCalender;
+
 	public SeedMatchesPage(WebDriver driver) {
 		super(driver);
 		B2BPageFactory.initElements(driver, this);
@@ -576,8 +581,12 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 		boolean isBracketHomePageDisplayed = false;
 
-		if (isDisplayed(txtBracket)) {
-			isBracketHomePageDisplayed = true;
+		try {
+			if (isDisplayed(txtBracket)) {
+				isBracketHomePageDisplayed = true;
+			}
+		} catch (Exception e) {
+			isBracketHomePageDisplayed = false;
 		}
 
 		log.info("Ending of isBracketHomePageDisplayed method");
@@ -1489,7 +1498,16 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 		// System.out.println(finalminutesValue);
 		return finalminutesValue;
+	}
 
+	public void clickOnCancelCalenderButton() {
+		log.info("Starting of clickOnCancelCalenderButton method");
+		try {
+			clickUsingActionsClass(btnCancelCalender);
+		} catch (Exception e) {
+			clickOnWebElement(btnCancelCalender);
+		}
+		log.info("Starting of clickOnCancelCalenderButton method");
 	}
 
 	public void setRegistrationStartDate() {
@@ -1520,18 +1538,28 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		int date = this.getCurrentDate();
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
+		String pattern = "h";
+
+		LocalTime currentHour = LocalTime.now();
+		LocalTime futureHour = currentHour.plusHours(1);
+		String futureHourValue = futureHour.format(DateTimeFormatter.ofPattern(pattern));
+		System.out.println(futureHourValue);
 
 		this.clickOnCurrentDate(date);
-
 		this.clickOnCurrentTime(hours);
-     String min=null;
+		String min = null;
 		try {
 			min = String.valueOf(this.getMinutes());
-		if(	driver.findElement(By.xpath("//span[text()='" + min + "']")).isDisplayed()) {
-			this.clickOnCurrentTime(min);
-		}
+			if (driver.findElement(By.xpath("//span[text()='" + min + "']")).isDisplayed()) {
+				this.clickOnCurrentTime(min);
+			}
 		} catch (Exception e) {
-			min="05";
+			this.clickOnCancelCalenderButton();
+			hardWait(2);
+			clickOnWebElement(txtBoxRegistrationEndDate);
+			this.clickOnCurrentDate(date);
+			this.clickOnCurrentTime(futureHourValue);
+			min = "05";
 			this.clickOnCurrentTime(min);
 		}
 
@@ -1549,20 +1577,31 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		int date = this.getCurrentDate();
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
+		String pattern = "h";
+
+		LocalTime currentHour = LocalTime.now();
+		LocalTime futureHour = currentHour.plusHours(1);
+		String futureHourValue = futureHour.format(DateTimeFormatter.ofPattern(pattern));
+		System.out.println(futureHourValue);
 
 		this.clickOnCurrentDate(date);
 		this.clickOnCurrentTime(hours);
-		String min=null;
+		String min = null;
 		try {
 			min = String.valueOf(this.getMinutes());
-		if(	driver.findElement(By.xpath("//span[text()='" + min + "']")).isDisplayed()) {
-			this.clickOnCurrentTime(min);
-		}
+			if (driver.findElement(By.xpath("//span[text()='" + min + "']")).isDisplayed()) {
+				this.clickOnCurrentTime(min);
+			}
 		} catch (Exception e) {
-			min="05";
+			this.clickOnCancelCalenderButton();
+			hardWait(2);
+			clickOnWebElement(txtBoxRegistrationEndDate);
+			this.clickOnCurrentDate(date);
+			this.clickOnCurrentTime(futureHourValue);
+			min = "05";
 			this.clickOnCurrentTime(min);
 		}
-		 
+
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnElementUsingActionClass(btnOK);
 

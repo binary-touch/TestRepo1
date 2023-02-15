@@ -745,7 +745,6 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 				}
 				
 			}
-			i++;
 		}
 		log.info("Ending of clickOnRecentlyAddedEvent method");
 	}

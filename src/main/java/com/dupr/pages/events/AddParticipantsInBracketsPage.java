@@ -434,15 +434,15 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 		log.info("Starting of addParticipants method");
 
 		for (int i = 0; i < 16; i++) {
-
+			this.hardWait(3);
 			clickOnWebElement(btnAddParticipants);
-			this.hardWait(2);
+			this.hardWait(4);
 			clickOnWebElement(rdoSelectParticipant);
-			this.hardWait(2);
+			this.hardWait(3);
 			clickOnElement(btnAddParticipant);
-			this.hardWait(2);
+			this.hardWait(4);
 			clickOnWebElement(rdoNo);
-			this.hardWait(2);
+			this.hardWait(3);
 			clickOnWebElement(btnAdd);
 			this.hardWait(5);
 		}
