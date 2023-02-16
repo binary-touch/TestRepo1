@@ -1,11 +1,15 @@
 package com.dupr.pages.home;
 
+import java.util.List;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.b2b.support.B2BFindBy;
+import com.b2b.support.B2BFindBys;
 import com.b2b.support.B2BPageFactory;
 import com.dupr.pages.DUPRBaseAutomationPage;
 
@@ -24,9 +28,15 @@ public class SharePage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//h4[contains(@class,'MuiTypography-root MuiTypography-h4 MuiTypography-noWrap')]")
 	private WebElement lblBracketCard;
-
-	@B2BFindBy(xpath = "//h4[contains(@class,'MuiTypography-root MuiTypography-h4')]")
-	private WebElement lblClubEventCard;
+	
+	@B2BFindBys(@B2BFindBy(xpath = "//div/div[contains(@class,'MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation3')]//h4[contains(@class,'MuiTypography-root MuiTypography-h4')]"))
+	private List<WebElement> lstClubsInBrowseClubsPage;
+	
+	@B2BFindBys(@B2BFindBy(xpath = "//h4[contains(@class,'MuiTypography-root MuiTypography-h4')]"))
+	private List<WebElement> lstEventsInBrowseEventsPage;
+	
+	@B2BFindBy(xpath = "//input[@id='Search']")
+	private WebElement txtBoxSearch;
 
 	@B2BFindBy(xpath = "//button[contains(text(),'Share')]")
 	private WebElement btnShare;
@@ -71,10 +81,34 @@ public class SharePage extends DUPRBaseAutomationPage {
 	public void clickOnClubEventCardLabel() {
 		log.info("Starting of clickOnClubEventCardLabel method");
 
-		this.hardWait(2);
-		clickOnWebElement(lblClubEventCard);
+			String clubName = lstClubsInBrowseClubsPage.get(0).getText();
+			System.out.println(clubName);
+		
+			sendKeys(txtBoxSearch, clubName);
+			this.txtBoxSearch.sendKeys(Keys.ENTER);
+			try {
+				hardWait(3);
+				clickOnElementUsingActionClass(lstClubsInBrowseClubsPage.get(0));
+			} catch (Exception e) {
+				hardWait(3);
+				this.lstClubsInBrowseClubsPage.get(0).click();
+			}
 
 		log.info("Ending of clickOnClubEventCardLabel method");
+	}
+	
+	public void clickOnEventNameCardLabel() {
+		log.info("Starting of clickOnEventNameCardLabel method");
+
+			try {
+				hardWait(3);
+				clickOnElementUsingActionClass(lstEventsInBrowseEventsPage.get(1));
+			} catch (Exception e) {
+				hardWait(3);
+				this.lstEventsInBrowseEventsPage.get(1).click();
+			}
+
+		log.info("Ending of clickOnEventNameCardLabel method");
 	}
 
 	public void clickOnShareButton() {
@@ -83,7 +117,7 @@ public class SharePage extends DUPRBaseAutomationPage {
 		try {
 			clickOnWebElement(btnShare);
 		} catch (Exception e) {
-			clickOnElementUsingActionClass(btnShare);
+			clickUsingActionsClass(btnShare);
 		}
 		
 		this.hardWait(2);

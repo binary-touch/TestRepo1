@@ -105,7 +105,7 @@ public class ShareTest extends DUPRBaseAutomationTest {
 
 		userDashboardPage.clickOnEventsMenu();
 		sharePage.hardWait(4);
-		sharePage.clickOnClubEventCardLabel();
+		sharePage.clickOnEventNameCardLabel();
 		sharePage.hardWait(3);
 		sharePage.clickOnShareButton();
 		

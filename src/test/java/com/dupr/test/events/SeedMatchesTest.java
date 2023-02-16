@@ -1,7 +1,5 @@
 package com.dupr.test.events;
 
-import static org.testng.Assert.assertTrue;
-
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -55,9 +53,6 @@ public class SeedMatchesTest extends CommonBaseTest {
 		super.verifyAddEventFunctionality();
 		this.verifyFreeBracketDoublesTypeWithRoundRobinEventType();
 
-		// create same time now as in regesited stsrt , end and compition start date
-	
-	
 		seedMatchesPage.hardWait(2);
 		addEventPage.clickOnEventsTab();
 		seedMatchesPage.hardWait(2);
@@ -547,7 +542,8 @@ public class SeedMatchesTest extends CommonBaseTest {
 	public void verifyCloseIconFunctionalityOnScoresAdded() {
 		logger.info("Starting of VerifyCloseIconFunctionalityOnScoresAdded method");
 
-		seedMatchesPage.clickCloseIconOnScoreAddedPopUP();addEventPage.hardWait(4);
+		seedMatchesPage.clickCloseIconOnScoreAddedPopUP();
+		addEventPage.hardWait(4);
 
 		Assert.assertFalse(seedMatchesPage.isScoresAddedPopUpContains());
 
@@ -693,7 +689,8 @@ public class SeedMatchesTest extends CommonBaseTest {
 	public void verifyCloseIconFunctionalityInValidateMatchPopUp() {
 		logger.info("Starting of verifyCloseIconFunctionalityInValidateMatchPopUp method");
 
-		seedMatchesPage.clickOnCloseIconOnValidatePopUp();seedMatchesPage.hardWait(4);
+		seedMatchesPage.clickOnCloseIconOnValidatePopUp();
+		seedMatchesPage.hardWait(4);
 
 		Assert.assertFalse(seedMatchesPage.isValidateMatchPopupContains());
 
@@ -726,7 +723,8 @@ public class SeedMatchesTest extends CommonBaseTest {
 	public void verifyCloseIconFunctionalityInValidateMatch() {
 		logger.info("Starting of verifyCloseIconFunctionalityInValidateMatch method");
 
-		seedMatchesPage.clickOnCloseIconOnValidatePopUp();seedMatchesPage.hardWait(4);
+		seedMatchesPage.clickOnCloseIconOnValidatePopUp();
+		seedMatchesPage.hardWait(4);
 
 		Assert.assertFalse(seedMatchesPage.isValidateMatchPopupInValidateMatchContains());
 
@@ -914,7 +912,7 @@ public class SeedMatchesTest extends CommonBaseTest {
 
 		addEventPage.clickOnEventsTab();
 		seedMatchesPage.hardWait(3);
-		addEventPage.clickOnRecentlyAddedEvent(seedsEvents);
+		addEventPage.clickOnRecentlyAddedEvent(eventName);
 		seedMatchesPage.hardWait(3);
 
 		seedMatchesPage.clickOnBracketCard();
@@ -929,13 +927,13 @@ public class SeedMatchesTest extends CommonBaseTest {
 		seedMatchesPage.hardWait(3);
 
 		seedMatchesPage.clickOnSavePublishButton();
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(5);
 
 		Assert.assertTrue(seedMatchesPage.isBracketHomePageDisplayed());
 
 		logger.info("Ending of verifySeedMatchesFunctionality method");
 	}
-	
+
 	public void verifyFreeBracketDoublesTypeWithRoundRobinEventType() {
 		logger.info("Starting of verifyFreeBracketDoublesTypeWithRoundRobinEventType method");
 
@@ -967,7 +965,7 @@ public class SeedMatchesTest extends CommonBaseTest {
 		addBracketPage.setMaximumAgeRange(testDataProp.getProperty("max.age.range"));
 		addBracketPage.setMinimumRatingRange(testDataProp.getProperty("min.rating.range"));
 		addBracketPage.setMaximumRatingRange(testDataProp.getProperty("max.rating.range"));
-		
+
 		Assert.assertTrue(addBracketPage.isAutoGenerateButtonEnabled());
 		addBracketPage.clickOnAutoGenerateButton();
 
@@ -1009,7 +1007,6 @@ public class SeedMatchesTest extends CommonBaseTest {
 
 		logger.info("Ending of verifyFreeBracketDoublesTypeWithRoundRobinEventType method");
 	}
-
 
 	@AfterClass
 	public void quitDriver() {
