@@ -857,17 +857,28 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			clickOnElementUsingActionClass(tabUnmatchedPlayes);
 		}
-		
-		for (int i = 0; i < 8; i++) {
 
-			this.hardWait(3);
-			this.scrollDown(300);
-			selectPlayerCheckboxs();
-			this.hardWait(2);
-			clickOnWebElement(btnCreateTeam);
-			this.hardWait(2);
-			clickOnWebElement(btnCreate);
-			this.hardWait(4);
+		for (int i = 0; i < 8; i++) {
+			try {
+				this.hardWait(3);
+				this.scrollDown(300);
+				selectPlayerCheckboxs();
+				this.hardWait(2);
+				clickOnWebElement(btnCreateTeam);
+				this.hardWait(2);
+				clickOnWebElement(btnCreate);
+				this.hardWait(4);
+			} catch (Exception e) {
+				this.hardWait(3);
+				this.scrollDown(300);
+				selectPlayerCheckboxs();
+				this.hardWait(2);
+				clickOnWebElement(btnCreateTeam);
+				this.hardWait(2);
+				clickOnWebElement(btnCreate);
+				this.hardWait(4);
+			}
+
 		}
 		log.info("Ending of selectTeams method");
 

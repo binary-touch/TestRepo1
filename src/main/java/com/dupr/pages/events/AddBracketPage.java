@@ -1051,9 +1051,11 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		simpleformat = new SimpleDateFormat("a");
 		String meridiem = simpleformat.format(new Date());
 		System.out.println("Meridiem format = " + meridiem);
+		String meridiemValue = meridiem.toUpperCase();
+		System.out.println("Meridiem = " + meridiemValue);
 
 		log.info("Ending of getCurrentMeridiem method");
-		return meridiem;
+		return meridiemValue;
 	}
 
 	public String getCurrentZone() {
