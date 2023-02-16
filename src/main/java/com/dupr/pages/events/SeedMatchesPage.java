@@ -1558,7 +1558,8 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 			hardWait(2);
 			clickOnWebElement(txtBoxRegistrationEndDate);
 			this.clickOnCurrentDate(date);
-			this.clickOnCurrentTime(futureHourValue);
+			this.clickOnCurrentTime(hours);
+			//this.clickOnCurrentTime(futureHourValue);
 			min = "05";
 			this.clickOnCurrentTime(min);
 		}
