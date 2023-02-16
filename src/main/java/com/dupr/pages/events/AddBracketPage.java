@@ -923,7 +923,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 				EventType = true;
 			} else {
 				EventType = ddEventType.getAttribute("value").equals("COMPASS");
-				System.out.println(txtRoundRobin.getAttribute("value").equals("COMPASS"));
+				System.out.println(btnWaterfallEventType.getAttribute("value").equals("COMPASS"));
 
 			}
 		} catch (Exception e) {
@@ -934,6 +934,8 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 		return EventType;
 	}
+	
+	
 
 	public void setFutureRegistrationStartDate() {
 		log.info("Starting of clickOnRegistrationStartDate method");
@@ -1050,10 +1052,11 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 		simpleformat = new SimpleDateFormat("a");
 		String meridiem = simpleformat.format(new Date());
-		System.out.println("Meridiem format = " + meridiem);
+		String meridiemValue = meridiem.toUpperCase();
+		System.out.println("Meridiem format = " + meridiemValue);
 
 		log.info("Ending of getCurrentMeridiem method");
-		return meridiem;
+		return meridiemValue;
 	}
 
 	public String getCurrentZone() {
@@ -1073,9 +1076,6 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		log.info("Starting of setRegistrationEndDate method");
 
 		clickOnWebElement(txtBoxRegistrationEndDate);
-
-		ZonedDateTime zonedDateTime = ZonedDateTime.now();
-		System.out.println("Current Zoned date/time is :- \n" + zonedDateTime);
 
 		int date = this.getFutureDate(1);
 		String hours = this.getCurrentHour();

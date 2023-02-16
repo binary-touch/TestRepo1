@@ -516,4 +516,177 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 
 		logger.info("Ending of verifySelectAddParticipantFunctionality method");
 	}
+	
+	public void verifyPaidEventInformationPageWithValidDetails() {
+		logger.info("Starting of verifyPaidEventInformationPageWithValidDetails method");
+
+		eventName = addEventPage.setEventName(testDataProp.getProperty("event.name"));
+		
+		System.out.println("event name in Common base test: "+eventName);
+		
+		addEventPage.hardWait(2);
+		addEventPage.setLocation(testDataProp.getProperty("state.address"));
+		addEventPage.uploadEventLogo(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("edit.club.logo.path"));
+		addEventPage.setMemberPrice(testDataProp.getProperty("paid.value"));
+		addEventPage.setNonMemberPrice(testDataProp.getProperty("paid.value"));
+		addEventPage.setAboutTheEvent(testDataProp.getProperty("about.the.event"));
+		addEventPage.clickonTextFormattingButtons();
+		addEventPage.clickOnNextStepButton();
+
+		addEventPage.hardWait(2);
+		Assert.assertTrue(addEventPage.isEventPoliciesPageContains());
+
+		logger.info("Ending of verifyPaidEventInformationPageWithValidDetails method");
+	}
+
+	public void verifyPaidBracketWithEventTypeAsWateFallInDoublesMatchType() {
+		logger.info("Starting of verifyPaidBracketWithEventTypeAsWateFall method");
+
+	addBracketPage.hardWait(3);
+	addBracketPage.clickOnMatchTypeDropdown();
+	Assert.assertTrue(addBracketPage.isMatchTypeListContains());
+	addBracketPage.selectDoublesMatchType();
+	Assert.assertTrue(addBracketPage.isSelectedMatchTypeDisplayed());
+
+	addBracketPage.clickOnPlayGroupDropdown();
+	Assert.assertTrue(addBracketPage.isPlayerGroupListDisplayed());
+	addBracketPage.selectMixedPlayerGroup();
+
+	addBracketPage.setMinimumAgeRange(testDataProp.getProperty("min.age.range"));
+	Assert.assertTrue(addBracketPage.isEnteredMinimumAgeDisplayed(testDataProp.getProperty("min.age.range")));
+
+	addBracketPage.setMaximumAgeRange(testDataProp.getProperty("max.age.range"));
+	Assert.assertTrue(addBracketPage.isEnteredMaximumAgeDisplayed(testDataProp.getProperty("max.age.range")));
+
+	addBracketPage.setMinimumRatingRange(testDataProp.getProperty("min.rating.range"));
+	Assert.assertTrue(
+			addBracketPage.isEnteredMinimumRatingRangeDisplayed(testDataProp.getProperty("min.rating.range")));
+
+	addBracketPage.setMaximumRatingRange(testDataProp.getProperty("max.rating.range"));
+	Assert.assertTrue(
+			addBracketPage.isEnteredMaximumRatingRangeDisplayed(testDataProp.getProperty("max.rating.range")));
+
+	Assert.assertTrue(addBracketPage.isAutoGenerateButtonEnabled());
+	addBracketPage.clickOnAutoGenerateButton();
+
+	addBracketPage.clickOnEventTypeDropdown();
+	Assert.assertTrue(addBracketPage.isEventTypeListContains());
+	addBracketPage.selectWaterfallEventType();
+	Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
+
+	addBracketPage.hardWait(2);
+	addBracketPage.setNumberOfCourts(testDataProp.getProperty("number.of.courts"));
+
+	addBracketPage.hardWait(2);
+	addBracketPage.setRegistrationStartDate();
+
+	addBracketPage.hardWait(2);
+	addBracketPage.setRegistrationEndDate();
+
+	addBracketPage.hardWait(2);
+	addBracketPage.setCompetitionStartDate();
+
+	addBracketPage.hardWait(2);
+	addBracketPage.setCompetitionEndDate();
+
+	addBracketPage.clickOnTimeZoneDropdown();
+	Assert.assertTrue(addBracketPage.isTimeZoneListContains());
+	addBracketPage.clickOnNewDelhiTimeZone();
+
+	addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("paid.value"));
+	addBracketPage.setBracketNonClubMemberPrice(testDataProp.getProperty("paid.value"));
+
+	addBracketPage.hardWait(2);
+	addBracketPage.setWaitlist(testDataProp.getProperty("min.rating.range"));
+	Assert.assertTrue(addBracketPage.isWaitListCountDisplayed(testDataProp.getProperty("min.rating.range")));
+
+	addEventPage.clickOnNextStepButton();
+
+	addBracketPage.hardWait(3);
+	this.VerifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
+
+	addBracketPage.hardWait(3);
+	this.VerifyPublishEventButton();
+
+	addBracketPage.hardWait(3);
+	addBracketPage.clickOnEventSuccessClosePopupButton();
+
+	logger.info("Ending of verifyPaidBracketWithEventTypeAsWateFall method");
+}
+
+	public void verifyPaidBracketWithEventTypeAsWateFallInSinglesMatchType() {
+		logger.info("Starting of verifyPaidBracketWithEventTypeAsWateFallInSinglesMatchType method");
+
+	addBracketPage.hardWait(3);
+	addBracketPage.clickOnMatchTypeDropdown();
+	Assert.assertTrue(addBracketPage.isMatchTypeListContains());
+	addBracketPage.selectSinglesMatchType();
+	Assert.assertTrue(addBracketPage.isSelectedMatchTypeDisplayed());
+
+	addBracketPage.clickOnPlayGroupDropdown();
+	Assert.assertTrue(addBracketPage.isPlayerGroupListDisplayed());
+	addBracketPage.selectMixedPlayerGroup();
+
+	addBracketPage.setMinimumAgeRange(testDataProp.getProperty("min.age.range"));
+	Assert.assertTrue(addBracketPage.isEnteredMinimumAgeDisplayed(testDataProp.getProperty("min.age.range")));
+
+	addBracketPage.setMaximumAgeRange(testDataProp.getProperty("max.age.range"));
+	Assert.assertTrue(addBracketPage.isEnteredMaximumAgeDisplayed(testDataProp.getProperty("max.age.range")));
+
+	addBracketPage.setMinimumRatingRange(testDataProp.getProperty("min.rating.range"));
+	Assert.assertTrue(
+			addBracketPage.isEnteredMinimumRatingRangeDisplayed(testDataProp.getProperty("min.rating.range")));
+
+	addBracketPage.setMaximumRatingRange(testDataProp.getProperty("max.rating.range"));
+	Assert.assertTrue(
+			addBracketPage.isEnteredMaximumRatingRangeDisplayed(testDataProp.getProperty("max.rating.range")));
+
+	Assert.assertTrue(addBracketPage.isAutoGenerateButtonEnabled());
+	addBracketPage.clickOnAutoGenerateButton();
+
+	addBracketPage.clickOnEventTypeDropdown();
+	Assert.assertTrue(addBracketPage.isEventTypeListContains());
+	addBracketPage.selectWaterfallEventType();
+	Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
+
+	addBracketPage.hardWait(2);
+	addBracketPage.setNumberOfCourts(testDataProp.getProperty("number.of.courts"));
+
+	addBracketPage.hardWait(2);
+	addBracketPage.setRegistrationStartDate();
+
+	addBracketPage.hardWait(2);
+	addBracketPage.setRegistrationEndDate();
+
+	addBracketPage.hardWait(2);
+	addBracketPage.setCompetitionStartDate();
+
+	addBracketPage.hardWait(2);
+	addBracketPage.setCompetitionEndDate();
+
+	addBracketPage.clickOnTimeZoneDropdown();
+	Assert.assertTrue(addBracketPage.isTimeZoneListContains());
+	addBracketPage.clickOnNewDelhiTimeZone();
+
+	addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("paid.value"));
+	addBracketPage.setBracketNonClubMemberPrice(testDataProp.getProperty("paid.value"));
+
+	addBracketPage.hardWait(2);
+	addBracketPage.setWaitlist(testDataProp.getProperty("min.rating.range"));
+	Assert.assertTrue(addBracketPage.isWaitListCountDisplayed(testDataProp.getProperty("min.rating.range")));
+
+	addEventPage.clickOnNextStepButton();
+
+	addBracketPage.hardWait(3);
+	this.VerifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
+
+	addBracketPage.hardWait(3);
+	this.VerifyPublishEventButton();
+
+	addBracketPage.hardWait(3);
+	addBracketPage.clickOnEventSuccessClosePopupButton();
+
+	logger.info("Ending of verifyPaidBracketWithEventTypeAsWateFallInSinglesMatchType method");
+}
+
 }

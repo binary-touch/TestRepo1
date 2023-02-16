@@ -64,11 +64,13 @@
 
 	 <test name="Sprint 4">
 		<classes>
-			<class name="com.dupr.test.home.ChatTest" />
-			<class name="com.dupr.test.home.ShareTest" />
-			<class name="com.dupr.test.events.SeedMatchesTest" />
-			<class name="com.dupr.test.events.CombinationOfMatchTypeAndPlayerGroupTest" />
-			<class name="com.dupr.test.events.FullRegistrationTest" /> 
+		<!-- 	<class name="com.dupr.test.home.ChatTest" />
+			<class name="com.dupr.test.home.ShareTest" /> -->
+		<!-- 	<class name="com.dupr.test.events.SeedMatchesTest" /> -->
+				<!--<class name="com.dupr.test.events.CombinationOfMatchTypeAndPlayerGroupTest" />
+			<class name="com.dupr.test.events.FullRegistrationTest" />  -->
+			
+			<class name="com.dupr.test.events.PaidEventTest" />
 		</classes>
 	</test>
 </suite>
