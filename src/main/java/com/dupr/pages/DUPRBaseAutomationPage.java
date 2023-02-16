@@ -163,10 +163,11 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 
 		simpleformat = new SimpleDateFormat("a");
 		String meridiem = simpleformat.format(new Date());
-		System.out.println("Meridiem format = " + meridiem);
+		String meridiemValue = meridiem.toUpperCase();
+		System.out.println("Meridiem format = " + meridiemValue);
 
 		log.info("Ending of getCurrentMeridiem method");
-		return meridiem;
+		return meridiemValue;
 	}
 
 	public String getCurrentZone() {
