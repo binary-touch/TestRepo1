@@ -625,7 +625,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 
 	addBracketPage.clickOnPlayGroupDropdown();
 	Assert.assertTrue(addBracketPage.isPlayerGroupListDisplayed());
-	addBracketPage.selectMixedPlayerGroup();
+	addBracketPage.selectOpenPlayerGroup();
 
 	addBracketPage.setMinimumAgeRange(testDataProp.getProperty("min.age.range"));
 	Assert.assertTrue(addBracketPage.isEnteredMinimumAgeDisplayed(testDataProp.getProperty("min.age.range")));

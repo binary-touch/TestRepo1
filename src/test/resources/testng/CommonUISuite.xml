@@ -38,8 +38,8 @@
 			<class name="com.dupr.test.events.EditEventsTest" />
 			<class name="com.dupr.test.events.EditBracketsTest" />
 		</classes>
-	</test> -->
-
+	</test>-->
+	
 	<!-- <test name="Sprint 3">
 		<classes>
 			<class name="com.dupr.test.events.AddEditRemoveEventLogoTest" />
@@ -57,7 +57,6 @@
 			<class name="com.dupr.test.home.AntiScrappingCaptchaTest" />
 			<class name="com.dupr.test.home.UserDashboardTest" />
 			<class name="com.dupr.test.home.PreservingPageVisitsTest" />
-
 		</classes>
 	</test> -->
 
@@ -73,11 +72,9 @@
 		</classes>
 	</test>
 
-	<test name="Sprint 4">
+	<test name="Sprint 5">
 		<classes>
-			<class name="com.dupr.test.events.PaidEventTest" />
+			<class name="com.dupr.test.events.PaidEventAndPaidBracketWithWaterfallEventTest" />
 		</classes>
 	</test>
-
-
 </suite>

@@ -958,8 +958,9 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		log.info("Starting of setRegistrationStartDate method");
 
 		scrollDown(200);
+	
 		clickOnWebElement(txtBoxRegistrationStartDate);
-
+		
 		int date = this.getCurrentDate();
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();

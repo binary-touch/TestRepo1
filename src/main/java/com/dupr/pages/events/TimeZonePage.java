@@ -76,7 +76,22 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//h4[text()='Time Zone']/following-sibling::p[text()='(GMT-07:00) Arizona']")
 	private WebElement txtArizonaTimeZoneInEventDetails;
+	
+	@B2BFindBy(xpath = "//span[text()='Upcoming']")
+	private WebElement lblUpcoming;
 
+	@B2BFindBy(xpath = "//span[text()='Open']")
+	private WebElement lblOpen;
+
+	@B2BFindBy(xpath = "//span[text()='Ongoing']")
+	private WebElement lblOnGoing;
+
+	@B2BFindBy(xpath = "//span[text()='Complete']")
+	private WebElement lblComplete;
+
+	@B2BFindBy(xpath = "//span[text()='Registration Closed']")
+	private WebElement lblRegistrationClosed;
+	
 	@B2BFindBy(xpath = "//h6[text()='Events']")
 	private WebElement tabEvents;
 
@@ -381,6 +396,8 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 
 	public String getIndianTimeZoneInEventDetails() {
 		log.info("Starting of getIndianTimeZoneInEventDetails method");
+		
+		this.hardWait(3);
 		log.info("Ending of getIndianTimeZoneInEventDetails method");
 
 		return txtNewDelhiTimeZoneInEventDetails.getText();
@@ -572,7 +589,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 
 	public boolean isLessthenSevenRelativeDaysDisplayed() {
 		log.info("Starting of isLessthenSevenRelativeDaysDisplayed method");
-		this.hardWait(5);
+		//this.hardWait(5);
 		boolean state = false;
 		try {
 			if (lblLessthenSevenRelativeDays.isDisplayed()) {
@@ -588,7 +605,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 
 	public boolean ishoursAndMinsDisplayed() {
 		log.info("Starting of ishoursAndMinsDisplayed method");
-		
+		hardWait(5);
 		boolean ishoursAndMinsDisplayed = false;
 		
 		try {
@@ -614,52 +631,111 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 	public boolean isOpenUpcommingRegistrationClosedStatusDisplayed() {
 		log.info("Starting of isOpenUpcommingRegistrationClosedStatusDisplayed method");
 		hardWait(2);
-		boolean PlayerGroupType = false;
+		boolean isOpenUpcommingRegistrationClosedStatusDisplayed = false;
 		try {
-			if (lblStatus.getText().equals("Open")) {
-				System.out.println(lblStatus.getText().equals("Open"));
-				PlayerGroupType = true;
-			} else if (lblStatus.getText().equals("Upcoming")) {
-				System.out.println(lblStatus.getText().equals("Upcoming"));
-				PlayerGroupType = true;
-			} else if (lblStatus.getText().equals("Registration closed")) {
-				System.out.println(lblStatus.getText().equals("Registration closed"));
-				PlayerGroupType = true;
+			if (this.isDisplayedOpenLabel()) {
+				
+				isOpenUpcommingRegistrationClosedStatusDisplayed = true;
+			} else if (this.isDisplayedUpcomingLabel()) {
+				
+				isOpenUpcommingRegistrationClosedStatusDisplayed = true;
+			} else if (this.isDisplayedRegistrationClosedLabel()) {
+				
+				isOpenUpcommingRegistrationClosedStatusDisplayed = true;
+			}else if (this.isDisplayedOnGoingLabel()) {
+				
+				isOpenUpcommingRegistrationClosedStatusDisplayed = true;
+			} else if (this.isDisplayedCompleteLabel())  {
+				
+				isOpenUpcommingRegistrationClosedStatusDisplayed = true;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		log.info("Ending of isOpenUpcommingRegistrationClosedStatusDisplayed method");
 
-		return PlayerGroupType;
+		return isOpenUpcommingRegistrationClosedStatusDisplayed;
 	}
+	
+	public boolean isDisplayedOpenLabel() {
+		log.info("Starting of isDisplayedOpenLabel method");
+		log.info("Ending of isDisplayedOpenLabels method");
 
-	public boolean isOnGoingRegistrationClosedCompletedStatusDisplayed() {
-		log.info("Starting of isOnGoingRegistrationClosedCompletedStatusDisplayed method");
-		hardWait(2);
-		boolean PlayerGroupType = false;
 		try {
-			if (lblStatus.getText().equals("Ongoing")) {
-				System.out.println(lblStatus.getText().equals("Ongoing"));
-				PlayerGroupType = true;
-			} else if (lblStatus.getText().equals("Complete")) {
-				System.out.println(lblStatus.getText().equals("Complete"));
-				PlayerGroupType = true;
-			} else if (lblStatus.getText().equals("Registration closed")) {
-				System.out.println(lblStatus.getText().equals("Registration closed"));
-				PlayerGroupType = true;
-			}
+			return lblOpen.isDisplayed();
 		} catch (Exception e) {
-			e.printStackTrace();
+			return false;
 		}
-
-		log.info("Ending of isOnGoingRegistrationClosedCompletedStatusDisplayed method");
-
-		return PlayerGroupType;
 	}
 
-	public void clickOnInformationButton() {
+	public boolean isDisplayedUpcomingLabel() {
+		log.info("Starting of isDisplayedUpcomingLabel method");
+		log.info("Ending of isDisplayedUpcomingLabel method");
+
+		try {
+			return lblUpcoming.isDisplayed();
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	public boolean isDisplayedRegistrationClosedLabel() {
+		log.info("Starting of isDisplayedRegistrationClosedLabel method");
+		log.info("Ending of isDisplayedRegistrationClosedLabel method");
+
+		try {
+			return lblRegistrationClosed.isDisplayed();
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	public boolean isDisplayedOnGoingLabel() {
+		log.info("Starting of isDisplayedOnGoingLabel method");
+		log.info("Ending of isDisplayedOnGoingLabel method");
+
+		try {
+			return lblOnGoing.isDisplayed();
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	public boolean isDisplayedCompleteLabel() {
+		log.info("Starting of isDisplayedCompleteLabel method");
+		log.info("Ending of isDisplayedCompleteLabel method");
+
+		try {
+			return lblComplete.isDisplayed();
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	/*
+	 * public boolean isOnGoingRegistrationClosedCompletedStatusDisplayed() { log.
+	 * info("Starting of isOnGoingRegistrationClosedCompletedStatusDisplayed method"
+	 * ); hardWait(2); boolean PlayerGroupType = false; try { if
+	 * (lblOpen.getText().equals("Open")) {
+	 * System.out.println(lblOpen.getText().equals("Open")); PlayerGroupType = true;
+	 * } else if (lblUpcoming.getText().equals("Upcoming")) {
+	 * System.out.println(lblUpcoming.getText().equals("Upcoming")); PlayerGroupType
+	 * = true; } else if
+	 * (lblRegistrationClosed.getText().equals("Registration closed")) {
+	 * System.out.println(lblRegistrationClosed.getText().
+	 * equals("Registration closed")); PlayerGroupType = true; }else if
+	 * (lblOnGoing.getText().equals("Ongoing")) {
+	 * System.out.println(lblStatus.getText().equals("Ongoing")); PlayerGroupType =
+	 * true; } else if (lblComplete.getText().equals("Complete")) {
+	 * System.out.println(lblStatus.getText().equals("Complete")); PlayerGroupType =
+	 * true; } } catch (Exception e) { e.printStackTrace(); }
+	 * 
+	 * log.
+	 * info("Ending of isOnGoingRegistrationClosedCompletedStatusDisplayed method");
+	 * 
+	 * return PlayerGroupType; }
+	 * 
+	 */	public void clickOnInformationButton() {
 		log.info("Starting of clickOnInformationButton method");
 
 		try {
@@ -922,7 +998,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		String pattern1 = "a";
 
 		LocalTime currentHour = LocalTime.now();
-		LocalTime futureHour = currentHour.minusHours(8);
+		LocalTime futureHour = currentHour.minusHours(1);
 		String futureHourValue = futureHour.format(DateTimeFormatter.ofPattern(pattern));
 		System.out.println(futureHourValue);
 
@@ -954,7 +1030,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		String pattern1 = "a";
 
 		LocalTime currentHour = LocalTime.now();
-		LocalTime futureHour = currentHour.plusHours(2);
+		LocalTime futureHour = currentHour.plusHours(1);
 		String futureHourValue = futureHour.format(DateTimeFormatter.ofPattern(pattern));
 		System.out.println(futureHourValue);
 
@@ -971,6 +1047,38 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		log.info("Ending of setRegistrationEndDateInHour method");
 	}
 	
+	public void setRegistrationEndDateInMinusHour() {
+		log.info("Starting of setRegistrationEndDateInHour method");
+
+		clickOnWebElement(txtBoxRegistrationEndDate);
+		clickOnWebElement(ddRegistrationEndDate);
+		hardWait(2);
+
+		elementClick(btnRegEndDateCurrentYear);
+
+		int date = this.getCurrentDate();
+
+		String pattern = "h";
+		String pattern1 = "a";
+
+		LocalTime currentHour = LocalTime.now();
+		LocalTime futureHour = currentHour.minusHours(1);
+		String futureHourValue = futureHour.format(DateTimeFormatter.ofPattern(pattern));
+		System.out.println(futureHourValue);
+
+		String meridiem = futureHour.format(DateTimeFormatter.ofPattern(pattern1));
+		String meridiemValue = meridiem.toUpperCase();
+		System.out.println(meridiemValue);
+
+		this.clickOnCurrentDate(date);
+		this.clickOnCurrentTime(futureHourValue);
+		clickOnElementUsingActionClass(btnTimeInMinutes);
+		this.clickOnCurrentTime(meridiemValue);
+		this.clickOnElementUsingActionClass(btnOK);
+
+		log.info("Ending of setRegistrationEndDateInHour method");
+	}
+
 	public void setCompetitionEndDateInHour() {
 		log.info("Starting of setCompetitionEndDateInHour method");
 		clickOnWebElement(txtBoxCompetitionEndDate);
@@ -986,7 +1094,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		String pattern1 = "a";
 
 		LocalTime currentHour = LocalTime.now();
-		LocalTime futureHour = currentHour.plusHours(3);
+		LocalTime futureHour = currentHour.plusHours(1);
 		String futureHourValue = futureHour.format(DateTimeFormatter.ofPattern(pattern));
 		System.out.println(futureHourValue);
 		
@@ -1003,6 +1111,38 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		log.info("Ending of setCompetitionEndDateInHour method");
 	}
 	
+	public void setCompetitionEndDateInPastHours() {
+		log.info("Starting of setCompetitionEndDateInPastHours method");
+		clickOnWebElement(txtBoxCompetitionEndDate);
+	
+		clickOnWebElement(ddRegistrationEndDate);
+		hardWait(2);
+
+		elementClick(btnRegEndDateCurrentYear);
+
+		int date = this.getCurrentDate();
+
+		String pattern = "h";
+		String pattern1 = "a";
+
+		LocalTime currentHour = LocalTime.now();
+		LocalTime futureHour = currentHour.minusHours(1);
+		String futureHourValue = futureHour.format(DateTimeFormatter.ofPattern(pattern));
+		System.out.println(futureHourValue);
+		
+		String meridiem = futureHour.format(DateTimeFormatter.ofPattern(pattern1));
+		String meridiemValue = meridiem.toUpperCase();
+		System.out.println(meridiemValue);
+
+		this.clickOnCurrentDate(date);
+		this.clickOnCurrentTime(futureHourValue);
+		clickOnElementUsingActionClass(btnTimeInMinutes);
+		this.clickOnCurrentTime(meridiemValue);
+		this.clickOnElementUsingActionClass(btnOK);
+		
+		log.info("Ending of setCompetitionEndDateInPastHours�method");
+	}
+
 	public void setRegistrationStartDateBeforeOneDay() {
 		log.info("Starting of setRegistrationStartDateBeforeOneDay method");
 

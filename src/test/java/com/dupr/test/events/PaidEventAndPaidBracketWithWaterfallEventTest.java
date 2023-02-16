@@ -20,9 +20,9 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 
-public class PaidEventTest extends CommonBaseTest {
+public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTest {
 
-	private static final Logger logger = Logger.getLogger(PaidEventTest.class.getName());
+	private static final Logger logger = Logger.getLogger(PaidEventAndPaidBracketWithWaterfallEventTest.class.getName());
 	private ClubLogoPage clubLogoPage = null;
 
 	private MyClubsPage myClubsPage = null;
@@ -30,20 +30,20 @@ public class PaidEventTest extends CommonBaseTest {
 
 	@BeforeClass
 	@Parameters({ "browser", "siteURL", "directorEmail", "directorPassword" })
-	public void initMethod(String browser, String siteURL, String email, String password) throws Exception {
-		logger.info("Starting of initMethod in AddEventTest");
+	public void initMethod(String browser, String siteURL, String directorEmail, String directorPassword)
+			throws Exception {
+		logger.info("Starting of initMethod in PaidEventAndPaidBracketWithWaterfallEventTest");
 
 		this.driver = super.getWebDriver(WebDriversEnum.PAID_EVENT_DRIVER);
-		this.siteLogin(siteURL, email, password, this.driver);
-		this.clubLogoPage = new ClubLogoPage(this.driver);
+		this.siteLogin(siteURL, directorEmail, directorPassword, this.driver);
 
+		this.clubLogoPage = new ClubLogoPage(this.driver);
 		this.addEventPage = new AddEventPage(this.driver);
 		this.addBracketPage = new AddBracketPage(this.driver);
-
 		this.myClubsPage = new MyClubsPage(this.driver);
 		this.browseClubsPage = new BrowseClubsPage(this.driver);
 
-		logger.info("Ending of initMethod in AddEventTest");
+		logger.info("Ending of initMethod in PaidEventAndPaidBracketWithWaterfallEventTest");
 	}
 
 	@Test(priority = 1, description = "Verify Add Event functionality", groups = "sanity")
@@ -73,7 +73,7 @@ public class PaidEventTest extends CommonBaseTest {
 
 		logger.info("Ending of verifyAddEventFunctionality method");
 	}
-	
+
 	@Test(priority = 2, description = "verifyPaidEventFunctionalityWithWateFallEventTypeInDoubles", groups = "sanity")
 	@Description("Test case #2, verifyPaidEventFunctionalityWithWateFallEventTypeInDoubles")
 	@Severity(SeverityLevel.NORMAL)
@@ -84,6 +84,7 @@ public class PaidEventTest extends CommonBaseTest {
 		super.verifyPaidEventInformationPageWithValidDetails();
 		super.verifyEventPoliciesPageByEnteringValidDetails();
 		super.verifyPaidBracketWithEventTypeAsWateFallInDoublesMatchType();
+		super.VerifyRecentlyAddedEventUnderEventsTab();
 
 		logger.info("Ending of verifyPaidEventFunctionalityWithWateFallEventTypeInDoubles method");
 
@@ -96,30 +97,16 @@ public class PaidEventTest extends CommonBaseTest {
 	public void verifyPaidEventFunctionalityWithWateFallEventTypeInSingles() {
 		logger.info("Starting of verifyPaidEventFunctionalityWithWateFallEventTypeInSingles method");
 
+		driver.navigate().back();
+		addEventPage.clickOnAddEventButton();
 		super.verifyPaidEventInformationPageWithValidDetails();
 		super.verifyEventPoliciesPageByEnteringValidDetails();
 		super.verifyPaidBracketWithEventTypeAsWateFallInSinglesMatchType();
+		super.VerifyRecentlyAddedEventUnderEventsTab();
 
 		logger.info("Ending of verifyPaidEventFunctionalityWithWateFallEventTypeInSingles method");
-
 	}
 
-	@Test(priority = 4, description = "verifyPaidEventRegistrationFunctionalityWithWateFallEventTypeInDirectorAndOrganizerView", groups = "sanity")
-	@Description("Test case #4, verifyPaidEventRegistrationFunctionalityWithWateFallEventTypeInDirectorAndOrganizerView")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #4, verifyPaidEventRegistrationFunctionalityWithWateFallEventTypeInDirectorAndOrganizerView")
-	public void verifyPaidEventRegistrationFunctionalityWithWateFallEventTypeInDirectorAndOrganizerView() {
-		logger.info("Starting of verifyPaidEventRegistrationFunctionalityWithWateFallEventTypeInDirectorAndOrganizerView method");
-
-		super.VerifyRecentlyAddedEventUnderEventsTab();
-		super.verifyEventPoliciesPageByEnteringValidDetails();
-		super.verifyPaidBracketWithEventTypeAsWateFallInSinglesMatchType();
-
-		logger.info("Ending of verifyPaidEventRegistrationFunctionalityWithWateFallEventTypeInDirectorAndOrganizerView method");
-
-	}
-
-	
 	@AfterClass
 	public void quitDriver() {
 
