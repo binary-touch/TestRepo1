@@ -13,6 +13,7 @@ import com.dupr.pages.clubs.ClubLogoPage;
 import com.dupr.pages.clubs.MyClubsPage;
 import com.dupr.pages.events.AddBracketPage;
 import com.dupr.pages.events.AddEventPage;
+import com.dupr.pages.home.PreservingPageVisitsPage;
 import com.dupr.test.CommonBaseTest;
 
 import io.qameta.allure.Description;
@@ -27,22 +28,24 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 
 	private MyClubsPage myClubsPage = null;
 	private BrowseClubsPage browseClubsPage = null;
-
+	private PreservingPageVisitsPage preservingPageVisitsPage = null;
+	
 	@BeforeClass
-	@Parameters({ "browser", "siteURL", "directorEmail", "directorPassword" })
-	public void initMethod(String browser, String siteURL, String directorEmail, String directorPassword)
+	@Parameters({ "browser", "devsiteURL", "directorEmail", "directorPassword" })
+	public void initMethod(String browser, String devsiteURL, String directorEmail, String directorPassword)
 			throws Exception {
 		logger.info("Starting of initMethod in PaidEventAndPaidBracketWithWaterfallEventTest");
 
 		this.driver = super.getWebDriver(WebDriversEnum.PAID_EVENT_DRIVER);
-		this.siteLogin(siteURL, directorEmail, directorPassword, this.driver);
+		this.siteLogin(devsiteURL, directorEmail, directorPassword, this.driver);
 
 		this.clubLogoPage = new ClubLogoPage(this.driver);
 		this.addEventPage = new AddEventPage(this.driver);
 		this.addBracketPage = new AddBracketPage(this.driver);
 		this.myClubsPage = new MyClubsPage(this.driver);
 		this.browseClubsPage = new BrowseClubsPage(this.driver);
-
+		this.preservingPageVisitsPage = new PreservingPageVisitsPage(this.driver);
+		
 		logger.info("Ending of initMethod in PaidEventAndPaidBracketWithWaterfallEventTest");
 	}
 
@@ -106,6 +109,28 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 
 		logger.info("Ending of verifyPaidEventFunctionalityWithWateFallEventTypeInSingles method");
 	}
+
+	    @Test(priority = 4, description = "verifyPaidEventRegistrationFunctionalityWithWateFallEventTypeInDirectorAndOrganizerView", groups = "sanity")
+		@Description("Test case #4, verifyPaidEventRegistrationFunctionalityWithWateFallEventTypeInDirectorAndOrganizerView")
+		@Severity(SeverityLevel.NORMAL)
+		@Story("Test case #4, verifyPaidEventRegistrationFunctionalityWithWateFallEventTypeInDirectorAndOrganizerView")
+	    @Parameters({ "browser", "devsiteURL", "validEmail", "validPassword" })
+		public void verifyPaidEventRegistrationFunctionalityWithWateFallEventTypeInDirectorAndOrganizerView(String browser, String devsiteURL, String validEmail, String validPassword) throws Exception {
+			logger.info("Starting of verifyPaidEventRegistrationFunctionalityWithWateFallEventTypeInDirectorAndOrganizerView method");
+
+			userDashboardPage.clickOnSettings();
+			
+			preservingPageVisitsPage.clickOnLogoutButton();
+			
+			super.initCommonBaseTest( devsiteURL, validEmail, validPassword);
+			
+			super.verifyRegisterFunctionalityInPlayerAccount();
+			
+			
+			logger.info("Ending of verifyPaidEventRegistrationFunctionalityWithWateFallEventTypeInDirectorAndOrganizerView method");
+
+		}
+
 
 	@AfterClass
 	public void quitDriver() {

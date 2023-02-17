@@ -735,7 +735,8 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 	 * 
 	 * return PlayerGroupType; }
 	 * 
-	 */	public void clickOnInformationButton() {
+	 */	
+	public void clickOnInformationButton() {
 		log.info("Starting of clickOnInformationButton method");
 
 		try {

@@ -886,7 +886,7 @@ public class UserDashboardPage extends DUPRBaseAutomationPage {
 		log.info("Starting of clickOnSettings method");
 
 		clickOnWebElement(btnSettings);
-
+        hardWait(2);
 		log.info("Ending of clickOnSettings method");
 	}
 }

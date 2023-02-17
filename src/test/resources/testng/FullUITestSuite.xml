@@ -8,6 +8,9 @@
 	<parameter name="siteURL"
 		value="https://stage.gamestoppedout.com/" />
 
+	<parameter name="devsiteURL"
+		value="https://dev.gamestoppedout.com/" />
+		
 	<parameter name="validEmail" value="meet@yopmail.com" />
 	<parameter name="validPassword" value="qwer1234" />
 
@@ -19,7 +22,7 @@
 	<parameter name="opponent2Email"
 		value="chandraiah.kathera@binarytouch.com" />
 	<parameter name="ChangePassword" value="qwer12345" />
-	
+
 	<parameter name="directorEmail" value="adok@yopmail.com" />
 	<parameter name="directorPassword" value="qwer1234" />
 
