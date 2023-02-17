@@ -1348,7 +1348,12 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		log.info("Starting of setBracketClubMemberPrice method");
 
 		scrollDown(300);
-		clickUsingActionsClass(txtBoxClubMemberPrice);
+		try {
+			clickUsingActionsClass(txtBoxClubMemberPrice);
+		} catch (Exception e) {
+			clickOnWebElement(txtBoxClubMemberPrice);
+		}
+
 		txtBoxClubMemberPrice.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		txtBoxClubMemberPrice.sendKeys(clubMemberPrice);
 
@@ -1376,7 +1381,12 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	public void setBracketNonClubMemberPrice(String nonclubMemberPrice) {
 		log.info("Starting of setBracketNonClubMemberPrice method");
 
-		clickUsingActionsClass(txtBoxNonClubMemberPrice);
+		try {
+			clickUsingActionsClass(txtBoxNonClubMemberPrice);
+		} catch (Exception e) {
+			clickOnWebElement(txtBoxNonClubMemberPrice);
+		}
+		
 		txtBoxNonClubMemberPrice.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		txtBoxNonClubMemberPrice.sendKeys(nonclubMemberPrice);
 
@@ -1465,7 +1475,12 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	public void setNumberOfCourts(String numberOfCourts) {
 		log.info("Starting of setNumberOfCourts method");
 
-		txtBoxNumberOfCourts.click();
+		try {
+			clickUsingActionsClass(txtBoxNumberOfCourts);
+		} catch (Exception e) {
+			clickOnWebElement(txtBoxNumberOfCourts);
+		}
+
 		this.txtBoxNumberOfCourts.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		txtBoxNumberOfCourts.sendKeys(numberOfCourts);
 

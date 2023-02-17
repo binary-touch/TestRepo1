@@ -227,7 +227,7 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 	public void clickOnSelectParticipantRadioButton() {
 		log.info("Starting of clickOnSelectParticipantRadioButton method");
 
-		//this.waitForElementToBeVisible(rdoSelectParticipant);
+		// this.waitForElementToBeVisible(rdoSelectParticipant);
 		clickOnWebElement(rdoSelectParticipant);
 
 		log.info("Ending of clickOnSelectParticipantRadioButton method");
@@ -370,14 +370,14 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 
 		log.info("Ending of clickOnAddParticipantsButton method");
 	}
-	
+
 	public boolean isAddParticiPantsButtonDisplayed() {
 		log.info("Starting of isAddParticiPantsButtonDisplayed method");
-		
+
 		boolean isAddParticiPantsButtonDisplayed = false;
 
 		try {
-			if(btnAddParticipants.isDisplayed()==true) {
+			if (btnAddParticipants.isDisplayed() == true) {
 				isAddParticiPantsButtonDisplayed = true;
 			}
 		} catch (Exception e) {
@@ -459,9 +459,79 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 				clickOnWebElement(btnAdd);
 				this.hardWait(5);
 			}
-			
+
 		}
 
 		log.info("Ending of addParticipants method");
 	}
+
+	public void addParticipantsForWaterFall() {
+		log.info("Starting of addParticipantsForWaterFall method");
+
+		for (int i = 0; i < 16; i++) {
+			try {
+				this.hardWait(3);
+				clickOnWebElement(btnAddParticipants);
+				this.hardWait(4);
+				clickOnWebElement(rdoSelectParticipant);
+				this.hardWait(3);
+				clickOnElement(btnAddParticipant);
+				this.hardWait(4);
+				clickOnWebElement(rdoNo);
+				this.hardWait(3);
+				clickOnWebElement(btnAdd);
+				this.hardWait(5);
+			} catch (Exception e) {
+				this.hardWait(3);
+				clickOnWebElement(btnAddParticipants);
+				this.hardWait(4);
+				clickOnWebElement(rdoSelectParticipant);
+				this.hardWait(3);
+				clickOnElement(btnAddParticipant);
+				this.hardWait(4);
+				clickOnWebElement(rdoNo);
+				this.hardWait(3);
+				clickOnWebElement(btnAdd);
+				this.hardWait(5);
+			}
+
+		}
+
+		log.info("Ending of addParticipantsForWaterFall method");
+	}
+	public void addMeetForWaterFall(String Name) {
+		log.info("Starting of addParticipantsForWaterFall method");
+		try {
+			this.hardWait(3);
+			clickOnWebElement(btnAddParticipants);
+			this.hardWait(4);
+			this.searchParticipantByName(Name);
+			this.hardWait(4);
+			clickOnWebElement(rdoSelectParticipant);
+			this.hardWait(3);
+			clickOnElement(btnAddParticipant);
+			this.hardWait(4);
+			clickOnWebElement(rdoNo);
+			this.hardWait(3);
+			clickOnWebElement(btnAdd);
+			this.hardWait(5);
+		} catch (Exception e) {
+			this.hardWait(3);
+			clickOnWebElement(btnAddParticipants);
+			this.hardWait(4);
+			this.searchParticipantByName(Name);
+			this.hardWait(4);
+			clickOnWebElement(rdoSelectParticipant);
+			this.hardWait(3);
+			clickOnElement(btnAddParticipant);
+			this.hardWait(4);
+			clickOnWebElement(rdoNo);
+			this.hardWait(3);
+			clickOnWebElement(btnAdd);
+			this.hardWait(5);
+		}
+
+		log.info("Ending of addParticipantsForWaterFall method");
+	}
+	
 }
