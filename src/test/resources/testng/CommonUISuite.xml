@@ -21,9 +21,9 @@
 			<class name="com.dupr.test.profile.ChangePasswordTest" />
 			<class name="com.dupr.test.profile.ProfilePictureTest" />
 		</classes>
-	</test>
+	</test> -->
 
-	<test name="Sprint 2">
+	<!-- <test name="Sprint 2">
 		<classes>
 			<class name="com.dupr.test.clubs.BrowseClubsTest" />
 			<class name="com.dupr.test.clubs.MyClubsTest" />
@@ -39,16 +39,15 @@
 			<class name="com.dupr.test.events.EditBracketsTest" />
 		</classes>
 	</test>-->
-
+	
 	<!-- <test name="Sprint 3">
 		<classes>
 			<class name="com.dupr.test.events.AddEditRemoveEventLogoTest" />
 			<class name="com.dupr.test.events.AddParticipantsInBracketTest" />
 			<class name="com.dupr.test.events.EndEventTest" />
 			<class name="com.dupr.test.events.AddAnnouncementTest" />
-			<class
-				name="com.dupr.test.events.PlayerEventRegistrationTest" />
-			 <class name="com.dupr.test.events.AcceptOrDeclinePartnerTest" />
+			<class name="com.dupr.test.events.PlayerEventRegistrationTest" />
+			<class name="com.dupr.test.events.AcceptOrDeclinePartnerTest" />
 			<class
 				name="com.dupr.test.events.DirectorEventRegistrationTest" />
 			<class name="com.dupr.test.events.EditOrRemovePartnerTest" />
@@ -58,19 +57,25 @@
 			<class name="com.dupr.test.home.AntiScrappingCaptchaTest" />
 			<class name="com.dupr.test.home.UserDashboardTest" />
 			<class name="com.dupr.test.home.PreservingPageVisitsTest" />
-			
 		</classes>
-	</test>  -->
+	</test> -->
 
-	 <test name="Sprint 4">
+	<test name="Sprint 4">
 		<classes>
 			<class name="com.dupr.test.home.ChatTest" />
-			 <class name="com.dupr.test.home.ShareTest" />
-			<class name="com.dupr.test.events.SeedMatchesTest" /> 
-			<class name="com.dupr.test.events.CombinationOfMatchTypeAndPlayerGroupTest" />
-			<class name="com.dupr.test.events.FullRegistrationTest" /> 
+			<class name="com.dupr.test.home.ShareTest" />
+			<class name="com.dupr.test.events.SeedMatchesTest" />
+			<class
+				name="com.dupr.test.events.CombinationOfMatchTypeAndPlayerGroupTest" />
+			<class name="com.dupr.test.events.FullRegistrationTest" />
 			<class name="com.dupr.test.events.TimeZoneTest" />
-			<class name="com.dupr.test.events.SeedMatchesWaterFallTest" />
 		</classes>
 	</test>
+
+	<!-- <test name="Sprint 5">
+		<classes>
+			<class name="com.dupr.test.events.PaidEventAndPaidBracketWithWaterfallEventTest" />
+			<class name="com.dupr.test.events.SeedMatchesWaterFallTest" />
+		</classes>
+	</test> -->
 </suite>
