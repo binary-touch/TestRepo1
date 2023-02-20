@@ -675,7 +675,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyEventPoliciesPageByEnteringValidDetails method");
 	}
 
-	/*@Test(priority = 39, description = "Verify Add Bracket Page Empty Fields Validations", groups = "sanity")
+	@Test(priority = 39, description = "Verify Add Bracket Page Empty Fields Validations", groups = "sanity")
 	@Description("Test case #39, Verify Add Bracket Page Empty Fields Validations")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #39, Verify Add Bracket Page Empty Fields Validations")
@@ -1153,7 +1153,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 
 		addBracketPage.clickOnTimeZoneDropdown();
 		Assert.assertTrue(addBracketPage.isTimeZoneListContains());
-		addBracketPage.clickOnCentalAmericanTimeZone();
+		addBracketPage.clickOnNewDelhiTimeZone();
 
 		addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("min.age.range"));
 		Assert.assertTrue(addBracketPage.isEnteredClubMemberPriceDisplayed(testDataProp.getProperty("min.age.range")));
@@ -1217,7 +1217,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		addEventPage.clickOnNextStepButton();
 
 		logger.info("Ending of VerifyResultsOnClickOfCloseIconInAddAnotherBracketpopup method");
-	}*/
+	}
 
 	@Test(priority = 67, description = "Verify NoContinueToSummary Button In AddAnotherBracket popup", groups = "sanity")
 	@Description("Test case #67, Verify NoContinueToSummary Button In AddAnotherBracket popup")
@@ -1235,7 +1235,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of VerifyNoContinueToSummaryButtonInAddAnotherBracketpopup method");
 	}
 
-	/*@Test(priority = 68, description = "Verify delete Bracket In Summary Page", groups = "sanity")
+	@Test(priority = 68, description = "Verify delete Bracket In Summary Page", groups = "sanity")
 	@Description("Test case #68, Verify delete Bracket In Summary Page")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #68, Verify delete Bracket In Summary Page")
@@ -1353,7 +1353,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		addEventPage.clickOnDeleteEventFromList(testDataProp.getProperty("event.name"));
 
 		logger.info("Ending of VerifyDraftEventInClubsPageEventsTabFunctionality method");
-	}*/
+	}
 
 	@Test(priority = 73, description = "Verify Publish Event Button", groups = "sanity")
 	@Description("Test case #73, Verify Publish Event Button")
@@ -1370,7 +1370,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of VerifyPublishEventButton method");
 	}
 
-	/*@Test(priority = 74, description = "Verify Close Icon In YourEventIsNowPublished Success Popup", groups = "sanity")
+	@Test(priority = 74, description = "Verify Close Icon In YourEventIsNowPublished Success Popup", groups = "sanity")
 	@Description("Test case #74, Verify Close Icon In YourEventIsNowPublished Success Popup")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #74, Verify Close Icon In YourEventIsNowPublished Success Popup")
@@ -1537,7 +1537,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		addBracketPage.clickOnEventSuccessClosePopupButton();
 
 		logger.info("Ending of VerifyFreeEventFunctionality method");
-	}*/
+	}
 
 	@Test(priority = 82, description = "Verify Free Bracket With Event Type As Round Robin", groups = "sanity")
 	@Description("Test case #82, Verify Free Bracket With Event Type As Round Robin")
@@ -1546,7 +1546,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	public void verifyFreeBracketWithEventTypeAsRoundRobin() {
 		logger.info("Starting of verifyFreeBracketWithEventTypeAsRoundRobin method");
 
-		//addEventPage.clickOnAddEventButton();
+		addEventPage.clickOnAddEventButton();
 
 		eventName = addEventPage.setEventName(testDataProp.getProperty("event.name"));
 		addEventPage.setLocation(testDataProp.getProperty("state.address"));

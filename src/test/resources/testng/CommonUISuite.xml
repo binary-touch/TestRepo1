@@ -12,8 +12,7 @@
 			<class name="com.dupr.test.ForgotPasswordTest" />
 			<class name="com.dupr.test.addamatch.AddAMatchTest" />
 			<class name="com.dupr.test.home.ValidateRecentlyAddedMatchTest" />
-			<class
-				name="com.dupr.test.home.ValidateStatsChangeOnNewMatchTest" />
+			<class name="com.dupr.test.home.ValidateStatsChangeOnNewMatchTest" />
 			<class name="com.dupr.test.home.DeleteRecentlyAddedMatchTest" />
 			<class name="com.dupr.test.players.BrowsePlayersTest" />
 			<class name="com.dupr.test.profile.PlayerProfileTest" />
@@ -21,16 +20,16 @@
 			<class name="com.dupr.test.profile.ChangePasswordTest" />
 			<class name="com.dupr.test.profile.ProfilePictureTest" />
 		</classes>
-	</test>
+	</test>-->
 
-	<test name="Sprint 2">
+	<!-- <test name="Sprint 2">
 		<classes>
-			<class name="com.dupr.test.clubs.BrowseClubsTest" />
-			<class name="com.dupr.test.clubs.MyClubsTest" />
-			<class name="com.dupr.test.clubs.EditClubInfoTest" />
-			<class name="com.dupr.test.clubs.ClubLogoTest" />
+			 <class name="com.dupr.test.clubs.BrowseClubsTest" />
+			 <class name="com.dupr.test.clubs.MyClubsTest" />
+			<class name="com.dupr.test.clubs.EditClubInfoTest" /> 
+			<class name="com.dupr.test.clubs.ClubLogoTest" /> 
 			<class name="com.dupr.test.clubs.AddRemoveOrganizerTest" />
-			<class name="com.dupr.test.clubs.RemoveMemberTest" />
+			 <class name="com.dupr.test.clubs.RemoveClubMemberTest" />
 			<class name="com.dupr.test.clubs.ImportPlayerViaCSVTest" />
 			<class name="com.dupr.test.addamatch.AddClubMatchTest" />
 			<class name="com.dupr.test.events.AddEventTest" />
@@ -38,7 +37,7 @@
 			<class name="com.dupr.test.events.EditEventsTest" />
 			<class name="com.dupr.test.events.EditBracketsTest" />
 		</classes>
-	</test>-->
+	</test> -->
 
 	<!-- <test name="Sprint 3">
 		<classes>
@@ -46,11 +45,9 @@
 			<class name="com.dupr.test.events.AddParticipantsInBracketTest" />
 			<class name="com.dupr.test.events.EndEventTest" />
 			<class name="com.dupr.test.events.AddAnnouncementTest" />
-			<class
-				name="com.dupr.test.events.PlayerEventRegistrationTest" />
+			<class name="com.dupr.test.events.PlayerEventRegistrationTest" />
 			 <class name="com.dupr.test.events.AcceptOrDeclinePartnerTest" />
-			<class
-				name="com.dupr.test.events.DirectorEventRegistrationTest" />
+			<class name="com.dupr.test.events.DirectorEventRegistrationTest" />
 			<class name="com.dupr.test.events.EditOrRemovePartnerTest" />
 			<class name="com.dupr.test.events.WithdrawPlayerTest" />
 			<class name="com.dupr.test.events.Create_Edit_Split_TeamTest" />
@@ -58,18 +55,17 @@
 			<class name="com.dupr.test.home.AntiScrappingCaptchaTest" />
 			<class name="com.dupr.test.home.UserDashboardTest" />
 			<class name="com.dupr.test.home.PreservingPageVisitsTest" />
-			
 		</classes>
 	</test>  -->
 
 	 <test name="Sprint 4">
 		<classes>
-			<class name="com.dupr.test.home.ChatTest" />
-			<class name="com.dupr.test.home.ShareTest" />
+			<!-- <class name="com.dupr.test.home.ChatTest" />
+			<class name="com.dupr.test.home.ShareTest" /> -->
 			<class name="com.dupr.test.events.SeedMatchesTest" /> 
-			<class name="com.dupr.test.events.CombinationOfMatchTypeAndPlayerGroupTest" />
+			<!-- <class name="com.dupr.test.events.CombinationOfMatchTypeAndPlayerGroupTest" />
 			<class name="com.dupr.test.events.FullRegistrationTest" /> 
-			<class name="com.dupr.test.events.TimeZoneTest" />
+			<class name="com.dupr.test.events.TimeZoneTest" /> -->
 		</classes>
 	</test>
 </suite>

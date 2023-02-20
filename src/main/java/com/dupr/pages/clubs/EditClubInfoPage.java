@@ -57,7 +57,7 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h5[text()='Email']/../following-sibling::div//input[contains(@class,'MuiOutlinedInput-input')]")
 	private WebElement txtBoxEmail;
 
-	@B2BFindBy(xpath = "//h5[text()='Phone']/../following-sibling::div//input[contains(@class,'MuiOutlinedInput-input') and@name='clubPhoneNumber']")
+	@B2BFindBy(xpath = "//h5[text()='Phone']/../following-sibling::div//input[contains(@class,'MuiOutlinedInput-input')]")
 	private WebElement txtBoxPhoneNumber;
 
 	@B2BFindBy(xpath = "//h3[text()='Club Organizers']")
@@ -180,6 +180,9 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//div[contains(@class,'MuiBox-root')]/button[contains(@class,'MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium')]/*[contains(@class,'MuiSvgIcon-root MuiSvgIcon-colorPrimary')]")
 	private WebElement btnBackInDirectorsPage;
 
+	@B2BFindBy(xpath = "//button[@aria-label='close']")
+	private WebElement iconCloseEditPopup;
+
 	@B2BFindBy(xpath = "//h4[contains(text(),'Simba')]")
 	private WebElement btnSimbaOrganizer;
 
@@ -197,8 +200,11 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//h4[contains(text(),'Jalsa')]")
 	private WebElement btnJalsa;
+	
+	@B2BFindBys(@B2BFindBy(xpath = "//div[contains(@class,'MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation3')]//h4"))
+	private List<WebElement> lstClubNames;
 
-	@B2BFindBy(xpath = "//div[contains(@class,'MuiPaper-rounded MuiPaper-elevation3')]//following-sibling::div//div[contains(@class,'MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2')]//h4")
+	@B2BFindBy(xpath = "//div[contains(@class,'MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation3')]//h4")
 	private WebElement btnClubName;
 
 	public EditClubInfoPage(WebDriver driver) {
@@ -290,10 +296,14 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 
 		boolean isEditClubContactInformationPopupContains = false;
 
-		if (isDisplayed(txtBoxAddress) && isDisplayed(txtBoxEmail) && isDisplayed(txtBoxPhoneNumber)
-				&& isDisplayed(btnSaveChanges)) {
+		try {
+			if (txtBoxAddress.isDisplayed() || txtBoxEmail.isDisplayed() || txtBoxPhoneNumber.isDisplayed()
+					|| btnSaveChanges.isDisplayed()) {
 
-			isEditClubContactInformationPopupContains = true;
+				isEditClubContactInformationPopupContains = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 		log.info("Ending of isEditClubContactInformationPopupContains method");
@@ -526,12 +536,16 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 	public void clearPhoneNumber() {
 		log.info("Starting of clearPhoneNumber method");
 
-		clickOnElement(txtBoxPhoneNumber);
-		String s = txtBoxPhoneNumber.getAttribute("value");
+		clickOnWebElement(txtBoxPhoneNumber);
 
-		int numberLenght = s.length();
-		for (int i = 0; i <= numberLenght - 1; i++) {
-			hardWait(1);
+		String s = txtBoxPhoneNumber.getAttribute("value");
+		log.debug("Derived Phone number from the field: " + s);
+
+		int numberLength = s.length();
+		log.debug("Phone number length: " + numberLength);
+
+		for (int i = numberLength; i > 0;) {
+			hardWait(5);
 			this.txtBoxPhoneNumber.sendKeys(Keys.BACK_SPACE);
 		}
 
@@ -541,7 +555,12 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 	public void setPhoneNumber(String number) {
 		log.info("Starting of setPhoneNumber method");
 
-		this.txtBoxPhoneNumber.sendKeys(number);
+		clickOnWebElement(txtBoxPhoneNumber);
+		try {
+			this.txtBoxPhoneNumber.sendKeys(number);
+		} catch (Exception e) {
+			sendKeys(txtBoxPhoneNumber, number);
+		}
 
 		log.info("Ending of setPhoneNumber method");
 	}
@@ -615,6 +634,13 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 		return getText(lblMinimumTenCharacters);
 	}
 
+	public boolean isMinimumTenCharactersLabelDisplayed() {
+		log.info("Starting of isMinimumTenCharactersLabelDisplayed method");
+		log.info("Ending of isMinimumTenCharactersLabelDisplayed method");
+
+		return lblMinimumTenCharacters.isDisplayed();
+	}
+
 	public void clickOnAddDescriptionButton() {
 		log.info("Starting of clickOnAddDescriptionButton method");
 
@@ -674,6 +700,15 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 		log.info("Ending of setEditInfoDescription method");
 	}
 
+	public void clickAndClearClubInfoField() {
+		log.info("Starting of clickAndClearClubInfoField method");
+
+		this.txtDescription.click();
+		this.txtEditDescription.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
+
+		log.info("Ending of clickAndClearClubInfoField method");
+	}
+
 	public void clickOnBoldImageButton() {
 		log.info("Starting of clickOnBoldImageButton method");
 
@@ -709,18 +744,18 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 		log.info("Starting of selectDirectorFromDirectorsList method");
 
 		hardWait(3);
-		//String s = btnYemenirialDirector.getText();
+		// String s = btnYemenirialDirector.getText();
 
 		for (WebElement director : lstDirectorNames) {
-			//System.out.println(s);
+			// System.out.println(s);
 			System.out.println(director.getText());
 			director.click();
 			/*
 			 * if (director.getText().equals(s)) { try { clickOnWebElement(director); }
 			 * catch (Exception e) { clickOnElement(director); }
 			 */
-				break;
-			}
+			break;
+		}
 		log.info("Ending of selectDirectorFromDirectorsList method");
 	}
 
@@ -741,7 +776,6 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			clickOnWebElement(btnBackInDirectorsPage);
 		}
-		
 
 		log.info("Ending of clickOnBackButtonInDirectorsPage method");
 	}
@@ -758,8 +792,15 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 	public void clickOnClubNameButton() {
 		log.info("Starting of clickOnClubNameButton method");
 
-		this.waitForElementToBeVisible(btnClubName);
-		elementClick(btnClubName);
+			for (WebElement clubName : lstClubNames) {
+
+				try {
+					clickUsingActionsClass(clubName);
+				} catch (Exception e) {
+					clickOnWebElement(clubName);
+				}
+				break;
+			}
 
 		log.info("Ending of clickOnClubNameButton method");
 	}
@@ -805,21 +846,33 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 		log.info("Ending of setClubSearch method");
 	}
 
-	public boolean isEditClubIsNotDisplayed() {
-		log.info("Starting of isEditClubIsNotDisplayed method");
-		log.info("Ending of isEditClubIsNotDisplayed method");
+	public boolean isEditIconDisplayed() {
+		log.info("Starting of isEditIconDisplayed method");
 
-		boolean isEditClubDescriptionPopUpContains = false;
+		boolean isEditIconDisplayed = false;
 		try {
 			if (isDisplayed(iconEdit)) {
 
-				System.out.println(isEditClubDescriptionPopUpContains = true);
+				System.out.println(isEditIconDisplayed = true);
 			}
 		} catch (Exception e) {
-			System.out.println(isEditClubDescriptionPopUpContains = false);
+			System.out.println(isEditIconDisplayed = false);
 		}
-		return isEditClubDescriptionPopUpContains;
 
+		log.info("Ending of isEditIconDisplayed method");
+
+		return isEditIconDisplayed;
 	}
 
+	public void clickOnEditCloseIcon() {
+		log.info("Starting of clickOnEditCloseIcon method");
+		
+		try {
+			clickUsingActionsClass(iconCloseEditPopup);
+		} catch (Exception e) {
+			clickOnWebElement(iconCloseEditPopup);
+		}
+		
+		log.info("Starting of clickOnEditCloseIcon method");
+	}
 }

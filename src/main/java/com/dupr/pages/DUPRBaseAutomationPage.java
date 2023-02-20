@@ -2,6 +2,7 @@ package com.dupr.pages;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.apache.commons.lang3.RandomStringUtils;
@@ -76,13 +77,13 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 
 	public void clickOnElementUsingActionClass(WebElement WebElement) {
 		log.info("Starting of clickOnElementUsingActionClass method");
-		
+
 		Actions action = new Actions(driver);
 		action.moveToElement(WebElement).click().build().perform();
-		
+
 		log.info("Ending of clickOnElementUsingActionClass method");
 	}
-	
+
 	public void mouseHoverAndClick(WebElement webElement) {
 		log.info("Starting of mouseHoverAndClick method");
 
@@ -91,7 +92,7 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 
 		log.info("Ending of mouseHoverAndClick method");
 	}
-	
+
 	public void clickUsingActionsClass(WebElement webElement) {
 		log.info("Starting of clickUsingActionsClass method");
 
@@ -103,7 +104,7 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 
 		log.info("Ending of clickUsingActionsClass method");
 	}
-	
+
 	public int getCurrentDate() {
 		log.info("Starting of getCurrentDate method");
 
@@ -181,7 +182,7 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 		log.info("Ending of clickOnRegistrationEndDate method");
 		return zone;
 	}
-	
+
 	public void clickOnCurrentDate(int date) {
 		try {
 			clickOnElementUsingActionClass(driver.findElement(By.xpath("//button[text()='" + date + "']")));
@@ -197,5 +198,28 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 			clickOnElementUsingActionClass(driver.findElement(By.xpath("//span[text()='" + strHour + "']")));
 		}
 	}
-	
+
+	public void switchToNewWindow() {
+		log.info("Starting of switchToNewWindow method");
+
+		// To Open new window and check Assertions
+		ArrayList<String> tab = new ArrayList<String>(driver.getWindowHandles());
+		if (tab.size() > 0) {
+			driver.switchTo().window(tab.get(1));
+		}
+
+		log.info("Ending of switchToNewWindow method");
+	}
+
+	public void closeWindow() {
+		log.info("Starting of closeWindow method");
+
+		// Recent window will be closed and returns back
+		driver.close();
+		ArrayList<String> tab = new ArrayList<String>(driver.getWindowHandles());
+		driver.switchTo().window(tab.get(0));
+
+		log.info("Ending of closeWindow method");
+	}
+
 }

@@ -347,6 +347,10 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		B2BPageFactory.initElements(driver, this);
 	}
 
+	private static int finalminutesValue = 0;
+	private static String lastMinutes = null;
+	private static String min = null;
+
 	public void clickOnBracketCard() {
 		log.info("Starting of clickOnBracketCard method");
 
@@ -1494,9 +1498,11 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		String last = minutesValue2 + minutesValue1;
 		int num = Integer.parseInt(last);
 
-		int finalminutesValue = num + minutesFinalValue;
+		finalminutesValue = num + minutesFinalValue;
+		System.out.println(finalminutesValue);
 
-		// System.out.println(finalminutesValue);
+		lastMinutes = String.valueOf(finalminutesValue);
+
 		return finalminutesValue;
 	}
 
@@ -1538,7 +1544,31 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		int date = this.getCurrentDate();
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
+
 		String pattern = "h";
+		/*
+		 * String pattern1 = "mm"; String pattern2 = "a";
+		 * 
+		 * LocalTime currentMinute = LocalTime.now(); LocalTime futureMinute =
+		 * currentMinute.plusMinutes(4);
+		 * 
+		 * String futureHourValue =
+		 * futureMinute.format(DateTimeFormatter.ofPattern(pattern));
+		 * System.out.println("futureHourValue:" + futureHourValue);
+		 * 
+		 * String futureMinuteValue =
+		 * futureMinute.format(DateTimeFormatter.ofPattern(pattern1));
+		 * System.out.println("futureMinuteValue: " + futureMinuteValue);
+		 * 
+		 * String futureMeridiemValue =
+		 * futureMinute.format(DateTimeFormatter.ofPattern(pattern2));
+		 * System.out.println("futureMeridiemValue: " + futureMeridiemValue);
+		 * 
+		 * this.clickOnCurrentDate(date); this.clickOnCurrentTime(futureHourValue);
+		 * this.clickOnCurrentTime(futureMinuteValue);
+		 * this.clickOnCurrentTime(futureMeridiemValue);
+		 * this.clickOnElementUsingActionClass(btnOK);
+		 */
 
 		LocalTime currentHour = LocalTime.now();
 		LocalTime futureHour = currentHour.plusHours(1);
@@ -1547,7 +1577,6 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 		this.clickOnCurrentDate(date);
 		this.clickOnCurrentTime(hours);
-		String min = null;
 		try {
 			min = String.valueOf(this.getMinutes());
 			if (driver.findElement(By.xpath("//span[text()='" + min + "']")).isDisplayed()) {
@@ -1558,15 +1587,45 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 			hardWait(2);
 			clickOnWebElement(txtBoxRegistrationEndDate);
 			this.clickOnCurrentDate(date);
-			this.clickOnCurrentTime(futureHourValue);
-			min = "05";
-			this.clickOnCurrentTime(min);
+			this.selectFutureHour();
 		}
 
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnElementUsingActionClass(btnOK);
 
 		log.info("Ending of setRegistrationEndDate method");
+	}
+
+	public void selectFutureHour() {
+		log.info("Starting of selectFutureHour method");
+
+		String pattern = "h";
+		LocalTime currentHour = LocalTime.now();
+
+		if (lastMinutes.substring(0, 1).contains("5")) {
+			if (lastMinutes.substring(1).contains("5")) {
+				System.out.println();
+			} else if (lastMinutes.substring(1).contains("0")) {
+				System.out.println();
+			} else {
+				String currentHourValue = currentHour.format(DateTimeFormatter.ofPattern(pattern));
+				System.out.println(currentHourValue);
+				this.clickOnCurrentTime(currentHourValue);
+				min = "05";
+				this.clickOnCurrentTime(min);
+			}
+		}
+
+		if (lastMinutes.substring(0, 1).contains("6")) {
+			LocalTime futureHour = currentHour.plusHours(1);
+			String futureHourValue = futureHour.format(DateTimeFormatter.ofPattern(pattern));
+			System.out.println(futureHourValue);
+			this.clickOnCurrentTime(futureHourValue);
+			min = "05";
+			this.clickOnCurrentTime(min);
+		}
+
+		log.info("Ending of selectFutureHour method");
 	}
 
 	public void setCompetitionStartDate() {
@@ -1597,9 +1656,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 			hardWait(2);
 			clickOnWebElement(txtBoxRegistrationEndDate);
 			this.clickOnCurrentDate(date);
-			this.clickOnCurrentTime(futureHourValue);
-			min = "05";
-			this.clickOnCurrentTime(min);
+			this.selectFutureHour();
 		}
 
 		this.clickOnCurrentTime(meridiem);

@@ -45,8 +45,8 @@ public class SeedMatchesTest extends CommonBaseTest {
 	@Description("Test case #1, Verify the results on Click of seed Matches")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #1, Verify the results on Click of seed Matches")
-	public void verifySeedMatchesFuntionality() {
-		logger.info("Starting of verifySeedMatchesFuntionality method");
+	public void verifyAddBracketWithRoundRobinEventType() {
+		logger.info("Starting of verifyAddBracketWithRoundRobinEventType method");
 
 		seedMatchesPage.hardWait(3);
 
@@ -59,7 +59,16 @@ public class SeedMatchesTest extends CommonBaseTest {
 		addEventPage.clickOnRecentlyAddedEvent(seedsEvents);
 		seedMatchesPage.hardWait(3);
 
-		// Register to an Free Bracket
+		logger.info("Ending of verifyAddBracketWithRoundRobinEventType method");
+	}
+
+	@Test(priority = 2, description = "Verify registration for the event", groups = "sanity")
+	@Description("Test case #2, Verify registration for the event")
+	@Severity(SeverityLevel.NORMAL)
+	@Story("Test case #2, Verify registration for the event")
+	public void verifyRegistrationFunctionalityForAnEvent() {
+		logger.info("Starting of verifyRegistrationFunctionalityForAnEvent method");
+
 		seedMatchesPage.registerEvent();
 		seedMatchesPage.hardWait(5);
 		seedMatchesPage.clickOnHomeMenu();
@@ -74,8 +83,30 @@ public class SeedMatchesTest extends CommonBaseTest {
 
 		seedMatchesPage.clickOnBracketCard();
 		seedMatchesPage.hardWait(5);
+
+		logger.info("Ending of verifyRegistrationFunctionalityForAnEvent method");
+	}
+
+	@Test(priority = 3, description = "Verify Adding Participants", groups = "sanity")
+	@Description("Test case #3, Verify Adding Participants")
+	@Severity(SeverityLevel.NORMAL)
+	@Story("Test case #3, Verify Adding Participants")
+	public void verifyAddingParticipantsFunctionality() {
+		logger.info("Starting of verifyAddingParticipantsFunctionality method");
+
 		addparticipantsPage.addParticipants();
 		seedMatchesPage.hardWait(5);
+
+		logger.info("Ending of verifyAddingParticipantsFunctionality method");
+	}
+
+	@Test(priority = 4, description = "Verify Adding Participants", groups = "sanity")
+	@Description("Test case #4, Verify Adding Participants")
+	@Severity(SeverityLevel.NORMAL)
+	@Story("Test case #4, Verify Adding Participants")
+	public void verifyCreatingTeamForAnRoundRobinEvent() {
+		logger.info("Starting of verifyCreatingTeamForAnRoundRobinEvent method");
+
 		createTeams.selectTeams();
 		seedMatchesPage.hardWait(5);
 		seedMatchesPage.clickOnTeamsTab();
@@ -92,13 +123,13 @@ public class SeedMatchesTest extends CommonBaseTest {
 		Assert.assertTrue(seedMatchesPage.isPublisbButtonDisabled());
 		seedMatchesPage.hardWait(5);
 
-		logger.info("Ending of verifySeedMatchesFuntionality method");
+		logger.info("Ending of verifyCreatingTeamForAnRoundRobinEvent method");
 	}
 
-	@Test(priority = 2, description = "Verify the results on click of close icon", groups = "sanity")
-	@Description("Test case #2, Verify the results on click of close icon")
+	@Test(priority = 5, description = "Verify the results on click of close icon", groups = "sanity")
+	@Description("Test case #5, Verify the results on click of close icon")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #2, Verify the results on click of close icon")
+	@Story("Test case #5, Verify the results on click of close icon")
 	public void verifyCloseIconFuntionality() {
 		logger.info("Starting of verifyCloseIconFuntionality method");
 
@@ -111,10 +142,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of verifyCloseIconFuntionality method");
 	}
 
-	@Test(priority = 3, description = "Verify the results on click of Create matches button", groups = "sanity")
-	@Description("Test case #3, Verify the results on click of Create matches button")
+	@Test(priority = 6, description = "Verify the results on click of Create matches button", groups = "sanity")
+	@Description("Test case #6, Verify the results on click of Create matches button")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #3, Verify the results on click of Create matches button")
+	@Story("Test case #6, Verify the results on click of Create matches button")
 	public void verifyCreateMatchesFuntionality() {
 		logger.info("Starting of verifyCreateMatchesFuntionality method");
 
@@ -134,10 +165,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of verifyCreateMatchesFuntionality method");
 	}
 
-	@Test(priority = 4, description = "Verify the results on click of right arrow icon", groups = "sanity")
-	@Description("Test case #4, Verify the results on click of right arrow icon")
+	@Test(priority = 7, description = "Verify the results on click of right arrow icon", groups = "sanity")
+	@Description("Test case #7, Verify the results on click of right arrow icon")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #4, Verify the results on click of right arrow icon")
+	@Story("Test case #7, Verify the results on click of right arrow icon")
 	public void verifyRightArrowFunctionality() {
 		logger.info("Starting of verifyRightArrowFunctionality method");
 
@@ -150,10 +181,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of verifyRightArrowFunctionality method");
 	}
 
-	@Test(priority = 5, description = "Verify the results on click of Left arrow icon", groups = "sanity")
-	@Description("Test case #5, Verify the results on click of Left arrow icon")
+	@Test(priority = 8, description = "Verify the results on click of Left arrow icon", groups = "sanity")
+	@Description("Test case #8, Verify the results on click of Left arrow icon")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #5, Verify the results on click of Left arrow icon")
+	@Story("Test case #8, Verify the results on click of Left arrow icon")
 	public void verifyLeftArrowFunctionality() {
 		logger.info("Starting of verifyLeftArrowFunctionality method");
 
@@ -166,10 +197,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of verifyLeftArrowFunctionality method");
 	}
 
-	@Test(priority = 6, description = "Verify the results on click of Save & Publish button", groups = "sanity")
-	@Description("Test case #6, Verify the results on click of Save & Publish button")
+	@Test(priority = 9, description = "Verify the results on click of Save & Publish button", groups = "sanity")
+	@Description("Test case #9, Verify the results on click of Save & Publish button")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #6, Verify the results on click of Save & Publish button")
+	@Story("Test case #9, Verify the results on click of Save & Publish button")
 	public void verifySavePublishFunctionality() {
 		logger.info("Starting of verifySavePublishFunctionality method");
 
@@ -182,10 +213,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of verifySavePublishFunctionality method");
 	}
 
-	@Test(priority = 7, description = "Verify the details of the matches tab", groups = "sanity")
-	@Description("Test case #7, Verify the details of the matches tab")
+	@Test(priority = 10, description = "Verify the details of the matches tab", groups = "sanity")
+	@Description("Test case #10, Verify the details of the matches tab")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #7, Verify the details of the matches tab")
+	@Story("Test case #10, Verify the details of the matches tab")
 	public void verifyMatchesTabDetails() {
 		logger.info("Starting of verifyMatchesTabDetails method");
 
@@ -198,10 +229,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of verifyMatchesTabDetails method");
 	}
 
-	@Test(priority = 8, description = "Verify the results on click of Reseed Matches", groups = "sanity")
-	@Description("Test case #8, Verify the results on click of Reseed Matches")
+	@Test(priority = 11, description = "Verify the results on click of Reseed Matches", groups = "sanity")
+	@Description("Test case #11, Verify the results on click of Reseed Matches")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #8, Verify the results on click of Reseed Matches")
+	@Story("Test case #11, Verify the results on click of Reseed Matches")
 	public void verifyReseedFunctionality() {
 		logger.info("Starting of verifyReseedFunctionality method");
 
@@ -223,10 +254,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of verifyReseedFunctionality method");
 	}
 
-	@Test(priority = 9, description = "Verify the results on click of Matches Tab", groups = "sanity")
-	@Description("Test case #9, Verify the results on click of Matches Tab")
+	@Test(priority = 12, description = "Verify the results on click of Matches Tab", groups = "sanity")
+	@Description("Test case #12, Verify the results on click of Matches Tab")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #9, Verify the results on click of Matches Tab")
+	@Story("Test case #12, Verify the results on click of Matches Tab")
 	public void verifyMatchesTabFunctionality() {
 		logger.info("Starting of verifyMatchesTabFunctionality method");
 
@@ -241,10 +272,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of verifyMatchesTabFunctionality method");
 	}
 
-	@Test(priority = 10, description = "Verify the Seed matches, Forfeit, Spit Team,& withdrawl/refund buttons are displyed before match validation", groups = "sanity")
-	@Description("Test case #10, Verify the Seed matches, Forfeit, Spit Team,& withdrawl/refund buttons are displyed before match validation")
+	@Test(priority = 13, description = "Verify the Seed matches, Forfeit, Spit Team,& withdrawl/refund buttons are displyed before match validation", groups = "sanity")
+	@Description("Test case #13, Verify the Seed matches, Forfeit, Spit Team,& withdrawl/refund buttons are displyed before match validation")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #10, Verify the Seed matches, Forfeit, Spit Team,& withdrawl/refund buttons are displyed before match validation")
+	@Story("Test case #13, Verify the Seed matches, Forfeit, Spit Team,& withdrawl/refund buttons are displyed before match validation")
 	public void verifyBracketPageBeforeValidatingMatch() {
 		logger.info("Starting of verifyBracketPageBeforeValidatingMatch method");
 
@@ -255,10 +286,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of verifyBracketPageBeforeValidatingMatch method");
 	}
 
-	@Test(priority = 11, description = "Verify my matches tab if the director/organizer is a Participant of the bracket", groups = "sanity")
-	@Description("Test case #11, Verify my matches tab if the director/organizer is a Participant of the bracket")
+	@Test(priority = 14, description = "Verify my matches tab if the director/organizer is a Participant of the bracket", groups = "sanity")
+	@Description("Test case #14, Verify my matches tab if the director/organizer is a Participant of the bracket")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #11, Verify my matches tab if the director/organizer is a Participant of the bracket")
+	@Story("Test case #14, Verify my matches tab if the director/organizer is a Participant of the bracket")
 	public void verifyDetailsDisplayedInMyMatchesPage() {
 		logger.info("Starting of verifyDetailsDisplayedInMyMatchesPage method");
 
@@ -275,10 +306,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of verifyDetailsDisplayedInMyMatchesPage method");
 	}
 
-	@Test(priority = 12, description = "Verify the results on click on Add Score in my matches page", groups = "sanity")
-	@Description("Test case #12, Verify the results on click on Add Score in my matches page")
+	@Test(priority = 15, description = "Verify the results on click on Add Score in my matches page", groups = "sanity")
+	@Description("Test case #15, Verify the results on click on Add Score in my matches page")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #12, Verify the results on click on Add Score in my matches page")
+	@Story("Test case #15, Verify the results on click on Add Score in my matches page")
 	public void verifyAddScoreFunctionality() {
 		logger.info("Starting of verifyAddScoreFunctionality method");
 
@@ -298,10 +329,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of verifyAddScoreFunctionality method");
 	}
 
-	@Test(priority = 13, description = "Verify the results on click of close icon on Add scores popup", groups = "sanity")
-	@Description("Test case #13, Verify the results on click of close icon on Add scores popup")
+	@Test(priority = 16, description = "Verify the results on click of close icon on Add scores popup", groups = "sanity")
+	@Description("Test case #16, Verify the results on click of close icon on Add scores popup")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #13, Verify the results on click of close icon on Add scores popup")
+	@Story("Test case #16, Verify the results on click of close icon on Add scores popup")
 	public void verifyCloseIconFunctionalityOnAddScores() {
 		logger.info("Starting of verifyCloseIconFunctionalityOnAddScores method");
 
@@ -317,10 +348,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of verifyCloseIconFunctionalityOnAddScores method");
 	}
 
-	@Test(priority = 14, description = "Verify the results on click of Submit button with empty fields", groups = "sanity")
-	@Description("Test case #14, Verify the results on click of Submit button with empty fields")
+	@Test(priority = 17, description = "Verify the results on click of Submit button with empty fields", groups = "sanity")
+	@Description("Test case #17, Verify the results on click of Submit button with empty fields")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #14, Verify the results on click of Submit button with empty fields")
+	@Story("Test case #17, Verify the results on click of Submit button with empty fields")
 	public void verifySubmitFunctionalityWithEmptyFields() {
 		logger.info("Starting of verifySubmitFunctionalityWithEmptyFields method");
 
@@ -341,10 +372,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of verifySubmitFunctionalityWithEmptyFields method");
 	}
 
-	@Test(priority = 15, description = "Verify the results of selecting the competition date", groups = "sanity")
-	@Description("Test case #15, Verify the results of selecting the competition date")
+	@Test(priority = 18, description = "Verify the results of selecting the competition date", groups = "sanity")
+	@Description("Test case #18, Verify the results of selecting the competition date")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #15, Verify the results of selecting the competition date")
+	@Story("Test case #18, Verify the results of selecting the competition date")
 	public void verifySelectingDateFunctionality() {
 		logger.info("Starting of VerifySelectingDateFunctionality method");
 
@@ -358,10 +389,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of VerifySelectingDateFunctionality method");
 	}
 
-	@Test(priority = 16, description = "Verify the validation message by entering less than six in both the points fields", groups = "sanity")
-	@Description("Test case #16, Verify the validation message by entering less than six in both the points fields")
+	@Test(priority = 19, description = "Verify the validation message by entering less than six in both the points fields", groups = "sanity")
+	@Description("Test case #19, Verify the validation message by entering less than six in both the points fields")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #16, Verify the validation message by entering less than six in both the points fields")
+	@Story("Test case #19, Verify the validation message by entering less than six in both the points fields")
 	public void verifyValidationMessageBySubmitingLessThanSixPoints() {
 		logger.info("Starting of VerifyValidationMessageBySubmitingLessThanSixPoints method");
 
@@ -376,10 +407,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of VerifyValidationMessageBySubmitingLessThanSixPoints method");
 	}
 
-	@Test(priority = 17, description = "Verify the results on click of Add Icon", groups = "sanity")
-	@Description("Test case #17, Verify the results on click of Add Icon")
+	@Test(priority = 20, description = "Verify the results on click of Add Icon", groups = "sanity")
+	@Description("Test case #20, Verify the results on click of Add Icon")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #17, Verify the results on click of Add Icon")
+	@Story("Test case #20, Verify the results on click of Add Icon")
 	public void verifyAddIconFunctionality() {
 		logger.info("Starting of VerifyAddIconFunctionality method");
 
@@ -390,10 +421,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of VerifyAddIconFunctionality method");
 	}
 
-	@Test(priority = 18, description = "Verify the validation message by entering all zeros for one of the player", groups = "sanity")
-	@Description("Test case #18, Verify the validation message by entering all zeros for one of the player")
+	@Test(priority = 21, description = "Verify the validation message by entering all zeros for one of the player", groups = "sanity")
+	@Description("Test case #21, Verify the validation message by entering all zeros for one of the player")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #18, Verify the validation message by entering all zeros for one of the player")
+	@Story("Test case #21, Verify the validation message by entering all zeros for one of the player")
 	public void verifyValidationMessageBySubmitingAllZeroPoints() {
 		logger.info("Starting of VerifyAddIconFunctionality method");
 
@@ -411,10 +442,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of VerifyAddIconFunctionality method");
 	}
 
-	@Test(priority = 19, description = "Verify the Add Icon by adding three points fields", groups = "sanity")
-	@Description("Test case #19, Verify the validation message by entering all zeros for one of the player")
+	@Test(priority = 22, description = "Verify the Add Icon by adding three points fields", groups = "sanity")
+	@Description("Test case #22, Verify the validation message by entering all zeros for one of the player")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #19, Verify the validation message by entering all zeros for one of the player")
+	@Story("Test case #22, Verify the validation message by entering all zeros for one of the player")
 	public void verifyAddIconByAddingAllPointFields() {
 		logger.info("Starting of verifyAddIconByAddingAllPointFields method");
 
@@ -438,10 +469,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of verifyAddIconByAddingAllPointFields method");
 	}
 
-	@Test(priority = 20, description = "Verify the winners tag for winning players", groups = "sanity")
-	@Description("Test case #20, Verify the winners tag for winning players")
+	@Test(priority = 23, description = "Verify the winners tag for winning players", groups = "sanity")
+	@Description("Test case #23, Verify the winners tag for winning players")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #20, Verify the winners tag for winning players")
+	@Story("Test case #23, Verify the winners tag for winning players")
 	public void verifyWinnersTagForWinningPlayes() {
 		logger.info("Starting of verifyWinnersTagForWinningPlayes method");
 
@@ -450,10 +481,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of verifyWinnersTagForWinningPlayes method");
 	}
 
-	@Test(priority = 21, description = "Verify the results on click on remove icon ", groups = "sanity")
-	@Description("Test case #21, Verify the results on click on remove icon")
+	@Test(priority = 24, description = "Verify the results on click on remove icon ", groups = "sanity")
+	@Description("Test case #24, Verify the results on click on remove icon")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #21, Verify the results on click on remove icon")
+	@Story("Test case #24, Verify the results on click on remove icon")
 	public void verifyRemoveIconFunctionality() {
 		logger.info("Starting of VerifyRemoveIconFunctionality method");
 
@@ -464,10 +495,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of VerifyRemoveIconFunctionality method");
 	}
 
-	@Test(priority = 22, description = "Verify the results on click of Submit button", groups = "sanity")
-	@Description("Test case #22, Verify the results on click of Submit button")
+	@Test(priority = 25, description = "Verify the results on click of Submit button", groups = "sanity")
+	@Description("Test case #25, Verify the results on click of Submit button")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #22, Verify the results on click of Submit button")
+	@Story("Test case #25, Verify the results on click of Submit button")
 	public void verifySubmitButtonFunctionality() {
 		logger.info("Starting of VerifySubmitButtonFunctionality method");
 
@@ -481,10 +512,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of VerifySubmitButtonFunctionality method");
 	}
 
-	@Test(priority = 23, description = "Verify the results on click of close icon on Submit scores PopUP", groups = "sanity")
-	@Description("Test case #23, Verify the results on click of close icon on Submit scores PopUP")
+	@Test(priority = 26, description = "Verify the results on click of close icon on Submit scores PopUP", groups = "sanity")
+	@Description("Test case #26, Verify the results on click of close icon on Submit scores PopUP")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #23, Verify the results on click of close icon on Submit scores PopUP")
+	@Story("Test case #26, Verify the results on click of close icon on Submit scores PopUP")
 	public void verifyCloseIconFunctionalityOnSubmit() {
 		logger.info("Starting of VerifyCloseIconFunctionalityOnSubmit method");
 
@@ -495,10 +526,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of VerifyCloseIconFunctionalityOnSubmit method");
 	}
 
-	@Test(priority = 24, description = "Verify the results on click of Go Back Button", groups = "sanity")
-	@Description("Test case #24, Verify the results on click of Go Back Button")
+	@Test(priority = 27, description = "Verify the results on click of Go Back Button", groups = "sanity")
+	@Description("Test case #27, Verify the results on click of Go Back Button")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #24, Verify the results on click of Go Back Button")
+	@Story("Test case #27, Verify the results on click of Go Back Button")
 	public void verifyGoBackFunctionality() {
 		logger.info("Starting of VerifyGoBackFunctionality method");
 
@@ -511,10 +542,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of VerifyGoBackFunctionality method");
 	}
 
-	@Test(priority = 25, description = "Verify the results on click of submit button by adding all three points field", groups = "sanity")
-	@Description("Test case #25, Verify the results on click of submit button by adding all three points field")
+	@Test(priority = 28, description = "Verify the results on click of submit button by adding all three points field", groups = "sanity")
+	@Description("Test case #28, Verify the results on click of submit button by adding all three points field")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #25, Verify the results on click of submit button by adding all three points field")
+	@Story("Test case #28, Verify the results on click of submit button by adding all three points field")
 	public void verifySubmitFunctionality() {
 		logger.info("Starting of VerifySubmitFunctionality method");
 
@@ -535,10 +566,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 
 	}
 
-	@Test(priority = 26, description = "Verify the results on click on the close icon on Scores Added popUp", groups = "sanity")
-	@Description("Test case #26, Verify the results on click on the close icon on Scores Added popUp")
+	@Test(priority = 29, description = "Verify the results on click on the close icon on Scores Added popUp", groups = "sanity")
+	@Description("Test case #29, Verify the results on click on the close icon on Scores Added popUp")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #26, Verify the results on click on the close icon on Scores Added popUp")
+	@Story("Test case #29, Verify the results on click on the close icon on Scores Added popUp")
 	public void verifyCloseIconFunctionalityOnScoresAdded() {
 		logger.info("Starting of VerifyCloseIconFunctionalityOnScoresAdded method");
 
@@ -550,10 +581,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of VerifyCloseIconFunctionalityOnScoresAdded method");
 	}
 
-	@Test(priority = 27, description = "Verify adding score as a director", groups = "sanity")
-	@Description("Test case #27, Verify adding score as a director")
+	@Test(priority = 30, description = "Verify adding score as a director", groups = "sanity")
+	@Description("Test case #30, Verify adding score as a director")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #27, Verify adding score as a director")
+	@Story("Test case #30, Verify adding score as a director")
 	public void verifyAddScoreFunctionalityAsDirector() {
 		logger.info("Starting of verifyAddScoreFunctionalityAsDirector method");
 
@@ -603,10 +634,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of verifyAddScoreFunctionalityAsDirector method");
 	}
 
-	@Test(priority = 28, description = "Verify the results on click on Edit Score button", groups = "sanity")
-	@Description("Test case #28, Verify the results on click on Edit Score button")
+	@Test(priority = 31, description = "Verify the results on click on Edit Score button", groups = "sanity")
+	@Description("Test case #31, Verify the results on click on Edit Score button")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #28, Verify the results on click on Edit Score button")
+	@Story("Test case #31, Verify the results on click on Edit Score button")
 	public void verifyEditScoreFunctionality() {
 		logger.info("Starting of VerifyEditScoreFunctionality method");
 
@@ -619,10 +650,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of VerifyEditScoreFunctionality method");
 	}
 
-	@Test(priority = 29, description = "Verify the results by editing the points of the players", groups = "sanity")
-	@Description("Test case #29, Verify the results by editing the points of the players")
+	@Test(priority = 32, description = "Verify the results by editing the points of the players", groups = "sanity")
+	@Description("Test case #32, Verify the results by editing the points of the players")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #29, Verify the results by editing the points of the players")
+	@Story("Test case #32, Verify the results by editing the points of the players")
 	public void verifyEditingScoresOfPlayers() {
 		logger.info("Starting of VerifyEditingScoresOfPlayers method");
 
@@ -636,10 +667,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of VerifyEditingScoresOfPlayers method");
 	}
 
-	@Test(priority = 30, description = "Verify the results on click on submit button", groups = "sanity")
-	@Description("Test case #30, Verify the results on click on submit button")
+	@Test(priority = 33, description = "Verify the results on click on submit button", groups = "sanity")
+	@Description("Test case #33, Verify the results on click on submit button")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #30, Verify the results on click on submit button")
+	@Story("Test case #33, Verify the results on click on submit button")
 	public void verifySubmitFunctionalityOnEditScores() {
 		logger.info("Starting of VerifySubmitFunctionalityOnEditScores method");
 
@@ -650,10 +681,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of VerifySubmitFunctionalityOnEditScores method");
 	}
 
-	@Test(priority = 31, description = "Verify the results by splitting the team after seeding", groups = "sanity")
-	@Description("Test case #31, Verify the results by splitting the team after seeding")
+	@Test(priority = 34, description = "Verify the results by splitting the team after seeding", groups = "sanity")
+	@Description("Test case #34, Verify the results by splitting the team after seeding")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #31, Verify the results by splitting the team after seeding")
+	@Story("Test case #34, Verify the results by splitting the team after seeding")
 	public void verifyByeLabelIsDisplayed() {
 		logger.info("Starting of verifyByeLabelIsDisplayed method");
 
@@ -668,10 +699,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of verifyByeLabelIsDisplayed method");
 	}
 
-	@Test(priority = 32, description = "verify Validate Functionality", groups = "sanity")
-	@Description("Test case #32, verify Validate Functionality")
+	@Test(priority = 35, description = "verify Validate Functionality", groups = "sanity")
+	@Description("Test case #35, verify Validate Functionality")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #32, verify Validate Functionality")
+	@Story("Test case #35, verify Validate Functionality")
 	public void verifyValidateFunctionality() {
 		logger.info("Starting of verifyValidateFunctionality method");
 
@@ -682,10 +713,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of verifyValidateFunctionality method");
 	}
 
-	@Test(priority = 33, description = "verify Close Icon Functionality In Validate Match PopUp", groups = "sanity")
-	@Description("Test case #33, verify Close Icon Functionality In Validate Match PopUp")
+	@Test(priority = 36, description = "verify Close Icon Functionality In Validate Match PopUp", groups = "sanity")
+	@Description("Test case #36, verify Close Icon Functionality In Validate Match PopUp")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #33, verify Close Icon Functionality In Validate Match PopUp")
+	@Story("Test case #36, verify Close Icon Functionality In Validate Match PopUp")
 	public void verifyCloseIconFunctionalityInValidateMatchPopUp() {
 		logger.info("Starting of verifyCloseIconFunctionalityInValidateMatchPopUp method");
 
@@ -697,10 +728,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of verifyCloseIconFunctionalityInValidateMatchPopUp method");
 	}
 
-	@Test(priority = 34, description = "verify Validate Functionality In Validate Match PopUp", groups = "sanity")
-	@Description("Test case #34, verify Validate Functionality In Validate Match PopUp")
+	@Test(priority = 37, description = "verify Validate Functionality In Validate Match PopUp", groups = "sanity")
+	@Description("Test case #37, verify Validate Functionality In Validate Match PopUp")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #34, verify Validate Functionality In Validate Match PopUp")
+	@Story("Test case #37, verify Validate Functionality In Validate Match PopUp")
 	public void verifyValidateFunctionalityInValidateMatchPopUp() {
 		logger.info("Starting of verifyValidateFunctionalityInValidateMatchPopUp method");
 
@@ -716,10 +747,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of verifyValidateFunctionalityInValidateMatchPopUp method");
 	}
 
-	@Test(priority = 35, description = "verify Close Icon Functionality In Validate Match", groups = "sanity")
-	@Description("Test case #35, verify Close Icon Functionality In Validate Match")
+	@Test(priority = 38, description = "verify Close Icon Functionality In Validate Match", groups = "sanity")
+	@Description("Test case #38, verify Close Icon Functionality In Validate Match")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #35, verify Close Icon Functionality In Validate Match")
+	@Story("Test case #38, verify Close Icon Functionality In Validate Match")
 	public void verifyCloseIconFunctionalityInValidateMatch() {
 		logger.info("Starting of verifyCloseIconFunctionalityInValidateMatch method");
 
@@ -731,10 +762,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of verifyCloseIconFunctionalityInValidateMatch method");
 	}
 
-	@Test(priority = 36, description = "verify Cancel Button Functionality In Validate Match PopUp", groups = "sanity")
-	@Description("Test case #36, verify Cancel Button Functionality In Validate Match PopUp")
+	@Test(priority = 39, description = "verify Cancel Button Functionality In Validate Match PopUp", groups = "sanity")
+	@Description("Test case #39, verify Cancel Button Functionality In Validate Match PopUp")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #36, verify Cancel Button Functionality In Validate Match PopUp")
+	@Story("Test case #39, verify Cancel Button Functionality In Validate Match PopUp")
 	public void verifyCancelIconFunctionalityInValidateMatchPopUp() {
 		logger.info("Starting of verifyCancelIconFunctionalityInValidateMatchPopUp method");
 
@@ -750,10 +781,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of verifyCancelIconFunctionalityInValidateMatchPopUp method");
 	}
 
-	@Test(priority = 37, description = "verifyValidateFunctionalityInValidatePopUp", groups = "sanity")
-	@Description("Test case #37, verifyValidateFunctionalityInValidatePopUp")
+	@Test(priority = 40, description = "verifyValidateFunctionalityInValidatePopUp", groups = "sanity")
+	@Description("Test case #40, verifyValidateFunctionalityInValidatePopUp")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #37, verifyValidateFunctionalityInValidatePopUp")
+	@Story("Test case #40, verifyValidateFunctionalityInValidatePopUp")
 	public void verifyValidateFunctionalityInValidatePopUp() {
 		logger.info("Starting of verifyValidateFunctionalityInValidatePopUp method");
 
@@ -780,10 +811,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of verifyValidateFunctionalityInValidatePopUp method");
 	}
 
-	@Test(priority = 38, description = "Verify results on the click of the Close icon on success popup", groups = "sanity")
-	@Description("Test case #38, Verify results on the click of the Close icon ")
+	@Test(priority = 41, description = "Verify results on the click of the Close icon on success popup", groups = "sanity")
+	@Description("Test case #41, Verify results on the click of the Close icon ")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #38, Verify results on the click of the Close icon")
+	@Story("Test case #41, Verify results on the click of the Close icon")
 	public void verifyCloseIconOnSuccessPopup() {
 		logger.info("Starting of verifyCloseIconOnSuccessPopup method");
 
@@ -792,10 +823,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of verifyCloseIconOnSuccessPopup method");
 	}
 
-	@Test(priority = 39, description = "Verifying the presence of the Standing Tab after validating match", groups = "sanity")
-	@Description("Test case #39, Verifying the presence of the Standing Tab after validating match")
+	@Test(priority = 42, description = "Verifying the presence of the Standing Tab after validating match", groups = "sanity")
+	@Description("Test case #42, Verifying the presence of the Standing Tab after validating match")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #39, Verifying the presence of the Standing Tab after validating match")
+	@Story("Test case #42, Verifying the presence of the Standing Tab after validating match")
 	public void verifyStandingTab() {
 		logger.info("Starting of verifyStandingTab method");
 
@@ -804,10 +835,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of verifyStandingTab method");
 	}
 
-	@Test(priority = 40, description = "Verify the results on click on the Forfeit Button", groups = "sanity")
-	@Description("Test case #40, Verify the results on click on the Forfeit Button")
+	@Test(priority = 43, description = "Verify the results on click on the Forfeit Button", groups = "sanity")
+	@Description("Test case #43, Verify the results on click on the Forfeit Button")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #40, Verify the results on click on the Forfeit Button")
+	@Story("Test case #43, Verify the results on click on the Forfeit Button")
 	public void verifyForfeitFunctionality() {
 		logger.info("Starting of verifyForfeitFunctionality method");
 
@@ -820,10 +851,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of verifyForfeitFunctionality method");
 	}
 
-	@Test(priority = 41, description = "Verify the results on selecting radio buttons of a team", groups = "sanity")
-	@Description("Test case #41, Verify the results on selecting radio buttons of a team")
+	@Test(priority = 44, description = "Verify the results on selecting radio buttons of a team", groups = "sanity")
+	@Description("Test case #44, Verify the results on selecting radio buttons of a team")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #41, Verify the results on click on the Forfeit Button")
+	@Story("Test case #44, Verify the results on click on the Forfeit Button")
 	public void verifyRadioButtonFunctionality() {
 		logger.info("Starting of verifyRadioButtonFunctionality method");
 
@@ -834,10 +865,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of verifyRadioButtonFunctionality method");
 	}
 
-	@Test(priority = 42, description = "Verify results on the click of the Close icon from the Forfeit match pop up", groups = "sanity")
-	@Description("Test case #42, Verify results on the click of the Close icon from the Forfeit match pop up")
+	@Test(priority = 45, description = "Verify results on the click of the Close icon from the Forfeit match pop up", groups = "sanity")
+	@Description("Test case #45, Verify results on the click of the Close icon from the Forfeit match pop up")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #42, Verify results on the click of the Close icon from the Forfeit match pop up")
+	@Story("Test case #45, Verify results on the click of the Close icon from the Forfeit match pop up")
 	public void verifyCloseIconFunctionalityOnForfeitMatchPopup() {
 		logger.info("Starting of verifyCloseIconFunctionalityOnForfeitMatchPopup method");
 
@@ -848,10 +879,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of verifyCloseIconFunctionalityOnForfeitMatchPopup method");
 	}
 
-	@Test(priority = 43, description = "Verify the state of Mark as Forfeit Button without selecting the Radio buttons", groups = "sanity")
-	@Description("Test case #43, Verify the state of Mark as Forfeit Button without selecting the Radio buttons")
+	@Test(priority = 46, description = "Verify the state of Mark as Forfeit Button without selecting the Radio buttons", groups = "sanity")
+	@Description("Test case #46, Verify the state of Mark as Forfeit Button without selecting the Radio buttons")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #43, Verify the state of Mark as Forfeit Button without selecting the Radio buttons")
+	@Story("Test case #46, Verify the state of Mark as Forfeit Button without selecting the Radio buttons")
 	public void verifyStateOfMarkAsForfeitButton() {
 		logger.info("Starting of verifyStateOfMarkAsForfeitButton method");
 
@@ -862,10 +893,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of verifyStateOfMarkAsForfeitButton method");
 	}
 
-	@Test(priority = 44, description = "Verify Results on the click on the Cancel button from the Forfeit match pop up", groups = "sanity")
-	@Description("Test case #44, Verify Results on the click on the Cancel button from the Forfeit match pop up")
+	@Test(priority = 47, description = "Verify Results on the click on the Cancel button from the Forfeit match pop up", groups = "sanity")
+	@Description("Test case #47, Verify Results on the click on the Cancel button from the Forfeit match pop up")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #44, Verify Results on the click on the Cancel button from the Forfeit match pop up")
+	@Story("Test case #47, Verify Results on the click on the Cancel button from the Forfeit match pop up")
 	public void verifyCancelButtonFunctionality() {
 		logger.info("Starting of verifyCancelButtonFunctionality method");
 
@@ -876,10 +907,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of verifyCancelButtonFunctionality method");
 	}
 
-	@Test(priority = 45, description = "Verify results on the click of Mark as Forfeit button by selecting a radio buttons", groups = "sanity")
-	@Description("Test case #45, Verify results on the click of Mark as Forfeit button by selecting a radio buttons")
+	@Test(priority = 48, description = "Verify results on the click of Mark as Forfeit button by selecting a radio buttons", groups = "sanity")
+	@Description("Test case #48, Verify results on the click of Mark as Forfeit button by selecting a radio buttons")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #45, Verify results on the click of Mark as Forfeit button by selecting a radio buttons")
+	@Story("Test case #48, Verify results on the click of Mark as Forfeit button by selecting a radio buttons")
 	public void verifyMarkAsForfeitButtonFunctionality() {
 		logger.info("Starting of verifyMarkAsForfeitButtonFunctionality method");
 
@@ -896,10 +927,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of verifyMarkAsForfeitButtonFunctionality method");
 	}
 
-	@Test(priority = 46, description = "Verify Seed matches functionality with singles match type", groups = "sanity")
-	@Description("Test case #46, Verify Seed matches functionality with singles match type")
+	@Test(priority = 49, description = "Verify Seed matches functionality with singles match type", groups = "sanity")
+	@Description("Test case #49, Verify Seed matches functionality with singles match type")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #46, Verify Seed matches functionality with singles match type")
+	@Story("Test case #49, Verify Seed matches functionality with singles match type")
 	public void verifySeedMatchesFunctionality() {
 		logger.info("Starting of verifySeedMatchesFunctionality method");
 
