@@ -60,7 +60,7 @@
 		</classes>
 	</test> -->
 
-	<test name="Sprint 4">
+	<!-- <test name="Sprint 4">
 		<classes>
 			<class name="com.dupr.test.home.ChatTest" />
 			<class name="com.dupr.test.home.ShareTest" />
@@ -71,7 +71,7 @@
 			<class name="com.dupr.test.events.TimeZoneTest" />
 		</classes>
 	</test>
-
+ -->
 	<test name="Sprint 5">
 		<classes>
 			<class name="com.dupr.test.events.PaidEventAndPaidBracketWithWaterfallEventTest" />

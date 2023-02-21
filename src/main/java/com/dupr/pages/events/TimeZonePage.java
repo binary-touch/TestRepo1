@@ -1147,13 +1147,17 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 	public void setRegistrationStartDateBeforeOneDay() {
 		log.info("Starting of setRegistrationStartDateBeforeOneDay method");
 
-		scrollDown(500);
+		//scrollDown(500);
+		try {
+			clickOnElementUsingActionClass(txtBoxRegistrationStartDate);
+		}catch(Exception e) {
 		clickOnWebElement(txtBoxRegistrationStartDate);
-		clickOnWebElement(ddRegistrationEndDate);
-		hardWait(2);
-
-		elementClick(btnRegEndDateCurrentYear);
-
+		}
+		/*
+		 * clickOnWebElement(ddRegistrationEndDate); hardWait(2);
+		 * 
+		 * elementClick(btnRegEndDateCurrentYear);
+		 */
 
 		try {
 			int date = this.getPastDate(1);

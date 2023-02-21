@@ -189,9 +189,13 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h3[text()='Time Zone']/parent::div/div/div/div")
 	private WebElement ddTimeZone;
 
-	@B2BFindBy(xpath = "//li[@data-value='Asia/Kolkata']")
+	/*
+	 * @B2BFindBy(xpath = "//li[@data-value='Asia/Kolkata']") private WebElement
+	 * btnNewDelhiTimeZone;
+	 */
+	@B2BFindBy(xpath = "//li[text()='(GMT+05:30) Chennai, Kolkata, Mumbai, New Delhi']")
 	private WebElement btnNewDelhiTimeZone;
-
+	
 	@B2BFindBy(xpath = "//ul[contains(@class,'MuiList-root MuiList-padding MuiMenu-list')]")
 	private WebElement ddListTimeZone;
 
@@ -1306,8 +1310,8 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			ddTimeZone.click();
 		}
-
-		elementClick(btnCentralAmericaTimeZone);
+		this.waitForElementToBeVisible(btnNewDelhiTimeZone);
+		elementClick(btnNewDelhiTimeZone);
 
 		log.info("Ending of setTimeZone method");
 	}
@@ -1334,11 +1338,16 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	}
 
 	public void clickOnNewDelhiTimeZone() {
-		log.info("Starting of clickOnCentalAmericanTimeZone method");
-
-		elementClick(btnNewDelhiTimeZone);
-
-		log.info("Ending of clickOnCentalAmericanTimeZone method");
+		log.info("Starting of clickOnNewDelhiTimeZone method");
+		
+		waitForElementToBeVisible(btnNewDelhiTimeZone);
+		try {
+			clickUsingActionsClass(btnNewDelhiTimeZone);
+		} catch (Exception e) {
+			elementClick(btnNewDelhiTimeZone);
+		}
+		
+		log.info("Ending of clickOnNewDelhiTimeZone method");
 	}
 
 	public boolean isSelectedTimeZoneDisplayed() {
@@ -1359,15 +1368,18 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		return TimeZone;
 	}
 
-	public void setBracketClubMemberPrice(String clubMemberPrice) {
+	public float setBracketClubMemberPrice(String clubMemberPrice) {
 		log.info("Starting of setBracketClubMemberPrice method");
 
 		scrollDown(300);
 		clickUsingActionsClass(txtBoxClubMemberPrice);
 		txtBoxClubMemberPrice.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		txtBoxClubMemberPrice.sendKeys(clubMemberPrice);
-
+		String clubMemberPrice1=txtBoxClubMemberPrice.getAttribute("value");
+		float clubMemberPrice2=Float.parseFloat(clubMemberPrice1);
 		log.info("Ending of setBracketClubMemberPrice method");
+		
+		return clubMemberPrice2;
 	}
 
 	public boolean isEnteredClubMemberPriceDisplayed(String clubmemberprice) {
@@ -1388,14 +1400,16 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		return clubMemberPriceDisplayed;
 	}
 
-	public void setBracketNonClubMemberPrice(String nonclubMemberPrice) {
+	public float setBracketNonClubMemberPrice(String nonclubMemberPrice) {
 		log.info("Starting of setBracketNonClubMemberPrice method");
 
 		clickUsingActionsClass(txtBoxNonClubMemberPrice);
 		txtBoxNonClubMemberPrice.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		txtBoxNonClubMemberPrice.sendKeys(nonclubMemberPrice);
-
+        String nonclubMemberPrice1=txtBoxNonClubMemberPrice.getAttribute("value");
+        float nonclubMemberPrice2=Float.parseFloat(nonclubMemberPrice1);
 		log.info("Ending of setBracketNonClubMemberPrice method");
+		return nonclubMemberPrice2;
 	}
 
 	public boolean isEnteredClubNonMemberPriceDisplayed(String clubnonmemberprice) {
