@@ -123,7 +123,10 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 		
 		paidEventPage.hardWait(2);
 		super.VerifyRecentlyAddedEventUnderEventsTab();
+		
+		super.verifyRegisterFunctionality();
 
+		
 		logger.info("Ending of verifyPaidEventFunctionalityWithWateFallEventTypeInSingles method");
 	}
 
@@ -152,9 +155,9 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 		addEventPage.clickOnRecentlyAddedEvent(eventName);
 
 		super.verifyRegisterFunctionalityWithNonMemberInPlayerAccount();
-
 		paidEventPage.clickOnContinuePaymentButton();
 
+		
 		logger.info("Ending of verifyPaidEventRegistrationFunctionalityWithWateFallEventTypeInPlayersView method");
 
 	}
@@ -301,7 +304,9 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 		paidEventPage.hardWait(3);
 		this.verifyAddEventInformationPage();
 		this.verifyPaidEventFunctionalityWithWateFallEventTypeInDoubles();
-      
+    
+		super.verifyRegisterFunctionality();
+
 		logger.info("Ending of verifyPaidEventRegisterWithPartnerFunctionality method");
 
 		}
