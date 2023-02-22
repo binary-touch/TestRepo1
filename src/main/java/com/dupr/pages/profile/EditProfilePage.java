@@ -116,10 +116,10 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h5[text()='Default Rating']/../following-sibling::div//label/following-sibling::label//input/..")
 	private WebElement rdoSingles;
 
-	@B2BFindBy(xpath = "//h5[text()='Phone Number']/../following-sibling::div//input")
+	@B2BFindBy(xpath = "//h5[contains(text(),'Phone')]/../following-sibling::div//input[contains(@class,'MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart')]")
 	private WebElement txtBoxPhoneNumber;
 
-	@B2BFindBy(xpath = "//h5[text()='Phone Number']/../following-sibling::div//div[contains(@class,'MuiInputAdornment-positionStart')]/button")
+	@B2BFindBy(xpath = "//h5[text()='Phone']/../following-sibling::div//div[contains(@class,'MuiInputAdornment-positionStart')]//div[@class='MuiBox-root css-0']")
 	private WebElement btnCountryCode;
 
 	@B2BFindBys(@B2BFindBy(xpath = "//div[contains(@class,'MuiPopover-root  MuiModal-root')]//ul/li/div/following-sibling::span[@class='country-name']"))
@@ -546,33 +546,30 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 
 		clickOnWebElement(txtBoxPhoneNumber);
 		
-		String s = txtBoxPhoneNumber.getAttribute("value");
-		log.debug("Derived Phone number from the field: " + s);
-
-		int numberLength = s.length();
+		int numberLength = txtBoxPhoneNumber.getAttribute("value").length();
+		
 		log.debug("Phone number length: " + numberLength);
 
-		for (int i = 0; i <= numberLength - 1; i++) {
-			hardWait(5);
-			this.txtBoxPhoneNumber.sendKeys(Keys.BACK_SPACE);
+		try {
+			for (int i = 0; i <= numberLength - 1; i++) {
+				hardWait(5);
+				this.txtBoxPhoneNumber.sendKeys(Keys.BACK_SPACE);
+			}
+		} catch (Exception e) {		
+			for (int i = numberLength; i > 0;) {
+				hardWait(5);
+				this.txtBoxPhoneNumber.sendKeys(Keys.BACK_SPACE);
+			}
 		}
-
 		log.info("Ending of clearPhoneNumber method");
-	}
-
-	public void setInvalidPhoneNumber(String phoneNumber) {
-		log.info("Starting of setInvalidPhoneNumber method");
-
-		clickOnWebElement(txtBoxPhoneNumber);
-		sendKeys(txtBoxPhoneNumber, phoneNumber + randomNumber(2));
-
-		log.info("Ending of setInvalidPhoneNumber method");
 	}
 
 	public void setValidPhoneNumber(String phoneNumber) {
 		log.info("Starting of setValidPhoneNumber method");
 
-		sendKeys(txtBoxPhoneNumber, phoneNumber+randomNumber(2));
+		clickOnWebElement(txtBoxPhoneNumber);
+		hardWait(2);
+		this.txtBoxPhoneNumber.sendKeys(phoneNumber+randomNumber(8));
 
 		log.info("Ending of setValidPhoneNumber method");
 	}
@@ -698,6 +695,7 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 	public void setShoeBrand(String shoeBrand) {
 		log.info("Starting of setShoeBrand method");
 
+		clickOnElement(txtBoxShoeBrand);
 		this.txtBoxShoeBrand.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		sendKeys(txtBoxShoeBrand, shoeBrand + randomNumber(2));
 

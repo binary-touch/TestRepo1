@@ -330,7 +330,7 @@ public class AddAMatchPage extends DUPRBaseAutomationPage {
 		this.implicitWait();
 		this.clickOnWebElement(txtBoxEventName);
 
-		String newEventName = eventName + randomNumber(3);
+		String newEventName = eventName + randomNumber(5);
 		txtBoxEventName.sendKeys(newEventName);
 
 		log.info("Ending of setEventName method");
@@ -528,9 +528,9 @@ public class AddAMatchPage extends DUPRBaseAutomationPage {
 		log.info("Starting of setGameOneScores method");
 
 		scrollDown(500);
-		txtBoxGameOneScoreTeamOne.click();
+		clickOnWebElement(txtBoxGameOneScoreTeamOne);
 		sendKeys(txtBoxGameOneScoreTeamOne, gameOneScoreTeamOne);
-		txtBoxGameOneScoreTeamTwo.click();
+		clickOnWebElement(txtBoxGameOneScoreTeamTwo);
 		sendKeys(txtBoxGameOneScoreTeamTwo, gameOneScoreTeamTwo);
 
 		log.info("Ending of setGameOneScores method");

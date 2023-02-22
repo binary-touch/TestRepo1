@@ -80,6 +80,9 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//input[contains(@class,'PrivateSwitchBase') and @type='checkbox']")
 	private WebElement chkReviewDUPRPolicies;
+	
+	@B2BFindBy(xpath = "//span[contains(@class,'MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-root MuiCheckbox-colorPrimary')]/input[contains(@class,'PrivateSwitchBase-input') and @type='checkbox']")
+	private WebElement chkManageProfile;
 
 	@B2BFindBys({ @B2BFindBy(xpath = "//li/div[@role='button']") })
 	protected List<WebElement> lstLocationOptions;
@@ -112,7 +115,7 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//p[contains(@class,' MuiFormHelperText-filled')]")
 	private WebElement txtBirthDateValidationMessage;
 
-	@B2BFindBy(xpath = "//h4[@id='customized-dialog-title']")
+	@B2BFindBy(xpath = "//h4[contains(text(),'Verify your Email')]")
 	private WebElement lblVerifyYourEmailId;
 
 	@B2BFindBy(xpath = "//button[contains(@class,'MuiButton-whitecontained') and text()='Already Verified']")
@@ -124,7 +127,7 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 	@B2BFindBys(@B2BFindBy(xpath = "//h4[@class='MuiTypography-root MuiTypography-h4 css-12grqhn']"))
 	private List<WebElement> lstPlayersNames;
 
-	@B2BFindBy(xpath = "//input[@name='phoneNumber']")
+	@B2BFindBy(xpath = "//h5[contains(text(),'Phone Number')]/parent::div/following-sibling::div/div//input[contains(@class,'MuiOutlinedInput-input MuiInputBase-inputAdornedStart')]")
 	private WebElement txtBoxMobileNumber;
 
 	@B2BFindBy(xpath = "//p[text()='No numbers or special characters are allowed.']")
@@ -193,7 +196,7 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//input[contains(@class, 'MuiInputBase-input MuiOutlinedInput-input')]")
 	private WebElement txtBoxEmailEnabled;
 
-	@B2BFindBy(xpath = "//p[text()='You must verify your email to access this feature.']")
+	@B2BFindBy(xpath = "//h5[text()='You must verify your email to access this feature.']")
 	private WebElement txtValidationEmail;
 
 	@B2BFindBy(xpath = "//p[text()='A link was sent to your new email!']")
@@ -445,6 +448,15 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 		this.chkReviewDUPRPolicies.click();
 
 		logger.info("Ending of clickOnReviewDUPRPoliciesCheckBox method");
+	}
+	public void clickOnManageProfileCheckBox() {
+		logger.info("Starting of clickOnManageProfileCheckBox method");
+
+		this.implicitWait();
+		scrollIntoView(chkManageProfile);
+		this.chkManageProfile.click();
+
+		logger.info("Ending of clickOnManageProfileCheckBox method");
 	}
 
 	public boolean isCreateAccountButtonDisplayed() {

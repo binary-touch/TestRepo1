@@ -56,9 +56,10 @@ public class DeleteRecentlyAddedMatchTest extends CommonBaseTest {
 		addAMatchPage.clickOnAddAMatchTab();
 
 		super.verifySetMatchDetails();
+		validateRecentlyAddedMatchPage.hardWait(2);
 		super.verifyAddAMatchInDoubles();
 
-		validateRecentlyAddedMatchPage.hardWait(2);
+		validateRecentlyAddedMatchPage.hardWait(4);
 		driver.navigate().refresh();
 
 		validateRecentlyAddedMatchPage.clickOnMatchHistoryTab();
@@ -76,8 +77,8 @@ public class DeleteRecentlyAddedMatchTest extends CommonBaseTest {
 	public void verifyRecentlyAddedMatchStatusInPlayerView() {
 		logger.info("Starting of verifyRecentlyAddedMatchStatusInPlayerView method");
 
-		validateRecentlyAddedMatchPage.hardWait(3);
-		Assert.assertTrue(validateRecentlyAddedMatchPage.isDeleteButtonDisplayed(eventName));
+		validateRecentlyAddedMatchPage.hardWait(4);
+		Assert.assertTrue(validateRecentlyAddedMatchPage.isDeleteButtonDisplayed(matchEvent));
 
 		logger.info("Ending of verifyRecentlyAddedMatchStatusInPlayerView method");
 	}
@@ -91,12 +92,14 @@ public class DeleteRecentlyAddedMatchTest extends CommonBaseTest {
 		logger.info("Starting of verifyRecentlyAddedMatchStatusInPartnerView method");
 
 		loginPage.clickOnOpenSettingsMenu();
+		validateRecentlyAddedMatchPage.hardWait(2);
 		loginPage.clickOnLogoutButton();
+		validateRecentlyAddedMatchPage.hardWait(5);
 		loginPage.loginToDUPRApplication(partnerEmail, partnerPassword);
 
 		validateRecentlyAddedMatchPage.clickOnMatchHistoryTab();
-		validateRecentlyAddedMatchPage.hardWait(3);
-		Assert.assertTrue(deleteRecentlyAddedMatchPage.isPendingLabelDisplayed(eventName));
+		validateRecentlyAddedMatchPage.hardWait(6);
+		Assert.assertTrue(deleteRecentlyAddedMatchPage.isPendingLabelDisplayed(matchEvent));
 
 		logger.info("Ending of verifyRecentlyAddedMatchStatusInPartnerView method");
 	}
@@ -110,14 +113,16 @@ public class DeleteRecentlyAddedMatchTest extends CommonBaseTest {
 		logger.info("Starting of verifyRecentlyAddedMatchStatusInFirstOpponentView method");
 
 		loginPage.clickOnOpenSettingsMenu();
+		loginPage.hardWait(2);
 		loginPage.clickOnLogoutButton();
+		loginPage.hardWait(3);
 		loginPage.loginToDUPRApplication(opponentEmail, partnerPassword);
 		
 		loginPage.hardWait(5);
 
 		validateRecentlyAddedMatchPage.clickOnMatchHistoryTab();
 		validateRecentlyAddedMatchPage.hardWait(3);
-		Assert.assertTrue(validateRecentlyAddedMatchPage.isValidateButtonDisplayed(eventName));
+		Assert.assertTrue(validateRecentlyAddedMatchPage.isValidateButtonDisplayed(matchEvent));
 
 		logger.info("Ending of verifyRecentlyAddedMatchStatusInFirstOpponentView method");
 	}
@@ -131,14 +136,16 @@ public class DeleteRecentlyAddedMatchTest extends CommonBaseTest {
 		logger.info("Starting of verifyRecentlyAddedMatchStatusInSecondOpponentView method");
 
 		loginPage.clickOnOpenSettingsMenu();
+		loginPage.hardWait(2);
 		loginPage.clickOnLogoutButton();
+		loginPage.hardWait(3);
 		loginPage.loginToDUPRApplication(opponent2Email, partnerPassword);
 		
 		loginPage.hardWait(5);
 
 		validateRecentlyAddedMatchPage.clickOnMatchHistoryTab();
-		validateRecentlyAddedMatchPage.hardWait(3);
-		Assert.assertTrue(validateRecentlyAddedMatchPage.isValidateButtonDisplayed(eventName));
+		validateRecentlyAddedMatchPage.hardWait(4);
+		Assert.assertTrue(validateRecentlyAddedMatchPage.isValidateButtonDisplayed(matchEvent));
 
 		logger.info("Ending of verifyRecentlyAddedMatchStatusInSecondOpponentView method");
 	}
@@ -160,7 +167,7 @@ public class DeleteRecentlyAddedMatchTest extends CommonBaseTest {
 		OldTotalCount = Integer.parseInt(totalMatches);
 
 		validateRecentlyAddedMatchPage.clickOnMatchHistoryTab();
-		validateRecentlyAddedMatchPage.clickOnDeleteButton(eventName);
+		validateRecentlyAddedMatchPage.clickOnDeleteButton(matchEvent);
 
 		deleteRecentlyAddedMatchPage.hardWait(2);
 

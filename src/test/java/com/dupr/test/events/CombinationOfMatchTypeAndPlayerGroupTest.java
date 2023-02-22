@@ -8,7 +8,6 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.b2b.common.WebDriversEnum;
-import com.dupr.pages.clubs.ClubLogoPage;
 import com.dupr.pages.events.CombinationOfMatchTypeAndPlayerGroupPage;
 import com.dupr.test.CommonBaseTest;
 
@@ -24,7 +23,8 @@ public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 
 	@BeforeClass
 	@Parameters({ "browser", "siteURL", "directorEmail", "directorPassword" })
-	public void initMethod(String browser, String siteURL, String directorEmail, String directorPassword) throws Exception {
+	public void initMethod(String browser, String siteURL, String directorEmail, String directorPassword)
+			throws Exception {
 		logger.info("Starting of initMethod in CombinationOfMatchTypeAndPlayerGroupTest");
 
 		this.driver = super.getWebDriver(WebDriversEnum.COMBINATION_OF_MATCHTYPE_AND_PLAYERGROUP_DRIVER);

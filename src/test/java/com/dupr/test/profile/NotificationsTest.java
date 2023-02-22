@@ -114,7 +114,7 @@ public class NotificationsTest extends CommonBaseTest {
 	@Story("Test case #4, Verify Text(Sms) notifications functionality")
 	public void verifyTextNotificationsFunctionality() {
 		logger.info("Starting of verifyTextNotificationsFunctionality method");
-
+		editProfilePage.hardWait(3);
 		editProfilePage.clickOnOpenSettingMenu();
 		editProfilePage.clickOnEditProfileButton();
 

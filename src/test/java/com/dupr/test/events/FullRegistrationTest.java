@@ -24,7 +24,6 @@ public class FullRegistrationTest extends CommonBaseTest {
 
 	private FullRegistrationPage fullRegistrationPage = null;
 	private TimeZonePage timeZonePage = null;
-	private SeedMatchesPage seedMatchesPage = null;
 
 	@BeforeClass
 	@Parameters({ "browser", "siteURL", "directorEmail", "directorPassword" })
@@ -37,7 +36,6 @@ public class FullRegistrationTest extends CommonBaseTest {
 
 		this.fullRegistrationPage = new FullRegistrationPage(this.driver);
 		this.timeZonePage = new TimeZonePage(this.driver);
-		this.seedMatchesPage = new SeedMatchesPage(this.driver);
 
 		logger.info("Ending of initMethod in FullRegistrationTest");
 	}

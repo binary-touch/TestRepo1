@@ -285,7 +285,7 @@ public class ValidateRecentlyAddedMatchTest extends CommonBaseTest {
 	@Description("Test case #12, Verify validate match functionality")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #12, Verify validate match functionality")
-	public void verifyValidateFunctionality(String opponentEmail, String partnerPassword) {
+	public void verifyValidateFunctionality(String opponent1Email, String partnerPassword) {
 		logger.info("Starting of verifyValidateFunctionality method");
 
 		addAMatchPage.clickOnAddAMatchTab();
@@ -297,11 +297,12 @@ public class ValidateRecentlyAddedMatchTest extends CommonBaseTest {
 		loginPage.clickOnOpenSettingsMenu();
 		loginPage.clickOnLogoutButton();
 
-		loginPage.loginToDUPRApplication(opponentEmail, partnerPassword);
+		loginPage.loginToDUPRApplication(opponent1Email, partnerPassword);
 
 		validateRecentlyAddedMatchPage.clickOnMatchHistoryTab();
 		validateRecentlyAddedMatchPage.clickOnPendingButton();
-		validateRecentlyAddedMatchPage.clickOnValidateButton(eventName);
+		validateRecentlyAddedMatchPage.clickOnValidateButton(matchEvent);
+		validateRecentlyAddedMatchPage.hardWait(3);
 
 		Assert.assertTrue(validateRecentlyAddedMatchPage.isValidateMatchPopupContains());
 

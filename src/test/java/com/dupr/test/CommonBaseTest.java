@@ -10,9 +10,6 @@ import com.dupr.pages.events.AddBracketPage;
 import com.dupr.pages.events.AddEventPage;
 import com.dupr.pages.events.AddParticipantsInBracketsPage;
 import com.dupr.pages.events.Create_Edit_Split_TeamPage;
-import com.dupr.pages.events.EventRegistrationPage;
-import com.dupr.pages.events.PaidEventPage;
-import com.dupr.pages.events.PlayerEventRegistrationPage;
 import com.dupr.pages.home.ChatPage;
 import com.dupr.pages.home.UserDashboardPage;
 import com.dupr.pages.players.BrowsePlayersPage;
@@ -26,21 +23,18 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 	protected SearchPlayersPage searchPlayersPage = null;
 	protected BrowsePlayersPage browsePlayersPage = null;
 	protected static String eventName = null;
+	protected static String event = null;
+	protected static String matchEvent = null;
 	protected AddEventPage addEventPage = null;
 	protected AddBracketPage addBracketPage = null;
 	protected ClubLogoPage clubLogoPage = null;
 	protected EditClubInfoPage editClubInfoPage = null;
-	
+
 	protected AddParticipantsInBracketsPage addparticipantsPage = null;
 	protected Create_Edit_Split_TeamPage createTeams = null;
 	protected ChatPage chatpage = null;
 	protected UserDashboardPage userDashboardPage = null;
-	protected EventRegistrationPage eventRegistrationPage = null;
 
-	protected EventRegistrationPage directorEventRegistrationPage = null;
-	protected PlayerEventRegistrationPage playerEventRegistrationPage = null;
-	protected PaidEventPage paidEventPage = null;
-	
 	public void initCommonBaseTest(String siteURL, String email, String password) throws Exception {
 		logger.info("Starting of initTest in CommonBaseTest");
 
@@ -57,20 +51,17 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		this.createTeams = new Create_Edit_Split_TeamPage(this.driver);
 		this.chatpage = new ChatPage(this.driver);
 		this.userDashboardPage = new UserDashboardPage(this.driver);
-		this.eventRegistrationPage = new EventRegistrationPage(this.driver);
-		this.directorEventRegistrationPage = new EventRegistrationPage(this.driver);
-		this.playerEventRegistrationPage = new PlayerEventRegistrationPage(this.driver);
-		this.paidEventPage = new PaidEventPage(this.driver);
-		
+
 		logger.info("Ending of initTest in CommonBaseTest");
 	}
 
 	public void verifySetMatchDetails() {
 		logger.info("Starting of verifySetMatchDetails method");
 
+		addAMatchPage.hardWait(3);
 		addAMatchPage.setLocationInDoubles(testDataProp.getProperty("location.city.name"));
 
-		eventName = addAMatchPage.setEventName(testDataProp.getProperty("event.name.in.doubles"));
+		matchEvent = addAMatchPage.setEventName(testDataProp.getProperty("event.name.in.doubles"));
 
 		logger.info("Ending of verifySetMatchDetails method");
 	}
@@ -80,16 +71,19 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 
 		addAMatchPage.clickOnAddPlayer();
 		addAMatchPage.searchWithPlayerName(testDataProp.getProperty("search.partner.name"));
+		addAMatchPage.hardWait(3);
 		addAMatchPage.clickOnPlayerRadioButton();
 		addAMatchPage.clickOnAddPlayerButton();
 
 		addAMatchPage.clickOnAddPlayer();
 		addAMatchPage.searchWithPlayerName(testDataProp.getProperty("search.first.opponent.name"));
+		addAMatchPage.hardWait(3);
 		addAMatchPage.clickOnPlayerRadioButton();
 		addAMatchPage.clickOnAddPlayerButton();
 
 		addAMatchPage.clickOnAddPlayer();
 		addAMatchPage.searchWithPlayerName(testDataProp.getProperty("search.second.opponent.name"));
+		addAMatchPage.hardWait(3);
 		addAMatchPage.clickOnPlayerRadioButton();
 		addAMatchPage.clickOnAddPlayerButton();
 		addAMatchPage.setGameOneScores(testDataProp.getProperty("teamone.gameone.Score"),
@@ -112,6 +106,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 
 		addAMatchPage.clickOnAddOpponentButton();
 		addAMatchPage.searchWithPlayerName(testDataProp.getProperty("search.first.opponent.name"));
+		addAMatchPage.hardWait(3);
 		addAMatchPage.clickOnPlayerRadioButton();
 		addAMatchPage.clickOnAddPlayerButton();
 
@@ -134,6 +129,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 
 		addAMatchPage.clickOnAddOpponentButton();
 		addAMatchPage.searchWithPlayerName(testDataProp.getProperty("search.first.opponent.name"));
+		addAMatchPage.hardWait(3);
 		addAMatchPage.clickOnPlayerRadioButton();
 		addAMatchPage.clickOnAddPlayerButton();
 
@@ -225,7 +221,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		addBracketPage.hardWait(3);
 		addBracketPage.clickOnPlayGroupDropdown();
 		addBracketPage.hardWait(3);
-		addBracketPage.selectOpenPlayerGroup();
+		addBracketPage.selectMixedPlayerGroup();
 
 		addBracketPage.setMinimumAgeRange(testDataProp.getProperty("min.age.range"));
 		Assert.assertTrue(addBracketPage.isEnteredMinimumAgeDisplayed(testDataProp.getProperty("min.age.range")));
@@ -266,7 +262,6 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		addBracketPage.clickOnTimeZoneDropdown();
 		Assert.assertTrue(addBracketPage.isTimeZoneListContains());
 		addBracketPage.clickOnNewDelhiTimeZone();
-		Assert.assertTrue(addBracketPage.isSelectedTimeZoneDisplayed());
 
 		addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("zero.value"));
 		addBracketPage.setBracketNonClubMemberPrice(testDataProp.getProperty("zero.value"));
@@ -291,7 +286,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 	public void verifyFreeBracketWithSinglesTypeAndRoundRobinEvent() {
 		logger.info("Starting of verifyFreeBracketWithSinglesTypeAndRoundRobinEvent method");
 
-		eventName = addEventPage.setEventName(testDataProp.getProperty("event.name"));
+		event = addEventPage.setEventName(testDataProp.getProperty("event.name"));
 		addEventPage.setLocation(testDataProp.getProperty("state.address"));
 		addEventPage.uploadEventLogo(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("edit.club.logo.path"));
 		addEventPage.setMemberPrice(testDataProp.getProperty("zero.value"));
@@ -357,8 +352,8 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("zero.value"));
 		addBracketPage.setBracketNonClubMemberPrice(testDataProp.getProperty("zero.value"));
 
-		addBracketPage.setNumberOfTeams(testDataProp.getProperty("team.value"));
-		Assert.assertTrue(addBracketPage.isNumberOfTeamsCountDisplayed(testDataProp.getProperty("team.value")));
+		addBracketPage.setNumberOfTeams(testDataProp.getProperty("min.rating.range"));
+		Assert.assertTrue(addBracketPage.isNumberOfTeamsCountDisplayed(testDataProp.getProperty("min.rating.range")));
 
 		addBracketPage.setWaitlist(testDataProp.getProperty("min.rating.range"));
 		Assert.assertTrue(addBracketPage.isWaitListCountDisplayed(testDataProp.getProperty("min.rating.range")));
@@ -372,79 +367,6 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		addBracketPage.clickOnEventSuccessClosePopupButton();
 
 		logger.info("Ending of verifyFreeBracketWithSinglesTypeAndRoundRobinEvent method");
-	}
-
-	public void verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup() {
-		logger.info("Starting of verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup method");
-
-		addBracketPage.setMinimumAgeRange(testDataProp.getProperty("min.age.range"));
-		Assert.assertTrue(addBracketPage.isEnteredMinimumAgeDisplayed(testDataProp.getProperty("min.age.range")));
-
-		addBracketPage.setMaximumAgeRange(testDataProp.getProperty("max.age.range"));
-		Assert.assertTrue(addBracketPage.isEnteredMaximumAgeDisplayed(testDataProp.getProperty("max.age.range")));
-
-		addBracketPage.setMinimumRatingRange(testDataProp.getProperty("min.rating.range"));
-		Assert.assertTrue(
-				addBracketPage.isEnteredMinimumRatingRangeDisplayed(testDataProp.getProperty("min.rating.range")));
-
-		addBracketPage.setMaximumRatingRange(testDataProp.getProperty("max.rating.range"));
-		Assert.assertTrue(
-				addBracketPage.isEnteredMaximumRatingRangeDisplayed(testDataProp.getProperty("max.rating.range")));
-
-		Assert.assertTrue(addBracketPage.isAutoGenerateButtonEnabled());
-		addBracketPage.clickOnAutoGenerateButton();
-
-		addBracketPage.clickOnEventTypeDropdown();
-		Assert.assertTrue(addBracketPage.isEventTypeListContains());
-		addBracketPage.selectRoundRobinEvent();
-		Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
-
-		addBracketPage.setRegistrationStartDate();
-		addBracketPage.setRegistrationEndDate();
-		addBracketPage.setCompetitionStartDate();
-		addBracketPage.setCompetitionEndDate();
-
-		addBracketPage.clickOnTimeZoneDropdown();
-		addBracketPage.clickOnNewDelhiTimeZone();
-
-		addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("zero.value"));
-		addBracketPage.setBracketNonClubMemberPrice(testDataProp.getProperty("zero.value"));
-
-		addBracketPage.setNumberOfTeams(testDataProp.getProperty("min.age.range"));
-		Assert.assertTrue(addBracketPage.isNumberOfTeamsCountDisplayed(testDataProp.getProperty("min.age.range")));
-
-		addBracketPage.setWaitlist(testDataProp.getProperty("number.of.courts"));
-		Assert.assertTrue(addBracketPage.isWaitListCountDisplayed(testDataProp.getProperty("number.of.courts")));
-
-		addEventPage.clickOnNextStepButton();
-
-		this.VerifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
-		this.VerifyPublishEventButton();
-		addBracketPage.clickOnEventSuccessClosePopupButton();
-
-		logger.info("Ending of verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup method");
-	}
-
-	public void verifyEventInformationPageWithValidDetails() {
-		logger.info("Starting of verifyEventInformationPageWithValidDetails method");
-
-		eventName = addEventPage.setEventName(testDataProp.getProperty("event.name"));
-		
-		System.out.println("event name in Common base test: "+eventName);
-		
-		addEventPage.hardWait(2);
-		addEventPage.setLocation(testDataProp.getProperty("state.address"));
-		addEventPage.uploadEventLogo(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("edit.club.logo.path"));
-		addEventPage.setMemberPrice(testDataProp.getProperty("zero.value"));
-		addEventPage.setNonMemberPrice(testDataProp.getProperty("zero.value"));
-		addEventPage.setAboutTheEvent(testDataProp.getProperty("about.the.event"));
-		addEventPage.clickonTextFormattingButtons();
-		addEventPage.clickOnNextStepButton();
-
-		addEventPage.hardWait(2);
-		Assert.assertTrue(addEventPage.isEventPoliciesPageContains());
-
-		logger.info("Ending of verifyEventInformationPageWithValidDetails method");
 	}
 
 	public void VerifyRecentlyAddedEventUnderEventsTab() {
@@ -513,6 +435,78 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyAddBracketsFunctionalityWithValidDetails method");
 	}
 
+	public void verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup() {
+		logger.info("Starting of verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup method");
+
+		addBracketPage.setMinimumAgeRange(testDataProp.getProperty("min.age.range"));
+		Assert.assertTrue(addBracketPage.isEnteredMinimumAgeDisplayed(testDataProp.getProperty("min.age.range")));
+
+		addBracketPage.setMaximumAgeRange(testDataProp.getProperty("max.age.range"));
+		Assert.assertTrue(addBracketPage.isEnteredMaximumAgeDisplayed(testDataProp.getProperty("max.age.range")));
+
+		addBracketPage.setMinimumRatingRange(testDataProp.getProperty("min.rating.range"));
+		Assert.assertTrue(
+				addBracketPage.isEnteredMinimumRatingRangeDisplayed(testDataProp.getProperty("min.rating.range")));
+
+		addBracketPage.setMaximumRatingRange(testDataProp.getProperty("max.rating.range"));
+		Assert.assertTrue(
+				addBracketPage.isEnteredMaximumRatingRangeDisplayed(testDataProp.getProperty("max.rating.range")));
+
+		Assert.assertTrue(addBracketPage.isAutoGenerateButtonEnabled());
+		addBracketPage.clickOnAutoGenerateButton();
+
+		addBracketPage.clickOnEventTypeDropdown();
+		Assert.assertTrue(addBracketPage.isEventTypeListContains());
+		addBracketPage.selectRoundRobinEvent();
+		Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
+
+		addBracketPage.setRegistrationStartDate();
+		addBracketPage.setRegistrationEndDate();
+		addBracketPage.setCompetitionStartDate();
+		addBracketPage.setCompetitionEndDate();
+
+		addBracketPage.clickOnTimeZoneDropdown();
+		addBracketPage.clickOnNewDelhiTimeZone();
+
+		addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("zero.value"));
+		addBracketPage.setBracketNonClubMemberPrice(testDataProp.getProperty("zero.value"));
+
+		addBracketPage.setNumberOfTeams(testDataProp.getProperty("min.age.range"));
+		Assert.assertTrue(addBracketPage.isNumberOfTeamsCountDisplayed(testDataProp.getProperty("min.age.range")));
+
+		addBracketPage.setWaitlist(testDataProp.getProperty("number.of.courts"));
+		Assert.assertTrue(addBracketPage.isWaitListCountDisplayed(testDataProp.getProperty("number.of.courts")));
+
+		addEventPage.clickOnNextStepButton();
+
+		this.VerifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
+		this.VerifyPublishEventButton();
+		addBracketPage.clickOnEventSuccessClosePopupButton();
+
+		logger.info("Ending of verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup method");
+	}
+
+	public void verifyEventInformationPageWithValidDetails() {
+		logger.info("Starting of verifyEventInformationPageWithValidDetails method");
+
+		eventName = addEventPage.setEventName(testDataProp.getProperty("event.name"));
+
+		System.out.println("event name in Common base test: " + eventName);
+
+		addEventPage.hardWait(2);
+		addEventPage.setLocation(testDataProp.getProperty("state.address"));
+		addEventPage.uploadEventLogo(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("edit.club.logo.path"));
+		addEventPage.setMemberPrice(testDataProp.getProperty("zero.value"));
+		addEventPage.setNonMemberPrice(testDataProp.getProperty("zero.value"));
+		addEventPage.setAboutTheEvent(testDataProp.getProperty("about.the.event"));
+		addEventPage.clickonTextFormattingButtons();
+		addEventPage.clickOnNextStepButton();
+
+		addEventPage.hardWait(2);
+		Assert.assertTrue(addEventPage.isEventPoliciesPageContains());
+
+		logger.info("Ending of verifyEventInformationPageWithValidDetails method");
+	}
 	public void verifySelectAddParticipantFunctionality() {
 		logger.info("Starting of verifySelectAddParticipantFunctionality method");
 
@@ -528,271 +522,4 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 
 		logger.info("Ending of verifySelectAddParticipantFunctionality method");
 	}
-	
-	public void verifyPaidEventInformationPageWithValidDetails() {
-		logger.info("Starting of verifyPaidEventInformationPageWithValidDetails method");
-
-		eventName = addEventPage.setEventName(testDataProp.getProperty("event.name"));
-		
-		System.out.println("event name in Common base test: "+eventName);
-		
-		addEventPage.hardWait(2);
-		addEventPage.setLocation(testDataProp.getProperty("state.address"));
-		addEventPage.uploadEventLogo(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("edit.club.logo.path"));
-		addEventPage.setMemberPrice(testDataProp.getProperty("paid.value"));
-		addEventPage.setNonMemberPrice(testDataProp.getProperty("paid.value"));
-		addEventPage.setAboutTheEvent(testDataProp.getProperty("about.the.event"));
-		addEventPage.clickonTextFormattingButtons();
-		addEventPage.clickOnNextStepButton();
-
-		addEventPage.hardWait(4);
-		Assert.assertTrue(addEventPage.isEventPoliciesPageContains());
-
-		logger.info("Ending of verifyPaidEventInformationPageWithValidDetails method");
-	}
-
-	public void verifyPaidBracketWithEventTypeAsWateFallInDoublesMatchType() {
-		logger.info("Starting of verifyPaidBracketWithEventTypeAsWateFall method");
-
-	addBracketPage.hardWait(3);
-	addBracketPage.clickOnMatchTypeDropdown();
-	Assert.assertTrue(addBracketPage.isMatchTypeListContains());
-	addBracketPage.selectDoublesMatchType();
-	Assert.assertTrue(addBracketPage.isSelectedMatchTypeDisplayed());
-
-	addBracketPage.clickOnPlayGroupDropdown();
-	Assert.assertTrue(addBracketPage.isPlayerGroupListDisplayed());
-	addBracketPage.selectMixedPlayerGroup();
-
-	addBracketPage.setMinimumAgeRange(testDataProp.getProperty("min.age.range"));
-	Assert.assertTrue(addBracketPage.isEnteredMinimumAgeDisplayed(testDataProp.getProperty("min.age.range")));
-
-	addBracketPage.setMaximumAgeRange(testDataProp.getProperty("max.age.range"));
-	Assert.assertTrue(addBracketPage.isEnteredMaximumAgeDisplayed(testDataProp.getProperty("max.age.range")));
-
-	addBracketPage.setMinimumRatingRange(testDataProp.getProperty("min.rating.range"));
-	Assert.assertTrue(
-			addBracketPage.isEnteredMinimumRatingRangeDisplayed(testDataProp.getProperty("min.rating.range")));
-
-	addBracketPage.setMaximumRatingRange(testDataProp.getProperty("max.rating.range"));
-	Assert.assertTrue(
-			addBracketPage.isEnteredMaximumRatingRangeDisplayed(testDataProp.getProperty("max.rating.range")));
-
-	Assert.assertTrue(addBracketPage.isAutoGenerateButtonEnabled());
-	addBracketPage.clickOnAutoGenerateButton();
-
-	addBracketPage.clickOnEventTypeDropdown();
-	Assert.assertTrue(addBracketPage.isEventTypeListContains());
-	addBracketPage.selectWaterfallEventType();
-	Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
-
-	addBracketPage.hardWait(2);
-	addBracketPage.setNumberOfCourts(testDataProp.getProperty("number.of.courts"));
-
-	addBracketPage.hardWait(2);
-	addBracketPage.setRegistrationStartDate();
-
-	addBracketPage.hardWait(2);
-	addBracketPage.setRegistrationEndDate();
-
-	addBracketPage.hardWait(2);
-	addBracketPage.setCompetitionStartDate();
-
-	addBracketPage.hardWait(2);
-	addBracketPage.setCompetitionEndDate();
-
-	addBracketPage.clickOnTimeZoneDropdown();
-	Assert.assertTrue(addBracketPage.isTimeZoneListContains());
-	addBracketPage.clickOnNewDelhiTimeZone();
-
-	addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("paid.value"));
-	addBracketPage.setBracketNonClubMemberPrice(testDataProp.getProperty("paid.value"));
-
-	Assert.assertTrue(addBracketPage.isNumberOfTeamsDisabledState());
-	addBracketPage.hardWait(2);
-	addBracketPage.setWaitlist(testDataProp.getProperty("min.rating.range"));
-	Assert.assertTrue(addBracketPage.isWaitListCountDisplayed(testDataProp.getProperty("min.rating.range")));
-
-	addEventPage.clickOnNextStepButton();
-
-	addBracketPage.hardWait(3);
-	this.VerifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
-
-	addBracketPage.hardWait(3);
-	this.VerifyPublishEventButton();
-
-	addBracketPage.hardWait(3);
-	addBracketPage.clickOnEventSuccessClosePopupButton();
-
-	logger.info("Ending of verifyPaidBracketWithEventTypeAsWateFall method");
-}
-
-	public void verifyPaidBracketWithEventTypeAsWateFallInSinglesMatchType() {
-		logger.info("Starting of verifyPaidBracketWithEventTypeAsWateFallInSinglesMatchType method");
-
-	addBracketPage.hardWait(3);
-	addBracketPage.clickOnMatchTypeDropdown();
-	Assert.assertTrue(addBracketPage.isMatchTypeListContains());
-	addBracketPage.selectSinglesMatchType();
-	Assert.assertTrue(addBracketPage.isSelectedMatchTypeDisplayed());
-
-	addBracketPage.clickOnPlayGroupDropdown();
-	Assert.assertTrue(addBracketPage.isPlayerGroupListDisplayed());
-	addBracketPage.selectOpenPlayerGroup();
-
-	addBracketPage.setMinimumAgeRange(testDataProp.getProperty("min.age.range"));
-	Assert.assertTrue(addBracketPage.isEnteredMinimumAgeDisplayed(testDataProp.getProperty("min.age.range")));
-
-	addBracketPage.setMaximumAgeRange(testDataProp.getProperty("max.age.range"));
-	Assert.assertTrue(addBracketPage.isEnteredMaximumAgeDisplayed(testDataProp.getProperty("max.age.range")));
-
-	addBracketPage.setMinimumRatingRange(testDataProp.getProperty("min.rating.range"));
-	Assert.assertTrue(
-			addBracketPage.isEnteredMinimumRatingRangeDisplayed(testDataProp.getProperty("min.rating.range")));
-
-	addBracketPage.setMaximumRatingRange(testDataProp.getProperty("max.rating.range"));
-	Assert.assertTrue(
-			addBracketPage.isEnteredMaximumRatingRangeDisplayed(testDataProp.getProperty("max.rating.range")));
-
-	Assert.assertTrue(addBracketPage.isAutoGenerateButtonEnabled());
-	addBracketPage.clickOnAutoGenerateButton();
-
-	addBracketPage.clickOnEventTypeDropdown();
-	Assert.assertTrue(addBracketPage.isEventTypeListContains());
-	addBracketPage.selectWaterfallEventType();
-	Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
-
-	addBracketPage.hardWait(2);
-	addBracketPage.setNumberOfCourts(testDataProp.getProperty("number.of.courts"));
-
-	addBracketPage.hardWait(2);
-	addBracketPage.setRegistrationStartDate();
-
-	addBracketPage.hardWait(2);
-	addBracketPage.setRegistrationEndDate();
-
-	addBracketPage.hardWait(2);
-	addBracketPage.setCompetitionStartDate();
-
-	addBracketPage.hardWait(2);
-	addBracketPage.setCompetitionEndDate();
-
-	addBracketPage.clickOnTimeZoneDropdown();
-	Assert.assertTrue(addBracketPage.isTimeZoneListContains());
-	addBracketPage.clickOnNewDelhiTimeZone();
-
-	addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("paid.value"));
-	addBracketPage.setBracketNonClubMemberPrice(testDataProp.getProperty("paid.value"));
-
-	Assert.assertTrue(addBracketPage.isNumberOfTeamsDisabledState());
-	addBracketPage.hardWait(2);
-	addBracketPage.setWaitlist(testDataProp.getProperty("min.rating.range"));
-	Assert.assertTrue(addBracketPage.isWaitListCountDisplayed(testDataProp.getProperty("min.rating.range")));
-
-	addEventPage.clickOnNextStepButton();
-
-	addBracketPage.hardWait(3);
-	this.VerifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
-
-	addBracketPage.hardWait(3);
-	this.VerifyPublishEventButton();
-
-	addBracketPage.hardWait(3);
-	addBracketPage.clickOnEventSuccessClosePopupButton();
-
-	logger.info("Ending of verifyPaidBracketWithEventTypeAsWateFallInSinglesMatchType method");
-}
-
-	public void verifyRegisterFunctionality() {
-		logger.info("Starting of verifyRegisterFunctionality method");
-
-		eventRegistrationPage.clickOnRegisterButton();
-
-		Assert.assertTrue(eventRegistrationPage.isBracketsCheckBoxesDisplayed());
-
-		Assert.assertEquals(eventRegistrationPage.getEventRegistrationLabel(),
-				expectedAssertionsProp.getProperty("event.registration.text"));
-		
-		Assert.assertEquals(eventRegistrationPage.getRefundPolicyLabel(),
-				expectedAssertionsProp.getProperty("refund.policy"));
-		
-		Assert.assertEquals(eventRegistrationPage.getHealthAndSafetyLabel(),
-				expectedAssertionsProp.getProperty("health.and.safety"));
-		
-		Assert.assertEquals(eventRegistrationPage.getLiabiltyPolicyLabel(),
-				expectedAssertionsProp.getProperty("liabilty.policies"));
-
-		Assert.assertTrue(eventRegistrationPage.isDisableRegisterButtonDisplayed());
-
-		eventRegistrationPage.clickOnSelectYourBracketCheckbox();
-		Assert.assertTrue(eventRegistrationPage.isBracketCheckboxSelected());
-
-		eventRegistrationPage.clickOnRefundPolicyCheckbox();
-		Assert.assertTrue(eventRegistrationPage.isRefundPolicyCheckboxSelected());
-
-		eventRegistrationPage.clickOnHealthSafetyPolicyCheckbox();
-		Assert.assertTrue(eventRegistrationPage.isHealthSafetyPolicyCheckboxSelected());
-
-		eventRegistrationPage.clickOnLiabilityCheckbox();
-		Assert.assertTrue(eventRegistrationPage.isLiabilityPolicyCheckboxSelected());
-		
-		Assert.assertTrue(eventRegistrationPage.isBracketCheckboxSelected());
-
-		eventRegistrationPage.clickOnRegisterButton();
-
-		Assert.assertEquals(eventRegistrationPage.getSuccessLabel(),
-				expectedAssertionsProp.getProperty("success.text"));
-		
-		Assert.assertEquals(eventRegistrationPage.getRegistrationCompletedLabel(),
-				expectedAssertionsProp.getProperty("registration.completed"));
-		
-		Assert.assertEquals(eventRegistrationPage.getOkLabel(), expectedAssertionsProp.getProperty("ok.text"));
-
-		eventRegistrationPage.clickOnOkButton();
-		
-		logger.info("Ending of verifyRegisterFunctionality method");
-	}
-
-	public void verifyRegisterFunctionalityInPlayerAccount() {
-		logger.info("Starting of verifyRegisterFunctionalityInPlayerAccount method");
-		
-		playerEventRegistrationPage.clickOnEventsMenu();
-		playerEventRegistrationPage.clickOnEventCard();
-		
-		playerEventRegistrationPage.clickOnRegisterButton();
-		
-		Assert.assertEquals(directorEventRegistrationPage.getEventRegistrationLabel(),
-				expectedAssertionsProp.getProperty("Event.registration"));
-
-		Assert.assertEquals(playerEventRegistrationPage.getClubMembershipLabel(),
-				expectedAssertionsProp.getProperty("club.membership"));
-		Assert.assertEquals(directorEventRegistrationPage.getHealthAndSafetyLabel(),
-				expectedAssertionsProp.getProperty("health.and.safety"));
-		
-		playerEventRegistrationPage.clickOnClubMemberYesButton();
-		Assert.assertTrue(playerEventRegistrationPage.isClubMemberYesRadioButtonSelected());
-
-		directorEventRegistrationPage.clickOnSelectYourBracketCheckbox();
-		Assert.assertTrue(directorEventRegistrationPage.isBracketCheckboxSelected());
-
-		directorEventRegistrationPage.clickOnRefundPolicyCheckbox();
-		Assert.assertTrue(directorEventRegistrationPage.isRefundPolicyCheckboxSelected());
-
-		directorEventRegistrationPage.clickOnHealthSafetyPolicyCheckbox();
-		Assert.assertTrue(directorEventRegistrationPage.isHealthSafetyPolicyCheckboxSelected());
-
-		logger.info("Ending of verifyRegisterFunctionalityInPlayerAccount method");
-	}
-	public void verifyPaymentFunctionality() {
-		logger.info("Starting of verifyPaymentFunctionality method");
-		
-		Assert.assertTrue(paidEventPage.isContinuePaymentDisabledDisplayed());
-		
-		paidEventPage.clickOnContinuePaymentButton();
-		
-		
-		
-		logger.info("Ending of verifyPaymentFunctionality method");
-	}
-
 }

@@ -105,6 +105,7 @@ public class DUPRClaimAccountSignUpTest extends DUPRBaseAutomationTest {
 		duprSignUpPage.setConfirmPassword();
 
 		duprSignUpPage.clickOnReviewDUPRPoliciesCheckBox();
+		duprSignUpPage.clickOnManageProfileCheckBox();
 		duprSignUpPage.hardWait(2);
 
 		Assert.assertTrue(duprSignUpPage.isFinishButtonEnabled());
@@ -116,7 +117,7 @@ public class DUPRClaimAccountSignUpTest extends DUPRBaseAutomationTest {
 		duprSignUpPage.hardWait(5);
 
 		String verifyYourEmailIdLabel = this.duprSignUpPage.getVerifyYourEmailId();
-		Assert.assertEquals(verifyYourEmailIdLabel, expectedAssertionsProp.getProperty("verify.your.email.id"));
+		Assert.assertEquals(verifyYourEmailIdLabel, expectedAssertionsProp.getProperty("verify.your.email"));
 
 		Assert.assertTrue(duprSignUpPage.isAlreadyVerifiedButtonDisplayed());
 

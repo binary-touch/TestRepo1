@@ -77,6 +77,7 @@ public class SignupTest extends DUPRBaseAutomationTest {
 		signupPage.setPassword(testDataProp.getProperty("password"));
 		signupPage.setConfirmPassword();
 		signupPage.clickOnReviewDUPRPoliciesCheckBox();
+		signupPage.clickOnManageProfileCheckBox();
 
 		Assert.assertTrue(signupPage.isFinishButtonEnabled());
 
@@ -232,6 +233,7 @@ public class SignupTest extends DUPRBaseAutomationTest {
 		signupPage.setPassword(testDataProp.getProperty("password"));
 		signupPage.setConfirmPassword();
 		signupPage.clickOnReviewDUPRPoliciesCheckBox();
+		signupPage.clickOnManageProfileCheckBox();
 
 		Assert.assertTrue(signupPage.isFinishButtonEnabled());
 
@@ -244,8 +246,10 @@ public class SignupTest extends DUPRBaseAutomationTest {
 		signupPage.clickOnOKButton();
 
 		String verifyYourEmailIdLabel = this.signupPage.getVerifyYourEmailId();
-		Assert.assertEquals(verifyYourEmailIdLabel, expectedAssertionsProp.getProperty("verify.your.email.id"));
-
+		signupPage.hardWait(3);
+		
+		Assert.assertEquals(verifyYourEmailIdLabel, expectedAssertionsProp.getProperty("verify.your.email"));
+        signupPage.hardWait(5);
 		Assert.assertTrue(signupPage.isAlreadyVerifiedButtonDisplayed());
 
 		Assert.assertTrue(signupPage.isResendLinkButtonDisplayed());

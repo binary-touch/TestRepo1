@@ -1,5 +1,7 @@
 package com.dupr.test;
 
+import java.util.concurrent.TimeUnit;
+
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -32,7 +34,7 @@ public class ForgotPasswordTest extends DUPRBaseAutomationTest {
 
 		this.driver = super.getWebDriver(WebDriversEnum.FORGOT_PASSWORD_DRIVER);
 		goToSite(driver);
-		this.forgotPasswordPage = new ForgotPasswordPage(this.driver);
+		this.forgotPasswordPage = new ForgotPasswordPage(this.driver);   
 
 		logger.info("Ending of initMethod in ForgotPasswordTest");
 	}
@@ -120,6 +122,7 @@ public class ForgotPasswordTest extends DUPRBaseAutomationTest {
 		forgotPasswordPage.setConfirmPassword(testDataProp.getProperty("password"));
 		forgotPasswordPage.clickOnResetPasswordButton();
 
+		forgotPasswordPage.hardWait(3);
 		String successValidationText = this.forgotPasswordPage.getSuccessLabel();
 		Assert.assertEquals(successValidationText, expectedAssertionsProp.getProperty("success.label"));
 
@@ -147,7 +150,7 @@ public class ForgotPasswordTest extends DUPRBaseAutomationTest {
 		forgotPasswordPage.clickOnSendEmailButton();
 
 		String emailValidationText = this.forgotPasswordPage.getEmailValidationText();
-		Assert.assertEquals(emailValidationText, expectedAssertionsProp.getProperty("invalid.email"));
+		Assert.assertEquals(emailValidationText, expectedAssertionsProp.getProperty("invalid.email.text"));
 
 		logger.info("Ending of verifySendEmailWithInvalidEmailID method");
 	}
