@@ -22,6 +22,9 @@ public class PlayerEventRegistrationPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//span[text()='Yes']/parent::label//input")
 	private WebElement rdoYes;
 
+	@B2BFindBy(xpath = "//span[text()='No']/parent::label//input")
+	private WebElement rdoNo;
+
 	@B2BFindBy(xpath = "//h5[text()='Club Membership']")
 	private WebElement lblClubMembership;
 
@@ -86,6 +89,14 @@ public class PlayerEventRegistrationPage extends DUPRBaseAutomationPage {
 		log.info("Ending of clickOnClubMemberYesButton method");
 	}
 
+	public void clickOnClubMemberNoButton() {
+		log.info("Starting of clickOnClubMemberNoButton method");
+
+		elementClick(rdoNo);
+
+		log.info("Ending of clickOnClubMemberNoButton method");
+	}
+
 	public boolean isClubMemberYesRadioButtonSelected() {
 		log.info("Starting of isClubMemberYesRadioButtonSelected method");
 		log.info("Ending of isClubMemberYesRadioButtonSelected method");
@@ -133,11 +144,23 @@ public class PlayerEventRegistrationPage extends DUPRBaseAutomationPage {
 		log.info("Ending of clickOnRegisterButton method");
 	}
 
+	public void clickOnRegisterButtonInEventPage() {
+		log.info("Starting of clickOnRegisterButton method");
+		this.hardWait(5);
+		clickOnElementUsingActionClass(btnRegister);
+
+		log.info("Ending of clickOnRegisterButton method");
+	}
+	
 	public void clickOnEventsMenu() {
 		log.info("Starting of clickOnEventsMenu method");
-
+        hardWait(4);
+        try{
 		clickOnWebElement(mnuEvents);
-
+        }catch(Exception e) {
+        	mnuEvents.click();
+        }
+        
 		log.info("Ending of clickOnEventsMenu method");
 	}
 	

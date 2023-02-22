@@ -1,7 +1,5 @@
 package com.dupr.test;
 
-import java.util.concurrent.TimeUnit;
-
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -34,7 +32,7 @@ public class ForgotPasswordTest extends DUPRBaseAutomationTest {
 
 		this.driver = super.getWebDriver(WebDriversEnum.FORGOT_PASSWORD_DRIVER);
 		goToSite(driver);
-		this.forgotPasswordPage = new ForgotPasswordPage(this.driver);   
+		this.forgotPasswordPage = new ForgotPasswordPage(this.driver);
 
 		logger.info("Ending of initMethod in ForgotPasswordTest");
 	}

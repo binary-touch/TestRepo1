@@ -742,7 +742,6 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 			clickOnWebElement(btnBackInDirectorsPage);
 		}
 		
-
 		log.info("Ending of clickOnBackButtonInDirectorsPage method");
 	}
 
