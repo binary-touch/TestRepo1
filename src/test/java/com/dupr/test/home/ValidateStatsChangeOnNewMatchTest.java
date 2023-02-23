@@ -102,7 +102,7 @@ public class ValidateStatsChangeOnNewMatchTest extends CommonBaseTest {
 		validateMatch.clickOnMatchHistoryTab();
 		validateMatch.clickOnPendingButton();
 
-		validateMatch.clickOnValidateButton(eventName);
+		validateMatch.clickOnValidateButton(matchEvent);
 
 		Assert.assertTrue(validateMatch.isValidateMatchPopupContains());
 
@@ -183,7 +183,7 @@ public class ValidateStatsChangeOnNewMatchTest extends CommonBaseTest {
 		validateMatch.clickOnMatchHistoryTab();
 		validateMatch.clickOnPendingButton();
 
-		validateMatch.clickOnValidateButton(eventName);
+		validateMatch.clickOnValidateButton(matchEvent);
 
 		Assert.assertTrue(validateMatch.isValidateMatchPopupContains());
 

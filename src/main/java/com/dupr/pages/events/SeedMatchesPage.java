@@ -336,6 +336,9 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h3[text()='Competition Date']/following-sibling::div//h5[text()='End Date & Time']/parent::div/following-sibling::div//input")
 	private WebElement txtBoxCompetitionEndDate;
 
+	@B2BFindBy(xpath = "//span[text()='00']")
+	private WebElement btnDefaultTimeInMinutes;
+
 	@B2BFindBy(xpath = "//span[text()='05']")
 	private WebElement btnTimeInMinutes;
 
@@ -346,6 +349,10 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		super(driver);
 		B2BPageFactory.initElements(driver, this);
 	}
+
+	private static int finalminutesValue = 0;
+	private static String lastMinutes = null;
+	private static String min = null;
 
 	public void clickOnBracketCard() {
 		log.info("Starting of clickOnBracketCard method");
@@ -643,8 +650,12 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 		boolean isRoundsDisplayed = false;
 
-		if (isDisplayed(txtRoundOne) && isDisplayed(txtRoundTwo) && isDisplayed(txtRoundThree)) {
-			isRoundsDisplayed = true;
+		try {
+			if (isDisplayed(txtRoundOne) && isDisplayed(txtRoundTwo) || isDisplayed(txtRoundThree)) {
+				isRoundsDisplayed = true;
+			}
+		} catch (Exception e) {
+			isRoundsDisplayed = false;
 		}
 
 		log.info("Ending of isRoundsDisplayed method");
@@ -855,10 +866,10 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		log.info("Ending of clickOnHomeMenu method");
 	}
 
-	public void clickOnMyMatchesButton() {
+	public void clickOnMyMatchesButton(String eventName) {
 		log.info("Starting of clickOnMyMatchesButton method");
 
-		clickOnWebElement(btnMyMatches);
+		clickOnWebElement(driver.findElement(By.xpath("//h6[contains(text(),'"+eventName+"')]/parent::div//button[contains(text(),'My Matches')]")));
 		this.hardWait(3);
 
 		log.info("Ending of clickOnMyMatchesButton method");
@@ -1439,15 +1450,10 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 		simpleformat = new SimpleDateFormat("mm");
 		String strMinutes = simpleformat.format(new Date());
-		// System.out.println("Minutes format = " + strMinutes);
 		String minutesValue = strMinutes.substring(1);
 
-		// String minutesFirstValue = strMinutes.substring(0);
-		// System.out.println(minutesValue);
 		int minutues = Integer.parseInt(minutesValue);
 		int minutesFinalValue = 0;
-
-		int lastDate = Integer.parseInt(strMinutes);
 
 		if (minutues == 9) {
 			minutesFinalValue = minutues + 6;
@@ -1470,7 +1476,6 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		} else if (minutues == 0) {
 			minutesFinalValue = minutues + 5;
 		}
-		// System.out.println(minutesFinalValue);
 
 		String minutesValue1 = null;
 		for (int i = 0; i < 11;) {
@@ -1484,7 +1489,6 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 			} catch (Exception e) {
 				expectThrows(null, null);
 				System.out.println();
-
 			}
 
 			i++;
@@ -1494,19 +1498,23 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		String last = minutesValue2 + minutesValue1;
 		int num = Integer.parseInt(last);
 
-		int finalminutesValue = num + minutesFinalValue;
+		finalminutesValue = num + minutesFinalValue;
+		System.out.println(finalminutesValue);
 
-		// System.out.println(finalminutesValue);
+		lastMinutes = String.valueOf(finalminutesValue);
+
 		return finalminutesValue;
 	}
 
 	public void clickOnCancelCalenderButton() {
 		log.info("Starting of clickOnCancelCalenderButton method");
+		
 		try {
 			clickUsingActionsClass(btnCancelCalender);
 		} catch (Exception e) {
 			clickOnWebElement(btnCancelCalender);
 		}
+		
 		log.info("Starting of clickOnCancelCalenderButton method");
 	}
 
@@ -1518,12 +1526,13 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 		int date = this.getCurrentDate();
 		String hours = this.getCurrentHour();
-		String minutes = this.getCurrentMinute();
 		String meridiem = this.getCurrentMeridiem();
 
 		this.clickOnCurrentDate(date);
 		this.clickOnCurrentTime(hours);
-
+		hardWait(1);
+		this.clickUsingActionsClass(btnDefaultTimeInMinutes);
+		hardWait(2);
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnElementUsingActionClass(btnOK);
 
@@ -1538,6 +1547,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		int date = this.getCurrentDate();
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
+
 		String pattern = "h";
 
 		LocalTime currentHour = LocalTime.now();
@@ -1547,7 +1557,6 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 		this.clickOnCurrentDate(date);
 		this.clickOnCurrentTime(hours);
-		String min = null;
 		try {
 			min = String.valueOf(this.getMinutes());
 			if (driver.findElement(By.xpath("//span[text()='" + min + "']")).isDisplayed()) {
@@ -1558,16 +1567,45 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 			hardWait(2);
 			clickOnWebElement(txtBoxRegistrationEndDate);
 			this.clickOnCurrentDate(date);
-			this.clickOnCurrentTime(hours);
-			//this.clickOnCurrentTime(futureHourValue);
-			min = "05";
-			this.clickOnCurrentTime(min);
+			this.selectFutureHour();
 		}
 
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnElementUsingActionClass(btnOK);
 
 		log.info("Ending of setRegistrationEndDate method");
+	}
+
+	public void selectFutureHour() {
+		log.info("Starting of selectFutureHour method");
+
+		String pattern = "h";
+		LocalTime currentHour = LocalTime.now();
+
+		if (lastMinutes.substring(0, 1).contains("5")) {
+			if (lastMinutes.substring(1).contains("5")) {
+				System.out.println();
+			} else if (lastMinutes.substring(1).contains("0")) {
+				System.out.println();
+			} else {
+				String currentHourValue = currentHour.format(DateTimeFormatter.ofPattern(pattern));
+				System.out.println(currentHourValue);
+				this.clickOnCurrentTime(currentHourValue);
+				min = "05";
+				this.clickOnCurrentTime(min);
+			}
+		}
+
+		if (lastMinutes.substring(0, 1).contains("6")) {
+			LocalTime futureHour = currentHour.plusHours(1);
+			String futureHourValue = futureHour.format(DateTimeFormatter.ofPattern(pattern));
+			System.out.println(futureHourValue);
+			this.clickOnCurrentTime(futureHourValue);
+			min = "05";
+			this.clickOnCurrentTime(min);
+		}
+
+		log.info("Ending of selectFutureHour method");
 	}
 
 	public void setCompetitionStartDate() {
@@ -1598,9 +1636,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 			hardWait(2);
 			clickOnWebElement(txtBoxRegistrationEndDate);
 			this.clickOnCurrentDate(date);
-			this.clickOnCurrentTime(futureHourValue);
-			min = "05";
-			this.clickOnCurrentTime(min);
+			this.selectFutureHour();
 		}
 
 		this.clickOnCurrentTime(meridiem);

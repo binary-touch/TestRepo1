@@ -201,7 +201,7 @@ public class FullRegistrationTest extends CommonBaseTest {
 		this.VerifyRecentlyAddedEventUnderEventsTab();
 		Assert.assertTrue(fullRegistrationPage.isOpenSinglesCardDisplayed());
 
-		fullRegistrationPage.clickOnOPenSinglesCard();
+		fullRegistrationPage.clickOnOpenSinglesCard();
 
 		logger.info("Ending of verifyBracketCardFunctionality method");
 	}
@@ -264,7 +264,7 @@ public class FullRegistrationTest extends CommonBaseTest {
 		logger.info("Starting of verifyFullRegistrationFunctionalityWithWaterFallEventType method");
 
 		addBracketPage.clickOnBackButton();
-		fullRegistrationPage.clickOnOPenSinglesCard();
+		fullRegistrationPage.clickOnOpenSinglesCard();
 		timeZonePage.clickOnEditBracketButton();
 		addBracketPage.clickOnEventTypeDropdown();
 		Assert.assertTrue(addBracketPage.isEventTypeListContains());

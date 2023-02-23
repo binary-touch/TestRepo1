@@ -39,7 +39,6 @@ public class BrowseEventsTest extends DUPRBaseAutomationTest {
 	@Description("Test case #1, Verify my events functionality")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #1, Verify my events functionality")
-
 	public void verifyMyEventsFunctionality() {
 		logger.info("Starting of verifyMyEventsFunctionality method");
 
@@ -56,7 +55,6 @@ public class BrowseEventsTest extends DUPRBaseAutomationTest {
 	@Description("Test case #2, Verify Browse events functionality")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #2, Verify Browse events functionality")
-
 	public void verifyBrowseEventsFunctionality() {
 		logger.info("Starting of verifyBrowseEventsFunctionality method");
 
@@ -71,7 +69,6 @@ public class BrowseEventsTest extends DUPRBaseAutomationTest {
 	@Description("Test case #3, Verify search field  functionality")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #3, Verify search field  functionality")
-
 	public void verifySearchFieldFunctionality() {
 		logger.info("Starting of verifySearchFieldFunctionality method");
 
@@ -87,7 +84,6 @@ public class BrowseEventsTest extends DUPRBaseAutomationTest {
 	@Description("Test case #4, Verify complete filter  functionality")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #4, Verify complete filter  functionality")
-
 	public void verifyCompleteFunctionality() {
 		logger.info("Starting of verifyCompleteFunctionality method");
 
@@ -103,7 +99,6 @@ public class BrowseEventsTest extends DUPRBaseAutomationTest {
 	@Description("Test case #5, Verify complete filter  functionality")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #5, Verify complete filter  functionality")
-
 	public void verifyCompletAndOpenFilterFunctionality() {
 		logger.info("Starting of verifyCompletAndOpenFilterFunctionality method");
 
@@ -145,13 +140,6 @@ public class BrowseEventsTest extends DUPRBaseAutomationTest {
 		browseEventsPage.hardWait(2);
 		browseEventsPage.clickOnFindEventsNearMeToggleButton();
 		browseEventsPage.hardWait(2);
-
-		/*
-		 * ChromeOptions options = new ChromeOptions();
-		 * options.addArguments("--disable-geolocation"); driver= this.
-		 * browseEventsPage.clickOnbtnTglFindEventsNearMe();
-		 * browseEventsPage.clickOnbtnTglFindEventsNearMe();
-		 */
 
 		logger.info("Ending of verifyToggleFunctionality method");
 	}

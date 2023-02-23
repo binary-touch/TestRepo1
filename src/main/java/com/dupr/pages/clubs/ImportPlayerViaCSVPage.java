@@ -1,6 +1,5 @@
 package com.dupr.pages.clubs;
 
-import java.io.File;
 import java.util.List;
 
 import org.apache.log4j.LogManager;
@@ -172,7 +171,7 @@ public class ImportPlayerViaCSVPage extends DUPRBaseAutomationPage {
 
 		log.info("Ending of clickOnBrowseFiles method");
 	}
-	
+
 	public void uploadPlayerCSVFile(String filepath) {
 		log.info("Starting of setBrowseFilesButton method");
 

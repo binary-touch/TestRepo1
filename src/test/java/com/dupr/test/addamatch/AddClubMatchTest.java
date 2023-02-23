@@ -8,11 +8,8 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.b2b.common.WebDriversEnum;
-import com.dupr.pages.addamatch.AddAMatchPage;
 import com.dupr.pages.addamatch.AddClubMatchPage;
 import com.dupr.pages.clubs.BrowseClubsPage;
-import com.dupr.pages.clubs.ClubLogoPage;
-import com.dupr.pages.clubs.EditClubInfoPage;
 import com.dupr.pages.clubs.MyClubsPage;
 import com.dupr.pages.players.SearchPlayersPage;
 import com.dupr.test.CommonBaseTest;
@@ -25,9 +22,7 @@ import io.qameta.allure.Story;
 public class AddClubMatchTest extends CommonBaseTest {
 
 	private static final Logger logger = Logger.getLogger(AddClubMatchTest.class.getName());
-	private AddAMatchPage addAMatchPage = null;
-	private ClubLogoPage clubLogoPage = null;
-	private EditClubInfoPage editClubInfoPage = null;
+
 	protected SearchPlayersPage searchPlayersPage = null;
 	private AddClubMatchPage addClubMatchPage = null;
 	private MyClubsPage myClubsPage = null;
@@ -35,18 +30,16 @@ public class AddClubMatchTest extends CommonBaseTest {
 
 	@BeforeClass
 	@Parameters({ "browser", "siteURL", "directorEmail", "directorPassword" })
-	public void initMethod(String browser, String siteURL, String directorEmail, String directorPassword) throws Exception {
+	public void initMethod(String browser, String siteURL, String directorEmail, String directorPassword)
+			throws Exception {
 		logger.info("Starting of initMethod in AddClubMatchTest");
 
 		this.driver = super.getWebDriver(WebDriversEnum.ADD_CLUB_MATCH_TEST);
-		this.siteLogin(siteURL, directorEmail, directorPassword, this.driver);
-		this.addAMatchPage = new AddAMatchPage(this.driver);
-		this.clubLogoPage = new ClubLogoPage(this.driver);
-		this.editClubInfoPage = new EditClubInfoPage(this.driver);
+		super.initCommonBaseTest(siteURL, directorEmail, directorPassword);
+
 		this.searchPlayersPage = new SearchPlayersPage(this.driver);
 		this.myClubsPage = new MyClubsPage(this.driver);
 		this.browseClubsPage = new BrowseClubsPage(this.driver);
-
 		this.addClubMatchPage = new AddClubMatchPage(this.driver);
 
 		logger.info("Ending of initMethod in AddClubMatchTest");
@@ -182,7 +175,8 @@ public class AddClubMatchTest extends CommonBaseTest {
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #5, verify Add A Match Functionality For Singles By WithOut Selecting Add Your self Checkbox")
 	public void verifyAddClubMatchFunctionalityForSinglesByWithOutSelectingAddYourselfCheckbox() {
-		logger.info("Starting of verifyAddClubMatchFunctionalityForSinglesByWithOutSelectingAddYourselfCheckbox method");
+		logger.info(
+				"Starting of verifyAddClubMatchFunctionalityForSinglesByWithOutSelectingAddYourselfCheckbox method");
 
 		addClubMatchPage.clickOnAddAMatchButton();
 		addAMatchPage.setLocationInDoubles(testDataProp.getProperty("location.city.name"));
@@ -222,7 +216,8 @@ public class AddClubMatchTest extends CommonBaseTest {
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #6, verify Add A Match Functionality For Doubles By WithOut Selecting Add Your self Checkbox")
 	public void verifyAddClubMatchFunctionalityForDoublesByWithOutSelectingAddYourselfCheckbox() {
-		logger.info("Starting of verifyAddClubMatchFunctionalityForDoublesByWithOutSelectingAddYourselfCheckbox method");
+		logger.info(
+				"Starting of verifyAddClubMatchFunctionalityForDoublesByWithOutSelectingAddYourselfCheckbox method");
 
 		addClubMatchPage.clickOnAddAMatchButton();
 		addAMatchPage.setLocationInDoubles(testDataProp.getProperty("location.city.name"));

@@ -305,10 +305,16 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 		log.info("Starting of isValidateMatchPopupContains method");
 
 		boolean isValidateMatchPopupContains = false;
+		try {
 
-		if (lblValidateMatch.isDisplayed() && btnValidateOnValidateMatchPopup.isDisplayed() && iconClose.isDisplayed())
+			if (lblValidateMatch.isDisplayed()
+					&& btnValidateOnValidateMatchPopup.isDisplayed()
+					&& iconClose.isDisplayed())
 
-			isValidateMatchPopupContains = true;
+				isValidateMatchPopupContains = true;
+		} catch (Exception e) {
+			System.out.println(" ");
+		}
 
 		log.info("Ending of isValidateMatchPopupContains method");
 
@@ -534,6 +540,7 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 		scrollIntoView(lblMatchHistory);
 		hardWait(2);
 		scrollDown(-200);
+		hardWait(2);
 
 		System.out.println("Player name Index value: " + lstDoublesPlayerNames.size());
 		for (WebElement playerName : lstDoublesPlayerNames) {

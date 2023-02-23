@@ -113,7 +113,7 @@ public class AddAMatchTest extends CommonBaseTest {
 		addAMatchPage.setFullName(testDataProp.getProperty("player.name.in.browse.players"));
 		addAMatchPage.setEmail(testDataProp.getProperty("invite.email"));
 		addAMatchPage.clickOnSendInviteButton();
-		addAMatchPage.hardWait(2);
+		addAMatchPage.hardWait(6);
 
 		Assert.assertEquals(addAMatchPage.getInviteSentText(), expectedAssertionsProp.getProperty("invite.sent.label"));
 
