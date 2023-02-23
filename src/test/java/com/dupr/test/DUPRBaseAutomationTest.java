@@ -52,6 +52,16 @@ public abstract class DUPRBaseAutomationTest extends B2BBaseAutomationTest {
 			log.info("***Succesfully Logged In***");
 		}
 	}
+	
+	protected void devSiteLogin(String devSiteURL, String email, String password, WebDriver webdriver) throws Exception {
+
+		this.driver = webdriver;
+		driver.get(devSiteURL);
+		this.loginPage = new DUPRLoginPage(webdriver);
+
+		loginPage.clickOnLogInLink();
+		loginPage.loginToDUPRApplication(email, password);
+	}
 
 	protected synchronized WebDriver getDriver(String browser, WebDriversEnum webDriver) {
 		log.info("Starting of method getDriver");

@@ -124,6 +124,7 @@ public class ProfilePictureTest extends CommonBaseTest {
 		logger.info("Starting of verifyCancelButtonFunctionality method");
 
 		profilePicturePage.clickOnCameraIcon();
+		profilePicturePage.hardWait(3);
 		profilePicturePage.clickOnChangeProfilePictureButton();
 		profilePicturePage.hardWait(2);
 		profilePicturePage.clickOnCancelButton();

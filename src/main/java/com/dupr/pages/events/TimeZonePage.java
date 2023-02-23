@@ -99,6 +99,9 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//*/h4")
 	private List<WebElement> lstBrowseEvents;
+	
+	@B2BFindBy(xpath = "//div[contains(@class,'MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation3')]//following-sibling::div//h4")
+	private List<WebElement> lstEvents;
 
 	@B2BFindBy(xpath = "//span[text()='Open']")
 	private List<WebElement> lstOpenEvents;
@@ -409,45 +412,57 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 
 	public String getArizonaTimeZoneInEventDetails() {
 		log.info("Starting of getArizonaTimeZoneInEventDetails method");
-		// System.out.println(getText(txtTimeZoneInEventDetails));
 		log.info("Ending of getArizonaTimeZoneInEventDetails method");
 
 		return txtArizonaTimeZoneInEventDetails.getText();
 	}
 
-	public boolean selectRecentlyAddedEventInBrowseEvents(String eventName) {
-		hardWait(3);
-		log.info("Starting of selectRecentlyAddedEventInBrowseEvents method");
+	public boolean isRecentlyAddedEventDisplayed(String eventName) {
+		log.info("Starting of isRecentlyAddedEventDisplayed method");
 
-		for (int i = 0; i <= lstBrowseEvents.size(); i++) {
+		boolean eventStatus = false;
+		hardWait(3);
+
+		for (int i = 0; i < lstBrowseEvents.size(); i++) {
+			System.out.println(lstBrowseEvents.size());
 			System.out.println(lstBrowseEvents.get(i).getText());
+
 			if (lstBrowseEvents.get(i).getText().equals(eventName)) {
+
+				System.out.println(lstOpenEvents.get(i).getText());
 				if (lstOpenEvents.get(i).getText().contains("Open")) {
-					return true;
+					eventStatus = true;
+					break;
 				}
-				break;
 			}
-			break;
 		}
-		log.info("Ending of selectRecentlyAddedEventInBrowseEvents method");
-		return false;
+
+		log.info("Ending of isRecentlyAddedEventDisplayed method");
+		return eventStatus;
 	}
+	
+	public void clickOnRecentlyAddedEvent(String eventName) {
+		log.info("Starting of clickOnRecentlyAddedEvent method");
 
-	public void clickonRecentlyAddedEvent(String eventName) {
-		hardWait(3);
-		log.info("Starting of clickonRecentlyAddedEvent method");
-		for (int i = 0; i <= lstBrowseEvents.size(); i++) {
-			System.out.println(lstBrowseEvents.get(i).getText());
-			if (lstBrowseEvents.get(i).getText().equals(eventName)) {
-				if (lstOpenEvents.get(i).getText().contains("Open")) {
-					lstOpenEvents.get(0).click();
+		hardWait(4);
+		for (int i = 0; i < lstEvents.size(); i++) {
+			System.out.println(lstEvents.get(i).getText());
+
+			this.hardWait(2);
+			if (lstEvents.get(i).getText().equals(eventName)) {
+				System.out.println(lstEvents.get(i).getText());
+				try {
+					clickOnWebElement(lstEvents.get(i));
+					this.hardWait(2);
+					break;
+				} catch (Exception e) {
+					lstEvents.get(i).click();
+					break;
 				}
-				break;
-			}
-			break;
-		}
-		log.info("Ending of clickonRecentlyAddedEvent method");
 
+			}
+		}
+		log.info("Ending of clickOnRecentlyAddedEvent method");
 	}
 
 	public void clickOnEventsTab() {
@@ -1171,8 +1186,13 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 	public void setRegistrationStartDateBeforeOneDay() {
 		log.info("Starting of setRegistrationStartDateBeforeOneDay method");
 
-		scrollDown(500);
+		//scrollDown(500);
+		try {
+			clickOnElementUsingActionClass(txtBoxRegistrationStartDate);
+		}catch(Exception e) {
 		clickOnWebElement(txtBoxRegistrationStartDate);
+		}
+		
 		clickOnWebElement(ddRegistrationEndDate);
 		hardWait(3);
 
@@ -1195,8 +1215,8 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 				clickUsingActionsClass(driver.findElement(By.xpath("//button[@title='Previous month']")));
 				this.clickOnCurrentDate(date);
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception e1) {
+			e1.printStackTrace();
 		}
 			String hours = this.getCurrentHour();
 			String meridiem = this.getCurrentMeridiem();
@@ -1207,8 +1227,8 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 			this.clickOnCurrentTime(meridiem);
 			this.clickOnElementUsingActionClass(btnOK);
 
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception e2) {
+			e2.printStackTrace();
 		}
 
 		log.info("Ending of setRegistrationStartDateBeforeOneDay method");

@@ -78,7 +78,7 @@ public class PlayerEventRegistrationTest extends CommonBaseTest {
 	public void verifyRegisterFunctionalityInPlayerAccount() {
 		logger.info("Starting of verifyRegisterFunctionalityInPlayerAccount method");
 
-		playerEventRegistrationPage.clickOnRegisterButton();
+		playerEventRegistrationPage.clickOnRegisterButtonInEventPage();
 		
 		Assert.assertEquals(directorEventRegistrationPage.getEventRegistrationLabel(),
 				expectedAssertionsProp.getProperty("Event.registration"));

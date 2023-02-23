@@ -776,7 +776,7 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			clickOnWebElement(btnBackInDirectorsPage);
 		}
-
+		
 		log.info("Ending of clickOnBackButtonInDirectorsPage method");
 	}
 

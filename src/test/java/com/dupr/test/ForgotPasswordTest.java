@@ -120,6 +120,7 @@ public class ForgotPasswordTest extends DUPRBaseAutomationTest {
 		forgotPasswordPage.setConfirmPassword(testDataProp.getProperty("password"));
 		forgotPasswordPage.clickOnResetPasswordButton();
 
+		forgotPasswordPage.hardWait(3);
 		String successValidationText = this.forgotPasswordPage.getSuccessLabel();
 		Assert.assertEquals(successValidationText, expectedAssertionsProp.getProperty("success.label"));
 
@@ -147,7 +148,7 @@ public class ForgotPasswordTest extends DUPRBaseAutomationTest {
 		forgotPasswordPage.clickOnSendEmailButton();
 
 		String emailValidationText = this.forgotPasswordPage.getEmailValidationText();
-		Assert.assertEquals(emailValidationText, expectedAssertionsProp.getProperty("invalid.email"));
+		Assert.assertEquals(emailValidationText, expectedAssertionsProp.getProperty("invalid.email.text"));
 
 		logger.info("Ending of verifySendEmailWithInvalidEmailID method");
 	}

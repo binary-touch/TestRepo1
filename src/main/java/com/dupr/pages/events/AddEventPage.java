@@ -815,7 +815,7 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 		return lblEntryFee.getText();
 	}
 
-	public void setMemberPrice(String memberPrice) {
+	public float setMemberPrice(String memberPrice) {
 		log.info("Starting of setMemberPrice method");
 
 		scrollIntoView(txtBoxMemberPrice);
@@ -824,11 +824,13 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 
 		this.txtBoxMemberPrice.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		txtBoxMemberPrice.sendKeys(memberPrice);
-
+        String memberPrice1=txtBoxMemberPrice.getAttribute("value");
+        float memberPrice2=Float.parseFloat(memberPrice1);
 		log.info("Ending of setMemberPrice method");
-
+		return  memberPrice2;
 	}
 
+	
 	public void setSearchClubName(String clubName) {
 		log.info("Starting of setSearchClubName method");
 
@@ -841,7 +843,7 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 		log.info("Ending of setSearchClubName method");
 	}
 
-	public void setNonMemberPrice(String nonMemberPrice) {
+	public float setNonMemberPrice(String nonMemberPrice) {
 		log.info("Starting of setNonMemberPrice method");
 
 		this.txtBoxNonMemberPrice.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
@@ -850,7 +852,11 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 		this.txtBoxNonMemberPrice.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		txtBoxNonMemberPrice.sendKeys(nonMemberPrice);
 
+		String nonMemberPrice1= txtBoxNonMemberPrice.getAttribute("value");
+		float nonMemberPrice2=Float.parseFloat(nonMemberPrice1);
 		log.info("Ending of setNonMemberPrice method");
+		
+		return nonMemberPrice2; 
 	}
 
 	public String getAboutTheEvents() {

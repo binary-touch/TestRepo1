@@ -42,11 +42,11 @@ public class DeleteRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 		B2BPageFactory.initElements(driver, this);
 	}
 
-	public boolean isPendingLabelDisplayed(String eventName) {
+	public boolean isPendingLabelDisplayed(String matchEvent) {
 		log.info("Starting of isPendingLabelDisplayed method");
 
 		boolean isPendingLabelDisplayed = false;
-		WebElement lblPendingDisplayed = driver.findElement(By.xpath("//p[contains(text(),'"+eventName+"')]/ancestor::div[contains(@class, 'MuiGrid-grid-xs-8')]/following-sibling::div[@class='MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 MuiGrid-grid-md-2 css-lv0834']//span"));
+		WebElement lblPendingDisplayed = driver.findElement(By.xpath("//p[contains(text(),'"+matchEvent+"')]/ancestor::div[contains(@class, 'MuiGrid-grid-xs-8')]/following-sibling::div[@class='MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 MuiGrid-grid-md-2 css-lv0834']//span"));
 		try {
 			if (isDisplayed(lblPendingDisplayed) == true) {
 				isPendingLabelDisplayed = true;

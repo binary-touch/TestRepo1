@@ -8,7 +8,7 @@
 	<parameter name="siteURL"
 		value="https://stage.gamestoppedout.com/" />
 
-	<parameter name="devsiteURL"
+	<parameter name="devSiteURL"
 		value="https://dev.gamestoppedout.com/" />
 		
 	<parameter name="validEmail" value="meet@yopmail.com" />

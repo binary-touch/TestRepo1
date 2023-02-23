@@ -114,6 +114,12 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//p[text()='Select an image to upload']")
 	private WebElement lblSelectAnImageToUpload;
+	
+	@B2BFindBy(xpath = "//button[text()='Browse Clubs']")
+	private WebElement btnBrowseClubs;
+	
+	
+	
 
 	public ClubLogoPage(WebDriver driver) {
 		super(driver);
@@ -150,6 +156,14 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 		elementClick(btnChangeLogo);
 
 		log.info("Ending of clickOnChangeLogoOption method");
+	}
+	
+	public void clickOnBrowseClubs() {
+		log.info("Starting of clickOnBrowseClubs method");
+
+		elementClick(btnBrowseClubs);
+
+		log.info("Ending of clickOnBrowseClubs method");
 	}
 
 	public boolean isClubPageContains() {
@@ -332,8 +346,11 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 				this.txtBoxSearch.click();
 				this.txtBoxSearch.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 
-				sendKeys(txtBoxSearch, "Simba");
+				sendKeys(txtBoxSearch, "simba");
 				this.txtBoxSearch.sendKeys(Keys.ENTER);
+				this.txtBoxSearch.sendKeys(Keys.BACK_SPACE);
+				sendKeys(txtBoxSearch, "a");
+				this.waitForElementToBeVisible(lblSimbaClubName);
 				elementClick(lblSimbaClubName);
 			}
 		} catch (Exception e) {
