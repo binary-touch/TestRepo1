@@ -217,6 +217,9 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//h6[text()='Are you sure you want to edit team?']")
 	private WebElement lblAreYouSure;
+	
+	@B2BFindBy(xpath = "//input[@type='checkbox']/parent::span/following-sibling::span//h4")
+	private WebElement txtName;
 
 	public Create_Edit_Split_TeamPage(WebDriver driver) {
 		super(driver);
@@ -884,4 +887,45 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 
 	}
 
+	public void selectTeamsInWaterFall() {
+	log.info("Starting of selectTeams method");
+		this.hardWait(5);	
+		try {
+			clickOnElementUsingActionClass(tabUnmatchedPlayes);
+			this.hardWait(5);
+		} catch (Exception e) {
+			tabUnmatchedPlayes.click();
+			this.hardWait(5);
+		}
+		for (int i = 0; i < 9; i++) {
+			try {
+				if (txtName.isDisplayed() == true) {
+					this.hardWait(3);
+					this.scrollDown(300);
+					selectPlayerCheckboxs();
+					this.hardWait(2);
+					clickOnWebElement(btnCreateTeam);
+					this.hardWait(2);
+					clickOnWebElement(btnCreate);
+					this.hardWait(4);
+				}
+			} catch (Exception e) {
+				try {
+					if (txtName.isDisplayed() == true) {
+						this.hardWait(3);
+						this.scrollDown(300);
+						selectPlayerCheckboxs();
+						this.hardWait(2);
+						clickOnWebElement(btnCreateTeam);
+						this.hardWait(2);
+						clickOnWebElement(btnCreate);
+						this.hardWait(4);
+					}
+				} catch (Exception e2) {
+					System.out.println();
+				}
+			}
+		}
+		log.info("Ending of selectTeams method");
+	}
 }

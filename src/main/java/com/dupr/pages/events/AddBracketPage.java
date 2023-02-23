@@ -1371,7 +1371,12 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		log.info("Starting of setBracketClubMemberPrice method");
 
 		scrollDown(300);
-		clickUsingActionsClass(txtBoxClubMemberPrice);
+		try {
+			clickUsingActionsClass(txtBoxClubMemberPrice);
+		} catch (Exception e) {
+			clickOnWebElement(txtBoxClubMemberPrice);
+		}
+
 		txtBoxClubMemberPrice.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		txtBoxClubMemberPrice.sendKeys(clubMemberPrice);
 		String clubMemberPrice1=txtBoxClubMemberPrice.getAttribute("value");
@@ -1402,7 +1407,12 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	public float setBracketNonClubMemberPrice(String nonclubMemberPrice) {
 		log.info("Starting of setBracketNonClubMemberPrice method");
 
-		clickUsingActionsClass(txtBoxNonClubMemberPrice);
+		try {
+			clickUsingActionsClass(txtBoxNonClubMemberPrice);
+		} catch (Exception e) {
+			clickOnWebElement(txtBoxNonClubMemberPrice);
+		}
+		
 		txtBoxNonClubMemberPrice.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		txtBoxNonClubMemberPrice.sendKeys(nonclubMemberPrice);
         String nonclubMemberPrice1=txtBoxNonClubMemberPrice.getAttribute("value");

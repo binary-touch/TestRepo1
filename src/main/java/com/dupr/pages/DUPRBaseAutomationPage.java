@@ -202,8 +202,8 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 		}
 	}
 
-	public void switchToNewWindow() {
-		log.info("Starting of switchToNewWindow method");
+	public void switchToNewTab() {
+		log.info("Starting of switchToNewTab method");
 
 		// To Open new window and check Assertions
 		ArrayList<String> tab = new ArrayList<String>(driver.getWindowHandles());
@@ -211,20 +211,20 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 			driver.switchTo().window(tab.get(1));
 		}
 
-		log.info("Ending of switchToNewWindow method");
+		log.info("Ending of switchToNewTab method");
 	}
 
-	public void closeWindow() {
-		log.info("Starting of closeWindow method");
+	public void closeTab() {
+		log.info("Starting of closeTab method");
 
 		// Recent window will be closed and returns back
 		driver.close();
 		ArrayList<String> tab = new ArrayList<String>(driver.getWindowHandles());
 		driver.switchTo().window(tab.get(0));
 
-		log.info("Ending of closeWindow method");
+		log.info("Ending of closeTab method");
 	}
-	
+
 	public void verticalScroll(WebElement webElement) {
 		log.info("Starting of verticalScroll method");
 
@@ -250,7 +250,7 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 
 		return monthValue;
 	}
-	
+
 	public Month getPreviousMonth(int days) {
 		log.info("Starting of getPreviousMonth method");
 
@@ -263,7 +263,7 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 
 		return monthValue;
 	}
-	
+
 	public Month getCurrentMonth() {
 		log.info("Starting of getCurrentMonth method");
 
@@ -275,5 +275,4 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 
 		return monthValue;
 	}
-	
 }
