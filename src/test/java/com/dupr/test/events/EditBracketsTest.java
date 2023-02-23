@@ -8,12 +8,9 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.b2b.common.WebDriversEnum;
-import com.dupr.pages.clubs.ClubLogoPage;
-import com.dupr.pages.events.BrowseEventsPage;
 import com.dupr.pages.events.EditBracketsPage;
 import com.dupr.pages.events.EditEventsPage;
 import com.dupr.test.CommonBaseTest;
-import com.dupr.test.DUPRBaseAutomationTest;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
@@ -22,11 +19,11 @@ import io.qameta.allure.Story;
 
 public class EditBracketsTest extends CommonBaseTest {
 	private static final Logger logger = Logger.getLogger(EditBracketsTest.class.getName());
-	
+
 	private EditEventsPage editEventsPage = null;
 	private EditBracketsPage editBracketsPage = null;
 	private static String eventNameForEditBrackets = null;
-	
+
 	private static String playGroup = null;
 	private static String EventType = null;
 	private static String TimeZone = null;
@@ -36,7 +33,8 @@ public class EditBracketsTest extends CommonBaseTest {
 
 	@BeforeClass
 	@Parameters({ "browser", "siteURL", "directorEmail", "directorPassword" })
-	public void initMethod(String browser, String siteURL, String directorEmail, String directorPassword) throws Exception {
+	public void initMethod(String browser, String siteURL, String directorEmail, String directorPassword)
+			throws Exception {
 		logger.info("Starting of initMethod in EditBracketsTest");
 
 		this.driver = super.getWebDriver(WebDriversEnum.EDIT_BRACKETS_DRIVER);
@@ -47,7 +45,7 @@ public class EditBracketsTest extends CommonBaseTest {
 
 		logger.info("Ending of initMethod in EditBracketsTest");
 	}
-	
+
 	public void verifyFreeEventFunctionality() {
 		logger.info("Starting of verifyFreeEventFunctionality method");
 
@@ -89,7 +87,7 @@ public class EditBracketsTest extends CommonBaseTest {
 	@Story("Test case #1, Verify Edit Brackets Button functionality in Bracket page")
 	public void verifyEditBracketFunctionalityInBracketPage() {
 		logger.info("Starting of verifyEditBracketFunctionalityInBracketPage method");
-		
+
 		this.verifyFreeEventFunctionality();
 		clubLogoPage.hardWait(3);
 		addEventPage.clickOnEventsTab();
@@ -99,7 +97,7 @@ public class EditBracketsTest extends CommonBaseTest {
 		editBracketsPage.clickOnBracketLabel();
 		editEventsPage.hardWait(2);
 		editBracketsPage.clickOnEditBracketButton();
-		
+
 		logger.info("Ending of verifyEditBracketFunctionalityInBracketPage method");
 	}
 

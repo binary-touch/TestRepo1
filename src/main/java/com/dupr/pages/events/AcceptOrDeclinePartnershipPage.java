@@ -248,9 +248,11 @@ public class AcceptOrDeclinePartnershipPage extends DUPRBaseAutomationPage {
 
 	public void clickOnAcceptButton() {
 		log.info("Starting of clickOnAcceptButton method");
-
-		clickOnWebElement(btnAccept);
-
+		try {
+			clickOnWebElement(btnAccept);
+		} catch (Exception e) {
+			clickOnElementUsingActionClass(btnAccept);
+		}
 		log.info("Ending of clickOnAcceptButton method");
 	}
 	
@@ -279,9 +281,12 @@ public class AcceptOrDeclinePartnershipPage extends DUPRBaseAutomationPage {
 
 	public void clickOnNoRadioButton() {
 		log.info("Starting of clickOnNoRadioButton method");
-
-		clickOnWebElement(rdoNo);
-
+		
+		try {
+			clickOnWebElement(rdoNo);
+		} catch (Exception e) {
+			clickOnElementUsingActionClass(rdoNo);
+		}
 		log.info("Ending of clickOnNoRadioButton method");
 	}
 

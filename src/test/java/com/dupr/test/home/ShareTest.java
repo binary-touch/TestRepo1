@@ -122,7 +122,7 @@ public class ShareTest extends DUPRBaseAutomationTest {
 	public void verifyShareOptionInPlayerProfilePage() {
 		logger.info("Starting of verifyShareOptionInPlayerProfilePage method");
 
-		userDashboardPage.clickOnSettings();
+		userDashboardPage.clickOnOpenSettingsMenu();
 		sharePage.clickOnEditProfileButton();
 		sharePage.clickOnViewProfileButton();
 		userDashboardPage.clickOnShareButton();
