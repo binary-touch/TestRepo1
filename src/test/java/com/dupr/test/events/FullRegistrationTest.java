@@ -9,7 +9,6 @@ import org.testng.annotations.Test;
 
 import com.b2b.common.WebDriversEnum;
 import com.dupr.pages.events.FullRegistrationPage;
-import com.dupr.pages.events.SeedMatchesPage;
 import com.dupr.pages.events.TimeZonePage;
 import com.dupr.test.CommonBaseTest;
 
@@ -24,7 +23,6 @@ public class FullRegistrationTest extends CommonBaseTest {
 
 	private FullRegistrationPage fullRegistrationPage = null;
 	private TimeZonePage timeZonePage = null;
-	private SeedMatchesPage seedMatchesPage = null;
 
 	@BeforeClass
 	@Parameters({ "browser", "siteURL", "directorEmail", "directorPassword" })
@@ -37,7 +35,6 @@ public class FullRegistrationTest extends CommonBaseTest {
 
 		this.fullRegistrationPage = new FullRegistrationPage(this.driver);
 		this.timeZonePage = new TimeZonePage(this.driver);
-		this.seedMatchesPage = new SeedMatchesPage(this.driver);
 
 		logger.info("Ending of initMethod in FullRegistrationTest");
 	}
@@ -153,13 +150,13 @@ public class FullRegistrationTest extends CommonBaseTest {
 		Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
 
 		addBracketPage.setRegistrationStartDate();
-		
+
 		addBracketPage.hardWait(2);
 		addBracketPage.setRegistrationEndDate();
-		
+
 		addBracketPage.hardWait(2);
 		fullRegistrationPage.setCompetitionStartDate();
-		
+
 		addBracketPage.hardWait(2);
 		addBracketPage.setCompetitionEndDate();
 
@@ -286,7 +283,7 @@ public class FullRegistrationTest extends CommonBaseTest {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		addparticipantsPage.hardWait(3);
 		Assert.assertFalse(this.addparticipantsPage.isAddParticiPantsButtonDisplayed());
 

@@ -166,7 +166,7 @@ public class WithdrawPlayerTest extends CommonBaseTest {
 		withdrawPlayerPage.clickOnBracketCheckBox();
 		withdrawPlayerPage.clickOnNextButton();
 		Assert.assertTrue(withdrawPlayerPage.isConfirmationPopUpContains());
-		Assert.assertEquals(withdrawPlayerPage.getConfirmTittleTxt(),
+		Assert.assertEquals(withdrawPlayerPage.getConfirmTitleText(),
 				expectedAssertionsProp.getProperty("confirmation.txt"));
 
 		logger.info("Ending of verifyNextBySelectingBracket method");
@@ -196,7 +196,7 @@ public class WithdrawPlayerTest extends CommonBaseTest {
 		withdrawPlayerPage.hardWait(3);
 		withdrawPlayerPage.clickOnConfirmButton();
 		Assert.assertTrue(withdrawPlayerPage.isSucessPopUpContains());
-		Assert.assertEquals(withdrawPlayerPage.getSucessTittleTxt(), expectedAssertionsProp.getProperty("sucess.txt"));
+		Assert.assertEquals(withdrawPlayerPage.getSuccessTitleText(), expectedAssertionsProp.getProperty("sucess.txt"));
 
 		logger.info("Ending of verifyConfirmFunctionality method");
 	}
@@ -245,7 +245,7 @@ public class WithdrawPlayerTest extends CommonBaseTest {
 			withdrawPlayerPage.clickOnFreeBracket();
 			withdrawPlayerPage.clickOnNextButton();
 			Assert.assertTrue(withdrawPlayerPage.isConfirmationPopUpContains());
-			Assert.assertEquals(withdrawPlayerPage.getConfirmTittleTxt(),
+			Assert.assertEquals(withdrawPlayerPage.getConfirmTitleText(),
 					expectedAssertionsProp.getProperty("confirmation.txt"));
 			withdrawPlayerPage.clickOnCloseIconOnConfirm();
 		} catch (Exception e) {

@@ -149,7 +149,7 @@ public class ChatTest extends DUPRBaseAutomationTest {
 	public void verifyEmptyInBoxOnDashboard(String validPassword) {
 		logger.info("Starting of verifyEmptyInBoxOnDashboard method");
 
-		userDashboardPage.clickOnSettings();
+		userDashboardPage.clickOnOpenSettingsMenu();
 		browseEventsPage.hardWait(2);
 		preservingPageVisitsPage.clickOnLogoutButton();
 		browseEventsPage.hardWait(2);
@@ -171,7 +171,7 @@ public class ChatTest extends DUPRBaseAutomationTest {
 	public void verifyPresenceOfMessageIconForUnverifiedAccount(String validPassword) {
 		logger.info("Starting of verifyPresenceOfMessageIconForUnverifiedAccount method");
 
-		userDashboardPage.clickOnSettings();
+		userDashboardPage.clickOnOpenSettingsMenu();
 		browseEventsPage.hardWait(2);
 		preservingPageVisitsPage.clickOnLogoutButton();
 		browseEventsPage.hardWait(2);

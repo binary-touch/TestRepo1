@@ -68,11 +68,6 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		this.createTeams = new Create_Edit_Split_TeamPage(this.driver);
 		this.chatpage = new ChatPage(this.driver);
 		
-		
-		
-		
-		
-		
 		logger.info("Ending of initTest in CommonBaseTest");
 	}
 
@@ -762,10 +757,10 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 
 		Assert.assertEquals(eventRegistrationPage.getSuccessLabel(),
 				expectedAssertionsProp.getProperty("success.text"));
-		
+
 		Assert.assertEquals(eventRegistrationPage.getRegistrationCompletedLabel(),
 				expectedAssertionsProp.getProperty("registration.completed"));
-		
+
 		Assert.assertEquals(eventRegistrationPage.getOkLabel(), expectedAssertionsProp.getProperty("ok.text"));
 
 		eventRegistrationPage.clickOnOkButton();
