@@ -30,7 +30,7 @@
 			<class name="com.dupr.test.clubs.EditClubInfoTest" />
 			<class name="com.dupr.test.clubs.ClubLogoTest" />
 			<class name="com.dupr.test.clubs.AddRemoveOrganizerTest" />
-			<class name="com.dupr.test.clubs.RemoveClubMemberTest" />
+			<class name="com.dupr.test.clubs.RemoveMemberTest" />
 			<class name="com.dupr.test.clubs.ImportPlayerViaCSVTest" />
 			<class name="com.dupr.test.addamatch.AddClubMatchTest" />
 			<class name="com.dupr.test.events.AddEventTest" />
@@ -39,7 +39,7 @@
 			<class name="com.dupr.test.events.EditBracketsTest" />
 		</classes>
 	</test>
-
+	
 	<test name="Sprint 3">
 		<classes>
 			<class name="com.dupr.test.events.AddEditRemoveEventLogoTest" />
@@ -64,18 +64,18 @@
 		<classes>
 			<class name="com.dupr.test.home.ChatTest" />
 			<class name="com.dupr.test.home.ShareTest" />
+			<class name="com.dupr.test.events.SeedMatchesTest" />
 			<class
 				name="com.dupr.test.events.CombinationOfMatchTypeAndPlayerGroupTest" />
 			<class name="com.dupr.test.events.FullRegistrationTest" />
 			<class name="com.dupr.test.events.TimeZoneTest" />
-			<class name="com.dupr.test.events.SeedMatchesTest" />
 		</classes>
 	</test>
 
 	<test name="Sprint 5">
 		<classes>
-			<class
-				name="com.dupr.test.events.PaidEventAndPaidBracketWithWaterfallEventTest" />
-		</classes>
+			<class name="com.dupr.test.events.PaidEventAndPaidBracketWithWaterfallEventTest" />
+			<class name="com.dupr.test.events.SeedMatchesWaterFallTest" />
+			</classes>
 	</test>
 </suite>
