@@ -435,6 +435,7 @@ public class EventRegistrationPage extends DUPRBaseAutomationPage {
 
 	public String getSuccessLabel() {
 		log.info("Starting of getSuccessLabel method");
+		explicitWait(lblSuccess);
 		log.info("Ending of getSuccessLabel method");
 
 		return lblSuccess.getText();
