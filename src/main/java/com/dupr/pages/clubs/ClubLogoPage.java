@@ -57,6 +57,9 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 	// ="//ul[@id='composition-menu']/li/following-sibling::li/preceding-sibling::li")
 	@B2BFindBy(xpath = "//li[contains(text(),'Change Logo')]")
 	private WebElement btnChangeLogo;
+	
+	@B2BFindBy(xpath = "//h4[contains(text(),'Remove Logo')]")
+	private WebElement txtRemoveLogo;
 
 	@B2BFindBy(xpath = "//ul[@id='composition-menu']/li/following-sibling::li[text()='Remove Logo']")
 	private WebElement lblRemoveLogo;
@@ -182,8 +185,13 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 		log.info("Starting of isRemoveLogoPopupContains method");
 
 		boolean isRemoveLogoPopupContains = false;
-		if (isDisplayed(lblRemoveLogo) && isDisplayed(btnYes) && isDisplayed(btnNo) && isDisplayed(iconClose)) {
-			isRemoveLogoPopupContains = true;
+		
+		try {
+			if (isDisplayed(lblRemoveLogo) && isDisplayed(btnYes) && isDisplayed(btnNo) && isDisplayed(iconClose)) {
+				isRemoveLogoPopupContains = true;
+			}
+		} catch (Exception e) {
+			isRemoveLogoPopupContains = false;
 		}
 
 		log.info("Ending of isRemoveLogoPopupContains method");
@@ -238,7 +246,7 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 		log.info("Starting of clickOnMyClubsTab method");
 
 		try {
-			clickOnElement(tabMyClubs);
+			clickUsingActionsClass(tabMyClubs);
 		} catch (Exception e) {
 			clickOnWebElement(tabMyClubs);
 		}

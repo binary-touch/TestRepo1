@@ -51,6 +51,7 @@ public class ImportPlayerViaCSVTest extends DUPRBaseAutomationTest {
 	public void verifyAddPlayerWithImportCSVFunctionality() {
 		logger.info("Starting of verifyAddPlayerFunctionality method");
 
+		clubLogoPage.hardWait(6);
 		clubLogoPage.clickOnMyClubsTab();
 		clubLogoPage.hardWait(3);
 		try {

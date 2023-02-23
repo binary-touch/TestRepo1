@@ -197,7 +197,6 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 
 		addBracketPage.clickOnNoContinueToSummary();
 
-		// driver.navigate().refresh();
 		Assert.assertTrue(addBracketPage.isEventDetailsSectionDisplayed());
 		Assert.assertTrue(addBracketPage.isEventPoliciesSectionDisplayed());
 		Assert.assertTrue(addBracketPage.isBracketsSectionDisplayed());

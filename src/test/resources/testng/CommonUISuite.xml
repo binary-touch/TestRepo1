@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Common UI Automation Tests"><!--  parallel = "classes" thread-count="4"> -->
+<suite name="Common UI Automation Tests"> <!-- parallel = "classes" thread-count = "5"> -->
 
 	<test name="Sprint 1">
 		<classes>
@@ -11,8 +11,9 @@
 			<class name="com.dupr.test.NegativeLoginTest" />
 			<class name="com.dupr.test.ForgotPasswordTest" />
 			<class name="com.dupr.test.addamatch.AddAMatchTest" />
-			<class name="com.dupr.test.home.ValidateRecentlyAddedMatchTest" /> 
-			<class name="com.dupr.test.home.ValidateStatsChangeOnNewMatchTest" />
+			<class name="com.dupr.test.home.ValidateRecentlyAddedMatchTest" />
+			<class
+				name="com.dupr.test.home.ValidateStatsChangeOnNewMatchTest" />
 			<class name="com.dupr.test.home.DeleteRecentlyAddedMatchTest" />
 			<class name="com.dupr.test.players.BrowsePlayersTest" />
 			<class name="com.dupr.test.profile.PlayerProfileTest" />
@@ -29,7 +30,7 @@
 			<class name="com.dupr.test.clubs.EditClubInfoTest" />
 			<class name="com.dupr.test.clubs.ClubLogoTest" />
 			<class name="com.dupr.test.clubs.AddRemoveOrganizerTest" />
-			<class name="com.dupr.test.clubs.RemoveMemberTest" />
+			<class name="com.dupr.test.clubs.RemoveClubMemberTest" />
 			<class name="com.dupr.test.clubs.ImportPlayerViaCSVTest" />
 			<class name="com.dupr.test.addamatch.AddClubMatchTest" />
 			<class name="com.dupr.test.events.AddEventTest" />
@@ -38,7 +39,7 @@
 			<class name="com.dupr.test.events.EditBracketsTest" />
 		</classes>
 	</test>
-	
+
 	<test name="Sprint 3">
 		<classes>
 			<class name="com.dupr.test.events.AddEditRemoveEventLogoTest" />
@@ -47,7 +48,8 @@
 			<class name="com.dupr.test.events.AddAnnouncementTest" />
 			<class name="com.dupr.test.events.PlayerEventRegistrationTest" />
 			<class name="com.dupr.test.events.AcceptOrDeclinePartnerTest" />
-			<class name="com.dupr.test.events.DirectorEventRegistrationTest" />
+			<class
+				name="com.dupr.test.events.DirectorEventRegistrationTest" />
 			<class name="com.dupr.test.events.EditOrRemovePartnerTest" />
 			<class name="com.dupr.test.events.WithdrawPlayerTest" />
 			<class name="com.dupr.test.events.Create_Edit_Split_TeamTest" />
@@ -62,16 +64,18 @@
 		<classes>
 			<class name="com.dupr.test.home.ChatTest" />
 			<class name="com.dupr.test.home.ShareTest" />
-			<class name="com.dupr.test.events.SeedMatchesTest" />
-			<class name="com.dupr.test.events.CombinationOfMatchTypeAndPlayerGroupTest" />
+			<class
+				name="com.dupr.test.events.CombinationOfMatchTypeAndPlayerGroupTest" />
 			<class name="com.dupr.test.events.FullRegistrationTest" />
 			<class name="com.dupr.test.events.TimeZoneTest" />
+			<class name="com.dupr.test.events.SeedMatchesTest" />
 		</classes>
 	</test>
 
 	<test name="Sprint 5">
 		<classes>
-			<class name="com.dupr.test.events.PaidEventAndPaidBracketWithWaterfallEventTest" />
+			<class
+				name="com.dupr.test.events.PaidEventAndPaidBracketWithWaterfallEventTest" />
 		</classes>
 	</test>
 </suite>

@@ -132,7 +132,7 @@ public class AddParticipantsInBracketTest extends DUPRBaseAutomationTest {
 		Assert.assertTrue(addparticipantsPage.isParticipantSelected());
 		
 		addparticipantsPage.clickOnAddParticipantButton();
-		addparticipantsPage.hardWait(2);
+		addparticipantsPage.hardWait(4);
 		Assert.assertTrue(addparticipantsPage.isClubMemberPopupContains());
 		Assert.assertEquals(addparticipantsPage.getCLubMembershipLabel(),
 				expectedAssertionsProp.getProperty("add.participate.popup.title"));

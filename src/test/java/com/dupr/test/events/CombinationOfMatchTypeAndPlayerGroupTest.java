@@ -81,7 +81,9 @@ public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 		Assert.assertTrue(addBracketPage.isSelectedPlayerGroupTypeDisplayed());
 
 		super.verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup();
-		super.VerifyRecentlyAddedEventUnderEventsTab();
+		addEventPage.hardWait(3);
+		addEventPage.clickOnEventsTab();
+		addEventPage.clickOnRecentlyAddedEvent(eventName);
 
 		Assert.assertTrue(combinationOfMatchTypeAndPlayerGroupPage.isOpenSinglesCardDisplayed());
 
@@ -111,7 +113,9 @@ public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 		Assert.assertTrue(addBracketPage.isSelectedPlayerGroupTypeDisplayed());
 
 		super.verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup();
-		super.VerifyRecentlyAddedEventUnderEventsTab();
+		addEventPage.hardWait(3);
+		addEventPage.clickOnEventsTab();
+		addEventPage.clickOnRecentlyAddedEvent(eventName);
 
 		Assert.assertTrue(combinationOfMatchTypeAndPlayerGroupPage.isMenSinglesCardDisplayed());
 
@@ -141,7 +145,9 @@ public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 		Assert.assertTrue(addBracketPage.isSelectedPlayerGroupTypeDisplayed());
 
 		super.verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup();
-		super.VerifyRecentlyAddedEventUnderEventsTab();
+		addEventPage.hardWait(3);
+		addEventPage.clickOnEventsTab();
+		addEventPage.clickOnRecentlyAddedEvent(eventName);
 
 		Assert.assertTrue(combinationOfMatchTypeAndPlayerGroupPage.isWomenSinglesCardDisplayed());
 
@@ -171,7 +177,9 @@ public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 		Assert.assertTrue(addBracketPage.isSelectedPlayerGroupTypeDisplayed());
 
 		super.verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup();
-		super.VerifyRecentlyAddedEventUnderEventsTab();
+		addEventPage.hardWait(3);
+		addEventPage.clickOnEventsTab();
+		addEventPage.clickOnRecentlyAddedEvent(eventName);
 
 		Assert.assertTrue(combinationOfMatchTypeAndPlayerGroupPage.isDoublesMixedCardDisplayed());
 
@@ -201,7 +209,9 @@ public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 		Assert.assertTrue(addBracketPage.isSelectedPlayerGroupTypeDisplayed());
 
 		super.verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup();
-		super.VerifyRecentlyAddedEventUnderEventsTab();
+		addEventPage.hardWait(3);
+		addEventPage.clickOnEventsTab();
+		addEventPage.clickOnRecentlyAddedEvent(eventName);
 
 		Assert.assertTrue(combinationOfMatchTypeAndPlayerGroupPage.isDoublesOpenCardDisplayed());
 
@@ -232,7 +242,9 @@ public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 
 		super.verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup();
 
-		super.VerifyRecentlyAddedEventUnderEventsTab();
+		addEventPage.hardWait(3);
+		addEventPage.clickOnEventsTab();
+		addEventPage.clickOnRecentlyAddedEvent(eventName);
 
 		Assert.assertTrue(combinationOfMatchTypeAndPlayerGroupPage.isDoublesMenCardDisplayed());
 
@@ -263,7 +275,9 @@ public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 
 		super.verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup();
 
-		super.VerifyRecentlyAddedEventUnderEventsTab();
+		addEventPage.hardWait(3);
+		addEventPage.clickOnEventsTab();
+		addEventPage.clickOnRecentlyAddedEvent(eventName);
 
 		Assert.assertTrue(combinationOfMatchTypeAndPlayerGroupPage.isDoublesWomenCardDisplayed());
 

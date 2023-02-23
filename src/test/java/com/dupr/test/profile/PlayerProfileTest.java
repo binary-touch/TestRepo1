@@ -365,7 +365,8 @@ public class PlayerProfileTest extends CommonBaseTest {
 
 		String otpValidationText = editProfilePage.getOTPValidationText();
 		editProfilePage.hardWait(5);
-		Assert.assertTrue(otpValidationText.equals(expectedAssertionsProp.getProperty("mobile.successfully.verfied"))|| otpValidationText.equals(expectedAssertionsProp.getProperty("incorrect.or.expired.passcode")));
+		Assert.assertTrue(otpValidationText.equals(expectedAssertionsProp.getProperty("mobile.successfully.verfied"))
+				|| otpValidationText.equals(expectedAssertionsProp.getProperty("incorrect.or.expired.passcode")));
 
 		editProfilePage.clickOnCloseIcon();
 		logger.info("Ending of verifyPhoneNumberWithInvalidPhoneNumber method");
@@ -420,6 +421,7 @@ public class PlayerProfileTest extends CommonBaseTest {
 
 		editProfilePage.clickOnDominantHandDropDownListOption();
 		editProfilePage.hardWait(3);
+
 		Assert.assertTrue(editProfilePage.isSaveEnabled());
 		editProfilePage.clickOnSaveButton();
 

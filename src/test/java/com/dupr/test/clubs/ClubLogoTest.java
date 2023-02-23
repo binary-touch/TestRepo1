@@ -28,11 +28,12 @@ public class ClubLogoTest extends DUPRBaseAutomationTest {
 
 	@BeforeClass
 	@Parameters({ "browser", "siteURL", "directorEmail", "directorPassword" })
-	public void initMethod(String browser, String siteURL, String email, String password) throws Exception {
+	public void initMethod(String browser, String siteURL, String directorEmail, String directorPassword)
+			throws Exception {
 		logger.info("Starting of initMethod in ClubLogoTest");
 
 		this.driver = super.getWebDriver(WebDriversEnum.CLUB_LOGO_DRIVER);
-		this.siteLogin(siteURL, email, password, this.driver);
+		this.siteLogin(siteURL, directorEmail, directorPassword, this.driver);
 
 		this.clubLogoPage = new ClubLogoPage(this.driver);
 		this.profilePicturePage = new ProfilePicturePage(this.driver);
@@ -42,12 +43,12 @@ public class ClubLogoTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of initMethod in ClubLogoTest");
 	}
 
-	@Test(priority = 1, description = "Verify Add Club  logo  functionality", groups = "sanity")
-	@Description("Test case #1, Verify Add Club  logo  functionality")
+	@Test(priority = 1, description = "Verify Add Club logo functionality in Club page", groups = "sanity")
+	@Description("Test case #1, Verify Add Club logo functionality in Club page")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #1, Verify Add Club logo functionality")
-	public void verifyAddLogoFunctionality() {
-		logger.info("Starting of verifyAddLogoFunctionality method");
+	@Story("Test case #1, Verify Add Club logo functionality in Club page")
+	public void verifyAddLogoFunctionalityInClubPage() {
+		logger.info("Starting of verifyAddLogoFunctionalityInClubPage method");
 
 		clubLogoPage.hardWait(3);
 		clubLogoPage.clickOnMyClubsTab();
@@ -66,15 +67,15 @@ public class ClubLogoTest extends DUPRBaseAutomationTest {
 		clubLogoPage.hardWait(3);
 		profilePicturePage.clickOnCameraIcon();
 
-		logger.info("Ending of verifyAddLogoFunctionality method");
+		logger.info("Ending of verifyAddLogoFunctionalityInClubPage method");
 	}
 
-	@Test(priority = 2, description = "Verify Choose logo functionality", groups = "sanity")
-	@Description("Test case #2, Verify Choose logo functionality")
+	@Test(priority = 2, description = "Verify Choose logo functionality in club page", groups = "sanity")
+	@Description("Test case #2, Verify Choose logo functionality in club page")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #2, Verify Choose logo functionality")
-	public void verifyChooseLogoFunctionality() {
-		logger.info("Starting of verifyChooseLogoFunctionality method");
+	@Story("Test case #2, Verify Choose logo functionality in club page")
+	public void verifyChooseLogoFunctionalityInClubPage() {
+		logger.info("Starting of verifyChooseLogoFunctionalityInClubPage method");
 
 		try {
 			if (clubLogoPage.isEmptyLogoDisplayed() == true) {
@@ -107,30 +108,30 @@ public class ClubLogoTest extends DUPRBaseAutomationTest {
 		profilePicturePage.hardWait(3);
 		Assert.assertTrue(clubLogoPage.isProfilePictureDisplayed());
 
-		logger.info("Ending of verifyChooseLogoFunctionality method");
+		logger.info("Ending of verifyChooseLogoFunctionalityInClubPage method");
 	}
 
-	@Test(priority = 3, description = "Verify Change  logo functionality", groups = "sanity")
-	@Description("Test case #3, Verify Change  logo functionality")
+	@Test(priority = 3, description = "Verify Edit logo functionality in club page", groups = "sanity")
+	@Description("Test case #3, Verify Edit logo functionality in club page")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #3, Verify Change  logo functionality")
-	public void verifyEditLogo() {
-		logger.info("Starting of verifyEditLogo method");
+	@Story("Test case #3, Verify Edit logo functionality in club page")
+	public void verifyEditLogoFunctionalityInClubPage() {
+		logger.info("Starting of verifyEditLogoFunctionalityInClubPage method");
 
 		profilePicturePage.clickOnCameraIcon();
 
 		Assert.assertTrue(clubLogoPage.isChangeLogoDisplayed());
 		Assert.assertTrue(clubLogoPage.isRemoveLogoDisplayed());
 
-		logger.info("Ending of verifyEditLogo method");
+		logger.info("Ending of verifyEditLogoFunctionalityInClubPage method");
 	}
 
-	@Test(priority = 4, description = "Verify Change Logo button functionality", groups = "sanity")
-	@Description("Test case #4, Verify Change Logo button functionality")
+	@Test(priority = 4, description = "Verify Change Logo button functionality in Club page", groups = "sanity")
+	@Description("Test case #4, Verify Change Logo button functionality in Club page")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #4, Verify Change Logo button functionality")
-	public void verifyClickOnChangeLogo() {
-		logger.info("Starting of verifyClickOnChangeLogo method");
+	@Story("Test case #4, Verify Change Logo button functionality in Club page")
+	public void verifyChangeLogoOption() {
+		logger.info("Starting of verifyChangeLogoOption method");
 
 		clubLogoPage.hardWait(3);
 		clubLogoPage.clickOnChangeLogoOption();
@@ -145,15 +146,15 @@ public class ClubLogoTest extends DUPRBaseAutomationTest {
 		clubLogoPage.hardWait(3);
 		Assert.assertTrue(clubLogoPage.isProfilePictureDisplayed());
 
-		logger.info("Ending of verifyClickOnChangeLogo method");
+		logger.info("Ending of verifyChangeLogoOption method");
 	}
 
-	@Test(priority = 5, description = "Verify results on click of Cancel Button in Club  logo popup", groups = "sanity")
-	@Description("Test case #5, Verify results on click of Cancel Button in Club  logo popup")
+	@Test(priority = 5, description = "Verify Cancel Button functionality in Club Logo popup", groups = "sanity")
+	@Description("Test case #5, Verify Cancel Button functionality in Club Logo popup")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #5, Verify results on click of Cancel Button in Club  logo popup")
-	public void verifyCancelButtonFunctionality() {
-		logger.info("Starting of verifyCancelButtonFunctionality method");
+	@Story("Test case #5, Verify Cancel Button functionality in Club Logo popup")
+	public void verifyCancelButtonFunctionalityInClubLogoPopup() {
+		logger.info("Starting of verifyCancelButtonFunctionalityInClubLogoPopup method");
 
 		profilePicturePage.clickOnCameraIcon();
 		clubLogoPage.clickOnChangeLogoOption();
@@ -162,13 +163,13 @@ public class ClubLogoTest extends DUPRBaseAutomationTest {
 
 		Assert.assertTrue(clubLogoPage.isClubPageContains());
 
-		logger.info("Ending of verifyCancelButtonFunctionality method");
+		logger.info("Ending of verifyCancelButtonFunctionalityInClubLogoPopup method");
 	}
 
-	@Test(priority = 6, description = "Verify results on click of Close Icon in Club  logo popup", groups = "sanity")
-	@Description("Test case #6, Verify results on click of Close Icon in Club  logo popup")
+	@Test(priority = 6, description = "Verify Close Icon functionality in Club Logo popup", groups = "sanity")
+	@Description("Test case #6, Verify Close Icon functionality in Club Logo popup")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #6, Verify results on click of Close Icon in Club  logo popup")
+	@Story("Test case #6, Verify Close Icon functionality in Club Logo popup")
 	public void verifyCloseIconInClubLogoPopUp() {
 		logger.info("Starting of verifyCloseIconInClubLogoPopUp method");
 
@@ -182,63 +183,66 @@ public class ClubLogoTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyCloseIconInClubLogoPopUp method");
 	}
 
-	@Test(priority = 7, description = "Verify the state of save button", groups = "sanity")
-	@Description("Test case #9, Verify the state of save button")
+	@Test(priority = 7, description = "Verify the state of save button after Changing Logo", groups = "sanity")
+	@Description("Test case #7, Verify the state of save button after Changing Logo")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #9, Verify the state of save button")
-	public void verifySaveButtonState() {
-		logger.info("Starting of verifySaveButtonState method");
+	@Story("Test case #7, Verify the state of save button after Changing Logo")
+	public void verifyTheStateOfSaveButtonAfterLogoEdit() {
+		logger.info("Starting of verifyTheStateOfSaveButtonAfterLogoEdit method");
 
 		profilePicturePage.clickOnCameraIcon();
 		clubLogoPage.clickOnChangeLogoOption();
 		clubLogoPage.hardWait(2);
 		Assert.assertTrue(profilePicturePage.isSaveButtonDisplayed());
 
-		logger.info("Ending of verifySaveButtonState method");
+		logger.info("Ending of verifyTheStateOfSaveButtonAfterLogoEdit method");
 	}
 
-	@Test(priority = 8, description = "Verify results on click of 'No' Button in Remove Logo popup", groups = "sanity")
-	@Description("Test case #7, Verify results on click of 'No' Button in Remove Logo popup")
+	@Test(priority = 8, description = "Verify 'No' Button functionality in Remove Logo popup", groups = "sanity")
+	@Description("Test case #8, Verify 'No' Button functionality in Remove Logo popup")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #7, Verify results on click of 'No' Button in Remove Logo popup")
-	public void verifyNoButtonFunctionality() {
-		logger.info("Starting of verifyNoButtonFunctionality method");
+	@Story("Test case #8, Verify 'No' Button functionality in Remove Logo popup")
+	public void verifyNoButtonFunctionalityInRemoveLogoPopup() {
+		logger.info("Starting of verifyNoButtonFunctionalityInRemoveLogoPopup method");
 
 		profilePicturePage.clickOnCancelButton();
 		clubLogoPage.hardWait(2);
+
 		profilePicturePage.clickOnCameraIcon();
 		clubLogoPage.clickOnRemoveLogoOption();
 		clubLogoPage.hardWait(2);
+
 		profilePicturePage.clickOnNoButton();
 
 		Assert.assertTrue(clubLogoPage.isClubPageContains());
 
-		logger.info("Ending of verifyNoButtonFunctionality method");
+		logger.info("Ending of verifyNoButtonFunctionalityInRemoveLogoPopup method");
 	}
 
 	@Test(priority = 9, description = "Verify Close Icon Button functionality in Remove logo popup", groups = "sanity")
-	@Description("Test case #8, Verify Close Icon Button functionality in Remove logo popup")
+	@Description("Test case #9, Verify Close Icon Button functionality in Remove logo popup")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #8, Verify Close Icon Button functionality in Remove logo popup")
-	public void verifyCloseIconButtonInRemoveLogoPopup() {
-		logger.info("Starting of verifyCloseIconButtonInRemoveLogoPopup method");
+	@Story("Test case #9, Verify Close Icon Button functionality in Remove logo popup")
+	public void verifyCloseIconInRemoveLogoPopup() {
+		logger.info("Starting of verifyCloseIconInRemoveLogoPopup method");
 
 		profilePicturePage.clickOnCameraIcon();
 		clubLogoPage.clickOnRemoveLogoOption();
+
 		clubLogoPage.hardWait(2);
 		profilePicturePage.clickOnCloseIcon();
 
 		Assert.assertTrue(clubLogoPage.isClubPageContains());
 
-		logger.info("Ending of verifyCloseIconButtonInRemoveLogoPopup method");
+		logger.info("Ending of verifyCloseIconInRemoveLogoPopup method");
 	}
 
-	@Test(priority = 10, description = "Verify remove logo functionality", groups = "sanity")
-	@Description("Test case #9, Verify remove logo functionality")
+	@Test(priority = 10, description = "Verify remove logo functionality in club page", groups = "sanity")
+	@Description("Test case #10, Verify remove logo functionality in club page")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #9, Verify remove logo functionality")
-	public void verifyRemoveLogo() {
-		logger.info("Starting of verifyRemoveLogo method");
+	@Story("Test case #10, Verify remove logo functionality in club page")
+	public void verifyRemoveLogoFunctionalityInClubPage() {
+		logger.info("Starting of verifyRemoveLogoFunctionalityInClubPage method");
 
 		profilePicturePage.clickOnCameraIcon();
 		clubLogoPage.hardWait(3);
@@ -247,10 +251,10 @@ public class ClubLogoTest extends DUPRBaseAutomationTest {
 		Assert.assertTrue(clubLogoPage.isRemoveLogoPopupContains());
 
 		profilePicturePage.clickOnYesButton();
+		clubLogoPage.hardWait(4);
+		Assert.assertFalse(clubLogoPage.isRemoveLogoPopupContains());
 
-		// Assert.assertFalse(clubLogoPage.isProfilePictureDisplayed());
-
-		logger.info("Ending of verifyRemoveLogo method");
+		logger.info("Ending of verifyRemoveLogoFunctionalityInClubPage method");
 	}
 
 	@AfterClass

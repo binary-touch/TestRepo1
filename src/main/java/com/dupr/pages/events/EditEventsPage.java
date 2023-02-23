@@ -2,9 +2,10 @@ package com.dupr.pages.events;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.Keys;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
 import com.b2b.support.B2BFindBy;
 import com.dupr.pages.DUPRBaseAutomationPage;
 
@@ -14,6 +15,12 @@ public class EditEventsPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//span[contains(text(),'Open')]/ancestor::div/following-sibling::div/descendant::h4")
 	private WebElement lblEvent;
+	
+	@B2BFindBy(xpath = "//h6[contains(text(),'Home')]")
+	private WebElement mnuHome;
+	
+	@B2BFindBy(xpath = "//h3[text()='Event']")
+	private WebElement lblEventInEventPage;
 
 	@B2BFindBy(xpath = "//button[text()='Edit Event']")
 	private WebElement btnEditEvent;
@@ -24,19 +31,11 @@ public class EditEventsPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h5[text()='Event Name']")
 	private WebElement txtEventName;
 
-	@B2BFindBy(xpath = "//input[@type='text']")
-	private WebElement txtEventNameField;
-
 	@B2BFindBy(xpath = "//button[text()='Cancel']")
 	private WebElement btnCancel;
 
 	@B2BFindBy(xpath = "//h5[text()='About the Event']")
 	private WebElement txtAboutEvent;
-
-	@B2BFindBy(xpath = "//div[contains(@class,'text-editor rdw-editor-main')]")
-	// h5[text()='About the
-	// Event']/parent::div/following-sibling::div//div[contains(@class,'DraftEditor-root')]
-	private WebElement txtAboutEventField;
 
 	@B2BFindBy(xpath = "//h5[text()='Entry fee']")
 	private WebElement txtEntryFee;
@@ -65,82 +64,53 @@ public class EditEventsPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h5[text()='Refund Policy']")
 	private WebElement txtRefundPolicy;
 
-	@B2BFindBy(xpath = "//h5[text()='Refund Policy']/parent::div/following-sibling::div//div[contains(@class,'DraftEditor-root')]")
-	private WebElement txtRefundField;
-
 	@B2BFindBy(xpath = "//h5[text()='Health and Safety Policy']")
 	private WebElement txtHealth;
 
-	@B2BFindBy(xpath = "//h5[text()='Health and Safety Policy']/parent::div/following-sibling::div//div[contains(@class,'DraftEditor-root')]")
-	private WebElement txtHealthField;
-
 	@B2BFindBy(xpath = "//button[text()='Save Changes']")
 	private WebElement btnSaveChanges;
-
-	@B2BFindBy(xpath = "//div[@class='text-editor rdw-editor-main']/div/div/div/div/div/div/span")
-	private WebElement editAboutEvent;
-
-	@B2BFindBy(xpath = "//h5[text()='Refund Policy']/parent::div/following-sibling::div/div/div/following-sibling::div/div/div/div/div/div/div/span/span")
-	private WebElement editRefundPolicy;
-
-	@B2BFindBy(xpath = "//h5[text()='Health and Safety Policy']/parent::div/following-sibling::div/div/div/following-sibling::div/div/div/div/div/div/div/span")
-	private WebElement editHealthPolicy;
 
 	@B2BFindBy(xpath = "//button[@aria-label='remove player']")
 	private WebElement btnRemove;
 
 	public EditEventsPage(WebDriver driver) {
 		super(driver);
-
 	}
 
-	public void editRefundPolicy(String refundpolicy) {
-		log.info("Starting of clickOnbtnMyEvent method");
-
-		try {
-			this.txtRefundField.click();
-		//	this.editRefundPolicy.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
-			this.hardWait(2);
-			this.txtRefundField.click();
-		//	this.editRefundPolicy.sendKeys(refundpolicy);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		log.info("Ending of clickOnbtnMyEvent method");
-	}
-
-	public void clickOnEventLabel() {
+	public void clickOnEventLabel(String eventName) {
 		log.info("Starting of clickOnEventLabel method");
-
-		elementClick(lblEvent);
-
+		
+		WebElement element = driver.findElement(By.xpath("//h4[text()='" + eventName + "']"));
+		try {
+			clickUsingActionsClass(element);
+		} catch (Exception e) {
+			elementClick(element);
+		}
 		log.info("Ending of clickOnEventLabel method");
 	}
 
-	public void clickOnEditEvent() {
-		log.info("Starting of clickOnbtnMyEvent method");
+	public void clickOnEditEventButton() {
+		log.info("Starting of clickOnEditEventButton method");
 
 		elementClick(btnEditEvent);
 
-		log.info("Ending of clickOnbtnMyEvent method");
+		log.info("Ending of clickOnEditEventButton method");
 	}
 
-	public void clickOnCancel() {
-		log.info("Starting of clickOnCancel method");
+	public void clickOnCancelButton() {
+		log.info("Starting of clickOnCancelButton method");
 
 		elementClick(btnCancel);
 
-		log.info("Ending of clickOnCancel method");
+		log.info("Ending of clickOnCancelButton method");
 	}
 
-	public void clickOnSaveChanges() {
-		log.info("Starting of clickOnSaveChanges method");
+	public void clickOnSaveChangesButton() {
+		log.info("Starting of clickOnSaveChangesButton method");
 
 		elementClick(btnSaveChanges);
 
-		log.info("Ending of clickOnSaveChanges method");
+		log.info("Ending of clickOnSaveChangesButton method");
 	}
 
 	public String getEditEventsText() {
@@ -150,49 +120,37 @@ public class EditEventsPage extends DUPRBaseAutomationPage {
 		return getText(txtEditEvent);
 	}
 
-	public void ClickOnReplace() {
-		log.info("Starting of ClickOnReplace method");
+	public void clickOnReplaceButton() {
+		log.info("Starting of clickOnReplaceButton method");
 
 		clickOnElement(btnReplace);
 
-		log.info("Ending of ClickOnReplace method");
-
+		log.info("Ending of clickOnReplaceButton method");
 	}
 
-	public void ClickOnRemoveButton() {
-		log.info("Starting of ClickOnReplace method");
+	public void clickOnRemoveButton() {
+		log.info("Starting of clickOnRemoveButton method");
 
 		clickOnElement(btnRemove);
 
-		log.info("Ending of ClickOnReplace method");
-
+		log.info("Ending of clickOnRemoveButton method");
 	}
 
-	public Boolean btnReplace() {
+	public boolean isReplaceButtonDisplayed() {
+		log.info("Starting of isReplaceButtonDisplayed method");
+
 		boolean replacebtn = false;
 
-		if (isDisplayed(btnReplace) == true) {
-			replacebtn = true;
+		try {
+			if (isDisplayed(btnReplace) == true) {
+				replacebtn = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+
+		log.info("Ending of isReplaceButtonDisplayed method");
 		return replacebtn;
-	}
-
-	public void ClickOnUpload() {
-		log.info("Starting of ClickOnUpload method");
-
-		clickOnElement(btnLiability);
-
-		log.info("Ending of ClickOnUpload method");
-
-	}
-
-	public Boolean btnupload() {
-		boolean uploadBtn = false;
-
-		if (isDisplayed(btnLiability) == true) {
-			uploadBtn = true;
-		}
-		return uploadBtn;
 	}
 
 	public String getLiabilityWaiverText() {
@@ -207,9 +165,13 @@ public class EditEventsPage extends DUPRBaseAutomationPage {
 
 		boolean isEditEventPageContains = false;
 
-		if (isDisplayed(btnCancel) && isDisplayed(btnSaveChanges) && isDisplayed(txtEditEvent)) {
+		try {
+			if (isDisplayed(btnCancel) && isDisplayed(btnSaveChanges) && isDisplayed(txtEditEvent)) {
 
-			isEditEventPageContains = true;
+				isEditEventPageContains = true;
+			}
+		} catch (Exception e) {
+			isEditEventPageContains = false;
 		}
 
 		log.info("Ending of isMyEventsPageContains method");
@@ -224,35 +186,11 @@ public class EditEventsPage extends DUPRBaseAutomationPage {
 		return getText(txtEventName);
 	}
 
-	public void clickOnEventName(String name) {
-		log.info("Starting of clickOnbtnMyEvent method");
-
-		clickOnElement(txtEventNameField);
-		this.txtEventNameField.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
-		this.hardWait(2);
-		clickOnElement(txtEventNameField);
-		this.txtEventNameField.sendKeys(name);
-
-		log.info("Ending of clickOnbtnMyEvent method");
-	}
-
 	public String getAboutEventText() {
 		log.info("Starting of getAboutEventText method");
 		log.info("Ending of getAboutEventText method");
 
 		return getText(txtAboutEvent);
-	}
-
-	public void clickOnAboutEvent(String aboutEvent) {
-		log.info("Starting of clickOnAboutEvent method");
-
-		clickOnElement(txtAboutEventField);
-		//this.editAboutEvent.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
-		this.hardWait(2);
-		clickOnElement(txtAboutEventField);
-		//this.txtAboutEventField.sendKeys(aboutEvent);
-
-		log.info("Ending of clickOnAboutEvent method");
 	}
 
 	public String getEntryFeeText() {
@@ -290,16 +228,18 @@ public class EditEventsPage extends DUPRBaseAutomationPage {
 		return getText(txtHealth);
 	}
 
-	public void clickOnHealthSafety(String healthPolicy) {
-		log.info("Starting of clickOnHealthSafety method");
+	public String getEventNameLabel() {
+		log.info("Starting of getEventNameLabel method");
+		log.info("Ending of getEventNameLabel method");
 
-		clickOnElement(txtHealthField);
-
-		//this.editHealthPolicy.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
-
-		// this.txtHealthField.sendKeys(healthPolicy);
-
-		log.info("Ending of clickOnHealthSafety method");
+		return getText(lblEventInEventPage);
 	}
 
+	public void clickOnHomeMenu() {
+		log.info("Starting of clickOnHomeMenu method");
+		
+		clickUsingActionsClass(mnuHome);
+		
+		log.info("Ending of clickOnHomeMenu method");
+	}
 }

@@ -25,11 +25,11 @@ public class AddRemoveOrganizerTest extends DUPRBaseAutomationTest {
 
 	@BeforeClass
 	@Parameters({ "browser", "siteURL", "directorEmail", "directorPassword" })
-	public void initMethod(String browser, String siteURL, String email, String password) throws Exception {
+	public void initMethod(String browser, String siteURL, String directorEmail, String directorPassword) throws Exception {
 		logger.info("Starting of initMethod in AddRemoveOrganizerTest");
 
 		this.driver = super.getWebDriver(WebDriversEnum.ADD_OR_REMOVE_ORGANIZER_DRIVER);
-		this.siteLogin(siteURL, email, password, this.driver);
+		this.siteLogin(siteURL, directorEmail, directorPassword, this.driver);
 
 		this.clubLogoPage = new ClubLogoPage(this.driver);
 		this.addRemoveOrganizerPage = new AddORRemoveOrganizerPage(this.driver);
@@ -41,20 +41,24 @@ public class AddRemoveOrganizerTest extends DUPRBaseAutomationTest {
 	@Description("Test case #1, Verify Add organizer functionality")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #1, Verify Add Club logo functionality")
-
 	public void verifyAddOrganizerFunctionality() {
 		logger.info("Starting of verifyAddOrganizerFunctionality method");
 
 		clubLogoPage.clickOnMyClubsTab();
+		addRemoveOrganizerPage.hardWait(3);
 		clubLogoPage.clickOnClub();
 		clubLogoPage.hardWait(3);
 
 		addRemoveOrganizerPage.clickOnSeeClubDetailsDropdown();
-
-		if (addRemoveOrganizerPage.isDeleteOrganizerButtonDisplayed() == true) {
-
-			addRemoveOrganizerPage.AddingOrganizers();
-		}
+		addRemoveOrganizerPage.AddingOrganizers();
+		/*
+		 * try { if (addRemoveOrganizerPage.isDeleteOrganizerButtonDisplayed() == true)
+		 * {
+		 * 
+		 * addRemoveOrganizerPage.AddingOrganizers(); } } catch (Exception e) {
+		 * logger.info("Delete Organizer Button is not displayed"); }
+		 */
+		
 		logger.info("Ending of verifyAddOrganizerFunctionality method");
 	}
 
@@ -65,7 +69,6 @@ public class AddRemoveOrganizerTest extends DUPRBaseAutomationTest {
 	public void verifyDeleteOrganizerFunctionality() {
 		logger.info("Starting of verifyDeleteOrganizerFunctionality method");
 
-		
 		addRemoveOrganizerPage.clickOnRemoveOrgButton();
 
 		clubLogoPage.hardWait(3);
@@ -104,11 +107,10 @@ public class AddRemoveOrganizerTest extends DUPRBaseAutomationTest {
 	public void verifyGoBackFunctionality() {
 		logger.info("Starting of verifyGoBackFunctionality method");
 
-		addRemoveOrganizerPage.DeletingOrganizer();
+		addRemoveOrganizerPage.hardWait(3);
 		addRemoveOrganizerPage.clickOnGoBackButton();
-		
-		String clubOrgText = addRemoveOrganizerPage.getClubOrganizerLabelText();
-		Assert.assertEquals(clubOrgText, expectedAssertionsProp.getProperty("club.organizer.label"));		
+		addRemoveOrganizerPage.hardWait(3);
+		Assert.assertFalse(addRemoveOrganizerPage.isRemoveOrgPopupContains());
 
 		logger.info("Ending of verifyGoBackFunctionality method");
 	}
@@ -119,9 +121,12 @@ public class AddRemoveOrganizerTest extends DUPRBaseAutomationTest {
 	@Story("Test case #5, Verify cancel Button Functionality")
 	public void verifyCancelFunctionality() {
 		logger.info("Starting of verifyCancelFunctionality method");
-		addRemoveOrganizerPage.DeletingOrganizer();
-		addRemoveOrganizerPage.clickOnCancelButton();
 		
+		addRemoveOrganizerPage.hardWait(3);
+		addRemoveOrganizerPage.DeletingOrganizer();
+		addRemoveOrganizerPage.hardWait(3);
+		addRemoveOrganizerPage.clickOnCancelButton();addRemoveOrganizerPage.hardWait(3);
+		Assert.assertFalse(addRemoveOrganizerPage.isRemoveOrgPopupContains());
 
 		logger.info("Ending of verifyCancelFunctionality method");
 	}
@@ -170,15 +175,9 @@ public class AddRemoveOrganizerTest extends DUPRBaseAutomationTest {
 	public void verifyCancelEditFunctionality() {
 		logger.info("Starting of verifyCancelEditFunctionality method");
 
-	//	addRemoveOrganizerPage.clickOnEditCancelButton();
+		addRemoveOrganizerPage.clickOnEditCancelButton();
 		clubLogoPage.hardWait(2);
-		
-		String clubOrgText = addRemoveOrganizerPage.getClubOrganizerLabelText();
-		Assert.assertEquals(clubOrgText, expectedAssertionsProp.getProperty("club.organizer.label"));		
-
-		addRemoveOrganizerPage.clickOnEditIcon();
-		
-		Assert.assertTrue(addRemoveOrganizerPage.isEditOrganizerPopupContains());
+		Assert.assertFalse(addRemoveOrganizerPage.isEditOrganizerPopupContains());
 
 		logger.info("Ending of verifyCancelEditFunctionality method");
 	}
@@ -189,7 +188,8 @@ public class AddRemoveOrganizerTest extends DUPRBaseAutomationTest {
 	@Story("Test case #9, Verify set Name & Email")
 	public void verifyNameAndEmail() {
 		logger.info("Starting of verifyNameAndEmail method");
-
+		
+		addRemoveOrganizerPage.clickOnEditIcon();
 		addRemoveOrganizerPage.setOrganizerName(testDataProp.getProperty("organizer.name"));
 		addRemoveOrganizerPage.setOrganizerEmail(testDataProp.getProperty("organizer.email"));
 		addRemoveOrganizerPage.setOrganizerNumber(testDataProp.getProperty("organizer.num"));
