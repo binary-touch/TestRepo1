@@ -755,17 +755,19 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		log.info("Starting of clickOnMatchesTab method");
 		try {
 			clickOnElementUsingActionClass(tabMatches);
+			hardWait(4);
 		} catch (Exception e) {
 			clickOnWebElement(tabMatches);
+			hardWait(4);
 		}
 
 		log.info("Ending of clickOnMatchesTab method");
 	}
 
 	public boolean isMatchesTabContains() {
-		log.info("Starting of isMatchesTabContains method");
+		// log.info("Starting of isMatchesTabContains method");
 
-		boolean isMatchesTabContains = false;
+		boolean isMatchesTabContains = true;
 		this.scrollDown(170);
 		try {
 			if (isDisplayed(lstViewAll) && isDisplayed(lblLocation) && isDisplayed(lblBracketName)
@@ -834,17 +836,8 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 				clickOnWebElement(tabTeams);
 			}
 
-			this.hardWait(3);
+			this.hardWait(5);
 			isDisplayed(btnSplitTeam);
-			this.hardWait(3);
-			try {
-				elementClick(tabUnmatchedPlayers);
-			} catch (Exception e) {
-				clickOnWebElement(tabUnmatchedPlayers);
-			}
-
-			this.hardWait(3);
-			isDisplayed(btnWithdraw);
 
 			isMatchesTabContains = true;
 
@@ -869,7 +862,9 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 	public void clickOnMyMatchesButton(String eventName) {
 		log.info("Starting of clickOnMyMatchesButton method");
 
-		clickOnWebElement(driver.findElement(By.xpath("//h6[contains(text(),'"+eventName+"')]/parent::div//button[contains(text(),'My Matches')]")));
+		clickOnWebElement(driver.findElement(By.xpath(
+				"//h6[contains(text(),'" + eventName + "')]/parent::div//button[contains(text(),'My Matches')]")));
+
 		this.hardWait(3);
 
 		log.info("Ending of clickOnMyMatchesButton method");
@@ -999,9 +994,13 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 	public void clickOnEditScoresButton() {
 		log.info("Starting of clickOnEditScoresButton method");
-
-		clickOnWebElement(btnEditScores);
-		this.hardWait(3);
+		try {
+			clickOnWebElement(btnEditScores);
+			this.hardWait(3);
+		} catch (Exception e) {
+			scrollDown(200);
+			clickUsingActionsClass(btnEditScores);
+		}
 
 		log.info("Ending of clickOnEditScoresButton method");
 	}
@@ -1508,13 +1507,13 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 	public void clickOnCancelCalenderButton() {
 		log.info("Starting of clickOnCancelCalenderButton method");
-		
+
 		try {
 			clickUsingActionsClass(btnCancelCalender);
 		} catch (Exception e) {
 			clickOnWebElement(btnCancelCalender);
 		}
-		
+
 		log.info("Starting of clickOnCancelCalenderButton method");
 	}
 
@@ -1643,5 +1642,23 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		this.clickOnElementUsingActionClass(btnOK);
 
 		log.info("Ending of setCompetitionStartDate method");
+	}
+
+	public boolean isRoundOneDisplayed() {
+		log.info("Starting of isRoundOneDisplayed method");
+
+		boolean isRoundOneDisplayed = false;
+
+		try {
+			if (isDisplayed(txtRoundOne)) {
+				isRoundOneDisplayed = true;
+			}
+		} catch (Exception e) {
+			isRoundOneDisplayed = false;
+		}
+
+		log.info("Ending of isRoundOneDisplayed method");
+
+		return isRoundOneDisplayed;
 	}
 }

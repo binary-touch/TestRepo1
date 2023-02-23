@@ -72,6 +72,10 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		this.createTeams = new Create_Edit_Split_TeamPage(this.driver);
 		this.chatpage = new ChatPage(this.driver);
 		this.userDashboardPage = new UserDashboardPage(this.driver);
+		this.eventRegistrationPage = new EventRegistrationPage(this.driver);
+		this.directorEventRegistrationPage = new EventRegistrationPage(this.driver);
+		this.playerEventRegistrationPage = new PlayerEventRegistrationPage(this.driver);
+		this.paidEventPage = new PaidEventPage(this.driver);
 
 		logger.info("Ending of initTest in CommonBaseTest");
 	}
@@ -617,11 +621,11 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		addBracketPage.setCompetitionEndDate();
 
 		addBracketPage.clickOnTimeZoneDropdown();
-		addBracketPage.hardWait(3);
+		Assert.assertTrue(addBracketPage.isTimeZoneListContains());
 		addBracketPage.clickOnNewDelhiTimeZone();
 
-		addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("paid.value1"));
-		addBracketPage.setBracketNonClubMemberPrice(testDataProp.getProperty("paid.value2"));
+		addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("paid.value"));
+		addBracketPage.setBracketNonClubMemberPrice(testDataProp.getProperty("paid.value"));
 
 		Assert.assertTrue(addBracketPage.isNumberOfTeamsDisabledState());
 		addBracketPage.hardWait(2);
@@ -693,6 +697,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		addBracketPage.setCompetitionEndDate();
 
 		addBracketPage.clickOnTimeZoneDropdown();
+		Assert.assertTrue(addBracketPage.isTimeZoneListContains());
 		addBracketPage.hardWait(3);
 		addBracketPage.clickOnNewDelhiTimeZone();
 
@@ -779,6 +784,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 
 		Assert.assertEquals(playerEventRegistrationPage.getClubMembershipLabel(),
 				expectedAssertionsProp.getProperty("club.membership"));
+
 		Assert.assertEquals(directorEventRegistrationPage.getHealthAndSafetyLabel(),
 				expectedAssertionsProp.getProperty("health.and.safety"));
 
@@ -804,17 +810,16 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		logger.info("Starting of verifyRegisterFunctionalityWithNonMemberInPlayerAccount method");
 
 		playerEventRegistrationPage.clickOnRegisterButtonInEventPage();
-
 		Assert.assertEquals(directorEventRegistrationPage.getEventRegistrationLabel(),
 				expectedAssertionsProp.getProperty("event.registration.text"));
 
 		Assert.assertEquals(playerEventRegistrationPage.getClubMembershipLabel(),
 				expectedAssertionsProp.getProperty("club.membership"));
+
 		Assert.assertEquals(directorEventRegistrationPage.getHealthAndSafetyLabel(),
 				expectedAssertionsProp.getProperty("health.and.safety"));
 
 		playerEventRegistrationPage.clickOnClubMemberNoButton();
-
 		directorEventRegistrationPage.clickOnSelectYourBracketCheckbox();
 		Assert.assertTrue(directorEventRegistrationPage.isBracketCheckboxSelected());
 
@@ -823,12 +828,14 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 
 		directorEventRegistrationPage.clickOnHealthSafetyPolicyCheckbox();
 		Assert.assertTrue(directorEventRegistrationPage.isHealthSafetyPolicyCheckboxSelected());
+
 		try {
 			directorEventRegistrationPage.clickOnLiabilityCheckbox();
 			Assert.assertTrue(directorEventRegistrationPage.isLiabilityPolicyCheckboxSelected());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 		logger.info("Ending of verifyRegisterFunctionalityWithNonMemberInPlayerAccount method");
 	}
 }
