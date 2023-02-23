@@ -12,6 +12,7 @@ import com.dupr.pages.clubs.ClubLogoPage;
 import com.dupr.pages.events.BrowseEventsPage;
 import com.dupr.pages.events.EditBracketsPage;
 import com.dupr.pages.events.EditEventsPage;
+import com.dupr.test.CommonBaseTest;
 import com.dupr.test.DUPRBaseAutomationTest;
 
 import io.qameta.allure.Description;
@@ -19,12 +20,13 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 
-public class EditBracketsTest extends DUPRBaseAutomationTest {
+public class EditBracketsTest extends CommonBaseTest {
 	private static final Logger logger = Logger.getLogger(EditBracketsTest.class.getName());
-	private ClubLogoPage clubLogoPage = null;
+	
 	private EditEventsPage editEventsPage = null;
-	private BrowseEventsPage browseEventsPage = null;
 	private EditBracketsPage editBracketsPage = null;
+	private static String eventNameForEditBrackets = null;
+	
 	private static String playGroup = null;
 	private static String EventType = null;
 	private static String TimeZone = null;
@@ -34,56 +36,92 @@ public class EditBracketsTest extends DUPRBaseAutomationTest {
 
 	@BeforeClass
 	@Parameters({ "browser", "siteURL", "directorEmail", "directorPassword" })
-	public void initMethod(String browser, String siteURL, String email, String password) throws Exception {
-		logger.info("Starting of initMethod in ClubLogoTest");
+	public void initMethod(String browser, String siteURL, String directorEmail, String directorPassword) throws Exception {
+		logger.info("Starting of initMethod in EditBracketsTest");
 
 		this.driver = super.getWebDriver(WebDriversEnum.EDIT_BRACKETS_DRIVER);
-		this.siteLogin(siteURL, email, password, this.driver);
+		super.initCommonBaseTest(siteURL, directorEmail, directorPassword);
 
-		this.clubLogoPage = new ClubLogoPage(this.driver);
 		this.editEventsPage = new EditEventsPage(this.driver);
-		this.browseEventsPage = new BrowseEventsPage(this.driver);
 		this.editBracketsPage = new EditBracketsPage(this.driver);
 
-		logger.info("Ending of initMethod in ClubLogoTest");
+		logger.info("Ending of initMethod in EditBracketsTest");
+	}
+	
+	public void verifyFreeEventFunctionality() {
+		logger.info("Starting of verifyFreeEventFunctionality method");
+
+		addEventPage.hardWait(3);
+
+		super.verifyAddEventFunctionality();
+
+		eventNameForEditBrackets = addEventPage.setEventName(testDataProp.getProperty("event.name"));
+		addEventPage.setLocation(testDataProp.getProperty("state.address"));
+
+		addEventPage.uploadEventLogo(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("edit.club.logo.path"));
+		addEventPage.setMemberPrice(testDataProp.getProperty("zero.value"));
+		addEventPage.setNonMemberPrice(testDataProp.getProperty("zero.value"));
+		addEventPage.setAboutTheEvent(testDataProp.getProperty("about.the.event"));
+		addEventPage.clickonTextFormattingButtons();
+		addEventPage.clickOnNextStepButton();
+
+		Assert.assertTrue(addEventPage.isEventPoliciesPageContains());
+
+		addBracketPage.hardWait(3);
+		this.verifyEventPoliciesPageByEnteringValidDetails();
+
+		addBracketPage.hardWait(3);
+		super.verifyAddBracketsFunctionalityWithValidDetails();
+
+		addBracketPage.hardWait(3);
+		this.VerifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
+
+		addBracketPage.hardWait(3);
+		this.VerifyPublishEventButton();
+		addBracketPage.clickOnEventSuccessClosePopupButton();
+
+		logger.info("Ending of verifyFreeEventFunctionality method");
 	}
 
-	@Test(priority = 1, description = "Verify edit Bracket functionality", groups = "sanity")
-	@Description("Test case #1, Verify edit Bracket functionality")
+	@Test(priority = 1, description = "Verify Edit Brackets Button functionality in Bracket page", groups = "sanity")
+	@Description("Test case #1, Verify Edit Brackets Button functionality in Bracket page")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #1, Verify edit Bracket functionality")
-	public void verifyEditBracketFunctionality() {
-		logger.info("Starting of verifyAddLogoFunctionality method");
+	@Story("Test case #1, Verify Edit Brackets Button functionality in Bracket page")
+	public void verifyEditBracketFunctionalityInBracketPage() {
+		logger.info("Starting of verifyEditBracketFunctionalityInBracketPage method");
 		
-		browseEventsPage.clickOnMyEventButton();
+		this.verifyFreeEventFunctionality();
 		clubLogoPage.hardWait(3);
-		editEventsPage.clickOnEventLabel();
+		addEventPage.clickOnEventsTab();
+		clubLogoPage.hardWait(3);
+		addEventPage.clickOnRecentlyAddedEvent(eventNameForEditBrackets);
 		editEventsPage.hardWait(2);
 		editBracketsPage.clickOnBracketLabel();
 		editEventsPage.hardWait(2);
 		editBracketsPage.clickOnEditBracketButton();
-		logger.info("Ending of verifyAddLogoFunctionality method");
+		
+		logger.info("Ending of verifyEditBracketFunctionalityInBracketPage method");
 	}
 
-	@Test(priority = 2, description = "Verify edit Bracket Page", groups = "sanity")
-	@Description("Test case #1, Verify edit Bracket Page")
+	@Test(priority = 2, description = "Verify the Details displayed in Edit Bracket Page", groups = "sanity")
+	@Description("Test case #2, Verify the Details displayed in Edit Bracket Page")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #1, Verify edit Bracket Page")
-	public void verifyEditBracketPage() {
-		logger.info("Starting of verifyAddLogoPage method");
+	@Story("Test case #2, Verify the Details displayed in Edit Bracket Page")
+	public void verifyTheDetailsDisplayedInEditBracketPage() {
+		logger.info("Starting of verifyTheDetailsDisplayedInEditBracketPage method");
 
 		Assert.assertTrue(editBracketsPage.isEditBracketsPageContains());
 		Assert.assertEquals(editBracketsPage.getEditBrackettxt(), expectedAssertionsProp.getProperty("edit.bracket"));
 
-		logger.info("Ending of verifyAddLogoPage method");
+		logger.info("Ending of verifyTheDetailsDisplayedInEditBracketPage method");
 	}
 
-	@Test(priority = 2, description = "Verify Cancel button functionality", groups = "sanity")
-	@Description("Test case #2, Verify Cancel button functionality")
+	@Test(priority = 3, description = "Verify Cancel button functionality in Edit Bracket Page", groups = "sanity")
+	@Description("Test case #3, Verify Cancel button functionality in Edit Bracket Page")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #2, Verify Cancel button functionality")
-	public void verifyCancelFunctionality() {
-		logger.info("Starting of verifyCancelFunctionality method");
+	@Story("Test case #3, Verify Cancel button functionality in Edit Bracket Page")
+	public void verifyCancelFunctionalityInEditBracketPage() {
+		logger.info("Starting of verifyCancelFunctionalityInEditBracketPage method");
 
 		editBracketsPage.clickOnCancelButton();
 		editBracketsPage.hardWait(2);
@@ -92,15 +130,15 @@ public class EditBracketsTest extends DUPRBaseAutomationTest {
 		EventType = editBracketsPage.getEventTypeFieldTxt();
 		TimeZone = editBracketsPage.getTimeZoneFieldTxt();
 
-		logger.info("Ending of verifyCancelFunctionality method");
+		logger.info("Ending of verifyCancelFunctionalityInEditBracketPage method");
 	}
 
-	@Test(priority = 3, description = "Verify Reset button functionality", groups = "sanity")
-	@Description("Test case #3, Verify Reset button functionality")
+	@Test(priority = 4, description = "Verify Reset button functionality in Edit Bracket Page", groups = "sanity")
+	@Description("Test case #4, Verify Reset button functionality in Edit Bracket Page")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #3, Verify Reset button functionality")
-	public void verifyResetFunctionality() {
-		logger.info("Starting of verifyResetFunctionality method");
+	@Story("Test case #4, Verify Reset button functionality in Edit Bracket Page")
+	public void verifyResetFunctionalityInEditBracketPage() {
+		logger.info("Starting of verifyResetFunctionalityInEditBracketPage method");
 
 		editBracketsPage.clickOnPlayerGroupField();
 		editBracketsPage.selectMen();
@@ -116,15 +154,15 @@ public class EditBracketsTest extends DUPRBaseAutomationTest {
 		EventTypeReset = editBracketsPage.getEventTypeFieldTxt();
 		TimeZoneReset = editBracketsPage.getTimeZoneFieldTxt();
 
-		logger.info("Ending of verifyResetFunctionality method");
+		logger.info("Ending of verifyResetFunctionalityInEditBracketPage method");
 	}
 
-	@Test(priority = 4, description = "Verify Save changes button functionality", groups = "sanity")
-	@Description("Test case #4, Verify save changes button functionality")
+	@Test(priority = 5, description = "Verify Save changes button functionality in Edit Bracket Page", groups = "sanity")
+	@Description("Test case #5, Verify save changes button functionality in Edit Bracket Page")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #4, Verify save changes button functionality")
-	public void verifySaveChangesFunctionality() {
-		logger.info("Starting of verifySaveChangesFunctionality method");
+	@Story("Test case #5, Verify save changes button functionality in Edit Bracket Page")
+	public void verifySaveChangesFunctionalityInEditBracketPage() {
+		logger.info("Starting of verifySaveChangesFunctionalityInEditBracketPage method");
 
 		System.out.println(!(playGroup.equals(playGroupReset)));
 		System.out.println(!(EventType.equals(EventTypeReset)));
@@ -141,7 +179,7 @@ public class EditBracketsTest extends DUPRBaseAutomationTest {
 
 		editBracketsPage.clickOnSaveChangesButton();
 
-		logger.info("Ending of verifySaveChangesFunctionality method");
+		logger.info("Ending of verifySaveChangesFunctionalityInEditBracketPage method");
 	}
 
 	@AfterClass

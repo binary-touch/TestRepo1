@@ -11,7 +11,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 
 import com.b2b.support.B2BFindBy;
 import com.b2b.support.B2BPageFactory;
@@ -267,10 +266,10 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//p[contains(text(),'Event name is required.')]")
 	private WebElement msgEventNameisRequired;
-	
+
 	@B2BFindBy(xpath = "//p[text()='Location is required. ']")
 	private WebElement msgLocationisRequired;
-	
+
 	@B2BFindBy(xpath = "//h5[contains(text(),'Member Price')]/parent::div/following-sibling::div/div/p[contains(text(),'Club member price is required.')]")
 	private WebElement msgMemberPriceOnlyNumbersAreAllowed;
 
@@ -560,7 +559,6 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			isEventDeletedSuccessPopUpContains = false;
 		}
-		
 
 		log.info("Ending of isEventDeletedSuccessPopUpContains method");
 
@@ -588,12 +586,12 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 
 	public String setEventName(String eventname) {
 		log.info("Starting of setEventName method");
-		
+
 		hardWait(2);
 		this.txtEventName.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		txtEventName.click();
 		this.txtEventName.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
-	
+
 		txtEventName.sendKeys(eventname + "_" + randomNumber(5));
 
 		log.info("Ending of setEventName method");
@@ -604,7 +602,7 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 
 	public void setLocation(String location) {
 		log.info("Starting of setLocation method");
-		
+
 		hardWait(2);
 		this.txtLocation.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		txtLocation.click();
@@ -619,7 +617,7 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			lstEventLocations.get(0).click();
 		}
-		
+
 		log.info("Ending of setLocation method");
 	}
 
@@ -697,41 +695,43 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 
 	public boolean isRecentlyAddedEventDisplayed(String eventName) {
 		log.info("Starting of isRecentlyAddedEventDisplayed method");
-		
+
 		boolean eventStatus = false;
 		hardWait(3);
-		
-		for (int i = 0; i <= lstEvents.size();i++) {
+
+		for (int i = 0; i < lstEvents.size(); i++) {
+			System.out.println(lstEvents.size());
 			System.out.println(lstEvents.get(i).getText());
+
 			if (lstEvents.get(i).getText().equals(eventName)) {
+
+				System.out.println(lstOpen.get(i).getText());
 				if (lstOpen.get(i).getText().contains("Open")) {
-					eventStatus =  true;
+					eventStatus = true;
 					break;
 				}
-				
 			}
-		
 		}
+
 		log.info("Ending of isRecentlyAddedEventDisplayed method");
 		return eventStatus;
 	}
-	
+
 	public boolean isRecentlyCreatedEventDisplayed(String eventname) {
 		log.info("Starting of isRecentlyCreatedEventDisplayed method");
 		WebElement eventNameInEventPage = driver.findElement(By.xpath("//h3[text()='" + eventname + "']"));
 		log.info("Ending of isRecentlyCreatedEventDisplayed method");
-		
+
 		return eventNameInEventPage.isDisplayed();
 	}
-	
 
 	public void clickOnRecentlyAddedEvent(String eventName) {
 		log.info("Starting of clickOnRecentlyAddedEvent method");
-		
+
 		hardWait(4);
-		for (int i = 0; i <= lstEvents.size();i++) {
+		for (int i = 0; i < lstEvents.size(); i++) {
 			System.out.println(lstEvents.get(i).getText());
-			
+
 			this.hardWait(2);
 			if (lstEvents.get(i).getText().equals(eventName)) {
 				System.out.println(lstEvents.get(i).getText());
@@ -743,7 +743,7 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 					lstEvents.get(i).click();
 					break;
 				}
-				
+
 			}
 		}
 		log.info("Ending of clickOnRecentlyAddedEvent method");
@@ -775,7 +775,7 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 					lstDeleteEvent.get(i).click();
 					break;
 				}
-				
+
 			}
 		}
 		log.info("Ending of clickOnDeleteEventFromList method");
@@ -1318,7 +1318,6 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 			robot.delay(100);
 			robot.keyRelease(KeyEvent.VK_ESCAPE);
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_SHIFT);
@@ -1348,7 +1347,7 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 		log.info("Starting of isEventInfoPageValidationsDisplayed method");
 
 		boolean isEventInfoPageValidationsDisplayed = false;
-		
+
 		hardWait(5);
 		System.out.println(msgEventNameisRequired.isDisplayed());
 		System.out.println(msgLocationisRequired.isDisplayed());
@@ -1356,7 +1355,8 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 		System.out.println(msgNonMemberPriceOnlyNumbersAreAllowed.isDisplayed());
 		System.out.println(msgEventDescriptionisRequired.isDisplayed());
 
-		if (msgEventNameisRequired.isDisplayed() && msgLocationisRequired.isDisplayed() && msgMemberPriceOnlyNumbersAreAllowed.isDisplayed()
+		if (msgEventNameisRequired.isDisplayed() && msgLocationisRequired.isDisplayed()
+				&& msgMemberPriceOnlyNumbersAreAllowed.isDisplayed()
 				&& msgNonMemberPriceOnlyNumbersAreAllowed.isDisplayed()
 				&& msgEventDescriptionisRequired.isDisplayed()) {
 

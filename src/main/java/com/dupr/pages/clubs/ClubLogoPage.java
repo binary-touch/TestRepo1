@@ -232,7 +232,7 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 		log.info("Starting of clickOnMyClubsTab method");
 
 		try {
-			clickOnElement(tabMyClubs);
+			clickUsingActionsClass(tabMyClubs);
 		} catch (Exception e) {
 			clickOnWebElement(tabMyClubs);
 		}

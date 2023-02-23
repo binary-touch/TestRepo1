@@ -13,8 +13,8 @@ import com.b2b.support.B2BFindBys;
 import com.b2b.support.B2BPageFactory;
 import com.dupr.pages.DUPRBaseAutomationPage;
 
-public class RemoveMemberPage extends DUPRBaseAutomationPage {
-	private static final Logger log = LogManager.getLogger(RemoveMemberPage.class);
+public class RemoveClubMemberPage extends DUPRBaseAutomationPage {
+	private static final Logger log = LogManager.getLogger(RemoveClubMemberPage.class);
 
 	@B2BFindBy(xpath = "//button[text()='Members']")
 	private WebElement tabMembers;
@@ -52,7 +52,7 @@ public class RemoveMemberPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//*[contains(@class,'MuiSvgIcon-root MuiSvgIcon-colorPrimary MuiSvgIcon-fontSizeMedium')]")
 	private WebElement btnBack;
 
-	public RemoveMemberPage(WebDriver driver) {
+	public RemoveClubMemberPage(WebDriver driver) {
 		super(driver);
 		B2BPageFactory.initElements(driver, this);
 	}
@@ -67,10 +67,10 @@ public class RemoveMemberPage extends DUPRBaseAutomationPage {
 
 	public String getMemberNameTxt() {
 		log.info("Starting of getMemberNameTxt method");
-		
+
 		String memberName = getText(txtMemberName);
 		System.out.println(memberName);
-		
+
 		log.info("Ending of getMemberNameTxt method");
 
 		return memberName;
@@ -88,25 +88,28 @@ public class RemoveMemberPage extends DUPRBaseAutomationPage {
 
 		for (int i = 1; i < lstClubs.size(); i++) {
 			this.hardWait(2);
-			try {
-				driver.findElement(By.xpath(
-						(("(//h5[text()='As a Director']/..//div[contains(@class,'MuiGrid-item MuiGrid-grid-xs-12')]/div//h4)["
-								+ i + "]"))))
-						.click();
-			} catch (Exception e) {
-				clickOnWebElement(driver.findElement(By.xpath(
-						(("(//h5[text()='As a Director']/..//div[contains(@class,'MuiGrid-item MuiGrid-grid-xs-12')]/div//h4)["
-								+ i + "]")))));
-			}
 
-			this.hardWait(5);
+			WebElement members = driver.findElement(By.xpath(
+					"(//h5[text()='As a Director']/..//div[contains(@class,'MuiGrid-item MuiGrid-grid-xs-12')]/div//p[contains(@class,'MuiTypography-root MuiTypography-body1') and contains(.,'Members')])["
+							+ i + "]"));
+
+			int membersValue = Integer.parseInt(members.getText().split(" ")[0]);
 			try {
-				if ((isDisplayed(menuKebab) == true)) {
-					break;
+				if (membersValue > 0) {
+					try {
+						clickUsingActionsClass(members);
+						break;
+					} catch (Exception e) {
+						clickOnWebElement(members);
+
+						break;
+					}
+				} else {
+					scrollDown(500);
 				}
 			} catch (Exception e) {
-				clickOnElement(btnBack);
-			}
+				scrollDown(500);
+			}			 
 		}
 
 		log.info("Ending of clickOnClubNameLink method");
@@ -167,21 +170,21 @@ public class RemoveMemberPage extends DUPRBaseAutomationPage {
 
 		log.info("Ending of clickOnRemoveButton method");
 	}
-	
+
 	public boolean isRemoveFromClubButtonDisplayed() {
 		log.info("Starting of isRemoveFromClubButtonDisplayed method");
-		
+
 		boolean removeButtonState = false;
-		
+
 		try {
-			if(btnRemove.isDisplayed()) {
+			if (btnRemove.isDisplayed()) {
 				removeButtonState = true;
 			}
 		} catch (Exception e) {
 			removeButtonState = false;
 		}
 		log.info("Ending of isRemoveFromClubButtonDisplayed method");
-		
+
 		return removeButtonState;
 	}
 

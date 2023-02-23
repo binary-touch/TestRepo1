@@ -8,7 +8,6 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.b2b.common.WebDriversEnum;
-import com.dupr.pages.DUPRBaseAutomationPage;
 import com.dupr.pages.profile.EditProfilePage;
 import com.dupr.test.CommonBaseTest;
 
@@ -132,9 +131,10 @@ public class PlayerProfileTest extends CommonBaseTest {
 		editProfilePage.setFullName(editProfilePage.randomAlphabet(52));
 
 		editProfilePage.hardWait(2);
-		//String validationText = editProfilePage.getFullNameValidationText();
-		//Assert.assertEquals(validationText,
-				//expectedAssertionsProp.getProperty("more.than.max.characters.are.not.allowed"));////Reason For Failure:NO Validation Message is Displaying////
+		// String validationText = editProfilePage.getFullNameValidationText();
+		// Assert.assertEquals(validationText,
+		// expectedAssertionsProp.getProperty("more.than.max.characters.are.not.allowed"));////Reason
+		// For Failure:NO Validation Message is Displaying////
 
 		logger.info("Ending of verifyFullNameFieldWithMoreThanMaxCharacters method");
 	}
@@ -416,10 +416,10 @@ public class PlayerProfileTest extends CommonBaseTest {
 		logger.info("Starting of verifyDominantHandDropdown method");
 
 		editProfilePage.clickOnDominantHandDropDownListOption();
-		
+
 		Assert.assertTrue(editProfilePage.isSaveEnabled());
 		editProfilePage.clickOnSaveButton();
-		
+
 		editProfilePage.hardWait(3);
 		editProfilePage.clickOnOkButton();
 

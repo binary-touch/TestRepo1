@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 
 import com.b2b.common.WebDriversEnum;
 import com.dupr.pages.clubs.ClubLogoPage;
-import com.dupr.pages.clubs.RemoveMemberPage;
+import com.dupr.pages.clubs.RemoveClubMemberPage;
 import com.dupr.test.DUPRBaseAutomationTest;
 
 import io.qameta.allure.Description;
@@ -20,7 +20,7 @@ import io.qameta.allure.Story;
 public class RemoveClubMemberTest extends DUPRBaseAutomationTest {
 	private static final Logger logger = Logger.getLogger(RemoveClubMemberTest.class.getName());
 	private ClubLogoPage clubLogoPage = null;
-	private RemoveMemberPage removeMemberPage = null;
+	private RemoveClubMemberPage removeMemberPage = null;
 	private static String clubMemberName = null;
 
 	@BeforeClass
@@ -32,7 +32,7 @@ public class RemoveClubMemberTest extends DUPRBaseAutomationTest {
 		this.driver = super.getWebDriver(WebDriversEnum.REMOVE_CLUB_MEMBER_DRIVER);
 		this.siteLogin(siteURL, directorEmail, directorPassword, this.driver);
 		this.clubLogoPage = new ClubLogoPage(this.driver);
-		this.removeMemberPage = new RemoveMemberPage(this.driver);
+		this.removeMemberPage = new RemoveClubMemberPage(this.driver);
 
 		logger.info("Ending of initMethod in RemoveClubMemberTest");
 	}

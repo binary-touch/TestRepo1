@@ -2,6 +2,7 @@ package com.dupr.pages;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -9,6 +10,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -164,10 +166,11 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 
 		simpleformat = new SimpleDateFormat("a");
 		String meridiem = simpleformat.format(new Date());
-		System.out.println("Meridiem format = " + meridiem);
+		String meridiemValue = meridiem.toUpperCase();
+		System.out.println("Meridiem format = " + meridiemValue);
 
 		log.info("Ending of getCurrentMeridiem method");
-		return meridiem;
+		return meridiemValue;
 	}
 
 	public String getCurrentZone() {
@@ -221,5 +224,56 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 
 		log.info("Ending of closeWindow method");
 	}
+	
+	public void verticalScroll(WebElement webElement) {
+		log.info("Starting of verticalScroll method");
 
+		Actions action = new Actions(driver);
+		Actions moveToElement = action.moveToElement(webElement);
+		for (int i = 0; i < 5; i++) {
+
+			moveToElement.sendKeys(Keys.DOWN).build().perform();
+		}
+
+		log.info("Ending of verticalScroll method");
+	}
+
+	public Month getFutureMonth(int days) {
+		log.info("Starting of getFutureMonth method");
+
+		LocalDateTime dateTime = LocalDateTime.now();
+		LocalDateTime date = dateTime.plusDays(days);
+		Month monthValue = date.getMonth();
+		System.out.println("Month Value = " + monthValue);
+
+		log.info("Starting of getFutureMonth method");
+
+		return monthValue;
+	}
+	
+	public Month getPreviousMonth(int days) {
+		log.info("Starting of getPreviousMonth method");
+
+		LocalDateTime dateTime = LocalDateTime.now();
+		LocalDateTime date = dateTime.minusDays(days);
+		Month monthValue = date.getMonth();
+		System.out.println("Month Value = " + monthValue);
+
+		log.info("Starting of getPreviousMonth method");
+
+		return monthValue;
+	}
+	
+	public Month getCurrentMonth() {
+		log.info("Starting of getCurrentMonth method");
+
+		LocalDateTime dateTime = LocalDateTime.now();
+		Month monthValue = dateTime.getMonth();
+		System.out.println("Month Value = " + monthValue);
+
+		log.info("Starting of getCurrentMonth method");
+
+		return monthValue;
+	}
+	
 }

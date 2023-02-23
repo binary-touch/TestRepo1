@@ -336,6 +336,9 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h3[text()='Competition Date']/following-sibling::div//h5[text()='End Date & Time']/parent::div/following-sibling::div//input")
 	private WebElement txtBoxCompetitionEndDate;
 
+	@B2BFindBy(xpath = "//span[text()='00']")
+	private WebElement btnDefaultTimeInMinutes;
+
 	@B2BFindBy(xpath = "//span[text()='05']")
 	private WebElement btnTimeInMinutes;
 
@@ -647,8 +650,12 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 		boolean isRoundsDisplayed = false;
 
-		if (isDisplayed(txtRoundOne) && isDisplayed(txtRoundTwo) && isDisplayed(txtRoundThree)) {
-			isRoundsDisplayed = true;
+		try {
+			if (isDisplayed(txtRoundOne) && isDisplayed(txtRoundTwo) || isDisplayed(txtRoundThree)) {
+				isRoundsDisplayed = true;
+			}
+		} catch (Exception e) {
+			isRoundsDisplayed = false;
 		}
 
 		log.info("Ending of isRoundsDisplayed method");
@@ -859,10 +866,10 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		log.info("Ending of clickOnHomeMenu method");
 	}
 
-	public void clickOnMyMatchesButton() {
+	public void clickOnMyMatchesButton(String eventName) {
 		log.info("Starting of clickOnMyMatchesButton method");
 
-		clickOnWebElement(btnMyMatches);
+		clickOnWebElement(driver.findElement(By.xpath("//h6[contains(text(),'"+eventName+"')]/parent::div//button[contains(text(),'My Matches')]")));
 		this.hardWait(3);
 
 		log.info("Ending of clickOnMyMatchesButton method");
@@ -1443,15 +1450,10 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 		simpleformat = new SimpleDateFormat("mm");
 		String strMinutes = simpleformat.format(new Date());
-		// System.out.println("Minutes format = " + strMinutes);
 		String minutesValue = strMinutes.substring(1);
 
-		// String minutesFirstValue = strMinutes.substring(0);
-		// System.out.println(minutesValue);
 		int minutues = Integer.parseInt(minutesValue);
 		int minutesFinalValue = 0;
-
-		int lastDate = Integer.parseInt(strMinutes);
 
 		if (minutues == 9) {
 			minutesFinalValue = minutues + 6;
@@ -1474,7 +1476,6 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		} else if (minutues == 0) {
 			minutesFinalValue = minutues + 5;
 		}
-		// System.out.println(minutesFinalValue);
 
 		String minutesValue1 = null;
 		for (int i = 0; i < 11;) {
@@ -1488,7 +1489,6 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 			} catch (Exception e) {
 				expectThrows(null, null);
 				System.out.println();
-
 			}
 
 			i++;
@@ -1508,11 +1508,13 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 	public void clickOnCancelCalenderButton() {
 		log.info("Starting of clickOnCancelCalenderButton method");
+		
 		try {
 			clickUsingActionsClass(btnCancelCalender);
 		} catch (Exception e) {
 			clickOnWebElement(btnCancelCalender);
 		}
+		
 		log.info("Starting of clickOnCancelCalenderButton method");
 	}
 
@@ -1524,12 +1526,13 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 		int date = this.getCurrentDate();
 		String hours = this.getCurrentHour();
-		String minutes = this.getCurrentMinute();
 		String meridiem = this.getCurrentMeridiem();
 
 		this.clickOnCurrentDate(date);
 		this.clickOnCurrentTime(hours);
-
+		hardWait(1);
+		this.clickUsingActionsClass(btnDefaultTimeInMinutes);
+		hardWait(2);
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnElementUsingActionClass(btnOK);
 
@@ -1546,29 +1549,6 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		String meridiem = this.getCurrentMeridiem();
 
 		String pattern = "h";
-		/*
-		 * String pattern1 = "mm"; String pattern2 = "a";
-		 * 
-		 * LocalTime currentMinute = LocalTime.now(); LocalTime futureMinute =
-		 * currentMinute.plusMinutes(4);
-		 * 
-		 * String futureHourValue =
-		 * futureMinute.format(DateTimeFormatter.ofPattern(pattern));
-		 * System.out.println("futureHourValue:" + futureHourValue);
-		 * 
-		 * String futureMinuteValue =
-		 * futureMinute.format(DateTimeFormatter.ofPattern(pattern1));
-		 * System.out.println("futureMinuteValue: " + futureMinuteValue);
-		 * 
-		 * String futureMeridiemValue =
-		 * futureMinute.format(DateTimeFormatter.ofPattern(pattern2));
-		 * System.out.println("futureMeridiemValue: " + futureMeridiemValue);
-		 * 
-		 * this.clickOnCurrentDate(date); this.clickOnCurrentTime(futureHourValue);
-		 * this.clickOnCurrentTime(futureMinuteValue);
-		 * this.clickOnCurrentTime(futureMeridiemValue);
-		 * this.clickOnElementUsingActionClass(btnOK);
-		 */
 
 		LocalTime currentHour = LocalTime.now();
 		LocalTime futureHour = currentHour.plusHours(1);

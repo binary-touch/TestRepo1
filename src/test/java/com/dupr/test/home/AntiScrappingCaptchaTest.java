@@ -13,7 +13,6 @@ import com.dupr.pages.clubs.ClubLogoPage;
 import com.dupr.pages.events.AddParticipantsInBracketsPage;
 import com.dupr.pages.events.BrowseEventsPage;
 import com.dupr.pages.events.Create_Edit_Split_TeamPage;
-import com.dupr.pages.events.EditOrRemovePartnerPage;
 import com.dupr.pages.home.AntiScrappingCaptchaPage;
 import com.dupr.pages.players.BrowsePlayersPage;
 import com.dupr.test.DUPRBaseAutomationTest;
@@ -221,28 +220,26 @@ public class AntiScrappingCaptchaTest extends DUPRBaseAutomationTest {
 
 		antiScrappingCaptchaPage.clickOnGoBackButton();
 		antiScrappingCaptchaPage.clickOnTeamsTab();
-		
+
 		try {
-			if(teamsPage.isNoResultsFoundDisplayed()==true) {
+			if (teamsPage.isNoResultsFoundDisplayed() == true) {
 				teamsPage.clickOnUnMatchedPlayersTab();
 				teamsPage.hardWait(3);
-				if(teamsPage.isNoResultsFoundDisplayed()==true) {
+				if (teamsPage.isNoResultsFoundDisplayed() == true) {
 					teamsPage.addMultiplePlayers();
-				}
-				else {
+				} else {
 					logger.info("****UnMatched Players Displayed****");
 				}
 				teamsPage.clickOnValidPlayerCheckbox();
-				
+
 				teamsPage.clickOnCreateTeamButton();
 				teamsPage.clickOnCreateButton();
-				
+
 				clubLogoPage.hardWait(3);
 				teamsPage.clickOnTeamsTab();
 
 				clubLogoPage.hardWait(3);
-				}
-			else {
+			} else {
 				logger.info("****Teams Displayed****");
 			}
 		} catch (Exception e) {
@@ -314,7 +311,7 @@ public class AntiScrappingCaptchaTest extends DUPRBaseAutomationTest {
 
 		driver.get("https://stage.gamestoppedout.com/dashboard");
 		antiScrappingCaptchaPage.hardWait(5);
-		
+
 		clubLogoPage.clickOnMyClubsTab();
 		clubLogoPage.hardWait(3);
 		try {
@@ -328,7 +325,7 @@ public class AntiScrappingCaptchaTest extends DUPRBaseAutomationTest {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		antiScrappingCaptchaPage.clickOnAddAMatchButton();
 		antiScrappingCaptchaPage.hardWait(2);
 		antiScrappingCaptchaPage.clickOnAddFirstPlayerButton();
@@ -343,12 +340,12 @@ public class AntiScrappingCaptchaTest extends DUPRBaseAutomationTest {
 	@Story("Test case #11, Verify AntiScrapping Captcha On Claim accounts page")
 	public void verifyAntiScrappingCaptchaOnClaimAccountPage() {
 		logger.info("Starting of verifyAntiScrappingCaptchaOnClaimAccountPage method");
-		
+
 		antiScrappingCaptchaPage.goTodefaultContent();
 
 		driver.get("https://stage.gamestoppedout.com/dashboard");
 		antiScrappingCaptchaPage.hardWait(5);
-		
+
 		antiScrappingCaptchaPage.clickOnOpenSettingsMenu();
 		antiScrappingCaptchaPage.clickOnLogOutButton();
 		antiScrappingCaptchaPage.clickOnSignUpButton();

@@ -96,7 +96,7 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 		Assert.assertEquals(eventRegistrationPage.getLiabiltyPolicyLabel(),
 				expectedAssertionsProp.getProperty("liabilty.policies"));
 
-		Assert.assertTrue(eventRegistrationPage.isRegisterButtonDisplayed());
+		Assert.assertTrue(eventRegistrationPage.isDisableRegisterButtonDisplayed());
 
 		logger.info("Ending of verifyRegisterFunctionality method");
 	}

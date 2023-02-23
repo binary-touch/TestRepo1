@@ -50,7 +50,10 @@ public class DUPRLoginPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//h5[text()='Password']/../following-sibling::div//p")
 	private WebElement txtPasswordValidation;
-
+	
+	@B2BFindBy(xpath = "//p[contains(text(),'Oops! Something went wrong, try again later.')]")
+	private WebElement txtLoginFailed;
+	
 	public DUPRLoginPage(WebDriver driver) {
 		super(driver);
 		B2BPageFactory.initElements(driver, this);
@@ -100,7 +103,13 @@ public class DUPRLoginPage extends DUPRBaseAutomationPage {
 	public void clickOnSignInButton() {
 		log.info("Starting of clickOnSignInButton method");
 
-		this.clickOnWebElement(btnSignIn);
+		try {
+			waitForElementToBeVisible(btnSignIn);
+			this.clickOnWebElement(btnSignIn);
+		} catch (Exception e) {
+			waitForElementToBeVisible(btnSignIn);
+			clickUsingActionsClass(btnSignIn);
+		}
 
 		log.info("Ending of clickOnSignInButton method");
 	}
@@ -111,8 +120,9 @@ public class DUPRLoginPage extends DUPRBaseAutomationPage {
 		this.setEmail(userName);
 		this.setPassword(password);
 
+		this.hardWait(5);
 		this.clickOnSignInButton();
-
+		this.hardWait(10);
 		log.info("Ending of loginToDUPRApplication method");
 	}
 
@@ -200,5 +210,12 @@ public class DUPRLoginPage extends DUPRBaseAutomationPage {
 		log.info("Ending of getPasswordMustNotExceedMaxCharactersText method");
 
 		return getText(txtPasswordValidation);
+	}
+	
+	public boolean isLoginFailedValidationText() {
+		log.info("Starting of isLoginFailedValidationText method");
+		log.info("Ending of isLoginFailedValidationText method");
+
+		return isDisplayed(txtLoginFailed);
 	}
 }

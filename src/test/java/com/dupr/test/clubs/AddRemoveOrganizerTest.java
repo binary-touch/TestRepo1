@@ -125,7 +125,7 @@ public class AddRemoveOrganizerTest extends DUPRBaseAutomationTest {
 		addRemoveOrganizerPage.hardWait(3);
 		addRemoveOrganizerPage.DeletingOrganizer();
 		addRemoveOrganizerPage.hardWait(3);
-		addRemoveOrganizerPage.clickOnCancelButton();
+		addRemoveOrganizerPage.clickOnCancelButton();addRemoveOrganizerPage.hardWait(3);
 		Assert.assertFalse(addRemoveOrganizerPage.isRemoveOrgPopupContains());
 
 		logger.info("Ending of verifyCancelFunctionality method");

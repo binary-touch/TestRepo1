@@ -13,6 +13,7 @@ import org.testng.annotations.Test;
 import com.b2b.common.WebDriversEnum;
 import com.dupr.pages.clubs.BrowseClubsPage;
 import com.dupr.pages.clubs.ClubLogoPage;
+import com.dupr.pages.clubs.EditClubInfoPage;
 import com.dupr.pages.clubs.MyClubsPage;
 import com.dupr.pages.events.AddBracketPage;
 import com.dupr.pages.events.AddEventPage;
@@ -32,6 +33,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	private AddBracketPage addBracketPage = null;
 	private MyClubsPage myClubsPage = null;
 	private BrowseClubsPage browseClubsPage = null;
+	private static String freeEventName = null;
 
 	@BeforeClass
 	@Parameters({ "browser", "siteURL", "directorEmail", "directorPassword" })
@@ -44,7 +46,6 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 
 		this.addEventPage = new AddEventPage(this.driver);
 		this.addBracketPage = new AddBracketPage(this.driver);
-
 		this.myClubsPage = new MyClubsPage(this.driver);
 		this.browseClubsPage = new BrowseClubsPage(this.driver);
 
@@ -480,7 +481,8 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	public void verifyOKButtonFunctionalityInDeleteEventSuccessPopUp() {
 		logger.info("Starting of verifyOKButtonFunctionalityInDeleteEventSuccessPopUp method");
 
-		addEventPage.clickOnDeleteEventOKButton();addEventPage.hardWait(3);
+		addEventPage.clickOnDeleteEventOKButton();
+		addEventPage.hardWait(3);
 
 		Assert.assertFalse(addEventPage.isEventDeletedSuccessPopUpContains());
 
@@ -984,6 +986,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 
 		addBracketPage.clickOnEventTypeDropdown();
 		addBracketPage.selectRoundRobinEvent();
+		addBracketPage.hardWait(3);
 
 		addBracketPage.setNumberOfTeams(testDataProp.getProperty("invalid.max.age.value"));
 		addEventPage.clickOnNextStepButton();
@@ -1101,6 +1104,8 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Starting of verifyAddBracketsPageWithValidDetails method");
 
 		addBracketPage.hardWait(3);
+		addBracketPage.clickOnBracketCaretIcon();
+		addBracketPage.hardWait(2);
 		addBracketPage.clickOnMatchTypeDropdown();
 		addBracketPage.hardWait(3);
 		Assert.assertTrue(addBracketPage.isMatchTypeListContains());
@@ -1244,6 +1249,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 
 		addBracketPage.clickOnEditBracketsButton();
 
+		addBracketPage.hardWait(3);
 		addBracketPage.setRegistrationStartDate();
 
 		addBracketPage.hardWait(2);
@@ -1404,7 +1410,14 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	public void verifyDeleteBracketFunctionalityAfterPublishingEvent() {
 		logger.info("Starting of VerifyRecentlyAddedEventUnderEventsTab method");
 
+		/*
+		 * clubLogoPage.clickOnMyClubsTab();
+		 * editClubInfoPage.clickOnSimbaOrganizerButton();
+		 */
 		addEventPage.clickOnAddEventButton();
+
+		Assert.assertTrue(addEventPage.isEventInformationPageContains());
+
 		this.verifyExitEventCreationPopupAfterFillingEventInformationDetails();
 		addEventPage.clickOnNextStepButton();
 
@@ -1508,7 +1521,6 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Starting of VerifyFreeEventFunctionality method");
 
 		addEventPage.hardWait(3);
-
 		addEventPage.clickOnAddEventButton();
 
 		eventName = addEventPage.setEventName(testDataProp.getProperty("event.name"));
@@ -1641,7 +1653,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 
 		addEventPage.clickOnAddEventButton();
 
-		eventName = addEventPage.setEventName(testDataProp.getProperty("event.name"));
+		freeEventName = addEventPage.setEventName(testDataProp.getProperty("event.name"));
 		addEventPage.setLocation(testDataProp.getProperty("state.address"));
 
 		addEventPage.uploadEventLogo(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("edit.club.logo.path"));
@@ -1734,8 +1746,8 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Starting of verifyDeleteEventFunctionalityAfterPublishingEvent method");
 
 		addEventPage.clickOnEventsTab();
-		Assert.assertTrue(addEventPage.isRecentlyAddedEventDisplayed(eventName));
-		addEventPage.clickOnDeleteEventFromList(eventName);
+		Assert.assertTrue(addEventPage.isRecentlyAddedEventDisplayed(freeEventName));
+		addEventPage.clickOnDeleteEventFromList(freeEventName);
 
 		Assert.assertTrue(addEventPage.isDeleteEventPopUpContains());
 
@@ -1744,7 +1756,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		Assert.assertTrue(addEventPage.isEventDeletedSuccessPopUpContains());
 
 		addEventPage.clickOnDeleteEventOKButton();
-		Assert.assertFalse(addEventPage.isRecentlyAddedEventDisplayed(eventName));
+		Assert.assertFalse(addEventPage.isRecentlyAddedEventDisplayed(freeEventName));
 
 		logger.info("Ending of verifyDeleteEventFunctionalityAfterPublishingEvent method");
 	}
