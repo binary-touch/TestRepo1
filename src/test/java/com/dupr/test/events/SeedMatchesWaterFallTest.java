@@ -377,7 +377,7 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		logger.info("Starting of verifyMyMatchesAsAPlayer method");
 
 		seedMatchesPage.hardWait(5);
-		userDashboardPage.clickOnSettings();
+		userDashboardPage.clickOnOpenSettingsMenu();
 		seedMatchesPage.hardWait(3);
 		preservingPageVisitsPage.clickOnLogoutButton();
 		seedMatchesPage.hardWait(3);
@@ -447,7 +447,7 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 
 		seedMatchesPage.clickOnHomeMenu();
 		seedMatchesPage.hardWait(4);
-		userDashboardPage.clickOnSettings();
+		userDashboardPage.clickOnOpenSettingsMenu();
 		seedMatchesPage.hardWait(3);
 		preservingPageVisitsPage.clickOnLogoutButton();
 		seedMatchesPage.hardWait(3);

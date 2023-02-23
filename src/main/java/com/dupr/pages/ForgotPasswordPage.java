@@ -12,6 +12,7 @@ import com.b2b.support.B2BPageFactory;
 public class ForgotPasswordPage extends DUPRBaseAutomationPage {
 
 	private static final Logger log = LogManager.getLogger(DUPRLoginPage.class);
+	
 
 	@B2BFindBy(xpath = "(//a[text()='Search Players'])[1]")
 	private WebElement lblSearchPlayers;
@@ -67,6 +68,9 @@ public class ForgotPasswordPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//p[text()='Email is invalid.']")
 	private WebElement txtValidationEmailInvalid;
+	
+	@B2BFindBy(xpath = "//p[text()='Invalid email address']")
+	private WebElement txtInvalidEmailAddress;
 	
 	@B2BFindBy(xpath = "//p[contains(@class, 'MuiFormHelperText-root Mui-error')]")
 	private WebElement txtValidationAccountDoesnotExist;
@@ -211,9 +215,10 @@ public class ForgotPasswordPage extends DUPRBaseAutomationPage {
 
 	public String getEmailValidationText() {
 		log.info("Starting of getEmailValidationText method");
+		explicitWait(txtInvalidEmailAddress);
 		log.info("Ending of getEmailValidationText method");
 
-		return getText(txtValidationEmailInvalid);
+		return getText(txtInvalidEmailAddress);
 	}
 	
 	public String getAccountDoesnotExistValidationText() {

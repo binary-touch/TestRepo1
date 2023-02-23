@@ -185,7 +185,7 @@ public class UserDashboardPage extends DUPRBaseAutomationPage {
 	private WebElement logoForwardBrackets;
 
 	@B2BFindBy(xpath = "//button[@aria-label='Open settings']")
-	private WebElement btnSettings;
+	private WebElement mnuOpenSettings;
 
 	@B2BFindBy(xpath = "//span[contains(@class,'MuiBadge-root MuiBadge-root')]/*")
 	private WebElement btnMessage;
@@ -431,7 +431,7 @@ public class UserDashboardPage extends DUPRBaseAutomationPage {
 
 		if (isDisplayed(txtUserName) && isDisplayed(lblDoubles) && isDisplayed(lblDoublesValue)
 				&& isDisplayed(lblSingles) && isDisplayed(lblSinglesValue) && isDisplayed(iconShare)
-				&& isDisplayed(iconInstructions) && isDisplayed(btnSettings)) {
+				&& isDisplayed(iconInstructions) && isDisplayed(mnuOpenSettings)) {
 			isDashboardUserNameSecContains = true;
 		}
 
@@ -882,11 +882,12 @@ public class UserDashboardPage extends DUPRBaseAutomationPage {
 		log.info("Ending of clickOnMessageIcon method");
 	}
 
-	public void clickOnSettings() {
-		log.info("Starting of clickOnSettings method");
+	public void clickOnOpenSettingsMenu() {
+		log.info("Starting of clickOnOpenSettingsMenu method");
 
-		clickOnWebElement(btnSettings);
+		clickOnWebElement(mnuOpenSettings);
         hardWait(2);
-		log.info("Ending of clickOnSettings method");
+        
+		log.info("Ending of clickOnOpenSettingsMenu method");
 	}
 }

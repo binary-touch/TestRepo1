@@ -8,7 +8,6 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.b2b.common.WebDriversEnum;
-import com.dupr.pages.clubs.ClubLogoPage;
 import com.dupr.pages.events.CombinationOfMatchTypeAndPlayerGroupPage;
 import com.dupr.test.CommonBaseTest;
 
@@ -24,7 +23,8 @@ public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 
 	@BeforeClass
 	@Parameters({ "browser", "siteURL", "directorEmail", "directorPassword" })
-	public void initMethod(String browser, String siteURL, String directorEmail, String directorPassword) throws Exception {
+	public void initMethod(String browser, String siteURL, String directorEmail, String directorPassword)
+			throws Exception {
 		logger.info("Starting of initMethod in CombinationOfMatchTypeAndPlayerGroupTest");
 
 		this.driver = super.getWebDriver(WebDriversEnum.COMBINATION_OF_MATCHTYPE_AND_PLAYERGROUP_DRIVER);
@@ -81,7 +81,9 @@ public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 		Assert.assertTrue(addBracketPage.isSelectedPlayerGroupTypeDisplayed());
 
 		super.verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup();
-		super.VerifyRecentlyAddedEventUnderEventsTab();
+		addEventPage.hardWait(3);
+		addEventPage.clickOnEventsTab();
+		addEventPage.clickOnRecentlyAddedEvent(eventName);
 
 		Assert.assertTrue(combinationOfMatchTypeAndPlayerGroupPage.isOpenSinglesCardDisplayed());
 
@@ -111,7 +113,9 @@ public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 		Assert.assertTrue(addBracketPage.isSelectedPlayerGroupTypeDisplayed());
 
 		super.verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup();
-		super.VerifyRecentlyAddedEventUnderEventsTab();
+		addEventPage.hardWait(3);
+		addEventPage.clickOnEventsTab();
+		addEventPage.clickOnRecentlyAddedEvent(eventName);
 
 		Assert.assertTrue(combinationOfMatchTypeAndPlayerGroupPage.isMenSinglesCardDisplayed());
 
@@ -141,7 +145,9 @@ public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 		Assert.assertTrue(addBracketPage.isSelectedPlayerGroupTypeDisplayed());
 
 		super.verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup();
-		super.VerifyRecentlyAddedEventUnderEventsTab();
+		addEventPage.hardWait(3);
+		addEventPage.clickOnEventsTab();
+		addEventPage.clickOnRecentlyAddedEvent(eventName);
 
 		Assert.assertTrue(combinationOfMatchTypeAndPlayerGroupPage.isWomenSinglesCardDisplayed());
 
@@ -171,7 +177,9 @@ public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 		Assert.assertTrue(addBracketPage.isSelectedPlayerGroupTypeDisplayed());
 
 		super.verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup();
-		super.VerifyRecentlyAddedEventUnderEventsTab();
+		addEventPage.hardWait(3);
+		addEventPage.clickOnEventsTab();
+		addEventPage.clickOnRecentlyAddedEvent(eventName);
 
 		Assert.assertTrue(combinationOfMatchTypeAndPlayerGroupPage.isDoublesMixedCardDisplayed());
 
@@ -201,7 +209,9 @@ public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 		Assert.assertTrue(addBracketPage.isSelectedPlayerGroupTypeDisplayed());
 
 		super.verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup();
-		super.VerifyRecentlyAddedEventUnderEventsTab();
+		addEventPage.hardWait(3);
+		addEventPage.clickOnEventsTab();
+		addEventPage.clickOnRecentlyAddedEvent(eventName);
 
 		Assert.assertTrue(combinationOfMatchTypeAndPlayerGroupPage.isDoublesOpenCardDisplayed());
 
@@ -232,7 +242,9 @@ public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 
 		super.verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup();
 
-		super.VerifyRecentlyAddedEventUnderEventsTab();
+		addEventPage.hardWait(3);
+		addEventPage.clickOnEventsTab();
+		addEventPage.clickOnRecentlyAddedEvent(eventName);
 
 		Assert.assertTrue(combinationOfMatchTypeAndPlayerGroupPage.isDoublesMenCardDisplayed());
 
@@ -263,7 +275,9 @@ public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 
 		super.verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup();
 
-		super.VerifyRecentlyAddedEventUnderEventsTab();
+		addEventPage.hardWait(3);
+		addEventPage.clickOnEventsTab();
+		addEventPage.clickOnRecentlyAddedEvent(eventName);
 
 		Assert.assertTrue(combinationOfMatchTypeAndPlayerGroupPage.isDoublesWomenCardDisplayed());
 

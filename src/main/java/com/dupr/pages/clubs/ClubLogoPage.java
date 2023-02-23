@@ -57,6 +57,9 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 	// ="//ul[@id='composition-menu']/li/following-sibling::li/preceding-sibling::li")
 	@B2BFindBy(xpath = "//li[contains(text(),'Change Logo')]")
 	private WebElement btnChangeLogo;
+	
+	@B2BFindBy(xpath = "//h4[contains(text(),'Remove Logo')]")
+	private WebElement txtRemoveLogo;
 
 	@B2BFindBy(xpath = "//ul[@id='composition-menu']/li/following-sibling::li[text()='Remove Logo']")
 	private WebElement lblRemoveLogo;
@@ -111,6 +114,12 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//p[text()='Select an image to upload']")
 	private WebElement lblSelectAnImageToUpload;
+	
+	@B2BFindBy(xpath = "//button[text()='Browse Clubs']")
+	private WebElement btnBrowseClubs;
+	
+	
+	
 
 	public ClubLogoPage(WebDriver driver) {
 		super(driver);
@@ -148,6 +157,14 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 
 		log.info("Ending of clickOnChangeLogoOption method");
 	}
+	
+	public void clickOnBrowseClubs() {
+		log.info("Starting of clickOnBrowseClubs method");
+
+		elementClick(btnBrowseClubs);
+
+		log.info("Ending of clickOnBrowseClubs method");
+	}
 
 	public boolean isClubPageContains() {
 		log.info("Starting of isClubPageContains method");
@@ -168,8 +185,13 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 		log.info("Starting of isRemoveLogoPopupContains method");
 
 		boolean isRemoveLogoPopupContains = false;
-		if (isDisplayed(lblRemoveLogo) && isDisplayed(btnYes) && isDisplayed(btnNo) && isDisplayed(iconClose)) {
-			isRemoveLogoPopupContains = true;
+		
+		try {
+			if (isDisplayed(lblRemoveLogo) && isDisplayed(btnYes) && isDisplayed(btnNo) && isDisplayed(iconClose)) {
+				isRemoveLogoPopupContains = true;
+			}
+		} catch (Exception e) {
+			isRemoveLogoPopupContains = false;
 		}
 
 		log.info("Ending of isRemoveLogoPopupContains method");
@@ -224,7 +246,7 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 		log.info("Starting of clickOnMyClubsTab method");
 
 		try {
-			clickOnElement(tabMyClubs);
+			clickUsingActionsClass(tabMyClubs);
 		} catch (Exception e) {
 			clickOnWebElement(tabMyClubs);
 		}
@@ -324,8 +346,11 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 				this.txtBoxSearch.click();
 				this.txtBoxSearch.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 
-				sendKeys(txtBoxSearch, "Simba");
+				sendKeys(txtBoxSearch, "simba");
 				this.txtBoxSearch.sendKeys(Keys.ENTER);
+				this.txtBoxSearch.sendKeys(Keys.BACK_SPACE);
+				sendKeys(txtBoxSearch, "a");
+				this.waitForElementToBeVisible(lblSimbaClubName);
 				elementClick(lblSimbaClubName);
 			}
 		} catch (Exception e) {

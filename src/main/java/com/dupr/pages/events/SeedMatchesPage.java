@@ -864,6 +864,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 		clickOnWebElement(driver.findElement(By.xpath(
 				"//h6[contains(text(),'" + eventName + "')]/parent::div//button[contains(text(),'My Matches')]")));
+
 		this.hardWait(3);
 
 		log.info("Ending of clickOnMyMatchesButton method");

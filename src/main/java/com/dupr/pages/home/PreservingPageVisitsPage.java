@@ -87,9 +87,12 @@ public class PreservingPageVisitsPage extends DUPRBaseAutomationPage {
 
 	public void clickOnLogoutButton() {
 		log.info("Starting of clickOnLogoutButton method");
-
-		clickOnWebElement(btnLogout);
-
+		try {
+			clickOnWebElement(btnLogout);
+		} catch (Exception e) {
+			btnLogout.click();
+		}
+		hardWait(4);
 		log.info("Ending of clickOnLogoutButton method");
 	}
 

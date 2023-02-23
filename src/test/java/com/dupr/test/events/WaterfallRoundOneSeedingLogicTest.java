@@ -10,7 +10,6 @@ import com.b2b.common.WebDriversEnum;
 import com.dupr.pages.events.SeedMatchesPage;
 import com.dupr.pages.events.SeedMatchesWaterFallPage;
 import com.dupr.pages.events.WaterfallRoundOneSeedingLogicPage;
-import com.dupr.pages.home.PreservingPageVisitsPage;
 import com.dupr.test.CommonBaseTest;
 
 import io.qameta.allure.Description;
@@ -40,7 +39,9 @@ public class WaterfallRoundOneSeedingLogicTest extends CommonBaseTest {
 
 		logger.info("Ending of initMethod in SeedMatchesWaterFallPage");
 	}
-	//@Test(priority = 1, description = "Verify creating WaterFall Event As Singles", groups = "sanity")
+
+	// @Test(priority = 1, description = "Verify creating WaterFall Event As
+	// Singles", groups = "sanity")
 	@Description("Test case #1, Verify creating WaterFall Event As Singles")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #1, Verify creating WaterFall Event As Singles")
@@ -128,7 +129,6 @@ public class WaterfallRoundOneSeedingLogicTest extends CommonBaseTest {
 		logger.info("Ending of verifyCreatingWaterFallEventAsSingles method");
 	}
 
-
 	@Test(priority = 2, description = "Verify Adding Participants in waterfall event", groups = "sanity")
 	@Description("Test case #2, Verify Adding Participants in waterfall event")
 	@Severity(SeverityLevel.NORMAL)
@@ -137,12 +137,13 @@ public class WaterfallRoundOneSeedingLogicTest extends CommonBaseTest {
 		logger.info("Starting of verifyAddingParticipantsInWaterFallEvent method");
 
 		seedMatchesPage.hardWait(3);
-		//addparticipantsPage.addMeetForWaterFall(testDataProp.getProperty("player.name"));
-		//seedMatchesPage.hardWait(3);
+		// addparticipantsPage.addMeetForWaterFall(testDataProp.getProperty("player.name"));
+		// seedMatchesPage.hardWait(3);
 		waterfallRoundOneSeedingLogicPage.getSinglesRating();
-		
+
 		logger.info("Ending of verifyAddingParticipantsInWaterFallEvent method");
 	}
+
 	@Test(priority = 3, description = "Verify Adding Participants in waterfall event", groups = "sanity")
 	@Description("Test case #2, Verify Adding Participants in waterfall event")
 	@Severity(SeverityLevel.NORMAL)
@@ -152,9 +153,9 @@ public class WaterfallRoundOneSeedingLogicTest extends CommonBaseTest {
 
 		seedMatchesPage.hardWait(3);
 		addparticipantsPage.addMeetForWaterFall(testDataProp.getProperty("player.name"));
-		//seedMatchesPage.hardWait(3);
+		// seedMatchesPage.hardWait(3);
 		waterfallRoundOneSeedingLogicPage.getSinglesRating();
-		
+
 		logger.info("Ending of verifyAddingParticipantsInWaterFallEvent method");
 	}
 }

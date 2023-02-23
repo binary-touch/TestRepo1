@@ -17,9 +17,9 @@ public class BrowseClubsPage extends DUPRBaseAutomationPage {
 
 	private static final Logger log = LogManager.getLogger(BrowseClubsPage.class);
 	public static String name = null;
-	
+
 	public static int countAfterSearchingClub;
-	
+
 	@B2BFindBy(xpath = "//h6[text()='Clubs']")
 	private WebElement tabClubs;
 
@@ -44,13 +44,15 @@ public class BrowseClubsPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h3[text()='Club']")
 	private WebElement lblClub;
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-1821gv5']/h3/div")
-	private WebElement txtClubName;
+	/*
+	 * @B2BFindBy(xpath = "//div[@class='MuiBox-root css-1821gv5']/h3/div") private
+	 * WebElement txtClubName;
+	 */
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-1821gv5']/h6/following-sibling::h6/preceding-sibling::h6")
+	@B2BFindBy(xpath = "//h3[contains(@class, 'MuiTypography-root MuiTypography-h3')]/following-sibling::h6[1]")
 	private WebElement txtClubAddress;
 
-	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-1821gv5']/h6/following-sibling::h6")
+	@B2BFindBy(xpath = "//h3[contains(@class, 'MuiTypography-root MuiTypography-h3')]/following-sibling::h6[2]")
 	private WebElement txtNumberOfClubMembers;
 
 	@B2BFindBy(xpath = "//button[text()='Join Club']")
@@ -88,7 +90,11 @@ public class BrowseClubsPage extends DUPRBaseAutomationPage {
 	public void clickOnBrowseClubsTab() {
 		log.info("Starting of clickOnBrowseClubsTab method");
 
-		tabClubs.click();
+		try {
+			clickUsingActionsClass(tabClubs);
+		} catch (Exception e) {
+			clickOnWebElement(tabClubs);
+		}
 
 		log.info("Ending of clickOnBrowseClubsTab method");
 	}
@@ -100,7 +106,6 @@ public class BrowseClubsPage extends DUPRBaseAutomationPage {
 		if (isDisplayed(lblBrowseClubs) && isDisplayed(txtBoxSearch)) {
 
 			isBrowseClubsPageContains = true;
-
 		}
 
 		log.info("Ending of isBrowseClubsPageContains method");
@@ -131,12 +136,12 @@ public class BrowseClubsPage extends DUPRBaseAutomationPage {
 
 		this.txtBoxSearch.sendKeys(Keys.CONTROL + "A", Keys.BACK_SPACE);
 		for (WebElement clubName : lstClubNames) {
-			
+
 			name = getText(clubName);
 
 			sendKeys(txtBoxSearch, name);
 			hardWait(3);
-			countAfterSearchingClub=lstClubNames.size();
+			countAfterSearchingClub = lstClubNames.size();
 			break;
 
 		}
@@ -186,7 +191,7 @@ public class BrowseClubsPage extends DUPRBaseAutomationPage {
 			 * name = getText(clubName); this.txtBoxSearch.sendKeys(Keys.CONTROL + "A",
 			 * Keys.BACK_SPACE); sendKeys(txtBoxSearch, name);
 			 */
-			
+
 			clickOnWebElement(clubName);
 			break;
 
@@ -198,9 +203,22 @@ public class BrowseClubsPage extends DUPRBaseAutomationPage {
 	public boolean isClubPageContains() {
 		log.info("Starting of isClubPageContains method");
 
+		try {
+			System.out.println(iconBackArrow.isDisplayed());
+			System.out.println(lblClub.isDisplayed());
+			System.out.println(btnSeeClubDetails.isDisplayed());
+			System.out.println(txtClubAddress.isDisplayed());
+			System.out.println(txtNumberOfClubMembers.isDisplayed());
+			System.out.println(tabMembers.isDisplayed());
+			System.out.println(tabMatches.isDisplayed());
+			System.out.println(tabEvents.isDisplayed());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		boolean isClubPageContains = false;
-		if (isDisplayed(iconBackArrow) && isDisplayed(lblClub) && isDisplayed(txtClubAddress)
-				&& isDisplayed(txtNumberOfClubMembers) && isDisplayed(btnSeeClubDetails) && isDisplayed(tabMembers)
+		if (isDisplayed(iconBackArrow) && isDisplayed(lblClub) && isDisplayed(btnSeeClubDetails)
+				&& isDisplayed(txtClubAddress) && isDisplayed(txtNumberOfClubMembers) && isDisplayed(tabMembers)
 				&& isDisplayed(tabMatches) && isDisplayed(tabEvents)) {
 			isClubPageContains = true;
 		}
@@ -209,7 +227,7 @@ public class BrowseClubsPage extends DUPRBaseAutomationPage {
 
 		return isClubPageContains;
 	}
-	
+
 	public void clickOnBackArrowicon() {
 		log.info("Starting of clickOnBackArrowicon method");
 
@@ -217,24 +235,22 @@ public class BrowseClubsPage extends DUPRBaseAutomationPage {
 
 		log.info("Ending of clickOnBackArrowicon method");
 	}
-	
+
 	public String getSearchedClubName() {
 		log.info("Starting of getSearchedClubName method");
 		log.info("Ending of getSearchedClubName method");
-		
+
 		return txtBoxSearch.getAttribute("value");
 	}
-	
-	
+
 	public int getClubCountAfterClickOnBackArrowiconOnClubPage() {
 		log.info("Starting of getClubCountAfterClickOnBackArrowiconOnClubPage method");
-		
-		int clubCountOnBrowseClubsPage=lstClubNames.size();
-		
+
+		int clubCountOnBrowseClubsPage = lstClubNames.size();
+
 		log.info("Ending of getClubCountAfterClickOnBackArrowiconOnClubPage method");
-		
+
 		return clubCountOnBrowseClubsPage;
 	}
-	
-	
+
 }

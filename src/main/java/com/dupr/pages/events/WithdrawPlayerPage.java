@@ -406,7 +406,7 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 		return isConfirmationPopUpContains;
 	}
 
-	public String getConfirmTittleTxt() {
+	public String getConfirmTitleText() {
 		log.info("Starting of getConfirmTittleTxt method");
 		log.info("Ending of getConfirmTittleTxt method");
 
@@ -456,7 +456,7 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 		return isSucessPopUpContains;
 	}
 
-	public String getSucessTittleTxt() {
+	public String getSuccessTitleText() {
 		log.info("Starting of getSucessTittleTxt method");
 		log.info("Ending of getSucessTittleTxt method");
 

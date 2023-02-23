@@ -2,6 +2,7 @@ package com.dupr.pages;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -78,13 +79,13 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 
 	public void clickOnElementUsingActionClass(WebElement WebElement) {
 		log.info("Starting of clickOnElementUsingActionClass method");
-		
+
 		Actions action = new Actions(driver);
 		action.moveToElement(WebElement).click().build().perform();
-		
+
 		log.info("Ending of clickOnElementUsingActionClass method");
 	}
-	
+
 	public void mouseHoverAndClick(WebElement webElement) {
 		log.info("Starting of mouseHoverAndClick method");
 
@@ -93,7 +94,7 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 
 		log.info("Ending of mouseHoverAndClick method");
 	}
-	
+
 	public void clickUsingActionsClass(WebElement webElement) {
 		log.info("Starting of clickUsingActionsClass method");
 
@@ -105,7 +106,7 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 
 		log.info("Ending of clickUsingActionsClass method");
 	}
-	
+
 	public int getCurrentDate() {
 		log.info("Starting of getCurrentDate method");
 
@@ -184,7 +185,7 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 		log.info("Ending of clickOnRegistrationEndDate method");
 		return zone;
 	}
-	
+
 	public void clickOnCurrentDate(int date) {
 		try {
 			clickOnElementUsingActionClass(driver.findElement(By.xpath("//button[text()='" + date + "']")));
@@ -200,6 +201,7 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 			clickOnElementUsingActionClass(driver.findElement(By.xpath("//span[text()='" + strHour + "']")));
 		}
 	}
+
 	public void switchToNewTab() {
 		log.info("Starting of switchToNewTab method");
 
@@ -222,7 +224,7 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 
 		log.info("Ending of closeTab method");
 	}
-	
+
 	public void verticalScroll(WebElement webElement) {
 		log.info("Starting of verticalScroll method");
 
@@ -235,5 +237,42 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 
 		log.info("Ending of verticalScroll method");
 	}
-	
+
+	public Month getFutureMonth(int days) {
+		log.info("Starting of getFutureMonth method");
+
+		LocalDateTime dateTime = LocalDateTime.now();
+		LocalDateTime date = dateTime.plusDays(days);
+		Month monthValue = date.getMonth();
+		System.out.println("Month Value = " + monthValue);
+
+		log.info("Starting of getFutureMonth method");
+
+		return monthValue;
+	}
+
+	public Month getPreviousMonth(int days) {
+		log.info("Starting of getPreviousMonth method");
+
+		LocalDateTime dateTime = LocalDateTime.now();
+		LocalDateTime date = dateTime.minusDays(days);
+		Month monthValue = date.getMonth();
+		System.out.println("Month Value = " + monthValue);
+
+		log.info("Starting of getPreviousMonth method");
+
+		return monthValue;
+	}
+
+	public Month getCurrentMonth() {
+		log.info("Starting of getCurrentMonth method");
+
+		LocalDateTime dateTime = LocalDateTime.now();
+		Month monthValue = dateTime.getMonth();
+		System.out.println("Month Value = " + monthValue);
+
+		log.info("Starting of getCurrentMonth method");
+
+		return monthValue;
+	}
 }
