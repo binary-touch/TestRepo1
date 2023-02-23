@@ -38,6 +38,9 @@ public class NotificationsPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//div[contains(@class,'MuiFormGroup-root')]/div//span[contains(@class,'MuiSwitch-root MuiSwitch-sizeMedium')]/span[contains(@class,'Mui-checked')]")
 	private WebElement tglSMSNotificationsInEnabled;
+	
+	@B2BFindBy(xpath = "//h6[contains(text(),'Please verify your phone number.')]")
+	private WebElement lblVerifyYourPhoneNumber;
 
 	@B2BFindBy(xpath = "//div[contains(@class,'MuiFormGroup-root')]/div//span[contains(@class,'MuiSwitch-root MuiSwitch-sizeMedium')]/span[contains(@class,'PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary')]")
 	private WebElement tglSMSNotificationsInDisabled;
@@ -61,25 +64,6 @@ public class NotificationsPage extends DUPRBaseAutomationPage {
 
 	public boolean isNotifcationsTabContains() {
 		log.info("Starting of isNotifcationsTabContains method");
-
-		/*
-		 * try { if(tglAppNotificationsInEnabled.isDisplayed()==true) {
-		 * System.out.println("App Notifications Are In Enabled State"); } } catch
-		 * (Exception e) { clickOnWebElement(tglAppNotificationsInDisabled);
-		 * clickOnWebElement(btnSave); }
-		 * 
-		 * try { if(isDisplayed(tglEmaillNotificationsInEnabled)==true) {
-		 * System.out.println("Email Notifications Are In Enabled State"); } } catch
-		 * (Exception e) { clickOnWebElement(tglEmaillNotificationsInDisabled);
-		 * clickOnWebElement(btnSave); }
-		 * 
-		 * 
-		 * try { if(isDisplayed(tglSMSNotificationsInEnabled)==true) {
-		 * System.out.println("Text(SMS) Notifications Are In Enabled State"); } } catch
-		 * (Exception e) { clickOnWebElement(tglSMSNotificationsInDisabled);
-		 * clickOnWebElement(btnSave); }
-		 */
-	
 	
 		boolean isNotifcationsTabContains = false;
 		if (isDisplayed(tglAppNotificationsInEnabled) || isDisplayed(tglEmaillNotificationsInEnabled)
@@ -234,5 +218,12 @@ public class NotificationsPage extends DUPRBaseAutomationPage {
 		log.info("Ending of isAppNotificationsEnabled method");
 
 		return isAppNotificationsEnabled;
+	}
+	
+	public boolean isVerifyPhoneNumberPopupDisplayed() {
+		log.info("Starting of isVerifyPhoneNumberPopupDisplayed method");
+		log.info("Starting of isVerifyPhoneNumberPopupDisplayed method");
+		
+		return lblVerifyYourPhoneNumber.isDisplayed();
 	}
 }

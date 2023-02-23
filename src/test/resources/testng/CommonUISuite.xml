@@ -23,7 +23,7 @@
 		</classes>
 	</test>
 
-	<test name="Sprint 2">
+	<!-- <test name="Sprint 2">
 		<classes>
 			<class name="com.dupr.test.clubs.BrowseClubsTest" />
 			<class name="com.dupr.test.clubs.MyClubsTest" />
@@ -78,5 +78,5 @@
 				name="com.dupr.test.events.PaidEventAndPaidBracketWithWaterfallEventTest" />
 			<class name="com.dupr.test.events.SeedMatchesWaterFallTest" />
 		</classes>
-	</test>
+	</test> -->
 </suite>

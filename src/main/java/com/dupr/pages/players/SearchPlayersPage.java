@@ -359,13 +359,13 @@ public class SearchPlayersPage extends DUPRBaseAutomationPage {
 		boolean flag = false;
 		this.implicitWait();
 		try {
+			System.out.println(lstPlayersRatingsInDoubles.size() - 1);
 			for (int i = 0; i < lstPlayersRatingsInDoubles.size() - 1; i++) {
 				String Rating = lstPlayersRatingsInDoubles.get(i).getText();
 				float rating = Float.parseFloat(Rating);
 				logger.debug("Doubles Rating: " + Rating);
 				if (rating >= 3.0 && rating <= 4.0) {
 					flag = true;
-					break;
 				}
 			}
 		} catch (Exception e) {
