@@ -186,6 +186,8 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 
 		this.txtBoxSearchParticipant.sendKeys(name);
 		this.hardWait(2);
+	     this.txtBoxSearchParticipant.sendKeys(Keys.ENTER);
+		this.hardWait(2);
 
 		log.info("Ending of searchByName method");
 	}
@@ -470,35 +472,45 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 
 		for (int i = 0; i < 16; i++) {
 			try {
-				this.hardWait(3);
-				clickOnWebElement(btnAddParticipants);
-				this.hardWait(4);
-				clickOnWebElement(rdoSelectParticipant);
-				this.hardWait(3);
-				clickOnElement(btnAddParticipant);
-				this.hardWait(4);
-				clickOnWebElement(rdoNo);
-				this.hardWait(3);
-				clickOnWebElement(btnAdd);
-				this.hardWait(5);
+				if (btnAddParticipants.isDisplayed() == true) {
+					this.hardWait(3);
+					clickOnWebElement(btnAddParticipants);
+					this.hardWait(4);
+					clickOnWebElement(rdoSelectParticipant);
+					this.hardWait(3);
+					clickOnElement(btnAddParticipant);
+					this.hardWait(4);
+					clickOnWebElement(rdoNo);
+					this.hardWait(3);
+					clickOnWebElement(btnAdd);
+					this.hardWait(5);
+				}
 			} catch (Exception e) {
-				this.hardWait(3);
-				clickOnWebElement(btnAddParticipants);
-				this.hardWait(4);
-				clickOnWebElement(rdoSelectParticipant);
-				this.hardWait(3);
-				clickOnElement(btnAddParticipant);
-				this.hardWait(4);
-				clickOnWebElement(rdoNo);
-				this.hardWait(3);
-				clickOnWebElement(btnAdd);
-				this.hardWait(5);
+				try {
+					if (btnAddParticipants.isDisplayed() == true) {
+						this.hardWait(3);
+						clickOnWebElement(btnAddParticipants);
+						this.hardWait(4);
+						clickOnWebElement(rdoSelectParticipant);
+						this.hardWait(3);
+						clickOnElement(btnAddParticipant);
+						this.hardWait(4);
+						clickOnWebElement(rdoNo);
+						this.hardWait(3);
+						clickOnWebElement(btnAdd);
+						this.hardWait(5);
+					}
+				} catch (Exception e2) {
+					System.out.println();
+				}
+
 			}
 
 		}
 
 		log.info("Ending of addParticipantsForWaterFall method");
 	}
+
 	public void addMeetForWaterFall(String Name) {
 		log.info("Starting of addParticipantsForWaterFall method");
 		try {
@@ -506,6 +518,7 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 			clickOnWebElement(btnAddParticipants);
 			this.hardWait(4);
 			this.searchParticipantByName(Name);
+		
 			this.hardWait(4);
 			clickOnWebElement(rdoSelectParticipant);
 			this.hardWait(3);
@@ -533,5 +546,5 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 
 		log.info("Ending of addParticipantsForWaterFall method");
 	}
-	
+
 }

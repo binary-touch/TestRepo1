@@ -2,12 +2,14 @@ package com.dupr.pages;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -197,6 +199,41 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 		} catch (Exception e) {
 			clickOnElementUsingActionClass(driver.findElement(By.xpath("//span[text()='" + strHour + "']")));
 		}
+	}
+	public void switchToNewTab() {
+		log.info("Starting of switchToNewTab method");
+
+		// To Open new window and check Assertions
+		ArrayList<String> tab = new ArrayList<String>(driver.getWindowHandles());
+		if (tab.size() > 0) {
+			driver.switchTo().window(tab.get(1));
+		}
+
+		log.info("Ending of switchToNewTab method");
+	}
+
+	public void closeTab() {
+		log.info("Starting of closeTab method");
+
+		// Recent window will be closed and returns back
+		driver.close();
+		ArrayList<String> tab = new ArrayList<String>(driver.getWindowHandles());
+		driver.switchTo().window(tab.get(0));
+
+		log.info("Ending of closeTab method");
+	}
+	
+	public void verticalScroll(WebElement webElement) {
+		log.info("Starting of verticalScroll method");
+
+		Actions action = new Actions(driver);
+		Actions moveToElement = action.moveToElement(webElement);
+		for (int i = 0; i < 5; i++) {
+
+			moveToElement.sendKeys(Keys.DOWN).build().perform();
+		}
+
+		log.info("Ending of verticalScroll method");
 	}
 	
 }

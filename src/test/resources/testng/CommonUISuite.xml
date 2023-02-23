@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Common UI Automation Tests">
 
-	<!-- <test name="Sprint 1">
+	<test name="Sprint 1">
 		<classes>
 			<class name="com.dupr.test.players.SearchPlayersTest" />
 			<class name="com.dupr.test.signup.SignupTest" />
@@ -21,9 +21,9 @@
 			<class name="com.dupr.test.profile.ChangePasswordTest" />
 			<class name="com.dupr.test.profile.ProfilePictureTest" />
 		</classes>
-	</test> -->
+	</test>
 
-	<!-- <test name="Sprint 2">
+	<test name="Sprint 2">
 		<classes>
 			<class name="com.dupr.test.clubs.BrowseClubsTest" />
 			<class name="com.dupr.test.clubs.MyClubsTest" />
@@ -38,9 +38,9 @@
 			<class name="com.dupr.test.events.EditEventsTest" />
 			<class name="com.dupr.test.events.EditBracketsTest" />
 		</classes>
-	</test>-->
+	</test>
 	
-	<!-- <test name="Sprint 3">
+	<test name="Sprint 3">
 		<classes>
 			<class name="com.dupr.test.events.AddEditRemoveEventLogoTest" />
 			<class name="com.dupr.test.events.AddParticipantsInBracketTest" />
@@ -58,7 +58,7 @@
 			<class name="com.dupr.test.home.UserDashboardTest" />
 			<class name="com.dupr.test.home.PreservingPageVisitsTest" />
 		</classes>
-	</test> -->
+	</test>
 
 	<test name="Sprint 4">
 		<classes>
@@ -72,10 +72,11 @@
 		</classes>
 	</test>
 
-	<!-- <test name="Sprint 5">
+	<test name="Sprint 5">
 		<classes>
 			<class name="com.dupr.test.events.PaidEventAndPaidBracketWithWaterfallEventTest" />
 			<class name="com.dupr.test.events.SeedMatchesWaterFallTest" />
-		</classes>
-	</test> -->
+			<class name="com.dupr.test.events.WaterfallRoundOneSeedingLogicTest" />
+			</classes>
+	</test>
 </suite>

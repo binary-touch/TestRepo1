@@ -266,7 +266,7 @@ public class SeedMatchesTest extends CommonBaseTest {
 		seedMatchesPage.hardWait(5);
 		userDashboardPage.clickOnMyBracketsButton();
 		seedMatchesPage.hardWait(5);
-		seedMatchesPage.clickOnMyMatchesButton();
+		seedMatchesPage.clickOnMyMatchesButton(seedsEvents);
 		seedMatchesPage.hardWait(5);
 
 		Assert.assertTrue(seedMatchesPage.isMyMatchesPageContains());
