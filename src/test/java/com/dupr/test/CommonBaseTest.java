@@ -755,7 +755,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		Assert.assertTrue(eventRegistrationPage.isBracketCheckboxSelected());
 
 		eventRegistrationPage.clickOnRegisterButton();
-
+		addBracketPage.hardWait(2);
 		Assert.assertEquals(eventRegistrationPage.getSuccessLabel(),
 				expectedAssertionsProp.getProperty("success.text"));
 

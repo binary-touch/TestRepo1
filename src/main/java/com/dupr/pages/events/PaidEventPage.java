@@ -60,7 +60,25 @@ public class PaidEventPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//button[@type='submit']")
 	private WebElement btnPay;
+	
+	@B2BFindBy(xpath = "//span[text()='*Event']")
+	private WebElement lblEvent;
 
+	@B2BFindBy(xpath = "//div[contains(@class, 'MuiDialog-paper MuiDialog-paperScrollPaper')]//label[1]//input[@type='checkbox']")
+	private WebElement chkEvent;
+
+	@B2BFindBy(xpath = "//div[contains(@class, 'MuiDialog-paper MuiDialog-paperScrollPaper')]//label[2]//input[@type='checkbox']")
+	private WebElement chkBracket;
+
+	@B2BFindBy(xpath = "//div[contains(@class, 'MuiDialog-paper MuiDialog-paperScrollPaper')]//label[1]/span/following-sibling::span//input")
+	private WebElement txtBoxEventPrice;
+
+	@B2BFindBy(xpath = "//div[contains(@class, 'MuiDialog-paper MuiDialog-paperScrollPaper')]//label[2]/span/following-sibling::span//input")
+	private WebElement txtBoxBracketPrice;
+	
+	@B2BFindBy(xpath = "//h5[text()='Total:']/parent::div/parent::div//input")
+	private WebElement txtBoxTotalPrice;
+	
 	public PaidEventPage(WebDriver driver) {
 		super(driver);
 		B2BPageFactory.initElements(driver, this);
@@ -269,5 +287,49 @@ public class PaidEventPage extends DUPRBaseAutomationPage {
 		log.info("Ending of clickOnPayButton method");
 	}
 	
+	public String getEventLabel() {
+		log.info("Starting of getEventLabel method");
+		log.info("Ending of getEventLabel method");
+
+		return lblEvent.getText();
+	}
+
+	public void clickonEventCheckBox() {
+		log.info("Starting of clickonEventCheckBox method");
+
+		chkEvent.click();
+
+		log.info("Ending of clickonEventCheckBox method");
+	}
+
+	public void clickonBracketCheckBox() {
+		log.info("Starting of clickonBracketCheckBox method");
+
+		chkBracket.click();
+
+		log.info("Ending of clickonBracketCheckBox method");
+	}
+
+	public void setEventPrice(String eventPrice) {
+		log.info("Starting of setEventPrice method");
+
+		txtBoxEventPrice.sendKeys(eventPrice);
+
+		log.info("Ending of setEventPrice method");
+	}
+
+	public void setBracketPrice(String bracketPrice) {
+		log.info("Starting of setBracketPrice method");
+
+		txtBoxBracketPrice.sendKeys(bracketPrice);
+
+		log.info("Ending of setBracketPrice method");
+	}
 	
+	public String getTotalPrice() {
+		log.info("Starting of setTotalPrice method");
+		log.info("Ending of setTotalPrice method");
+		
+		return txtBoxTotalPrice.getText();
+	}
 }
