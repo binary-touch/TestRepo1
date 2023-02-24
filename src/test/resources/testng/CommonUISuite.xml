@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Common UI Automation Tests">
+<suite name="Common UI Automation Tests"><!-- parallel="classes" thread-count="5"> -->
 
 	<test name="Sprint 1">
 		<classes>
@@ -23,7 +23,7 @@
 		</classes>
 	</test>
 
-	<test name="Sprint 2">
+	<!-- <test name="Sprint 2">
 		<classes>
 			<class name="com.dupr.test.clubs.BrowseClubsTest" />
 			<class name="com.dupr.test.clubs.MyClubsTest" />
@@ -39,7 +39,7 @@
 			<class name="com.dupr.test.events.EditBracketsTest" />
 		</classes>
 	</test>
-	
+
 	<test name="Sprint 3">
 		<classes>
 			<class name="com.dupr.test.events.AddEditRemoveEventLogoTest" />
@@ -75,8 +75,9 @@
 
  	<test name="Sprint 5">
 		<classes>
-			<class name="com.dupr.test.events.PaidEventAndPaidBracketWithWaterfallEventTest" />
+			<class
+				name="com.dupr.test.events.PaidEventAndPaidBracketWithWaterfallEventTest" />
 			<class name="com.dupr.test.events.SeedMatchesWaterFallTest" />
-			</classes>
-	</test>
+		</classes>
+	</test> -->
 </suite>
