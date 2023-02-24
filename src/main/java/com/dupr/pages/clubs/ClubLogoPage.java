@@ -348,6 +348,7 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 
 				sendKeys(txtBoxSearch, "simba");
 				this.txtBoxSearch.sendKeys(Keys.ENTER);
+				
 				this.txtBoxSearch.sendKeys(Keys.BACK_SPACE);
 				sendKeys(txtBoxSearch, "a");
 				this.waitForElementToBeVisible(lblSimbaClubName);

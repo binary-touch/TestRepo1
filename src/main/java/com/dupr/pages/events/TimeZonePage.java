@@ -1192,7 +1192,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		}catch(Exception e) {
 		clickOnWebElement(txtBoxRegistrationStartDate);
 		}
-		
+		hardWait(2);
 		clickOnWebElement(ddRegistrationEndDate);
 		hardWait(3);
 
@@ -1201,14 +1201,17 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		try {
 			int date = this.getPastDate(1);
 			Month monthValue = this.getPreviousMonth(1);
+			String month = String.valueOf(monthValue);
 			System.out.println(monthValue);
 			
 			String lblmonth = lblMonth.getText();
 			String pNewTabValue = String.valueOf(lblmonth.split(" ")[0]).toUpperCase().trim();
 			log.debug("Text is " + pNewTabValue);
+			System.out.println(month);
+			System.out.println(pNewTabValue);
 			
 		try {
-			if((monthValue).equals(pNewTabValue)) {
+			if((month).equals(pNewTabValue)) {
 				this.clickOnCurrentDate(date);
 			}
 			else {
@@ -1221,19 +1224,42 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 			String hours = this.getCurrentHour();
 			String meridiem = this.getCurrentMeridiem();
 			hardWait(3);
-			this.clickOnCurrentDate(date);
+			
 			this.clickOnCurrentTime(hours);
 			clickOnElementUsingActionClass(btnTimeInMinutes);
 			this.clickOnCurrentTime(meridiem);
-			this.clickOnElementUsingActionClass(btnOK);
-
+			 try {
+			  this.clickOnWebElement(btnOK);
+			   }catch(Exception e) {
+				 clickOnElementUsingActionClass(btnOK);
+			}
 		} catch (Exception e2) {
 			e2.printStackTrace();
 		}
 
-		log.info("Ending of setRegistrationStartDateBeforeOneDayÂ method");
+		log.info("Ending of setRegistrationStartDateBeforeOneDay method");
+	}	
+	public void setRegistrationEndDate() {
+		log.info("Starting of setRegistrationEndDate method");
+       
+		try {
+			clickOnWebElement(txtBoxRegistrationEndDate);
+		}catch(Exception e) {
+			clickOnElementUsingActionClass(txtBoxRegistrationEndDate);
+		
+		}
+		int date = this.getFutureDate(1);
+		String hours = this.getCurrentHour();
+		String meridiem = this.getCurrentMeridiem();
+
+		this.clickOnCurrentDate(date);
+		this.clickOnCurrentTime(hours);
+		clickOnElementUsingActionClass(btnTimeInMinutes);
+		this.clickOnCurrentTime(meridiem);
+		this.clickOnElementUsingActionClass(btnOK);
+
+		log.info("Ending of setRegistrationEndDate method");
 	}
-	
 	public void setCompetitionStartDateHour() {
 		log.info("Starting of setCompetitionStartDateHour method");
 		

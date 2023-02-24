@@ -1094,9 +1094,13 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	public void setRegistrationEndDate() {
 		log.info("Starting of setRegistrationEndDate method");
-
-		clickOnWebElement(txtBoxRegistrationEndDate);
-
+       hardWait(2);
+		try {
+			clickOnWebElement(txtBoxRegistrationEndDate);
+		}catch(Exception e) {
+			clickOnElementUsingActionClass(txtBoxRegistrationEndDate);
+		
+		}
 		int date = this.getFutureDate(1);
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
@@ -1107,7 +1111,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnElementUsingActionClass(btnOK);
 
-		log.info("Ending of setRegistrationEndDateÂ method");
+		log.info("Ending of setRegistrationEndDate method");
 	}
 
 	public void setInvalidRegistrationStartDate() {
@@ -1131,7 +1135,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 			e.printStackTrace();
 		}
 
-		log.info("Ending of setInvalidRegistrationStartDateÂ method");
+		log.info("Ending of setInvalidRegistrationStartDate method");
 	}
 
 	public void setInvalidRegistrationEndDate() {
@@ -1323,7 +1327,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		try {
 			clickOnElementUsingActionClass(ddTimeZone);
 		} catch (Exception e) {
-			ddTimeZone.click();
+			clickOnWebElement(ddTimeZone);
 		}
 
 		log.info("Ending of clickOnTimeZoneDropdown method");
@@ -1331,6 +1335,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	public boolean isTimeZoneListContains() {
 		log.info("Starting of isTimeZoneListContains method");
+		hardWait(2);
 		log.info("Ending of isTimeZoneListContains method");
 
 		return ddListTimeZone.isDisplayed();
@@ -1338,7 +1343,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	public void clickOnNewDelhiTimeZone() {
 		log.info("Starting of clickOnNewDelhiTimeZone method");
-
+        hardWait(4);
 		waitForElementToBeVisible(btnNewDelhiTimeZone);
 		try {
 			clickUsingActionsClass(btnNewDelhiTimeZone);

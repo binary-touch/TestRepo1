@@ -14,6 +14,7 @@ public class PaidEventPage extends DUPRBaseAutomationPage {
 	protected static float BracketPrice1;
 	protected static float EventPrice1;
 	protected static float TotalPrice1;
+	protected static float totalPrice1;
 	private static final Logger log = LogManager.getLogger(PaidEventPage.class);
 
 	@B2BFindBy(xpath = "//button[text()='Continue to Payment' and @disabled]")
@@ -101,17 +102,20 @@ public class PaidEventPage extends DUPRBaseAutomationPage {
 
 	public void clickOnBackTodkarsButton() {
 		log.info("Starting of clickOnBackTodkarsButton method");
-
-		elementClick(btnBackTodkars);
-
+		try {
+			elementClick(btnBackTodkars);
+		} catch (Exception e) {
+			clickOnElementUsingActionClass(btnBackTodkars);
+		}
 		log.info("Ending of clickOnBackTodkarsButton method");
 	}
 
 	public boolean isRegistrationUnSuccessFullPageContains() {
 		log.info("Starting of isRegistrationUnSuccessFulPageContains method");
-
+		
+		hardWait(3);
 		boolean isRegistrationUnSuccessFullPageContains = false;
-
+        hardWait(3);
 		if (lblRegistrationUnsuccessful.isDisplayed() && btnRegistrationUnsuccessfulOk.isDisplayed()
 				&& iconRegistrationUnsuccessfullClose.isDisplayed()) {
 			isRegistrationUnSuccessFullPageContains = true;
@@ -188,7 +192,8 @@ public class PaidEventPage extends DUPRBaseAutomationPage {
 
 	public float getEventNonClubMemberPriceValue() {
 		log.info("Starting of getEventNonClubMemberPriceValue method");
-
+        
+		hardWait(3);
 		System.out.println(lblNonClubMembershipEventPrice.getText());
 		String EventPrice = lblNonClubMembershipEventPrice.getText().substring(1);
 
@@ -203,6 +208,7 @@ public class PaidEventPage extends DUPRBaseAutomationPage {
 	public float getBracketNonClubMemberPriceValue() {
 		log.info("Starting of getBracketNonClubMemberPriceValue method");
 
+		hardWait(3);
 		String BracketPrice = lblNonClubMembershipBracketPrice.getText().substring(1);
 
 		float BracketPrice1 = Float.parseFloat(BracketPrice);
@@ -216,6 +222,7 @@ public class PaidEventPage extends DUPRBaseAutomationPage {
 	public float getTotalNonMemberPriceValue() {
 		log.info("Starting of getTotalNonMemberPriceValue method");
 
+		hardWait(3);
 		String EventPrice = lblNonClubMembershipEventPrice.getText().substring(1);
 		float EventPrice1 = Float.parseFloat(EventPrice);
 		System.out.println(EventPrice1);
@@ -326,10 +333,12 @@ public class PaidEventPage extends DUPRBaseAutomationPage {
 		log.info("Ending of setBracketPrice method");
 	}
 	
-	public String getTotalPrice() {
+	public float getTotalPrice() {
 		log.info("Starting of setTotalPrice method");
+		String totalPrice=txtBoxTotalPrice.getAttribute("value");
+		float totalPrice1= Float.parseFloat(totalPrice);
 		log.info("Ending of setTotalPrice method");
 		
-		return txtBoxTotalPrice.getText();
+		return totalPrice1;
 	}
 }

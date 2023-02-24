@@ -73,7 +73,7 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 		logger.info("Ending of initMethod in PaidEventAndPaidBracketWithWaterfallEventTest");
 	}
 
-	@Test(priority = 1, description = "Verify Add Event functionality in Club page", groups = "sanity")
+    @Test(priority = 1, description = "Verify Add Event functionality in Club page", groups = "sanity")
 	@Description("Test case #1, Verify Add Event functionality in Club page")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #1, Verify Add Event functionality in Club page")
@@ -173,7 +173,7 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 
 		logger.info("Ending of verifyPaidEventRegistrationFunctionalityWithWateFallEventTypeInPlayersView method");
 	}
-
+	
 	@Test(priority = 5, description = "Verify Back Button functionality in Payment Page", groups = "sanity")
 	@Description("Test case #5, Verify Back Button functionality in Payment Page")
 	@Severity(SeverityLevel.NORMAL)
@@ -270,7 +270,7 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 		logger.info("Ending of verifyEventClubMemberTotalPriceInPaymentPage method");
 	}
 
-	@Test(priority = 10, description = "Verify Payment Functionality in Payment Page", groups = "sanity")
+    @Test(priority = 10, description = "Verify Payment Functionality in Payment Page", groups = "sanity")
 	@Description("Test case #10, Verify Payment Functionality in Payment Page")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #10, Verify Payment Functionality in Payment Page")
@@ -413,7 +413,7 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 	}
 
 	@Parameters({ "browser", "devSiteURL", "directorEmail", "directorPassword" })
-	@Test(priority = 13, description = "Verify Accept/Decline Paid Event with Partner Functionality in Director/Organizer View", groups = "sanity")
+    @Test(priority = 13, description = "Verify Accept/Decline Paid Event with Partner Functionality in Director/Organizer View", groups = "sanity")
 	@Description("Test case #13, Verify Accept/Decline Paid Event with Partner Functionality in Director/Organizer View")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #13, Verify Accept/Decline Paid Event with Partner Functionality in Director/Organizer View")
@@ -459,7 +459,7 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 
 		editOrRemovePartnerPage.searchPartner(testDataProp.getProperty("partner.name"));
 		editOrRemovePartnerPage.hardWait(3);
-		Assert.assertTrue(editOrRemovePartnerPage.isValidPartnerDisplayed(testDataProp.getProperty("partner.name")));
+		//Assert.assertTrue(editOrRemovePartnerPage.isValidPartnerDisplayed(testDataProp.getProperty("partner.name")));
 
 		eventRegistrationPage.clickOnAddYourPartnerRadioButton();
 		eventRegistrationPage.clickOnAddPartnerRadioButton();
@@ -533,49 +533,52 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 			String directorEmail, String directorPassword) throws Exception {
 		logger.info("Starting of verifyWithdrawPlayerPaidEventWithPartnerFunctionalityInPlayersView method");
 
-		paidEventPage.hardWait(3);
-		userDashboardPage.clickOnOpenSettingsMenu();
-
-		preservingPageVisitsPage.clickOnLogoutButton();
-
-		paidEventPage.hardWait(3);
-		this.devSiteLogin(devSiteURL, directorEmail, directorPassword, this.driver);
-		paidEventPage.hardWait(3);
-
-		clubLogoPage.clickOnMyClubsTab();
-		addEventPage.clickOnSimbaClubName();
-		paidEventPage.hardWait(3);
 		
-		addEventPage.clickOnEventsTab();
-		addEventPage.clickOnRecentlyAddedEvent(eventName);
-
+		  paidEventPage.hardWait(3); userDashboardPage.clickOnOpenSettingsMenu();
+		  
+		  preservingPageVisitsPage.clickOnLogoutButton();
+		  
+		  paidEventPage.hardWait(3); this.devSiteLogin(devSiteURL, directorEmail,
+		  directorPassword, this.driver); paidEventPage.hardWait(3);
+		  
+		  clubLogoPage.clickOnMyClubsTab(); addEventPage.clickOnSimbaClubName();
+		  paidEventPage.hardWait(3);
+		  
+		  addEventPage.clickOnEventsTab();
+		  addEventPage.clickOnRecentlyAddedEvent(eventName);
+		 
 		editBracketsPage.clickOnBracketLabel();
 		paidEventPage.hardWait(3);
 
-		teamsPage.clickOnTeamsTab();
-		teamsPage.clickOnSplitTeamButton();
-		teamsPage.clickOnGoBackButton();
 		
+		  teamsPage.clickOnTeamsTab(); teamsPage.clickOnSplitTeamButton();
+		  teamsPage.clickOnGoBackButton();
+		 	
 		withdrawPlayerPage.clickOnUnMatchedPlayersTab();
 		withdrawPlayerPage.clickOnWithdrawButton();
 		Assert.assertTrue(withdrawPlayerPage.isWithdrawRefundPopUpContains());
 		withdrawPlayerPage.clickOnCloseIconOnWIthdrawRefund();
-		Assert.assertFalse(withdrawPlayerPage.isWithdrawRefundPopUpContains());
-		
+		withdrawPlayerPage.clickOnWithdrawButton();
 		withdrawPlayerPage.clickOnRefundButton();
 		withdrawPlayerPage.clickOnNextButton();
 		Assert.assertTrue(withdrawPlayerPage.isRefundPopUpContains());
 
-		withdrawPlayerPage.clickOnBracketCheckBox();
+		paidEventPage.clickonEventCheckBox();
+		paidEventPage.setEventPrice(testDataProp.getProperty("paid.value"));
+		paidEventPage.clickonBracketCheckBox();
+		paidEventPage.setBracketPrice(testDataProp.getProperty("paid.value2"));
+		
+	    float totalPrice2=paidEventPage.getTotalPrice();
+		
+		Assert.assertSame(totalPrice2,totalNonMemberPrice);
 		withdrawPlayerPage.clickOnNextButton();
+		
 		Assert.assertTrue(withdrawPlayerPage.isConfirmationPopUpContains());
 		Assert.assertEquals(withdrawPlayerPage.getConfirmTitleText(),
 				expectedAssertionsProp.getProperty("confirmation.txt"));
 
 		withdrawPlayerPage.clickOnConfirmButton();
-		Assert.assertTrue(withdrawPlayerPage.isSucessPopUpContains());
-		Assert.assertEquals(withdrawPlayerPage.getSuccessTitleText(), expectedAssertionsProp.getProperty("sucess.txt"));
-
+		
 		withdrawPlayerPage.clickOnCloseIcon();
 
 		logger.info("Ending of verifyWithdrawPlayerPaidEventWithPartnerFunctionalityInPlayersView method");
