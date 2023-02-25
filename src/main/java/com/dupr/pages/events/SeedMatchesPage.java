@@ -439,6 +439,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 	public void clickOnSeedMatchesButton() {
 		log.info("Starting of clickOnSeedMatchesButton method");
 		this.hardWait(3);
+		
 		try {
 			elementClick(btnSeedMatches);
 		} catch (Exception e) {
@@ -603,8 +604,11 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 	public void clickOnCreateMatches() {
 		log.info("Starting of clickOnCreateMatches method");
-
-		clickOnWebElement(btnCreateMatches);
+		try {
+			clickUsingActionsClass(btnCreateMatches);
+		} catch (Exception e) {
+			clickOnWebElement(btnCreateMatches);
+		}
 
 		log.info("Ending of clickOnCreateMatches method");
 	}
@@ -1610,7 +1614,11 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 	public void setCompetitionStartDate() {
 		log.info("Starting of setCompetitionStartDate method");
 
-		clickOnElementUsingActionClass(txtBoxCompetitionStartDate);
+		try {
+			clickUsingActionsClass(txtBoxCompetitionStartDate);
+		} catch (Exception e) {
+			clickOnWebElement(txtBoxCompetitionStartDate);
+		}
 
 		int date = this.getCurrentDate();
 		String hours = this.getCurrentHour();
