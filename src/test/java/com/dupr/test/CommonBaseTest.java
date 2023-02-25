@@ -611,8 +611,8 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		addBracketPage.hardWait(2);
 		timeZonePage.setRegistrationStartDateBeforeOneDay();
 
-		addBracketPage.hardWait(2);
-		addBracketPage.setRegistrationEndDate();
+		addBracketPage.hardWait(1);
+		timeZonePage.setRegistrationEndDate();
 
 		addBracketPage.hardWait(2);
 		addBracketPage.setCompetitionStartDate();
@@ -688,7 +688,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		timeZonePage.setRegistrationStartDateBeforeOneDay();
 
 		addBracketPage.hardWait(2);
-		addBracketPage.setRegistrationEndDate();
+		timeZonePage.setRegistrationEndDate();
 
 		addBracketPage.hardWait(2);
 		addBracketPage.setCompetitionStartDate();
@@ -727,6 +727,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 	public void verifyRegisterFunctionality() {
 		logger.info("Starting of verifyRegisterFunctionality method");
 
+		addBracketPage.hardWait(2);
 		eventRegistrationPage.clickOnRegisterButton();
 
 		Assert.assertTrue(eventRegistrationPage.isBracketsCheckBoxesDisplayed());
@@ -760,7 +761,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		Assert.assertTrue(eventRegistrationPage.isBracketCheckboxSelected());
 
 		eventRegistrationPage.clickOnRegisterButton();
-
+		addBracketPage.hardWait(2);
 		Assert.assertEquals(eventRegistrationPage.getSuccessLabel(),
 				expectedAssertionsProp.getProperty("success.text"));
 

@@ -1094,9 +1094,13 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	public void setRegistrationEndDate() {
 		log.info("Starting of setRegistrationEndDate method");
-
-		clickOnWebElement(txtBoxRegistrationEndDate);
-
+       hardWait(2);
+		try {
+			clickOnWebElement(txtBoxRegistrationEndDate);
+		}catch(Exception e) {
+			clickOnElementUsingActionClass(txtBoxRegistrationEndDate);
+		
+		}
 		int date = this.getFutureDate(1);
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
@@ -1107,7 +1111,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnElementUsingActionClass(btnOK);
 
-		log.info("Ending of setRegistrationEndDateÂ method");
+		log.info("Ending of setRegistrationEndDate method");
 	}
 
 	public void setInvalidRegistrationStartDate() {
@@ -1131,7 +1135,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 			e.printStackTrace();
 		}
 
-		log.info("Ending of setInvalidRegistrationStartDateÂ method");
+		log.info("Ending of setInvalidRegistrationStartDate method");
 	}
 
 	public void setInvalidRegistrationEndDate() {
@@ -1323,7 +1327,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		try {
 			clickOnElementUsingActionClass(ddTimeZone);
 		} catch (Exception e) {
-			ddTimeZone.click();
+			clickOnWebElement(ddTimeZone);
 		}
 
 		log.info("Ending of clickOnTimeZoneDropdown method");
@@ -1331,6 +1335,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	public boolean isTimeZoneListContains() {
 		log.info("Starting of isTimeZoneListContains method");
+		hardWait(2);
 		log.info("Ending of isTimeZoneListContains method");
 
 		return ddListTimeZone.isDisplayed();
@@ -1338,8 +1343,8 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	public void clickOnNewDelhiTimeZone() {
 		log.info("Starting of clickOnNewDelhiTimeZone method");
-
-		waitForElementToBeVisible(btnNewDelhiTimeZone);
+       
+		hardWait(5);
 		try {
 			clickUsingActionsClass(btnNewDelhiTimeZone);
 		} catch (Exception e) {
@@ -2604,7 +2609,6 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 			}
 			String hours = this.getCurrentHour();
 			String meridiem = this.getCurrentMeridiem();
-			hardWait(2);
 			this.clickOnCurrentTime(hours);
 			clickOnElementUsingActionClass(btnTimeInMinutes);
 			this.clickOnCurrentTime(meridiem);
@@ -2657,7 +2661,6 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		}
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
-		hardWait(3);
 		this.clickOnCurrentTime(hours);
 		clickOnElementUsingActionClass(btnTimeInMinutes);
 		this.clickOnCurrentTime(meridiem);
@@ -2668,8 +2671,12 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	public void setCompetitionStartDateMoreThenSevenDays() {
 		log.info("Starting of setCompetitionStartDateMoreThenSevenDays method");
-
-		clickOnWebElement(txtBoxCompetitionStartDate);
+		try {
+			clickOnWebElement(txtBoxCompetitionStartDate);
+			
+		} catch (Exception e) {
+			clickOnElementUsingActionClass(txtBoxCompetitionStartDate);
+		}
 		hardWait(3);
 		int date = this.getFutureDate(9);
 		Month monthValue = this.getFutureMonth(9);
@@ -2692,7 +2699,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		}
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
-		//hardWait(3);
+		
 		this.clickOnCurrentTime(hours);
 		clickOnElementUsingActionClass(btnTimeInMinutes);
 		this.clickOnCurrentTime(meridiem);
@@ -2728,7 +2735,6 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		}
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
-		hardWait(3);
 		this.clickOnCurrentTime(hours);
 		clickOnElementUsingActionClass(btnTimeInMinutes);
 		this.clickOnCurrentTime(meridiem);
@@ -2743,7 +2749,8 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		clickOnWebElement(txtBoxCompetitionEndDate);
 		hardWait(3);
 		int date = this.getFutureDate(10);
-		Month monthValue = this.getFutureMonth(10);
+		System.out.println(date);
+		Month monthValue = this.getFutureMonth(15);
 		String mValue = monthValue.toString();
 		System.out.println(mValue);
 
@@ -2761,6 +2768,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
 		hardWait(3);

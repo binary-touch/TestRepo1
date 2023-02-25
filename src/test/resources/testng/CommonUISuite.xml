@@ -39,7 +39,7 @@
 			<class name="com.dupr.test.events.EditBracketsTest" />
 		</classes>
 	</test>
-	
+
 	<test name="Sprint 3">
 		<classes>
 			<class name="com.dupr.test.events.AddEditRemoveEventLogoTest" />
@@ -70,12 +70,13 @@
 			<class name="com.dupr.test.events.TimeZoneTest" />
 			<class name="com.dupr.test.events.SeedMatchesTest" />
 		</classes>
-	</test>
+	</test> 
 
-	<test name="Sprint 5">
+
+ 	<test name="Sprint 5">
 		<classes>
 			<class name="com.dupr.test.events.PaidEventAndPaidBracketWithWaterfallEventTest" />
 			<class name="com.dupr.test.events.SeedMatchesWaterFallTest" />
-			</classes>
+		</classes>
 	</test>
 </suite>

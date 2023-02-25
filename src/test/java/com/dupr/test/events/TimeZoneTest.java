@@ -548,6 +548,7 @@ public class TimeZoneTest extends CommonBaseTest {
 		logger.info("Ending of verifyCompetitionAndTimeZoneFieldsInEditBracketFunctionality method");
 	}
 
+	
 	@Test(priority = 12, description = "Verify Registration Local Date Range in Bracket Page", groups = "sanity")
 	@Description("Test case #12, Verify Registration Local Date Range in Bracket Page")
 	@Severity(SeverityLevel.NORMAL)
@@ -558,18 +559,21 @@ public class TimeZoneTest extends CommonBaseTest {
 		timeZonePage.clickOnEditBracketButton();
 
 		addBracketPage.hardWait(3);
-		addBracketPage.setRegistrationStartDate();
+		timeZonePage.setRegistrationStartDateBeforeOneDay();
 		
 		addBracketPage.hardWait(3);
-		timeZonePage.setRegistrationEndDateInHour();
+		timeZonePage.setRegistrationEndDate();
 		
 		addBracketPage.hardWait(3);
-		timeZonePage.setCompetitionStartDateHour();
+		addBracketPage.setCompetitionStartDateMoreThenSevenDays();
 		
 		addBracketPage.hardWait(3);
-		timeZonePage.setCompetitionEndDateInHour();
+		addBracketPage.setCompetitionEndDateMoreThenSevenDays();
 
-		timeZonePage.setNewDelhiTimeZone();
+		addBracketPage.clickOnTimeZoneDropdown();
+		addBracketPage.hardWait(3);
+		addBracketPage.clickOnNewDelhiTimeZone();
+
 		timeZonePage.clickOnSaveChangesButton();
 
 		Assert.assertTrue(timeZonePage.isLocalRangeDisplayed());
@@ -579,10 +583,10 @@ public class TimeZoneTest extends CommonBaseTest {
 		timeZonePage.clickOnEditBracketButton();
 
 		addBracketPage.hardWait(3);
-		timeZonePage.setRegistrationStartDateBeforeOneDay();
+		addBracketPage.setRegistrationStartDateBeforeFourDays();
 		
 		addBracketPage.hardWait(3);
-		timeZonePage.setRegistrationEndDateInMinusHour();
+		timeZonePage.setRegistrationEndDateBeforeThreeDays();
 		
 		addBracketPage.hardWait(3);
 		addBracketPage.setCompetitionStartDateMoreThenSevenDays();
@@ -601,11 +605,14 @@ public class TimeZoneTest extends CommonBaseTest {
 		addBracketPage.hardWait(3);
 		timeZonePage.setRegistrationEndDateInHour();
 		addBracketPage.hardWait(3);
-		timeZonePage.setCompetitionStartDateHour();
+		addBracketPage.setCompetitionStartDateMoreThenSevenDays();
 		addBracketPage.hardWait(3);
-		timeZonePage.setCompetitionEndDateInHour();
+		addBracketPage.setCompetitionEndDateMoreThenSevenDays();
 
-		timeZonePage.setNewDelhiTimeZone();
+		addBracketPage.clickOnTimeZoneDropdown();
+		addBracketPage.hardWait(3);
+		addBracketPage.clickOnNewDelhiTimeZone();
+
 		timeZonePage.clickOnSaveChangesButton();
 
 		Assert.assertTrue(timeZonePage.ishoursAndMinsDisplayed());
@@ -628,11 +635,16 @@ public class TimeZoneTest extends CommonBaseTest {
 		addBracketPage.hardWait(3);
 		addBracketPage.setRegistrationEndDateBeforeThreeDays();
 		addBracketPage.hardWait(3);
-		timeZonePage.setCompetitionStartDateHour();
+		timeZonePage.setCompetitionCurrentDate();
+		addBracketPage.hardWait(3);
+		timeZonePage.setCompetitionCurrentEndDate();
 		addBracketPage.hardWait(3);
 		timeZonePage.setCompetitionEndDateInHour();
 
-		timeZonePage.setNewDelhiTimeZone();
+		addBracketPage.clickOnTimeZoneDropdown();
+		addBracketPage.hardWait(3);
+		addBracketPage.clickOnNewDelhiTimeZone();
+
 		timeZonePage.clickOnSaveChangesButton();
 
 		Assert.assertTrue(timeZonePage.isLocalRangeDisplayed());
@@ -641,9 +653,9 @@ public class TimeZoneTest extends CommonBaseTest {
 		timeZonePage.clickOnEditBracketButton();
 
 		addBracketPage.hardWait(3);
-		timeZonePage.setRegistrationStartDateBeforeOneDay();
+		addBracketPage.setRegistrationStartDateBeforeFourDays();
 		addBracketPage.hardWait(3);
-		timeZonePage.setRegistrationEndDateInMinusHour();
+		addBracketPage.setRegistrationEndDateBeforeThreeDays();
 		addBracketPage.hardWait(4);
 		addBracketPage.setCompetitionStartDateMoreThenSevenDays();
 		addBracketPage.hardWait(4);
@@ -656,28 +668,18 @@ public class TimeZoneTest extends CommonBaseTest {
 		timeZonePage.clickOnEditBracketButton();
 
 		addBracketPage.hardWait(3);
-		timeZonePage.setRegistrationStartDateBeforeOneDay();
+		addBracketPage.setRegistrationStartDateBeforeFourDays();
 		addBracketPage.hardWait(3);
-		timeZonePage.setRegistrationEndDateInHour();
+		addBracketPage.setRegistrationEndDateBeforeThreeDays();
 		addBracketPage.hardWait(3);
-		timeZonePage.setCompetitionStartDateHour();
+		timeZonePage.setCompetitionCurrentDate();
+		addBracketPage.hardWait(3);
+		timeZonePage.setCompetitionCurrentEndDate();
 		addBracketPage.hardWait(3);
 		timeZonePage.setCompetitionEndDateInHour();
 		addBracketPage.hardWait(3);
 		timeZonePage.clickOnSaveChangesButton();
 		Assert.assertTrue(timeZonePage.ishoursAndMinsDisplayed());
-
-		timeZonePage.clickOnEditBracketButton();
-
-		addBracketPage.hardWait(3);
-		addBracketPage.setRegistrationStartDateBeforeFourDays();
-		addBracketPage.hardWait(3);
-	    addBracketPage.setRegistrationEndDateBeforeThreeDays();
-		timeZonePage.setCompetitionStartDateBeforeOneDay();
-		addBracketPage.hardWait(3);
-		timeZonePage.setCompetitionEndDateInPastHours();
-		addBracketPage.hardWait(3);
-		timeZonePage.clickOnSaveChangesButton();
 
 		Assert.assertTrue(timeZonePage.isOpenUpcommingRegistrationClosedStatusDisplayed());
 
@@ -697,59 +699,47 @@ public class TimeZoneTest extends CommonBaseTest {
 		addBracketPage.hardWait(3);
 		timeZonePage.setRegistrationEndDateInHour();
 		addBracketPage.hardWait(3);
-		timeZonePage.setCompetitionStartDateHour();
+		addBracketPage.setCompetitionStartDateMoreThenSevenDays();
 		addBracketPage.hardWait(3);
-		timeZonePage.setCompetitionEndDateInHour();
+		addBracketPage.setCompetitionEndDateMoreThenSevenDays();
 
-		timeZonePage.setNewDelhiTimeZone();
+		addBracketPage.clickOnTimeZoneDropdown();
+		addBracketPage.hardWait(3);
+		addBracketPage.clickOnNewDelhiTimeZone();
+
 		timeZonePage.clickOnSaveChangesButton();
 
 		Assert.assertTrue(timeZonePage.isLocalRangeDisplayed());
-
 		Assert.assertTrue(timeZonePage.isLessthenSevenRelativeDaysDisplayed());
 
 		timeZonePage.clickOnEditBracketButton();
+
 		addBracketPage.hardWait(3);
-		timeZonePage.setRegistrationStartDateBeforeOneDay();
-		
+		addBracketPage.setRegistrationStartDateBeforeFourDays();
 		addBracketPage.hardWait(3);
-		timeZonePage.setRegistrationEndDateInMinusHour();
-		addBracketPage.hardWait(3);
+		addBracketPage.setRegistrationEndDateBeforeThreeDays();
+		addBracketPage.hardWait(4);
 		addBracketPage.setCompetitionStartDateMoreThenSevenDays();
-		addBracketPage.hardWait(3);
+		addBracketPage.hardWait(4);
 		addBracketPage.setCompetitionEndDateMoreThenSevenDays();
 
 		timeZonePage.clickOnSaveChangesButton();
 		timeZonePage.hardWait(4);
 		Assert.assertFalse(timeZonePage.isLessthenSevenRelativeDaysDisplayed());
-
+		
 		timeZonePage.clickOnEditBracketButton();
 		addBracketPage.hardWait(3);
 		addBracketPage.setRegistrationStartDate();
 		addBracketPage.hardWait(3);
 		timeZonePage.setRegistrationEndDateInHour();
 		addBracketPage.hardWait(3);
-		timeZonePage.setCompetitionStartDateHour();
+		addBracketPage.setCompetitionStartDateMoreThenSevenDays();
 		addBracketPage.hardWait(3);
-		timeZonePage.setCompetitionEndDateInHour();
+		addBracketPage.setCompetitionEndDateMoreThenSevenDays();
 
 		timeZonePage.clickOnSaveChangesButton();
 
 		Assert.assertTrue(timeZonePage.ishoursAndMinsDisplayed());
-
-		timeZonePage.clickOnEditBracketButton();
-		addBracketPage.hardWait(3);
-		addBracketPage.setRegistrationStartDateBeforeFourDays();
-		addBracketPage.hardWait(3);
-		addBracketPage.setRegistrationEndDateBeforeThreeDays();
-		
-		addBracketPage.hardWait(4);
-		timeZonePage.setCompetitionStartDateBeforeOneDay();
-		addBracketPage.hardWait(4);
-		timeZonePage.setCompetitionEndDateInPastHours();
-		addBracketPage.hardWait(3);
-		timeZonePage.clickOnSaveChangesButton();
-
 		Assert.assertTrue(timeZonePage.isOpenUpcommingRegistrationClosedStatusDisplayed());
 
 		logger.info("Ending of verifyRegistrationOpenUpcomingClosedStatuInBracketPage method");
@@ -768,53 +758,49 @@ public class TimeZoneTest extends CommonBaseTest {
 		addBracketPage.hardWait(3);
 		addBracketPage.setRegistrationEndDateBeforeThreeDays();
 		addBracketPage.hardWait(3);
-		timeZonePage.setCompetitionStartDateHour();
+		timeZonePage.setCompetitionCurrentDate();
+		addBracketPage.hardWait(3);
+		timeZonePage.setCompetitionCurrentEndDate();
 		addBracketPage.hardWait(3);
 		timeZonePage.setCompetitionEndDateInHour();
 
-		timeZonePage.setNewDelhiTimeZone();
+		addBracketPage.clickOnTimeZoneDropdown();
+		addBracketPage.hardWait(3);
+		addBracketPage.clickOnNewDelhiTimeZone();
+
 		timeZonePage.clickOnSaveChangesButton();
 		Assert.assertTrue(timeZonePage.isLocalRangeDisplayed());
 		Assert.assertTrue(timeZonePage.isLessthenSevenRelativeDaysDisplayed());
-
 		timeZonePage.clickOnEditBracketButton();
 		addBracketPage.hardWait(3);
-		timeZonePage.setRegistrationStartDateBeforeOneDay();
+		addBracketPage.setRegistrationStartDateBeforeFourDays();
 		addBracketPage.hardWait(3);
-		timeZonePage.setRegistrationEndDateInMinusHour();
-		addBracketPage.hardWait(3);
+		addBracketPage.setRegistrationEndDateBeforeThreeDays();
+		addBracketPage.hardWait(4);
 		addBracketPage.setCompetitionStartDateMoreThenSevenDays();
-		addBracketPage.hardWait(3);
+		addBracketPage.hardWait(4);
 		addBracketPage.setCompetitionEndDateMoreThenSevenDays();
 
 		timeZonePage.clickOnSaveChangesButton();
 		timeZonePage.hardWait(4);
 		Assert.assertFalse(timeZonePage.isLessthenSevenRelativeDaysDisplayed());
 
+
 		timeZonePage.clickOnEditBracketButton();
 		addBracketPage.hardWait(3);
-		timeZonePage.setRegistrationStartDateBeforeOneDay();
+		
+		addBracketPage.setRegistrationStartDateBeforeFourDays();
 		addBracketPage.hardWait(3);
-		timeZonePage.setRegistrationEndDateInHour();
+		addBracketPage.setRegistrationEndDateBeforeThreeDays();
 		addBracketPage.hardWait(3);
-		timeZonePage.setCompetitionStartDateHour();
+		timeZonePage.setCompetitionCurrentDate();
+		addBracketPage.hardWait(3);
+		timeZonePage.setCompetitionCurrentEndDate();
 		addBracketPage.hardWait(3);
 		timeZonePage.setCompetitionEndDateInHour();
 		addBracketPage.hardWait(3);
 		timeZonePage.clickOnSaveChangesButton();
 		Assert.assertTrue(timeZonePage.ishoursAndMinsDisplayed());
-
-		timeZonePage.clickOnEditBracketButton();
-		addBracketPage.hardWait(4);
-		addBracketPage.setRegistrationStartDateBeforeFourDays();
-		addBracketPage.hardWait(3);
-		addBracketPage.setRegistrationEndDateBeforeThreeDays();
-		addBracketPage.hardWait(4);
-		timeZonePage.setCompetitionStartDateBeforeOneDay();
-		addBracketPage.hardWait(3);
-		timeZonePage.setCompetitionEndDateInPastHours();
-		addBracketPage.hardWait(3);
-		timeZonePage.clickOnSaveChangesButton();
 
 		Assert.assertTrue(timeZonePage.isOpenUpcommingRegistrationClosedStatusDisplayed());
 

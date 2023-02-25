@@ -135,15 +135,28 @@ public class DUPRClaimAccountSignUpTest extends DUPRBaseAutomationTest {
 	public void verifyRatingsOfPlayerAfterClaimAccount() {
 		logger.info("Starting of verifyRatingsOfPlayerAfterClaimAccount method");
 
-		duprSignUpPage.hardWait(3);
-		float singlesActualValue = Float.parseFloat(duprSignUpPage.getPlayerSinglesRatingInPlayerDashBoard());
-		float singlesExpectedValue = Float.parseFloat(DUPRSignUpPage.singlesRatings.substring(0, 3));
-		Assert.assertEquals(singlesActualValue, singlesExpectedValue);
+		try {
+			duprSignUpPage.hardWait(3);
+			
+			float singlesActualValue = Float.parseFloat(duprSignUpPage.getPlayerSinglesRatingInPlayerDashBoard());
+			float singlesExpectedValue = Float.parseFloat(DUPRSignUpPage.singlesRatings.substring(0, 3));
+			Assert.assertEquals(singlesActualValue, singlesExpectedValue);
 
-		duprSignUpPage.hardWait(3);
-		float doublesActualValue = Float.parseFloat(duprSignUpPage.getPlayersDoublesRatingInPlayerDashBoard());
-		float doublesExpectedValue = Float.parseFloat(DUPRSignUpPage.doublesRatings.substring(0, 3));
-		Assert.assertEquals(doublesActualValue, doublesExpectedValue);
+			duprSignUpPage.hardWait(3);
+			float doublesActualValue = Float.parseFloat(duprSignUpPage.getPlayersDoublesRatingInPlayerDashBoard());
+			float doublesExpectedValue = Float.parseFloat(DUPRSignUpPage.doublesRatings.substring(0, 3));
+			Assert.assertEquals(doublesActualValue, doublesExpectedValue);
+		} catch (Exception e) {
+			String singlesActualValue = duprSignUpPage.getPlayerSinglesRatingInPlayerDashBoard();
+			String singlesExpectedValue = DUPRSignUpPage.singlesRatings;
+			Assert.assertEquals(singlesActualValue, singlesExpectedValue);
+			
+			duprSignUpPage.hardWait(3);
+			String doublesActualValue = duprSignUpPage.getPlayersDoublesRatingInPlayerDashBoard();
+			String doublesExpectedValue = DUPRSignUpPage.doublesRatings;
+			Assert.assertEquals(doublesActualValue, doublesExpectedValue);
+		}
+		
 
 		logger.info("Ending of verifyRatingsOfPlayerAfterClaimAccount method");
 	}
