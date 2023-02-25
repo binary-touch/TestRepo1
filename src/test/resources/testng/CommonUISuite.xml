@@ -70,7 +70,7 @@
 			<class name="com.dupr.test.events.FullRegistrationTest" />
 			<class name="com.dupr.test.events.TimeZoneTest" />
 		</classes>
-	</test>
+	</test> 
 
 
  	<test name="Sprint 5">
@@ -79,5 +79,4 @@
 			<class name="com.dupr.test.events.SeedMatchesWaterFallTest" />
 		</classes>
 	</test>
-	
 </suite>
