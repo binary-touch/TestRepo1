@@ -2,6 +2,7 @@ package com.dupr.pages.events;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -15,6 +16,15 @@ public class PaidEventPage extends DUPRBaseAutomationPage {
 	protected static float EventPrice1;
 	protected static float TotalPrice1;
 	private static final Logger log = LogManager.getLogger(PaidEventPage.class);
+
+	@B2BFindBy(xpath = "//h3[text()='Browse Clubs']")
+	private WebElement lblBrowseClubs;
+
+	@B2BFindBy(xpath = "//input[@id='Search']")
+	private WebElement txtBoxSearch;
+
+	@B2BFindBy(xpath = "//h4[text()='Simba']")
+	private WebElement lblSimbaClubName;
 
 	@B2BFindBy(xpath = "//button[text()='Continue to Payment' and @disabled]")
 	private WebElement btnContinuePaymentDisabled;
@@ -71,6 +81,33 @@ public class PaidEventPage extends DUPRBaseAutomationPage {
 		log.info("Ending of isContinuePaymentButtonDisabled method");
 
 		return btnContinuePaymentDisabled.isDisplayed();
+	}
+
+	public void clickOnSimbaClubName() {
+		log.info("Starting of clickOnSimbaClubName method");
+
+		try {
+			if (lblBrowseClubs.isDisplayed() == true) {
+				this.txtBoxSearch.click();
+				this.txtBoxSearch.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
+
+				sendKeys(txtBoxSearch, "simba");
+				this.txtBoxSearch.sendKeys(Keys.ENTER);
+				
+				if (lblSimbaClubName.isDisplayed() == true) {
+					elementClick(lblSimbaClubName);
+				} else {
+					this.txtBoxSearch.sendKeys(Keys.BACK_SPACE);
+					sendKeys(txtBoxSearch, "a");
+					this.waitForElementToBeVisible(lblSimbaClubName);
+					elementClick(lblSimbaClubName);
+				}
+			}
+		} catch (Exception e) {
+			elementClick(lblSimbaClubName);
+		}
+
+		log.info("Ending of clickOnSimbaClubName method");
 	}
 
 	public void clickOnContinuePaymentButton() {
@@ -268,6 +305,5 @@ public class PaidEventPage extends DUPRBaseAutomationPage {
 
 		log.info("Ending of clickOnPayButton method");
 	}
-	
-	
+
 }

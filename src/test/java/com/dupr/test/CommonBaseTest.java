@@ -624,8 +624,8 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		Assert.assertTrue(addBracketPage.isTimeZoneListContains());
 		addBracketPage.clickOnNewDelhiTimeZone();
 
-		addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("paid.value"));
-		addBracketPage.setBracketNonClubMemberPrice(testDataProp.getProperty("paid.value"));
+		addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("paid.value1"));
+		addBracketPage.setBracketNonClubMemberPrice(testDataProp.getProperty("paid.value2"));
 
 		Assert.assertTrue(addBracketPage.isNumberOfTeamsDisabledState());
 		addBracketPage.hardWait(2);

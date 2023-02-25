@@ -42,7 +42,7 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 	private EditBracketsPage editBracketsPage = null;
 	private WithdrawPlayerPage withdrawPlayerPage = null;
 	private Create_Edit_Split_TeamPage teamsPage = null;
-	
+
 	@BeforeClass
 	@Parameters({ "browser", "devSiteURL", "directorEmail", "directorPassword" })
 	public void initMethod(String browser, String devSiteURL, String directorEmail, String directorPassword)
@@ -69,7 +69,7 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 		this.editBracketsPage = new EditBracketsPage(this.driver);
 		this.withdrawPlayerPage = new WithdrawPlayerPage(this.driver);
 		this.teamsPage = new Create_Edit_Split_TeamPage(this.driver);
-		
+
 		logger.info("Ending of initMethod in PaidEventAndPaidBracketWithWaterfallEventTest");
 	}
 
@@ -164,7 +164,7 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 		clubLogoPage.clickOnMyClubsTab();
 		clubLogoPage.clickOnBrowseClubs();
 
-		clubLogoPage.clickOnSimbaClubName();
+		paidEventPage.clickOnSimbaClubName();
 		addEventPage.clickOnEventsTab();
 		addEventPage.clickOnRecentlyAddedEvent(eventName);
 

@@ -1201,14 +1201,17 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		try {
 			int date = this.getPastDate(1);
 			Month monthValue = this.getPreviousMonth(1);
+			String month = String.valueOf(monthValue);
 			System.out.println(monthValue);
 			
 			String lblmonth = lblMonth.getText();
 			String pNewTabValue = String.valueOf(lblmonth.split(" ")[0]).toUpperCase().trim();
 			log.debug("Text is " + pNewTabValue);
+			System.out.println(month);
+			System.out.println(pNewTabValue);
 			
 		try {
-			if((monthValue).equals(pNewTabValue)) {
+			if((month).equals(pNewTabValue)) {
 				this.clickOnCurrentDate(date);
 			}
 			else {
@@ -1221,7 +1224,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 			String hours = this.getCurrentHour();
 			String meridiem = this.getCurrentMeridiem();
 			hardWait(3);
-			this.clickOnCurrentDate(date);
+
 			this.clickOnCurrentTime(hours);
 			clickOnElementUsingActionClass(btnTimeInMinutes);
 			this.clickOnCurrentTime(meridiem);

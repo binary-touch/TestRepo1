@@ -937,12 +937,12 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 		boolean EventType = false;
 		try {
-			if (ddEventType.getAttribute("value").equals("ROUND_ROBIN")) {
-				System.out.println(txtRoundRobin.getAttribute("value").equals("ROUND_ROBIN"));
+			if (ddEventType.getAttribute("value").equalsIgnoreCase("ROUND_ROBIN")) {
+				System.out.println(txtRoundRobin.getAttribute("value").equalsIgnoreCase("ROUND_ROBIN"));
 				EventType = true;
 			} else {
-				EventType = ddEventType.getAttribute("value").equals("COMPASS");
-				System.out.println(btnWaterfallEventType.getAttribute("value").equals("COMPASS"));
+				EventType = ddEventType.getAttribute("value").equalsIgnoreCase("COMPASS");
+				System.out.println(btnWaterfallEventType.getAttribute("value").equalsIgnoreCase("COMPASS"));
 
 			}
 		} catch (Exception e) {

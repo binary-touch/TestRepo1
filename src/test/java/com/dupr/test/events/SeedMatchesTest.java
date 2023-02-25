@@ -100,10 +100,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of verifyAddingParticipantsFunctionality method");
 	}
 
-	@Test(priority = 4, description = "Verify Adding Participants", groups = "sanity")
-	@Description("Test case #4, Verify Adding Participants")
+	@Test(priority = 4, description = "Verify creating teams", groups = "sanity")
+	@Description("Test case #4, Verify creating teams")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #4, Verify Adding Participants")
+	@Story("Test case #4, Verify creating teams")
 	public void verifyCreatingTeamForAnRoundRobinEvent() {
 		logger.info("Starting of verifyCreatingTeamForAnRoundRobinEvent method");
 
@@ -139,6 +139,8 @@ public class SeedMatchesTest extends CommonBaseTest {
 		Assert.assertTrue(seedMatchesPage.isBracketHomePageDisplayed());
 		seedMatchesPage.hardWait(5);
 
+		seedMatchesPage.clickOnTeamsTab();
+
 		logger.info("Ending of verifyCloseIconFuntionality method");
 	}
 
@@ -149,14 +151,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 	public void verifyCreateMatchesFuntionality() {
 		logger.info("Starting of verifyCreateMatchesFuntionality method");
 
-		seedMatchesPage.clickOnTeamsTab();
 		seedMatchesPage.hardWait(5);
 		seedMatchesPage.clickOnSeedMatchesButton();
 		seedMatchesPage.hardWait(5);
 		seedMatchesPage.clickOnCreateMatches();
-		seedMatchesPage.hardWait(5);
-
-		Assert.assertTrue(seedMatchesPage.isRoundsDisplayed());
 		seedMatchesPage.hardWait(5);
 
 		Assert.assertTrue(seedMatchesPage.isPublishButtonEnabled());
@@ -171,6 +169,9 @@ public class SeedMatchesTest extends CommonBaseTest {
 	@Story("Test case #7, Verify the results on click of right arrow icon")
 	public void verifyRightArrowFunctionality() {
 		logger.info("Starting of verifyRightArrowFunctionality method");
+
+		Assert.assertTrue(seedMatchesPage.isRoundsDisplayed());
+		seedMatchesPage.hardWait(5);
 
 		seedMatchesPage.clickOnRightArrowIcon();
 		seedMatchesPage.hardWait(5);
@@ -532,7 +533,6 @@ public class SeedMatchesTest extends CommonBaseTest {
 	@Story("Test case #27, Verify the results on click of Go Back Button")
 	public void verifyGoBackFunctionality() {
 		logger.info("Starting of VerifyGoBackFunctionality method");
-
 		seedMatchesPage.clickOnSubmitButton();
 
 		seedMatchesPage.clickGoBackButtonOnSubmitScores();
@@ -593,6 +593,7 @@ public class SeedMatchesTest extends CommonBaseTest {
 		addEventPage.hardWait(3);
 
 		addEventPage.clickOnEventsTab();
+		addEventPage.hardWait(3);
 		addEventPage.clickOnRecentlyAddedEvent(seedsEvents);
 		addEventPage.hardWait(3);
 
@@ -931,38 +932,34 @@ public class SeedMatchesTest extends CommonBaseTest {
 	@Description("Test case #49, Verify Seed matches functionality with singles match type")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #49, Verify Seed matches functionality with singles match type")
-	public void verifySeedMatchesFunctionality() {
-		logger.info("Starting of verifySeedMatchesFunctionality method");
+	public void verifySeedMatchesFunctionalityWithSinglesMatchType() {
+		logger.info("Starting of verifySeedMatchesFunctionalityWithSinglesMatchType method");
 
 		seedMatchesPage.clickOnHomeMenu();
 
 		seedMatchesPage.hardWait(3);
 
 		super.verifyAddEventFunctionality();
+		seedMatchesPage.hardWait(3);
 		super.verifyFreeBracketWithSinglesTypeAndRoundRobinEvent();
 
 		addEventPage.clickOnEventsTab();
 		seedMatchesPage.hardWait(3);
-		addEventPage.clickOnRecentlyAddedEvent(eventName);
+		addEventPage.clickOnRecentlyAddedEvent(event);
 		seedMatchesPage.hardWait(3);
 
 		seedMatchesPage.clickOnBracketCard();
 		seedMatchesPage.hardWait(3);
-		addparticipantsPage.addParticipants();
+
+		addparticipantsPage.addParticipantsIntoRoundRobinSinglesMatch();
 		seedMatchesPage.hardWait(3);
 
-		seedMatchesPage.clickOnSeedMatchesButton();
+		this.verifyCreateMatchesFuntionality();
 		seedMatchesPage.hardWait(3);
 
-		seedMatchesPage.clickOnCreateMatches();
-		seedMatchesPage.hardWait(3);
+		this.verifySavePublishFunctionality();
 
-		seedMatchesPage.clickOnSavePublishButton();
-		seedMatchesPage.hardWait(5);
-
-		Assert.assertTrue(seedMatchesPage.isBracketHomePageDisplayed());
-
-		logger.info("Ending of verifySeedMatchesFunctionality method");
+		logger.info("Ending of verifySeedMatchesFunctionalityWithSinglesMatchType method");
 	}
 
 	public void verifyFreeBracketDoublesTypeWithRoundRobinEventType() {

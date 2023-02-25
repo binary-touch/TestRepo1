@@ -460,6 +460,13 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		log.info("Starting of isSeedMatchesPageContains method");
 
 		boolean isSeedMatchesPageContains = false;
+		System.out.println(isDisplayed(iconClose));
+		System.out.println(isDisplayed(txtSeeds));
+		System.out.println(isDisplayed(btnCreateMatches));
+		System.out.println(isDisplayed(btnSavePublishDisabled));
+		System.out.println(isDisplayed(iconLeftArrow));
+		System.out.println(isDisplayed(iconRightArrow));
+		System.out.println(txtClick);
 
 		if (isDisplayed(iconClose) && isDisplayed(txtSeeds) && isDisplayed(btnCreateMatches)
 				&& isDisplayed(btnSavePublishDisabled) && isDisplayed(iconLeftArrow) && isDisplayed(iconRightArrow)
@@ -1609,8 +1616,12 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 	public void setCompetitionStartDate() {
 		log.info("Starting of setCompetitionStartDate method");
-
-		clickOnElementUsingActionClass(txtBoxCompetitionStartDate);
+		
+		try {
+			clickUsingActionsClass(txtBoxCompetitionStartDate);
+		} catch (Exception e) {
+			clickOnWebElement(txtBoxCompetitionStartDate);
+		}
 
 		int date = this.getCurrentDate();
 		String hours = this.getCurrentHour();
