@@ -937,12 +937,12 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 		boolean EventType = false;
 		try {
-			if (ddEventType.getAttribute("value").equals("ROUND_ROBIN")) {
-				System.out.println(txtRoundRobin.getAttribute("value").equals("ROUND_ROBIN"));
+			if (ddEventType.getAttribute("value").equalsIgnoreCase("ROUND_ROBIN")) {
+				System.out.println(txtRoundRobin.getAttribute("value").equalsIgnoreCase("ROUND_ROBIN"));
 				EventType = true;
 			} else {
-				EventType = ddEventType.getAttribute("value").equals("COMPASS");
-				System.out.println(btnWaterfallEventType.getAttribute("value").equals("COMPASS"));
+				EventType = ddEventType.getAttribute("value").equalsIgnoreCase("COMPASS");
+				System.out.println(btnWaterfallEventType.getAttribute("value").equalsIgnoreCase("COMPASS"));
 
 			}
 		} catch (Exception e) {
@@ -1343,8 +1343,8 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	public void clickOnNewDelhiTimeZone() {
 		log.info("Starting of clickOnNewDelhiTimeZone method");
-        hardWait(4);
-		waitForElementToBeVisible(btnNewDelhiTimeZone);
+       
+		hardWait(5);
 		try {
 			clickUsingActionsClass(btnNewDelhiTimeZone);
 		} catch (Exception e) {
@@ -2609,7 +2609,6 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 			}
 			String hours = this.getCurrentHour();
 			String meridiem = this.getCurrentMeridiem();
-			hardWait(2);
 			this.clickOnCurrentTime(hours);
 			clickOnElementUsingActionClass(btnTimeInMinutes);
 			this.clickOnCurrentTime(meridiem);
@@ -2662,7 +2661,6 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		}
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
-		hardWait(3);
 		this.clickOnCurrentTime(hours);
 		clickOnElementUsingActionClass(btnTimeInMinutes);
 		this.clickOnCurrentTime(meridiem);
@@ -2673,8 +2671,12 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	public void setCompetitionStartDateMoreThenSevenDays() {
 		log.info("Starting of setCompetitionStartDateMoreThenSevenDays method");
-
-		clickOnWebElement(txtBoxCompetitionStartDate);
+		try {
+			clickOnWebElement(txtBoxCompetitionStartDate);
+			
+		} catch (Exception e) {
+			clickOnElementUsingActionClass(txtBoxCompetitionStartDate);
+		}
 		hardWait(3);
 		int date = this.getFutureDate(9);
 		Month monthValue = this.getFutureMonth(9);
@@ -2697,7 +2699,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		}
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
-		//hardWait(3);
+		
 		this.clickOnCurrentTime(hours);
 		clickOnElementUsingActionClass(btnTimeInMinutes);
 		this.clickOnCurrentTime(meridiem);
@@ -2733,7 +2735,6 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		}
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
-		hardWait(3);
 		this.clickOnCurrentTime(hours);
 		clickOnElementUsingActionClass(btnTimeInMinutes);
 		this.clickOnCurrentTime(meridiem);
@@ -2748,7 +2749,8 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		clickOnWebElement(txtBoxCompetitionEndDate);
 		hardWait(3);
 		int date = this.getFutureDate(10);
-		Month monthValue = this.getFutureMonth(10);
+		System.out.println(date);
+		Month monthValue = this.getFutureMonth(15);
 		String mValue = monthValue.toString();
 		System.out.println(mValue);
 
@@ -2766,6 +2768,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
 		hardWait(3);

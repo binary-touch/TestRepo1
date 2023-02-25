@@ -701,6 +701,7 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 			seedMatchesPage.hardWait(3);
 
 			seedMatchesPage.clickOnCalenderButton();
+		
 			seedMatchesPage.hardWait(5);
 
 			seedMatchesPage.selectingMatchDateAsCurrentDate();

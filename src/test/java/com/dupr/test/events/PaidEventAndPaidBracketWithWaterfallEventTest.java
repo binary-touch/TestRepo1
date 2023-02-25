@@ -459,6 +459,7 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 
 		editOrRemovePartnerPage.searchPartner(testDataProp.getProperty("partner.name"));
 		editOrRemovePartnerPage.hardWait(3);
+		
 		eventRegistrationPage.clickOnAddYourPartnerRadioButton();
 		eventRegistrationPage.clickOnAddPartnerRadioButton();
 

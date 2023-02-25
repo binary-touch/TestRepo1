@@ -78,7 +78,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//h4[text()='Time Zone']/following-sibling::p[text()='(GMT-07:00) Arizona']")
 	private WebElement txtArizonaTimeZoneInEventDetails;
-	
+
 	@B2BFindBy(xpath = "//span[text()='Upcoming']")
 	private WebElement lblUpcoming;
 
@@ -93,13 +93,13 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//span[text()='Registration Closed']")
 	private WebElement lblRegistrationClosed;
-	
+
 	@B2BFindBy(xpath = "//h6[text()='Events']")
 	private WebElement tabEvents;
 
 	@B2BFindBy(xpath = "//*/h4")
 	private List<WebElement> lstBrowseEvents;
-	
+
 	@B2BFindBy(xpath = "//div[contains(@class,'MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation3')]//following-sibling::div//h4")
 	private List<WebElement> lstEvents;
 
@@ -183,16 +183,16 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//button[text()='OK']")
 	private WebElement btnOK;
-	
+
 	@B2BFindBy(xpath = "//h3[text()='Time Zone']/parent::div/div/div/div")
 	private WebElement ddTimeZone;
-	
+
 	@B2BFindBy(xpath = "//button[@aria-label='calendar view is open, switch to year view']")
 	private WebElement ddRegistrationEndDate;
 
 	@B2BFindBy(xpath = "//li[text()='(GMT+05:30) Chennai, Kolkata, Mumbai, New Delhi']")
 	private WebElement btnIndianTime;
-	
+
 	@B2BFindBy(xpath = "//div[contains(@class,'MuiPickersFadeTransitionGroup-root')]//div[contains(@class,'MuiPickersCalendarHeader-label')]")
 	private WebElement lblMonth;
 
@@ -200,7 +200,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		super(driver);
 		B2BPageFactory.initElements(driver, this);
 	}
-	
+
 	private static int currentyear = 0;
 
 	public boolean isDisplayedRegistrationandCompetitionFieldslContains() {
@@ -403,7 +403,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 
 	public String getIndianTimeZoneInEventDetails() {
 		log.info("Starting of getIndianTimeZoneInEventDetails method");
-		
+
 		this.hardWait(3);
 		log.info("Ending of getIndianTimeZoneInEventDetails method");
 
@@ -440,7 +440,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		log.info("Ending of isRecentlyAddedEventDisplayed method");
 		return eventStatus;
 	}
-	
+
 	public void clickOnRecentlyAddedEvent(String eventName) {
 		log.info("Starting of clickOnRecentlyAddedEvent method");
 
@@ -589,15 +589,15 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 
 		return futureDateValue;
 	}
-	
+
 	public int getCurrentYear() {
 
 		LocalDateTime dateTime = LocalDateTime.now();
-	currentyear = dateTime.getYear();
+		currentyear = dateTime.getYear();
 
 		return currentyear;
-	}	
-	
+	}
+
 	public void clickOnCurrentYear() {
 		int currentYearValue = this.getCurrentYear();
 		System.out.println(currentYearValue);
@@ -611,6 +611,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 	public boolean isLocalRangeDisplayed() {
 		log.info("Starting of isLocalRangeDisplayed method");
 		this.hardWait(5);
+		scrollDown(-800);
 		boolean state = false;
 		try {
 			if (lblcompetitionRange.isDisplayed()) {
@@ -626,7 +627,8 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 
 	public boolean isLessthenSevenRelativeDaysDisplayed() {
 		log.info("Starting of isLessthenSevenRelativeDaysDisplayed method");
-		//this.hardWait(5);
+		this.hardWait(5);
+		scrollDown(-800);
 		boolean state = false;
 		try {
 			if (lblLessthenSevenRelativeDays.isDisplayed()) {
@@ -643,10 +645,11 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 	public boolean ishoursAndMinsDisplayed() {
 		log.info("Starting of ishoursAndMinsDisplayed method");
 		hardWait(5);
+		scrollDown(-800);
 		boolean ishoursAndMinsDisplayed = false;
-		
+
 		try {
-			if(lblhoursAndMins.isDisplayed()==true) {
+			if (lblhoursAndMins.isDisplayed() == true) {
 				ishoursAndMinsDisplayed = true;
 			}
 		} catch (Exception e) {
@@ -667,24 +670,26 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 
 	public boolean isOpenUpcommingRegistrationClosedStatusDisplayed() {
 		log.info("Starting of isOpenUpcommingRegistrationClosedStatusDisplayed method");
+		
 		hardWait(2);
 		boolean isOpenUpcommingRegistrationClosedStatusDisplayed = false;
 		try {
 			if (this.isDisplayedOpenLabel()) {
-				
-				isOpenUpcommingRegistrationClosedStatusDisplayed = true;
+
+				System.out.println(isOpenUpcommingRegistrationClosedStatusDisplayed = true);
 			} else if (this.isDisplayedUpcomingLabel()) {
+
+		System.out.println(isOpenUpcommingRegistrationClosedStatusDisplayed = true);
 				
-				isOpenUpcommingRegistrationClosedStatusDisplayed = true;
 			} else if (this.isDisplayedRegistrationClosedLabel()) {
-				
-				isOpenUpcommingRegistrationClosedStatusDisplayed = true;
-			}else if (this.isDisplayedOnGoingLabel()) {
-				
-				isOpenUpcommingRegistrationClosedStatusDisplayed = true;
-			} else if (this.isDisplayedCompleteLabel())  {
-				
-				isOpenUpcommingRegistrationClosedStatusDisplayed = true;
+
+				System.out.println(isOpenUpcommingRegistrationClosedStatusDisplayed = true);
+			} else if (this.isDisplayedOnGoingLabel()) {
+
+				System.out.println(isOpenUpcommingRegistrationClosedStatusDisplayed = true);
+			} else if (this.isDisplayedCompleteLabel()) {
+
+				System.out.println(isOpenUpcommingRegistrationClosedStatusDisplayed = true);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -693,7 +698,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 
 		return isOpenUpcommingRegistrationClosedStatusDisplayed;
 	}
-	
+
 	public boolean isDisplayedOpenLabel() {
 		log.info("Starting of isDisplayedOpenLabel method");
 		log.info("Ending of isDisplayedOpenLabels method");
@@ -710,7 +715,9 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		log.info("Ending of isDisplayedUpcomingLabel method");
 
 		try {
+			System.out.println(lblUpcoming.isDisplayed());
 			return lblUpcoming.isDisplayed();
+			
 		} catch (Exception e) {
 			return false;
 		}
@@ -772,7 +779,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 	 * 
 	 * return PlayerGroupType; }
 	 * 
-	 */	
+	 */
 	public void clickOnInformationButton() {
 		log.info("Starting of clickOnInformationButton method");
 
@@ -1010,17 +1017,20 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 	public void setNewDelhiTimeZone() {
 		log.info("Starting of setNewDelhiTimeZone method");
 		hardWait(2);
-		
+
 		try {
 			clickOnElementUsingActionClass(ddTimeZone);
 		} catch (Exception e) {
 			ddTimeZone.click();
 		}
-		
-		hardWait(2);
-		elementClick(btnIndianTime);
-		hardWait(2);
-		
+
+		hardWait(5);
+		try {
+			btnIndianTime.click();
+		}catch(Exception e) {
+		clickOnElementUsingActionClass(btnIndianTime);
+		}
+
 		log.info("Ending of setNewDelhiTimeZone method");
 	}
 
@@ -1069,7 +1079,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		String pattern1 = "a";
 
 		LocalTime currentHour = LocalTime.now();
-		LocalTime futureHour = currentHour.plusHours(1);
+		LocalTime futureHour = currentHour.plusHours(4);
 		String futureHourValue = futureHour.format(DateTimeFormatter.ofPattern(pattern));
 		System.out.println(futureHourValue);
 
@@ -1085,7 +1095,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 
 		log.info("Ending of setRegistrationEndDateInHourÂ method");
 	}
-	
+
 	public void setRegistrationEndDateInMinusHour() {
 		log.info("Starting of setRegistrationEndDateInMinusHour method");
 
@@ -1120,41 +1130,117 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 
 	public void setCompetitionEndDateInHour() {
 		log.info("Starting of setCompetitionEndDateInHour method");
-		
+
 		clickOnWebElement(txtBoxCompetitionEndDate);
+		hardWait(2);
 		clickOnWebElement(ddRegistrationEndDate);
 		hardWait(2);
 
 		this.clickOnCurrentYear();
-
-		int date = this.getFutureDate(1);
+		int date = this.getCurrentDate();
 
 		String pattern = "h";
 		String pattern1 = "a";
 
 		LocalTime currentHour = LocalTime.now();
-		LocalTime futureHour = currentHour.plusHours(1);
+		LocalTime futureHour = currentHour.plusHours(4);
 		String futureHourValue = futureHour.format(DateTimeFormatter.ofPattern(pattern));
 		System.out.println(futureHourValue);
-		
+
 		String meridiem = futureHour.format(DateTimeFormatter.ofPattern(pattern1));
 		String meridiemValue = meridiem.toUpperCase();
 		System.out.println(meridiemValue);
-		hardWait(3);
+		
 		this.clickOnCurrentDate(date);
 		this.clickOnCurrentTime(futureHourValue);
+		try {
 		clickOnElementUsingActionClass(btnTimeInMinutes);
+		}catch(Exception e) {
+			elementClick(btnTimeInMinutes);
+		}
 		this.clickOnCurrentTime(meridiemValue);
 		this.clickOnElementUsingActionClass(btnOK);
-		
+
 		log.info("Ending of setCompetitionEndDateInHourÂ method");
 	}
+
+	public void setCompetitionCurrentEndDate() {
+		log.info("Starting of setCompetitionCurrentEndDate method");
+
+		scrollDown(200);
+
+		clickOnWebElement(txtBoxCompetitionEndDate);
+
+		int date = this.getCurrentDate();
+		System.out.println(date);
+		Month monthValue = this.getCurrentMonth();
+		String mValue = monthValue.toString();
+		System.out.println(mValue);
+
+		String lblmonth = lblMonth.getText();
+		String pNewTabValue = String.valueOf(lblmonth.split(" ")[0]).toUpperCase().trim();
+		log.debug("Text is " + pNewTabValue);
+
+		try {
+			if ((mValue).equals(pNewTabValue)) {
+				this.clickOnCurrentDate(date);
+			} else {
+				clickUsingActionsClass(driver.findElement(By.xpath("//button[@aria-label='Previous month']")));
+				this.clickOnCurrentDate(date);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		String hours = this.getCurrentHour();
+		String meridiem = this.getCurrentMeridiem();
+		
+		this.clickOnCurrentTime(hours);
+		this.clickOnCurrentTime(meridiem);
+		this.clickOnElementUsingActionClass(btnOK);
+
+		log.info("Ending of setCompetitionCurrentEndDate method");
+	}
+
+	public void setCompetitionCurrentDate() {
+		log.info("Starting of setCompetitionCurrentDate method");
+
+		clickOnWebElement(txtBoxCompetitionStartDate);
+
+		int date = this.getCurrentDate();
+		Month monthValue = this.getCurrentMonth();
+		String mValue = monthValue.toString();
+		System.out.println(mValue);
+
+		String lblmonth = lblMonth.getText();
+		String pNewTabValue = String.valueOf(lblmonth.split(" ")[0]).toUpperCase().trim();
+		log.debug("Text is " + pNewTabValue);
+
+		try {
+			if ((mValue).equals(pNewTabValue)) {
+				this.clickOnCurrentDate(date);
+			} else {
+				clickUsingActionsClass(driver.findElement(By.xpath("//button[@aria-label='Previous month']")));
+				this.clickOnCurrentDate(date);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		String hours = this.getCurrentHour();
+		String meridiem = this.getCurrentMeridiem();
+		this.clickOnCurrentTime(hours);
+		this.clickOnCurrentTime(meridiem);
+		this.clickOnElementUsingActionClass(btnOK);
+
+		log.info("Ending of setCompetitionCurrentDate method");
+	}
+
 	
 	public void setCompetitionEndDateInPastHours() {
 		log.info("Starting of setCompetitionEndDateInPastHours method");
-		
+
 		clickOnWebElement(txtBoxCompetitionEndDate);
-	
+
 		clickOnWebElement(ddRegistrationEndDate);
 		hardWait(2);
 
@@ -1169,7 +1255,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		LocalTime futureHour = currentHour.minusHours(1);
 		String futureHourValue = futureHour.format(DateTimeFormatter.ofPattern(pattern));
 		System.out.println(futureHourValue);
-		
+
 		String meridiem = futureHour.format(DateTimeFormatter.ofPattern(pattern1));
 		String meridiemValue = meridiem.toUpperCase();
 		System.out.println(meridiemValue);
@@ -1179,18 +1265,19 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		clickOnElementUsingActionClass(btnTimeInMinutes);
 		this.clickOnCurrentTime(meridiemValue);
 		this.clickOnElementUsingActionClass(btnOK);
-		
+
 		log.info("Ending of setCompetitionEndDateInPastHoursï¿½method");
 	}
 
 	public void setRegistrationStartDateBeforeOneDay() {
 		log.info("Starting of setRegistrationStartDateBeforeOneDay method");
 
-		//scrollDown(500);
+		// scrollDown(500);
 		try {
-			clickOnElementUsingActionClass(txtBoxRegistrationStartDate);
-		}catch(Exception e) {
-		clickOnWebElement(txtBoxRegistrationStartDate);
+			clickOnWebElement(txtBoxRegistrationStartDate);
+			
+		} catch (Exception e) {
+			clickOnElementUsingActionClass(txtBoxRegistrationStartDate);	
 		}
 		hardWait(2);
 		clickOnWebElement(ddRegistrationEndDate);
@@ -1203,50 +1290,46 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 			Month monthValue = this.getPreviousMonth(1);
 			String month = String.valueOf(monthValue);
 			System.out.println(monthValue);
-			
+
 			String lblmonth = lblMonth.getText();
 			String pNewTabValue = String.valueOf(lblmonth.split(" ")[0]).toUpperCase().trim();
 			log.debug("Text is " + pNewTabValue);
 			System.out.println(month);
 			System.out.println(pNewTabValue);
+
+			try {
+				if ((month).equals(pNewTabValue)) {
+					this.clickOnCurrentDate(date);
+				} else {
+					clickUsingActionsClass(driver.findElement(By.xpath("//button[@title='Previous month']")));
+					this.clickOnCurrentDate(date);
+				}
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
 			
-		try {
-			if((month).equals(pNewTabValue)) {
-				this.clickOnCurrentDate(date);
-			}
-			else {
-				clickUsingActionsClass(driver.findElement(By.xpath("//button[@title='Previous month']")));
-				this.clickOnCurrentDate(date);
-			}
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
 			String hours = this.getCurrentHour();
 			String meridiem = this.getCurrentMeridiem();
-			hardWait(3);
-			
 			this.clickOnCurrentTime(hours);
+	
 			clickOnElementUsingActionClass(btnTimeInMinutes);
 			this.clickOnCurrentTime(meridiem);
-			 try {
-			  this.clickOnWebElement(btnOK);
-			   }catch(Exception e) {
-				 clickOnElementUsingActionClass(btnOK);
-			}
+			this.clickOnWebElement(btnOK);
 		} catch (Exception e2) {
 			e2.printStackTrace();
 		}
 
 		log.info("Ending of setRegistrationStartDateBeforeOneDay method");
-	}	
+	}
+
 	public void setRegistrationEndDate() {
 		log.info("Starting of setRegistrationEndDate method");
-       
+
 		try {
-			clickOnWebElement(txtBoxRegistrationEndDate);
-		}catch(Exception e) {
+			elementClick(txtBoxRegistrationEndDate);
+			
+		} catch (Exception e) {
 			clickOnElementUsingActionClass(txtBoxRegistrationEndDate);
-		
 		}
 		int date = this.getFutureDate(1);
 		String hours = this.getCurrentHour();
@@ -1260,11 +1343,12 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 
 		log.info("Ending of setRegistrationEndDate method");
 	}
+
 	public void setCompetitionStartDateHour() {
 		log.info("Starting of setCompetitionStartDateHour method");
-		
+
 		clickOnWebElement(txtBoxCompetitionStartDate);
-	
+
 		clickOnElementUsingActionClass(ddRegistrationEndDate);
 		hardWait(2);
 
@@ -1279,7 +1363,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		clickOnElementUsingActionClass(btnTimeInMinutes);
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnElementUsingActionClass(btnOK);
-		
+
 		log.info("Ending of setCompetitionStartDateHourÂ method");
 	}
 }
