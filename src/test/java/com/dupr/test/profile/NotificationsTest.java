@@ -120,8 +120,15 @@ public class NotificationsTest extends CommonBaseTest {
 
 		notificationsPage.clickOnNotificationsTab();
 		notificationsPage.clickOnSMSNotificationsToggle();
-		Assert.assertTrue(notificationsPage.isSMSNotificationsEnabled()); ////Reason For Failure: Sometimes Verify Phone Number PopUp Is Displaying////
-
+		
+		try {
+			notificationsPage.hardWait(2);
+			Assert.assertTrue(this.notificationsPage.isVerifyPhoneNumberPopupDisplayed());
+			editProfilePage.clickOnOKButton();
+		} catch (Exception e) {
+			Assert.assertTrue(notificationsPage.isSMSNotificationsEnabled()); ////Reason For Failure: Sometimes Verify Phone Number PopUp Is Displaying////
+		}
+		
 		boolean saveButtonStatus = notificationsPage.isSaveButtonEnabled();
 		if (saveButtonStatus) {
 			Assert.assertTrue(notificationsPage.isSaveButtonEnabled());

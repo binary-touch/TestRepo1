@@ -187,14 +187,17 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 	}
 
 	public void clickOnCurrentDate(int date) {
+		hardWait(3);
 		try {
-			clickOnElementUsingActionClass(driver.findElement(By.xpath("//button[text()='" + date + "']")));
-		} catch (Exception e) {
 			driver.findElement(By.xpath("//button[text()='" + date + "']")).click();
+			
+		} catch (Exception e) {
+			clickOnElementUsingActionClass(driver.findElement(By.xpath("//button[text()='" + date + "']")));
 		}
 	}
 
 	public void clickOnCurrentTime(String strHour) {
+		hardWait(2);
 		try {
 			driver.findElement(By.xpath("//span[text()='" + strHour + "']")).click();
 		} catch (Exception e) {

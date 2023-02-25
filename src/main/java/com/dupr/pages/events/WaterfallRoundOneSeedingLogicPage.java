@@ -118,7 +118,6 @@ public class WaterfallRoundOneSeedingLogicPage extends DUPRBaseAutomationPage {
 							}
 						}
 					}
-				
 				this.hardWait(3);
 				clickOnElement(btnAddParticipant);
 				this.hardWait(4);
@@ -127,10 +126,6 @@ public class WaterfallRoundOneSeedingLogicPage extends DUPRBaseAutomationPage {
 				clickOnWebElement(btnAdd);
 				this.hardWait(5);
 			}}
-			// tim sam singles
-			// Qwer
-			// gaurav doubles
-			// https://stage.gamestoppedout.com/dashboard/club/6144885302/event/8311212902/bracket/5579603228
 			catch (Exception e) {
 				System.out.println();
 			}

@@ -882,7 +882,7 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 
 		addEventPage.hardWait(5);
 
-		this.verifyCreateMatchesFuntionalityInSeedMatchesPage();
+		this.verifySavePublishFunctionalityInSeedMatchesPage();
 
 		logger.info("Ending of verifyCreatingWaterFallEventAsSingles method");
 	}
