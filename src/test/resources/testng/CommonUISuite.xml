@@ -70,13 +70,16 @@
 			<class name="com.dupr.test.events.TimeZoneTest" />
 			<class name="com.dupr.test.events.SeedMatchesTest" />
 		</classes>
-	</test> 
+	</test>
 
-
- 	<test name="Sprint 5">
+	<test name="Sprint 5">
 		<classes>
-			<class name="com.dupr.test.events.PaidEventAndPaidBracketWithWaterfallEventTest" />
+
+			<class
+				name="com.dupr.test.events.PaidEventAndPaidBracketWithWaterfallEventTest" />
 			<class name="com.dupr.test.events.SeedMatchesWaterFallTest" />
+			<class
+				name="com.dupr.test.events.WaterfallRoundOneSeedingLogicTest" />
 		</classes>
 	</test>
 </suite>
