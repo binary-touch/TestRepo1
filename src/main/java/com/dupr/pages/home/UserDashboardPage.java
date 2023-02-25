@@ -885,8 +885,12 @@ public class UserDashboardPage extends DUPRBaseAutomationPage {
 	public void clickOnOpenSettingsMenu() {
 		log.info("Starting of clickOnOpenSettingsMenu method");
 
-		clickOnWebElement(mnuOpenSettings);
-        hardWait(2);
+		try {
+			clickUsingActionsClass(mnuOpenSettings);
+		} catch (Exception e) {
+			clickOnWebElement(mnuOpenSettings);
+	        hardWait(2);
+		}
         
 		log.info("Ending of clickOnOpenSettingsMenu method");
 	}

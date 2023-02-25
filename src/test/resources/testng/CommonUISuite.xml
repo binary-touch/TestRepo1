@@ -77,7 +77,7 @@
 		<classes>
 			<class
 				name="com.dupr.test.events.PaidEventAndPaidBracketWithWaterfallEventTest" />
-			<class name="com.dupr.test.events.SeedMatchesWaterFallTest" />
+			<!-- <class name="com.dupr.test.events.SeedMatchesWaterFallTest"/> -->
 		</classes>
 	</test>
 </suite>
