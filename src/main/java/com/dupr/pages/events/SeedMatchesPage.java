@@ -64,7 +64,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//button[@aria-label='scroll-left']")
 	private WebElement iconArrowDisabled;
 
-	@B2BFindBy(xpath = "//h6[contains(text(),'Click “Create Matches” to')]")
+	@B2BFindBy(xpath = "//h6[contains(text(),'Click â€œCreate Matchesâ€� to')]")
 	private WebElement txtClick;
 
 	@B2BFindBy(xpath = "//h3[contains(text(),'Bracket')]")
@@ -439,6 +439,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 	public void clickOnSeedMatchesButton() {
 		log.info("Starting of clickOnSeedMatchesButton method");
 		this.hardWait(3);
+
 		try {
 			elementClick(btnSeedMatches);
 		} catch (Exception e) {
@@ -460,6 +461,13 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		log.info("Starting of isSeedMatchesPageContains method");
 
 		boolean isSeedMatchesPageContains = false;
+		System.out.println(isDisplayed(iconClose));
+		System.out.println(isDisplayed(txtSeeds));
+		System.out.println(isDisplayed(btnCreateMatches));
+		System.out.println(isDisplayed(btnSavePublishDisabled));
+		System.out.println(isDisplayed(iconLeftArrow));
+		System.out.println(isDisplayed(iconRightArrow));
+		System.out.println(txtClick);
 
 		if (isDisplayed(iconClose) && isDisplayed(txtSeeds) && isDisplayed(btnCreateMatches)
 				&& isDisplayed(btnSavePublishDisabled) && isDisplayed(iconLeftArrow) && isDisplayed(iconRightArrow)
@@ -603,8 +611,11 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 	public void clickOnCreateMatches() {
 		log.info("Starting of clickOnCreateMatches method");
-
-		clickOnWebElement(btnCreateMatches);
+		try {
+			clickUsingActionsClass(btnCreateMatches);
+		} catch (Exception e) {
+			clickOnWebElement(btnCreateMatches);
+		}
 
 		log.info("Ending of clickOnCreateMatches method");
 	}
@@ -1535,7 +1546,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnElementUsingActionClass(btnOK);
 
-		log.info("Ending of setRegistrationStartDate method");
+		log.info("Ending of setRegistrationStartDateÂ method");
 	}
 
 	public void setRegistrationEndDate() {
@@ -1572,11 +1583,11 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnElementUsingActionClass(btnOK);
 
-		log.info("Ending of setRegistrationEndDate method");
+		log.info("Ending of setRegistrationEndDateÂ method");
 	}
 
 	public void selectFutureHour() {
-		log.info("Starting of selectFutureHour method");
+		log.info("Starting of selectFutureHourÂ method");
 
 		String pattern = "h";
 		LocalTime currentHour = LocalTime.now();
@@ -1604,13 +1615,17 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 			this.clickOnCurrentTime(min);
 		}
 
-		log.info("Ending of selectFutureHour method");
+		log.info("Ending of selectFutureHourÂ method");
 	}
 
 	public void setCompetitionStartDate() {
 		log.info("Starting of setCompetitionStartDate method");
 
-		clickOnElementUsingActionClass(txtBoxCompetitionStartDate);
+		try {
+			clickUsingActionsClass(txtBoxCompetitionStartDate);
+		} catch (Exception e) {
+			clickOnWebElement(txtBoxCompetitionStartDate);
+		}
 
 		int date = this.getCurrentDate();
 		String hours = this.getCurrentHour();
@@ -1641,7 +1656,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnElementUsingActionClass(btnOK);
 
-		log.info("Ending of setCompetitionStartDate method");
+		log.info("Ending of setCompetitionStartDateÂ method");
 	}
 
 	public boolean isRoundOneDisplayed() {

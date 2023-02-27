@@ -164,7 +164,7 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 		clubLogoPage.clickOnMyClubsTab();
 		clubLogoPage.clickOnBrowseClubs();
 
-		clubLogoPage.clickOnSimbaClubName();
+		paidEventPage.clickOnSimbaClubName();
 		addEventPage.clickOnEventsTab();
 		addEventPage.clickOnRecentlyAddedEvent(eventName);
 
@@ -459,7 +459,6 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 
 		editOrRemovePartnerPage.searchPartner(testDataProp.getProperty("partner.name"));
 		editOrRemovePartnerPage.hardWait(3);
-
 		eventRegistrationPage.clickOnAddYourPartnerRadioButton();
 		eventRegistrationPage.clickOnAddPartnerButton();
 

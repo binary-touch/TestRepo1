@@ -2,6 +2,7 @@ package com.dupr.test.events;
 
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -30,7 +31,7 @@ public class WaterfallRoundOneSeedingLogicTest extends CommonBaseTest {
 			throws Exception {
 		logger.info("Starting of initMethod in SeedMatchesWaterFallPage");
 
-		this.driver = super.getWebDriver(WebDriversEnum.SEED_MATCHES_WATERFALL_DRIVER);
+		this.driver = super.getWebDriver(WebDriversEnum.SEED_MATCHES_WATERFALL_ROUND_ONE_LOGIC_DRIVER);
 		super.initCommonBaseTest(siteURL, directorEmail, directorPassword);
 
 		this.seedMatchesPage = new SeedMatchesPage(this.driver);
@@ -40,8 +41,7 @@ public class WaterfallRoundOneSeedingLogicTest extends CommonBaseTest {
 		logger.info("Ending of initMethod in SeedMatchesWaterFallPage");
 	}
 
-	// @Test(priority = 1, description = "Verify creating WaterFall Event As
-	// Singles", groups = "sanity")
+	@Test(priority = 1, description = "Verify creating WaterFall Event As Singles", groups = "sanity")
 	@Description("Test case #1, Verify creating WaterFall Event As Singles")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #1, Verify creating WaterFall Event As Singles")
@@ -110,7 +110,7 @@ public class WaterfallRoundOneSeedingLogicTest extends CommonBaseTest {
 		addBracketPage.setNumberOfCourts(testDataProp.getProperty("number.of.courts"));
 		addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("zero.value"));
 		addBracketPage.setBracketNonClubMemberPrice(testDataProp.getProperty("zero.value"));
-		addBracketPage.setWaitlist(testDataProp.getProperty("min.rating.range"));
+		addBracketPage.setWaitlist(testDataProp.getProperty("zero.value"));
 
 		addEventPage.clickOnNextStepButton();
 
@@ -137,25 +137,83 @@ public class WaterfallRoundOneSeedingLogicTest extends CommonBaseTest {
 		logger.info("Starting of verifyAddingParticipantsInWaterFallEvent method");
 
 		seedMatchesPage.hardWait(3);
-		// addparticipantsPage.addMeetForWaterFall(testDataProp.getProperty("player.name"));
-		// seedMatchesPage.hardWait(3);
+		addparticipantsPage.addMeetPlayerForWaterFallEvent(testDataProp.getProperty("player.name"));
+		seedMatchesPage.hardWait(3);
+		addparticipantsPage.addMeetPlayerForWaterFallEvent(testDataProp.getProperty("provisional.rating.player"));
+		seedMatchesPage.hardWait(3);
 		waterfallRoundOneSeedingLogicPage.getSinglesRating();
 
 		logger.info("Ending of verifyAddingParticipantsInWaterFallEvent method");
 	}
 
-	@Test(priority = 3, description = "Verify Adding Participants in waterfall event", groups = "sanity")
-	@Description("Test case #2, Verify Adding Participants in waterfall event")
+	@Test(priority = 3, description = "Verify Sorting players as High to low rating", groups = "sanity")
+	@Description("Test case #3, Verify Sorting players as High to low rating")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #2, Verify Adding Participants in waterfall event")
-	public void verifyAddingPacipantsInWaterFallEvent() {
-		logger.info("Starting of verifyAddingParticipantsInWaterFallEvent method");
+	@Story("Test case #3, Verify Sorting players as High to low rating")
+	public void verifySortingplayersAsRatingHighToLow() {
+		logger.info("Starting of verifySortingplayersAsRatingHighToLow method");
+
+		waterfallRoundOneSeedingLogicPage.clickOnSortButton();
+		waterfallRoundOneSeedingLogicPage.hardWait(3);
+		waterfallRoundOneSeedingLogicPage.getPlayerName();
+
+		logger.info("Ending of verifySortingplayersAsRatingHighToLow method");
+	}
+
+	@Test(priority = 4, description = "Verify the results on click of Create matches button in Seed Matches page", groups = "sanity")
+	@Description("Test case #4, Verify the results on click of Create matches button in Seed Matches page")
+	@Severity(SeverityLevel.NORMAL)
+	@Story("Test case #4, Verify the results on click of Create matches button in Seed Matches page")
+	public void verifyCreateMatchesFuntionalityInSeedMatchesPage() {
+		logger.info("Starting of verifyCreateMatchesFuntionalityInSeedMatchesPage method");
 
 		seedMatchesPage.hardWait(3);
-		addparticipantsPage.addMeetForWaterFall(testDataProp.getProperty("player.name"));
-		// seedMatchesPage.hardWait(3);
-		waterfallRoundOneSeedingLogicPage.getSinglesRating();
+		seedMatchesPage.clickOnSeedMatchesButton();
+		seedMatchesPage.hardWait(3);
+		seedMatchesPage.clickOnCreateMatches();
+		seedMatchesPage.hardWait(4);
 
-		logger.info("Ending of verifyAddingParticipantsInWaterFallEvent method");
+		Assert.assertTrue(seedMatchesPage.isRoundOneDisplayed());
+		seedMatchesPage.hardWait(5);
+
+		logger.info("Ending of verifyCreateMatchesFuntionalityInSeedMatchesPage method");
 	}
+
+	@Test(priority = 5, description = "Verify round one seeding logic of Waterfall event", groups = "sanity")
+	@Description("Test case #5, Verify round one seeding logic of Waterfall event")
+	@Severity(SeverityLevel.NORMAL)
+	@Story("Test case #5, Verify round one seeding logic of Waterfall event")
+	public void verifyWaterFallRoundOneSeeingLogic() {
+		logger.info("Starting of verifyWaterFallRoundOneSeeingLogic method");
+
+		waterfallRoundOneSeedingLogicPage.getRoundOnePlayersName();
+		seedMatchesPage.hardWait(4);
+		
+		
+		waterfallRoundOneSeedingLogicPage.printnames();
+
+		Assert.assertTrue(waterfallRoundOneSeedingLogicPage.WaterFallRoundOneSeedingLogic());
+		seedMatchesPage.hardWait(3);
+		
+		seedMatchesPage.clickOnSavePublishButton();
+		seedMatchesPage.hardWait(5);
+
+		logger.info("Ending of verifyWaterFallRoundOneSeeingLogic method");
+	}
+	@AfterClass
+	public void quitDriver() {
+
+		try {
+
+			if (this.driver != null) {
+				Thread.sleep(5000);
+				this.quitDriver(this.driver, WebDriversEnum.SEED_MATCHES_WATERFALL_ROUND_ONE_LOGIC_DRIVER);
+
+				logger.info("Driver quit successfully");
+			}
+		} catch (Exception ex) {
+			logger.error(ex.getMessage());
+		}
+	}
+
 }
