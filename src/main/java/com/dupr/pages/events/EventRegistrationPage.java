@@ -117,7 +117,7 @@ public class EventRegistrationPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//input[@name='Player Info']")
 	private WebElement rdoAddYourPartner;
 
-	@B2BFindBy(xpath = "//button[text()='Add Partner']")
+	@B2BFindBy(xpath = "//button[text()='Cancel']/following-sibling::button")
 	private WebElement btnAddPartner;
 
 	@B2BFindBy(xpath = "//div[text()='Add a Partner']")

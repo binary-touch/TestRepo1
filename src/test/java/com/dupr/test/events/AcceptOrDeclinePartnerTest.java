@@ -66,21 +66,19 @@ public class AcceptOrDeclinePartnerTest extends CommonBaseTest {
 		super.verifyAddBracketsForRegisterFunctionalityWithValidDetails();
 		super.verifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
 		super.verifyPublishEventButton();
+		super.VerifyRecentlyAddedEventUnderEventsTab();
+		super.verifyRegisterFunctionality();
 		
-		try {
-			super.VerifyRecentlyAddedEventUnderEventsTab();
-			
-			editBracketsPage.clickOnBracketLabel();
-			super.verifyRegisterFunctionality();
-
-			editOrRemovePartnerPage.clickOnAddPartnerInBracketPageButton();
-
-			Assert.assertEquals(editOrRemovePartnerPage.getAddAPartnerLabel(),
-					expectedAssertionsProp.getProperty("add.a.partner.text"));
-
-			Assert.assertTrue(editOrRemovePartnerPage.isAddAPartnerPageContains());
-		}catch(Exception e) {
-		
+		/*
+		 * try { editBracketsPage.clickOnBracketLabel();
+		 * editOrRemovePartnerPage.clickOnAddPartnerInBracketPageButton();
+		 * 
+		 * Assert.assertEquals(editOrRemovePartnerPage.getAddAPartnerLabel(),
+		 * expectedAssertionsProp.getProperty("add.a.partner.text"));
+		 * 
+		 * Assert.assertTrue(editOrRemovePartnerPage.isAddAPartnerPageContains());
+		 * }catch(Exception e) {
+		 */		
 		clubLogoPage.clickOnMyClubsTab();
 		editClubInfoPage.clickOnSimbaOrganizerButton();
 
@@ -88,8 +86,7 @@ public class AcceptOrDeclinePartnerTest extends CommonBaseTest {
 		addEventPage.clickOnRecentlyAddedEvent(eventName);
 
 		editBracketsPage.clickOnBracketLabel();
-
-		super.verifyRegisterFunctionality();
+		
 		editOrRemovePartnerPage.clickOnAddPartnerInBracketPageButton();
 
 		Assert.assertEquals(editOrRemovePartnerPage.getAddAPartnerLabel(),
@@ -99,7 +96,7 @@ public class AcceptOrDeclinePartnerTest extends CommonBaseTest {
 
 		logger.info("Ending of verifyAddPartnerFunctionalityInBracketPage method");
 	}
-	}
+	
 	@Test(priority = 2, description = "Verify Add Partner Functionality In AddPartner Page ", groups = "sanity")
 	@Description("Test case #2, Verify Add Partner Functionality In AddPartner Page ")
 	@Severity(SeverityLevel.NORMAL)
@@ -114,6 +111,7 @@ public class AcceptOrDeclinePartnerTest extends CommonBaseTest {
 		editOrRemovePartnerPage.hardWait(3);
 
 		eventRegistrationPage.clickOnAddYourPartnerRadioButton();
+		
 		eventRegistrationPage.clickOnAddPartnerButton();
 
 		logger.info("Ending of verifyAddPartnerFunctionalityInAddPartnerPage method");

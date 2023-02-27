@@ -1377,8 +1377,9 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	public void clickOnNewDelhiTimeZone() {
 		log.info("Starting of clickOnNewDelhiTimeZone method");
-		hardWait(6);
+		//hardWait(9);
 		try {
+			scrollIntoView(btnNewDelhiTimeZone);
 			clickUsingActionsClass(btnNewDelhiTimeZone);
 		} catch (Exception e) {
 			elementClick(btnNewDelhiTimeZone);

@@ -368,7 +368,8 @@ public class EditOrRemovePartnerPage extends DUPRBaseAutomationPage {
 		clickOnWebElement(txtBoxSearch);
 		this.txtBoxSearch.sendKeys(Keys.CONTROL + "a", Keys.DELETE);
 		txtBoxSearch.sendKeys(partnerName);
-
+		this.txtBoxSearch.sendKeys(Keys.BACK_SPACE);
+		
 		log.info("Ending of searchPartner method");
 	}
 
