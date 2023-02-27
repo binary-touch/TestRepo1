@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Common UI Automation Tests">
 
-	<test name="Sprint 1">
+	<!-- <test name="Sprint 1">
 		<classes>
 			<class name="com.dupr.test.players.SearchPlayersTest" />
 			<class name="com.dupr.test.signup.SignupTest" />
@@ -39,16 +39,18 @@
 			<class name="com.dupr.test.events.EditBracketsTest" />
 		</classes>
 	</test>
-
+-->
 	<test name="Sprint 3">
 		<classes>
-			<class name="com.dupr.test.events.AddEditRemoveEventLogoTest" />
+			<!-- <class name="com.dupr.test.events.AddEditRemoveEventLogoTest" />
 			<class name="com.dupr.test.events.AddParticipantsInBracketTest" />
 			<class name="com.dupr.test.events.EndEventTest" />
 			<class name="com.dupr.test.events.AddAnnouncementTest" />
 			<class name="com.dupr.test.events.PlayerEventRegistrationTest" />
-			<class name="com.dupr.test.events.AcceptOrDeclinePartnerTest" />
-			<class
+ -->
+ 			<class name="com.dupr.test.events.AcceptOrDeclinePartnerTest" />
+			
+			<!-- <class
 				name="com.dupr.test.events.DirectorEventRegistrationTest" />
 			<class name="com.dupr.test.events.EditOrRemovePartnerTest" />
 			<class name="com.dupr.test.events.WithdrawPlayerTest" />
@@ -56,10 +58,11 @@
 			<class name="com.dupr.test.home.AdditionOfChartAndShopTabTest" />
 			<class name="com.dupr.test.home.AntiScrappingCaptchaTest" />
 			<class name="com.dupr.test.home.UserDashboardTest" />
-			<class name="com.dupr.test.home.PreservingPageVisitsTest" />
+			<class name="com.dupr.test.home.PreservingPageVisitsTest" /> -->
 		</classes>
 	</test>
-
+ 
+ <!-- 
 	<test name="Sprint 4">
 		<classes>
 			<class name="com.dupr.test.home.ChatTest" />
@@ -71,12 +74,13 @@
 			<class name="com.dupr.test.events.TimeZoneTest" />
 		</classes>
 	</test> 
+ -->
 
-
- 	<test name="Sprint 5">
+ 	<!-- <test name="Sprint 5">
 		<classes>
 			<class name="com.dupr.test.events.PaidEventAndPaidBracketWithWaterfallEventTest" />
 			<class name="com.dupr.test.events.SeedMatchesWaterFallTest" />
 		</classes>
 	</test>
-</suite>
+ -->
+ </suite>

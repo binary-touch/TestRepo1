@@ -1016,7 +1016,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 
 	public void setNewDelhiTimeZone() {
 		log.info("Starting of setNewDelhiTimeZone method");
-		hardWait(2);
+		hardWait(4);
 
 		try {
 			clickOnElementUsingActionClass(ddTimeZone);
@@ -1079,7 +1079,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		String pattern1 = "a";
 
 		LocalTime currentHour = LocalTime.now();
-		LocalTime futureHour = currentHour.plusHours(4);
+		LocalTime futureHour = currentHour.plusHours(10);
 		String futureHourValue = futureHour.format(DateTimeFormatter.ofPattern(pattern));
 		System.out.println(futureHourValue);
 

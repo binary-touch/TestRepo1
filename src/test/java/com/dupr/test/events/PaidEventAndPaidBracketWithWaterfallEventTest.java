@@ -390,7 +390,7 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 		eventRegistrationPage.clickOnOkButton();
 
 		eventRegistrationPage.clickOnAddYourPartnerRadioButton();
-		eventRegistrationPage.clickOnAddPartnerRadioButton();
+		eventRegistrationPage.clickOnAddPartnerButton();
 
 		directorEventRegistrationPage.clickOnRefundPolicyCheckbox();
 		Assert.assertTrue(directorEventRegistrationPage.isRefundPolicyCheckboxSelected());
@@ -459,10 +459,9 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 
 		editOrRemovePartnerPage.searchPartner(testDataProp.getProperty("partner.name"));
 		editOrRemovePartnerPage.hardWait(3);
-		// Assert.assertTrue(editOrRemovePartnerPage.isValidPartnerDisplayed(testDataProp.getProperty("partner.name")));
 
 		eventRegistrationPage.clickOnAddYourPartnerRadioButton();
-		eventRegistrationPage.clickOnAddPartnerRadioButton();
+		eventRegistrationPage.clickOnAddPartnerButton();
 
 		directorEventRegistrationPage.clickOnRefundPolicyCheckbox();
 		Assert.assertTrue(directorEventRegistrationPage.isRefundPolicyCheckboxSelected());

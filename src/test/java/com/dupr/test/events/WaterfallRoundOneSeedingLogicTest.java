@@ -114,9 +114,9 @@ public class WaterfallRoundOneSeedingLogicTest extends CommonBaseTest {
 
 		addEventPage.clickOnNextStepButton();
 
-		this.VerifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
+		this.verifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
 
-		this.VerifyPublishEventButton();
+		this.verifyPublishEventButton();
 
 		addBracketPage.clickOnEventSuccessClosePopupButton();
 		addEventPage.clickOnEventsTab();

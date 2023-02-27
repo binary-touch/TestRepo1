@@ -634,12 +634,12 @@ public class EventRegistrationPage extends DUPRBaseAutomationPage {
 		log.info("Ending of clickOnAddYourPartnerRadioButton method");
 	}
 
-	public void clickOnAddPartnerRadioButton() {
-		log.info("Starting of clickOnAddPartnerRadioButton method");
+	public void clickOnAddPartnerButton() {
+		log.info("Starting of clickOnAddPartnerButton method");
 
 		elementClick(btnAddPartner);
 
-		log.info("Ending of clickOnAddPartnerRadioButton method");
+		log.info("Ending of clickOnAddPartnerButton method");
 	}
 
 	public String getAddAPartnerLabel() {

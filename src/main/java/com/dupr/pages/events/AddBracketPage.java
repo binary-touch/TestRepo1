@@ -1212,7 +1212,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	public void setCompetitionStartDate() {
 		log.info("Starting of setCompetitionStartDate method");
-
+        hardWait(3);
 		try {
 			clickOnWebElement(txtBoxCompetitionStartDate);
 		} catch (Exception e) {
@@ -1344,7 +1344,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	public void clickOnNewDelhiTimeZone() {
 		log.info("Starting of clickOnNewDelhiTimeZone method");
        
-		hardWait(5);
+		hardWait(6);
 		try {
 			clickUsingActionsClass(btnNewDelhiTimeZone);
 		} catch (Exception e) {

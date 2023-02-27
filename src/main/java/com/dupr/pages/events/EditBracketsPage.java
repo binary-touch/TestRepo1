@@ -73,7 +73,7 @@ public class EditBracketsPage extends DUPRBaseAutomationPage {
 
 	public void clickOnBracketLabel() {
 		log.info("Starting of clickOnLabelBracket method");
-
+		
 		elementClick(lblBracket);
 
 		log.info("Ending of clickOnLabelBracket method");
