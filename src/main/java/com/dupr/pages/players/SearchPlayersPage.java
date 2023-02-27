@@ -364,6 +364,7 @@ public class SearchPlayersPage extends DUPRBaseAutomationPage {
 				String Rating = lstPlayersRatingsInDoubles.get(i).getText();
 				float rating = Float.parseFloat(Rating);
 				logger.debug("Doubles Rating: " + Rating);
+				hardWait(2);
 				if (rating >= 3.0 && rating <= 4.0) {
 					flag = true;
 				}

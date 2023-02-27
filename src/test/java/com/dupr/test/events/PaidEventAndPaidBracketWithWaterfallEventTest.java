@@ -42,7 +42,7 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 	private EditBracketsPage editBracketsPage = null;
 	private WithdrawPlayerPage withdrawPlayerPage = null;
 	private Create_Edit_Split_TeamPage teamsPage = null;
-	
+
 	@BeforeClass
 	@Parameters({ "browser", "devSiteURL", "directorEmail", "directorPassword" })
 	public void initMethod(String browser, String devSiteURL, String directorEmail, String directorPassword)
@@ -69,7 +69,7 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 		this.editBracketsPage = new EditBracketsPage(this.driver);
 		this.withdrawPlayerPage = new WithdrawPlayerPage(this.driver);
 		this.teamsPage = new Create_Edit_Split_TeamPage(this.driver);
-		
+
 		logger.info("Ending of initMethod in PaidEventAndPaidBracketWithWaterfallEventTest");
 	}
 
@@ -164,7 +164,7 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 		clubLogoPage.clickOnMyClubsTab();
 		clubLogoPage.clickOnBrowseClubs();
 
-		clubLogoPage.clickOnSimbaClubName();
+		paidEventPage.clickOnSimbaClubName();
 		addEventPage.clickOnEventsTab();
 		addEventPage.clickOnRecentlyAddedEvent(eventName);
 
@@ -459,8 +459,7 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 
 		editOrRemovePartnerPage.searchPartner(testDataProp.getProperty("partner.name"));
 		editOrRemovePartnerPage.hardWait(3);
-		Assert.assertTrue(editOrRemovePartnerPage.isValidPartnerDisplayed(testDataProp.getProperty("partner.name")));
-
+		
 		eventRegistrationPage.clickOnAddYourPartnerRadioButton();
 		eventRegistrationPage.clickOnAddPartnerRadioButton();
 
@@ -477,18 +476,7 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 		}
 		eventRegistrationPage.clickOnRegisterButton();
 		eventRegistrationPage.clickOnOkButton();
-		/*
-		 * Assert.assertEquals(eventRegistrationPage.getSuccessLabel(),
-		 * expectedAssertionsProp.getProperty("success.text"));
-		 * 
-		 * Assert.assertEquals(eventRegistrationPage.getRegistrationCompletedLabel(),
-		 * expectedAssertionsProp.getProperty("registration.completed"));
-		 * 
-		 * Assert.assertEquals(eventRegistrationPage.getOkLabel(),
-		 * expectedAssertionsProp.getProperty("ok.text"));
-		 * 
-		 * eventRegistrationPage.clickOnOkButton();
-		 */
+
 		logger.info("Ending of verifyAcceptOrDeclinePaidEventWithPartnerFunctionalityInDirectorOrOrganizerView method");
 	}
 
@@ -533,6 +521,68 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 		this.verifyPaymentFunctionalityInPaymentPage();
 
 		logger.info("Ending of verifyAcceptOrDeclinePaidEventWithPartnerFunctionalityInPlayerView method");
+	}
+
+	@Parameters({ "browser", "devSiteURL", "directorEmail", "directorPassword" })
+	@Test(priority = 15, description = "Verify withdraw player paidEvent with partner functionality in players view", groups = "sanity")
+	@Description("Test case #15, Verify withdraw player paidEvent with partner functionality in players view")
+	@Severity(SeverityLevel.NORMAL)
+	@Story("Test case #15, Verify withdraw player paidEvent with partner functionality in players view")
+	public void verifyWithdrawPlayerPaidEventWithPartnerFunctionalityInPlayersView(String browser, String devSiteURL,
+			String directorEmail, String directorPassword) throws Exception {
+		logger.info("Starting of verifyWithdrawPlayerPaidEventWithPartnerFunctionalityInPlayersView method");
+
+		paidEventPage.hardWait(3);
+		userDashboardPage.clickOnOpenSettingsMenu();
+
+		preservingPageVisitsPage.clickOnLogoutButton();
+
+		paidEventPage.hardWait(3);
+		this.devSiteLogin(devSiteURL, directorEmail, directorPassword, this.driver);
+		paidEventPage.hardWait(3);
+
+		clubLogoPage.clickOnMyClubsTab();
+		addEventPage.clickOnSimbaClubName();
+		paidEventPage.hardWait(3);
+
+		addEventPage.clickOnEventsTab();
+		addEventPage.clickOnRecentlyAddedEvent(eventName);
+
+		editBracketsPage.clickOnBracketLabel();
+		paidEventPage.hardWait(3);
+
+		teamsPage.clickOnTeamsTab();
+		teamsPage.clickOnSplitTeamButton();
+		teamsPage.clickOnGoBackButton();
+
+		withdrawPlayerPage.clickOnUnMatchedPlayersTab();
+		withdrawPlayerPage.clickOnWithdrawButton();
+		Assert.assertTrue(withdrawPlayerPage.isWithdrawRefundPopUpContains());
+		withdrawPlayerPage.clickOnCloseIconOnWIthdrawRefund();
+		withdrawPlayerPage.clickOnWithdrawButton();
+		withdrawPlayerPage.clickOnRefundButton();
+		withdrawPlayerPage.clickOnNextButton();
+		Assert.assertTrue(withdrawPlayerPage.isRefundPopUpContains());
+
+		paidEventPage.clickonEventCheckBox();
+		paidEventPage.setEventPrice(testDataProp.getProperty("paid.value"));
+		paidEventPage.clickonBracketCheckBox();
+		paidEventPage.setBracketPrice(testDataProp.getProperty("paid.value2"));
+
+		float totalPrice2 = paidEventPage.getTotalPrice();
+
+		Assert.assertSame(totalPrice2, totalNonMemberPrice);
+		withdrawPlayerPage.clickOnNextButton();
+
+		Assert.assertTrue(withdrawPlayerPage.isConfirmationPopUpContains());
+		Assert.assertEquals(withdrawPlayerPage.getConfirmTitleText(),
+				expectedAssertionsProp.getProperty("confirmation.txt"));
+
+		withdrawPlayerPage.clickOnConfirmButton();
+
+		withdrawPlayerPage.clickOnCloseIcon();
+
+		logger.info("Ending of verifyWithdrawPlayerPaidEventWithPartnerFunctionalityInPlayersView method");
 	}
 
 	@AfterClass

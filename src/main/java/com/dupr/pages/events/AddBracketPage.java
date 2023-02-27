@@ -192,7 +192,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//li[contains(text(), '(GMT+05:30) Chennai, Kolkata, Mumbai, New Delhi') or @value='Asia/Kolkata']")
 	private WebElement btnNewDelhiTimeZone;
-	
+
 	@B2BFindBy(xpath = "//ul[contains(@class,'MuiList-root MuiList-padding MuiMenu-list')]")
 	private WebElement ddListTimeZone;
 
@@ -937,12 +937,12 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 		boolean EventType = false;
 		try {
-			if (ddEventType.getAttribute("value").equals("ROUND_ROBIN")) {
-				System.out.println(txtRoundRobin.getAttribute("value").equals("ROUND_ROBIN"));
+			if (ddEventType.getAttribute("value").equalsIgnoreCase("ROUND_ROBIN")) {
+				System.out.println(txtRoundRobin.getAttribute("value").equalsIgnoreCase("ROUND_ROBIN"));
 				EventType = true;
 			} else {
-				EventType = ddEventType.getAttribute("value").equals("COMPASS");
-				System.out.println(btnWaterfallEventType.getAttribute("value").equals("COMPASS"));
+				EventType = ddEventType.getAttribute("value").equalsIgnoreCase("COMPASS");
+				System.out.println(btnWaterfallEventType.getAttribute("value").equalsIgnoreCase("COMPASS"));
 
 			}
 		} catch (Exception e) {
@@ -1094,9 +1094,13 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	public void setRegistrationEndDate() {
 		log.info("Starting of setRegistrationEndDate method");
+		hardWait(2);
+		try {
+			clickOnWebElement(txtBoxRegistrationEndDate);
+		} catch (Exception e) {
+			clickOnElementUsingActionClass(txtBoxRegistrationEndDate);
 
-		clickOnWebElement(txtBoxRegistrationEndDate);
-
+		}
 		int date = this.getFutureDate(1);
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
@@ -1107,7 +1111,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnElementUsingActionClass(btnOK);
 
-		log.info("Ending of setRegistrationEndDate method");
+		log.info("Ending of setRegistrationEndDate�method");
 	}
 
 	public void setInvalidRegistrationStartDate() {
@@ -1131,7 +1135,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 			e.printStackTrace();
 		}
 
-		log.info("Ending of setInvalidRegistrationStartDate method");
+		log.info("Ending of setInvalidRegistrationStartDate�method");
 	}
 
 	public void setInvalidRegistrationEndDate() {
@@ -1216,10 +1220,27 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		}
 
 		int date = this.getFutureDate(2);
+		Month monthValue = this.getFutureMonth(2);
+		String mValue = monthValue.toString();
+		System.out.println(mValue);
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
 
-		this.clickOnCurrentDate(date);
+		String lblmonth = lblMonth.getText();
+		String monthvalue = String.valueOf(lblmonth.split(" ")[0]).toUpperCase().trim();
+		log.debug("Text is " + monthvalue);
+
+		try {
+			if ((mValue).equals(monthvalue)) {
+				this.clickOnCurrentDate(date);
+			} else {
+				clickUsingActionsClass(driver.findElement(By.xpath("//button[@title='Next month']")));
+				this.clickOnCurrentDate(date);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		this.clickOnCurrentTime(hours);
 		clickOnElementUsingActionClass(btnTimeInMinutes);
 		this.clickOnCurrentTime(meridiem);
@@ -1238,10 +1259,27 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		}
 
 		int date = this.getFutureDate(3);
+		Month monthValue = this.getFutureMonth(3);
+		String mValue = monthValue.toString();
+		System.out.println(mValue);
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
 
-		this.clickOnCurrentDate(date);
+		String lblmonth = lblMonth.getText();
+		String monthvalue = String.valueOf(lblmonth.split(" ")[0]).toUpperCase().trim();
+		log.debug("Text is " + monthvalue);
+
+		try {
+			if ((mValue).equals(monthvalue)) {
+				this.clickOnCurrentDate(date);
+			} else {
+				clickUsingActionsClass(driver.findElement(By.xpath("//button[@title='Next month']")));
+				this.clickOnCurrentDate(date);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		this.clickOnCurrentTime(hours);
 		clickOnElementUsingActionClass(btnTimeInMinutes);
 		this.clickOnCurrentTime(meridiem);
@@ -1323,7 +1361,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		try {
 			clickOnElementUsingActionClass(ddTimeZone);
 		} catch (Exception e) {
-			ddTimeZone.click();
+			clickOnWebElement(ddTimeZone);
 		}
 
 		log.info("Ending of clickOnTimeZoneDropdown method");
@@ -1331,6 +1369,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	public boolean isTimeZoneListContains() {
 		log.info("Starting of isTimeZoneListContains method");
+		hardWait(2);
 		log.info("Ending of isTimeZoneListContains method");
 
 		return ddListTimeZone.isDisplayed();
@@ -1339,7 +1378,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	public void clickOnNewDelhiTimeZone() {
 		log.info("Starting of clickOnNewDelhiTimeZone method");
 
-		waitForElementToBeVisible(btnNewDelhiTimeZone);
+		hardWait(5);
 		try {
 			clickUsingActionsClass(btnNewDelhiTimeZone);
 		} catch (Exception e) {
@@ -1379,10 +1418,10 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 		txtBoxClubMemberPrice.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		txtBoxClubMemberPrice.sendKeys(clubMemberPrice);
-		String clubMemberPrice1=txtBoxClubMemberPrice.getAttribute("value");
-		float clubMemberPrice2=Float.parseFloat(clubMemberPrice1);
+		String clubMemberPrice1 = txtBoxClubMemberPrice.getAttribute("value");
+		float clubMemberPrice2 = Float.parseFloat(clubMemberPrice1);
 		log.info("Ending of setBracketClubMemberPrice method");
-		
+
 		return clubMemberPrice2;
 	}
 
@@ -1412,11 +1451,11 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			clickOnWebElement(txtBoxNonClubMemberPrice);
 		}
-		
+
 		txtBoxNonClubMemberPrice.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		txtBoxNonClubMemberPrice.sendKeys(nonclubMemberPrice);
-        String nonclubMemberPrice1=txtBoxNonClubMemberPrice.getAttribute("value");
-        float nonclubMemberPrice2=Float.parseFloat(nonclubMemberPrice1);
+		String nonclubMemberPrice1 = txtBoxNonClubMemberPrice.getAttribute("value");
+		float nonclubMemberPrice2 = Float.parseFloat(nonclubMemberPrice1);
 		log.info("Ending of setBracketNonClubMemberPrice method");
 		return nonclubMemberPrice2;
 	}
@@ -2604,7 +2643,6 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 			}
 			String hours = this.getCurrentHour();
 			String meridiem = this.getCurrentMeridiem();
-			hardWait(2);
 			this.clickOnCurrentTime(hours);
 			clickOnElementUsingActionClass(btnTimeInMinutes);
 			this.clickOnCurrentTime(meridiem);
@@ -2657,7 +2695,6 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		}
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
-		hardWait(3);
 		this.clickOnCurrentTime(hours);
 		clickOnElementUsingActionClass(btnTimeInMinutes);
 		this.clickOnCurrentTime(meridiem);
@@ -2668,8 +2705,12 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	public void setCompetitionStartDateMoreThenSevenDays() {
 		log.info("Starting of setCompetitionStartDateMoreThenSevenDays method");
+		try {
+			clickOnWebElement(txtBoxCompetitionStartDate);
 
-		clickOnWebElement(txtBoxCompetitionStartDate);
+		} catch (Exception e) {
+			clickOnElementUsingActionClass(txtBoxCompetitionStartDate);
+		}
 		hardWait(3);
 		int date = this.getFutureDate(9);
 		Month monthValue = this.getFutureMonth(9);
@@ -2692,7 +2733,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		}
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
-		//hardWait(3);
+
 		this.clickOnCurrentTime(hours);
 		clickOnElementUsingActionClass(btnTimeInMinutes);
 		this.clickOnCurrentTime(meridiem);
@@ -2728,7 +2769,6 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		}
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
-		hardWait(3);
 		this.clickOnCurrentTime(hours);
 		clickOnElementUsingActionClass(btnTimeInMinutes);
 		this.clickOnCurrentTime(meridiem);
@@ -2743,7 +2783,8 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		clickOnWebElement(txtBoxCompetitionEndDate);
 		hardWait(3);
 		int date = this.getFutureDate(10);
-		Month monthValue = this.getFutureMonth(10);
+		System.out.println(date);
+		Month monthValue = this.getFutureMonth(15);
 		String mValue = monthValue.toString();
 		System.out.println(mValue);
 
@@ -2761,6 +2802,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
 		hardWait(3);
@@ -2777,7 +2819,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 		clickOnWebElement(txtBoxCompetitionEndDate);
 		hardWait(3);
-		
+
 		int date = this.getPastDate(1);
 		Month monthValue = this.getPreviousMonth(1);
 		String mValue = monthValue.toString();
@@ -2804,7 +2846,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		clickOnElementUsingActionClass(btnTimeInMinutes);
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnElementUsingActionClass(btnOK);
-		
+
 		log.info("Ending of setCompetitionEndDateBeforeOneDay method");
 	}
 
@@ -2926,7 +2968,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 				} catch (Exception e) {
 					clickOnWebElement(ddBracketCaretIcon);
 				}
-			}else {
+			} else {
 				log.info("***Bracket opened***");
 			}
 		} catch (Exception e) {

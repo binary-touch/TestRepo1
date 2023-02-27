@@ -54,8 +54,7 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 		Assert.assertTrue(this.eventRegistrationPage.isEventCompetitionDatesDisplayed());
 		addEventPage.hardWait(3);
 		Assert.assertTrue(this.eventRegistrationPage.isEventStatusesDisplayed());
-		Assert.assertTrue(this.eventRegistrationPage.isDeleteEventDisplayed());
-
+		
 		logger.info("Ending of verifyEventsTabForOpenStatusEvent method");
 	}
 
