@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Common UI Automation Tests"><!-- parallel = "classes" thread-count = "2" -->
+<suite name="Common UI Automation Tests">parallel = "classes" thread-count = "2"
 
 	<test name="Sprint 1">
 		<classes>
@@ -80,7 +80,7 @@
 			<class
 				name="com.dupr.test.events.PaidEventAndPaidBracketWithWaterfallEventTest" />
 			<class
-				name="com.dupr.test.events.WaterfallRoundOneSeedingLogicTest" />
+				name="com.dupr.test.events.WaterfallRoundOneSeedingLogicTest" /> 
 			<class name="com.dupr.test.events.SeedMatchesWaterFallTest" />
 		</classes>
 	</test>
