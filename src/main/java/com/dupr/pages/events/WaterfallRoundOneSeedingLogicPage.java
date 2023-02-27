@@ -137,7 +137,14 @@ public class WaterfallRoundOneSeedingLogicPage extends DUPRBaseAutomationPage {
 			clickOnWebElement(btnSort);
 		}
 
-		hardWait(2);
+		hardWait(3);
+
+		log.info("Ending of clickOnSortButton method");
+	}
+	
+	public void selectHighToLowRadioButton() {
+		log.info("Starting of selectHighToLowRadioButton method");
+		
 		try {
 			clickUsingActionsClass(rdoHightToLow);
 		} catch (Exception e) {
@@ -145,7 +152,7 @@ public class WaterfallRoundOneSeedingLogicPage extends DUPRBaseAutomationPage {
 		}
 		hardWait(4);
 
-		log.info("Ending of clickOnSortButton method");
+		log.info("Ending of selectHighToLowRadioButton method");
 	}
 
 	public void getPlayerName() {

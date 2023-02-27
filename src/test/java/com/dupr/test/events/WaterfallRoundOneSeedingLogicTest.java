@@ -154,6 +154,7 @@ public class WaterfallRoundOneSeedingLogicTest extends CommonBaseTest {
 		logger.info("Starting of verifySortingplayersAsRatingHighToLow method");
 
 		waterfallRoundOneSeedingLogicPage.clickOnSortButton();
+		waterfallRoundOneSeedingLogicPage.selectHighToLowRadioButton();
 		waterfallRoundOneSeedingLogicPage.hardWait(3);
 		waterfallRoundOneSeedingLogicPage.getPlayerName();
 
@@ -183,12 +184,11 @@ public class WaterfallRoundOneSeedingLogicTest extends CommonBaseTest {
 	@Description("Test case #5, Verify round one seeding logic of Waterfall event")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #5, Verify round one seeding logic of Waterfall event")
-	public void verifyWaterFallRoundOneSeeingLogic() {
-		logger.info("Starting of verifyWaterFallRoundOneSeeingLogic method");
+	public void verifyWaterFallRoundOneSeedingLogic() {
+		logger.info("Starting of verifyWaterFallRoundOneSeedingLogic method");
 
 		waterfallRoundOneSeedingLogicPage.getRoundOnePlayersName();
 		seedMatchesPage.hardWait(4);
-		
 		
 		waterfallRoundOneSeedingLogicPage.printnames();
 
@@ -198,7 +198,7 @@ public class WaterfallRoundOneSeedingLogicTest extends CommonBaseTest {
 		seedMatchesPage.clickOnSavePublishButton();
 		seedMatchesPage.hardWait(5);
 
-		logger.info("Ending of verifyWaterFallRoundOneSeeingLogic method");
+		logger.info("Ending of verifyWaterFallRoundOneSeedingLogic method");
 	}
 	@AfterClass
 	public void quitDriver() {
