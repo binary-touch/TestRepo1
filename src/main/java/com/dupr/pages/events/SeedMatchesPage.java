@@ -64,7 +64,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//button[@aria-label='scroll-left']")
 	private WebElement iconArrowDisabled;
 
-	@B2BFindBy(xpath = "//h6[contains(text(),'Click “Create Matches” to')]")
+	@B2BFindBy(xpath = "//h6[contains(text(),'Click â€œCreate Matchesâ€� to')]")
 	private WebElement txtClick;
 
 	@B2BFindBy(xpath = "//h3[contains(text(),'Bracket')]")
@@ -1546,7 +1546,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnElementUsingActionClass(btnOK);
 
-		log.info("Ending of setRegistrationStartDate method");
+		log.info("Ending of setRegistrationStartDateÂ method");
 	}
 
 	public void setRegistrationEndDate() {
@@ -1583,11 +1583,11 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnElementUsingActionClass(btnOK);
 
-		log.info("Ending of setRegistrationEndDate method");
+		log.info("Ending of setRegistrationEndDateÂ method");
 	}
 
 	public void selectFutureHour() {
-		log.info("Starting of selectFutureHour method");
+		log.info("Starting of selectFutureHourÂ method");
 
 		String pattern = "h";
 		LocalTime currentHour = LocalTime.now();
@@ -1615,7 +1615,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 			this.clickOnCurrentTime(min);
 		}
 
-		log.info("Ending of selectFutureHour method");
+		log.info("Ending of selectFutureHourÂ method");
 	}
 
 	public void setCompetitionStartDate() {
@@ -1656,7 +1656,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnElementUsingActionClass(btnOK);
 
-		log.info("Ending of setCompetitionStartDate method");
+		log.info("Ending of setCompetitionStartDateÂ method");
 	}
 
 	public boolean isRoundOneDisplayed() {
