@@ -943,7 +943,7 @@ public class SeedMatchesTest extends CommonBaseTest {
 
 		addEventPage.clickOnEventsTab();
 		seedMatchesPage.hardWait(3);
-		addEventPage.clickOnRecentlyAddedEvent(eventName);
+		addEventPage.clickOnRecentlyAddedEvent(event);
 		seedMatchesPage.hardWait(3);
 
 		seedMatchesPage.clickOnBracketCard();
