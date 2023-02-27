@@ -72,10 +72,10 @@ public class EditBracketsTest extends CommonBaseTest {
 		super.verifyAddBracketsFunctionalityWithValidDetails();
 
 		addBracketPage.hardWait(3);
-		this.VerifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
+		this.verifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
 
 		addBracketPage.hardWait(3);
-		this.VerifyPublishEventButton();
+		this.verifyPublishEventButton();
 		addBracketPage.clickOnEventSuccessClosePopupButton();
 
 		logger.info("Ending of verifyFreeEventFunctionality method");

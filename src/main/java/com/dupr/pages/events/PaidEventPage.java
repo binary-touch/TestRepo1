@@ -2,6 +2,7 @@ package com.dupr.pages.events;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -16,6 +17,15 @@ public class PaidEventPage extends DUPRBaseAutomationPage {
 	protected static float TotalPrice1;
 	protected static float totalPrice1;
 	private static final Logger log = LogManager.getLogger(PaidEventPage.class);
+
+	@B2BFindBy(xpath = "//h3[text()='Browse Clubs']")
+	private WebElement lblBrowseClubs;
+
+	@B2BFindBy(xpath = "//input[@id='Search']")
+	private WebElement txtBoxSearch;
+
+	@B2BFindBy(xpath = "//h4[text()='Simba']")
+	private WebElement lblSimbaClubName;
 
 	@B2BFindBy(xpath = "//button[text()='Continue to Payment' and @disabled]")
 	private WebElement btnContinuePaymentDisabled;
@@ -61,7 +71,7 @@ public class PaidEventPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//button[@type='submit']")
 	private WebElement btnPay;
-	
+
 	@B2BFindBy(xpath = "//span[text()='*Event']")
 	private WebElement lblEvent;
 
@@ -76,10 +86,10 @@ public class PaidEventPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//div[contains(@class, 'MuiDialog-paper MuiDialog-paperScrollPaper')]//label[2]/span/following-sibling::span//input")
 	private WebElement txtBoxBracketPrice;
-	
+
 	@B2BFindBy(xpath = "//h5[text()='Total:']/parent::div/parent::div//input")
 	private WebElement txtBoxTotalPrice;
-	
+
 	public PaidEventPage(WebDriver driver) {
 		super(driver);
 		B2BPageFactory.initElements(driver, this);
@@ -90,6 +100,33 @@ public class PaidEventPage extends DUPRBaseAutomationPage {
 		log.info("Ending of isContinuePaymentButtonDisabled method");
 
 		return btnContinuePaymentDisabled.isDisplayed();
+	}
+
+	public void clickOnSimbaClubName() {
+		log.info("Starting of clickOnSimbaClubName method");
+
+		try {
+			if (lblBrowseClubs.isDisplayed() == true) {
+				this.txtBoxSearch.click();
+				this.txtBoxSearch.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
+
+				sendKeys(txtBoxSearch, "simba");
+				this.txtBoxSearch.sendKeys(Keys.ENTER);
+
+				if (lblSimbaClubName.isDisplayed() == true) {
+					elementClick(lblSimbaClubName);
+				} else {
+					this.txtBoxSearch.sendKeys(Keys.BACK_SPACE);
+					sendKeys(txtBoxSearch, "a");
+					this.waitForElementToBeVisible(lblSimbaClubName);
+					elementClick(lblSimbaClubName);
+				}
+			}
+		} catch (Exception e) {
+			elementClick(lblSimbaClubName);
+		}
+
+		log.info("Ending of clickOnSimbaClubName method");
 	}
 
 	public void clickOnContinuePaymentButton() {
@@ -112,10 +149,10 @@ public class PaidEventPage extends DUPRBaseAutomationPage {
 
 	public boolean isRegistrationUnSuccessFullPageContains() {
 		log.info("Starting of isRegistrationUnSuccessFulPageContains method");
-		
+
 		hardWait(3);
 		boolean isRegistrationUnSuccessFullPageContains = false;
-        hardWait(3);
+		hardWait(3);
 		if (lblRegistrationUnsuccessful.isDisplayed() && btnRegistrationUnsuccessfulOk.isDisplayed()
 				&& iconRegistrationUnsuccessfullClose.isDisplayed()) {
 			isRegistrationUnSuccessFullPageContains = true;
@@ -192,7 +229,7 @@ public class PaidEventPage extends DUPRBaseAutomationPage {
 
 	public float getEventNonClubMemberPriceValue() {
 		log.info("Starting of getEventNonClubMemberPriceValue method");
-        
+
 		hardWait(3);
 		System.out.println(lblNonClubMembershipEventPrice.getText());
 		String EventPrice = lblNonClubMembershipEventPrice.getText().substring(1);
@@ -293,7 +330,7 @@ public class PaidEventPage extends DUPRBaseAutomationPage {
 
 		log.info("Ending of clickOnPayButton method");
 	}
-	
+
 	public String getEventLabel() {
 		log.info("Starting of getEventLabel method");
 		log.info("Ending of getEventLabel method");
@@ -332,13 +369,13 @@ public class PaidEventPage extends DUPRBaseAutomationPage {
 
 		log.info("Ending of setBracketPrice method");
 	}
-	
+
 	public float getTotalPrice() {
 		log.info("Starting of setTotalPrice method");
-		String totalPrice=txtBoxTotalPrice.getAttribute("value");
-		float totalPrice1= Float.parseFloat(totalPrice);
+		String totalPrice = txtBoxTotalPrice.getAttribute("value");
+		float totalPrice1 = Float.parseFloat(totalPrice);
 		log.info("Ending of setTotalPrice method");
-		
+
 		return totalPrice1;
 	}
 }

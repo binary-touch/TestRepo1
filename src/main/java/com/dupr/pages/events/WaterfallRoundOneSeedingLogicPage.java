@@ -1,17 +1,12 @@
 package com.dupr.pages.events;
 
-import java.awt.print.PrinterException;
-import java.nio.file.attribute.AclEntry;
 import java.util.List;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 
 import com.b2b.support.B2BFindBy;
 import com.b2b.support.B2BFindBys;
@@ -88,11 +83,11 @@ public class WaterfallRoundOneSeedingLogicPage extends DUPRBaseAutomationPage {
 	String MatchEightSecondPlayerName = null;
 
 	public void getSinglesRating() {
-		 log.info("Starting of isQueueTabDisplayed method");
+		log.info("Starting of isQueueTabDisplayed method");
 
 		int s = 0;
 		int k = 0;
-		
+
 		for (int j = 0; j < 15; j++) {
 			try {
 				this.hardWait(3);
@@ -107,26 +102,25 @@ public class WaterfallRoundOneSeedingLogicPage extends DUPRBaseAutomationPage {
 						} else {
 							if (k < 7) {
 								if (txtSinglesRating.get(i).getText().equals("NR")) {
-									
+
 									scrollIntoView(txtSinglesRating.get(i));
+								} else {
+									txtSinglesRating.get(i).click();
+									k++;
+									break;
 								}
-							 else {
-								txtSinglesRating.get(i).click();
-								k++;
-								break;
-							 }
 							}
 						}
 					}
-				this.hardWait(3);
-				clickOnElement(btnAddParticipant);
-				this.hardWait(4);
-				clickOnWebElement(rdoNo);
-				this.hardWait(3);
-				clickOnWebElement(btnAdd);
-				this.hardWait(5);
-			}}
-			catch (Exception e) {
+					this.hardWait(3);
+					clickOnElement(btnAddParticipant);
+					this.hardWait(4);
+					clickOnWebElement(rdoNo);
+					this.hardWait(3);
+					clickOnWebElement(btnAdd);
+					this.hardWait(5);
+				}
+			} catch (Exception e) {
 				System.out.println();
 			}
 		}
@@ -152,64 +146,64 @@ public class WaterfallRoundOneSeedingLogicPage extends DUPRBaseAutomationPage {
 			clickOnWebElement(rdoHightToLow);
 		}
 		hardWait(4);
-		
+
 		log.info("Ending of clickOnSortButton method");
 	}
 
 	public void getPlayerName() {
-		log.info("Starting of getPlayerName method");		
+		log.info("Starting of getPlayerName method");
 		scrollDown(3000);
 		this.hardWait(3);
-		for (int i = 0; i <16; i++) {
+		for (int i = 0; i < 16; i++) {
 			System.out.println(txtPlayerName.size());
 
 			String PlayerName = txtPlayerName.get(i).getText();
 
 			if (i == 0) {
 				FirstPlayerName = PlayerName;
-				
+
 			} else if (i == 1) {
 				SecondPlayerName = PlayerName;
-				
+
 			} else if (i == 2) {
 				ThirdPlayerName = PlayerName;
-				
+
 			} else if (i == 3) {
 				FourthPlayerName = PlayerName;
-				
+
 			} else if (i == 4) {
 				FifthPlayerName = PlayerName;
-			
+
 			} else if (i == 5) {
 				SixthPlayerName = PlayerName;
-				
+
 			} else if (i == 6) {
 				SeventhPlayerName = PlayerName;
-				
+
 			} else if (i == 7) {
 				EighthPlayerName = PlayerName;
-				
+
 			} else if (i == 8) {
 				NinthPlayerName = PlayerName;
-				
+
 			} else if (i == 9) {
 				TenthPlayerName = PlayerName;
-				
+
 			} else if (i == 10) {
 				EleventhPlayerName = PlayerName;
-			
+
 			} else if (i == 11) {
 				TwelfthPlayerName = PlayerName;
-				
+
 			} else if (i == 12) {
 				ThirteenthPlayerName = PlayerName;
-				
+
 			} else if (i == 13) {
 				FourteenthPlayerName = PlayerName;
-				
+
 			} else if (i == 14) {
 				FifteenthPlayerName = PlayerName;
-				
+
 			} else if (i == 15) {
 				SixteenthPlayerName = PlayerName;
 			}
@@ -269,82 +263,82 @@ public class WaterfallRoundOneSeedingLogicPage extends DUPRBaseAutomationPage {
 		}
 	}
 
-	
 	public void printnames() {
-		
+
 		System.out.println(FirstPlayerName);
 		System.out.println(MatchOneFirstPlayerName);
-		
+
 		System.out.println(SixteenthPlayerName);//
 		System.out.println(MatchOneSecondPlayerName);
-		
+
 		System.out.println(EighthPlayerName);
 		System.out.println(MatchTwoFirstPlayerName);
-		
+
 		System.out.println(NinthPlayerName);
 		System.out.println(MatchTwoSecondPlayerName);
-		
+
 		System.out.println(FourthPlayerName);
 		System.out.println(MatchThreeFirstPlayerName);
-		
+
 		System.out.println(ThirteenthPlayerName);//
 		System.out.println(MatchThreeSecondPlayerName);
-		
+
 		System.out.println(FifthPlayerName);
 		System.out.println(MatchFourFirstPlayerName);
-		
+
 		System.out.println(TwelfthPlayerName);//
 		System.out.println(MatchFourSecondPlayerName);
-		
+
 		System.out.println(SecondPlayerName);
 		System.out.println(MatchFiveFirstPlayerName);
-		
+
 		System.out.println(FifteenthPlayerName);//
 		System.out.println(MatchFiveSecondPlayerName);
-		
+
 		System.out.println(SeventhPlayerName);
 		System.out.println(MatchSixFirstPlayerName);
-		
+
 		System.out.println(TenthPlayerName);
 		System.out.println(MatchSixSecondPlayerName);
-		
+
 		System.out.println(ThirdPlayerName);
 		System.out.println(MatchSevenFirstPlayerName);
-		
+
 		System.out.println(FourteenthPlayerName);//
 		System.out.println(MatchSevenSecondPlayerName);
-		
+
 		System.out.println(SixthPlayerName);
 		System.out.println(MatchEightFirstPlayerName);
-		
+
 		System.out.println(EleventhPlayerName);//
 		System.out.println(MatchEightSecondPlayerName);
 	}
+
 	public boolean WaterFallRoundOneSeedingLogic() {
 		log.info("Starting of WaterFallRoundOneSeedingLogic method");
 
 		boolean WaterFallRoundOneSeedingLogic = false;
-		
+
 		try {
-			if ((MatchOneFirstPlayerName).equals(FirstPlayerName) 
+			if ((MatchOneFirstPlayerName).equals(FirstPlayerName)
 					&& (MatchOneSecondPlayerName).equals(SixteenthPlayerName)
 					&& (MatchTwoFirstPlayerName).equals(EighthPlayerName)
 					&& (MatchTwoSecondPlayerName).equals(NinthPlayerName)
-					&& (MatchThreeFirstPlayerName).equals(FourthPlayerName) 
-					&& (MatchThreeSecondPlayerName).equals(ThirteenthPlayerName) 
+					&& (MatchThreeFirstPlayerName).equals(FourthPlayerName)
+					&& (MatchThreeSecondPlayerName).equals(ThirteenthPlayerName)
 					&& (MatchFourFirstPlayerName).equals(FifthPlayerName)
 					&& (MatchFourSecondPlayerName).equals(TwelfthPlayerName)
 					&& (MatchFiveFirstPlayerName).equals(SecondPlayerName)
 					&& (MatchFiveSecondPlayerName).equals(FifteenthPlayerName)
 					&& (MatchSixFirstPlayerName).equals(SeventhPlayerName)
-					&& (MatchSixSecondPlayerName).equals(TenthPlayerName)  
-					&& (MatchSevenFirstPlayerName).equals(ThirdPlayerName) 
-					&& (MatchSevenSecondPlayerName).equals(FourteenthPlayerName) 
+					&& (MatchSixSecondPlayerName).equals(TenthPlayerName)
+					&& (MatchSevenFirstPlayerName).equals(ThirdPlayerName)
+					&& (MatchSevenSecondPlayerName).equals(FourteenthPlayerName)
 					&& (MatchEightFirstPlayerName).equals(SixthPlayerName)
 					&& (MatchEightSecondPlayerName).equals(EleventhPlayerName)) {
 
 				WaterFallRoundOneSeedingLogic = true;
-			
+
 			}
 		} catch (Exception e) {
 			WaterFallRoundOneSeedingLogic = false;

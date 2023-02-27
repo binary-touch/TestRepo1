@@ -114,9 +114,9 @@ public class WaterfallRoundOneSeedingLogicTest extends CommonBaseTest {
 
 		addEventPage.clickOnNextStepButton();
 
-		this.VerifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
+		this.verifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
 
-		this.VerifyPublishEventButton();
+		this.verifyPublishEventButton();
 
 		addBracketPage.clickOnEventSuccessClosePopupButton();
 		addEventPage.clickOnEventsTab();
@@ -137,9 +137,9 @@ public class WaterfallRoundOneSeedingLogicTest extends CommonBaseTest {
 		logger.info("Starting of verifyAddingParticipantsInWaterFallEvent method");
 
 		seedMatchesPage.hardWait(3);
-		addparticipantsPage.addMeetForWaterFall(testDataProp.getProperty("player.name"));
+		addparticipantsPage.addMeetPlayerForWaterFallEvent(testDataProp.getProperty("player.name"));
 		seedMatchesPage.hardWait(3);
-		addparticipantsPage.addMeetForWaterFall(testDataProp.getProperty("provisional.rating.player"));
+		addparticipantsPage.addMeetPlayerForWaterFallEvent(testDataProp.getProperty("provisional.rating.player"));
 		seedMatchesPage.hardWait(3);
 		waterfallRoundOneSeedingLogicPage.getSinglesRating();
 

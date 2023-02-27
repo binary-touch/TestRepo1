@@ -116,9 +116,9 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 
 		addEventPage.clickOnNextStepButton();
 
-		this.VerifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
+		this.verifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
 
-		this.VerifyPublishEventButton();
+		this.verifyPublishEventButton();
 
 		addBracketPage.clickOnEventSuccessClosePopupButton();
 		addEventPage.clickOnEventsTab();
@@ -174,7 +174,7 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		logger.info("Starting of verifyAddingParticipantsInWaterFallEvent method");
 
 		seedMatchesPage.hardWait(3);
-		addparticipantsPage.addMeetForWaterFall(testDataProp.getProperty("player.name"));
+		addparticipantsPage.addMeetPlayerForWaterFallEvent(testDataProp.getProperty("player.name"));
 		seedMatchesPage.hardWait(3);
 		addparticipantsPage.addParticipantsForWaterFall();
 
@@ -862,9 +862,9 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 
 		addEventPage.clickOnNextStepButton();
 
-		this.VerifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
+		this.verifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
 
-		this.VerifyPublishEventButton();
+		this.verifyPublishEventButton();
 
 		addBracketPage.clickOnEventSuccessClosePopupButton();
 		addEventPage.clickOnEventsTab();

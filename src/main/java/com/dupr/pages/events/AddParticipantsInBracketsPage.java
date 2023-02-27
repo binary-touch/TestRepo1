@@ -466,6 +466,41 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 
 		log.info("Ending of addParticipants method");
 	}
+	
+	public void addParticipantsIntoRoundRobinSinglesMatch() {
+		log.info("Starting of addParticipantsIntoRoundRobinSinglesMatch method");
+
+		for (int i = 0; i < 2; i++) {
+			try {
+				this.hardWait(3);
+				clickOnWebElement(btnAddParticipants);
+				this.hardWait(4);
+				clickOnWebElement(rdoSelectParticipant);
+				this.hardWait(3);
+				clickOnElement(btnAddParticipant);
+				this.hardWait(4);
+				clickOnWebElement(rdoNo);
+				this.hardWait(3);
+				clickOnWebElement(btnAdd);
+				this.hardWait(5);
+			} catch (Exception e) {
+				this.hardWait(3);
+				clickOnWebElement(btnAddParticipants);
+				this.hardWait(4);
+				clickOnWebElement(rdoSelectParticipant);
+				this.hardWait(3);
+				clickOnElement(btnAddParticipant);
+				this.hardWait(4);
+				clickOnWebElement(rdoNo);
+				this.hardWait(3);
+				clickOnWebElement(btnAdd);
+				this.hardWait(5);
+			}
+
+		}
+
+		log.info("Ending of addParticipantsIntoRoundRobinSinglesMatch method");
+	}
 
 	public void addParticipantsForWaterFall() {
 		log.info("Starting of addParticipantsForWaterFall method");
@@ -511,8 +546,8 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 		log.info("Ending of addParticipantsForWaterFall method");
 	}
 
-	public void addMeetForWaterFall(String Name) {
-		log.info("Starting of addParticipantsForWaterFall method");
+	public void addMeetPlayerForWaterFallEvent(String Name) {
+		log.info("Starting of addMeetPlayerForWaterFallEvent method");
 		try {
 			this.hardWait(3);
 			clickOnWebElement(btnAddParticipants);
@@ -544,7 +579,7 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 			this.hardWait(5);
 		}
 
-		log.info("Ending of addParticipantsForWaterFall method");
+		log.info("Ending of addMeetPlayerForWaterFallEvent method");
 	}
 
 }
