@@ -176,7 +176,7 @@ public class ClubLogoTest extends DUPRBaseAutomationTest {
 		profilePicturePage.clickOnCameraIcon();
 		clubLogoPage.clickOnChangeLogoOption();
 
-		profilePicturePage.clickOnCloseIcon();
+		profilePicturePage.clickOnCloseIconOnEventLogo();
 
 		Assert.assertTrue(clubLogoPage.isClubPageContains());
 
@@ -230,7 +230,7 @@ public class ClubLogoTest extends DUPRBaseAutomationTest {
 		clubLogoPage.clickOnRemoveLogoOption();
 
 		clubLogoPage.hardWait(2);
-		profilePicturePage.clickOnCloseIcon();
+		profilePicturePage.iconCloseOnRemoveLogo();
 
 		Assert.assertTrue(clubLogoPage.isClubPageContains());
 

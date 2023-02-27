@@ -457,8 +457,8 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 	}
 
 	public String getSuccessTitleText() {
-		log.info("Starting of getSucessTittleTxt method");
-		log.info("Ending of getSucessTittleTxt method");
+		log.info("Starting of getSuccessTitleText method");
+		log.info("Ending of getSuccessTitleText method");
 
 		return getText(txtSucess);
 	}

@@ -57,7 +57,7 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 	// ="//ul[@id='composition-menu']/li/following-sibling::li/preceding-sibling::li")
 	@B2BFindBy(xpath = "//li[contains(text(),'Change Logo')]")
 	private WebElement btnChangeLogo;
-	
+
 	@B2BFindBy(xpath = "//h4[contains(text(),'Remove Logo')]")
 	private WebElement txtRemoveLogo;
 
@@ -93,16 +93,16 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBys(@B2BFindBy(xpath = "//h5[text()='As a Director']/..//div[contains(@class,'MuiGrid-item MuiGrid-grid-xs-12')]/div//h4"))
 	private List<WebElement> lstClubs;
-	
+
 	@B2BFindBy(xpath = "//h3[text()='Browse Clubs']")
 	private WebElement lblBrowseClubs;
 
 	@B2BFindBys(@B2BFindBy(xpath = "//div/div[contains(@class,'MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation3')]//h4"))
 	private List<WebElement> lstClubsInBrowseClubsPage;
-	
+
 	@B2BFindBy(xpath = "//input[@id='Search']")
 	private WebElement txtBoxSearch;
-	
+
 	@B2BFindBy(xpath = "//h4[text()='Simba']")
 	private WebElement lblSimbaClubName;
 
@@ -114,12 +114,9 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//p[text()='Select an image to upload']")
 	private WebElement lblSelectAnImageToUpload;
-	
+
 	@B2BFindBy(xpath = "//button[text()='Browse Clubs']")
 	private WebElement btnBrowseClubs;
-	
-	
-	
 
 	public ClubLogoPage(WebDriver driver) {
 		super(driver);
@@ -144,20 +141,26 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 
 	public void clickOnRemoveLogoOption() {
 		log.info("Starting of clickOnRemoveLogoOption method");
-
-		clickOnWebElement(btnRemoveLogo);
-
+		try {
+			clickUsingActionsClass(btnRemoveLogo);
+		} catch (Exception e) {
+			clickOnWebElement(btnRemoveLogo);
+		}
 		log.info("Ending of clickOnRemoveLogoOption method");
 	}
 
 	public void clickOnChangeLogoOption() {
 		log.info("Starting of clickOnChangeLogoOption method");
-
-		elementClick(btnChangeLogo);
+		
+		try {
+			clickUsingActionsClass(btnChangeLogo);
+		} catch (Exception e) {
+			clickOnWebElement(btnChangeLogo);
+		}
 
 		log.info("Ending of clickOnChangeLogoOption method");
 	}
-	
+
 	public void clickOnBrowseClubs() {
 		log.info("Starting of clickOnBrowseClubs method");
 
@@ -185,7 +188,7 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 		log.info("Starting of isRemoveLogoPopupContains method");
 
 		boolean isRemoveLogoPopupContains = false;
-		
+
 		try {
 			if (isDisplayed(lblRemoveLogo) && isDisplayed(btnYes) && isDisplayed(btnNo) && isDisplayed(iconClose)) {
 				isRemoveLogoPopupContains = true;
@@ -253,6 +256,7 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 
 		log.info("Ending of clickOnMyClubsTab method");
 	}
+	
 
 	public void clickOnClub() {
 		log.info("Starting of clickOnClub method");
@@ -272,7 +276,7 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 		}
 		log.info("Ending of clickOnClub method");
 	}
-	
+
 	public void searchClubWithClubName() {
 		log.info("Starting of searchClubWithClubName method");
 
@@ -288,7 +292,7 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 				hardWait(3);
 				this.lstClubsInBrowseClubsPage.get(0).click();
 			}
-			
+
 		} catch (Exception e) {
 			sendKeys(txtBoxSearch, "gegegerge");
 			this.txtBoxSearch.sendKeys(Keys.ENTER);
@@ -301,11 +305,10 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 
 		log.info("Ending of searchClubWithClubName method");
 	}
-	
+
 	public void clickOnClubInBrowsePlayersPage() {
 		log.info("Starting of clickOnClubInBrowsePlayersPage method");
 
-		
 		for (WebElement club : lstClubsInBrowseClubsPage) {
 			hardWait(5);
 			try {
@@ -337,7 +340,7 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 
 		return clubState;
 	}
-	
+
 	public void clickOnSimbaClubName() {
 		log.info("Starting of clickOnSimbaClubName method");
 

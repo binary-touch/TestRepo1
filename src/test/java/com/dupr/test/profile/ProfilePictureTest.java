@@ -144,7 +144,7 @@ public class ProfilePictureTest extends CommonBaseTest {
 		profilePicturePage.clickOnCameraIcon();
 		profilePicturePage.clickOnChangeProfilePictureButton();
 		profilePicturePage.hardWait(2);
-		profilePicturePage.clickOnCloseIcon();
+		profilePicturePage.clickOnCloseIconOnEventLogo();
 
 		Assert.assertTrue(profilePicturePage.isEditProfilePageContains());
 
@@ -177,7 +177,7 @@ public class ProfilePictureTest extends CommonBaseTest {
 
 		profilePicturePage.clickOnCameraIcon();
 		profilePicturePage.clickOnRemoveProfilePicture();
-		profilePicturePage.clickOnCloseIcon();
+		profilePicturePage.iconCloseOnRemoveLogo();
 
 		Assert.assertTrue(profilePicturePage.isEditProfilePageContains());
 

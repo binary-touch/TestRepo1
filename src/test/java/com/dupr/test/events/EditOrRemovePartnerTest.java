@@ -57,6 +57,7 @@ public class EditOrRemovePartnerTest extends CommonBaseTest {
 
 		editOrRemovePartnerPage.clickOnBracketKebabMenu();
 		try {
+			editOrRemovePartnerPage.hardWait(3);
 			Assert.assertEquals(editOrRemovePartnerPage.getAddPartnerLabel(),
 					expectedAssertionsProp.getProperty("add.partner.text"));
 		} catch (Exception e) {
@@ -143,7 +144,7 @@ public class EditOrRemovePartnerTest extends CommonBaseTest {
 		logger.info("Starting of verifySearchPartnerFunctionalityWithValidPartnerName method");
 
 		this.verifyEditPartnerFunctionalityInBracketPage();
-
+		editOrRemovePartnerPage.implicitWait();
 		editOrRemovePartnerPage.searchPartner(testDataProp.getProperty("player.name.txt"));
 
 		Assert.assertTrue(editOrRemovePartnerPage.isValidPartnerDisplayed(testDataProp.getProperty("player.name.txt")));
