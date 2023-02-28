@@ -91,7 +91,7 @@ public class AntiScrappingCaptchaPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//button[text()='Add Your Opponent']")
 	private WebElement btnAddYourOpponent;
 
-	@B2BFindBy(xpath = "//button[text()='Add Players']")
+	@B2BFindBy(xpath = "//button[contains(text(),'Add Players')]")
 	private WebElement drpAddPlayers;
 
 	@B2BFindBy(xpath = "//li[text()='Add a single DUPR user']")
@@ -102,7 +102,7 @@ public class AntiScrappingCaptchaPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//button[contains(text(),'Add a Match')]")
 	private WebElement btnAddAMatch;
-	
+
 	@B2BFindBy(xpath = "//button[text()='Browse Clubs']")
 	private WebElement btnBrowseClubs;
 
@@ -132,6 +132,9 @@ public class AntiScrappingCaptchaPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//button[contains(text(),'Add a Player')]")
 	private WebElement btnAddPlayer;
+
+	@B2BFindBys({ @B2BFindBy(xpath = "//div[contains(@class,'infinite-scroll-component__outerdiv')]//h4") })
+	private List<WebElement> txtPlayerName;
 
 	public AntiScrappingCaptchaPage(WebDriver driver) {
 		super(driver);
@@ -424,8 +427,13 @@ public class AntiScrappingCaptchaPage extends DUPRBaseAutomationPage {
 	public void clickOnAddPlayersDropdown() {
 		log.info("Starting of clickOnAddPlayersDropdown method");
 
-		clickOnWebElement(drpAddPlayers);
-
+		hardWait(3);
+		try {
+			clickUsingActionsClass(drpAddPlayers);
+		} catch (Exception e) {
+			clickOnWebElement(drpAddPlayers);
+		}
+		
 		log.info("Ending of clickOnAddPlayersDropdown method");
 	}
 
@@ -452,7 +460,7 @@ public class AntiScrappingCaptchaPage extends DUPRBaseAutomationPage {
 
 		log.info("Ending of clickOnAddAMatchButton method");
 	}
-	
+
 	public void clickOnBrowseClubsButton() {
 		log.info("Starting of clickOnBrowseClubsButton method");
 
@@ -504,7 +512,35 @@ public class AntiScrappingCaptchaPage extends DUPRBaseAutomationPage {
 	public void clickOnTeamsTab() {
 		log.info("Starting of clickOnTeamsTab method");
 
-		clickOnElement(tabTeams);
+		try {
+			try {
+				clickUsingActionsClass(tabTeams);
+			} catch (Exception e) {
+				clickOnWebElement(tabTeams);
+			}
+
+		} catch (Exception e) {
+			clickOnElement(btnBack);
+			hardWait(3);
+
+			for (int i = 1; i < lnkBracketNames.size(); i++) {
+				this.hardWait(2);
+				driver.findElement(By
+						.xpath((("(//h4[contains(@class,'MuiTypography-root MuiTypography-h4 MuiTypography-noWrap')])["
+								+ i + "]"))))
+						.click();
+
+				this.hardWait(5);
+				try {
+					if ((isDisplayed(tabTeams) == true)) {
+						clickOnElement(tabTeams);
+						break;
+					}
+				} catch (Exception e1) {
+					clickOnElement(btnBack);
+				}
+			}
+		}
 
 		log.info("Ending of clickOnTeamsTab method");
 	}
@@ -520,9 +556,28 @@ public class AntiScrappingCaptchaPage extends DUPRBaseAutomationPage {
 	}
 
 	public void clickOnRemovePlayerIcon() {
-		log.info("Starting of clickOnRemovePlayerIcon method");
+		//log.info("Starting of clickOnRemovePlayerIcon method");
 
-		clickOnElement(iconRemovePlayer);
+		hardWait(3);
+		try {
+			hardWait(3);
+			clickUsingActionsClass(iconRemovePlayer);
+			hardWait(3);
+		} catch (Exception e) {
+			clickOnWebElement(iconRemovePlayer);
+		}
+
+		for (int i = 0; i < 5; i++) {
+			try {
+				if (driver.findElement(By.xpath("//button[contains(text(),'Add a Player')]")).isDisplayed()) {
+					System.out.println("***Player Removed***");
+					break;
+				}
+			} catch (Exception e) {
+				driver.findElement(By.xpath("(//button[@aria-label='remove player'])[1]")).click();
+				break;
+			}
+		}
 
 		log.info("Ending of clickOnRemovePlayerIcon method");
 	}
@@ -533,5 +588,15 @@ public class AntiScrappingCaptchaPage extends DUPRBaseAutomationPage {
 		clickOnElement(btnAddPlayer);
 
 		log.info("Ending of clickOnAddPlayerButton method");
+	}
+
+	public int getPlayerList() {
+		log.info("Starting of getPlayerList Method");
+
+		int getPlayerList = txtPlayerName.size();
+		System.out.println(txtPlayerName.size());
+
+		log.info("Ending of getPlayerList Method");
+		return getPlayerList;
 	}
 }

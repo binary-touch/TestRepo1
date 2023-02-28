@@ -71,7 +71,6 @@
 			<class name="com.dupr.test.events.SeedMatchesTest" />
 		</classes>
 	</test>
-
 	<test name="Sprint 5">
 		<classes>
 			<class
