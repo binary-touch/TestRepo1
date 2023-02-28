@@ -66,19 +66,9 @@ public class AcceptOrDeclinePartnerTest extends CommonBaseTest {
 		super.verifyAddBracketsForRegisterFunctionalityWithValidDetails();
 		super.verifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
 		super.verifyPublishEventButton();
-		super.VerifyRecentlyAddedEventUnderEventsTab();
+		super.verifyRecentlyAddedEventUnderEventsTab();
 		super.verifyRegisterFunctionality();
-		
-		/*
-		 * try { editBracketsPage.clickOnBracketLabel();
-		 * editOrRemovePartnerPage.clickOnAddPartnerInBracketPageButton();
-		 * 
-		 * Assert.assertEquals(editOrRemovePartnerPage.getAddAPartnerLabel(),
-		 * expectedAssertionsProp.getProperty("add.a.partner.text"));
-		 * 
-		 * Assert.assertTrue(editOrRemovePartnerPage.isAddAPartnerPageContains());
-		 * }catch(Exception e) {
-		 */		
+
 		clubLogoPage.clickOnMyClubsTab();
 		editClubInfoPage.clickOnSimbaOrganizerButton();
 
@@ -86,7 +76,7 @@ public class AcceptOrDeclinePartnerTest extends CommonBaseTest {
 		addEventPage.clickOnRecentlyAddedEvent(eventName);
 
 		editBracketsPage.clickOnBracketLabel();
-		
+
 		editOrRemovePartnerPage.clickOnAddPartnerInBracketPageButton();
 
 		Assert.assertEquals(editOrRemovePartnerPage.getAddAPartnerLabel(),
@@ -96,7 +86,7 @@ public class AcceptOrDeclinePartnerTest extends CommonBaseTest {
 
 		logger.info("Ending of verifyAddPartnerFunctionalityInBracketPage method");
 	}
-	
+
 	@Test(priority = 2, description = "Verify Add Partner Functionality In AddPartner Page ", groups = "sanity")
 	@Description("Test case #2, Verify Add Partner Functionality In AddPartner Page ")
 	@Severity(SeverityLevel.NORMAL)
@@ -111,7 +101,7 @@ public class AcceptOrDeclinePartnerTest extends CommonBaseTest {
 		editOrRemovePartnerPage.hardWait(3);
 
 		eventRegistrationPage.clickOnAddYourPartnerRadioButton();
-		
+
 		eventRegistrationPage.clickOnAddPartnerButton();
 
 		logger.info("Ending of verifyAddPartnerFunctionalityInAddPartnerPage method");
@@ -246,14 +236,14 @@ public class AcceptOrDeclinePartnerTest extends CommonBaseTest {
 	}
 
 	@Parameters({ "siteURL", "validEmail", "validPassword" })
-	@Test(priority = 11, description = "Verify MyBrackets Page In Player Account", groups = "sanity")
-	@Description("Test case #11, Verify MyBrackets Page In Player Account")
+	@Test(priority = 11, description = "Verify Accept Functionality MyBrackets Page In Player Account", groups = "sanity")
+	@Description("Test case #11, Verify Accept Functionality MyBrackets Page In Player Account")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #11, Verify MyBrackets Page In Player Account")
+	@Story("Test case #11, Verify Accept Functionality MyBrackets Page In Player Account")
 	public void verifyAcceptFunctionalityInPlayerAccount(String siteURL, String validEmail, String validPassword)
 			throws Exception {
-		logger.info("Starting of verifyMyBracketsPageInPlayerAccount method");
-		
+		logger.info("Starting of verifyAcceptFunctionalityInPlayerAccount method");
+
 		editOrRemovePartnerPage.hardWait(3);
 		userDashboardPage.clickOnOpenSettingsMenu();
 
@@ -274,14 +264,117 @@ public class AcceptOrDeclinePartnerTest extends CommonBaseTest {
 		editBracketsPage.clickOnBracketLabel();
 		paidEventPage.hardWait(3);
 
-		acceptOrDeclinePartnershipPage.clickOnAcceptButton();
-		acceptOrDeclinePartnershipPage.clickOnNoRadioButton();
+		Assert.assertTrue(acceptOrDeclinePartnershipPage.isAcceptButtonDisplayed());
+		Assert.assertTrue(acceptOrDeclinePartnershipPage.isDeclineButtonDisplayed());
 
+		logger.info("Ending of verifyAcceptFunctionalityInPlayerAccount method");
+	}
+
+	@Parameters({ "browser", "siteURL", "directorEmail", "directorPassword" })
+	@Test(priority = 12, description = "Verify Decline Functionality in Bracket Page", groups = "sanity")
+	@Description("Test case #12, Verify Decline Functionality in Bracket Page")
+	@Severity(SeverityLevel.NORMAL)
+	@Story("Test case #12, Verify Decline Functionality in Bracket Page")
+	public void verifyDeclineFunctionalityInBracketPage(String browser, String siteURL, String directorEmail,
+			String directorPassword) throws Exception {
+		logger.info("Starting of Verify Decline Functionality in Bracket Page method");
+
+		acceptOrDeclinePartnershipPage.hardWait(3);
+		
+		acceptOrDeclinePartnershipPage.clickOnDeclinePartnerButton();
+		acceptOrDeclinePartnershipPage.hardWait(3);
+		Assert.assertFalse(acceptOrDeclinePartnershipPage.isDeclineButtonDisplayed());
+
+		editOrRemovePartnerPage.hardWait(3);
+		userDashboardPage.clickOnOpenSettingsMenu();
+
+		acceptOrDeclinePartnershipPage.clickOnLogoutButton();
+
+		paidEventPage.hardWait(3);
+		this.devSiteLogin(siteURL, directorEmail, directorPassword, driver);
+		paidEventPage.hardWait(3);
+
+		clubLogoPage.clickOnMyClubsTab();
+		editClubInfoPage.clickOnSimbaOrganizerButton();
+
+		addEventPage.clickOnEventsTab();
+		addEventPage.clickOnRecentlyAddedEvent(eventName);
+
+		editBracketsPage.clickOnBracketLabel();
+
+		editOrRemovePartnerPage.clickOnAddPartnerInBracketPageButton();
+		editOrRemovePartnerPage.searchPartner(testDataProp.getProperty("partner.name"));
+		eventRegistrationPage.clickOnAddYourPartnerRadioButton();
+
+		eventRegistrationPage.clickOnAddPartnerButton();
+
+		logger.info("Ending of Verify Decline Functionality in Bracket Page method");
+	}
+
+	@Parameters({ "siteURL", "validEmail", "validPassword" })
+	@Test(priority = 13, description = "Verify Yes Radio Button in Accept Partner PopUp", groups = "sanity")
+	@Description("Test case #13, Verify No Radio Button in Accept Partner PopUp")
+	@Severity(SeverityLevel.NORMAL)
+	@Story("Test case #13, Verify No Radio Button in Accept Partner PopUp")
+	public void verifyYesButtonFunctionalityInAcceptPartnerPopUp(String siteURL, String validEmail,
+			String validPassword) throws Exception {
+		logger.info("Starting of verifyYesButtonFunctionalityInAcceptPartnerPopUp method");
+
+		this.verifyAcceptFunctionalityInPlayerAccount(siteURL, validEmail, validPassword);
+		acceptOrDeclinePartnershipPage.clickOnAcceptButton();
+		acceptOrDeclinePartnershipPage.isAcceptPartnerPopupContains();
+
+		acceptOrDeclinePartnershipPage.clickOnYesRadioButton();
 		Assert.assertTrue(acceptOrDeclinePartnershipPage.isNoRadioButtonSelected());
 		Assert.assertTrue(acceptOrDeclinePartnershipPage.isRegisterButtonEnabled());
 
+		logger.info("Ending of verifyYesButtonFunctionalityInAcceptPartnerPopUp method");
+	}
+
+	@Test(priority = 14, description = "Verify No Radio Button in Accept Partner PopUp", groups = "sanity")
+	@Description("Test case #14, Verify No Radio Button in Accept Partner PopUp")
+	@Severity(SeverityLevel.NORMAL)
+	@Story("Test case #14, Verify No Radio Button in Accept Partner PopUp")
+	public void verifyNoRadioButtonFunctionalityInAcceptPartnerPopUp() {
+		logger.info("Starting of verifyNoRadioButtonFunctionalityInAcceptPartnerPopUp method");
+
+		acceptOrDeclinePartnershipPage.clickOnNoRadioButton();
+		Assert.assertTrue(acceptOrDeclinePartnershipPage.isNoRadioButtonSelected());
+		Assert.assertTrue(acceptOrDeclinePartnershipPage.isRegisterButtonEnabled());
+
+		logger.info("Ending of verifyNoRadioButtonFunctionalityInAcceptPartnerPopUp method");
+	}
+
+	@Test(priority = 15, description = "Verify MyBrackets Page In Player Account", groups = "sanity")
+	@Description("Test case #15, Verify MyBrackets Page In Player Account")
+	@Severity(SeverityLevel.NORMAL)
+	@Story("Test case #15, Verify MyBrackets Page In Player Account")
+	public void verifyRegisterFunctionalityInAcceptPartnerPopUp() {
+		logger.info("Starting of verifyRegisterFunctionalityInAcceptPartnerPopUp method");
+
 		acceptOrDeclinePartnershipPage.clickOnRegisterButton();
-		logger.info("Ending of verifyMyBracketsPageInPlayerAccount method");
+
+		Assert.assertEquals(eventRegistrationPage.getSuccessLabel(),
+				expectedAssertionsProp.getProperty("success.text"));
+
+		Assert.assertEquals(eventRegistrationPage.getRegistrationCompletedLabel(),
+				expectedAssertionsProp.getProperty("registration.completed"));
+
+		Assert.assertEquals(eventRegistrationPage.getOkLabel(), expectedAssertionsProp.getProperty("ok.text"));
+
+		logger.info("Ending of verifyRegisterFunctionalityInAcceptPartnerPopUp method");
+	}
+
+	@Test(priority = 16, description = "Verify Ok finctionality In Accept Partner PopUp", groups = "sanity")
+	@Description("Test case #16, Verify Ok finctionality In Accept Partner PopUp")
+	@Severity(SeverityLevel.NORMAL)
+	@Story("Test case #16, Verify Ok finctionality In Accept Partner PopUp")
+	public void verifyOkFunctionalityInAcceptPartnerPopUp() {
+		logger.info("Starting of verifyOkFunctionalityInAcceptPartnerPopUp method");
+
+		eventRegistrationPage.clickOnOkButton();
+
+		logger.info("Ending of verifyOkFunctionalityInAcceptPartnerPopUp method");
 	}
 
 	@AfterClass

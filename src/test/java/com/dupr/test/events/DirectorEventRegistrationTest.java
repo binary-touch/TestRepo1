@@ -9,6 +9,8 @@ import org.testng.annotations.Test;
 
 import com.b2b.common.WebDriversEnum;
 import com.dupr.pages.events.EventRegistrationPage;
+import com.dupr.pages.events.PaidEventPage;
+import com.dupr.pages.events.TimeZonePage;
 import com.dupr.test.CommonBaseTest;
 
 import io.qameta.allure.Description;
@@ -19,8 +21,8 @@ import io.qameta.allure.Story;
 public class DirectorEventRegistrationTest extends CommonBaseTest {
 
 	private static final Logger logger = Logger.getLogger(DirectorEventRegistrationTest.class.getName());
-	EventRegistrationPage eventRegistrationPage = null;
-
+	 private EventRegistrationPage eventRegistrationPage = null;
+    
 	@BeforeClass
 	@Parameters({ "browser", "siteURL", "directorEmail", "directorPassword" })
 	public void initMethod(String browser, String siteURL, String directorEmail, String directorPassword)
@@ -31,6 +33,7 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 		super.initCommonBaseTest(siteURL, directorEmail, directorPassword);
 
 		this.eventRegistrationPage = new EventRegistrationPage(this.driver);
+		 this.timeZonePage = new TimeZonePage(this.driver);
 
 		logger.info("Ending of initMethod in DirectorEventRegistrationTest");
 	}
@@ -44,7 +47,7 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 
 		super.verifyAddEventFunctionality();
 		super.verifyFreeBracketWithSinglesTypeAndRoundRobinEvent();
-
+		addEventPage.hardWait(3);
 		addEventPage.clickOnEventsTab();
 		addEventPage.hardWait(3);
 		
@@ -54,6 +57,7 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 		Assert.assertTrue(this.eventRegistrationPage.isEventCompetitionDatesDisplayed());
 		addEventPage.hardWait(3);
 		Assert.assertTrue(this.eventRegistrationPage.isEventStatusesDisplayed());
+		Assert.assertTrue(this.eventRegistrationPage.isDeleteEventDisplayed());
 		
 		logger.info("Ending of verifyEventsTabForOpenStatusEvent method");
 	}
@@ -188,7 +192,8 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 		logger.info("Starting of verifyRegisterFunctionalityInRegistrationClosedEvent method");
 
 		super.verifyAddEventFunctionality();
-		super.verifyFreeBracketWithRoundRobinEventType();
+		
+		super.verifyFreeBracketWithSinglesTypeAndRoundRobinEvent();
 
 		addEventPage.clickOnEventsTab();
 	
@@ -204,7 +209,9 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 	public void verifyRegisterFunctionalityInUpcomingEvent() {
 		logger.info("Starting of verifyRegisterFunctionalityInUpcomingEvent method");
 
+		addBracketPage.hardWait(3);
 		addBracketPage.clickOnBackButton();
+		addBracketPage.hardWait(3);
 		addEventPage.clickOnEventsTab();
 		
 		Assert.assertFalse(eventRegistrationPage.isRegisterButtonDisplayedForUpcomingEventCard());
@@ -219,8 +226,7 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 	public void verifyRegisterFunctionalityInOngoingEvent() {
 		logger.info("Starting of verifyRegisterFunctionalityInOngoingEvent method");
 
-		addBracketPage.clickOnBackButton();
-		addEventPage.clickOnEventsTab();
+		addBracketPage.hardWait(3);
 		
 		Assert.assertFalse(eventRegistrationPage.isRegisterButtonDisplayedForOnGoingEventCard());
 		
@@ -234,9 +240,7 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 	public void verifyRegisterFunctionalityInCompleteStatusEvent() {
 		logger.info("Starting of verifyRegisterFunctionalityInCompleteStatusEvent method");
 
-		addBracketPage.clickOnBackButton();
-		addEventPage.clickOnEventsTab();
-
+		addBracketPage.hardWait(3);
 		Assert.assertFalse(eventRegistrationPage.isRegisterButtonDisplayedForCompleteEventCard());
 		
 		logger.info("Ending of verifyRegisterFunctionalityInCompleteStatusEvent method");
@@ -249,9 +253,7 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 	public void verifyRegisterFunctionalityInOpenRegisteredPlayerEvent() {
 		logger.info("Starting of verifyRegisterFunctionalityInOpenRegisteredPlayerEvent method");
 
-		addBracketPage.clickOnBackButton();
-		addEventPage.clickOnEventsTab();
-		
+		addBracketPage.hardWait(3);
 		Assert.assertFalse(eventRegistrationPage.isRegisterButtonDisplayedForOpenEventCard());
 		
 		logger.info("Ending of verifyRegisterFunctionalityInOpenRegisteredPlayerEvent method");
@@ -264,6 +266,7 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 	public void verifyRegisterFunctionalityWithOpenDoubleBracket() {
 		logger.info("Starting of verifyRegisterFunctionalityWithOpenDoubleBracket method");
 
+		addBracketPage.hardWait(3);
 		super.verifyAddEventFunctionality();
 		super.verifyFreeBracketWithRoundRobinEventType();
 

@@ -1703,7 +1703,8 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	public void clickOnEventSuccessClosePopupButton() {
 		log.info("Starting of clickOnEventSuccessClosePopupButton method");
-
+        
+		this.waitForElementToBeVisible(lblEventSuccessClosePopup);
 		elementClick(lblEventSuccessClosePopup);
 
 		log.info("Ending of clickOnEventSuccessClosePopupButton method");

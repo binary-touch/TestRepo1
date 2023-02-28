@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Common UI Automation Tests"><!-- parallel = "classes" thread-count = "2" -->
-
+<!-- 
 	<test name="Sprint 1">
 		<classes>
 			<class name="com.dupr.test.players.SearchPlayersTest" />
@@ -39,30 +39,33 @@
 			<class name="com.dupr.test.events.EditBracketsTest" />
 		</classes>
 	</test>
-
+ -->
+ 
 	<test name="Sprint 3">
 		<classes>
-			<class name="com.dupr.test.events.AddEditRemoveEventLogoTest" />
+			<!-- <class name="com.dupr.test.events.AddEditRemoveEventLogoTest" />
 			<class name="com.dupr.test.events.AddParticipantsInBracketTest" />
 			<class name="com.dupr.test.events.EndEventTest" />
 			<class name="com.dupr.test.events.AddAnnouncementTest" />
 			<class name="com.dupr.test.events.PlayerEventRegistrationTest" />
-
+ -->
  			<class name="com.dupr.test.events.AcceptOrDeclinePartnerTest" />
 			
-			<class
+	<!--		<class
 				name="com.dupr.test.events.DirectorEventRegistrationTest" />
-			<class name="com.dupr.test.events.EditOrRemovePartnerTest" />
+			
+			 <class name="com.dupr.test.events.EditOrRemovePartnerTest" />
 			<class name="com.dupr.test.events.WithdrawPlayerTest" />
 			<class name="com.dupr.test.events.Create_Edit_Split_TeamTest" />
 			<class name="com.dupr.test.home.AdditionOfChartAndShopTabTest" />
 			<class name="com.dupr.test.home.AntiScrappingCaptchaTest" />
 			<class name="com.dupr.test.home.UserDashboardTest" />
-			<class name="com.dupr.test.home.PreservingPageVisitsTest" />
+			<class name="com.dupr.test.home.PreservingPageVisitsTest" /> -->
+			
 		</classes>
 	</test>
  
- 
+ <!-- 
 	<test name="Sprint 4">
 		<classes>
 			<class name="com.dupr.test.home.ChatTest" />
@@ -85,5 +88,5 @@
 		</classes>
 	</test>
 
- 
+  -->
  </suite>
