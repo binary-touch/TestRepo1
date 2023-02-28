@@ -112,7 +112,7 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 		super.verifyPaidEventInformationPageWithValidDetails();
 		super.verifyEventPoliciesPageByEnteringValidDetails();
 		super.verifyPaidBracketWithEventTypeAsWateFallInDoublesMatchType();
-		super.VerifyRecentlyAddedEventUnderEventsTab();
+		super.verifyRecentlyAddedEventUnderEventsTab();
 
 		logger.info("Ending of verifyPaidEventFunctionalityWithWateFallEventTypeInDoublesMatch method");
 	}
@@ -137,7 +137,7 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 		super.verifyPaidBracketWithEventTypeAsWateFallInSinglesMatchType();
 
 		paidEventPage.hardWait(2);
-		super.VerifyRecentlyAddedEventUnderEventsTab();
+		super.verifyRecentlyAddedEventUnderEventsTab();
 
 		super.verifyRegisterFunctionality();
 
@@ -390,7 +390,7 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 		eventRegistrationPage.clickOnOkButton();
 
 		eventRegistrationPage.clickOnAddYourPartnerRadioButton();
-		eventRegistrationPage.clickOnAddPartnerRadioButton();
+		eventRegistrationPage.clickOnAddPartnerButton();
 
 		directorEventRegistrationPage.clickOnRefundPolicyCheckbox();
 		Assert.assertTrue(directorEventRegistrationPage.isRefundPolicyCheckboxSelected());
@@ -459,9 +459,8 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 
 		editOrRemovePartnerPage.searchPartner(testDataProp.getProperty("partner.name"));
 		editOrRemovePartnerPage.hardWait(3);
-		
 		eventRegistrationPage.clickOnAddYourPartnerRadioButton();
-		eventRegistrationPage.clickOnAddPartnerRadioButton();
+		eventRegistrationPage.clickOnAddPartnerButton();
 
 		directorEventRegistrationPage.clickOnRefundPolicyCheckbox();
 		Assert.assertTrue(directorEventRegistrationPage.isRefundPolicyCheckboxSelected());

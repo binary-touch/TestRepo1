@@ -1016,7 +1016,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 
 	public void setNewDelhiTimeZone() {
 		log.info("Starting of setNewDelhiTimeZone method");
-		hardWait(2);
+		hardWait(4);
 
 		try {
 			clickOnElementUsingActionClass(ddTimeZone);
@@ -1079,7 +1079,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		String pattern1 = "a";
 
 		LocalTime currentHour = LocalTime.now();
-		LocalTime futureHour = currentHour.plusHours(4);
+		LocalTime futureHour = currentHour.plusHours(1);
 		String futureHourValue = futureHour.format(DateTimeFormatter.ofPattern(pattern));
 		System.out.println(futureHourValue);
 
@@ -1317,19 +1317,18 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 			e2.printStackTrace();
 		}
 
-		log.info("Ending of setRegistrationStartDateBeforeOneDayÂ method");
+		log.info("Ending of setRegistrationStartDateBeforeOneDay method");
 	}
 
 	public void setRegistrationEndDate() {
 		log.info("Starting of setRegistrationEndDate method");
-
+		
+		hardWait(2);
 		try {
-			elementClick(txtBoxRegistrationEndDate);
-			
+			clickOnWebElement(txtBoxRegistrationEndDate);
 		} catch (Exception e) {
 			clickOnElementUsingActionClass(txtBoxRegistrationEndDate);
 		}
-		
 		int date = this.getFutureDate(1);
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
@@ -1357,7 +1356,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnElementUsingActionClass(btnOK);
 
-		log.info("Ending of setRegistrationEndDateï¿½method");
+		log.info("Ending of setRegistrationEndDate method");
 	}
 
 	public void setCompetitionStartDateHour() {
@@ -1380,6 +1379,6 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnElementUsingActionClass(btnOK);
 
-		log.info("Ending of setCompetitionStartDateHourÂ method");
+		log.info("Ending of setCompetitionStartDateHour method");
 	}
 }

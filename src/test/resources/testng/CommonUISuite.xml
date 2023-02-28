@@ -40,6 +40,7 @@
 		</classes>
 	</test>
 
+
 	<test name="Sprint 3">
 		<classes>
 			<class name="com.dupr.test.events.AddEditRemoveEventLogoTest" />
@@ -47,10 +48,14 @@
 			<class name="com.dupr.test.events.EndEventTest" />
 			<class name="com.dupr.test.events.AddAnnouncementTest" />
 			<class name="com.dupr.test.events.PlayerEventRegistrationTest" />
-			<class name="com.dupr.test.events.AcceptOrDeclinePartnerTest" />
+
+ 			
+ 			<class name="com.dupr.test.events.AcceptOrDeclinePartnerTest" />
+			
 			<class
 				name="com.dupr.test.events.DirectorEventRegistrationTest" />
-			<class name="com.dupr.test.events.EditOrRemovePartnerTest" />
+			
+			 <class name="com.dupr.test.events.EditOrRemovePartnerTest" />
 			<class name="com.dupr.test.events.WithdrawPlayerTest" />
 			<class name="com.dupr.test.events.Create_Edit_Split_TeamTest" />
 			<class name="com.dupr.test.home.AdditionOfChartAndShopTabTest" />
@@ -59,7 +64,8 @@
 			<class name="com.dupr.test.home.PreservingPageVisitsTest" />
 		</classes>
 	</test>
-
+ 
+ 
 	<test name="Sprint 4">
 		<classes>
 			<class name="com.dupr.test.home.ChatTest" />
@@ -71,6 +77,7 @@
 			<class name="com.dupr.test.events.SeedMatchesTest" />
 		</classes>
 	</test>
+
 	<test name="Sprint 5">
 		<classes>
 			<class
@@ -80,4 +87,6 @@
 			<class name="com.dupr.test.events.SeedMatchesWaterFallTest" />
 		</classes>
 	</test>
-</suite>
+
+ 
+ </suite>

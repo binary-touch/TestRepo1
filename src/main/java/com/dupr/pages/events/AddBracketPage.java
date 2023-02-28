@@ -1212,7 +1212,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	public void setCompetitionStartDate() {
 		log.info("Starting of setCompetitionStartDate method");
-
+        hardWait(3);
 		try {
 			clickOnWebElement(txtBoxCompetitionStartDate);
 		} catch (Exception e) {
@@ -1377,9 +1377,9 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	public void clickOnNewDelhiTimeZone() {
 		log.info("Starting of clickOnNewDelhiTimeZone method");
-
-		hardWait(5);
+		//hardWait(9);
 		try {
+			scrollIntoView(btnNewDelhiTimeZone);
 			clickUsingActionsClass(btnNewDelhiTimeZone);
 		} catch (Exception e) {
 			elementClick(btnNewDelhiTimeZone);
@@ -1703,7 +1703,8 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	public void clickOnEventSuccessClosePopupButton() {
 		log.info("Starting of clickOnEventSuccessClosePopupButton method");
-
+        
+		this.waitForElementToBeVisible(lblEventSuccessClosePopup);
 		elementClick(lblEventSuccessClosePopup);
 
 		log.info("Ending of clickOnEventSuccessClosePopupButton method");

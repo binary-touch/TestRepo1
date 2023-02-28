@@ -182,9 +182,9 @@ public class FullRegistrationTest extends CommonBaseTest {
 	public void verifyFreeBracketPublishEventFunctionalityWithFullRegistration() {
 		logger.info("Starting of verifyFreeBracketPublishEventFunctionalityWithFullRegistration method");
 
-		this.VerifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
+		this.verifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
 
-		this.VerifyPublishEventButton();
+		this.verifyPublishEventButton();
 
 		addBracketPage.clickOnEventSuccessClosePopupButton();
 
@@ -198,7 +198,7 @@ public class FullRegistrationTest extends CommonBaseTest {
 	public void verifyBracketCardFunctionality() {
 		logger.info("Starting of verifyBracketCardFunctionality method");
 
-		this.VerifyRecentlyAddedEventUnderEventsTab();
+		this.verifyRecentlyAddedEventUnderEventsTab();
 		Assert.assertTrue(fullRegistrationPage.isOpenSinglesCardDisplayed());
 
 		fullRegistrationPage.clickOnOpenSinglesCard();

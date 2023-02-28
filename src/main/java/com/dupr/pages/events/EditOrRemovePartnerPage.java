@@ -38,6 +38,9 @@ public class EditOrRemovePartnerPage extends DUPRBaseAutomationPage {
 	private WebElement btnAddPartner;
 
 	@B2BFindBy(xpath = "//button[contains(text(),'Add Partner')]")
+	private WebElement btnAddPartnerInBracketPage;
+
+	@B2BFindBy(xpath = "//button[contains(text(),'Add Partner')]")
 	private WebElement btnAddPartnerEnabled;
 
 	@B2BFindBy(xpath = "//p[text()='Partner Pending']")
@@ -263,6 +266,14 @@ public class EditOrRemovePartnerPage extends DUPRBaseAutomationPage {
 		log.info("Ending of clickOnAddPartnerRadioButton method");
 	}
 
+	public void clickOnAddPartnerInBracketPageButton() {
+		log.info("Starting of clickOnAddPartnerInBracketPageButton method");
+
+		elementClick(btnAddPartnerInBracketPage);
+
+		log.info("Ending of clickOnAddPartnerInBracketPageButton method");
+	}
+	
 	public String getRemovePartnerLabel() {
 		log.info("Starting of getRemovePartnerLabel method");
 		log.info("Ending of getRemovePartnerLabel method");
@@ -333,7 +344,7 @@ public class EditOrRemovePartnerPage extends DUPRBaseAutomationPage {
 
 		boolean isAddAPartnerPageContains = false;
 
-		if (btnAddPartnerDisabled.isDisplayed() && btnCancel.isDisplayed() && btnInvite.isDisplayed()
+		if (btnCancel.isDisplayed() && btnInvite.isDisplayed()
 				&& txtBoxSearch.isDisplayed()) {
 
 			isAddAPartnerPageContains = true;
@@ -357,7 +368,8 @@ public class EditOrRemovePartnerPage extends DUPRBaseAutomationPage {
 		clickOnWebElement(txtBoxSearch);
 		this.txtBoxSearch.sendKeys(Keys.CONTROL + "a", Keys.DELETE);
 		txtBoxSearch.sendKeys(partnerName);
-
+		this.txtBoxSearch.sendKeys(Keys.BACK_SPACE);
+		
 		log.info("Ending of searchPartner method");
 	}
 

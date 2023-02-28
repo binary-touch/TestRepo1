@@ -114,11 +114,11 @@ public class WaterfallRoundOneSeedingLogicTest extends CommonBaseTest {
 
 		addEventPage.clickOnNextStepButton();
 
-		this.VerifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
+		this.verifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
 
-		this.VerifyPublishEventButton();
+		this.verifyPublishEventButton();
 
-		addBracketPage.clickOnEventSuccessClosePopupButton();
+		//addBracketPage.clickOnEventSuccessClosePopupButton();
 		addEventPage.clickOnEventsTab();
 		seedMatchesPage.hardWait(5);
 		addEventPage.clickOnRecentlyAddedEvent(eventName);
@@ -200,6 +200,7 @@ public class WaterfallRoundOneSeedingLogicTest extends CommonBaseTest {
 
 		logger.info("Ending of verifyWaterFallRoundOneSeeingLogic method");
 	}
+	
 	@AfterClass
 	public void quitDriver() {
 

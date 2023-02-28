@@ -117,7 +117,7 @@ public class EventRegistrationPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//input[@name='Player Info']")
 	private WebElement rdoAddYourPartner;
 
-	@B2BFindBy(xpath = "//button[text()='Add Partner']")
+	@B2BFindBy(xpath = "//button[text()='Cancel']/following-sibling::button")
 	private WebElement btnAddPartner;
 
 	@B2BFindBy(xpath = "//div[text()='Add a Partner']")
@@ -635,12 +635,12 @@ public class EventRegistrationPage extends DUPRBaseAutomationPage {
 		log.info("Ending of clickOnAddYourPartnerRadioButton method");
 	}
 
-	public void clickOnAddPartnerRadioButton() {
-		log.info("Starting of clickOnAddPartnerRadioButton method");
+	public void clickOnAddPartnerButton() {
+		log.info("Starting of clickOnAddPartnerButton method");
 
 		elementClick(btnAddPartner);
 
-		log.info("Ending of clickOnAddPartnerRadioButton method");
+		log.info("Ending of clickOnAddPartnerButton method");
 	}
 
 	public String getAddAPartnerLabel() {
