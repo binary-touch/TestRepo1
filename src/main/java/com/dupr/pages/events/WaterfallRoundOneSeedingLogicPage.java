@@ -131,13 +131,15 @@ public class WaterfallRoundOneSeedingLogicPage extends DUPRBaseAutomationPage {
 
 	public void clickOnSortButton() {
 		log.info("Starting of clickOnSortButton method");
+		
 		try {
 			clickUsingActionsClass(btnSort);
 		} catch (Exception e) {
 			clickOnWebElement(btnSort);
 		}
 
-		hardWait(2);
+		hardWait(3);
+		
 		try {
 			clickUsingActionsClass(rdoHightToLow);
 		} catch (Exception e) {
