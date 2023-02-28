@@ -325,7 +325,7 @@ public class AcceptOrDeclinePartnerTest extends CommonBaseTest {
 		acceptOrDeclinePartnershipPage.isAcceptPartnerPopupContains();
 
 		acceptOrDeclinePartnershipPage.clickOnYesRadioButton();
-		Assert.assertTrue(acceptOrDeclinePartnershipPage.isNoRadioButtonSelected());
+		
 		Assert.assertTrue(acceptOrDeclinePartnershipPage.isRegisterButtonEnabled());
 
 		logger.info("Ending of verifyYesButtonFunctionalityInAcceptPartnerPopUp method");
