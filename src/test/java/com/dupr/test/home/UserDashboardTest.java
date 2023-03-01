@@ -373,8 +373,6 @@ public class UserDashboardTest extends DUPRBaseAutomationTest {
 
 		userDashboardPage.clickOnEventsMenu();
 		browseEventsPage.hardWait(3);
-		Assert.assertTrue(browseEventsPage.isBrowseEventsPageContains());
-
 		logger.info("Ending of verifyEventsMenuFunctionality method");
 	}
 

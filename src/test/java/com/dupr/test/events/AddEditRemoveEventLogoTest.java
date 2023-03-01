@@ -21,7 +21,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 
 public class AddEditRemoveEventLogoTest extends DUPRBaseAutomationTest {
-	
+
 	private static final Logger logger = Logger.getLogger(AddEditRemoveEventLogoTest.class.getName());
 	private ClubLogoPage clubLogoPage = null;
 	private ProfilePicturePage profilePicturePage = null;
@@ -52,7 +52,7 @@ public class AddEditRemoveEventLogoTest extends DUPRBaseAutomationTest {
 	@Story("Test case #1, Verify Add event logo functionality")
 	public void verifyAddEventLogoFunctionality() {
 		logger.info("Starting of verifyAddLogoFunctionality method");
-		
+
 		browseEventsPage.clickOnMyEventButton();
 		clubLogoPage.hardWait(3);
 		eventLogoPage.clickOnEventLabel();
@@ -147,6 +147,7 @@ public class AddEditRemoveEventLogoTest extends DUPRBaseAutomationTest {
 	public void verifyCancelClubLogoPopupFunctionality() {
 		logger.info("Starting of verifyCancelClubLogoPopupFunctionality method");
 
+		profilePicturePage.hardWait(3);
 		profilePicturePage.clickOnCameraIcon();
 		clubLogoPage.clickOnChangeLogoOption();
 
@@ -162,10 +163,11 @@ public class AddEditRemoveEventLogoTest extends DUPRBaseAutomationTest {
 	public void verifyCloseIconInEventLogoPopUp() {
 		logger.info("Starting of verifyCloseIconInEventLogoPopUp method");
 
+		profilePicturePage.hardWait(3);
 		profilePicturePage.clickOnCameraIcon();
 		clubLogoPage.clickOnChangeLogoOption();
 
-		profilePicturePage.clickOnCloseIcon();
+		profilePicturePage.clickOnCloseIconOnEventLogo();
 
 		logger.info("Ending of verifyCloseIconInEventLogoPopUp method");
 	}
@@ -177,10 +179,14 @@ public class AddEditRemoveEventLogoTest extends DUPRBaseAutomationTest {
 	public void verifySaveButtonState() {
 		logger.info("Starting of verifySaveButtonState method");
 
+		profilePicturePage.hardWait(3);
 		profilePicturePage.clickOnCameraIcon();
 		clubLogoPage.clickOnChangeLogoOption();
 		clubLogoPage.hardWait(2);
 		Assert.assertTrue(profilePicturePage.isSaveButtonDisplayed());
+		clubLogoPage.hardWait(2);
+		driver.navigate().refresh();
+		clubLogoPage.implicitWait();
 
 		logger.info("Ending of verifySaveButtonState method");
 	}
@@ -192,9 +198,9 @@ public class AddEditRemoveEventLogoTest extends DUPRBaseAutomationTest {
 	public void verifyNoButtonFunctionality() {
 		logger.info("Starting of verifyNoButtonFunctionality method");
 
-		profilePicturePage.clickOnCancelButton();
-		clubLogoPage.hardWait(2);
+		clubLogoPage.hardWait(4);
 		profilePicturePage.clickOnCameraIcon();
+		clubLogoPage.implicitWait();
 		clubLogoPage.clickOnRemoveLogoOption();
 		clubLogoPage.hardWait(2);
 		profilePicturePage.clickOnNoButton();
@@ -209,10 +215,12 @@ public class AddEditRemoveEventLogoTest extends DUPRBaseAutomationTest {
 	public void verifyCloseIconButtonInRemoveLogoPopup() {
 		logger.info("Starting of verifyCloseIconButtonInRemoveLogoPopup method");
 
+		profilePicturePage.hardWait(3);
 		profilePicturePage.clickOnCameraIcon();
+		clubLogoPage.hardWait(2);
 		clubLogoPage.clickOnRemoveLogoOption();
 		clubLogoPage.hardWait(2);
-		profilePicturePage.clickOnCloseIcon();
+		profilePicturePage.iconCloseOnRemoveLogo();
 
 		logger.info("Ending of verifyCloseIconButtonInRemoveLogoPopup method");
 	}
@@ -224,6 +232,7 @@ public class AddEditRemoveEventLogoTest extends DUPRBaseAutomationTest {
 	public void verifyRemoveLogo() {
 		logger.info("Starting of verifyRemoveLogo method");
 
+		clubLogoPage.hardWait(3);
 		profilePicturePage.clickOnCameraIcon();
 		clubLogoPage.hardWait(3);
 		clubLogoPage.clickOnRemoveLogoOption();
@@ -231,13 +240,12 @@ public class AddEditRemoveEventLogoTest extends DUPRBaseAutomationTest {
 		Assert.assertTrue(clubLogoPage.isRemoveLogoPopupContains());
 
 		profilePicturePage.clickOnYesButton();
-		
+
 		logger.info("Ending of verifyRemoveLogo method");
 	}
 
 	@AfterClass
 	public void quitDriver() {
-
 		try {
 
 			if (this.driver != null) {

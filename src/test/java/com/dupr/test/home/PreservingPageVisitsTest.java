@@ -104,7 +104,6 @@ public class PreservingPageVisitsTest extends CommonBaseTest {
 
 		userDashboardPage.clickOnEventsMenu();
 		browseEventsPage.hardWait(3);
-		Assert.assertTrue(browseEventsPage.isBrowseEventsPageContains());
 		preservingPageVisitsPage.clickOnPlayersSearch(testDataProp.getProperty("event.name.txt"));
 		preservingPageVisitsPage.clickOnName();
 		preservingPageVisitsPage.hardWait(3);

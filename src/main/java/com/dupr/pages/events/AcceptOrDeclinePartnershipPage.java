@@ -326,6 +326,23 @@ public class AcceptOrDeclinePartnershipPage extends DUPRBaseAutomationPage {
 
 		return btnRegister.isEnabled();
 	}
+	
+	public boolean isAcceptButtonDisplayed() {
+		log.info("Starting of isAcceptButtonDisplayed method");
+		boolean buttonState = false;
+		
+		try {
+			if(btnAccept.isDisplayed()==true) {
+				buttonState = true;
+			}
+		} catch (Exception e) {
+			buttonState = false;
+		}
+		log.info("Ending of isAcceptButtonDisplayed method");
+
+		return buttonState;
+	}
+
 
 	public boolean isDeclineButtonDisplayed() {
 		log.info("Starting of isDeclineButtonDisplayed method");

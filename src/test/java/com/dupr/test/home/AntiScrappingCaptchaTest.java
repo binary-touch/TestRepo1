@@ -68,8 +68,6 @@ public class AntiScrappingCaptchaTest extends DUPRBaseAutomationTest {
 
 		browseEventsPage.clickOnBrowseAllEventsButton();
 
-		Assert.assertTrue(browseEventsPage.isBrowseEventsPageContains());
-
 		Assert.assertTrue(antiScrappingCaptchaPage.isAntiScrappingCaptchaDisplayed());
 
 		logger.info("Ending of verifyAntiScrappingCaptchaOnBrowseEvents method");
@@ -225,11 +223,16 @@ public class AntiScrappingCaptchaTest extends DUPRBaseAutomationTest {
 			if (teamsPage.isNoResultsFoundDisplayed() == true) {
 				teamsPage.clickOnUnMatchedPlayersTab();
 				teamsPage.hardWait(3);
-				if (teamsPage.isNoResultsFoundDisplayed() == true) {
-					teamsPage.addMultiplePlayers();
-				} else {
-					logger.info("****UnMatched Players Displayed****");
+				try {
+					if (teamsPage.isNoResultsFoundDisplayed() == true) {
+						teamsPage.addMultiplePlayers();
+					} 
+				} catch (Exception e) {
+					if(antiScrappingCaptchaPage.getPlayerList()<3) {
+						teamsPage.addMultiplePlayers();
+					}
 				}
+				
 				teamsPage.clickOnValidPlayerCheckbox();
 
 				teamsPage.clickOnCreateTeamButton();

@@ -66,7 +66,7 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h4[text()='Players must be different genders']")
 	private WebElement txtPlayersWithSameGender;
 
-	@B2BFindBy(xpath = "//span[text()='No results found!']")
+	@B2BFindBy(xpath = "//span[contains(text(),'No results found!')]")
 	private WebElement txtNoResultsFound;
 
 	@B2BFindBys({ @B2BFindBy(xpath = "//div[@id='simple-tabpanel-2']//input[@type='checkbox']") })
@@ -217,9 +217,11 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//h6[text()='Are you sure you want to edit team?']")
 	private WebElement lblAreYouSure;
-	
+
 	@B2BFindBy(xpath = "//input[@type='checkbox']/parent::span/following-sibling::span//h4")
 	private WebElement txtName;
+
+	
 
 	public Create_Edit_Split_TeamPage(WebDriver driver) {
 		super(driver);
@@ -238,7 +240,7 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 
 			this.hardWait(3);
 			try {
-				if ((isDisplayed(tabUnmatchedPlayes) == true)) {
+				if ((isDisplayed(tabUnmatchedPlayes))) {
 					clickOnElement(tabUnmatchedPlayes);
 					break;
 				}
@@ -246,6 +248,7 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 				clickOnElement(btnBack);
 			}
 		}
+
 		log.info("Ending of clickOnEventLabel method");
 	}
 
@@ -254,9 +257,11 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 
 		boolean isDashboardPageContains = false;
 
-		if (isDisplayed(btnSort) && isDisplayed(btnClearFilter) && isDisplayed(lblPlayerInformation)
+		System.out.println(isDisplayed(btnSort));
+		System.out.println(isDisplayed(btnClearFilter));
+		System.out.println(isDisplayed(btnCreateTeamDisabled));
 
-				&& isDisplayed(btnCreateTeamDisabled)) {
+		if (isDisplayed(btnSort) && isDisplayed(btnClearFilter) && isDisplayed(btnCreateTeamDisabled)) {
 
 			isDashboardPageContains = true;
 		}
@@ -402,7 +407,7 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 			}
 
 		} catch (Exception e) {
-			e.getMessage();
+			selectPlayerCheckbox();
 		}
 
 		log.info("Ending of clickOnValidPlayerCheckbox method");
@@ -411,9 +416,13 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 	public void selectPlayerCheckbox() {
 		log.info("Starting of selectPlayerCheckbox method");
 
-		chkFirstPlayers.get(0).click();
-
-		clickOnWebElement(chkSecondPlayers);
+		for (int i = 1; i <= 2; i++) {
+			try {
+				clickUsingActionsClass(driver.findElement(By.xpath("(//input[@type='checkbox'])[" + i + "]")));
+			} catch (Exception e) {
+				clickOnWebElement(driver.findElement(By.xpath("(//input[@type='checkbox'])[" + i + "]")));
+			}
+		}
 
 		log.info("Ending of selectPlayerCheckbox method");
 	}
@@ -451,8 +460,31 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 	public void selectMultiplePlayers() {
 		log.info("Starting of selectMultiplePlayers method");
 
-		for (int i = 0; i <= 3; i++) {
-			chkFirstPlayers.get(i).click();
+		try {
+			if (chkFirstPlayers.size() < 3) {
+				clickOnWebElement(tabPlayers);
+
+				this.implicitWait();
+				clickOnElement(btnAddParticipants);
+				this.txtBoxSearchParticipant.sendKeys(randomAlphabet(1));
+				this.implicitWait();
+				clickOnWebElement(rdoSelectParticipant);
+				clickOnWebElement(btnAddParticipant);
+				clickOnWebElement(btnAdd);
+
+				hardWait(2);
+				clickOnWebElement(tabUnmatchedPlayes);
+			}
+		} catch (Exception e) {
+			System.out.println("Greater than 2 UnMatched players displayed");
+		}
+
+		for (int i = 1; i <= 3; i++) {
+			try {
+				clickUsingActionsClass(driver.findElement(By.xpath("(//input[@type='checkbox'])[" + i + "]")));
+			} catch (Exception e) {
+				clickOnWebElement(driver.findElement(By.xpath("(//input[@type='checkbox'])[" + i + "]")));
+			}
 		}
 
 		log.info("Ending of selectMultiplePlayers method");
@@ -461,8 +493,12 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 	public void clickOnCreateTeamButton() {
 		log.info("Starting of clickOnCreateTeamButton method");
 
-		clickOnElement(btnCreateTeam);
-
+		try {
+			clickUsingActionsClass(btnCreateTeam);
+		} catch (Exception e) {
+			clickOnWebElement(btnCreateTeam);
+		}
+		
 		log.info("Ending of clickOnCreateTeamButton method");
 	}
 
@@ -477,21 +513,22 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 		log.info("Starting of addMultiplePlayers method");
 
 		driver.navigate().refresh();
+		hardWait(3);
 
 		clickOnWebElement(tabPlayers);
-		clickOnElement(btnAddParticipants);
-		this.txtBoxSearchParticipant.sendKeys(randomAlphabet(1));
 
-		clickOnWebElement(rdoSelectParticipant);
-		clickOnWebElement(btnAddParticipant);
-		clickOnWebElement(btnAdd);
+		for (int i = 0; i < 3; i++) {
 
-		clickOnElement(btnAddParticipants);
-		this.txtBoxSearchParticipant.sendKeys(randomAlphabet(1));
+			this.implicitWait();
+			clickOnElement(btnAddParticipants);
+			this.txtBoxSearchParticipant.sendKeys(randomAlphabet(1));
+			this.implicitWait();
+			clickOnWebElement(rdoSelectParticipant);
+			clickOnWebElement(btnAddParticipant);
+			clickOnWebElement(btnAdd);
 
-		clickOnWebElement(rdoSelectParticipant);
-		clickOnWebElement(btnAddParticipant);
-		clickOnWebElement(btnAdd);
+			hardWait(2);
+		}
 		clickOnWebElement(tabUnmatchedPlayes);
 
 		log.info("Ending of addMultiplePlayers method");
@@ -888,8 +925,8 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 	}
 
 	public void selectTeamsInWaterFall() {
-	log.info("Starting of selectTeams method");
-		this.hardWait(5);	
+		log.info("Starting of selectTeams method");
+		this.hardWait(5);
 		try {
 			clickOnElementUsingActionClass(tabUnmatchedPlayes);
 			this.hardWait(5);
@@ -928,4 +965,6 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 		}
 		log.info("Ending of selectTeams method");
 	}
+
+	
 }

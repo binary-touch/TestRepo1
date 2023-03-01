@@ -182,6 +182,7 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 			this.hardWait(3);
 			try {
 				if ((isDisplayed(tabUnmatchedPlayes) == true)) {
+					
 					clickOnElement(tabUnmatchedPlayes);
 
 					try {
@@ -457,8 +458,8 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 	}
 
 	public String getSuccessTitleText() {
-		log.info("Starting of getSucessTittleTxt method");
-		log.info("Ending of getSucessTittleTxt method");
+		log.info("Starting of getSuccessTitleText method");
+		log.info("Ending of getSuccessTitleText method");
 
 		return getText(txtSucess);
 	}
@@ -613,5 +614,17 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 		this.hardWait(3);
 
 		log.info("Ending of clickOnHomeMenu method");
+	}
+	public void clickOnUnmatchedTab() {
+		log.info("Starting of clickOnUnmatchedTab method");
+		try {
+			clickUsingActionsClass(tabUnmatchedPlayes);
+		} catch (Exception e) {
+			clickOnWebElement(tabUnmatchedPlayes);
+		}
+
+		this.hardWait(3);
+
+		log.info("Ending of clickOnUnmatchedTab method");
 	}
 }
