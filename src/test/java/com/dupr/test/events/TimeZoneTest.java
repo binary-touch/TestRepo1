@@ -108,7 +108,7 @@ public class TimeZoneTest extends CommonBaseTest {
 
 		super.verifyAddBracketsFunctionalityWithValidDetails();
 
-		super.VerifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
+		super.verifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
 
 		logger.info("Ending of verifyRegistrationCompetitionDateAndTimeInSummaryPage method");
 	}
@@ -151,8 +151,7 @@ public class TimeZoneTest extends CommonBaseTest {
 		String TimeZoneInEventDetails = timeZonePage.getIndianTimeZoneInEventDetails();
 		Assert.assertEquals(TimeZone, TimeZoneInEventDetails);
 
-		this.VerifyPublishEventButton();
-		addBracketPage.clickOnEventSuccessClosePopupButton();
+		this.verifyPublishEventButton();
 
 		addEventPage.clickOnEventsTab();
 		addEventPage.clickOnRecentlyAddedEvent(eventName);
@@ -235,7 +234,7 @@ public class TimeZoneTest extends CommonBaseTest {
 
 		Assert.assertTrue(addBracketPage.isAddAnotherBracketPopUpContains());
 
-		this.VerifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
+		this.verifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
 
 		TimeZone2 = timeZonePage.getArizonaTimeZoneInEventDetails();
 		Assert.assertEquals(TimeZone2, TimeZoneInEventDetails);
@@ -250,8 +249,7 @@ public class TimeZoneTest extends CommonBaseTest {
 	public void verifyAddABracketInAddEventFunctionality() {
 		logger.info("Starting of verifyAddABracketInAddEventFunctionality method");
 
-		this.VerifyPublishEventButton();
-		addBracketPage.clickOnEventSuccessClosePopupButton();
+		this.verifyPublishEventButton();
 
 		addEventPage.clickOnEventsTab();
 		addEventPage.clickOnRecentlyAddedEvent(eventName);

@@ -45,8 +45,8 @@ public class WaterfallRoundOneSeedingLogicTest extends CommonBaseTest {
 	@Description("Test case #1, Verify creating WaterFall Event As Singles")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #1, Verify creating WaterFall Event As Singles")
-	public void verifyCreatingWaterFallEventAsSingles() {
-		logger.info("Starting of verifyCreatingWaterFallEventAsSingles method");
+	public void verifyCreatingWaterFallEventWithSinglesMatchType() {
+		logger.info("Starting of verifyCreatingWaterFallEventWithSinglesMatchType method");
 
 		seedMatchesPage.hardWait(3);
 		seedMatchesWaterFallPage.clickOnHomeMenu();
@@ -114,11 +114,10 @@ public class WaterfallRoundOneSeedingLogicTest extends CommonBaseTest {
 
 		addEventPage.clickOnNextStepButton();
 
-		this.VerifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
+		this.verifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
 
-		this.VerifyPublishEventButton();
+		this.verifyPublishEventButton();
 
-		addBracketPage.clickOnEventSuccessClosePopupButton();
 		addEventPage.clickOnEventsTab();
 		seedMatchesPage.hardWait(5);
 		addEventPage.clickOnRecentlyAddedEvent(eventName);
@@ -126,7 +125,7 @@ public class WaterfallRoundOneSeedingLogicTest extends CommonBaseTest {
 		seedMatchesPage.clickOnBracketCard();
 		seedMatchesPage.hardWait(5);
 
-		logger.info("Ending of verifyCreatingWaterFallEventAsSingles method");
+		logger.info("Ending of verifyCreatingWaterFallEventWithSinglesMatchType method");
 	}
 
 	@Test(priority = 2, description = "Verify Adding Participants in waterfall event", groups = "sanity")
@@ -200,6 +199,7 @@ public class WaterfallRoundOneSeedingLogicTest extends CommonBaseTest {
 
 		logger.info("Ending of verifyWaterFallRoundOneSeedingLogic method");
 	}
+	
 	@AfterClass
 	public void quitDriver() {
 
