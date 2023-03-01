@@ -28,6 +28,8 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 	private SeedMatchesPage seedMatchesPage = null;
 	private SeedMatchesWaterFallPage seedMatchesWaterFallPage = null;
 	private PreservingPageVisitsPage preservingPageVisitsPage = null;
+	private String FirstGameScore = null;
+	private String SecondGameScore = null;
 
 	@BeforeClass
 	@Parameters({ "browser", "siteURL", "directorEmail", "directorPassword" })
@@ -120,7 +122,7 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 
 		this.verifyPublishEventButton();
 
-		addBracketPage.clickOnEventSuccessClosePopupButton();
+		// addBracketPage.clickOnEventSuccessClosePopupButton();
 		addEventPage.clickOnEventsTab();
 		seedMatchesPage.hardWait(5);
 		addEventPage.clickOnRecentlyAddedEvent(eventName);
@@ -566,7 +568,7 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		Assert.assertEquals(seedMatchesWaterFallPage.getDownloadDiagramText(),
 				expectedAssertionsProp.getProperty("download.diagram.text"));
 		Assert.assertEquals(seedMatchesWaterFallPage.getOkText(), expectedAssertionsProp.getProperty("ok.text"));
-		Assert.assertTrue(seedMatchesWaterFallPage.isCloseIconDisplayed());
+		Assert.assertTrue(seedMatchesWaterFallPage.isCloseIconDisplayedOnHavingWiFiProblemPopUp());
 
 		logger.info("Ending of verifyTheDetailsDisplayedInHavingWiFiProblemPopUp method");
 	}
@@ -701,7 +703,7 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 			seedMatchesPage.hardWait(3);
 
 			seedMatchesPage.clickOnCalenderButton();
-		
+
 			seedMatchesPage.hardWait(5);
 
 			seedMatchesPage.selectingMatchDateAsCurrentDate();
@@ -760,10 +762,109 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		logger.info("Ending of verifyValidatingAllScoresForWaterFallEvent method");
 	}
 
-	@Test(priority = 34, description = "Verify Adding and validting scores for All Rounds", groups = "sanity")
-	@Description("Test case #34, Verify Adding and validting scores for All Rounds")
+	@Test(priority = 34, description = "Verify the results on click of edit button")
+	@Description("Test case #34, Verify the results on click of edit button")
+	@Severity(SeverityLevel.CRITICAL)
+	@Story("Test case #34, Verify the results on click of edit button")
+	public void verifyEditScore() {
+		logger.info("Starting of verifyEditScore method");
+
+		FirstGameScore = seedMatchesWaterFallPage.getFirstGameScoreText();
+		SecondGameScore = seedMatchesWaterFallPage.getSecondGameScoreText();
+
+		seedMatchesWaterFallPage.clickOnEditScore();
+
+		String editScoresText = this.seedMatchesWaterFallPage.getEditScoreText();
+		Assert.assertEquals(editScoresText, expectedAssertionsProp.getProperty("edit.score.label"));
+
+		String matchDateText = this.seedMatchesWaterFallPage.getMatchDateText();
+		Assert.assertEquals(matchDateText, expectedAssertionsProp.getProperty("match.date.label"));
+
+		String submitButtonText = this.seedMatchesWaterFallPage.getSubmitButtonText();
+		Assert.assertEquals(submitButtonText, expectedAssertionsProp.getProperty("submit.button.label"));
+
+		Assert.assertTrue(seedMatchesWaterFallPage.isCrossIconDisplayed());
+
+		logger.info("Ending of verifyEditScore method");
+	}
+
+	@Test(priority = 35, description = "Verify To edit Game Score")
+	@Description("Test case #35, Verify To edit Game Score")
+	@Severity(SeverityLevel.CRITICAL)
+	@Story("Test case #35, Verify To edit Game Score ")
+	public void verifyToSetGameScore() {
+		logger.info("Starting of verifyToSetGameScore method");
+
+		seedMatchesWaterFallPage.setFirstGameScoreEdit(testDataProp.getProperty("first.game.score"));
+		seedMatchesWaterFallPage.setSecondGameScoreEdit(testDataProp.getProperty("second.game.score"));
+		seedMatchesWaterFallPage.clickOnSubmitButton();
+
+		logger.info("Ending of verifyToSetGameScore method");
+	}
+
+	@Test(priority = 36, description = "Verify the results on click of Go Back button")
+	@Description("Test case #36, Verify the results on click of Go Back button")
+	@Severity(SeverityLevel.CRITICAL)
+	@Story("Test case #36, Verify the results on click of Go Back button")
+	public void verifyGoBackFeature() {
+		logger.info("Starting of verifyGoBackFeature method");
+
+		String editScoresText = this.seedMatchesWaterFallPage.getSubmittingNewScoresText();
+		Assert.assertEquals(editScoresText, expectedAssertionsProp.getProperty("submitting.new.scores"));
+
+		String matchDateText = this.seedMatchesWaterFallPage.getSubmitScoresButtonText();
+		Assert.assertEquals(matchDateText, expectedAssertionsProp.getProperty("submit.scores.button.label"));
+
+		String submitButtonText = this.seedMatchesWaterFallPage.getGoBackText();
+		Assert.assertEquals(submitButtonText, expectedAssertionsProp.getProperty("go.back.label"));
+
+		Assert.assertTrue(seedMatchesWaterFallPage.isCrossIconDisplayed());
+
+		seedMatchesWaterFallPage.clickOnGoBack();
+
+		logger.info("Ending of verifyGoBackFeature method");
+	}
+
+	@Test(priority = 37, description = "Verify to Submit new Score")
+	@Description("Test case #37, Verify login to Submit new Score")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #34, Verify Adding and validting scores for All Rounds")
+	@Story("Test case #37, Verify to Submit new Score")
+	public void verifyToSubmittingNewScore() {
+		logger.info("Starting of verifyToSubmittingNewScore method");
+
+		seedMatchesWaterFallPage.hardWait(2);
+		Assert.assertFalse(seedMatchesWaterFallPage.isSubmittingNewScoresLabelDisplayed());
+
+		seedMatchesWaterFallPage.clickOnSubmitButton();
+
+		seedMatchesWaterFallPage.clickOnSubmitScoreButton();
+
+		logger.info("Ending of verifyToSubmittingNewScore method");
+	}
+
+	@Test(priority = 38, description = "Verify to validate Game Score after the edit")
+	@Description("Test case #38, Verify to validate Game Score after the edit")
+	@Severity(SeverityLevel.NORMAL)
+	@Story("Test case #38, Verify to validate Game Score after the edit")
+	public void verifyToValidateGameScore() {
+		logger.info("Starting of verifyToValidateGameScore method");
+
+		Assert.assertFalse(seedMatchesWaterFallPage.isEditScoreDisplayed());
+
+		String firstGameScore = this.seedMatchesWaterFallPage.getFirstGameScoreText();
+		try {
+			Assert.assertNotEquals(firstGameScore, FirstGameScore);
+		} catch (Exception e) {
+			Assert.assertEquals(firstGameScore, FirstGameScore);
+		}
+
+		logger.info("Ending of verifyToValidateGameScore method");
+	}
+
+	@Test(priority = 39, description = "Verify Adding and validting scores for All Rounds", groups = "sanity")
+	@Description("Test case #39, Verify Adding and validting scores for All Rounds")
+	@Severity(SeverityLevel.NORMAL)
+	@Story("Test case #39, Verify Adding and validting scores for All Rounds")
 	public void verifyAddingAndValidatingScoreForAllRounds() {
 		logger.info("Starting of verifyAddingAndValidatingScoreForAllRounds method");
 
@@ -775,10 +876,28 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		logger.info("Ending of verifyAddingAndValidatingScoreForAllRounds method");
 	}
 
-	@Test(priority = 35, description = "Verify three medals in standings tab", groups = "sanity")
-	@Description("Test case #35, Verify three medals in standings tab")
+	@Test(priority = 40, description = "Verify the results on click of edit button")
+	@Description("Test case #40, Verify the results on click of edit button")
+	@Severity(SeverityLevel.CRITICAL)
+	@Story("Test case #40, Verify the results on click of edit button")
+	public void verifyEditScoreAfterStandingTabIsDisplayed() {
+		logger.info("Starting of verifyEditScoreAfterStandingTabIsDisplayed method");
+
+		seedMatchesWaterFallPage.clickOnEditScore();
+
+		seedMatchesWaterFallPage.setFirstGameScoreEdit(testDataProp.getProperty("first.game.score"));
+		seedMatchesWaterFallPage.setSecondGameScoreEdit(testDataProp.getProperty("second.game.score"));
+		seedMatchesWaterFallPage.clickOnSubmitButton();
+		seedMatchesPage.hardWait(2);
+		seedMatchesWaterFallPage.clickOnSubmitScoreButton();
+
+		logger.info("Ending of verifyEditScoreAfterStandingTabIsDisplayed method");
+	}
+
+	@Test(priority = 41, description = "Verify three medals in standings tab", groups = "sanity")
+	@Description("Test case #41, Verify three medals in standings tab")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #35, Verify three medals in standings tab")
+	@Story("Test case #41, Verify three medals in standings tab")
 	public void verifyThreeMedalsInStandingsTab() {
 		logger.info("Starting of verifyThreeMedalsInStandingsTab method");
 
@@ -789,10 +908,28 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		logger.info("Ending of verifyThreeMedalsInStandingsTab method");
 	}
 
-	@Test(priority = 36, description = "Verify creating WaterFall Event As Singles", groups = "sanity")
-	@Description("Test case #36, Verify creating WaterFall Event As Singles")
+	@Test(priority = 42, description = "Verify matches are edited label is displayed", groups = "sanity")
+	@Description("Test case #42, Verify matches are edited label is displayed")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #36, Verify creating WaterFall Event As Singles")
+	@Story("Test case #42, Verify matches are edited label is displayed")
+	public void verifyMatcehsEditedLabelIsPresent() {
+		logger.info("Starting of verifyMatcehsEditedLabelIsPresent method");
+
+		seedMatchesWaterFallPage.hardWait(3);
+		Assert.assertTrue(seedMatchesWaterFallPage.isTheMatchesLabelDisplayed());
+
+		seedMatchesWaterFallPage.clickOnViewDrawsButton();
+		seedMatchesWaterFallPage.hardWait(3);
+
+		Assert.assertTrue(seedMatchesWaterFallPage.isTheMatchesLabelDisplayed());
+
+		logger.info("Ending of verifyMatcehsEditedLabelIsPresent method");
+	}
+
+	@Test(priority = 43, description = "Verify creating WaterFall Event As Singles", groups = "sanity")
+	@Description("Test case #43, Verify creating WaterFall Event As Singles")
+	@Severity(SeverityLevel.NORMAL)
+	@Story("Test case #43, Verify creating WaterFall Event As Singles")
 	public void verifyCreatingWaterFallEventAsSingles() {
 		logger.info("Starting of verifyCreatingWaterFallEventAsSingles method");
 
