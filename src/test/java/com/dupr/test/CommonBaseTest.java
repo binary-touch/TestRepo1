@@ -213,10 +213,10 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		logger.info("Starting of VerifyPublishEventButton method");
 
 		addBracketPage.clickOnPublishEventButton();
-
 		Assert.assertTrue(addBracketPage.isPublishSuccessPopUpContains());
-
+		addBracketPage.hardWait(3);
 		addBracketPage.clickOnEventSuccessClosePopupButton();
+		
 		logger.info("Ending of VerifyPublishEventButton method");
 	}
 
@@ -305,8 +305,6 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 
 		this.verifyPublishEventButton();
 
-		addBracketPage.clickOnEventSuccessClosePopupButton();
-
 		logger.info("Ending of verifyFreeBracketWithRoundRobinEventType method");
 	}
 
@@ -390,11 +388,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		this.verifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
 
 		this.verifyPublishEventButton();
-		try {
-			addBracketPage.clickOnEventSuccessClosePopupButton();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	
 		logger.info("Ending of verifyFreeBracketWithSinglesTypeAndRoundRobinEvent method");
 	}
 
@@ -445,7 +439,6 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 
 		this.verifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
 		this.verifyPublishEventButton();
-		addBracketPage.clickOnEventSuccessClosePopupButton();
 
 		logger.info("Ending of verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup method");
 	}
@@ -645,7 +638,6 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		this.verifyPublishEventButton();
 
 		addBracketPage.hardWait(3);
-		addBracketPage.clickOnEventSuccessClosePopupButton();
 
 		logger.info("Ending of verifyPaidBracketWithEventTypeAsWateFall method");
 	}
@@ -723,7 +715,6 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		this.verifyPublishEventButton();
 
 		addBracketPage.hardWait(2);
-		addBracketPage.clickOnEventSuccessClosePopupButton();
 
 		logger.info("Ending of verifyPaidBracketWithEventTypeAsWateFallInSinglesMatchType method");
 	}

@@ -29,7 +29,6 @@ public class AcceptOrDeclinePartnerTest extends CommonBaseTest {
 
 	private static final Logger logger = Logger.getLogger(AcceptOrDeclinePartnerTest.class.getName());
 
-	private EventRegistrationPage directorEventRegistrationPage = null;
 	private EditOrRemovePartnerPage editOrRemovePartnerPage = null;
 	private AcceptOrDeclinePartnershipPage acceptOrDeclinePartnershipPage = null;
 	private UserDashboardPage userDashboardPage = null;
@@ -240,9 +239,10 @@ public class AcceptOrDeclinePartnerTest extends CommonBaseTest {
 	@Description("Test case #11, Verify Accept Functionality MyBrackets Page In Player Account")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #11, Verify Accept Functionality MyBrackets Page In Player Account")
-	public void verifyAcceptFunctionalityInPlayerAccount(String siteURL, String validEmail, String validPassword)
-			throws Exception {
+	public void verifyAcceptFunctionalityInPlayerAccount(String siteURL, String validEmail, String validPassword)throws Exception {
+
 		logger.info("Starting of verifyAcceptFunctionalityInPlayerAccount method");
+
 
 		editOrRemovePartnerPage.hardWait(3);
 		userDashboardPage.clickOnOpenSettingsMenu();

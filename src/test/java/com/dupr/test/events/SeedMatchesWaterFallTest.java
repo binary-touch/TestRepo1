@@ -29,7 +29,6 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 	private SeedMatchesWaterFallPage seedMatchesWaterFallPage = null;
 	private PreservingPageVisitsPage preservingPageVisitsPage = null;
 	private String FirstGameScore = null;
-	private String SecondGameScore = null;
 
 	@BeforeClass
 	@Parameters({ "browser", "siteURL", "directorEmail", "directorPassword" })
@@ -119,10 +118,8 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		addEventPage.clickOnNextStepButton();
 
 		this.verifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
-
 		this.verifyPublishEventButton();
 
-		// addBracketPage.clickOnEventSuccessClosePopupButton();
 		addEventPage.clickOnEventsTab();
 		seedMatchesPage.hardWait(5);
 		addEventPage.clickOnRecentlyAddedEvent(eventName);
@@ -770,7 +767,6 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		logger.info("Starting of verifyEditScore method");
 
 		FirstGameScore = seedMatchesWaterFallPage.getFirstGameScoreText();
-		SecondGameScore = seedMatchesWaterFallPage.getSecondGameScoreText();
 
 		seedMatchesWaterFallPage.clickOnEditScore();
 
@@ -1003,7 +999,6 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 
 		this.verifyPublishEventButton();
 
-		addBracketPage.clickOnEventSuccessClosePopupButton();
 		addEventPage.clickOnEventsTab();
 		seedMatchesPage.hardWait(5);
 		addEventPage.clickOnRecentlyAddedEvent(eventName);
