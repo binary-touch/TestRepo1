@@ -581,5 +581,48 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 
 		log.info("Ending of addMeetPlayerForWaterFallEvent method");
 	}
+	public void addParticipantsForWithdrawPlayer() {
+		log.info("Starting of addParticipantsForWithdrawPlayer method");
+
+		for (int i = 0; i < 3; i++) {
+			try {
+				if (btnAddParticipants.isDisplayed() == true) {
+					this.hardWait(3);
+					clickOnWebElement(btnAddParticipants);
+					this.hardWait(4);
+					clickOnWebElement(rdoSelectParticipant);
+					this.hardWait(3);
+					clickOnElement(btnAddParticipant);
+					this.hardWait(4);
+					clickOnWebElement(rdoNo);
+					this.hardWait(3);
+					clickOnWebElement(btnAdd);
+					this.hardWait(5);
+				}
+			} catch (Exception e) {
+				try {
+					if (btnAddParticipants.isDisplayed() == true) {
+						this.hardWait(3);
+						clickOnWebElement(btnAddParticipants);
+						this.hardWait(4);
+						clickOnWebElement(rdoSelectParticipant);
+						this.hardWait(3);
+						clickOnElement(btnAddParticipant);
+						this.hardWait(4);
+						clickOnWebElement(rdoNo);
+						this.hardWait(3);
+						clickOnWebElement(btnAdd);
+						this.hardWait(5);
+					}
+				} catch (Exception e2) {
+					System.out.println();
+				}
+
+			}
+
+		}
+
+		log.info("Ending of addParticipantsForWithdrawPlayer method");
+	}
 
 }

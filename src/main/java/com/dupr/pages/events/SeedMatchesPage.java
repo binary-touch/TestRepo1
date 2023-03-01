@@ -1660,13 +1660,13 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			this.clickOnCancelCalenderButton();
 			hardWait(2);
-			
+
 			try {
 				clickUsingActionsClass(txtBoxCompetitionStartDate);
 			} catch (Exception e1) {
 				clickOnWebElement(txtBoxCompetitionStartDate);
 			}
-			
+
 			this.clickOnCurrentDate(date);
 			this.selectFutureHour();
 		}

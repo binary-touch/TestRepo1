@@ -49,7 +49,7 @@ public class EndEventPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//*[contains(@class,'MuiSvgIcon-root MuiSvgIcon-fontSizeMedium')]")
 	private WebElement imgEmptyLogo;
 
-	@B2BFindBy(xpath = "//div[contains(@class,'MuiBox-root ')]//h3[contains(@class,'MuiTypography-root MuiTypography-h3')]/following-sibling::h4/following-sibling::p")
+	@B2BFindBy(xpath = "//div[contains(@class,'MuiBox-root ')]//h3[contains(@class,'MuiTypography-root MuiTypography-h3')]/following-sibling::h4/following-sibling::p[1]")
 	private WebElement lblRegisterDates;
 
 	@B2BFindBy(xpath = "//div[contains(@class,'MuiBox-root ')]//h3[contains(@class,'MuiTypography-root MuiTypography-h3')]/following-sibling::h4")
@@ -58,8 +58,8 @@ public class EndEventPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//div[contains(@class,'MuiBox-root ')]//h3[contains(@class,'MuiTypography-root MuiTypography-h3')]/following-sibling::h4/preceding-sibling::h3")
 	private WebElement lblBracketName;
 
-	@B2BFindBy(xpath = "//span[text()='Complete']")
-	private WebElement lblComplete;
+	@B2BFindBy(xpath = "//span[text()='Completed' and contains(@class,'MuiChip-label MuiChip-labelMedium')]")
+	private WebElement lblCompleted;
 
 	@B2BFindBy(xpath = "//button[text()='Share']")
 	private WebElement btnShare;
@@ -202,7 +202,7 @@ public class EndEventPage extends DUPRBaseAutomationPage {
 			log.debug(isDisplayed(imgLogo));
 			log.debug(isDisplayed(txtEvent));
 			log.debug(isDisplayed(btnShare));
-			log.debug(isDisplayed(lblComplete));
+			log.debug(isDisplayed(lblCompleted));
 			log.debug(isDisplayed(btnBack));
 			log.debug(isDisplayed(lblBracketName));
 			log.debug(isDisplayed(lblClubName));
@@ -211,7 +211,7 @@ public class EndEventPage extends DUPRBaseAutomationPage {
 			log.debug("Failed: " + e.getMessage());
 		}
 
-		if (isDisplayed(imgLogo) && isDisplayed(txtEvent) && isDisplayed(btnShare) && isDisplayed(lblComplete)
+		if (isDisplayed(imgLogo) && isDisplayed(txtEvent) && isDisplayed(btnShare) && isDisplayed(lblCompleted)
 				&& isDisplayed(btnBack) && isDisplayed(lblBracketName) && isDisplayed(lblClubName)
 				&& isDisplayed(lblRegisterDates)) {
 			isEndEventPageContains = true;
@@ -229,7 +229,7 @@ public class EndEventPage extends DUPRBaseAutomationPage {
 
 		int i = 1;
 		for (WebElement element : lblEventStatus) {
-			if (!(element.getText().contains("Complete"))) {
+			if (!(element.getText().contains("Completed"))) {
 				getBracketsStatusText = false;
 				System.out.println("testcase failed" + i);
 			}

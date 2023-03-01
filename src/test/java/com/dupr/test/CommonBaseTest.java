@@ -76,7 +76,8 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		this.directorEventRegistrationPage = new EventRegistrationPage(this.driver);
 		this.playerEventRegistrationPage = new PlayerEventRegistrationPage(this.driver);
 		this.paidEventPage = new PaidEventPage(this.driver);
-
+       
+        
 		logger.info("Ending of initTest in CommonBaseTest");
 	}
 
@@ -276,7 +277,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		addBracketPage.setRegistrationStartDate();
 
 		addBracketPage.hardWait(2);
-		addBracketPage.setRegistrationEndDate();
+		timeZonePage.setRegistrationEndDate();
 
 		addBracketPage.hardWait(2);
 		addBracketPage.setCompetitionStartDate();
@@ -310,7 +311,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 	public void verifyFreeBracketWithSinglesTypeAndRoundRobinEvent() {
 		logger.info("Starting of verifyFreeBracketWithSinglesTypeAndRoundRobinEvent method");
 
-		event = addEventPage.setEventName(testDataProp.getProperty("event.name"));
+		eventName = addEventPage.setEventName(testDataProp.getProperty("event.name"));
 		addEventPage.setLocation(testDataProp.getProperty("state.address"));
 		addEventPage.uploadEventLogo(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("edit.club.logo.path"));
 		addEventPage.setMemberPrice(testDataProp.getProperty("zero.value"));
@@ -361,7 +362,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		addBracketPage.setRegistrationStartDate();
 
 		addBracketPage.hardWait(2);
-		addBracketPage.setRegistrationEndDate();
+		timeZonePage.setRegistrationEndDate();
 
 		addBracketPage.hardWait(2);
 		addBracketPage.setCompetitionStartDate();
@@ -387,7 +388,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		this.verifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
 
 		this.verifyPublishEventButton();
-
+	
 		logger.info("Ending of verifyFreeBracketWithSinglesTypeAndRoundRobinEvent method");
 	}
 
@@ -417,7 +418,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
 
 		addBracketPage.setRegistrationStartDate();
-		addBracketPage.setRegistrationEndDate();
+		timeZonePage.setRegistrationEndDate();
 		addBracketPage.setCompetitionStartDate();
 		addBracketPage.setCompetitionEndDate();
 
@@ -442,7 +443,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup method");
 	}
 
-	public void VerifyRecentlyAddedEventUnderEventsTab() {
+	public void verifyRecentlyAddedEventUnderEventsTab() {
 		logger.info("Starting of VerifyRecentlyAddedEventUnderEventsTab method");
 
 		addEventPage.clickOnEventsTab();
