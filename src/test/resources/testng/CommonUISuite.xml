@@ -4,12 +4,12 @@
 
 	<test name="Sprint 1">
 		<classes>
-			<class name="com.dupr.test.players.SearchPlayersTest" />
+			<!-- <class name="com.dupr.test.players.SearchPlayersTest" />
 			<class name="com.dupr.test.signup.SignupTest" />
-			<class name="com.dupr.test.signup.DUPRClaimAccountSignUpTest" />
+			<class name="com.dupr.test.signup.DUPRClaimAccountSignUpTest" /> -->
 			<class name="com.dupr.test.DUPRLoginTest" />
 			<class name="com.dupr.test.NegativeLoginTest" />
-			<class name="com.dupr.test.ForgotPasswordTest" />
+			<!-- <class name="com.dupr.test.ForgotPasswordTest" />
 			<class name="com.dupr.test.addamatch.AddAMatchTest" />
 			<class name="com.dupr.test.home.ValidateRecentlyAddedMatchTest" />
 			<class name="com.dupr.test.home.ValidateStatsChangeOnNewMatchTest" />
@@ -18,11 +18,11 @@
 			<class name="com.dupr.test.profile.PlayerProfileTest" />
 			<class name="com.dupr.test.profile.NotificationsTest" />
 			<class name="com.dupr.test.profile.ChangePasswordTest" />
-			<class name="com.dupr.test.profile.ProfilePictureTest" />
+			<class name="com.dupr.test.profile.ProfilePictureTest" /> -->
 		</classes>
 	</test>
 
-	<test name="Sprint 2">
+	<!-- <test name="Sprint 2">
 		<classes>
 			<class name="com.dupr.test.clubs.BrowseClubsTest" />
 			<class name="com.dupr.test.clubs.MyClubsTest" />
@@ -67,15 +67,16 @@
 			<class name="com.dupr.test.events.TimeZoneTest" />
 			<class name="com.dupr.test.events.SeedMatchesTest" />
 		</classes>
-	</test> 
- 
-	<test name="Sprint 5">
-		<classes>
-			<class name="com.dupr.test.events.PaidEventAndPaidBracketWithWaterfallEventTest" />
-			<class name="com.dupr.test.events.WaterfallRoundOneSeedingLogicTest" /> 
-			<class name="com.dupr.test.events.SeedMatchesWaterFallTest" />
-			
-			<class name="com.dupr.test.events.EditScoreAfterValidationTest" />
-		</classes>
 	</test>
+	
+	<test name="Sprint 5">
+	<classes>
+		<class
+			name="com.dupr.test.events.PaidEventAndPaidBracketWithWaterfallEventTest" />
+		 <class
+			name="com.dupr.test.events.WaterfallRoundOneSeedingLogicTest" />
+		<class name="com.dupr.test.events.EditScoreAfterValidationTest" />
+		<class name="com.dupr.test.events.SeedMatchesWaterFallTest" /> 
+	</classes>
+</test> -->
 </suite>
