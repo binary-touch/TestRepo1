@@ -80,6 +80,18 @@ public class ValidateStatsChangeOnNewMatchPage extends DUPRBaseAutomationPage {
 
 		boolean isResultOverViewSectionContains = false;
 
+		System.out.println(isDisplayed(lblResultOverview));
+		System.out.println(isDisplayed(btnViewProfile));
+		System.out.println(isDisplayed(lblWinsCount));
+		System.out.println(isDisplayed(lblPendingCount));
+		System.out.println(isDisplayed(lblLossesCount));
+		System.out.println(isDisplayed(lblTotalMatches));
+		System.out.println(isDisplayed(chkWins));
+		System.out.println(isDisplayed(chkLosses));
+		System.out.println(isDisplayed(chkPending));
+		System.out.println(isDisplayed(iconInfo));
+		
+		
 		if (isDisplayed(lblResultOverview) && isDisplayed(btnViewProfile) && isDisplayed(lblWinsCount)
 				&& isDisplayed(lblPendingCount) && isDisplayed(lblLossesCount) && isDisplayed(lblTotalMatches)
 				&& isDisplayed(chkWins) && isDisplayed(chkLosses) && isDisplayed(chkPending) && isDisplayed(iconInfo)) {

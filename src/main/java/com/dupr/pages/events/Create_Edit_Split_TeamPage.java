@@ -220,8 +220,18 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//input[@type='checkbox']/parent::span/following-sibling::span//h4")
 	private WebElement txtName;
-
 	
+	@B2BFindBy(xpath = "//h4[text()='Players must be different genders']")
+	private WebElement lblPlayersMustBeDifferentGenders;
+	
+	@B2BFindBy(xpath = "//button[text()='Cancel']")
+	private WebElement btnCancelOnMixedPlayerPopUp;
+	
+	@B2BFindBy(xpath = "//h4[text()='Players must be different genders']/button")
+	private WebElement iconClosePopUp;
+	
+	@B2BFindBy(xpath = "//button[text()='Edit Bracket']")
+	private WebElement btnEditBracket;
 
 	public Create_Edit_Split_TeamPage(WebDriver driver) {
 		super(driver);
@@ -337,6 +347,13 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 		return isUnMatchedPlayersEmailsDisplayed;
 	}
 
+	public boolean isMixedBracketDisplayed() {
+		log.info("Starting of isMixedBracketDisplayed method");
+
+		log.info("Ending of isMixedBracketDisplayed method");
+
+		return lblPlayersMustBeDifferentGenders.isDisplayed();
+	}
 	public boolean isUnMatchedPlayerDoublesRatingsDisplayed() {
 		log.info("Starting of isUnMatchedPlayerDoublesRatingsDisplayed method");
 
@@ -498,7 +515,7 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			clickOnWebElement(btnCreateTeam);
 		}
-		
+
 		log.info("Ending of clickOnCreateTeamButton method");
 	}
 
@@ -538,11 +555,14 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 		log.info("Starting of addAnotherPlayer method");
 
 		driver.navigate().refresh();
+		
+	//	
 
 		clickOnWebElement(tabPlayers);
 		clickOnElement(btnAddParticipants);
 		this.txtBoxSearchParticipant.sendKeys("Mohit");
 		clickOnWebElement(rdoSelectParticipant);
+	//-------
 		clickOnWebElement(btnAdd);
 		clickOnWebElement(tabUnmatchedPlayes);
 		selectPlayerCheckbox();
@@ -556,7 +576,9 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 
 		boolean isCreateTeamPopupContains = false;
 
-		if (isDisplayed(lblCreateTeam) && isDisplayed(lblCreateTeamQuestion) && isDisplayed(btnCreate)
+		if (isDisplayed(lblCreateTeam)
+				&& isDisplayed(lblCreateTeamQuestion)
+				&& isDisplayed(btnCreate)
 				&& isDisplayed(iconCloseCreateTeamPopup)) {
 
 			isCreateTeamPopupContains = true;
@@ -569,16 +591,33 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 
 	public void clickOnCancelButton() {
 		log.info("Starting of clickOnCancelButton method");
-
-		clickOnElement(btnCancel);
+		try {
+			clickUsingActionsClass(btnCancel);
+		} catch (Exception e) {
+			clickOnWebElement(btnCancel);
+		}
 
 		log.info("Ending of clickOnCancelButton method");
+	}
+	
+	public void clickOnCancelButtonOnMixedBracketPopUp() {
+		log.info("Starting of clickOnCancelButtonOnMixedBracketPopUp method");
+		try {
+			clickUsingActionsClass(btnCancelOnMixedPlayerPopUp);
+		} catch (Exception e) {
+			clickOnWebElement(btnCancelOnMixedPlayerPopUp);
+		}
+
+		log.info("Ending of clickOnCancelButtonOnMixedBracketPopUp method");
 	}
 
 	public void clickOnCreateButton() {
 		log.info("Starting of clickOnCreateButton method");
-
-		clickOnElement(btnCreate);
+		try {
+			clickUsingActionsClass(btnCreate);
+		} catch (Exception e) {
+			clickOnWebElement(btnCreate);
+		}
 
 		log.info("Ending of clickOnCreateButton method");
 	}
@@ -592,8 +631,11 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 
 	public void clickOnCloseIcon() {
 		log.info("Starting of clickOnCloseIcon method");
-
-		clickOnElement(iconClose);
+		try {
+			clickUsingActionsClass(iconClose);
+		} catch (Exception e) {
+			clickOnWebElement(iconClose);
+		}
 
 		log.info("Ending of clickOnCloseIcon method");
 	}
@@ -607,16 +649,24 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 	}
 
 	public boolean isTeamTabContains() {
-		log.info("Starting of isTeamTabContains method");
+		//log.info("Starting of isTeamTabContains method");
 
 		boolean isTeamTabContains = false;
+try {
+	if (isDisplayed(lblTeamConfirmed) 
+			&& isDisplayed(btnSort)
+			&& isDisplayed(btnClearFilter)
+			&& isDisplayed(iconInfoInTeamsTab)
+			&& isDisplayed(lblTeamOne)
+			&& isDisplayed(btnEditTeam)
+			&& isDisplayed(btnSplitTeam)) {
 
-		if (isDisplayed(lblTeamConfirmed) && isDisplayed(btnSort) && isDisplayed(btnClearFilter)
-				&& isDisplayed(iconInfoInTeamsTab) && isDisplayed(lblTeamOne) && isDisplayed(btnEditTeam)
-				&& isDisplayed(btnSplitTeam)) {
-
-			isTeamTabContains = true;
-		}
+		isTeamTabContains = true;
+	}
+} catch (Exception e) {
+	isTeamTabContains = false;
+}
+		
 
 		log.info("Ending of isTeamTabContains method");
 
@@ -762,6 +812,13 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 		clickOnElement(btnSaveChanges);
 
 		log.info("Ending of clickOnSaveChangesButton method");
+	}
+	public void clickOnEditBracketButton() {
+		log.info("Starting of clickOnEditBracketButton method");
+
+		clickOnElement(btnEditBracket);
+
+		log.info("Ending of clickOnEditBracketButton method");
 	}
 
 	public boolean isEditTeamPopupDisplayed() {
@@ -966,5 +1023,4 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 		log.info("Ending of selectTeams method");
 	}
 
-	
 }

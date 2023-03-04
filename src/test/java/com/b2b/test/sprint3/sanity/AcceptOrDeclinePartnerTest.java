@@ -1,4 +1,4 @@
-package com.dupr.test.events;
+package com.b2b.test.sprint3.sanity;
 
 import org.apache.log4j.Logger;
 import org.testng.Assert;

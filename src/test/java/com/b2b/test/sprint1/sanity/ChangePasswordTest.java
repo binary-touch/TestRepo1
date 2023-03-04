@@ -1,4 +1,4 @@
-package com.dupr.test.profile;
+package com.b2b.test.sprint1.sanity;
 
 import org.apache.log4j.Logger;
 import org.testng.Assert;
@@ -20,7 +20,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 
 @Epic("DUPR App")
-@Feature("Change password")
+@Feature("Change password sanity")
 public class ChangePasswordTest extends CommonBaseTest {
 
 	private static final Logger logger = Logger.getLogger(ChangePasswordTest.class.getName());
@@ -96,30 +96,10 @@ public class ChangePasswordTest extends CommonBaseTest {
 		logger.info("Ending of verifyOldPasswordWithLessThanMinimumCharacters method");
 	}
 
-	@Test(priority = 4, description = "Verify old password field without entering any data ", groups = "sanity")
-	@Description("Test case #4, Verify old password field without entering any data ")
+	@Test(priority = 4, description = "Verify old password field with wrong password", groups = "sanity")
+	@Description("Test case #4, Verify old password field with wrong  password")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #4, Verify old password field without entering any data ")
-	public void verifyOldPasswordAsEmpty() {
-		logger.info("Starting of verifyOldPasswordAsEmpty method");
-
-		driver.navigate().refresh();
-		changePasswordPage.clickOnSecurityTab();
-		changePasswordPage.setNewPassword(testDataProp.getProperty("new.password"));
-		changePasswordPage.setConfirmPassword(testDataProp.getProperty("new.password"));
-		changePasswordPage.clickOnSaveButton();
-
-		String oldPassworValidationText = changePasswordPage.getOldPasswordValidationText();
-		Assert.assertEquals(oldPassworValidationText,
-				expectedAssertionsProp.getProperty("password.required.validation"));
-
-		logger.info("Ending of verifyOldPasswordAsEmpty method");
-	}
-
-	@Test(priority = 5, description = "Verify old password field with wrong password", groups = "sanity")
-	@Description("Test case #5, Verify old password field with wrong  password")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #5, Verify old password field with wrong  password")
+	@Story("Test case #4, Verify old password field with wrong  password")
 	public void verifyOldPasswordByWrongPassword() {
 		logger.info("Starting of verifyOldPasswordByWrongPassword method");
 
@@ -139,10 +119,10 @@ public class ChangePasswordTest extends CommonBaseTest {
 	}
 
 	@Parameters({ "validPassword" })
-	@Test(priority = 6, description = "Verify new password field with less than minimum characters", groups = "sanity")
-	@Description("Test case #6, Verify new password field with less than minimum characters")
+	@Test(priority = 5, description = "Verify new password field with less than minimum characters", groups = "sanity")
+	@Description("Test case #5, Verify new password field with less than minimum characters")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #6, Verify new password field with less than minimum characters")
+	@Story("Test case #5, Verify new password field with less than minimum characters")
 	public void verifyNewPasswordWithLessThanMinimumCharacters(String validPassword) {
 		logger.info("Starting of verifyNewPasswordWithLessThanMinimumCharacters method");
 
@@ -157,102 +137,26 @@ public class ChangePasswordTest extends CommonBaseTest {
 
 		logger.info("Ending of verifyNewPasswordWithLessThanMinimumCharacters method");
 	}
-
+	
 	@Parameters({ "validPassword" })
-	@Test(priority = 7, description = "Verify new password field with only numbers", groups = "sanity")
-	@Description("Test case #7, Verify new password field with only numbers")
+	@Test(priority = 6, description = "Verify validation message shown when Maximum characters exceeded at  New Password field", groups = "sanity")
+	@Description("Test case #6,Verify validation message shown when Maximum characters exceeded at  New Password field")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #7, Verify new password field with only numbers")
-	public void verifyNewPasswordWithNumbers(String validPassword) {
-		logger.info("Starting of verifyNewPasswordWithNumbers method");
-
-		changePasswordPage.setOldPassword(validPassword);
-		changePasswordPage.setNewPassword(testDataProp.getProperty("full.name.with.numbers"));
-
-		String newPasswordValidationText = changePasswordPage.getNewPasswordValidationText();
-		Assert.assertEquals(newPasswordValidationText,
-				expectedAssertionsProp.getProperty("password.instruction.validation.message"));
-
-		logger.info("Ending of verifyNewPasswordWithNumbers method");
-	}
-
-	@Parameters({ "validPassword" })
-	@Test(priority = 8, description = "Verify new password field with only special characters", groups = "sanity")
-	@Description("Test case #8, Verify new password field with only special characters")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #8, Verify new password field with only special characters")
-	public void verifyNewPasswordWithSpecialCharacters(String validPassword) {
-		logger.info("Starting of verifyNewPasswordWithSpecialCharacters method");
-
-		changePasswordPage.setOldPassword(validPassword);
-		changePasswordPage.setNewPassword(testDataProp.getProperty("full.name.with.special.characters"));
-
-		String newPasswordValidationText = changePasswordPage.getNewPasswordValidationText();
-		Assert.assertEquals(newPasswordValidationText,
-				expectedAssertionsProp.getProperty("password.instruction.validation.message"));
-
-		logger.info("Ending of verifyNewPasswordWithSpecialCharacters method");
-	}
-
-	@Test(priority = 9, description = "Verify Old password field with white spaces ", groups = "sanity")
-	@Description("Test case #9, Verify Old password field with white spaces")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #9, Verify Old password field with white spaces ")
-	public void verifyOldPasswordWithWhiteSpaces() {
-		logger.info("Starting of verifyOldPasswordWithWhiteSpaces method");
-
-		driver.navigate().refresh();
-		changePasswordPage.clickOnSecurityTab();
-		changePasswordPage.setOldPassWordWithWhiteSpaces(testDataProp.getProperty("spaces.value"));
-
-		String oldPasswordValidationText = changePasswordPage.getOldPasswordValidationText();
-		Assert.assertEquals(oldPasswordValidationText,
-				expectedAssertionsProp.getProperty("white.space.password.validation"));
-
-		logger.info("Ending of verifyOldPasswordWithWhiteSpaces method");
-	}
-
-	@Parameters({ "validPassword" })
-	@Test(priority = 10, description = "Verify new  password field with white spaces", groups = "sanity")
-	@Description("Test case #10, Verify new password field with white spaces")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #10, Verify new password field with white spaces")
-	public void verifyNewPasswordWithWhiteSpaces(String validPassword) {
-		logger.info("Starting of verifyNewPasswordWithWhiteSpaces method");
-
-		changePasswordPage.setOldPassword(validPassword);
-		changePasswordPage.setNewPasswordWithWhiteSpaces(testDataProp.getProperty("spaces.value"));
-
-		String newPasswordValidationText = changePasswordPage.getNewPasswordValidationText();
-		Assert.assertEquals(newPasswordValidationText,
-				expectedAssertionsProp.getProperty("white.space.password.validation"));
-
-		logger.info("Ending of verifyNewPasswordWithWhiteSpaces method");
-	}
-
-	@Parameters({ "validPassword" })
-	@Test(priority = 11, description = "Verify validation message shown when Maximum characters exceeded at  New Password field", groups = "sanity")
-	@Description("Test case #11,Verify validation message shown when Maximum characters exceeded at  New Password field")
-	@Severity(SeverityLevel.NORMAL)
+	@Story("Test case #6,Verify validation message shown when Maximum characters exceeded at  New Password field")
 	public void verifyNewPasswordWithMoreThanMaximumCharacters(String validPassword) {
 		logger.info("Starting of verifyNewPasswordWithMoreThanMaximumCharacters method");
 
 		changePasswordPage.setOldPassword(validPassword);
 		changePasswordPage.setNewPassword(testDataProp.getProperty("more.than.max.characters.in.new.password"));
 
-		//String newPasswordValidationText = changePasswordPage.getNewPasswordValidationText();
-		//Assert.assertEquals(newPasswordValidationText,
-			//	expectedAssertionsProp.getProperty("password.mustnot.exceed.max.characters"));
-		////No Validation Message is Displaying//////
-
 		logger.info("Ending of verifyNewPasswordWithMoreThanMaximumCharacters method");
 	}
 
 	@Parameters({ "validPassword" })
-	@Test(priority = 12, description = "Verify confirm password functionality with unmatched data", groups = "sanity")
-	@Description("Test case #12,Verify confirm password functionality with unmatched data")
+	@Test(priority = 7, description = "Verify confirm password functionality with unmatched data", groups = "sanity")
+	@Description("Test case #7,Verify confirm password functionality with unmatched data")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #12,Verify confirm password functionality with unmatched data")
+	@Story("Test case #7,Verify confirm password functionality with unmatched data")
 	public void verifyConfirmPasswordWithUnmatchedData(String validPassword) {
 		logger.info("Starting of verifyConfirmPasswordWithUnmatchedData method");
 
@@ -266,29 +170,12 @@ public class ChangePasswordTest extends CommonBaseTest {
 
 		logger.info("Ending of verifyConfirmPasswordWithUnmatchedData method");
 	}
-
+	
 	@Parameters({ "validPassword" })
-	@Test(priority = 13, description = "Verify eye icon  functionality", groups = "sanity")
-	@Description("Test case #13,Verify eye icon  functionality")
+	@Test(priority = 8, description = "Verify change password with valid data ", groups = "sanity")
+	@Description("Test case #8, Verify change password with valid data ")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #13,Verify eye icon  functionality")
-	public void VerifyEyeIcon(String validPassword) {
-		logger.info("Starting of VerifyEyeIcon method");
-
-		driver.navigate().refresh();
-		changePasswordPage.clickOnSecurityTab();
-		changePasswordPage.setOldPassword(validPassword);
-		changePasswordPage.clickOnEyeIcon();
-
-		Assert.assertTrue(changePasswordPage.isEyeIconInHiddenMode());
-
-		logger.info("Ending of VerifyEyeIcon method");
-	}
-	@Parameters({ "validPassword" })
-	@Test(priority = 14, description = "Verify change password with valid data ", groups = "sanity")
-	@Description("Test case #14, Verify change password with valid data ")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #14, Verify change password with valid data ")
+	@Story("Test case #8, Verify change password with valid data ")
 	public void verifyChangePasswordFunctionalityWithValidData(String validPassword) {
 		logger.info("Starting of verifyChangePasswordFunctionalityWithValidData method");
 
@@ -304,7 +191,6 @@ public class ChangePasswordTest extends CommonBaseTest {
 		logger.info("Ending of verifyChangePasswordFunctionalityWithValidData method");
 	}
 	
-
 	@AfterClass
 	public void quitDriver() {
 
