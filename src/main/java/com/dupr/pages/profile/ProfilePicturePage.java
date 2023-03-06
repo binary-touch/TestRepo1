@@ -36,11 +36,14 @@ public class ProfilePicturePage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h4[text()='Profile Picture']")
 	private WebElement lblProfilePicture;
 
-	@B2BFindBy(xpath = "//h4[text()='Remove Logo']//button")
+	@B2BFindBy(xpath = "//h4[contains(text(),'Remove Profile Picture')]//button")
 	private WebElement iconCloseOnRemoveLogo;
 
 	@B2BFindBy(xpath = "//h4[text()='Event Logo']/parent::h2//button")
 	private WebElement iconCloseOnEventLogo;
+	
+	@B2BFindBy(xpath = "//h4[text()='Profile Picture']/parent::h2//button")
+	private WebElement iconCloseOnProfilePicture;
 
 	// @B2BFindBy(xpath = "//div[@class='MuiDialogActions-root
 	// MuiDialogActions-spacing
@@ -121,13 +124,13 @@ public class ProfilePicturePage extends DUPRBaseAutomationPage {
 	public boolean isProfilePicturePopupContains() {
 		log.info("Starting of isProfilePicturePopupContains method");
 
-		System.out.println(isDisplayed(iconCloseOnEventLogo));
+		System.out.println(isDisplayed(iconCloseOnProfilePicture));
 		System.out.println(isDisplayed(btnCancel));
 		System.out.println(isDisplayed(btnChooseFile));
 
 		boolean isProfilePicturePopupContains = false;
 
-		if (isDisplayed(iconCloseOnEventLogo) && isDisplayed(btnCancel) && isDisplayed(btnChooseFile)) {
+		if (isDisplayed(iconCloseOnProfilePicture) && isDisplayed(btnCancel) && isDisplayed(btnChooseFile)) {
 			isProfilePicturePopupContains = true;
 		}
 
@@ -184,14 +187,19 @@ public class ProfilePicturePage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			clickOnWebElement(btnCancel);
 		}
-		
+
 		log.info("Ending of clickOnCancelButton method");
 	}
 
 	public void clickOnRemoveProfilePicture() {
 		log.info("Starting of clickOnRemoveProfilePicture method");
+		
+		try {
+			clickUsingActionsClass(btnRemoveProfilePicture);
+		} catch (Exception e) {
+			clickOnWebElement(btnRemoveProfilePicture);
 
-		elementClick(btnRemoveProfilePicture);
+		}
 
 		log.info("Ending of clickOnRemoveProfilePicture method");
 	}
@@ -251,7 +259,7 @@ public class ProfilePicturePage extends DUPRBaseAutomationPage {
 				profilePictureStatus = true;
 			}
 		} catch (Exception e) {
-			log.info("Profile picture was removed");
+			profilePictureStatus = false;
 		}
 
 		log.info("Ending of isProfilePictureDisplayed method");
@@ -299,6 +307,11 @@ public class ProfilePicturePage extends DUPRBaseAutomationPage {
 		log.info("Starting of isRemoveProfilePicturePopupContains method");
 
 		boolean isRemoveProfilePicturePopupContains = false;
+		
+		System.out.println(isDisplayed(lblRemoveProfilePicture));
+		System.out.println(isDisplayed(btnYes));
+		System.out.println(isDisplayed(btnNo));
+		System.out.println(isDisplayed(iconCloseOnRemoveLogo));
 
 		if (isDisplayed(lblRemoveProfilePicture) && isDisplayed(btnYes) && isDisplayed(btnNo)
 				&& isDisplayed(iconCloseOnRemoveLogo)) {

@@ -4,7 +4,7 @@
 
 	<test name="Sprint 1">
 		<classes>
-		<!-- 	<class name="com.dupr.test.players.SearchPlayersTest" />
+			<class name="com.dupr.test.players.SearchPlayersTest" />
 			<class name="com.dupr.test.signup.SignupTest" />
 			<class name="com.dupr.test.signup.DUPRClaimAccountSignUpTest" />
 			<class name="com.dupr.test.DUPRLoginTest" />
@@ -12,14 +12,13 @@
 			<class name="com.dupr.test.ForgotPasswordTest" />
 			<class name="com.dupr.test.addamatch.AddAMatchTest" />
 			<class name="com.dupr.test.home.ValidateRecentlyAddedMatchTest" />
-			<class
-				name="com.dupr.test.home.ValidateStatsChangeOnNewMatchTest" />
+			<class name="com.dupr.test.home.ValidateStatsChangeOnNewMatchTest" />
 			<class name="com.dupr.test.home.DeleteRecentlyAddedMatchTest" />
-			<class name="com.dupr.test.players.BrowsePlayersTest" /> -->
+			<class name="com.dupr.test.players.BrowsePlayersTest" />
 			<class name="com.dupr.test.profile.PlayerProfileTest" />
-			<!-- <class name="com.dupr.test.profile.NotificationsTest" />
+			<class name="com.dupr.test.profile.NotificationsTest" />
 			<class name="com.dupr.test.profile.ChangePasswordTest" />
-			<class name="com.dupr.test.profile.ProfilePictureTest" /> -->
+			<class name="com.dupr.test.profile.ProfilePictureTest" />
 		</classes>
 	</test>
 
@@ -40,27 +39,33 @@
 		</classes>
 	</test>
 
-
 	<test name="Sprint 3">
 		<classes>
-			<!-- <class name="com.dupr.test.events.AddEditRemoveEventLogoTest" />
+			<class name="com.dupr.test.events.AddEditRemoveEventLogoTest" />
 			<class name="com.dupr.test.events.AddParticipantsInBracketTest" />
 			<class name="com.dupr.test.events.EndEventTest" />
-			<class name="com.dupr.test.events.AddAnnouncementTest" /> -->
-			<!-- <class name="com.dupr.test.events.PlayerEventRegistrationTest" /> -->
- 			<!-- <class name="com.dupr.test.events.AcceptOrDeclinePartnerTest" /> -->
-			<!-- <class
-				name="com.dupr.test.events.DirectorEventRegistrationTest" /> -->
-			<!-- <class name="com.dupr.test.events.WithdrawPlayerTest" /> -->
+			<class name="com.dupr.test.events.AddAnnouncementTest" />
+			<class name="com.dupr.test.events.PlayerEventRegistrationTest" />
+			<class name="com.dupr.test.events.AcceptOrDeclinePartnerTest" />
+			<class
+				name="com.dupr.test.events.DirectorEventRegistrationTest" />
+			<class name="com.dupr.test.events.WithdrawPlayerTest" />
+			<class name="com.dupr.test.events.AddAnnouncementTest" />
+			<class name="com.dupr.test.events.PlayerEventRegistrationTest" />
+			<class name="com.dupr.test.events.AcceptOrDeclinePartnerTest" />
+			<class
+				name="com.dupr.test.events.DirectorEventRegistrationTest" />
+			<class name="com.dupr.test.events.EditOrRemovePartnerTest" />
 			<class name="com.dupr.test.events.Create_Edit_Split_TeamTest" />
-			<!-- <class name="com.dupr.test.home.AdditionOfChartAndShopTabTest" />
+			<class name="com.dupr.test.home.AdditionOfChartAndShopTabTest" />
 			<class name="com.dupr.test.home.AntiScrappingCaptchaTest" />
 			<class name="com.dupr.test.home.UserDashboardTest" />
-			<class name="com.dupr.test.home.PreservingPageVisitsTest" /> -->
+			<class name="com.dupr.test.home.PreservingPageVisitsTest" />
 		</classes>
 	</test>
- 
-	<!-- <test name="Sprint 4">
+
+	<test name="Sprint 4">
+
 		<classes>
 			<class name="com.dupr.test.home.ChatTest" />
 			<class name="com.dupr.test.home.ShareTest" />
@@ -78,7 +83,9 @@
 				name="com.dupr.test.events.PaidEventAndPaidBracketWithWaterfallEventTest" />
 			<class
 				name="com.dupr.test.events.WaterfallRoundOneSeedingLogicTest" />
+			<class name="com.dupr.test.events.EditScoreAfterValidationTest" />
 			<class name="com.dupr.test.events.SeedMatchesWaterFallTest" />
 		</classes>
-	</test>  -->
- </suite>
+	</test>
+</suite>
+

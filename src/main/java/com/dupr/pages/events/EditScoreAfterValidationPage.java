@@ -55,6 +55,17 @@ public class EditScoreAfterValidationPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//button[contains(text(),'Forfeit')]")
 	private WebElement btnForfeit;
+	
+	@B2BFindBy(xpath = "//h3[text()='Registration Date']/following-sibling::div//h5[text()='End Date & Time']/parent::div/following-sibling::div//input")
+	private WebElement txtBoxRegistrationEndDate;
+	
+	@B2BFindBy(xpath = "//h3[text()='Competition Date']/following-sibling::div//h5[text()='Start Date & Time']/parent::div/following-sibling::div//input")
+	private WebElement txtBoxCompetitionStartDate;
+	
+	@B2BFindBy(xpath = "//button[text()='OK']")
+	private WebElement btnOK;
+	
+
 
 	public EditScoreAfterValidationPage(WebDriver driver) {
 		super(driver);
@@ -87,6 +98,17 @@ public class EditScoreAfterValidationPage extends DUPRBaseAutomationPage {
 		clickOnWebElement(btnEditScores);
 
 		log.info("Ending of clickOnEditScore method");
+	}
+	
+	public void clickOnForfeitButon() {
+		log.info("Starting of clickOnForfeitButon method");
+		try {
+			clickUsingActionsClass(btnForfeit);
+		} catch (Exception e) {
+			clickOnWebElement(btnForfeit);
+		}
+
+		log.info("Ending of clickOnForfeitButon method");
 	}
 
 	public boolean isEditScoreDisplayed() {
@@ -241,5 +263,40 @@ public class EditScoreAfterValidationPage extends DUPRBaseAutomationPage {
 
 		return btnForfeit.isDisplayed();
 	}
+	public void setCompetitionStartDate() {
+		log.info("Starting of setCompetitionStartDate method");
 
+		scrollDown(200);
+
+		clickOnWebElement(txtBoxCompetitionStartDate);
+
+		int date = this.getCurrentDate();
+		String hours = this.getCurrentHour();
+		String meridiem = this.getCurrentMeridiem();
+
+		this.clickOnCurrentDate(date);
+		this.clickOnCurrentTime(hours);
+		this.clickOnCurrentTime(meridiem);
+		this.clickOnElementUsingActionClass(btnOK);
+
+		log.info("Ending of setCompetitionStartDate method");
+	}
+	public void setRegistrationEndDate() {
+		log.info("Starting of setRegistrationEndDate method");
+
+		scrollDown(200);
+
+		clickOnWebElement(txtBoxRegistrationEndDate);
+
+		int date = this.getCurrentDate();
+		String hours = this.getCurrentHour();
+		String meridiem = this.getCurrentMeridiem();
+
+		this.clickOnCurrentDate(date);
+		this.clickOnCurrentTime(hours);
+		this.clickOnCurrentTime(meridiem);
+		this.clickOnElementUsingActionClass(btnOK);
+
+		log.info("Ending of setRegistrationEndDate method");
+	}
 }

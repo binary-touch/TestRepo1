@@ -330,7 +330,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h3[text()='Registration Date']/following-sibling::div//h5[text()='End Date & Time']/parent::div/following-sibling::div//input")
 	private WebElement txtBoxRegistrationEndDate;
 
-	@B2BFindBy(xpath = "//h3[text()='Competition Date']/following-sibling::div//h5[text()='Start Date & Time']/parent::div/following-sibling::div//input")
+	@B2BFindBy(xpath = "//h3[contains(text(),'Competition Date')]/following-sibling::div//h5[contains(text(),'Start Date & Time')]/parent::div/following-sibling::div//input")
 	private WebElement txtBoxCompetitionStartDate;
 
 	@B2BFindBy(xpath = "//h3[text()='Competition Date']/following-sibling::div//h5[text()='End Date & Time']/parent::div/following-sibling::div//input")
@@ -357,7 +357,11 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 	public void clickOnBracketCard() {
 		log.info("Starting of clickOnBracketCard method");
 
-		clickOnWebElement(lblBracketCard);
+		try {
+			clickUsingActionsClass(lblBracketCard);
+		} catch (Exception e) {
+			clickOnWebElement(lblBracketCard);
+		}
 
 		log.info("Ending of clickOnBracketCard method");
 	}
@@ -422,8 +426,11 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 	public void clickOnForfeitButon() {
 		log.info("Starting of clickOnForfeitButon method");
-
-		clickOnWebElement(btnForfeit);
+		try {
+			clickUsingActionsClass(btnForfeit);
+		} catch (Exception e) {
+			clickOnWebElement(btnForfeit);
+		}
 
 		log.info("Ending of clickOnForfeitButon method");
 	}
@@ -1552,7 +1559,11 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 	public void setRegistrationEndDate() {
 		log.info("Starting of setRegistrationEndDate method");
 
-		clickOnWebElement(txtBoxRegistrationEndDate);
+		try {
+			clickUsingActionsClass(txtBoxRegistrationEndDate);
+		} catch (Exception e) {
+			clickOnWebElement(txtBoxRegistrationEndDate);
+		}
 
 		int date = this.getCurrentDate();
 		String hours = this.getCurrentHour();
@@ -1575,7 +1586,11 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			this.clickOnCancelCalenderButton();
 			hardWait(2);
-			clickOnWebElement(txtBoxRegistrationEndDate);
+			try {
+				clickUsingActionsClass(txtBoxRegistrationEndDate);
+			} catch (Exception e1) {
+				clickOnWebElement(txtBoxRegistrationEndDate);
+			}
 			this.clickOnCurrentDate(date);
 			this.selectFutureHour();
 		}
@@ -1648,11 +1663,13 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			this.clickOnCancelCalenderButton();
 			hardWait(2);
+
 			try {
 				clickUsingActionsClass(txtBoxCompetitionStartDate);
 			} catch (Exception e1) {
 				clickOnWebElement(txtBoxCompetitionStartDate);
 			}
+
 			this.clickOnCurrentDate(date);
 			this.selectFutureHour();
 		}

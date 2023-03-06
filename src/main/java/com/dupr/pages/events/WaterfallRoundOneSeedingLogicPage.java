@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -32,7 +33,8 @@ public class WaterfallRoundOneSeedingLogicPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//button[text()='Add']")
 	private WebElement btnAdd;
 
-	@B2BFindBy(xpath = "//button[contains(text(),'Sort')]")
+	@B2BFindBy(xpath = "//input[@id='Search']//ancestor::div[contains(@class,'MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12')]/following-sibling::div//button[contains(text(),'Sort')]")
+	//@B2BFindBy(xpath = "//button[contains(text(),'Sort')]")
 	private WebElement btnSort;
 
 	@B2BFindBy(xpath = "//span[contains(text(),'High to Low Rating')]")
@@ -131,15 +133,34 @@ public class WaterfallRoundOneSeedingLogicPage extends DUPRBaseAutomationPage {
 
 	public void clickOnSortButton() {
 		log.info("Starting of clickOnSortButton method");
-		
+
 		try {
 			clickUsingActionsClass(btnSort);
-		} catch (Exception e) {
-			clickOnWebElement(btnSort);
+		} catch (StaleElementReferenceException e) {
+
+			int attempts = 0;
+			while (attempts < 2) {
+				try {
+					driver.findElement(By.xpath("//button[contains(text(),'Sort')]")).click();
+					break;
+				} catch (StaleElementReferenceException e1) {
+					for (int i = 0; i < 4;) {
+						clickOnElement(btnSort);
+						break;
+					}
+				}
+				attempts++;
+			}
 		}
 
 		hardWait(3);
-		
+
+		log.info("Ending of clickOnSortButton method");
+	}
+
+	public void selectHighToLowRadioButton() {
+		log.info("Starting of selectHighToLowRadioButton method");
+
 		try {
 			clickUsingActionsClass(rdoHightToLow);
 		} catch (Exception e) {
@@ -147,7 +168,7 @@ public class WaterfallRoundOneSeedingLogicPage extends DUPRBaseAutomationPage {
 		}
 		hardWait(4);
 
-		log.info("Ending of clickOnSortButton method");
+		log.info("Ending of selectHighToLowRadioButton method");
 	}
 
 	public void getPlayerName() {

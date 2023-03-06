@@ -47,14 +47,46 @@ public class ProfilePictureTest extends CommonBaseTest {
 
 		profilePicturePage.clickOnOpenSettingsMenu();
 		profilePicturePage.clickOnEditProfileButton();
+		
+		profilePicturePage.hardWait(4);
 		profilePicturePage.clickOnCameraIcon();
-		profilePicturePage.clickOnChangeProfilePictureButton();
+		
+		try {
+			if (profilePicturePage.isRemoveProfilePictureButtonDisplayed() == true) {
+
+				profilePicturePage.clickOnRemoveProfilePicture();
+				profilePicturePage.hardWait(2);
+				profilePicturePage.clickOnYesButton();
+				profilePicturePage.hardWait(3);
+
+				profilePicturePage.refresh();
+				profilePicturePage.hardWait(3);
+				profilePicturePage.clickOnCameraIcon();
+			}
+
+		} catch (Exception e) {
+			System.out.println("*****Profile picture not displayed*****");
+		}
+		
+		try {
+			if (profilePicturePage.isSaveButtonDisabled()==false) {
+				driver.navigate().refresh();
+
+				profilePicturePage.hardWait(4);
+				profilePicturePage.clickOnCameraIcon();
+				profilePicturePage.clickOnChangeProfilePictureButton();
+			}
+		} catch (Exception e) {
+			System.out.println("*****Profile picture popup displayed*****");
+		}
 
 		Assert.assertTrue(profilePicturePage.isProfilePicturePopupContains());
 
 		String profilePictureText = profilePicturePage.getProfilePictureText();
 		Assert.assertEquals(profilePictureText, expectedAssertionsProp.getProperty("profile.picture.label"));
-
+		
+		profilePicturePage.hardWait(3);
+		
 		Assert.assertTrue(profilePicturePage.isSaveButtonDisabled());
 
 		logger.info("Ending of verifyAddProfilePicture method");
@@ -113,82 +145,23 @@ public class ProfilePictureTest extends CommonBaseTest {
 
 		profilePicturePage.hardWait(3);
 		Assert.assertTrue(profilePicturePage.isProfilePictureDisplayed());
+		
+		try {
+			if(profilePicturePage.isSaveButtonDisplayed()) {
+				driver.navigate().refresh();
+				profilePicturePage.hardWait(3);
+			}
+		} catch (Exception e) {
+			logger.info("*** Profile Picture popup haven't displayed ***");
+		}	
 
 		logger.info("Ending of verifyClickOnChangeProfilePicture method");
 	}
 
-	//@Test(priority = 5, description = "Verify results after clicking Cancel button in profile picture popup", groups = "sanity")
-	@Description("Test case #5, Verify results after clicking Cancel button in profile picture popup")
+	@Test(priority = 5, description = "Verify remove profile picture functionality", groups = "sanity")
+	@Description("Test case #5, Verify remove profile picture functionality")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #5, Verify cancle button functionality")
-	public void verifyCancelButtonFunctionality() {
-		logger.info("Starting of verifyCancelButtonFunctionality method");
-
-		profilePicturePage.clickOnCameraIcon();
-		profilePicturePage.hardWait(3);
-		profilePicturePage.clickOnChangeProfilePictureButton();
-		profilePicturePage.hardWait(2);
-		profilePicturePage.clickOnCancelButton();
-
-		Assert.assertTrue(profilePicturePage.isEditProfilePageContains());
-
-		logger.info("Ending of verifyCancelButtonFunctionality method");
-	}
-
-	//@Test(priority = 6, description = "Verify close icon functionality at profile picture popup", groups = "sanity")
-	@Description("Test case #6, Verify close icon functionality at profile picture popup")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #6, Verify close icon functionality at profile picture popup")
-	public void verifyCloseIconInProfilePicturePopUp() {
-		logger.info("Starting of verifyCloseIconInProfilePicturePopUp method");
-
-		profilePicturePage.clickOnCameraIcon();
-		profilePicturePage.clickOnChangeProfilePictureButton();
-		profilePicturePage.hardWait(2);
-		profilePicturePage.clickOnCloseIconOnEventLogo();
-
-		Assert.assertTrue(profilePicturePage.isEditProfilePageContains());
-
-		logger.info("Ending of verifyCloseIconInProfilePicturePopUp method");
-	}
-
-//	@Test(priority = 7, description = "Verify 'No' Button functionality at Remove Profile Picture popup", groups = "sanity")
-	@Description("Test case #7, Verify 'No' Button functionality at Remove Profile Picture popup")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #7, Verify 'No' Button functionality at Remove Profile Picture popup")
-	public void verifyNoButtonFunctionality() {
-		logger.info("Starting of verifyNoButtonFunctionality method");
-
-		profilePicturePage.clickOnCameraIcon();
-		profilePicturePage.clickOnRemoveProfilePicture();
-		profilePicturePage.hardWait(2);
-		profilePicturePage.clickOnNoButton();
-
-		Assert.assertTrue(profilePicturePage.isEditProfilePageContains());
-
-		logger.info("Ending of verifyNoButtonFunctionality method");
-	}
-
-	//@Test(priority = 8, description = "Verify Close Icon Button functionality in Remove Profile Picture popup", groups = "sanity")
-	@Description("Test case #8, Verify Close Icon Button functionality in Remove Profile Picture popup")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #8, Verify Close Icon Button functionality in Remove Profile Picture popup")
-	public void verifyCloseIconButtonInRemoveProfilePicturePopup() {
-		logger.info("Starting of verifyCloseIconButtonInRemoveProfilePicturePopup method");
-
-		profilePicturePage.clickOnCameraIcon();
-		profilePicturePage.clickOnRemoveProfilePicture();
-		profilePicturePage.iconCloseOnRemoveLogo();
-
-		Assert.assertTrue(profilePicturePage.isEditProfilePageContains());
-
-		logger.info("Ending of verifyCloseIconButtonInRemoveProfilePicturePopup method");
-	}
-
-	@Test(priority = 9, description = "Verify remove profile picture functionality", groups = "sanity")
-	@Description("Test case #9, Verify remove profile picture functionality")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #9, Verify remove profile picture functionality")
+	@Story("Test case #5, Verify remove profile picture functionality")
 	public void verifyRemoveProfilePicture() {
 		logger.info("Starting of verifyRemoveProfilePicture method");
 
@@ -200,7 +173,7 @@ public class ProfilePictureTest extends CommonBaseTest {
 		profilePicturePage.clickOnYesButton();
 		profilePicturePage.hardWait(2);
 
-		/* Assert.assertFalse(profilePicturePage.isProfilePictureDisplayed()); */
+		Assert.assertFalse(profilePicturePage.isProfilePictureDisplayed());
 
 		logger.info("Ending of verifyRemoveProfilePicture method");
 	}

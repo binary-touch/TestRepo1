@@ -8,8 +8,6 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.b2b.common.WebDriversEnum;
-import com.dupr.pages.clubs.ClubLogoPage;
-import com.dupr.pages.events.AddParticipantsInBracketsPage;
 import com.dupr.pages.events.EditBracketsPage;
 import com.dupr.pages.events.EndEventPage;
 import com.dupr.pages.events.SeedMatchesPage;
@@ -43,7 +41,7 @@ public class WithdrawPlayerTest extends CommonBaseTest {
 
 		this.driver = super.getWebDriver(WebDriversEnum.WITHDRAW_PLAYER_DRIVER);
 		super.initCommonBaseTest(siteURL, directorEmail, directorPassword);
-		
+
 		this.editBracketsPage = new EditBracketsPage(this.driver);
 		this.endEventpage = new EndEventPage(this.driver);
 		this.withdrawPlayerPage = new WithdrawPlayerPage(this.driver);

@@ -9,7 +9,6 @@ import org.testng.annotations.Test;
 
 import com.b2b.common.WebDriversEnum;
 import com.dupr.pages.events.EventRegistrationPage;
-import com.dupr.pages.events.PaidEventPage;
 import com.dupr.pages.events.TimeZonePage;
 import com.dupr.test.CommonBaseTest;
 
@@ -21,8 +20,8 @@ import io.qameta.allure.Story;
 public class DirectorEventRegistrationTest extends CommonBaseTest {
 
 	private static final Logger logger = Logger.getLogger(DirectorEventRegistrationTest.class.getName());
-	 private EventRegistrationPage eventRegistrationPage = null;
-    
+	private EventRegistrationPage eventRegistrationPage = null;
+
 	@BeforeClass
 	@Parameters({ "browser", "siteURL", "directorEmail", "directorPassword" })
 	public void initMethod(String browser, String siteURL, String directorEmail, String directorPassword)
@@ -33,7 +32,7 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 		super.initCommonBaseTest(siteURL, directorEmail, directorPassword);
 
 		this.eventRegistrationPage = new EventRegistrationPage(this.driver);
-		 this.timeZonePage = new TimeZonePage(this.driver);
+		this.timeZonePage = new TimeZonePage(this.driver);
 
 		logger.info("Ending of initMethod in DirectorEventRegistrationTest");
 	}
@@ -50,7 +49,7 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 		addEventPage.hardWait(3);
 		addEventPage.clickOnEventsTab();
 		addEventPage.hardWait(3);
-		
+
 		Assert.assertTrue(this.eventRegistrationPage.isEventLogosDisplayed());
 		Assert.assertTrue(this.eventRegistrationPage.isEventNameDisplayed());
 		Assert.assertTrue(this.eventRegistrationPage.isEventLocationDisplayed());
@@ -58,7 +57,7 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 		addEventPage.hardWait(3);
 		Assert.assertTrue(this.eventRegistrationPage.isEventStatusesDisplayed());
 		Assert.assertTrue(this.eventRegistrationPage.isDeleteEventDisplayed());
-		
+
 		logger.info("Ending of verifyEventsTabForOpenStatusEvent method");
 	}
 
@@ -89,13 +88,13 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 
 		Assert.assertEquals(eventRegistrationPage.getEventRegistrationLabel(),
 				expectedAssertionsProp.getProperty("event.registration.text"));
-		
+
 		Assert.assertEquals(eventRegistrationPage.getRefundPolicyLabel(),
 				expectedAssertionsProp.getProperty("refund.policy"));
-		
+
 		Assert.assertEquals(eventRegistrationPage.getHealthAndSafetyLabel(),
 				expectedAssertionsProp.getProperty("health.and.safety"));
-		
+
 		Assert.assertEquals(eventRegistrationPage.getLiabiltyPolicyLabel(),
 				expectedAssertionsProp.getProperty("liabilty.policies"));
 
@@ -173,14 +172,14 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 
 		Assert.assertEquals(eventRegistrationPage.getSuccessLabel(),
 				expectedAssertionsProp.getProperty("success.text"));
-		
+
 		Assert.assertEquals(eventRegistrationPage.getRegistrationCompletedLabel(),
 				expectedAssertionsProp.getProperty("registration.completed"));
-		
+
 		Assert.assertEquals(eventRegistrationPage.getOkLabel(), expectedAssertionsProp.getProperty("ok.text"));
 
 		eventRegistrationPage.clickOnOkButton();
-		
+
 		logger.info("Ending of verifyRegisterFunctionalityInEventRegistrationPage method");
 	}
 
@@ -192,13 +191,13 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 		logger.info("Starting of verifyRegisterFunctionalityInRegistrationClosedEvent method");
 
 		super.verifyAddEventFunctionality();
-		
+
 		super.verifyFreeBracketWithSinglesTypeAndRoundRobinEvent();
 
 		addEventPage.clickOnEventsTab();
-	
+
 		Assert.assertFalse(eventRegistrationPage.isRegisterButtonDisplayedForRegistrationClosedEventCard());
-		
+
 		logger.info("Ending of verifyRegisterFunctionalityInRegistrationClosedEvent method");
 	}
 
@@ -213,9 +212,9 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 		addBracketPage.clickOnBackButton();
 		addBracketPage.hardWait(3);
 		addEventPage.clickOnEventsTab();
-		
+
 		Assert.assertFalse(eventRegistrationPage.isRegisterButtonDisplayedForUpcomingEventCard());
-		
+
 		logger.info("Ending of verifyRegisterFunctionalityInUpcomingEvent method");
 	}
 
@@ -227,9 +226,9 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 		logger.info("Starting of verifyRegisterFunctionalityInOngoingEvent method");
 
 		addBracketPage.hardWait(3);
-		
+
 		Assert.assertFalse(eventRegistrationPage.isRegisterButtonDisplayedForOnGoingEventCard());
-		
+
 		logger.info("Ending of verifyRegisterFunctionalityInOngoingEvent method");
 	}
 
@@ -242,7 +241,7 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 
 		addBracketPage.hardWait(3);
 		Assert.assertFalse(eventRegistrationPage.isRegisterButtonDisplayedForCompleteEventCard());
-		
+
 		logger.info("Ending of verifyRegisterFunctionalityInCompleteStatusEvent method");
 	}
 
@@ -255,7 +254,7 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 
 		addBracketPage.hardWait(3);
 		Assert.assertFalse(eventRegistrationPage.isRegisterButtonDisplayedForOpenEventCard());
-		
+
 		logger.info("Ending of verifyRegisterFunctionalityInOpenRegisteredPlayerEvent method");
 	}
 

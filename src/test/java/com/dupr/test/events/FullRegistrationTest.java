@@ -186,8 +186,6 @@ public class FullRegistrationTest extends CommonBaseTest {
 
 		this.verifyPublishEventButton();
 
-		addBracketPage.clickOnEventSuccessClosePopupButton();
-
 		logger.info("Ending of verifyFreeBracketPublishEventFunctionalityWithFullRegistration method");
 	}
 

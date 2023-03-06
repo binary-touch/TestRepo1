@@ -1317,7 +1317,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 			e2.printStackTrace();
 		}
 
-		log.info("Ending of setRegistrationStartDateBeforeOneDay method");
+		log.info("Ending of setRegistrationStartDateBeforeOneDayï¿½method");
 	}
 
 	public void setRegistrationEndDate() {
@@ -1329,6 +1329,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			clickOnElementUsingActionClass(txtBoxRegistrationEndDate);
 		}
+		
 		int date = this.getFutureDate(1);
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
@@ -1379,6 +1380,6 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnElementUsingActionClass(btnOK);
 
-		log.info("Ending of setCompetitionStartDateHour method");
+		log.info("Ending of setCompetitionStartDateHourï¿½method");
 	}
 }

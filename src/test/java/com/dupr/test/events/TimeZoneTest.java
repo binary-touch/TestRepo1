@@ -152,7 +152,6 @@ public class TimeZoneTest extends CommonBaseTest {
 		Assert.assertEquals(TimeZone, TimeZoneInEventDetails);
 
 		this.verifyPublishEventButton();
-		addBracketPage.clickOnEventSuccessClosePopupButton();
 
 		addEventPage.clickOnEventsTab();
 		addEventPage.clickOnRecentlyAddedEvent(eventName);
@@ -251,7 +250,6 @@ public class TimeZoneTest extends CommonBaseTest {
 		logger.info("Starting of verifyAddABracketInAddEventFunctionality method");
 
 		this.verifyPublishEventButton();
-		addBracketPage.clickOnEventSuccessClosePopupButton();
 
 		addEventPage.clickOnEventsTab();
 		addEventPage.clickOnRecentlyAddedEvent(eventName);

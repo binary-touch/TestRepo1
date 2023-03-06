@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -143,7 +144,7 @@ public class SeedMatchesWaterFallPage extends DUPRBaseAutomationPage {
 	private WebElement btnOk;
 
 	@B2BFindBy(xpath = "//button[contains(@class,'MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium')]")
-	private WebElement iconClose;
+	private WebElement iconCloseOnSupport;
 
 	@B2BFindBy(xpath = "//button[text()='Seed Matches'")
 	private WebElement btnSeedMatches;
@@ -168,6 +169,53 @@ public class SeedMatchesWaterFallPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBys(@B2BFindBy(xpath = "//button[contains(text(),'Validate')]"))
 	private List<WebElement> btnValidate;
+	
+	@B2BFindBy(xpath = "//p[contains(text(),'The matches of this event were edited by event director after the completion of the event.')]")
+	private WebElement lblMatchesAreEdited;
+	
+	//---------------
+	
+	@B2BFindBy(xpath = "(//p[contains(text(), 'Game 3')]//parent::div//child::div//descendant::input)[1]")
+	private WebElement lblFirstGameScore;
+
+	@B2BFindBy(xpath = "(//p[contains(text(), 'Game 3')]//parent::div//child::div//descendant::input)[2]")
+	private WebElement lblSecondGameScore;
+
+	@B2BFindBy(xpath = "//button[contains(text(),'Edit Scores')]")
+	private WebElement btnEditScores;
+
+	@B2BFindBy(xpath = "//h4[contains(text(),'Edit Scores')]")
+	private WebElement lblEditScore;
+
+	@B2BFindBy(xpath = "//h5[contains(text(),'Match Date')]")
+	private WebElement lblMatchDate;
+
+	@B2BFindBy(xpath = "//button[contains(text(),'Submit')]")
+	private WebElement btnSubmit;
+
+	@B2BFindBy(xpath = "//h4[contains(text(),'Edit Scores')]//button/*/*")
+	private WebElement iconCross;
+
+	@B2BFindBy(xpath = "(//span[contains(text(),'Game 3')]//parent::div//following::div//descendant::input)[1]")
+	private WebElement lblFirstGameScoreEdit;
+
+	@B2BFindBy(xpath = "(//span[contains(text(),'Game 3')]//parent::div//following::div//descendant::input)[2]")
+	private WebElement lblSecondGameScoreEdit;
+
+	@B2BFindBy(xpath = "//h4[contains(text(),'Submitting these new scores will affect scheduled matches')]")
+	private WebElement lblSubmittingNewScores;
+
+	@B2BFindBy(xpath = "//button[contains(text(),'Submit Scores')]")
+	private WebElement btnSubmitScore;
+
+	@B2BFindBy(xpath = "//button[contains(text(),'Go Back')]")
+	private WebElement btnGoBack;
+
+	@B2BFindBy(xpath = "//h4[contains(text(),'Submitting these new scores will affect scheduled matches')]//button/*/*")
+	private WebElement iconClose;
+
+	@B2BFindBy(xpath = "//button[contains(text(),'Forfeit')]")
+	private WebElement btnForfeit;
 
 	public SeedMatchesWaterFallPage(WebDriver driver) {
 		super(driver);
@@ -520,9 +568,9 @@ public class SeedMatchesWaterFallPage extends DUPRBaseAutomationPage {
 		log.info("Ending of clickOnOkButton method");
 	}
 
-	public boolean isCloseIconDisplayed() {
-		log.info("Starting of isCloseIconDisplayed method");
-		log.info("Ending of isCloseIconDisplayed method");
+	public boolean isCloseIconDisplayedOnHavingWiFiProblemPopUp() {
+		log.info("Starting of isCloseIconDisplayedOnHavingWiFiProblemPopUp method");
+		log.info("Ending of isCloseIconDisplayedOnHavingWiFiProblemPopUp method");
 
 		return iconClose.isDisplayed();
 	}
@@ -679,5 +727,208 @@ public class SeedMatchesWaterFallPage extends DUPRBaseAutomationPage {
 
 		return isAllThreeMedalsDisplayed;
 	}
+	
+//----------------------------------
+	
+	public String getFirstGameScoreText() {
+		log.info("Starting of getFirstGameScoreText method");
 
+		String FirstGameScore = lblFirstGameScore.getAttribute("value");
+
+		log.info("Ending of getFirstGameScoreText method");
+
+		return FirstGameScore;
+	}
+
+	public String getSecondGameScoreText() {
+		log.info("Starting of getSecondGameScoreText method");
+
+		String SecondGameScore = lblSecondGameScore.getAttribute("value");
+
+		log.info("Ending of getSecondGameScoreText method");
+
+		return SecondGameScore;
+	}
+
+	public void clickOnEditScore() {
+		log.info("Starting of clickOnEditScore method");
+
+		clickOnWebElement(btnEditScores);
+
+		log.info("Ending of clickOnEditScore method");
+	}
+
+	public boolean isEditScoreDisplayed() {
+		log.info("Starting of isEditScoreDisplayed method");
+
+		boolean lblState = false;
+
+		try {
+
+			if (lblEditScore.isDisplayed()) {
+
+				lblState = true;
+			}
+
+		} catch (Exception e) {
+			lblState = false;
+		}
+		log.info("Ending of isEditScoreDisplayed method");
+
+		return lblState;
+	}
+
+	public String getEditScoreText() {
+		log.info("Starting of getEditScoreText method");
+		log.info("Ending of getEditScoreText method");
+
+		return lblEditScore.getText();
+	}
+
+	public String getMatchDateText() {
+		log.info("Starting of getMatchDateText method");
+		log.info("Ending of getMatchDateText method");
+
+		return lblMatchDate.getText();
+	}
+
+	public String getSubmitButtonText() {
+		log.info("Starting of getSubmitButtonText method");
+		log.info("Ending of getSubmitButtonText method");
+
+		return btnSubmit.getText();
+	}
+
+	public boolean isCrossIconDisplayed() {
+		log.info("Starting of isCloseIconDisplayed method");
+		log.info("Ending of isCloseIconDisplayed method");
+
+		return iconCross.isDisplayed();
+	}
+
+	public void setFirstGameScoreEdit(String editFirstGameScore) {
+		log.info("Starting of setFirstGameScoreEdit method");
+
+		lblFirstGameScoreEdit.sendKeys(Keys.CONTROL + "A");
+		lblFirstGameScoreEdit.sendKeys(Keys.DELETE);
+		lblFirstGameScoreEdit.sendKeys(editFirstGameScore);
+
+		log.info("Ending of setFirstGameScoreEdit method");
+	}
+
+	public void setSecondGameScoreEdit(String editSecondGameScore) {
+
+		log.info("Starting of setSecondGameScoreEdit method");
+		lblSecondGameScoreEdit.sendKeys(Keys.CONTROL + "A");
+		lblSecondGameScoreEdit.sendKeys(Keys.DELETE);
+		lblSecondGameScoreEdit.sendKeys(editSecondGameScore);
+
+		log.info("Ending of setSecondGameScoreEdit method");
+	}
+
+	public void clickOnSubmitButton() {
+		log.info("Starting of clickOnSubmitButton method");
+
+		clickOnWebElement(btnSubmit);
+
+		log.info("Ending of clickOnSubmitButton method");
+	}
+
+	public String getSubmitScoresButtonText() {
+		log.info("Starting of getSubmitScoresButtonText method");
+		log.info("Ending of getSubmitScoresButtonText method");
+
+		return btnSubmitScore.getText();
+	}
+
+	public String getSubmittingNewScoresText() {
+		log.info("Starting of getSubmittingNewScoresText method");
+		log.info("Ending of getSubmittingNewScoresText method");
+
+		return lblSubmittingNewScores.getText();
+	}
+
+	public boolean isSubmittingNewScoresLabelDisplayed() {
+		log.info("Starting of isSubmittingNewScoresLabelDisplayed method");
+
+		boolean lblState = false;
+
+		try {
+
+			if (lblSubmittingNewScores.isDisplayed()) {
+				lblState = true;
+			}
+		} catch (Exception e) {
+			lblState = false;
+		}
+		log.info("Ending of isSubmittingNewScoresLabelDisplayed method");
+
+		return lblState;
+
+	}
+
+	public String getGoBackText() {
+		log.info("Starting of getGoBackText method");
+		log.info("Ending of getGoBackText method");
+
+		return btnGoBack.getText();
+	}
+
+	public boolean isCloseIconDisplayed() {
+		log.info("Starting of uploadProfilePicture method");
+		log.info("Ending of uploadProfilePicture method");
+
+		return iconClose.isDisplayed();
+	}
+
+	public void clickOnGoBack() {
+		log.info("Starting of clickOnGoBack method");
+
+		clickOnWebElement(btnGoBack);
+
+		log.info("Ending of clickOnGoBack method");
+	}
+
+	public void clickOnSubmitScoreButton() {
+		log.info("Starting of clickOnSubmitScoreButton method");
+
+		clickOnWebElement(btnSubmitScore);
+
+		log.info("Ending of clickOnSubmitScoreButton method");
+	}
+
+	public boolean isEditButtonDisplayed() {
+		log.info("Starting of isEditButtonDisplayed method");
+		log.info("Ending of isEditButtonDisplayed method");
+
+		return btnEditScores.isDisplayed();
+	}
+
+	public boolean isForfeitButtonDisplayed() {
+		log.info("Starting of isForfeitButtonDisplayed method");
+		log.info("Ending of isForfeitButtonDisplayed method");
+
+		return btnForfeit.isDisplayed();
+	}
+
+	
+	public boolean isTheMatchesLabelDisplayed() {
+		log.info("Starting of isTheMatchesLabelDisplayed method");
+
+		boolean isQueueTabDisplayed = false;
+		try {
+			if (isDisplayed(lblMatchesAreEdited)) {
+				isQueueTabDisplayed = true;
+			}
+		} catch (Exception e) {
+
+			isQueueTabDisplayed = false;
+		}
+
+		log.info("Ending of isTheMatchesLabelDisplayed method");
+
+		return isQueueTabDisplayed;
+	}
+	
+	
 }

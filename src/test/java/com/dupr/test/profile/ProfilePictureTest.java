@@ -49,6 +49,23 @@ public class ProfilePictureTest extends CommonBaseTest {
 		profilePicturePage.clickOnEditProfileButton();
 		profilePicturePage.clickOnCameraIcon();
 
+		try {
+			if (profilePicturePage.isRemoveProfilePictureButtonDisplayed() == true) {
+
+				profilePicturePage.clickOnRemoveProfilePicture();
+				profilePicturePage.hardWait(2);
+				profilePicturePage.clickOnYesButton();
+				profilePicturePage.hardWait(3);
+
+				profilePicturePage.refresh();
+				profilePicturePage.hardWait(3);
+				profilePicturePage.clickOnCameraIcon();
+			}
+
+		} catch (Exception e) {
+			System.out.println("*****Profile picture not displayed*****");
+		}
+
 		Assert.assertTrue(profilePicturePage.isProfilePicturePopupContains());
 
 		String profilePictureText = profilePicturePage.getProfilePictureText();
