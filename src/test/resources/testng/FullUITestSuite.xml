@@ -27,6 +27,7 @@
 	<parameter name="directorPassword" value="qwer1234" />
 
 	<suite-files>
-		<suite-file path="CommonUISuite.xml" />
+		<!-- <suite-file path="CommonUISuite.xml" /> -->
+		<suite-file path="SanitySuite.xml" />
 	</suite-files>
 </suite>

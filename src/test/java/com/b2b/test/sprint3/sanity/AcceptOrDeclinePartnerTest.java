@@ -1,4 +1,4 @@
-package com.dupr.test.events;
+package com.b2b.test.sprint3.sanity;
 
 import org.apache.log4j.Logger;
 import org.testng.Assert;
@@ -239,10 +239,9 @@ public class AcceptOrDeclinePartnerTest extends CommonBaseTest {
 	@Description("Test case #11, Verify Accept Functionality MyBrackets Page In Player Account")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #11, Verify Accept Functionality MyBrackets Page In Player Account")
-	public void verifyAcceptFunctionalityInPlayerAccount(String siteURL, String validEmail, String validPassword)throws Exception {
-
+	public void verifyAcceptFunctionalityInPlayerAccount(String siteURL, String validEmail, String validPassword)
+			throws Exception {
 		logger.info("Starting of verifyAcceptFunctionalityInPlayerAccount method");
-
 
 		editOrRemovePartnerPage.hardWait(3);
 		userDashboardPage.clickOnOpenSettingsMenu();

@@ -1,4 +1,4 @@
-package com.dupr.test.events;
+package com.b2b.test.sprint3.sanity;
 
 import static org.testng.Assert.assertTrue;
 
@@ -11,7 +11,6 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.b2b.common.WebDriversEnum;
-import com.dupr.pages.addamatch.AddAMatchPage;
 import com.dupr.pages.clubs.ClubLogoPage;
 import com.dupr.pages.events.AddBracketPage;
 import com.dupr.pages.events.AddParticipantsInBracketsPage;
@@ -35,7 +34,7 @@ public class Create_Edit_Split_TeamTest extends DUPRBaseAutomationTest {
 	private ClubLogoPage clubLogoPage = null;
 	private EndEventPage endEventpage = null;
 	private UserDashboardPage userDashboardPage = null;
-	
+
 	private AddBracketPage addBracketPage = null;
 	private Create_Edit_Split_TeamPage teamsPage = null;
 	private AddParticipantsInBracketsPage addParticipantsPage = null;
@@ -75,13 +74,13 @@ public class Create_Edit_Split_TeamTest extends DUPRBaseAutomationTest {
 
 		teamsPage.clickOnEventLabel();
 		endEventpage.hardWait(5);
-		
+
 		try {
-			if(teamsPage.isNoResultsFoundDisplayed()==true) {
+			if (teamsPage.isNoResultsFoundDisplayed() == true) {
 				teamsPage.addMultiplePlayers();
 			}
 		} catch (Exception e) {
-		log.info("****UnMatched Players Displayed****");
+			log.info("****UnMatched Players Displayed****");
 		}
 
 		Assert.assertTrue(this.teamsPage.isUmMatchedPlayersTabContains());
@@ -95,7 +94,7 @@ public class Create_Edit_Split_TeamTest extends DUPRBaseAutomationTest {
 
 		log.info("Ending of verifyDetailsDisplayedOnUnMatchedPlayersTab method");
 	}
-	
+
 	@Test(priority = 2, description = "Verify the state of Create Team button before Selecting Players", groups = "sanity")
 	@Description("Test case #2, Verify the state of Create Team button before Selecting Players")
 	@Severity(SeverityLevel.NORMAL)
@@ -151,7 +150,7 @@ public class Create_Edit_Split_TeamTest extends DUPRBaseAutomationTest {
 
 		teamsPage.clickOnCreateTeamButton();
 		try {
-			if(teamsPage.isSameGenderPopupDisplayed()==true) {
+			if (teamsPage.isSameGenderPopupDisplayed() == true) {
 				teamsPage.clickOnCancelButtonOnMixedBracketPopUp();
 				teamsPage.hardWait(2);
 				teamsPage.clickOnEditBracketButton();
@@ -161,8 +160,8 @@ public class Create_Edit_Split_TeamTest extends DUPRBaseAutomationTest {
 				addBracketPage.selectOpenPlayerGroup();
 				teamsPage.hardWait(2);
 				teamsPage.clickOnSaveChangesButton();
-				//teamsPage.addAnotherPlayer();
-				
+				// teamsPage.addAnotherPlayer();
+
 				clubLogoPage.hardWait(3);
 				teamsPage.clickOnUnMatchedPlayersTab();
 				teamsPage.clickOnValidPlayerCheckbox();
@@ -170,9 +169,9 @@ public class Create_Edit_Split_TeamTest extends DUPRBaseAutomationTest {
 				teamsPage.clickOnCreateTeamButton();
 			}
 		} catch (Exception e) {
-		log.info("****Create Team Popup displayed****");
+			log.info("****Create Team Popup displayed****");
 		}
-		
+
 		clubLogoPage.hardWait(3);
 		boolean createTeam = teamsPage.isCreateTeamPopupContains();
 		assertTrue(createTeam);
@@ -189,11 +188,11 @@ public class Create_Edit_Split_TeamTest extends DUPRBaseAutomationTest {
 
 		teamsPage.clickOnCloseIcon();
 		clubLogoPage.hardWait(3);
-			
+
 		Assert.assertTrue(this.teamsPage.isPlayersCheckboxSelected());
 		boolean createTeam = teamsPage.isCreateTeamEnabled();
 		assertTrue(createTeam);
-		
+
 		log.info("Ending of verifyResultsOnClickOfCloseCreateTeamPopup method");
 	}
 
@@ -207,14 +206,14 @@ public class Create_Edit_Split_TeamTest extends DUPRBaseAutomationTest {
 		teamsPage.clickOnCreateTeamButton();
 		clubLogoPage.hardWait(3);
 		Assert.assertTrue(this.teamsPage.isCreateTeamPopupContains());
-		
+
 		teamsPage.clickOnCancelButton();
 		clubLogoPage.hardWait(3);
-		
+
 		Assert.assertTrue(this.teamsPage.isPlayersCheckboxSelected());
 		boolean createTeam = teamsPage.isCreateTeamEnabled();
 		assertTrue(createTeam);
-		
+
 		log.info("Ending of verifyResultsOnClickOfCancelPopup method");
 	}
 
@@ -230,7 +229,7 @@ public class Create_Edit_Split_TeamTest extends DUPRBaseAutomationTest {
 
 		teamsPage.clickOnCreateButton();
 		clubLogoPage.hardWait(3);
-		
+
 		try {
 			Assert.assertTrue(this.teamsPage.isUmMatchedPlayersTabContains());
 
@@ -244,7 +243,7 @@ public class Create_Edit_Split_TeamTest extends DUPRBaseAutomationTest {
 		} catch (Exception e) {
 			Assert.assertTrue(this.teamsPage.isNoResultsFoundDisplayed());
 		}
-		
+
 		log.info("Ending of verifyCreateTeamFunctionality method");
 	}
 
@@ -258,7 +257,7 @@ public class Create_Edit_Split_TeamTest extends DUPRBaseAutomationTest {
 		teamsPage.clickOnTeamsTab();
 
 		clubLogoPage.hardWait(3);
-		
+
 		Assert.assertTrue(this.teamsPage.isTeamTabContains());
 
 		log.info("Ending of verifyRecentlyCreatedTeam method");
@@ -279,7 +278,7 @@ public class Create_Edit_Split_TeamTest extends DUPRBaseAutomationTest {
 
 		log.info("Ending of verifyResultsOnClickOfEditTeamOption method");
 	}
-	
+
 	@Test(priority = 11, description = "Verify Cancel Option In Edit Team Popup", groups = "sanity")
 	@Description("Test case #11, Verify Cancel Option In Edit Team Popup")
 	@Severity(SeverityLevel.NORMAL)
@@ -294,7 +293,7 @@ public class Create_Edit_Split_TeamTest extends DUPRBaseAutomationTest {
 
 		log.info("Ending of verifyEditTeamFunctionality method");
 	}
-	
+
 	@Test(priority = 12, description = "Verify Edit Team Functionality", groups = "sanity")
 	@Description("Test case #12, Verify Edit Team Functionality")
 	@Severity(SeverityLevel.CRITICAL)
@@ -308,39 +307,40 @@ public class Create_Edit_Split_TeamTest extends DUPRBaseAutomationTest {
 		clubLogoPage.hardWait(3);
 		boolean buttons = teamsPage.isPlayerRemovedFromTeam();
 		assertTrue(buttons);
-		
+
 		teamsPage.clickOnAddPlayerButton();
 		String addPartnerTitle = this.teamsPage.getAddPartnerText();
 		Assert.assertEquals(addPartnerTitle, expectedAssertionsProp.getProperty("add.partner.title"));
 
 		Assert.assertTrue(this.teamsPage.isAddPartnerPageContains());
-		
+
 		teamsPage.clickOnPartnersRadioButton();
 		Assert.assertTrue(this.teamsPage.isAddPartnerButtonEnabled());
-		
+
 		teamsPage.clickOnAddPartnerButton();
 		Assert.assertTrue(this.teamsPage.isClubMembershipPopupContains());
-		
+
 		teamsPage.clickOnAddButton();
 		Assert.assertTrue(this.teamsPage.isResultsOnClickOfEditTeamDisplayed());
 		Assert.assertTrue(this.teamsPage.isSaveChangesButtonEnabled());
-		
+
 		teamsPage.clickOnSaveChangesButton();
 		Assert.assertTrue(this.teamsPage.isEditTeamPopupDisplayed());
-		
+
 		teamsPage.clickOnConfirmButton();
-		
+
 		String teamCreatedSuccesfullyText = this.teamsPage.getTeamCreatedSuccessText();
-		Assert.assertEquals(teamCreatedSuccesfullyText, expectedAssertionsProp.getProperty("team.created.success.message"));
-		
+		Assert.assertEquals(teamCreatedSuccesfullyText,
+				expectedAssertionsProp.getProperty("team.created.success.message"));
+
 		Assert.assertTrue(this.teamsPage.isGoBackButtonDisplayed());
-		
+
 		teamsPage.clickOnGoBackButton();
 		Assert.assertTrue(this.teamsPage.isTeamTabContains());
-		
+
 		log.info("Ending of verifyRemovePlayerFunctionality method");
 	}
-	
+
 	@Test(priority = 13, description = "Verify GoBack Functionality in Are you sure popup", groups = "sanity")
 	@Description("Test case #13, Verify GoBack Functionality in Are you sure popup")
 	@Severity(SeverityLevel.NORMAL)
@@ -353,17 +353,17 @@ public class Create_Edit_Split_TeamTest extends DUPRBaseAutomationTest {
 		clubLogoPage.hardWait(3);
 		boolean buttons = teamsPage.isResultsOnClickOfEditTeamDisplayed();
 		assertTrue(buttons);
-		
+
 		teamsPage.clickOnSaveChangesButton();
-		
+
 		Assert.assertTrue(this.teamsPage.isAreYouSurePopupContains());
-		
+
 		teamsPage.clickOnGoBackButton();
 		Assert.assertTrue(this.teamsPage.isResultsOnClickOfEditTeamDisplayed());
-		
+
 		log.info("Ending of verifyGoBackFunctionality method");
 	}
-	
+
 	@Test(priority = 14, description = "Verify Close Icon In Edit Team Popup", groups = "sanity")
 	@Description("Test case #14, Verify Close Icon In Edit Team Popup")
 	@Severity(SeverityLevel.NORMAL)
@@ -373,13 +373,13 @@ public class Create_Edit_Split_TeamTest extends DUPRBaseAutomationTest {
 
 		teamsPage.clickOnSaveChangesButton();
 		clubLogoPage.hardWait(3);
-		
+
 		teamsPage.clickOnCloseIconInEditTeam();
 		Assert.assertTrue(this.teamsPage.isResultsOnClickOfEditTeamDisplayed());
 
 		log.info("Ending of verifyCloseIconInEditTeamPopup method");
 	}
-	
+
 	@Test(priority = 15, description = "Verify Split Team Functionality", groups = "sanity")
 	@Description("Test case #15, Verify Split Team Functionality")
 	@Severity(SeverityLevel.CRITICAL)
@@ -393,12 +393,13 @@ public class Create_Edit_Split_TeamTest extends DUPRBaseAutomationTest {
 
 		clubLogoPage.hardWait(3);
 		teamsPage.clickOnSplitTeamButton();
-		
+
 		String teamWithdrawnSuccesfullyText = this.teamsPage.getTeamWithdrawnSuccessText();
-		Assert.assertEquals(teamWithdrawnSuccesfullyText, expectedAssertionsProp.getProperty("team.withdrawn.success.message"));
-		
+		Assert.assertEquals(teamWithdrawnSuccesfullyText,
+				expectedAssertionsProp.getProperty("team.withdrawn.success.message"));
+
 		Assert.assertTrue(this.teamsPage.isGoBackButtonDisplayed());
-		
+
 		teamsPage.clickOnGoBackButton();
 
 		log.info("Ending of verifySplitTeamFunctionality method");
