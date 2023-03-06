@@ -49,9 +49,6 @@ public class AddAnotherBracketPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//li[text()='(GMT-06:00) Saskatchewan']")
 	private WebElement btnSaskatchewanTime;
 
-	@B2BFindBy(xpath = "//li[text()='(GMT-05:00) Bogota, Lima, Quito']")
-	private WebElement btnBogotaLimaQuitoTime;
-
 	@B2BFindBy(xpath = "//li[text()='(GMT-05:00) Eastern Time (US & Canada)']")
 	private WebElement btnEasternTime;
 
@@ -580,7 +577,7 @@ public class AddAnotherBracketPage extends DUPRBaseAutomationPage {
 				&& btnAlaskanStandardTime.isDisplayed() && btnPacificStandardTime.isDisplayed()
 				&& btnArizona.isDisplayed() && btnCentralAmericaTimeTime.isDisplayed()
 				&& btnCentalAmericaTimeZone.isDisplayed() && btnSaskatchewanTime.isDisplayed()
-				&& btnBogotaLimaQuitoTime.isDisplayed() && btnEasternTime.isDisplayed()) {
+				&& btnEasternTime.isDisplayed()) {
 
 			isTimeZoneListDisplayed = true;
 		}
@@ -735,7 +732,7 @@ public class AddAnotherBracketPage extends DUPRBaseAutomationPage {
 		}
 		hardWait(2);
 		
-		log.info("Ending of clickonTypeDropdown method");
+		log.info("Ending of clickonTypeDropdownï¿½method");
 }
 
 	public void clickonPlayGroupDropdown() {
@@ -840,7 +837,7 @@ public class AddAnotherBracketPage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			elementClick(btnOk);
 		}
-		log.info("Ending of clickOnOkButton method");
+		log.info("Ending of clickOnOkButtonï¿½method");
 	}
 
 	public void clickOnEventTypeWaterfallDropdown() {
