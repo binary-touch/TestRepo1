@@ -255,12 +255,12 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 		return isFiltersPageContains;
 	}
 
-	public void setLocationInFilters(String location) throws InterruptedException {
+	public void setLocationInFilters(String location) {
 		logger.info("Starting of setLocationInFilters method");
 
 		clickOnWebElement(txtBoxLocationInFilters);
 		txtBoxLocationInFilters.sendKeys(location);
-		Thread.sleep(2000);
+		hardWait(2);
 
 		logger.info("Ending of setLocationInFilters method");
 	}
@@ -289,9 +289,10 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 		logger.info("Ending of clickOnApplyButton method");
 	}
 
-	public boolean getPlayerLocation() throws InterruptedException {
+	public boolean getPlayerLocation() {
 		logger.info("Starting of getPlayerLocation method");
-		Thread.sleep(2000);
+		
+		hardWait(2);
 		elementClick(btnApply);
 
 		boolean flag = false;

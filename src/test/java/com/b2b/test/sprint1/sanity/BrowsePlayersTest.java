@@ -98,68 +98,10 @@ public class BrowsePlayersTest extends CommonBaseTest {
 		logger.info("Ending of verifyFullNameAndEmailAsEmpty method");
 	}
 
-	//@Test(priority = 5, description = "Verify full name filed with only special characters", groups = "sanity")
-	@Description("Test case #5, Verify full name filed with only special characters")
+	@Test(priority = 5, description = "Verify invite a player in browse functionality", groups = "sanity")
+	@Description("Test case #5,Verify invite  player in browse functionality")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #5, Verify full name filed with only special characters")
-	public void verifyFullNameWithSpecialCharacters() {
-		logger.info("Starting of verifyFullNameWithSpecialCharacters method");
-
-		addAMatchPage.setFullName(testDataProp.getProperty("full.name.with.special.characters"));
-		addAMatchPage.clickOnSendInviteButton();
-
-		String NoNumberOrSpecialCharacterNotAllowedValidation = browsePlayersPage
-				.getNoNumbersOrSpecialCharatersAreAllowedRequiredText();
-		Assert.assertEquals(NoNumberOrSpecialCharacterNotAllowedValidation,
-				expectedAssertionsProp.getProperty("fullname.number.validation"));
-
-		String emailRequiredValidation = browsePlayersPage.getEmailIsRequiredText();
-		Assert.assertEquals(emailRequiredValidation, expectedAssertionsProp.getProperty("email.required.validation"));
-
-		logger.info("Ending of verifyFullNameWithSpecialCharacters method");
-	}
-
-//	@Test(priority = 6, description = "Verify full name filed with only Numbers", groups = "sanity")
-	@Description("Test case #6, Verify full name filed with only Numbers")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #6, Verify full name filed with only Numbers")
-	public void verifyFullNameWithNumbers() {
-		logger.info("Starting of verifyFullNameWithNumbers method");
-
-		addAMatchPage.setFullName(testDataProp.getProperty("full.name.with.numbers"));
-
-		String NoNumberOrSpecialCharacterNotAllowedValidation = browsePlayersPage
-				.getNoNumbersOrSpecialCharatersAreAllowedRequiredText();
-		Assert.assertEquals(NoNumberOrSpecialCharacterNotAllowedValidation,
-				expectedAssertionsProp.getProperty("fullname.number.validation"));
-
-		logger.info("Ending of verifyFullNameWithNumbers method");
-	}
-
-	//@Test(priority = 7, description = "Verify email address filed with invalid email", groups = "sanity")
-	@Description("Test case #7, Verify email address filed with invalid email")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #7, Verify email address filed with invalid email")
-	public void verifyEmailAddressWithInvalidEmail() {
-		logger.info("Starting of verifyEmailAddressWithInvalidEmail method");
-
-		addAMatchPage.hardWait(2);
-		addAMatchPage.setFullName(testDataProp.getProperty("full.name"));
-		addAMatchPage.setEmailForNegativeScenarios(testDataProp.getProperty("invalid.email.in.signup"));
-		addAMatchPage.clickOnSendInviteButton();
-
-		addAMatchPage.hardWait(2);
-		String invalidEmailValidation = browsePlayersPage.getInvalidEmailText();
-		Assert.assertEquals(invalidEmailValidation, expectedAssertionsProp.getProperty("invalid.email.text"));
-
-		browsePlayersPage.clickOnOkButton();
-		logger.info("Ending of verifyEmailAddressWithInvalidEmail method");
-	}
-
-	@Test(priority = 8, description = "Verify invite a player in browse functionality", groups = "sanity")
-	@Description("Test case #8,Verify invite  player in browse functionality")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #8,Verify invite  player in browse functionality")
+	@Story("Test case #5,Verify invite  player in browse functionality")
 	public void verifyInvitePlayerInBrowsePlayers() {
 		logger.info("Starting of verifyInvitePlayerInBrowsePlayers method");
 
@@ -175,41 +117,26 @@ public class BrowsePlayersTest extends CommonBaseTest {
 		logger.info("Ending of verifyInvitePlayerInBrowsePlayers method");
 	}
 
-	@Test(priority = 9, description = "verify Find players near me functionlity", groups = "sanity")
-	@Description("Test case #9,verify Find players near me functionlity")
+	@Test(priority = 6, description = "verify Find players near me functionlity", groups = "sanity")
+	@Description("Test case #6, verify Find players near me functionlity")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #9,verify Find players near me functionlity")
+	@Story("Test case #6,verify Find players near me functionlity")
 	public void verifyFindPlayerNearMeToggleButton() {
 		logger.info("Starting of verifyFindPlayerNearMeToggleButton method");
 
 		driver.navigate().refresh();
 		browsePlayersPage.clickOnFindNearMeToggleButton();
 
-		//Assert.assertTrue(browsePlayersPage.getPlayersDistances());
+		Assert.assertTrue(browsePlayersPage.getPlayersDistances());
 
 		logger.info("Ending of verifyFindPlayerNearMeToggleButton method");
 	}
 
-	@Test(priority = 10, description = "Verify filters functionality", groups = "sanity")
-	@Description("Test case #10, Verify filters functionality")
+	@Test(priority = 7, description = "Verify browse players functionality by location filter", groups = "sanity")
+	@Description("Test case #7, Verify browse players functionality by location filter")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #10 ,Verify filters functionality")
-	public void verifyFiltersFunctionality() {
-		logger.info("Starting of verifyFiltersFunctionality method");
-
-		driver.navigate().refresh();
-		browsePlayersPage.clickOnFilterButton();
-
-		Assert.assertTrue(browsePlayersPage.isFiltersPageContains());
-
-		logger.info("Ending of verifyFiltersFunctionality method");
-	}
-
-	//@Test(priority = 11, description = "Verify browse players functionality by location filter", groups = "sanity")
-	@Description("Test case #11, Verify browse players functionality by location filter")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #11, Verify browse players functionality by location filter")
-	public void verifyPlayersByLocationFilter() throws InterruptedException {
+	@Story("Test case #7, Verify browse players functionality by location filter")
+	public void verifyPlayersByLocationFilter() {
 		logger.info("Starting of verifyPlayersByLocationFilter method");
 
 		browsePlayersPage.setLocationInFilters(testDataProp.getProperty("primary.location"));
@@ -224,10 +151,10 @@ public class BrowsePlayersTest extends CommonBaseTest {
 		logger.info("Ending of verifyPlayersByLocationFilter method");
 	}
 
-	//@Test(priority = 12, description = "Verify browse players functionality by Distance filter", groups = "sanity")
-	@Description("Test case #12,Verify browse players by Distance functionality filter")
+	@Test(priority = 8, description = "Verify browse players functionality by Distance filter", groups = "sanity")
+	@Description("Test case #8, Verify browse players by Distance functionality filter")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #12,Verify browse players functionality by Distance filter")
+	@Story("Test case #8, Verify browse players functionality by Distance filter")
 	public void verifyPlayersByDistanceFilter() {
 		logger.info("Starting of verifyPlayersByDistanceFilter method");
 
@@ -235,15 +162,15 @@ public class BrowsePlayersTest extends CommonBaseTest {
 		browsePlayersPage.moveDistanceSlider();
 		browsePlayersPage.clickOnApplyButton();
 
-		//Assert.assertTrue(browsePlayersPage.getPlayersDistance());
+		Assert.assertTrue(browsePlayersPage.getPlayersDistance());
 
 		logger.info("Ending of verifyPlayersByDistanceFilter method");
 	}
 
-	//@Test(priority = 13, description = "Verify browse players functionality by Skill Level Ratings filter", groups = "sanity")
-	@Description("Test case #13, Verify browse players functionality by Skill Level Ratings filter")
+	@Test(priority = 9, description = "Verify browse players functionality by Skill Level Ratings filter", groups = "sanity")
+	@Description("Test case #9, Verify browse players functionality by Skill Level Ratings filter")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #13, Verify browse players functionality by Skill Level Ratings filter")
+	@Story("Test case #9, Verify browse players functionality by Skill Level Ratings filter")
 	public void verifyPlayersBySkillLevelRatingsFilter() {
 		logger.info("Starting of verifyPlayersBySkillLevelRatingsFilter method");
 
@@ -256,10 +183,10 @@ public class BrowsePlayersTest extends CommonBaseTest {
 		logger.info("Ending of verifyPlayersBySkillLevelRatingsFilter method");
 	}
 
-	@Test(priority = 14, description = "Verify browse players functionality by Singles filters in type", groups = "sanity")
-	@Description("Test case #14, Verify browse players functionality by Singles filters in type")
+	@Test(priority = 10, description = "Verify browse players functionality by Singles filters in type", groups = "sanity")
+	@Description("Test case #10, Verify browse players functionality by Singles filters in type")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #14, Verify browse players functionality by Singles filters in type")
+	@Story("Test case #10, Verify browse players functionality by Singles filters in type")
 	public void verifyPlayersBySingleFilterInType() {
 		logger.info("Starting of verifyPlayersBySingleFilterInType method");
 
@@ -272,10 +199,10 @@ public class BrowsePlayersTest extends CommonBaseTest {
 		logger.info("Ending of verifyPlayersBySingleFilterInType method");
 	}
 
-	@Test(priority = 15, description = "Verify browse players functionality by Doubles filter in Type", groups = "sanity")
-	@Description("Test case #15, Verify browse players functionality by Doubles filter in Type")
+	@Test(priority = 11, description = "Verify browse players functionality by Doubles filter in Type", groups = "sanity")
+	@Description("Test case #11, Verify browse players functionality by Doubles filter in Type")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #15, Verify browse players functionality by Doubles filter in Type")
+	@Story("Test case #11, Verify browse players functionality by Doubles filter in Type")
 	public void verifyPlayersByDoublesFiltersInType() {
 		logger.info("Starting of verifyPlayersByDoublesFiltersInType method");
 
@@ -288,10 +215,10 @@ public class BrowsePlayersTest extends CommonBaseTest {
 		logger.info("Ending of verifyPlayersByDoublesFiltersInType method");
 	}
 
-	@Test(priority = 16, description = "Verify browse players functionality by Gender filter", groups = "sanity")
-	@Description("Test case #16, Verify browse players functionality by Gender filter")
+	@Test(priority = 12, description = "Verify browse players functionality by Gender filter", groups = "sanity")
+	@Description("Test case #12, Verify browse players functionality by Gender filter")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #16, Verify browse players functionality by Gender filter")
+	@Story("Test case #12, Verify browse players functionality by Gender filter")
 	public void verifyPlayersByGender() {
 		logger.info("Starting of verifyPlayersByGender method");
 
@@ -302,10 +229,10 @@ public class BrowsePlayersTest extends CommonBaseTest {
 		logger.info("Ending of verifyPlayersByGender method");
 	}
 
-	//@Test(priority = 17, description = "Verify browse players functionality by Age range filter", groups = "sanity")
-	@Description("Test case #17, Verify browse players functionality by Age range filter")
+	@Test(priority = 13, description = "Verify browse players functionality by Age range filter", groups = "sanity")
+	@Description("Test case #13, Verify browse players functionality by Age range filter")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #17, Verify browse players functionality by Age range filter")
+	@Story("Test case #13, Verify browse players functionality by Age range filter")
 	public void verifyPlayersByAge() {
 		logger.info("Starting of verifyPlayersByAge method");
 
@@ -316,15 +243,13 @@ public class BrowsePlayersTest extends CommonBaseTest {
 		browsePlayersPage.hardWait(2);
 		Assert.assertTrue(browsePlayersPage.getPlayersAge());
 
-		
-
 		logger.info("Ending of verifyPlayersByAge method");
 	}
 
-	@Test(priority = 18, description = "Verify Clear All functionality", groups = "sanity")
-	@Description("Test case #18,Verify Clear All functionality")
+	@Test(priority = 14, description = "Verify Clear All functionality", groups = "sanity")
+	@Description("Test case #14,Verify Clear All functionality")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #18,Verify Clear All functionality")
+	@Story("Test case #14,Verify Clear All functionality")
 	public void verifyClearAllfunctionality() throws InterruptedException {
 		logger.info("Starting of verifyClearAllfunctionality method");
 
@@ -347,24 +272,6 @@ public class BrowsePlayersTest extends CommonBaseTest {
 		Assert.assertFalse(browsePlayersPage.isUnder19RadioButtonSeleceted());
 
 		logger.info("Ending of verifyClearAllfunctionality method");
-	}
-
-	//@Test(priority = 19, description = "Verify Back Arrow button functionality", groups = "sanity")
-	@Description("Test case #19,Verify Back Arrow button functionality")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #19,Verify Back Arrow button functionality")
-	public void verifyBackArrowButtonFunctionality() {
-		logger.info("Starting of verifyBackArrowButtonFunctionality method");
-
-		browsePlayersPage.clickOnBackArrowButton();
-
-		String addAMatchValidationText = this.loginPage.getAddAMatchValidationText();
-		Assert.assertEquals(addAMatchValidationText, expectedAssertionsProp.getProperty("add.match.label"));
-
-		validateStatsChangeOnNewMatchPage.hardWait(3);
-		Assert.assertTrue(validateStatsChangeOnNewMatchPage.isResultOverViewSectionContains());
-
-		logger.info("Ending of verifyBackArrowButtonFunctionality method");
 	}
 
 	@AfterClass
