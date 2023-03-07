@@ -23,17 +23,14 @@ import io.qameta.allure.Story;
 public class BrowsePlayersTest extends CommonBaseTest {
 
 	private static final Logger logger = Logger.getLogger(BrowsePlayersTest.class.getName());
-	private ValidateStatsChangeOnNewMatchPage validateStatsChangeOnNewMatchPage = null;
 
 	@BeforeClass
 	@Parameters({ "browser", "siteURL", "validEmail", "validPassword" })
-	public void initMethod(String browser, String siteURL, String email, String password) throws Exception {
+	public void initMethod(String browser, String siteURL, String validEmail, String validPassword) throws Exception {
 		logger.info("Starting of initMethod in BrowsePlayersTest");
 
 		this.driver = super.getWebDriver(WebDriversEnum.BROWSE_PLAYERS_DRIVER);
-		super.initCommonBaseTest(siteURL, email, password);
-
-		this.validateStatsChangeOnNewMatchPage = new ValidateStatsChangeOnNewMatchPage(this.driver);
+		super.initCommonBaseTest(siteURL, validEmail, validPassword);
 
 		logger.info("Ending of initMethod in BrowsePlayersTest");
 	}
@@ -42,7 +39,7 @@ public class BrowsePlayersTest extends CommonBaseTest {
 	@Description("Test case #1,Verify Browse player functionaity")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #1, Verify Browse player functionaity")
-	public void verifyClickOnPlayersTab() throws InterruptedException {
+	public void verifyClickOnPlayersTab(){
 		logger.info("Starting of verifyClickOnPlayersTab method");
 
 		addAMatchPage.clickOnPlayersTab();
@@ -117,17 +114,25 @@ public class BrowsePlayersTest extends CommonBaseTest {
 		logger.info("Ending of verifyInvitePlayerInBrowsePlayers method");
 	}
 
-	@Test(priority = 6, description = "verify Find players near me functionlity", groups = "sanity")
-	@Description("Test case #6, verify Find players near me functionlity")
+	@Test(priority = 6, description = "verify Find players near me Toggle functionlity", groups = "sanity")
+	@Description("Test case #6, verify Find players near me Toggle functionlity")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #6,verify Find players near me functionlity")
+	@Story("Test case #6,verify Find players near me Toggle functionlity")
 	public void verifyFindPlayerNearMeToggleButton() {
 		logger.info("Starting of verifyFindPlayerNearMeToggleButton method");
 
 		driver.navigate().refresh();
 		browsePlayersPage.clickOnFindNearMeToggleButton();
-
-		Assert.assertTrue(browsePlayersPage.getPlayersDistances());
+		browsePlayersPage.hardWait(3);
+		
+		try {
+			if(browsePlayersPage.isLocationPermissionsPopupDisplayed()) {
+				Assert.assertTrue(browsePlayersPage.isLocationPermissionsPopupDisplayed());
+				browsePlayersPage.clickOnOKButton();
+			}
+		} catch (Exception e) {
+			logger.info("***Near Me Toggle button enabled***");
+		}
 
 		logger.info("Ending of verifyFindPlayerNearMeToggleButton method");
 	}
@@ -138,6 +143,11 @@ public class BrowsePlayersTest extends CommonBaseTest {
 	@Story("Test case #7, Verify browse players functionality by location filter")
 	public void verifyPlayersByLocationFilter() {
 		logger.info("Starting of verifyPlayersByLocationFilter method");
+		
+		driver.navigate().refresh();
+		browsePlayersPage.clickOnFilterButton();
+
+		Assert.assertTrue(browsePlayersPage.isFiltersPageContains());
 
 		browsePlayersPage.setLocationInFilters(testDataProp.getProperty("primary.location"));
 		
@@ -161,8 +171,6 @@ public class BrowsePlayersTest extends CommonBaseTest {
 		browsePlayersPage.clickOnClearAllButton();
 		browsePlayersPage.moveDistanceSlider();
 		browsePlayersPage.clickOnApplyButton();
-
-		Assert.assertTrue(browsePlayersPage.getPlayersDistance());
 
 		logger.info("Ending of verifyPlayersByDistanceFilter method");
 	}

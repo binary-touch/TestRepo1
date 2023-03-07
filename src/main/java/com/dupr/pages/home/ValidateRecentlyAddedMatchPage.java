@@ -470,13 +470,15 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 		boolean singlesPlayersStatus = false;
 		for (WebElement playerName : lstSingleMatchPlayers) {
 			try {
+				log.debug("Singles Players List size: " + lstSingleMatchPlayers.size());
 				if (isDisplayed(playerName) == true) {
+					hardWait(2);
+					log.debug("Singles Players are displayed: " + playerName.getText());
 					singlesPlayersStatus = true;
 				}
 			} catch (Exception e) {
 				singlesPlayersStatus = false;
 			}
-
 		}
 
 		log.info("Ending of isSinglesMatchPlayersDisplayed method");

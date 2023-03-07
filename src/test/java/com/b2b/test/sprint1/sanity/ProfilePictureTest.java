@@ -166,6 +166,7 @@ public class ProfilePictureTest extends CommonBaseTest {
 		logger.info("Starting of verifyRemoveProfilePicture method");
 
 		profilePicturePage.clickOnCameraIcon();
+		profilePicturePage.hardWait(3);
 		profilePicturePage.clickOnRemoveProfilePicture();
 
 		Assert.assertTrue(profilePicturePage.isRemoveProfilePicturePopupContains());

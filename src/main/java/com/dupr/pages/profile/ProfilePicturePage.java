@@ -51,7 +51,7 @@ public class ProfilePicturePage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//button[text()='Cancel']")
 	private WebElement btnCancel;
 
-	@B2BFindBy(xpath = "//ul[@id='composition-menu']/li/following-sibling::li")
+	@B2BFindBy(xpath = "//ul[@id='composition-menu']/li/following-sibling::li[contains(text(),'Remove Profile Picture')]")
 	private WebElement btnRemoveProfilePicture;
 
 	@B2BFindBy(xpath = "//ul[@id='composition-menu']/li/following-sibling::li/preceding-sibling::li")

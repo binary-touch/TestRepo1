@@ -278,10 +278,14 @@ public class AddAMatchPage extends DUPRBaseAutomationPage {
 
 		try {
 			for (WebElement citylocation : lstLocations) {
-				this.implicitWait();
+				this.implicitWait();hardWait(2);
 				if (citylocation.getText().equalsIgnoreCase("Hyderabad, Telangana, India")) {
-					hardWait(2);
-					citylocation.click();
+					hardWait(3);
+					try {
+						clickUsingActionsClass(citylocation);
+					} catch (Exception e) {
+						clickOnWebElement(citylocation);
+					}
 					break;
 				}
 			}

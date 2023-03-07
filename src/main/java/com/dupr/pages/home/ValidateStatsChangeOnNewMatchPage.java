@@ -126,9 +126,22 @@ public class ValidateStatsChangeOnNewMatchPage extends DUPRBaseAutomationPage {
 
 	public String getTotalMatchesText() {
 		log.info("Starting of getTotalMatchesText method");
+		
+		String totalMatches = getText(lblTotalMatches);
+		String result = null;
+		
+		try {
+			if(totalMatches.contains(",")) {
+				result = totalMatches.replaceAll(",","");
+				log.debug("Final Total Matches result is : " + result);
+			}
+		} catch (Exception e) {
+			System.out.println("***Special characters haven't displayed***");
+		}
+		
 		log.info("Ending of getTotalMatchesText method");
-
-		return getText(lblTotalMatches);
+		
+		return result;
 	}
 
 	public void clickOnWinsCheckBox() {

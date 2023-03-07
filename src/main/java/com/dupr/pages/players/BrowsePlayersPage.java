@@ -26,6 +26,9 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//input[contains(@class, 'PrivateSwitchBase-input MuiSwitch-input') and @type='checkbox']")
 	private WebElement tglFindNearMePlayer;
 
+	@B2BFindBy(xpath = "//h4[@id='customized-dialog-title' and contains(text(), 'Location Permission')]")
+	private WebElement lblLocationPermission;
+
 	@B2BFindBys(@B2BFindBy(xpath = "//div[contains(@class, 'MuiPaper-rounded MuiPaper-elevation3')]/div/following-sibling::div[1]//following-sibling::div[1]//h4"))
 	private List<WebElement> lstPlayerNames;
 
@@ -73,7 +76,7 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//h5[text()='Email']")
 	private WebElement lblEmail;
-	
+
 	@B2BFindBy(xpath = "//h4[@id='customized-dialog-title']")
 	private WebElement lblInvitePlayer;
 
@@ -125,7 +128,7 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//input[@data-index='1']/following-sibling::span")
 	private WebElement ratingSecondNode;
 
-	@B2BFindBys(@B2BFindBy(xpath = "//h2[contains(@class,'MuiTypography-root MuiTypography-h2')]"))  
+	@B2BFindBys(@B2BFindBy(xpath = "//h2[contains(@class,'MuiTypography-root MuiTypography-h2')]"))
 	private List<WebElement> lstPlayerRatings;
 
 	@B2BFindBy(xpath = "//button[@value='MALE']")
@@ -145,8 +148,8 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//p[text()='Invalid email address']")
 	private WebElement txtValidationInvalidEmailAddress;
-	
-	@B2BFindBy(xpath="//button[text()='Ok']")
+
+	@B2BFindBy(xpath = "//button[text()='OK']")
 	private WebElement btnOK;
 
 	@B2BFindBy(xpath = "//h3[text()='Browse Players']/preceding-sibling::div/child::button")
@@ -211,9 +214,8 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 
 		boolean isInvitePlayerPageContains = false;
 
-		if (isDisplayed(txtBoxFullName) && isDisplayed(txtBoxEmail) && isDisplayed(lblFullName)
-				&& isDisplayed(lblEmail) && isDisplayed(lblInvitePlayer) && isDisplayed(btnBack)
-				&& isDisplayed(btnSendInvite)) {
+		if (isDisplayed(txtBoxFullName) && isDisplayed(txtBoxEmail) && isDisplayed(lblFullName) && isDisplayed(lblEmail)
+				&& isDisplayed(lblInvitePlayer) && isDisplayed(btnBack) && isDisplayed(btnSendInvite)) {
 			isInvitePlayerPageContains = true;
 		}
 
@@ -236,6 +238,13 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 		elementClick(tglFindNearMePlayer);
 
 		logger.info("Ending of clickOnFindNearMeToggleButton method");
+	}
+
+	public boolean isLocationPermissionsPopupDisplayed() {
+		logger.info("Starting of isLocationPermissionsPopupDisplayed method");
+		logger.info("Ending of isLocationPermissionsPopupDisplayed method");
+
+		return isDisplayed(lblLocationPermission);
 	}
 
 	public boolean isFiltersPageContains() {
@@ -291,18 +300,18 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 
 	public boolean getPlayerLocation() {
 		logger.info("Starting of getPlayerLocation method");
-		
+
 		hardWait(2);
 		elementClick(btnApply);
 
 		boolean flag = false;
 
 		try {
-			
+
 			System.out.println(lstPlayersLocations.size());
 			for (int i = 0; i < lstPlayersLocations.size() - 1; i++) {
 				String locations = lstPlayersLocations.get(i).getText();
-				
+
 				if (locations.contains("Pune")) {
 					flag = true;
 				}
@@ -314,7 +323,6 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 
 		return flag;
 	}
-
 
 	public void clickOnClearAllButton() {
 		logger.info("Starting of clickOnClearAllButton method");
@@ -372,6 +380,8 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 		try {
 			for (int i = 0; i < lstPlayerRatings.size() - 1; i++) {
 				String rating = lstPlayerRatings.get(i).getText();
+				logger.debug("Player List size: " + lstPlayerRatings.size());
+				logger.debug("Player Rating is: " + rating);
 				Thread.sleep(2000);
 				float num = Float.parseFloat(rating);
 
@@ -408,9 +418,8 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 		logger.info("Starting of getPlayersSinglesRating method");
 
 		boolean flag = false;
-		
-		
-		System.out.println("No Of Singles No Rating List Is: "+lstPlayersSingleMatchRatings.size());
+
+		System.out.println("No Of Singles No Rating List Is: " + lstPlayersSingleMatchRatings.size());
 
 		try {
 			for (int i = 0; i < lstPlayersSingleMatchRatings.size() - 1; i++) {
@@ -487,7 +496,8 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 		try {
 			for (int i = 0; i < lstPlayersAge.size() - 1; i++) {
 				String rating = lstPlayersAge.get(i).getText().split(" ")[1].trim();
-
+				System.out.println(lstPlayersAge.size());
+				System.out.println("Player Age is : " + rating);
 				int num = Integer.parseInt(rating);
 
 				if (num >= 2 && num < 19) {
@@ -572,9 +582,21 @@ public class BrowsePlayersPage extends DUPRBaseAutomationPage {
 
 		return getText(txtValidationInvalidEmailAddress);
 	}
-	
+
 	public void clickOnOkButton() {
+		logger.info("Starting of clickOnOkButton method");
+
+		elementClick(btnOk);
+
+		logger.info("Ending of clickOnOkButton method");
+	}
+
+	public void clickOnOKButton() {
+		logger.info("Starting of clickOnOKButton method");
+
 		elementClick(btnOK);
+
+		logger.info("Ending of clickOnOKButton method");
 	}
 
 	public void clickOnBackArrowButton() {
