@@ -21,7 +21,6 @@
 		<extentreports-version>5.0.8</extentreports-version>
 		<maven-surefire-plugin-version>3.0.0-M3</maven-surefire-plugin-version>
 		<FullUITestSuite>${testng}</FullUITestSuite>
-		<!-- <FullUITestSuite>src/test/resources/testng/FullUITestSuite.xml</FullUITestSuite> -->
 	</properties>
 
 	<dependencies>
