@@ -20,7 +20,8 @@
 		<log4j-version>2.14.1</log4j-version>
 		<extentreports-version>5.0.8</extentreports-version>
 		<maven-surefire-plugin-version>3.0.0-M3</maven-surefire-plugin-version>
-		<FullUITestSuite>src/test/resources/testng/FullUITestSuite.xml</FullUITestSuite>
+		<FullUITestSuite>src/test/resources/testng/${testng}</FullUITestSuite>
+		<!-- <FullUITestSuite>src/test/resources/testng/FullUITestSuite.xml</FullUITestSuite> -->
 	</properties>
 
 	<dependencies>
@@ -96,7 +97,7 @@
 			<artifactId>log4j</artifactId>
 			<version>1.2.17</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.github.romankh3</groupId>
 			<artifactId>image-comparison</artifactId>
@@ -144,6 +145,7 @@
 				<configuration>
 					<suiteXmlFiles>
 						<suiteXmlFile>${FullUITestSuite}</suiteXmlFile>
+						<filtering>true</filtering>
 					</suiteXmlFiles>
 					<argLine>
 						-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"

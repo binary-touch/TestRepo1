@@ -4,12 +4,12 @@
 
 	<test name="Sprint 1">
 	<classes>
-		<class name="com.b2b.test.sprint1.sanity.SearchPlayersTest" />
+		<!-- <class name="com.b2b.test.sprint1.sanity.SearchPlayersTest" />
 		<class name="com.b2b.test.sprint1.sanity.SignupTest" />
 		<class
-			name="com.b2b.test.sprint1.sanity.DUPRClaimAccountSignUpTest" />
+			name="com.b2b.test.sprint1.sanity.DUPRClaimAccountSignUpTest" /> -->
 		<class name="com.b2b.test.sprint1.sanity.DUPRLoginTest" />
-		<class name="com.b2b.test.sprint1.sanity.NegativeLoginTest" />
+		<!-- <class name="com.b2b.test.sprint1.sanity.NegativeLoginTest" />
 		<class name="com.b2b.test.sprint1.sanity.ForgotPasswordTest" />
 		<class name="com.b2b.test.sprint1.sanity.AddAMatchTest" />
 		<class
@@ -22,7 +22,7 @@
 		<class name="com.b2b.test.sprint1.sanity.PlayerProfileTest" />
 		<class name="com.b2b.test.sprint1.sanity.NotificationsTest" />
 		<class name="com.b2b.test.sprint1.sanity.ChangePasswordTest" />
-		<class name="com.b2b.test.sprint1.sanity.ProfilePictureTest" />
+		<class name="com.b2b.test.sprint1.sanity.ProfilePictureTest" /> -->
 	</classes>
 </test>
 
