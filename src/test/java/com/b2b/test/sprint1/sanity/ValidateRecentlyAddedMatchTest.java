@@ -82,6 +82,7 @@ public class ValidateRecentlyAddedMatchTest extends CommonBaseTest {
 
 		validateRecentlyAddedMatchPage.clickOnClearFiltersButton();
 		validateRecentlyAddedMatchPage.clickOnSinglesButton();
+		validateRecentlyAddedMatchPage.hardWait(3);
 
 		Assert.assertTrue(validateRecentlyAddedMatchPage.isSinglesMatchPlayersDisplayed());
 
@@ -94,7 +95,7 @@ public class ValidateRecentlyAddedMatchTest extends CommonBaseTest {
 	@Story("Test case #4, Verify matches with doubles filter")
 	public void verifyDoublesFilterFunctionality() {
 		logger.info("Starting of verifyDoublesFilterFunctionality method");
-		
+
 		driver.navigate().refresh();
 
 		validateRecentlyAddedMatchPage.clickOnDoublesButton();
@@ -123,7 +124,7 @@ public class ValidateRecentlyAddedMatchTest extends CommonBaseTest {
 		validateRecentlyAddedMatchPage.hardWait(2);
 		validateRecentlyAddedMatchPage.clickOnOldestToNewestButton();
 		validateRecentlyAddedMatchPage.hardWait(5);
-		
+
 		logger.info("Ending of verifySortFunctionalityWithOlddates method");
 	}
 

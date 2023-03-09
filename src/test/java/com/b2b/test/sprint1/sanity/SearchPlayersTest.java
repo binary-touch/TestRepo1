@@ -73,7 +73,7 @@ public class SearchPlayersTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifySearchPlayersByName method");
 	}
 
-//	@Test(priority = 3, description = "Verify Search players functionality By Location", groups = "sanity")
+	@Test(priority = 3, description = "Verify Search players functionality By Location", groups = "sanity")
 	@Description("Test case #3, Verify Search players functionality By Location")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #3, Verify Search players functionality By Location")
@@ -156,7 +156,7 @@ public class SearchPlayersTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifySearchPlayersByGender method");
 	}
 
-	//@Test(priority = 8, description = "Verify View All option functionality in Gender dropdown", groups = "sanity")
+	@Test(priority = 8, description = "Verify View All option functionality in Gender dropdown", groups = "sanity")
 	@Description("Test case #8, Verify View All option functionality in Gender dropdown")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #8, Verify View All option functionality in Gender dropdown")
@@ -171,7 +171,7 @@ public class SearchPlayersTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyViewAllInGenderDropdown method");
 	}
 
-	//@Test(priority = 9, description = "Verify Search players functionality By Age", groups = "sanity")
+	@Test(priority = 9, description = "Verify Search players functionality By Age", groups = "sanity")
 	@Description("Test case #9, Verify Search players functionality By Age")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #9, Verify Search players functionality By Age")

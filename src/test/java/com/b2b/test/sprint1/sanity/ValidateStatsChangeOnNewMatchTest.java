@@ -67,6 +67,7 @@ public class ValidateStatsChangeOnNewMatchTest extends CommonBaseTest {
 		addAMatchPage.clickOnAddAMatchTab();
 
 		verifySetMatchDetails();
+		validateStats.hardWait(3);
 		verifyAddAMatchInSinglesWonGame();
 
 		addAMatchPage.clickOnOkButton();
@@ -231,6 +232,7 @@ public class ValidateStatsChangeOnNewMatchTest extends CommonBaseTest {
 		validateStats.hardWait(2);
 		String winsCount = validateStats.getWinsCountLabelText();
 		String totalMatchesAfterWinsSelect = validateStats.getTotalMatchesText();
+		validateStats.hardWait(3);
 
 		Assert.assertEquals(winsCount, totalMatchesAfterWinsSelect);
 
@@ -251,6 +253,7 @@ public class ValidateStatsChangeOnNewMatchTest extends CommonBaseTest {
 		validateStats.hardWait(2);
 		String lossesCount = validateStats.getLossesCountLabelText();
 		String totalMatchesAfterLossesSelect = validateStats.getTotalMatchesText();
+		validateStats.hardWait(3);
 
 		Assert.assertEquals(lossesCount, totalMatchesAfterLossesSelect);
 
@@ -272,6 +275,7 @@ public class ValidateStatsChangeOnNewMatchTest extends CommonBaseTest {
 		validateStats.hardWait(2);
 		String pendingCount = validateStats.getPendingCountLabelText();
 		String totalMatchesAfterPendingSelect = validateStats.getTotalMatchesText();
+		validateStats.hardWait(3);
 
 		Assert.assertEquals(pendingCount, totalMatchesAfterPendingSelect);
 
@@ -303,6 +307,7 @@ public class ValidateStatsChangeOnNewMatchTest extends CommonBaseTest {
 		int winsAndLosses = wins + losses;
 
 		String winsAndLossesCount = Integer.toString(winsAndLosses);
+		validateStats.hardWait(3);
 
 		Assert.assertEquals(totalMatches, winsAndLossesCount);
 
@@ -335,6 +340,7 @@ public class ValidateStatsChangeOnNewMatchTest extends CommonBaseTest {
 		int winsAndPending = wins + pending;
 
 		String winsAndPendingCount = Integer.toString(winsAndPending);
+		validateStats.hardWait(3);
 
 		Assert.assertEquals(totalMatches, winsAndPendingCount);
 
@@ -367,6 +373,7 @@ public class ValidateStatsChangeOnNewMatchTest extends CommonBaseTest {
 		int lossesAndPending = losses + pending;
 
 		String lossesAndPendingCount = Integer.toString(lossesAndPending);
+		validateStats.hardWait(3);
 
 		Assert.assertEquals(totalMatches, lossesAndPendingCount);
 
