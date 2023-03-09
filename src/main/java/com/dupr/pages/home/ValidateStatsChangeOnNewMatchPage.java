@@ -137,6 +137,16 @@ public class ValidateStatsChangeOnNewMatchPage extends DUPRBaseAutomationPage {
 			}
 		} catch (Exception e) {
 			System.out.println("***Special characters haven't displayed***");
+			result = totalMatches;
+		}
+		
+		try {
+			if(!totalMatches.contains(",")) {
+				result = totalMatches;
+				log.debug("Final Total Matches result is : " + result);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();			
 		}
 		
 		log.info("Ending of getTotalMatchesText method");
