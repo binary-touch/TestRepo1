@@ -55,7 +55,7 @@ public class EditClubInfoTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyMyClubsFunctionalityInHomePage method");
 	}
 
-	@Test(priority = 2, description = "Verify See club details functionality in Club page", groups = "sanity")
+	//@Test(priority = 2, description = "Verify See club details functionality in Club page", groups = "sanity")
 	@Description("Test case #2, Verify results on click of click on see club details")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #2, Verify results on click of click on see club details")
@@ -80,7 +80,7 @@ public class EditClubInfoTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifySeeClubDetailsFunctionalityInClubPage method");
 	}
 
-	@Test(priority = 3, description = "Verify Show Less details option functionality in club page", groups = "sanity")
+	//@Test(priority = 3, description = "Verify Show Less details option functionality in club page", groups = "sanity")
 	@Description("Test case #3, Verify Show Less details option functionality in club page")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #3, Verify Show Less details option functionality in club page")

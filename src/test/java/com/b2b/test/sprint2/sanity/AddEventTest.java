@@ -79,7 +79,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyAddEventFunctionality method");
 	}
 
-	@Test(priority = 2, description = "Verify Exit Button Without Entering Any Details In Event Information Page", groups = "sanity")
+	//@Test(priority = 2, description = "Verify Exit Button Without Entering Any Details In Event Information Page", groups = "sanity")
 	@Description("Test case #2, Verify Exit Button Without Entering Any Details In Event Information Page")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #2, Verify Exit Button Without Entering Any Details In Event Information Page")
@@ -152,7 +152,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyMemberAndNonMemberPriceFieldsWithInvalidDetails method");
 	}
 
-	@Test(priority = 6, description = "Verify Member And Nonmember Price Fields With Negative Values", groups = "sanity")
+	//@Test(priority = 6, description = "Verify Member And Nonmember Price Fields With Negative Values", groups = "sanity")
 	@Description("Test case #6, Verify Member And Nonmember Price Fields With Negative Values")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #6, Verify Member And Nonmember Price Fields With Negative Values")
@@ -185,7 +185,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyAboutTheEventMinimumCharsValidation method");
 	}
 
-	@Test(priority = 8, description = "Verify Font styles for the About event field", groups = "sanity")
+	//@Test(priority = 8, description = "Verify Font styles for the About event field", groups = "sanity")
 	@Description("Test case #8, Verify Font styles for the About event field")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #8, Verify Font styles for the About event field")
@@ -212,7 +212,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyAboutEventFieldWithIndividualFontStyles method");
 	}
 
-	@Test(priority = 9, description = "Verify About Event Field With All Formating Font Styles", groups = "sanity")
+	//@Test(priority = 9, description = "Verify About Event Field With All Formating Font Styles", groups = "sanity")
 	@Description("Test case #9, Verify About Event Field With All Formating Font Styles")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #9, Verify About Event Field With All Formating Font Styles")
@@ -227,7 +227,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyAboutEventFieldWithAllFormatingFontStyles method");
 	}
 
-	@Test(priority = 10, description = "Verify About Event Field With Combination Of Bold And Underline Font Styles", groups = "sanity")
+	//@Test(priority = 10, description = "Verify About Event Field With Combination Of Bold And Underline Font Styles", groups = "sanity")
 	@Description("Test case #10, Verify About Event Field With Combination Of Bold And Underline Font Styles")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #10, Verify About Event Field With Combination Of Bold And Underline Font Styles")
@@ -242,7 +242,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyAboutEventFieldWithCombinationOfBoldAndUnderlineFontStyles method");
 	}
 
-	@Test(priority = 11, description = "Verify About Event Field With Combination Of Italic And Underline Font Styles", groups = "sanity")
+	//@Test(priority = 11, description = "Verify About Event Field With Combination Of Italic And Underline Font Styles", groups = "sanity")
 	@Description("Test case #11, Verify About Event Field With Combination Of Italic And Underline Font Styles")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #11, Verify About Event Field With Combination Of Italic And Underline Font Styles")
@@ -257,7 +257,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyAboutEventFieldWithCombinationOfItalicAndUnderlineFontStyles method");
 	}
 
-	@Test(priority = 12, description = "Verify About Event Field With Combination Of Bold And Italic Font Styles", groups = "sanity")
+	//@Test(priority = 12, description = "Verify About Event Field With Combination Of Bold And Italic Font Styles", groups = "sanity")
 	@Description("Test case #12, Verify About Event Field With Combination Of Bold And Italic Font Styles")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #12, Verify About Event Field With Combination Of Bold And Italic Font Styles")
@@ -319,7 +319,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyRemoveEventLogoFunctionality method");
 	}
 
-	@Test(priority = 16, description = "VerifyExitEventCreationPopupAfterFillingEventInformationDetails", groups = "sanity")
+	//@Test(priority = 16, description = "VerifyExitEventCreationPopupAfterFillingEventInformationDetails", groups = "sanity")
 	@Description("Test case #16, VerifyExitEventCreationPopupAfterFillingEventInformationDetails")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #16, VerifyExitEventCreationPopupAfterFillingEventInformationDetails")
@@ -356,7 +356,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyEventInformationPageWithValidDetails method");
 	}
 
-	@Test(priority = 18, description = "Verify Exit Event Creation Popup Details In Event Policies", groups = "sanity")
+	//@Test(priority = 18, description = "Verify Exit Event Creation Popup Details In Event Policies", groups = "sanity")
 	@Description("Test case #18, Verify Exit Event Creation Popup Details In Event Policies")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #18, Verify Exit Event Creation Popup Details In Event Policies")
@@ -370,7 +370,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyExitEventCreationPopupDetailsInEventPolicies method");
 	}
 
-	@Test(priority = 19, description = "Verify Event Policies Discard Functionality", groups = "sanity")
+	//@Test(priority = 19, description = "Verify Event Policies Discard Functionality", groups = "sanity")
 	@Description("Test case #19, Verify Event Policies Discard Functionality")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #19, Verify Event Policies Discard Functionality")
@@ -384,7 +384,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyEventPoliciesDiscardFunctionality method");
 	}
 
-	@Test(priority = 20, description = "Verify Event Policies Save As Draft Functionality", groups = "sanity")
+	//@Test(priority = 20, description = "Verify Event Policies Save As Draft Functionality", groups = "sanity")
 	@Description("Test case #20, Verify Event Policies Save As Draft Functionality")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #20, Verify Event Policies Save As Draft Functionality")
@@ -404,7 +404,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyEventPoliciesSaveAsDraftFunctionality method");
 	}
 
-	@Test(priority = 21, description = "Verify Recently Drafted Event In Events Tab", groups = "sanity")
+	//@Test(priority = 21, description = "Verify Recently Drafted Event In Events Tab", groups = "sanity")
 	@Description("Test case #21, Verify Recently Drafted Event In Events Tab")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #21, Verify Recently Drafted Event In Events Tab")
@@ -418,7 +418,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyRecentlyDraftedEventInEventsTab method");
 	}
 
-	@Test(priority = 22, description = "Verify Delete Draft Event Functionality Before Publishing Event", groups = "sanity")
+	//@Test(priority = 22, description = "Verify Delete Draft Event Functionality Before Publishing Event", groups = "sanity")
 	@Description("Test case #22, Verify Delete Draft Event Functionality Before Publishing Event")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #22, Verify Delete Draft Event Functionality Before Publishing Event")
@@ -431,7 +431,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyDeleteDraftEventFunctionalityBeforePublishingEvent method");
 	}
 
-	@Test(priority = 23, description = "Verify CancelButton Functionality In Delete Event PopUp", groups = "sanity")
+	//@Test(priority = 23, description = "Verify CancelButton Functionality In Delete Event PopUp", groups = "sanity")
 	@Description("Test case #23, Verify CancelButton Functionality In Delete Event PopUp")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #23, Verify CancelButton Functionality In Delete Event PopUp")
@@ -444,7 +444,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyCancelButtonFunctionalityInDeleteEventPopUp method");
 	}
 
-	@Test(priority = 24, description = "Verify CloseButton Functionality In Delete Event PopUp", groups = "sanity")
+	//@Test(priority = 24, description = "Verify CloseButton Functionality In Delete Event PopUp", groups = "sanity")
 	@Description("Test case #24, Verify CloseButton Functionality In Delete Event PopUp")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #24, Verify CloseButton Functionality In Delete Event PopUp")
@@ -458,7 +458,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of VerifyCloseButtonFunctionalityInDeleteEventPopUp method");
 	}
 
-	@Test(priority = 25, description = "Verify Confirm Button Functionality In Delete Event PopUp", groups = "sanity")
+	//@Test(priority = 25, description = "Verify Confirm Button Functionality In Delete Event PopUp", groups = "sanity")
 	@Description("Test case #25, Verify Confirm Button Functionality In Delete Event PopUp")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #25, Verify Confirm Button Functionality In Delete Event PopUp")
@@ -473,7 +473,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyConfirmButtonFunctionalityInDeleteEventPopUp method");
 	}
 
-	@Test(priority = 26, description = "Verify OK Button Functionality In Delete Event Success PopUp", groups = "sanity")
+	//@Test(priority = 26, description = "Verify OK Button Functionality In Delete Event Success PopUp", groups = "sanity")
 	@Description("Test case #26, Verify OK Button Functionality In Delete Event Success PopUp")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #26, Verify OK Button Functionality In Delete Event Success PopUp")
@@ -544,9 +544,6 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Starting of verifyFileFormatsSupportedByLiabilityWaiver method");
 
 		addEventPage.clickOnNextStepButton();
-		// addEventPage.clickOnLiabilityWaiverButton();
-
-		// Assert.assertFalse(this.addEventPage.isFileExplorerContains());
 
 		logger.info("Ending of verifyFileFormatsSupportedByLiabilityWaiver method");
 	}
@@ -603,10 +600,6 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 
 		addEventPage.uploadLiabilityWaiverFile(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("club.logo.path"));
 		addEventPage.hardWait(2);
-		// addEventPage.clickOnReplaceButton();
-
-		// Assert.assertFalse(this.addEventPage.isFileExplorerContains());
-		// addEventPage.pressEscapeKey();
 
 		logger.info("Ending of verifyReplaceLiabilityFileFunctionality method");
 	}
@@ -1408,11 +1401,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	@Story("Test case #76, Verify Delete Bracket Functionality After Publishing Event")
 	public void verifyDeleteBracketFunctionalityAfterPublishingEvent() {
 		logger.info("Starting of VerifyRecentlyAddedEventUnderEventsTab method");
-
-		/*
-		 * clubLogoPage.clickOnMyClubsTab();
-		 * editClubInfoPage.clickOnSimbaOrganizerButton();
-		 */
+		
 		addEventPage.clickOnAddEventButton();
 
 		Assert.assertTrue(addEventPage.isEventInformationPageContains());

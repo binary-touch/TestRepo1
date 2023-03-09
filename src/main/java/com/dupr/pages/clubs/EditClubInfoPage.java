@@ -150,8 +150,8 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//p[contains(text(),'Minimum 10 characters.')]")
 	private WebElement lblMinimumTenCharacters;
 
-	@B2BFindBy(xpath = "//div[@class=\"text-editor rdw-editor-main\"]")
-	private WebElement txtDescription;
+	@B2BFindBy(xpath = "//div[@class='text-editor rdw-editor-main']")
+	private WebElement txtBoxDescription;
 
 	@B2BFindBy(xpath = "//div[@class='text-editor rdw-editor-main']/div/div/div/div/div/div/span")
 	private WebElement txtEditDescription;
@@ -211,7 +211,8 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 		super(driver);
 		B2BPageFactory.initElements(driver, this);
 	}
-
+	public static int numberLength =0;
+	
 	public boolean isClubPageContains() {
 		log.info("Starting of isClubPageContains method");
 
@@ -541,11 +542,13 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 		String s = txtBoxPhoneNumber.getAttribute("value");
 		log.debug("Derived Phone number from the field: " + s);
 
-		int numberLength = s.length();
-		log.debug("Phone number length: " + numberLength);
+		 numberLength = s.length();
+	log.debug("Phone number length: " + numberLength);
 
-		for (int i = numberLength; i > 0;) {
-			hardWait(5);
+		for (int i = numberLength; i > 0; i--) {
+			
+			log.debug("Phone number length: " + s.length());
+			//hardWait(5);
 			this.txtBoxPhoneNumber.sendKeys(Keys.BACK_SPACE);
 		}
 
@@ -693,7 +696,7 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 	public void setEditInfoDescription(String description) {
 		log.info("Starting of setEditInfoDescription method");
 
-		this.txtDescription.click();
+		this.txtBoxDescription.click();
 		this.txtEditDescription.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		this.txtEditDescription.sendKeys(description);
 
@@ -703,7 +706,7 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 	public void clickAndClearClubInfoField() {
 		log.info("Starting of clickAndClearClubInfoField method");
 
-		this.txtDescription.click();
+		elementClick(txtBoxDescription);
 		this.txtEditDescription.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 
 		log.info("Ending of clickAndClearClubInfoField method");
@@ -734,7 +737,7 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 		elementClick(ImgUnderlineText);
 		hardWait(2);
 
-		this.txtDescription.click();
+		this.txtBoxDescription.click();
 		hardWait(2);
 
 		log.info("Ending of clickOnUnderlineImageButton method");

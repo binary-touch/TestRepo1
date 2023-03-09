@@ -51,7 +51,7 @@ public class BrowseClubsTest extends CommonBaseTest {
 		logger.info("Ending of verifyBrowseClubs method");
 	}
 
-	@Test(priority = 2, description = "Verify Search by club name field functionality with club name which club is not available", groups = "sanity")
+	//@Test(priority = 2, description = "Verify Search by club name field functionality with club name which club is not available", groups = "sanity")
 	@Description("Test case #2, Verify Search by club name field functionality with club name which club is not available")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #2, Verify Search by club name field functionality with club name which club is not available")

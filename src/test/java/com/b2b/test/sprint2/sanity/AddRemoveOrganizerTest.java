@@ -54,13 +54,6 @@ public class AddRemoveOrganizerTest extends DUPRBaseAutomationTest {
 
 		addRemoveOrganizerPage.clickOnSeeClubDetailsDropdown();
 		addRemoveOrganizerPage.AddingOrganizers();
-		/*
-		 * try { if (addRemoveOrganizerPage.isDeleteOrganizerButtonDisplayed() == true)
-		 * {
-		 * 
-		 * addRemoveOrganizerPage.AddingOrganizers(); } } catch (Exception e) {
-		 * logger.info("Delete Organizer Button is not displayed"); }
-		 */
 		
 		logger.info("Ending of verifyAddOrganizerFunctionality method");
 	}
