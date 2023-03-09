@@ -4,7 +4,7 @@
 
 	<test name="Sprint 1">
 	<classes>
-		<!-- <class name="com.b2b.test.sprint1.sanity.SearchPlayersTest" />
+		<class name="com.b2b.test.sprint1.sanity.SearchPlayersTest" />
 		<class name="com.b2b.test.sprint1.sanity.SignupTest" />
 		<class
 			name="com.b2b.test.sprint1.sanity.DUPRClaimAccountSignUpTest" />
@@ -13,16 +13,16 @@
 		<class name="com.b2b.test.sprint1.sanity.ForgotPasswordTest" />
 		<class name="com.b2b.test.sprint1.sanity.AddAMatchTest" />
 		<class
-			name="com.b2b.test.sprint1.sanity.ValidateRecentlyAddedMatchTest" /> -->
+			name="com.b2b.test.sprint1.sanity.ValidateRecentlyAddedMatchTest" />
 		<class
 			name="com.b2b.test.sprint1.sanity.ValidateStatsChangeOnNewMatchTest" />
-		<!-- <class
+		<class
 			name="com.b2b.test.sprint1.sanity.DeleteRecentlyAddedMatchTest" />
 		<class name="com.b2b.test.sprint1.sanity.BrowsePlayersTest" />
 		<class name="com.b2b.test.sprint1.sanity.PlayerProfileTest" />
 		<class name="com.b2b.test.sprint1.sanity.NotificationsTest" />
 		<class name="com.b2b.test.sprint1.sanity.ChangePasswordTest" />
-		<class name="com.b2b.test.sprint1.sanity.ProfilePictureTest" /> -->
+		<class name="com.b2b.test.sprint1.sanity.ProfilePictureTest" />
 	</classes>
 </test>
 
