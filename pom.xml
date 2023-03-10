@@ -108,7 +108,7 @@
 			<artifactId>b2bseleniumapi</artifactId>
 			<version>1.0</version>
 			<scope>system</scope>
-			<systemPath>${project.basedir}/b2bLibrary/b2bseleniumapi.jar</systemPath>
+			<systemPath>//${project.basedir}/b2bLibrary/b2bseleniumapi.jar</systemPath>
 		</dependency>
 	</dependencies>
 

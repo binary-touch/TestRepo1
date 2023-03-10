@@ -8,7 +8,6 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.b2b.common.WebDriversEnum;
-import com.dupr.pages.home.ValidateStatsChangeOnNewMatchPage;
 import com.dupr.test.CommonBaseTest;
 
 import io.qameta.allure.Description;
@@ -39,7 +38,7 @@ public class BrowsePlayersTest extends CommonBaseTest {
 	@Description("Test case #1,Verify Browse player functionaity")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #1, Verify Browse player functionaity")
-	public void verifyClickOnPlayersTab(){
+	public void verifyClickOnPlayersTab() {
 		logger.info("Starting of verifyClickOnPlayersTab method");
 
 		addAMatchPage.clickOnPlayersTab();
@@ -124,9 +123,9 @@ public class BrowsePlayersTest extends CommonBaseTest {
 		driver.navigate().refresh();
 		browsePlayersPage.clickOnFindNearMeToggleButton();
 		browsePlayersPage.hardWait(3);
-		
+
 		try {
-			if(browsePlayersPage.isLocationPermissionsPopupDisplayed()) {
+			if (browsePlayersPage.isLocationPermissionsPopupDisplayed()) {
 				Assert.assertTrue(browsePlayersPage.isLocationPermissionsPopupDisplayed());
 				browsePlayersPage.clickOnOKButton();
 			}
@@ -143,19 +142,19 @@ public class BrowsePlayersTest extends CommonBaseTest {
 	@Story("Test case #7, Verify browse players functionality by location filter")
 	public void verifyPlayersByLocationFilter() {
 		logger.info("Starting of verifyPlayersByLocationFilter method");
-		
+
 		driver.navigate().refresh();
 		browsePlayersPage.clickOnFilterButton();
 
 		Assert.assertTrue(browsePlayersPage.isFiltersPageContains());
 
 		browsePlayersPage.setLocationInFilters(testDataProp.getProperty("primary.location"));
-		
+
 		browsePlayersPage.clickOnlocationOption();
-		
+
 		browsePlayersPage.clickOnApplyButton();
 		browsePlayersPage.hardWait(2);
-		
+
 		Assert.assertTrue(browsePlayersPage.getPlayerLocation());
 
 		logger.info("Ending of verifyPlayersByLocationFilter method");
@@ -247,7 +246,7 @@ public class BrowsePlayersTest extends CommonBaseTest {
 		browsePlayersPage.clickOnClearAllButton();
 		browsePlayersPage.clickOnAgeOptionRadioButton();
 		browsePlayersPage.clickOnApplyButton();
-		
+
 		browsePlayersPage.hardWait(2);
 		Assert.assertTrue(browsePlayersPage.getPlayersAge());
 

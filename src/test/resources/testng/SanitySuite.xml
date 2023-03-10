@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Sanity UI Automation Tests"><!--  parallel = "classes" thread-count = "4"> -->
+<suite name="Sanity UI Automation Tests"> <!-- parallel = "classes" thread-count = "4"> -->
 
 	<test name="Sprint 1">
-	<classes>
-		<!-- <class name="com.b2b.test.sprint1.sanity.SearchPlayersTest" />
-		<class name="com.b2b.test.sprint1.sanity.SignupTest" />
-		<class
-			name="com.b2b.test.sprint1.sanity.DUPRClaimAccountSignUpTest" /> -->
-		<class name="com.b2b.test.sprint1.sanity.DUPRLoginTest" />
-		<!-- <class name="com.b2b.test.sprint1.sanity.NegativeLoginTest" />
-		<class name="com.b2b.test.sprint1.sanity.ForgotPasswordTest" />
-		<class name="com.b2b.test.sprint1.sanity.AddAMatchTest" />
-		<class
-			name="com.b2b.test.sprint1.sanity.ValidateRecentlyAddedMatchTest" />
-		<class
-			name="com.b2b.test.sprint1.sanity.ValidateStatsChangeOnNewMatchTest" />
-		<class
-			name="com.b2b.test.sprint1.sanity.DeleteRecentlyAddedMatchTest" />
-		<class name="com.b2b.test.sprint1.sanity.BrowsePlayersTest" />
-		<class name="com.b2b.test.sprint1.sanity.PlayerProfileTest" />
-		<class name="com.b2b.test.sprint1.sanity.NotificationsTest" />
-		<class name="com.b2b.test.sprint1.sanity.ChangePasswordTest" />
-		<class name="com.b2b.test.sprint1.sanity.ProfilePictureTest" /> -->
-	</classes>
-</test>
+		<classes>
+			<class name="com.b2b.test.sprint1.sanity.SearchPlayersTest" />
+			<class name="com.b2b.test.sprint1.sanity.SignupTest" />
+			<class
+				name="com.b2b.test.sprint1.sanity.DUPRClaimAccountSignUpTest" />
+			<class name="com.b2b.test.sprint1.sanity.DUPRLoginTest" />
+			<class name="com.b2b.test.sprint1.sanity.NegativeLoginTest" />
+			<class name="com.b2b.test.sprint1.sanity.ForgotPasswordTest" />
+			<class name="com.b2b.test.sprint1.sanity.AddAMatchTest" />
+			<class
+				name="com.b2b.test.sprint1.sanity.ValidateRecentlyAddedMatchTest" />
+			<class
+				name="com.b2b.test.sprint1.sanity.ValidateStatsChangeOnNewMatchTest" />
+			<class
+				name="com.b2b.test.sprint1.sanity.DeleteRecentlyAddedMatchTest" />
+			<class name="com.b2b.test.sprint1.sanity.BrowsePlayersTest" />
+			<class name="com.b2b.test.sprint1.sanity.PlayerProfileTest" />
+			<class name="com.b2b.test.sprint1.sanity.NotificationsTest" />
+			<class name="com.b2b.test.sprint1.sanity.ChangePasswordTest" />
+			<class name="com.b2b.test.sprint1.sanity.ProfilePictureTest" />
+		</classes>
+	</test>
 
 	<!-- <test name="Sprint 2">
 		<classes>
@@ -32,9 +32,11 @@
 			<class name="com.b2b.test.sprint2.sanity.MyClubsTest" />
 			<class name="com.b2b.test.sprint2.sanity.EditClubInfoTest" />
 			<class name="com.b2b.test.sprint2.sanity.ClubLogoTest" />
-			<class name="com.b2b.test.sprint2.sanity.AddRemoveOrganizerTest" />
+			<class
+				name="com.b2b.test.sprint2.sanity.AddRemoveOrganizerTest" />
 			<class name="com.b2b.test.sprint2.sanity.RemoveMemberTest" />
-			<class name="com.b2b.test.sprint2.sanity.ImportPlayerViaCSVTest" />
+			<class
+				name="com.b2b.test.sprint2.sanity.ImportPlayerViaCSVTest" />
 			<class name="com.b2b.test.sprint2.sanity.AddClubMatchTest" />
 			<class name="com.b2b.test.sprint2.sanity.AddEventTest" />
 			<class name="com.b2b.test.sprint2.sanity.BrowseEventsTest" />
@@ -43,22 +45,28 @@
 		</classes>
 	</test>
 
-
 	<test name="Sprint 3">
 		<classes>
-			<class name="com.b2b.test.sprint3.sanity.AddEditRemoveEventLogoTest" />
-			<class name="com.b2b.test.sprint3.sanity.AddParticipantsInBracketTest" />
+			<class
+				name="com.b2b.test.sprint3.sanity.AddEditRemoveEventLogoTest" />
+			<class
+				name="com.b2b.test.sprint3.sanity.AddParticipantsInBracketTest" />
 			<class name="com.b2b.test.sprint3.sanity.EndEventTest" />
 			<class name="com.b2b.test.sprint3.sanity.AddAnnouncementTest" />
-			<class name="com.b2b.test.sprint3.sanity.PlayerEventRegistrationTest" />
-			<class name="com.b2b.test.sprint3.sanity.AcceptOrDeclinePartnerTest" />
+			<class
+				name="com.b2b.test.sprint3.sanity.PlayerEventRegistrationTest" />
+			<class
+				name="com.b2b.test.sprint3.sanity.AcceptOrDeclinePartnerTest" />
 			<class
 				name="com.b2b.test.sprint3.sanity.DirectorEventRegistrationTest" />
 			<class name="com.b2b.test.sprint3.sanity.WithdrawPlayerTest" />
-			<class name="com.b2b.test.sprint3.sanity.Create_Edit_Split_TeamTest" />
-			<class name="com.b2b.test.sprint3.sanity.AdditionOfChartAndShopTabTest" />
+			<class
+				name="com.b2b.test.sprint3.sanity.Create_Edit_Split_TeamTest" />
+			<class
+				name="com.b2b.test.sprint3.sanity.AdditionOfChartAndShopTabTest" />
 			<class name="com.b2b.test.sprint3.sanity.UserDashboardTest" />
-			<class name="com.b2b.test.sprint3.sanity.PreservingPageVisitsTest" />
+			<class
+				name="com.b2b.test.sprint3.sanity.PreservingPageVisitsTest" />
 		</classes>
 	</test>
 
@@ -80,7 +88,8 @@
 				name="com.b2b.test.sprint5.sanity.PaidEventAndPaidBracketWithWaterfallEventTest" />
 			<class
 				name="com.b2b.test.sprint5.sanity.WaterfallRoundOneSeedingLogicTest" />
-			<class name="com.b2b.test.sprint5.sanity.SeedMatchesWaterFallTest" />
+			<class
+				name="com.b2b.test.sprint5.sanity.SeedMatchesWaterFallTest" />
 		</classes>
-	</test>  -->
- </suite>
+	</test> -->
+</suite>
