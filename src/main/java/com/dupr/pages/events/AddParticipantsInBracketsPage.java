@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.b2b.support.B2BFindBy;
+import com.b2b.support.B2BFindBys;
 import com.b2b.support.B2BPageFactory;
 import com.dupr.pages.DUPRBaseAutomationPage;
 
@@ -19,6 +20,9 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//h4[text()='My Brackets']")
 	private WebElement ddMyBrackets;
+	
+	@B2BFindBys(@B2BFindBy(xpath = "//button[contains(text(),'OK')]"))
+	private WebElement btnOk;
 
 	@B2BFindBy(xpath = "//h3[text()='Brackets']")
 	private WebElement lblBrackets;
@@ -448,6 +452,7 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 				this.hardWait(3);
 				clickOnWebElement(btnAdd);
 				this.hardWait(5);
+				clickOnWebElement(btnOk);
 			} catch (Exception e) {
 				this.hardWait(3);
 				clickOnWebElement(btnAddParticipants);
@@ -460,6 +465,7 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 				this.hardWait(3);
 				clickOnWebElement(btnAdd);
 				this.hardWait(5);
+				clickOnWebElement(btnOk);
 			}
 
 		}
@@ -483,6 +489,7 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 				this.hardWait(3);
 				clickOnWebElement(btnAdd);
 				this.hardWait(5);
+				clickOnWebElement(btnOk);
 			} catch (Exception e) {
 				this.hardWait(3);
 				clickOnWebElement(btnAddParticipants);
@@ -495,6 +502,7 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 				this.hardWait(3);
 				clickOnWebElement(btnAdd);
 				this.hardWait(5);
+				clickOnWebElement(btnOk);
 			}
 
 		}
@@ -519,6 +527,7 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 					this.hardWait(3);
 					clickOnWebElement(btnAdd);
 					this.hardWait(5);
+					clickOnWebElement(btnOk);
 				}
 			} catch (Exception e) {
 				try {
@@ -534,6 +543,7 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 						this.hardWait(3);
 						clickOnWebElement(btnAdd);
 						this.hardWait(5);
+						clickOnWebElement(btnOk);
 					}
 				} catch (Exception e2) {
 					System.out.println();
@@ -563,6 +573,7 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 			this.hardWait(3);
 			clickOnWebElement(btnAdd);
 			this.hardWait(5);
+			clickOnWebElement(btnOk);
 		} catch (Exception e) {
 			this.hardWait(3);
 			clickOnWebElement(btnAddParticipants);
@@ -577,6 +588,7 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 			this.hardWait(3);
 			clickOnWebElement(btnAdd);
 			this.hardWait(5);
+			clickOnWebElement(btnOk);
 		}
 
 		log.info("Ending of addMeetPlayerForWaterFallEvent method");
@@ -598,9 +610,11 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 					this.hardWait(3);
 					clickOnWebElement(btnAdd);
 					this.hardWait(5);
+					clickOnWebElement(btnOk);
 				}
 			} catch (Exception e) {
 				try {
+					
 					if (btnAddParticipants.isDisplayed() == true) {
 						this.hardWait(3);
 						clickOnWebElement(btnAddParticipants);
@@ -613,6 +627,7 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 						this.hardWait(3);
 						clickOnWebElement(btnAdd);
 						this.hardWait(5);
+						clickOnWebElement(btnOk);
 					}
 				} catch (Exception e2) {
 					System.out.println();

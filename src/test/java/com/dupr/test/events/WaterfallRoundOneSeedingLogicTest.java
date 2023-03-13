@@ -140,7 +140,7 @@ public class WaterfallRoundOneSeedingLogicTest extends CommonBaseTest {
 		seedMatchesPage.hardWait(3);
 		addparticipantsPage.addMeetPlayerForWaterFallEvent(testDataProp.getProperty("provisional.rating.player"));
 		seedMatchesPage.hardWait(3);
-		waterfallRoundOneSeedingLogicPage.getSinglesRating();
+		waterfallRoundOneSeedingLogicPage.addParticipantsForRoundOne();
 
 		logger.info("Ending of verifyAddingParticipantsInWaterFallEvent method");
 	}
