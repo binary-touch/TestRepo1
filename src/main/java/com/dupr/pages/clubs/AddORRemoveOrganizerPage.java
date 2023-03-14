@@ -420,7 +420,7 @@ public class AddORRemoveOrganizerPage extends DUPRBaseAutomationPage {
 		return getText(lblEditOrganizer);
 	}
 
-	public void setOrganizerName() {
+	public void clearOrganizerNameEmail() {
 		log.info("Starting of setOrganizerName method");
 
 		clickOnWebElement(txtEditName);

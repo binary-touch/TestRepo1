@@ -152,7 +152,7 @@ public class AddRemoveOrganizerTest extends DUPRBaseAutomationTest {
 	public void verifySaveFunctionality() {
 		logger.info("Starting of verifySaveFunctionality method");
 
-		addRemoveOrganizerPage.setOrganizerName();
+		addRemoveOrganizerPage.clearOrganizerNameEmail();
 
 		Assert.assertEquals(addRemoveOrganizerPage.getNameText(),
 				expectedAssertionsProp.getProperty("name.validation"));

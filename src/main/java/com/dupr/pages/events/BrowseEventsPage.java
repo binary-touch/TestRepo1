@@ -36,7 +36,7 @@ public class BrowseEventsPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//span[text()='Open']")
 	private WebElement btnOpen;
 
-	@B2BFindBy(xpath = "//button[text()='Clear Filters']")
+	@B2BFindBy(xpath = "//button[text()='Filters']")
 	private WebElement btnClearFilters;
 
 	@B2BFindBy(xpath = "//h5[text()='My Events']")
@@ -202,16 +202,22 @@ public class BrowseEventsPage extends DUPRBaseAutomationPage {
 
 	public void clickOnCompleted() {
 		log.info("Starting of clickOnCompleted method");
-
-		clickOnElement(btnCompleted);
+		try {
+			clickUsingActionsClass(btnCompleted);
+		} catch (Exception e) {
+			clickOnWebElement(btnCompleted);
+		}
 
 		log.info("Ending of clickOnCompleted method");
 	}
 
 	public void clickOnClearFiltersButton() {
 		log.info("Starting of clickOnClearFiltersButton method");
-
-		elementClick(btnClearFilters);
+		try {
+			clickUsingActionsClass(btnClearFilters);
+		} catch (Exception e) {
+			elementClick(btnClearFilters);
+		}
 
 		log.info("Ending of clickOnClearFiltersButton method");
 	}

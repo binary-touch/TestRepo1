@@ -1698,7 +1698,11 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	public void clickonBracket1Button() {
 		log.info("Starting of clickonBracket1Button method");
 
-		clickOnElementUsingActionClass(drpBracket1);
+		try {
+			clickUsingActionsClass(drpBracket1);
+		} catch (Exception e) {
+			clickOnWebElement(drpBracket1);
+		}
 
 		log.info("Ending of clickonBracket1Button method");
 	}

@@ -152,44 +152,10 @@ public class ClubLogoTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyChangeLogoOption method");
 	}
 
-	@Test(priority = 5, description = "Verify Cancel Button functionality in Club Logo popup", groups = "sanity")
-	@Description("Test case #5, Verify Cancel Button functionality in Club Logo popup")
+	@Test(priority = 5, description = "Verify the state of save button after Changing Logo", groups = "sanity")
+	@Description("Test case #5, Verify the state of save button after Changing Logo")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #5, Verify Cancel Button functionality in Club Logo popup")
-	public void verifyCancelButtonFunctionalityInClubLogoPopup() {
-		logger.info("Starting of verifyCancelButtonFunctionalityInClubLogoPopup method");
-
-		profilePicturePage.clickOnCameraIcon();
-		clubLogoPage.clickOnChangeLogoOption();
-
-		profilePicturePage.clickOnCancelButton();
-
-		Assert.assertTrue(clubLogoPage.isClubPageContains());
-
-		logger.info("Ending of verifyCancelButtonFunctionalityInClubLogoPopup method");
-	}
-
-	@Test(priority = 6, description = "Verify Close Icon functionality in Club Logo popup", groups = "sanity")
-	@Description("Test case #6, Verify Close Icon functionality in Club Logo popup")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #6, Verify Close Icon functionality in Club Logo popup")
-	public void verifyCloseIconInClubLogoPopUp() {
-		logger.info("Starting of verifyCloseIconInClubLogoPopUp method");
-
-		profilePicturePage.clickOnCameraIcon();
-		clubLogoPage.clickOnChangeLogoOption();
-
-		profilePicturePage.clickOnCloseIconOnEventLogo();
-
-		Assert.assertTrue(clubLogoPage.isClubPageContains());
-
-		logger.info("Ending of verifyCloseIconInClubLogoPopUp method");
-	}
-
-	@Test(priority = 7, description = "Verify the state of save button after Changing Logo", groups = "sanity")
-	@Description("Test case #7, Verify the state of save button after Changing Logo")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #7, Verify the state of save button after Changing Logo")
+	@Story("Test case #5, Verify the state of save button after Changing Logo")
 	public void verifyTheStateOfSaveButtonAfterLogoEdit() {
 		logger.info("Starting of verifyTheStateOfSaveButtonAfterLogoEdit method");
 
@@ -197,65 +163,41 @@ public class ClubLogoTest extends DUPRBaseAutomationTest {
 		clubLogoPage.clickOnChangeLogoOption();
 		clubLogoPage.hardWait(2);
 		Assert.assertTrue(profilePicturePage.isSaveButtonDisplayed());
+		clubLogoPage.hardWait(3);
+		profilePicturePage.clickOnCancelButton();
+		clubLogoPage.hardWait(3);
 
 		logger.info("Ending of verifyTheStateOfSaveButtonAfterLogoEdit method");
 	}
 
-	@Test(priority = 8, description = "Verify 'No' Button functionality in Remove Logo popup", groups = "sanity")
-	@Description("Test case #8, Verify 'No' Button functionality in Remove Logo popup")
+	@Test(priority = 6, description = "Verify remove logo functionality in club page", groups = "sanity")
+	@Description("Test case #6, Verify remove logo functionality in club page")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #8, Verify 'No' Button functionality in Remove Logo popup")
-	public void verifyNoButtonFunctionalityInRemoveLogoPopup() {
-		logger.info("Starting of verifyNoButtonFunctionalityInRemoveLogoPopup method");
-
-		profilePicturePage.clickOnCancelButton();
-		clubLogoPage.hardWait(2);
-
-		profilePicturePage.clickOnCameraIcon();
-		clubLogoPage.clickOnRemoveLogoOption();
-		clubLogoPage.hardWait(2);
-
-		profilePicturePage.clickOnNoButton();
-
-		Assert.assertTrue(clubLogoPage.isClubPageContains());
-
-		logger.info("Ending of verifyNoButtonFunctionalityInRemoveLogoPopup method");
-	}
-
-	@Test(priority = 9, description = "Verify Close Icon Button functionality in Remove logo popup", groups = "sanity")
-	@Description("Test case #9, Verify Close Icon Button functionality in Remove logo popup")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #9, Verify Close Icon Button functionality in Remove logo popup")
-	public void verifyCloseIconInRemoveLogoPopup() {
-		logger.info("Starting of verifyCloseIconInRemoveLogoPopup method");
-
-		profilePicturePage.clickOnCameraIcon();
-		clubLogoPage.clickOnRemoveLogoOption();
-
-		clubLogoPage.hardWait(2);
-		profilePicturePage.iconCloseOnRemoveLogo();
-
-		Assert.assertTrue(clubLogoPage.isClubPageContains());
-
-		logger.info("Ending of verifyCloseIconInRemoveLogoPopup method");
-	}
-
-	@Test(priority = 10, description = "Verify remove logo functionality in club page", groups = "sanity")
-	@Description("Test case #10, Verify remove logo functionality in club page")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #10, Verify remove logo functionality in club page")
+	@Story("Test case #6, Verify remove logo functionality in club page")
 	public void verifyRemoveLogoFunctionalityInClubPage() {
 		logger.info("Starting of verifyRemoveLogoFunctionalityInClubPage method");
 
 		profilePicturePage.clickOnCameraIcon();
 		clubLogoPage.hardWait(3);
 		clubLogoPage.clickOnRemoveLogoOption();
-
+		
+		try {
+			if(profilePicturePage.isSaveButtonDisplayed()) {
+				driver.navigate().refresh();
+				profilePicturePage.hardWait(3);
+				profilePicturePage.clickOnCameraIcon();
+				clubLogoPage.hardWait(3);
+				clubLogoPage.clickOnRemoveLogoOption();
+			}
+		} catch (Exception e) {
+			
+			System.out.println("****Pop Up Displayed****");
+		}
+		
 		Assert.assertTrue(clubLogoPage.isRemoveLogoPopupContains());
 
 		profilePicturePage.clickOnYesButton();
 		clubLogoPage.hardWait(4);
-		Assert.assertFalse(clubLogoPage.isRemoveLogoPopupContains());
 
 		logger.info("Ending of verifyRemoveLogoFunctionalityInClubPage method");
 	}

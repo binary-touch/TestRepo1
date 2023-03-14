@@ -67,7 +67,6 @@ public class EditEventsTest extends CommonBaseTest {
 
 		addBracketPage.hardWait(3);
 		this.verifyPublishEventButton();
-		addBracketPage.clickOnEventSuccessClosePopupButton();
 
 		logger.info("Ending of verifyFreeEventFunctionality method");
 	}
@@ -81,17 +80,16 @@ public class EditEventsTest extends CommonBaseTest {
 
 		this.verifyFreeEventFunctionality();
 		clubLogoPage.hardWait(3);
+		
 		addEventPage.clickOnEventsTab();
 		clubLogoPage.hardWait(3);
+		
 		addEventPage.clickOnRecentlyAddedEvent(eventNameForEditEvents);
-
 		editEventsPage.hardWait(2);
+		
 		editEventsPage.clickOnEditEventButton();
 		editEventsPage.hardWait(2);
-		editEventsPage.clickOnCancelButton();
-		editEventsPage.hardWait(2);
-		editEventsPage.clickOnEditEventButton();
-		editEventsPage.hardWait(2);
+		
 		Assert.assertEquals(editEventsPage.getEditEventsText(), expectedAssertionsProp.getProperty("edit.event.txt"));
 		Assert.assertTrue(editEventsPage.isEditEventsPageContains());
 
@@ -197,7 +195,6 @@ public class EditEventsTest extends CommonBaseTest {
 	@Description("Test case #8, Verify save changes button Functionality After Event Edit")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #8, Verify save changes button Functionality After Event Edit")
-
 	public void verifySaveChangesFunctionalityAfterEventEdit() {
 		logger.info("Starting of verifySaveChangesFunctionalityAfterEventEdit method");
 

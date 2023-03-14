@@ -680,7 +680,10 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 		hardWait(3);
 
 		for (int i = 0; i <= lstEvents.size(); i++) {
-			System.out.println(lstEvents.get(i).getText());
+			System.out.println(lstEvents.size());
+			System.out.println("First Event name in the list is: " + lstEvents.get(i).getText());
+			System.out.println("Recently drafted event name:" + draftEventName);
+			System.out.println(lstEvents.get(i).getText().equals(draftEventName));
 			if (lstEvents.get(i).getText().equals(draftEventName)) {
 				if (lstDrafts.get(i).getText().contains("Draft")) {
 					isDraftEventDisplayed = true;
@@ -770,9 +773,18 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 
 		hardWait(3);
 		for (int i = 0; i <= lstEvents.size(); i++) {
+			System.out.println(lstEvents.size());
+			System.out.println("First Event name in the list is: " + lstEvents.get(i).getText());
+			System.out.println("Recently drafted event name:" + eventName);
+			System.out.println(lstEvents.get(i).getText().equals(eventName));
+
 			if (lstEvents.get(i).getText().equals(eventName)) {
 				if (lstDeleteEvent.get(i).getText().contains("Delete Event")) {
-					lstDeleteEvent.get(i).click();
+					try {
+						clickUsingActionsClass(lstDeleteEvent.get(i));
+					} catch (Exception e) {
+						lstDeleteEvent.get(i).click();
+					}
 					break;
 				}
 

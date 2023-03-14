@@ -3,7 +3,7 @@
 <suite name="DUPR Web Automation">
 	<parameter name="language" value="en" />
 	<parameter name="headless" value="false" />
-	<parameter name="browser" value="firefox" />
+	<parameter name="browser" value="chrome" />
 
 	<parameter name="siteURL"
 		value="https://stage.gamestoppedout.com/" />
