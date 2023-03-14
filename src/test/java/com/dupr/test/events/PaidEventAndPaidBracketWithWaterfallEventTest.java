@@ -299,7 +299,7 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 			String directorPassword) throws Exception {
 		logger.info("Starting of verifyPaidEventRegisterWithPartnerFunctionality method");
 
-		paidEventPage.hardWait(3);
+		paidEventPage.hardWait(5);
 		userDashboardPage.clickOnOpenSettingsMenu();
 
 		preservingPageVisitsPage.clickOnLogoutButton();
@@ -356,7 +356,7 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 			String validPassword) throws Exception {
 		logger.info("Starting of verifyPaidEventRegisterWithPartnerFunctionalityInPlayersView method");
 
-		paidEventPage.hardWait(3);
+		paidEventPage.hardWait(5);
 		userDashboardPage.clickOnOpenSettingsMenu();
 
 		preservingPageVisitsPage.clickOnLogoutButton();
@@ -422,7 +422,7 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 		logger.info(
 				"Starting of verifyAcceptOrDeclinePaidEventWithPartnerFunctionalityInDirectorOrOrganizerView method");
 
-		paidEventPage.hardWait(3);
+		paidEventPage.hardWait(5);
 		userDashboardPage.clickOnOpenSettingsMenu();
 
 		preservingPageVisitsPage.clickOnLogoutButton();
@@ -488,7 +488,7 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 			String validPassword) throws Exception {
 		logger.info("Starting of verifyAcceptOrDeclinePaidEventWithPartnerFunctionalityInPlayerView method");
 
-		paidEventPage.hardWait(3);
+		paidEventPage.hardWait(5);
 		userDashboardPage.clickOnOpenSettingsMenu();
 
 		preservingPageVisitsPage.clickOnLogoutButton();
@@ -531,7 +531,7 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 			String directorEmail, String directorPassword) throws Exception {
 		logger.info("Starting of verifyWithdrawPlayerPaidEventWithPartnerFunctionalityInPlayersView method");
 
-		paidEventPage.hardWait(3);
+		paidEventPage.hardWait(5);
 		userDashboardPage.clickOnOpenSettingsMenu();
 
 		preservingPageVisitsPage.clickOnLogoutButton();

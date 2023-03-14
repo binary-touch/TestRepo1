@@ -23,6 +23,9 @@ public class WaterfallRoundOneSeedingLogicPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//button[text()='Add Participants']")
 	private WebElement btnAddParticipants;
+	
+	@B2BFindBys(@B2BFindBy(xpath = "//button[contains(text(),'OK')]"))
+	private WebElement btnOk;
 
 	@B2BFindBy(xpath = "//button[text()='Add Participant']")
 	private WebElement btnAddParticipant;
@@ -37,14 +40,12 @@ public class WaterfallRoundOneSeedingLogicPage extends DUPRBaseAutomationPage {
 	//@B2BFindBy(xpath = "//button[contains(text(),'Sort')]")
 	private WebElement btnSort;
 
-	@B2BFindBy(xpath = "//span[contains(text(),'High to Low Rating')]")
+	//@B2BFindBy(xpath = "//span[contains(text(),'High to Low Rating')]")
+	@B2BFindBy(xpath = "//input[@id='Search']//ancestor::div[contains(@class,'MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12')]/following-sibling::div//span[contains(text(),'High to Low Rating')]")
 	private WebElement rdoHightToLow;
 
 	@B2BFindBys(@B2BFindBy(xpath = "//div[contains(@class,'infinite-scroll-component__outerdiv')]//h4"))
 	private List<WebElement> txtPlayerName;
-
-	@B2BFindBy(id = "Search")
-	private WebElement btnsdfghAdd;
 
 	public WaterfallRoundOneSeedingLogicPage(WebDriver driver) {
 		super(driver);
@@ -84,15 +85,16 @@ public class WaterfallRoundOneSeedingLogicPage extends DUPRBaseAutomationPage {
 	String MatchEightFirstPlayerName = null;
 	String MatchEightSecondPlayerName = null;
 
-	public void getSinglesRating() {
-		log.info("Starting of isQueueTabDisplayed method");
+	public void addParticipantsForRoundOne() {
+		log.info("Starting of addParticipantsForRoundOne method");
 
 		int s = 0;
 		int k = 0;
 
-		for (int j = 0; j < 15; j++) {
-			try {
+		for (int j = 0; j < 14; j++) {
+
 				this.hardWait(3);
+				try {
 				if (btnAddParticipants.isDisplayed() == true) {
 					clickOnWebElement(btnAddParticipants);
 					this.hardWait(4);
@@ -121,13 +123,23 @@ public class WaterfallRoundOneSeedingLogicPage extends DUPRBaseAutomationPage {
 					this.hardWait(3);
 					clickOnWebElement(btnAdd);
 					this.hardWait(5);
+					clickOnWebElement(btnOk);
 				}
-			} catch (Exception e) {
-				System.out.println();
-			}
+				} catch (Exception e) {
+					driver.navigate().refresh();
+					this.hardWait(4);			
+					try {
+						if (btnAddParticipants.isDisplayed() == true) {
+							j--;
+						}
+					} catch (Exception e2) {
+						System.out.println();
+					}
+				}
+		
 		}
 
-		log.info("Ending of isQueueTabDisplayed method");
+		log.info("Ending of addParticipantsForRoundOne method");
 
 	}
 
