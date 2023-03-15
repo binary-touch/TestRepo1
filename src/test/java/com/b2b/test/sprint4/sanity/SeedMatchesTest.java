@@ -1,4 +1,4 @@
-package com.dupr.test.events;
+package com.b2b.test.sprint4.sanity;
 
 import org.apache.log4j.Logger;
 import org.testng.Assert;
@@ -19,7 +19,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 
 @Epic(value = "Brackets")
-@Feature(value = "Seed & Reseed")
+@Feature(value = "Seed & Reseed Sanity")
 public class SeedMatchesTest extends CommonBaseTest {
 
 	private static final Logger logger = Logger.getLogger(SeedMatchesTest.class.getName());

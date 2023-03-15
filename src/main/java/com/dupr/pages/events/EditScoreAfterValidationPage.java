@@ -41,7 +41,7 @@ public class EditScoreAfterValidationPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "(//span[contains(text(),'Game 3')]//parent::div//following::div//descendant::input)[2]")
 	private WebElement lblSecondGameScoreEdit;
 
-	@B2BFindBy(xpath = "//h4[contains(text(),'Submitting these new scores will affect scheduled matches')]")
+	@B2BFindBy(xpath = "//button[contains(text(),'Submit Scores')]/parent::div/preceding-sibling::h4")
 	private WebElement lblSubmittingNewScores;
 
 	@B2BFindBy(xpath = "//button[contains(text(),'Submit Scores')]")
@@ -194,11 +194,11 @@ public class EditScoreAfterValidationPage extends DUPRBaseAutomationPage {
 		return btnSubmitScore.getText();
 	}
 
-	public String getSubmittingNewScoresText() {
+	public boolean getSubmittingNewScoresText() {
 		log.info("Starting of getSubmittingNewScoresText method");
 		log.info("Ending of getSubmittingNewScoresText method");
 
-		return lblSubmittingNewScores.getText();
+		return lblSubmittingNewScores.isDisplayed();
 	}
 
 	public boolean isSubmittingNewScoresLabelDisplayed() {

@@ -1,4 +1,4 @@
-package com.dupr.test.events;
+package com.b2b.test.sprint5.sanity;
 
 import org.apache.log4j.Logger;
 import org.testng.Assert;
@@ -75,17 +75,10 @@ public class EditScoreAfterValidationTest extends CommonBaseTest {
 	}
 
 
-	public void verifyGoBackFeature() {
-		logger.info("Starting of verifyGoBackFeature method");
-		
-		Assert.assertTrue(editScoreAfterValidationPage.getSubmittingNewScoresText());
+	public void verifyToSubmittingNewScore() {
+		logger.info("Starting of verifyToSubmittingNewScore method");
 
-		/*
-		 * String editScoresText =
-		 * this.editScoreAfterValidationPage.getSubmittingNewScoresText();
-		 * Assert.assertEquals(editScoresText,
-		 * expectedAssertionsProp.getProperty("submitting.new.scores"));
-		 */
+		Assert.assertTrue(editScoreAfterValidationPage.getSubmittingNewScoresText());
 
 		String matchDateText = this.editScoreAfterValidationPage.getSubmitScoresButtonText();
 		Assert.assertEquals(matchDateText, expectedAssertionsProp.getProperty("submit.scores.button.label"));
@@ -95,26 +88,11 @@ public class EditScoreAfterValidationTest extends CommonBaseTest {
 
 		Assert.assertTrue(editScoreAfterValidationPage.isCrossIconDisplayed());
 
-		editScoreAfterValidationPage.clickOnGoBack();
-
-		logger.info("Ending of verifyGoBackFeature method");
-	}
-
-  
-	public void verifyToSubmittingNewScore() {
-		logger.info("Starting of verifyToSubmittingNewScore method");
-
-		editScoreAfterValidationPage.hardWait(2);
-		Assert.assertFalse(editScoreAfterValidationPage.isSubmittingNewScoresLabelDisplayed());
-
-		editScoreAfterValidationPage.clickOnSubmitButton();
-
 		editScoreAfterValidationPage.clickOnSubmitScoreButton();
 
 		logger.info("Ending of verifyToSubmittingNewScore method");
 	}
 
-	
 	public void verifyToValidateGameScore() {
 		logger.info("Starting of verifyToValidateGameScore method");
 
@@ -206,9 +184,9 @@ public class EditScoreAfterValidationTest extends CommonBaseTest {
 	}
 
 	@Test(priority = 1, description = "Verify the results on Click of seed Matches", groups = "sanity")
-	@Description("Test case #6, Verify the results on Click of seed Matches")
+	@Description("Test case #1, Verify the results on Click of seed Matches")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #6, Verify the results on Click of seed Matches")
+	@Story("Test case #1, Verify the results on Click of seed Matches")
 	public void verifySeedMatchesFuntionality() {
 		logger.info("Starting of verifySeedMatchesFuntionality method");
 
@@ -224,7 +202,6 @@ public class EditScoreAfterValidationTest extends CommonBaseTest {
 		seedMatchesPage.hardWait(3);
 
 		// Register to an Free Bracket
-		
 
 		seedMatchesPage.clickOnBracketCard();
 		seedMatchesPage.hardWait(5);
@@ -235,9 +212,9 @@ public class EditScoreAfterValidationTest extends CommonBaseTest {
 	}
 
 	@Test(priority = 2, description = "Verify the results on click of Create matches button", groups = "sanity")
-	@Description("Test case #7, Verify the results on click of Create matches button")
+	@Description("Test case #2, Verify the results on click of Create matches button")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #7, Verify the results on click of Create matches button")
+	@Story("Test case #2, Verify the results on click of Create matches button")
 	public void verifyCreateMatchesFuntionality() {
 		logger.info("Starting of verifyCreateMatchesFuntionality method");
 
@@ -254,9 +231,9 @@ public class EditScoreAfterValidationTest extends CommonBaseTest {
 	}
 
 	@Test(priority = 3, description = "Verify the results on click on Add Score in my matches page", groups = "sanity")
-	@Description("Test case #8, Verify the results on click on Add Score in my matches page")
+	@Description("Test case #3, Verify the results on click on Add Score in my matches page")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #8, Verify the results on click on Add Score in my matches page")
+	@Story("Test case #3, Verify the results on click on Add Score in my matches page")
 	public void verifyAddScoreFunctionality() {
 		logger.info("Starting of verifyAddScoreFunctionality method");
 
@@ -292,10 +269,10 @@ public class EditScoreAfterValidationTest extends CommonBaseTest {
 		logger.info("Ending of verifyAddScoreFunctionality method");
 	}
 
-	@Test(priority = 4, description = "Verify The Presence Of Edit And Forfeit Buttons in My Matches Page", groups = "sanity")
-	@Description("Test case #9, Verify The Presence Of Edit And Forfeit Buttons in My Matches Page")
+	@Test(priority = 4, description = "Verify The Presence of Edit and Forfeit buttons in my matches page", groups = "sanity")
+	@Description("Test case #4, Verify The Presence of Edit and Forfeit buttons in my matches page")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #9, Verify The Presence Of Edit And Forfeit Buttons in My Matches Page")
+	@Story("Test case #4, Verify The Presence of Edit and Forfeit buttons in my matches page")
 	public void verifyThePresenceOfEditAndForfeitButtons() {
 		logger.info("Starting of verifyThePresenceOfEditAndForfeitButtons method");
 
@@ -306,9 +283,9 @@ public class EditScoreAfterValidationTest extends CommonBaseTest {
 	}
 
 	@Test(priority = 5, description = "Verify To edit Game Score")
-	@Description("Test case #10, Verify To edit Game Score")
+	@Description("Test case #5, Verify To edit Game Score")
 	@Severity(SeverityLevel.CRITICAL)
-	@Story("Test case #10, Verify To edit Game Score ")
+	@Story("Test case #5, Verify To edit Game Score ")
 	public void verifyEditGameScore() {
 		logger.info("Starting of verifyToSetGameScore method");
 
@@ -327,40 +304,23 @@ public class EditScoreAfterValidationTest extends CommonBaseTest {
 			seedMatchesPage.clickOnValidateMatchSuccessCloseButton();
 		}
 		
-		
 		this.verifyEditScore();
 		this.verifyToSetGameScore();
-		this.verifyGoBackFeature();
 		this.verifyToSubmittingNewScore();
 		
 		logger.info("Ending of verifyToSetGameScore method");
 	}
 
-	@Test(priority = 6, description = "Verify the results on click on the Forfeit Button", groups = "sanity")
-	@Description("Test case #11, Verify the results on click on the Forfeit Button")
+	@Test(priority = 6, description = "Verify to validate Game Score after the edit")
+	@Description("Test case #6, Verify to validate Game Score after the edit")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #11, Verify the results on click on the Forfeit Button")
-	public void verifyForfeitFunctionality() {
-		logger.info("Starting of verifyForfeitFunctionality method");
-
+	@Story("Test case #6, Verify to validate Game Score after the edit")
+	public void verifyValidateGameScoreAfterEdit() {
+		logger.info("Starting of verifyValidateGameScoreAfterEdit method");
+		
+		seedMatchesPage.hardWait(3);
 		seedMatchesPage.clickOnMatchesTab();
 		seedMatchesPage.hardWait(5);
-		editScoreAfterValidationPage.clickOnForfeitButon();
-		seedMatchesPage.hardWait(3);
-		seedMatchesPage.clickOnFirstTeamRadioButton();
-		seedMatchesPage.hardWait(3);
-		seedMatchesPage.clickOnMarkAsForfeitButton();
-
-		logger.info("Ending of verifyForfeitFunctionality method");
-	}
-
-	@Test(priority = 7, description = "Verify to validate Game Score after the edit")
-	@Description("Test case #12, Verify to validate Game Score after the edit")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #12, Verify to validate Game Score after the edit")
-	public void verifyTobValidateGameScore() {
-
-		logger.info("Starting of verifyToValidateGameScore method");
 		
 		String firstGameScore = this.editScoreAfterValidationPage.getFirstGameScoreText();
 		try {
@@ -369,9 +329,7 @@ public class EditScoreAfterValidationTest extends CommonBaseTest {
 			Assert.assertEquals(firstGameScore, FirstGameScore);
 		}
 
-	
-
-		logger.info("Ending of verifyToValidateGameScore method");
+		logger.info("Ending of verifyValidateGameScoreAfterEdit method");
 	}
 
 	@AfterClass

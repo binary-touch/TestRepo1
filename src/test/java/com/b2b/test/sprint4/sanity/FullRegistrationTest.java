@@ -1,4 +1,4 @@
-package com.dupr.test.events;
+package com.b2b.test.sprint4.sanity;
 
 import org.apache.log4j.Logger;
 import org.testng.Assert;
@@ -13,10 +13,13 @@ import com.dupr.pages.events.TimeZonePage;
 import com.dupr.test.CommonBaseTest;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
-
+@Epic(value = "Events")
+@Feature(value = "Full Registration Sanity")
 public class FullRegistrationTest extends CommonBaseTest {
 
 	private static final Logger logger = Logger.getLogger(FullRegistrationTest.class.getName());
