@@ -149,16 +149,17 @@ public class WaterfallRoundOneSeedingLogicTest extends CommonBaseTest {
 	@Description("Test case #3, Verify Sorting players as High to low rating")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #3, Verify Sorting players as High to low rating")
-	public void verifySortingplayersAsRatingHighToLow() {
-		logger.info("Starting of verifySortingplayersAsRatingHighToLow method");
+	public void verifySortingPlayersAsRatingHighToLow() {
+		logger.info("Starting of verifySortingPlayersAsRatingHighToLow method");
 
+		seedMatchesPage.hardWait(5);
 		waterfallRoundOneSeedingLogicPage.clickOnSortButton();
 		waterfallRoundOneSeedingLogicPage.hardWait(3);
 		waterfallRoundOneSeedingLogicPage.selectHighToLowRadioButton();
 		waterfallRoundOneSeedingLogicPage.hardWait(3);
 		waterfallRoundOneSeedingLogicPage.getPlayerName();
 
-		logger.info("Ending of verifySortingplayersAsRatingHighToLow method");
+		logger.info("Ending of verifySortingPlayersAsRatingHighToLow method");
 	}
 
 	@Test(priority = 4, description = "Verify the results on click of Create matches button in Seed Matches page", groups = "sanity")

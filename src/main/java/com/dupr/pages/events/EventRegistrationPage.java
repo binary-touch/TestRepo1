@@ -23,7 +23,10 @@ public class EventRegistrationPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//button[text()='Register']")
 	private WebElement btnRegister;
-
+	
+	@B2BFindBy(xpath = "//button[contains(text(),'OK')]")
+	private WebElement btnOK;
+	
 	@B2BFindBy(xpath = "//button[text()='Add a Bracket']")
 	private WebElement btnAddABracket;
 
@@ -89,9 +92,6 @@ public class EventRegistrationPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//h4[text()='Registration Complete']")
 	private WebElement lblRegistrationCompleted;
-
-	@B2BFindBy(xpath = "//button[text()='OK']")
-	private WebElement btnOK;
 
 	@B2BFindBy(xpath = "//span[text()='Open']/parent::div/parent::div/parent::div/following-sibling::div//h4")
 	private WebElement lstOpenEvents;
@@ -458,7 +458,11 @@ public class EventRegistrationPage extends DUPRBaseAutomationPage {
 	public void clickOnOkButton() {
 		log.info("Starting of clickOnOkButton method");
 
-		elementClick(btnOK);
+		try {
+			clickUsingActionsClass(btnOK);
+		} catch (Exception e) {
+			clickOnWebElement(btnOK);
+		}
 
 		log.info("Ending of clickOnOkButton method");
 	}

@@ -267,7 +267,7 @@ public class ProfilePicturePage extends DUPRBaseAutomationPage {
 		return profilePictureStatus;
 	}
 
-	public boolean ispreviousUploadedImageDisplayed() {
+	public boolean isPreviousUploadedImageDisplayed() {
 		log.info("Starting of ispreviousUploadedImageDisplayed method");
 		log.info("Ending of ispreviousUploadedImageDisplayed method");
 

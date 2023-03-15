@@ -1335,16 +1335,19 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		String meridiem = this.getCurrentMeridiem();
 		Month monthValue = this.getFutureMonth(1);
 		String mValue = monthValue.toString();
-		System.out.println(mValue);
 
 		String lblmonth = lblMonth.getText();
 		String monthvalue = String.valueOf(lblmonth.split(" ")[0]).toUpperCase().trim();
-		log.debug("Text is " + monthvalue);
+		log.debug("Derived Month value: " + mValue);
+		log.debug("Current Month Value: " + monthvalue);
+		log.debug("Are Current Month & Derived Month values matched: " + (mValue).equals(monthvalue));
 
 		try {
 			if ((mValue).equals(monthvalue)) {
 				this.clickOnCurrentDate(date);
 			} else {
+				log.debug("Are Current Month & Derived Month values matched: " + (mValue).equals(monthvalue));
+				log.info("***Current Month & Derived Month values are not matched, Selecting next month***");
 				clickUsingActionsClass(driver.findElement(By.xpath("//button[@title='Next month']")));
 				this.clickOnCurrentDate(date);
 			}

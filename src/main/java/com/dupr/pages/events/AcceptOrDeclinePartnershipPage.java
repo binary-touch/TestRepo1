@@ -248,11 +248,13 @@ public class AcceptOrDeclinePartnershipPage extends DUPRBaseAutomationPage {
 
 	public void clickOnAcceptButton() {
 		log.info("Starting of clickOnAcceptButton method");
+		
 		try {
-			clickOnWebElement(btnAccept);
+			clickUsingActionsClass(btnAccept);
 		} catch (Exception e) {
-			clickOnElementUsingActionClass(btnAccept);
+			clickOnWebElement(btnAccept);
 		}
+		
 		log.info("Ending of clickOnAcceptButton method");
 	}
 	

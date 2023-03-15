@@ -285,7 +285,9 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 		paidEventPage.setBoxCardExpiry(testDataProp.getProperty("card.expiry"));
 		paidEventPage.setBoxCardCVC(testDataProp.getProperty("card.cvc"));
 		paidEventPage.setBoxNameOnCard(testDataProp.getProperty("name.on.card"));
+		paidEventPage.hardWait(2);
 		paidEventPage.clickOnPayButton();
+		eventRegistrationPage.hardWait(3);
 
 		logger.info("Ending of verifyPaymentFunctionalityInPaymentPage method");
 	}
@@ -343,6 +345,8 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 		Assert.assertTrue(eventRegistrationPage.isBracketCheckboxSelected());
 
 		eventRegistrationPage.clickOnRegisterButton();
+		eventRegistrationPage.hardWait(3);
+		eventRegistrationPage.clickOnOkButton();
 
 		logger.info("Ending of verifyPaidEventRegisterWithPartnerFunctionality method");
 	}
