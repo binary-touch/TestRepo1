@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Common UI Automation Tests"><!-- parallel = "classes" thread-count = "2" -->
 
-	<!-- <test name="Sprint 1">
+	<test name="Sprint 1">
 		<classes>
 			<class name="com.dupr.test.players.SearchPlayersTest" />
 			<class name="com.dupr.test.signup.SignupTest" />
@@ -74,16 +74,16 @@
 			<class name="com.dupr.test.events.TimeZoneTest" />
 			<class name="com.dupr.test.events.SeedMatchesTest" />
 		</classes>
-	</test> -->
+	</test>
 
 	<test name="Sprint 5">
 		<classes>
 			<class
 				name="com.dupr.test.events.PaidEventAndPaidBracketWithWaterfallEventTest" />
-			 <!--<class
+			 <class
 				name="com.dupr.test.events.WaterfallRoundOneSeedingLogicTest" />
-			<class name="com.dupr.test.events.EditScoreAfterValidationTest" /> -->
-			<!-- <class name="com.dupr.test.events.SeedMatchesWaterFallTest" /> -->
+			<class name="com.dupr.test.events.EditScoreAfterValidationTest" />
+			<class name="com.dupr.test.events.SeedMatchesWaterFallTest" />
 		</classes>
 	</test>
 </suite>
