@@ -73,8 +73,11 @@ public class EditBracketsPage extends DUPRBaseAutomationPage {
 
 	public void clickOnBracketLabel() {
 		log.info("Starting of clickOnLabelBracket method");
-		
-		elementClick(lblBracket);
+		try {
+			clickUsingActionsClass(lblBracket);
+		} catch (Exception e) {
+			clickOnWebElement(lblBracket);
+		}
 
 		log.info("Ending of clickOnLabelBracket method");
 	}
@@ -82,7 +85,11 @@ public class EditBracketsPage extends DUPRBaseAutomationPage {
 	public void clickOnEditBracketButton() {
 		log.info("Starting of clickOnEditBracket method");
 
-		elementClick(btnEditBracket);
+		try {
+			clickUsingActionsClass(btnEditBracket);
+		} catch (Exception e) {
+			clickOnWebElement(btnEditBracket);
+		}
 
 		log.info("Ending of clickOnEditBracket method");
 	}

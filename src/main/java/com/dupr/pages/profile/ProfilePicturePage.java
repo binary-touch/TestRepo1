@@ -38,16 +38,19 @@ public class ProfilePicturePage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//h4[contains(text(),'Remove Profile Picture')]//button")
 	private WebElement iconCloseOnRemoveLogo;
+	
+	@B2BFindBy(xpath = "//h4[contains(text(),'Remove Logo')]//button")
+	private WebElement iconCloseOnRemoveClubLogo;
 
 	@B2BFindBy(xpath = "//h4[text()='Event Logo']/parent::h2//button")
 	private WebElement iconCloseOnEventLogo;
 	
+	@B2BFindBy(xpath = "//h4[text()='Club Logo']/parent::h2//button")
+	private WebElement iconCloseOnClubLogo;
+	
 	@B2BFindBy(xpath = "//h4[text()='Profile Picture']/parent::h2//button")
 	private WebElement iconCloseOnProfilePicture;
 
-	// @B2BFindBy(xpath = "//div[@class='MuiDialogActions-root
-	// MuiDialogActions-spacing
-	// css-v0512d']/button[contains(@class,'MuiButton-contained')]/preceding-sibling::button")
 	@B2BFindBy(xpath = "//button[text()='Cancel']")
 	private WebElement btnCancel;
 
@@ -176,6 +179,22 @@ public class ProfilePicturePage extends DUPRBaseAutomationPage {
 		elementClick(iconCloseOnEventLogo);
 
 		log.info("Ending of clickOnCloseIconOnEventLogo method");
+	}
+	
+	public void clickOnCloseIconOnClubLogo() {
+		log.info("Starting of clickOnCloseIconOnClubLogo method");
+
+		elementClick(iconCloseOnClubLogo);
+
+		log.info("Ending of clickOnCloseIconOnClubLogo method");
+	}
+	
+	public void clickOnIconCloseOnRemoveClubLogo() {
+		log.info("Starting of clickOnIconCloseOnRemoveClubLogo method");
+
+		elementClick(iconCloseOnRemoveClubLogo);
+
+		log.info("Ending of clickOnIconCloseOnRemoveClubLogo method");
 	}
 
 	public void clickOnCancelButton() {

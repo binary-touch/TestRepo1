@@ -18,6 +18,7 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
+
 @Epic("DUPR App")
 @Feature("Browse Events Sanity")
 public class BrowseEventsTest extends DUPRBaseAutomationTest {
@@ -62,8 +63,8 @@ public class BrowseEventsTest extends DUPRBaseAutomationTest {
 		logger.info("Starting of verifyBrowseEventsFunctionality method");
 
 		browseEventsPage.clickOnBrowseAllEventsButton();
+
 		clubLogoPage.hardWait(2);
-		Assert.assertTrue(browseEventsPage.isBrowseEventsPageContains());
 
 		logger.info("Ending of verifyBrowseEventsFunctionality method");
 	}

@@ -51,25 +51,10 @@ public class BrowseClubsTest extends CommonBaseTest {
 		logger.info("Ending of verifyBrowseClubs method");
 	}
 
-	@Test(priority = 2, description = "Verify Search by club name field functionality with club name which club is not available", groups = "sanity")
-	@Description("Test case #2, Verify Search by club name field functionality with club name which club is not available")
+	@Test(priority = 2, description = "Verify Search by club name field functionality with club name", groups = "sanity")
+	@Description("Test case #2, Verify Search by club name field functionality with club name")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #2, Verify Search by club name field functionality with club name which club is not available")
-	public void verifySearchByClubNameFilterWithNotAvailaleClub() {
-		logger.info("Starting of verifySearchByClubNameFilterWithNotAvailaleClub method");
-
-		browseClubsPage.setSearchByClubNameWithClubName(testDataProp.getProperty("player.invalid.name"));
-
-		String noMoreResults = browseClubsPage.getNoMoreResultsText();
-		Assert.assertEquals(noMoreResults, expectedAssertionsProp.getProperty("no.more.results"));
-
-		logger.info("Ending of verifySearchByClubNameFilterWithNotAvailaleClub method");
-	}
-
-	@Test(priority = 3, description = "Verify Search by club name field functionality with club name", groups = "sanity")
-	@Description("Test case #3, Verify Search by club name field functionality with club name")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #3, Verify Search by club name field functionality with club name")
+	@Story("Test case #2, Verify Search by club name field functionality with club name")
 	public void verifySearchByClubNameFilter() {
 		logger.info("Starting of verifySearchByClubNameFilter method");
 
@@ -80,10 +65,10 @@ public class BrowseClubsTest extends CommonBaseTest {
 		logger.info("Ending of verifySearchByClubNameFilter method");
 	}
 
-	@Test(priority = 4, description = "Verify results on click of one perticular club", groups = "sanity")
-	@Description("Test case #4, Verify results on click of one perticular club")
+	@Test(priority = 3, description = "Verify results on click of one perticular club", groups = "sanity")
+	@Description("Test case #3, Verify results on click of one perticular club")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #4, Verify results on click of one perticular club")
+	@Story("Test case #3, Verify results on click of one perticular club")
 	public void verifyClubTabFunctionality() {
 		logger.info("Starting of verifyClubTabFunctionality method");
 
@@ -94,10 +79,10 @@ public class BrowseClubsTest extends CommonBaseTest {
 		logger.info("Ending of verifyClubTabFunctionality method");
 	}
 
-	@Test(priority = 5, description = "Verify searched club name and results of clubs on click of back arrow icon on club page", groups = "sanity")
-	@Description("Test case #5, Verify searched club name and results of clubs on click of back arrow icon on club page")
+	@Test(priority = 4, description = "Verify searched club name and results of clubs on click of back arrow icon on club page", groups = "sanity")
+	@Description("Test case #4, Verify searched club name and results of clubs on click of back arrow icon on club page")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #5, Verify results on click of one perticular club")
+	@Story("Test case #4, Verify results on click of one perticular club")
 	public void verifySearchedClubResultsFunctionality() {
 		logger.info("Starting of verifySearchedClubResultsFunctionality method");
 

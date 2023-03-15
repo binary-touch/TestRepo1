@@ -18,6 +18,7 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
+
 @Epic("DUPR App")
 @Feature("Remove ClubMember Sanity")
 public class RemoveClubMemberTest extends DUPRBaseAutomationTest {

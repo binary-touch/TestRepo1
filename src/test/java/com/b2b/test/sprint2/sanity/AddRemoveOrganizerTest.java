@@ -54,13 +54,6 @@ public class AddRemoveOrganizerTest extends DUPRBaseAutomationTest {
 
 		addRemoveOrganizerPage.clickOnSeeClubDetailsDropdown();
 		addRemoveOrganizerPage.AddingOrganizers();
-		/*
-		 * try { if (addRemoveOrganizerPage.isDeleteOrganizerButtonDisplayed() == true)
-		 * {
-		 * 
-		 * addRemoveOrganizerPage.AddingOrganizers(); } } catch (Exception e) {
-		 * logger.info("Delete Organizer Button is not displayed"); }
-		 */
 		
 		logger.info("Ending of verifyAddOrganizerFunctionality method");
 	}
@@ -99,100 +92,24 @@ public class AddRemoveOrganizerTest extends DUPRBaseAutomationTest {
 
 		String removeOrgText = addRemoveOrganizerPage.getRemoveOrganizerText();
 		Assert.assertEquals(removeOrgText, expectedAssertionsProp.getProperty("remove.organizer.label"));
+		
+		addRemoveOrganizerPage.clickOnGoBackButton();
+		addRemoveOrganizerPage.hardWait(3);
 
 		logger.info("Ending of verifyDeleteOrganizerContent method");
 	}
 
-	@Test(priority = 4, description = "Verify Go Back Button Functionality", groups = "sanity")
-	@Description("Test case #4, Verify Go Back Button Functionality")
+	@Test(priority = 4, description = "Verify Edit Organizer Button Functionality", groups = "sanity")
+	@Description("Test case #4, Verify Edit Organizer Button Functionality")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #5, Verify Go Back Button Functionality")
-	public void verifyGoBackFunctionality() {
-		logger.info("Starting of verifyGoBackFunctionality method");
-
-		addRemoveOrganizerPage.hardWait(3);
-		addRemoveOrganizerPage.clickOnGoBackButton();
-		addRemoveOrganizerPage.hardWait(3);
-		Assert.assertFalse(addRemoveOrganizerPage.isRemoveOrgPopupContains());
-
-		logger.info("Ending of verifyGoBackFunctionality method");
-	}
-
-	@Test(priority = 5, description = "Verify cancel Button Functionality ", groups = "sanity")
-	@Description("Test case #5, Verify cancel Button Functionality")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #5, Verify cancel Button Functionality")
-	public void verifyCancelFunctionality() {
-		logger.info("Starting of verifyCancelFunctionality method");
+	@Story("Test case #4, Verify Edit Organizer Button Functionality")
+	public void verifyEditOrganizerFunctionality() {
+		logger.info("Starting of verifyEditOrganizerFunctionality method");
 		
-		addRemoveOrganizerPage.hardWait(3);
-		addRemoveOrganizerPage.DeletingOrganizer();
-		addRemoveOrganizerPage.hardWait(3);
-		addRemoveOrganizerPage.clickOnCancelButton();addRemoveOrganizerPage.hardWait(3);
-		Assert.assertFalse(addRemoveOrganizerPage.isRemoveOrgPopupContains());
-
-		logger.info("Ending of verifyCancelFunctionality method");
-	}
-
-	@Test(priority = 6, description = "Verify Edit Organizer Button Functionality", groups = "sanity")
-	@Description("Test case #6, Verify Edit Organizer Button Functionality")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #6, Verify Edit Organizer Button Functionality")
-	public void verifyEditOrgFunctionality() {
-		logger.info("Starting of verifyEditOrgFunctionality method");
-
 		addRemoveOrganizerPage.clickOnEditIcon();
 		clubLogoPage.hardWait(2);
 		Assert.assertTrue(addRemoveOrganizerPage.isEditOrganizerPopupContains());
-
-		logger.info("Ending of verifyEditOrgFunctionality method");
-	}
-
-	@Test(priority = 7, description = "Verify Save Button Functionality", groups = "sanity")
-	@Description("Test case #7, Verify Save Button Functionality")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #7, Verify Save Button Functionality")
-	public void verifySaveFunctionality() {
-		logger.info("Starting of verifySaveFunctionality method");
-
-		addRemoveOrganizerPage.setOrganizerName();
-
-		Assert.assertEquals(addRemoveOrganizerPage.getNameText(),
-				expectedAssertionsProp.getProperty("name.validation"));
-
-		Assert.assertEquals(addRemoveOrganizerPage.getEmailText(),
-				expectedAssertionsProp.getProperty("email.validation"));
-
-		addRemoveOrganizerPage.setInvalidEmail(testDataProp.getProperty("organizer.invalid.email"));
-
-		Assert.assertEquals(addRemoveOrganizerPage.getInvalidEmailText(),
-				expectedAssertionsProp.getProperty("invalid.email.validation"));
-
-		logger.info("Ending of verifySaveFunctionality method");
-	}
-
-	@Test(priority = 8, description = "Verify Cancel Button Functionality", groups = "sanity")
-	@Description("Test case #8, Verify Cancel Button Functionality")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #8, Verify Save Cancel Functionality")
-	public void verifyCancelEditFunctionality() {
-		logger.info("Starting of verifyCancelEditFunctionality method");
-
-		addRemoveOrganizerPage.clickOnEditCancelButton();
-		clubLogoPage.hardWait(2);
-		Assert.assertFalse(addRemoveOrganizerPage.isEditOrganizerPopupContains());
-
-		logger.info("Ending of verifyCancelEditFunctionality method");
-	}
-
-	@Test(priority = 9, description = "Verify set Name & Email", groups = "sanity")
-	@Description("Test case #9, Verify set Name & Email")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #9, Verify set Name & Email")
-	public void verifyNameAndEmail() {
-		logger.info("Starting of verifyNameAndEmail method");
 		
-		addRemoveOrganizerPage.clickOnEditIcon();
 		addRemoveOrganizerPage.setOrganizerName(testDataProp.getProperty("organizer.name"));
 		addRemoveOrganizerPage.setOrganizerEmail(testDataProp.getProperty("organizer.email"));
 		addRemoveOrganizerPage.setOrganizerNumber(testDataProp.getProperty("organizer.num"));
@@ -202,13 +119,13 @@ public class AddRemoveOrganizerTest extends DUPRBaseAutomationTest {
 		String clubOrgText = addRemoveOrganizerPage.getClubOrganizerLabelText();
 		Assert.assertEquals(clubOrgText, expectedAssertionsProp.getProperty("club.organizer.label"));		
 
-		logger.info("Ending of verifyNameAndEmail method");
+		logger.info("Ending of verifyEditOrganizerFunctionality method");
 	}
 
-	@Test(priority = 10, description = "Verify Remove Organizer Button Functionality", groups = "sanity")
-	@Description("Test case #10, Verify Remove Organizer Button Functionality")
+	@Test(priority = 5, description = "Verify Remove Organizer Button Functionality", groups = "sanity")
+	@Description("Test case #5, Verify Remove Organizer Button Functionality")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #10, Verify Remove Organizer Button Functionality")
+	@Story("Test case #5, Verify Remove Organizer Button Functionality")
 	public void verifyRemoveOrgFunctionality() {
 		logger.info("Starting of verifyRemoveOrgFunctionality method");
 

@@ -173,7 +173,7 @@ public class AddClubMatchTest extends CommonBaseTest {
 		logger.info("Ending of verifyAddClubMatchFunctionalityForDoublesBySelectingAddYourselfCheckbox method");
 	}
 
-	//@Test(priority = 5, description = "verify Add A Match Functionality For Singles By WithOut Selecting Add Your self Checkbox", groups = "sanity")
+	@Test(priority = 5, description = "verify Add A Match Functionality For Singles By WithOut Selecting Add Your self Checkbox", groups = "sanity")
 	@Description("Test case #5,verify Add A Match Functionality For Singles By WithOut Selecting Add Your self Checkbox ")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #5, verify Add A Match Functionality For Singles By WithOut Selecting Add Your self Checkbox")
@@ -214,7 +214,7 @@ public class AddClubMatchTest extends CommonBaseTest {
 		logger.info("Ending of verifyAddClubMatchFunctionalityForSinglesByWithOutSelectingAddYourselfCheckbox method");
 	}
 
-	//@Test(priority = 6, description = "verify Add A Match Functionality For Doubles By WithOut Selecting Add Your self Checkbox", groups = "sanity")
+	@Test(priority = 6, description = "verify Add A Match Functionality For Doubles By WithOut Selecting Add Your self Checkbox", groups = "sanity")
 	@Description("Test case #6,verify Add A Match Functionality For Doubles By WithOut Selecting Add Your self Checkbox ")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #6, verify Add A Match Functionality For Doubles By WithOut Selecting Add Your self Checkbox")
