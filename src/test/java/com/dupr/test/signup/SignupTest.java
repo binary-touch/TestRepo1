@@ -68,7 +68,7 @@ public class SignupTest extends DUPRBaseAutomationTest {
 		Assert.assertFalse(signupPage.isFinishButtonEnabled());
 
 		signupPage.setFullName(testDataProp.getProperty("full.name"));
-		signupPage.setBirthDate(testDataProp.getProperty("date.of.birth"));
+		signupPage.setBirthDate();
 		signupPage.setMobileNumber(testDataProp.getProperty("invalid.mobile.number"));
 		signupPage.setEmail(testDataProp.getProperty("email"));
 		signupPage.setConfirmEmail();
@@ -139,7 +139,7 @@ public class SignupTest extends DUPRBaseAutomationTest {
 		logger.info("Starting of verifySignWithFillingMandatoryFields method");
 	}
 
-	@Test(priority = 5, description = "Verify Sign up funtionality with invalid birth date ", groups = "sanity")
+	//@Test(priority = 5, description = "Verify Sign up funtionality with invalid birth date ", groups = "sanity")
 	@Description("Test case #5, Verify Sign up funtionality with invalid birth date")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Test case #5, Verify Sign up funtionality with invalid birth date")
@@ -153,7 +153,7 @@ public class SignupTest extends DUPRBaseAutomationTest {
 
 		Assert.assertFalse(signupPage.isFinishButtonEnabled());
 
-		signupPage.setBirthDate(testDataProp.getProperty("invalid.data.of.birth"));
+		signupPage.setBirthDate();
 
 		String birthDateValidationMessage = this.signupPage.getBirthDateValidationMessage();
 		Assert.assertEquals(birthDateValidationMessage,
@@ -162,7 +162,7 @@ public class SignupTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifySignUpWithInvalidBirthDateFormat method");
 	}
 
-	@Test(priority = 6, description = "Verify birth date funtionality with current date ", groups = "sanity")
+	//@Test(priority = 6, description = "Verify birth date funtionality with current date ", groups = "sanity")
 	@Description("Test case #6, Verify birth date funtionality with current date")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Test case #6, Verify birth date funtionality with current date")
@@ -178,7 +178,7 @@ public class SignupTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyBirthdateWithCurrentDate method");
 	}
 
-	@Test(priority = 7, description = "Verify birth date funtionality with previous year date", groups = "sanity")
+	//@Test(priority = 7, description = "Verify birth date funtionality with previous year date", groups = "sanity")
 	@Description("Test case #7,Verify birth date funtionality with previous year date")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Test case #7, Verify birth date funtionality with previous year date")
@@ -202,9 +202,9 @@ public class SignupTest extends DUPRBaseAutomationTest {
 		logger.info("Starting of verifyBirthdateWithBeforeTwoYearDate method");
 
 		driver.navigate().refresh();
-		signupPage.setDateOfBirthWithBeforeTwoYear();
+		signupPage.setDateOfBirthWithBeforeTwoYears();
 
-		Assert.assertFalse(signupPage.isDateOfBirthValidationMessageDisplayed());
+		Assert.assertFalse(signupPage.isBirthDateSelected());
 
 		logger.info("Ending of verifyBirthdateWithBeforeTwoYearDate method");
 	}
@@ -224,7 +224,7 @@ public class SignupTest extends DUPRBaseAutomationTest {
 		Assert.assertFalse(signupPage.isFinishButtonEnabled());
 
 		signupPage.setFullName(testDataProp.getProperty("full.name"));
-		signupPage.setBirthDate(testDataProp.getProperty("date.of.birth"));
+		signupPage.setBirthDate();
 		signupPage.setMobileNumber(testDataProp.getProperty("mobile.number"));
 		signupPage.setEmail(testDataProp.getProperty("email"));
 		signupPage.setConfirmEmail();

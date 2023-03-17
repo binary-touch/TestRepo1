@@ -27,7 +27,6 @@ public class DUPRClaimAccountSignUpTest extends DUPRBaseAutomationTest {
 
 	private DUPRSignUpPage duprSignUpPage = null;
 	private String searchPlayerName = null;
-
 	private DUPRLoginPage loginPage = null;
 
 	@BeforeClass
@@ -38,18 +37,17 @@ public class DUPRClaimAccountSignUpTest extends DUPRBaseAutomationTest {
 		this.driver = super.getWebDriver(WebDriversEnum.CLAIM_ACCOUNT_DRIVER);
 		goToSite(driver);
 		this.duprSignUpPage = new DUPRSignUpPage(this.driver);
-
 		this.loginPage = new DUPRLoginPage(this.driver);
 
 		logger.info("Ending of initMethod in DUPRClaimAccountSignUpTest");
 	}
 
-	@Test(priority = 1, description = "Verify Claim account signup functionality")
-	@Description("Test case #1, Verify account signup functionality")
+	@Test(priority = 1, description = "Verify Claim account page details")
+	@Description("Test case #1, Verify Claim account page details")
 	@Severity(SeverityLevel.CRITICAL)
-	@Story("Test case #1, Verify account signup functionality ")
-	public void verifySignUpFunctionality() {
-		logger.info("Starting of verifySignUpFunctionality method");
+	@Story("Test case #1, Verify Claim account page details")
+	public void verifyTheDetailsDisplayedOnClaimAccountPage() {
+		logger.info("Starting of verifyTheDetailsDisplayedOnClaimAccountPage method");
 
 		String searchPlayersValidationText = this.duprSignUpPage.getSearchPlayersValidationText();
 		Assert.assertEquals(searchPlayersValidationText, expectedAssertionsProp.getProperty("search.players.text"));
@@ -61,15 +59,15 @@ public class DUPRClaimAccountSignUpTest extends DUPRBaseAutomationTest {
 
 		Assert.assertTrue(duprSignUpPage.isClaimYourAccountPageContains());
 
-		logger.info("Ending of verifySignUpFunctionality method");
+		logger.info("Ending of verifyTheDetailsDisplayedOnClaimAccountPage method");
 	}
 
-	@Test(priority = 2, description = "Verify Claim account signup functionality")
-	@Description("Test case #2, Verify account signup functionality")
+	@Test(priority = 2, description = "Verify Claim account button functionality in Claim Account Page")
+	@Description("Test case #2, Verify Claim account button functionality in Claim Account Page")
 	@Severity(SeverityLevel.CRITICAL)
-	@Story("Test case #2, Verify account signup functionality ")
-	public void verifyClaimAccountFunctionality() {
-		logger.info("Starting of verifyClaimAccountSignUp method");
+	@Story("Test case #2, Verify Claim account button functionality in Claim Account Page")
+	public void verifyClaimAccountButtonFunctionality() {
+		logger.info("Starting of verifyClaimAccountButtonFunctionality method");
 
 		searchPlayerName = duprSignUpPage.clickOnClaimAccountButton();
 
@@ -79,18 +77,18 @@ public class DUPRClaimAccountSignUpTest extends DUPRBaseAutomationTest {
 		Assert.assertEquals(playerDetailsValidationText, expectedAssertionsProp.getProperty("player.details.label"));
 		Assert.assertTrue(duprSignUpPage.isSignUpPageContains());
 
-		logger.info("Ending of verifySignUpFunctionality method");
+		logger.info("Ending of verifyClaimAccountButtonFunctionality method");
 	}
 
-	@Test(priority = 3, description = "Verify Claim account signup functionality")
-	@Description("Test case #3, Verify account signup functionality")
+	@Test(priority = 3, description = "Verify Claim your account functionality with valid details")
+	@Description("Test case #3, Verify Claim your account functionality with valid details")
 	@Severity(SeverityLevel.CRITICAL)
-	@Story("Test case #3, Verify account signup functionality ")
-	public void verifyClaimYourAccountFunctionlity() {
-		logger.info("Starting of verifySignUpFunctionality method");
+	@Story("Test case #3, Verify Claim your account functionality with valid details")
+	public void verifyClaimYourAccountWithValidDetails() {
+		logger.info("Starting of verifyClaimYourAccountWithValidDetails method");
 
 		duprSignUpPage.hardWait(3);
-		duprSignUpPage.setBirthDate(testDataProp.getProperty("date.of.birth"));
+		duprSignUpPage.setBirthDate();
 		duprSignUpPage.setMobileNumber(testDataProp.getProperty("invalid.mobile.number"));
 		duprSignUpPage.setEmail(testDataProp.getProperty("email"));
 		duprSignUpPage.setConfirmEmail();
@@ -102,8 +100,16 @@ public class DUPRClaimAccountSignUpTest extends DUPRBaseAutomationTest {
 		duprSignUpPage.setConfirmPassword();
 
 		duprSignUpPage.clickOnReviewDUPRPoliciesCheckBox();
-		duprSignUpPage.clickOnManageProfileCheckBox();
-		duprSignUpPage.hardWait(2);
+		try {
+			if (duprSignUpPage.isManageProfileCheckBoxDisplayed()) {
+				logger.info("****Manage Profile checkbox displayed****");
+				duprSignUpPage.clickOnManageProfileCheckBox();
+			}
+		} catch (Exception e) {
+			logger.info("****Manage Profile checkbox haven't displayed****");
+		}
+
+		duprSignUpPage.hardWait(3);
 
 		Assert.assertTrue(duprSignUpPage.isFinishButtonEnabled());
 
@@ -122,7 +128,7 @@ public class DUPRClaimAccountSignUpTest extends DUPRBaseAutomationTest {
 
 		duprSignUpPage.clickOnCloseIcon();
 
-		logger.info("Ending of verifyClaimYourAccountFunctionlity method");
+		logger.info("Ending of verifyClaimYourAccountWithValidDetails method");
 	}
 
 	@Test(priority = 4, description = "Verify singles and doubles ratings of a player on home page of DUPR application after claiming an account")
@@ -144,6 +150,7 @@ public class DUPRClaimAccountSignUpTest extends DUPRBaseAutomationTest {
 			float doublesExpectedValue = Float.parseFloat(DUPRSignUpPage.doublesRatings.substring(0, 3));
 			Assert.assertEquals(doublesActualValue, doublesExpectedValue);
 		} catch (Exception e) {
+			duprSignUpPage.hardWait(3);
 			String singlesActualValue = duprSignUpPage.getPlayerSinglesRatingInPlayerDashBoard();
 			String singlesExpectedValue = DUPRSignUpPage.singlesRatings;
 			Assert.assertEquals(singlesActualValue, singlesExpectedValue);
@@ -157,12 +164,13 @@ public class DUPRClaimAccountSignUpTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyRatingsOfPlayerAfterClaimAccount method");
 	}
 
-	@Test(priority = 5, description = "Verify Claim account signup functionality")
-	@Description("Test case #5, Verify account signup functionality")
+	@Test(priority = 5, description = "Verify Claim account functionality for players under Twelve Age")
+	@Description("Test case #5, Verify Claim account functionality for players under Twelve Age")
 	@Severity(SeverityLevel.CRITICAL)
-	@Story("Test case #5, Verify account signup functionality ")
+	@Story("Test case #5, Verify Claim account functionality for players under Twelve Age")
 	public void verifyClaimAccountSignUpWithAgeUnderTwelve() {
 		logger.info("Starting of verifyClaimAccountSignUpWithAgeUnderTwelve method");
+		duprSignUpPage.hardWait(3);
 
 		loginPage.clickOnOpenSettingsMenu();
 		loginPage.hardWait(2);
@@ -172,23 +180,24 @@ public class DUPRClaimAccountSignUpTest extends DUPRBaseAutomationTest {
 		driver.get(testDataProp.getProperty("claim.account.url"));
 
 		duprSignUpPage.hardWait(1);
-		duprSignUpPage.setBirthDate(testDataProp.getProperty("date.of.birth.undertwelve"));
+		duprSignUpPage.setDateOfBirthWithBelow12Years();
 
 		Assert.assertTrue(duprSignUpPage.isDUPRReviewCheckBox());
 
 		logger.info("Ending of verifyClaimAccountSignUpWithAgeUnderTwelve method");
 	}
 
-	@Test(priority = 6, description = "Verify Claim button in player card after claimed their account")
-	@Description("Test case #6, Verify Claim button in player card after claimed their account")
+	@Test(priority = 6, description = "Verify Claim button in player card after claiming their account")
+	@Description("Test case #6, Verify Claim button in player card after claiming their account")
 	@Severity(SeverityLevel.CRITICAL)
-	@Story("Test case #6,Verify Claim button in player card after claimed their account ")
+	@Story("Test case #6,Verify Claim button in player card after claiming their account")
 	public void verifyButtonInPlayerCardAfterClaimedTheirAccount() {
 		logger.info("Starting of verifyButtonInPlayerCardAfterClaimedTheirAccount method");
 
 		driver.get(testDataProp.getProperty("claim.your.account.page.url"));
 
 		duprSignUpPage.searchPlayerName(searchPlayerName);
+		duprSignUpPage.hardWait(3);
 		Assert.assertFalse(duprSignUpPage.isClaimAccountButtonDisplayed());
 
 		logger.info("Ending of verifyButtonInPlayerCardAfterClaimedTheirAccount method");

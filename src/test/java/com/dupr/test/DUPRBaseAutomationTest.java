@@ -27,10 +27,9 @@ public abstract class DUPRBaseAutomationTest extends B2BBaseAutomationTest {
 
 	@BeforeSuite
 	@Parameters({ "siteURL", "language", "browser", "headless" })
-	public void initAutomation(String siteURL, String language, String browser, String headless) {
+	public void initAutomation(String siteURL, String language, String browser, boolean headless) {
 		this.loadProjectConfigFiles();
-		this.initTestAutomation(siteURL, language, browser, false, false);
-
+		this.initTestAutomation(siteURL, language, browser, headless, false);
 		log.debug("Site URL :{} " + loginURL);
 	}
 
@@ -40,6 +39,7 @@ public abstract class DUPRBaseAutomationTest extends B2BBaseAutomationTest {
 		goToSite(webdriver);
 		this.loginPage = new DUPRLoginPage(webdriver);
 
+		loginPage.hardWait(4);
 		loginPage.clickOnLogInLink();
 		loginPage.loginToDUPRApplication(email, password);
 		loginPage.hardWait(4);

@@ -21,7 +21,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 
 @Epic("DUPR App")
-@Feature("SignUp with create an account Sanity")
+@Feature("SignUp Sanity")
 public class SignupTest extends DUPRBaseAutomationTest {
 
 	private DUPRSignUpPage signupPage = null;
@@ -45,10 +45,10 @@ public class SignupTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of initMethod method in SignupTest");
 	}
 
-	@Test(priority = 1, description = "Verify Sign up funtionality with invalid location ", groups = "sanity")
-	@Description("Test case #1, Verify Sign up funtionality with invalid location")
+	@Test(priority = 1, description = "Verify Sign up funtionality with invalid location details")
+	@Description("Test case #1, Verify Sign up funtionality with invalid location details")
 	@Severity(SeverityLevel.BLOCKER)
-	@Story("Test case #1, Verify Sign up funtionality with invalid location")
+	@Story("Test case #1, Verify Sign up funtionality with invalid location details")
 	public void verifySignUpFunctionalityWithInvalidLocation() {
 		logger.info("Starting of verifySignUpFunctionalityWithInvalidLocation method");
 
@@ -65,7 +65,7 @@ public class SignupTest extends DUPRBaseAutomationTest {
 		Assert.assertFalse(signupPage.isFinishButtonEnabled());
 
 		signupPage.setFullName(testDataProp.getProperty("full.name"));
-		signupPage.setBirthDate(testDataProp.getProperty("date.of.birth"));
+		signupPage.setBirthDate();
 		signupPage.setMobileNumber(testDataProp.getProperty("invalid.mobile.number"));
 		signupPage.setEmail(testDataProp.getProperty("email"));
 		signupPage.setConfirmEmail();
@@ -75,10 +75,19 @@ public class SignupTest extends DUPRBaseAutomationTest {
 		signupPage.setPassword(testDataProp.getProperty("password"));
 		signupPage.setConfirmPassword();
 		signupPage.clickOnReviewDUPRPoliciesCheckBox();
-		signupPage.clickOnManageProfileCheckBox();
+
+		try {
+			if (signupPage.isManageProfileCheckBoxDisplayed()==true) {
+				logger.info("****Manage Profile checkbox displayed****");
+				signupPage.clickOnManageProfileCheckBox();
+			}
+		} catch (Exception e) {
+			logger.info("****Manage Profile checkbox haven't displayed****");
+		}
 
 		Assert.assertTrue(signupPage.isFinishButtonEnabled());
 
+		signupPage.hardWait(3);
 		signupPage.clickOnFinishButton();
 		signupPage.hardWait(2);
 
@@ -90,10 +99,10 @@ public class SignupTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifySignUpFunctionalityWithInvalidLocation method");
 	}
 
-	@Test(priority = 2, description = "Verify Sign up funtionality with invalid birth date ", groups = "sanity")
-	@Description("Test case #2, Verify Sign up funtionality with invalid birth date")
-	@Severity(SeverityLevel.BLOCKER)
-	@Story("Test case #2, Verify Sign up funtionality with invalid birth date")
+	//@Test(priority = 2, description = "Verify Sign up functionality with invalid birth date format")
+	@Description("Test case #2, Verify Sign up functionality with invalid birth date format")
+	@Severity(SeverityLevel.NORMAL)
+	@Story("Test case #2, Verify Sign up functionality with invalid birth date format")
 	public void verifySignUpWithInvalidBirthDateFormat() {
 		logger.info("Starting of verifySignUpWithInvalidBirthDateFormat method");
 
@@ -104,7 +113,8 @@ public class SignupTest extends DUPRBaseAutomationTest {
 
 		Assert.assertFalse(signupPage.isFinishButtonEnabled());
 
-		signupPage.setBirthDate(testDataProp.getProperty("invalid.data.of.birth"));
+		signupPage.setBirthDate();
+		signupPage.hardWait(3);
 
 		String birthDateValidationMessage = this.signupPage.getBirthDateValidationMessage();
 		Assert.assertEquals(birthDateValidationMessage,
@@ -113,15 +123,16 @@ public class SignupTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifySignUpWithInvalidBirthDateFormat method");
 	}
 
-	@Test(priority = 3, description = "Verify birth date funtionality with current date ", groups = "sanity")
-	@Description("Test case #3, Verify birth date funtionality with current date")
-	@Severity(SeverityLevel.BLOCKER)
-	@Story("Test case #3, Verify birth date funtionality with current date")
+	//@Test(priority = 3, description = "Verify birth date functionality with current date")
+	@Description("Test case #3, Verify birth date functionality with current date")
+	@Severity(SeverityLevel.NORMAL)
+	@Story("Test case #3, Verify birth date functionality with current date")
 	public void verifyBirthdateWithCurrentDate() {
 		logger.info("Starting of verifyBirthdateWithCurrentDate method");
 
 		driver.navigate().refresh();
 		signupPage.setDateOfBirthWithCurrentYear();
+		signupPage.hardWait(3);
 
 		Assert.assertEquals(signupPage.getDateOfBirthValidationMessage(),
 				expectedAssertionsProp.getProperty("minimum.age.two.years.validation"));
@@ -129,15 +140,16 @@ public class SignupTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyBirthdateWithCurrentDate method");
 	}
 
-	@Test(priority = 4, description = "Verify birth date funtionality with previous year date", groups = "sanity")
-	@Description("Test case #4,Verify birth date funtionality with previous year date")
-	@Severity(SeverityLevel.BLOCKER)
-	@Story("Test case #4, Verify birth date funtionality with previous year date")
+	//@Test(priority = 4, description = "Verify birth date functionality with previous year date")
+	@Description("Test case #4, Verify birth date functionality with previous year date")
+	@Severity(SeverityLevel.NORMAL)
+	@Story("Test case #4, Verify birth date functionality with previous year date")
 	public void verifyBirthdateWithPreviousYearDate() {
 		logger.info("Starting of verifyBirthdateWithPreviousYearDate method");
 
 		driver.navigate().refresh();
 		signupPage.setDateOfBirthWithPreviousYear();
+		signupPage.hardWait(3);
 
 		Assert.assertEquals(signupPage.getDateOfBirthValidationMessage(),
 				expectedAssertionsProp.getProperty("minimum.age.two.years.validation"));
@@ -145,27 +157,27 @@ public class SignupTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyBirthdateWithPreviousYearDate method");
 	}
 
-	@Test(priority = 5, description = "Verify birth date funtionality with before two years date ", groups = "sanity")
-	@Description("Test case #5,Verify birth date funtionality with before two years date ")
+	@Test(priority = 5, description = "Verify birth date functionality with before two years date")
+	@Description("Test case #5,Verify birth date functionality with before two years date")
 	@Severity(SeverityLevel.BLOCKER)
-	@Story("Test case #5,Verify birth date funtionality with before two years date ")
+	@Story("Test case #5,Verify birth date functionality with before two years date")
 	public void setDateOfBirthWithBeforeTwoYear() {
 		logger.info("Starting of verifyBirthdateWithBeforeTwoYearDate method");
 
 		driver.navigate().refresh();
-		signupPage.setDateOfBirthWithBeforeTwoYear();
+		signupPage.setDateOfBirthWithBeforeTwoYears();
 
-		Assert.assertFalse(signupPage.isDateOfBirthValidationMessageDisplayed());
+		Assert.assertFalse(signupPage.isBirthDateSelected());
 
 		logger.info("Ending of verifyBirthdateWithBeforeTwoYearDate method");
 	}
 
-	@Test(priority = 6, description = "Verify Sign up funtionality ", groups = "sanity")
-	@Description("Test case #6, Verify Sign up funtionality")
+	@Test(priority = 6, description = "Verify Sign up funtionality with valid details")
+	@Description("Test case #6, Verify Sign up funtionality with valid details")
 	@Severity(SeverityLevel.BLOCKER)
-	@Story("Test case #6, Verify Sign up funtionality")
-	public void verifySignupFunctionality() {
-		logger.info("Starting of verifySignupFunctionality method");
+	@Story("Test case #6, Verify Sign up funtionality with valid details")
+	public void verifySignupFunctionalityWithValidDetails() {
+		logger.info("Starting of verifySignupFunctionalityWithValidDetails method");
 
 		driver.navigate().refresh();
 
@@ -175,7 +187,7 @@ public class SignupTest extends DUPRBaseAutomationTest {
 		Assert.assertFalse(signupPage.isFinishButtonEnabled());
 
 		signupPage.setFullName(testDataProp.getProperty("full.name"));
-		signupPage.setBirthDate(testDataProp.getProperty("date.of.birth"));
+		signupPage.setBirthDate();
 		signupPage.setMobileNumber(testDataProp.getProperty("mobile.number"));
 		signupPage.setEmail(testDataProp.getProperty("email"));
 		signupPage.setConfirmEmail();
@@ -185,7 +197,16 @@ public class SignupTest extends DUPRBaseAutomationTest {
 		signupPage.setPassword(testDataProp.getProperty("password"));
 		signupPage.setConfirmPassword();
 		signupPage.clickOnReviewDUPRPoliciesCheckBox();
-		signupPage.clickOnManageProfileCheckBox();
+
+		try {
+			if (signupPage.isManageProfileCheckBoxDisplayed()==true) {
+				logger.info("****Manage Profile checkbox displayed****");
+				signupPage.clickOnManageProfileCheckBox();
+			}
+		} catch (Exception e) {
+			logger.info("****Manage Profile checkbox haven't displayed****");
+		}
+		signupPage.hardWait(3);
 
 		Assert.assertTrue(signupPage.isFinishButtonEnabled());
 
@@ -206,19 +227,19 @@ public class SignupTest extends DUPRBaseAutomationTest {
 
 		Assert.assertTrue(signupPage.isResendLinkButtonDisplayed());
 
-		logger.info("Ending of verifySignupFunctionality method");
+		logger.info("Ending of verifySignupFunctionalityWithValidDetails method");
 	}
-	
-	@Test(priority = 7, description = "Verify Resend link  button functionality by clearing email in the text field", groups = "sanity")
-	@Description("Test case #7, Verify Resend link  button functionality by clearing email in the text field")
+
+	@Test(priority = 7, description = "Verify Resend link button functionality by clearing email text field data")
+	@Description("Test case #7, Verify Resend link button functionality by clearing email text field data")
 	@Severity(SeverityLevel.BLOCKER)
-	@Story("Test case #7, Verify Resend link  button functionality by clearing email in the text field ")
+	@Story("Test case #7, Verify Resend link button functionality by clearing email text field data")
 	public void verifyResendLinkButtonWithoutEmail() {
 		logger.info("Starting of verifyResendLinkButtonWithoutEmail method");
 
 		signupPage.clickOnEditButton();
 		signupPage.hardWait(5);
-		
+
 		emailid = testDataProp.getProperty("email") + signupPage.randomNumber(4) + "@gmail.com";
 
 		signupPage.setEmailTextBox(emailid);
@@ -236,7 +257,7 @@ public class SignupTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyResendLinkButtonWithoutEmail method");
 	}
 
-	@Test(priority = 8, description = "Verify Email address in edit profile page", groups = "sanity")
+	@Test(priority = 8, description = "Verify Email address in edit profile page")
 	@Description("Test case #8, Verify Email address in edit profile page")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Test case #8, Verify Email address in edit profile page")

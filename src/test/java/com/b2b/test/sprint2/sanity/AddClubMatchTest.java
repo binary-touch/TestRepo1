@@ -81,7 +81,7 @@ public class AddClubMatchTest extends CommonBaseTest {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}clubLogoPage.hardWait(3);
 
 		addClubMatchPage.clickOnAddAMatchButton();
 		addAMatchPage.setLocationInDoubles(testDataProp.getProperty("location.city.name"));
@@ -97,7 +97,7 @@ public class AddClubMatchTest extends CommonBaseTest {
 	public void verifyAddClubMatchFunctionalityForSinglesBySelectingAddYourselfCheckbox() {
 		logger.info("Starting of verifyAddClubMatchFunctionalityForSinglesBySelectingAddYourselfCheckbox method");
 
-		addClubMatchPage.clickOnAddYourselfAsPlayerCheckbox();
+		clubLogoPage.hardWait(3);addClubMatchPage.clickOnAddYourselfAsPlayerCheckbox();
 		Assert.assertTrue(addClubMatchPage.isDirectorNameDisplayedItSelf());
 
 		addAMatchPage.clickOnSinglesButton();
@@ -132,7 +132,7 @@ public class AddClubMatchTest extends CommonBaseTest {
 	public void verifyAddClubMatchFunctionalityForDoublesBySelectingAddYourselfCheckbox() {
 		logger.info("Starting of verifyAddClubMatchFunctionalityForDoublesBySelectingAddYourselfCheckbox method");
 
-		addClubMatchPage.clickOnAddAMatchButton();
+		clubLogoPage.hardWait(3);addClubMatchPage.clickOnAddAMatchButton();
 		addAMatchPage.setLocationInDoubles(testDataProp.getProperty("location.city.name"));
 		addAMatchPage.setEventName(testDataProp.getProperty("event.name.in.doubles"));
 
