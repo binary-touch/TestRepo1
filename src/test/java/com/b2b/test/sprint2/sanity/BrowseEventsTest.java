@@ -106,7 +106,7 @@ public class BrowseEventsTest extends DUPRBaseAutomationTest {
 	public void verifyCompletAndOpenFilterFunctionality() {
 		logger.info("Starting of verifyCompletAndOpenFilterFunctionality method");
 
-		browseEventsPage.hardWait(2);
+		browseEventsPage.hardWait(3);
 		browseEventsPage.clickOnOpen();
 		Assert.assertTrue(browseEventsPage.getCompleteOpenEventsText());
 
@@ -122,7 +122,7 @@ public class BrowseEventsTest extends DUPRBaseAutomationTest {
 
 		browseEventsPage.clickOnClearFiltersButton();
 
-		browseEventsPage.hardWait(2);
+		browseEventsPage.hardWait(3);
 		browseEventsPage.clickOnOpen();
 		browseEventsPage.hardWait(2);
 		browseEventsPage.getOpenEventsText();
@@ -140,6 +140,8 @@ public class BrowseEventsTest extends DUPRBaseAutomationTest {
 		browseEventsPage.hardWait(2);
 		browseEventsPage.clickOnClearFiltersButton();
 		browseEventsPage.clickOnFindEventsNearMeToggleButton();
+
+		browseEventsPage.hardWait(2);
 		Assert.assertTrue(browseEventsPage.getToggleOnState());
 		browseEventsPage.hardWait(2);
 		browseEventsPage.clickOnFindEventsNearMeToggleButton();

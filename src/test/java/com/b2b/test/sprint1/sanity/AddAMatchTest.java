@@ -82,7 +82,8 @@ public class AddAMatchTest extends CommonBaseTest {
 	@Story("Test case #4, Verify Add Your Opponent Functionality In Team 2 by Invite a Player")
 	public void verifyAddYourOpponentByInvite() {
 		logger.info("Starting of verifyAddYourOpponentByInvite method");
-
+		
+		addAMatchPage.hardWait(3);
 		addAMatchPage.clickOnAddPlayer();
 
 		Assert.assertTrue(addAMatchPage.isAddPlayerPageContains());

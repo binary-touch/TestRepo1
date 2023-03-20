@@ -22,6 +22,8 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 	private static final Logger log = LogManager.getLogger(DUPRBaseAutomationPage.class);
 
 	public static String TEST_FILE_PATH = null;
+	private static int currentyear = 0;
+	static int Year = 0;
 
 	public DUPRBaseAutomationPage(WebDriver driver) {
 		super(driver);
@@ -190,7 +192,7 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 		hardWait(3);
 		try {
 			driver.findElement(By.xpath("//button[text()='" + date + "']")).click();
-			
+
 		} catch (Exception e) {
 			clickOnElementUsingActionClass(driver.findElement(By.xpath("//button[text()='" + date + "']")));
 		}
@@ -277,5 +279,41 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 		log.info("Starting of getCurrentMonth method");
 
 		return monthValue;
+	}
+
+	public int getCurrentYear() {
+
+		LocalDateTime dateTime = LocalDateTime.now();
+		currentyear = dateTime.getYear();
+
+		return currentyear;
+	}
+
+	public int getPreviousYear(int year) {
+		log.info("Starting of getPreviousYear method");
+
+		LocalDateTime dateTime = LocalDateTime.now();
+		LocalDateTime yr = dateTime.minusYears(year);
+		Year = yr.getYear();
+		System.out.println("Year Value = " + Year);
+
+		log.info("Starting of getPreviousYear method");
+
+		return Year;
+	}
+
+	public void clickOnSelectedYear(int year) {
+		log.info("Starting of clickOnSelectedYear method");
+
+		int requiredYearValue = this.getPreviousYear(year);
+		System.out.println(requiredYearValue);
+		this.hardWait(3);
+		try {
+			clickUsingActionsClass(driver.findElement(By.xpath("//button[contains(text(),'" + requiredYearValue + "')]")));
+		} catch (Exception e) {
+			clickOnWebElement(driver.findElement(By.xpath("//button[contains(text(),'" + requiredYearValue + "')]")));
+		}
+
+		log.info("Starting of clickOnSelectedYear method");
 	}
 }

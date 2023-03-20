@@ -18,6 +18,7 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
+
 @Epic("DUPR App")
 @Feature("Edit Bracket Sanity")
 public class EditBracketsTest extends CommonBaseTest {
@@ -90,6 +91,7 @@ public class EditBracketsTest extends CommonBaseTest {
 	public void verifyEditBracketFunctionalityInBracketPage() {
 		logger.info("Starting of verifyEditBracketFunctionalityInBracketPage method");
 
+		clubLogoPage.hardWait(3);
 		this.verifyFreeEventFunctionality();
 		clubLogoPage.hardWait(3);
 		addEventPage.clickOnEventsTab();
@@ -110,6 +112,7 @@ public class EditBracketsTest extends CommonBaseTest {
 	public void verifyTheDetailsDisplayedInEditBracketPage() {
 		logger.info("Starting of verifyTheDetailsDisplayedInEditBracketPage method");
 
+		clubLogoPage.hardWait(3);
 		Assert.assertTrue(editBracketsPage.isEditBracketsPageContains());
 		Assert.assertEquals(editBracketsPage.getEditBrackettxt(), expectedAssertionsProp.getProperty("edit.bracket"));
 
@@ -123,6 +126,7 @@ public class EditBracketsTest extends CommonBaseTest {
 	public void verifyCancelFunctionalityInEditBracketPage() {
 		logger.info("Starting of verifyCancelFunctionalityInEditBracketPage method");
 
+		clubLogoPage.hardWait(3);
 		editBracketsPage.clickOnCancelButton();
 		editBracketsPage.hardWait(2);
 		editBracketsPage.clickOnEditBracketButton();
@@ -140,6 +144,7 @@ public class EditBracketsTest extends CommonBaseTest {
 	public void verifyResetFunctionalityInEditBracketPage() {
 		logger.info("Starting of verifyResetFunctionalityInEditBracketPage method");
 
+		clubLogoPage.hardWait(3);
 		editBracketsPage.clickOnPlayerGroupField();
 		editBracketsPage.selectMen();
 		editBracketsPage.hardWait(1);
@@ -164,6 +169,7 @@ public class EditBracketsTest extends CommonBaseTest {
 	public void verifySaveChangesFunctionalityInEditBracketPage() {
 		logger.info("Starting of verifySaveChangesFunctionalityInEditBracketPage method");
 
+		clubLogoPage.hardWait(3);
 		System.out.println(!(playGroup.equals(playGroupReset)));
 		System.out.println(!(EventType.equals(EventTypeReset)));
 		System.out.println(!(TimeZone.equals(TimeZoneReset)));

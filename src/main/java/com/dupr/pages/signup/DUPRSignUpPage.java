@@ -54,6 +54,12 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h5[text()='Birth Date']/parent::div//parent::div/descendant::input")
 	private WebElement txtBoxBirthDate;
 
+	@B2BFindBy(xpath = "//button[text()='1997']")
+	private WebElement btnYearOfBirth;
+
+	@B2BFindBy(xpath = "//button[@aria-label='calendar view is open, switch to year view']")
+	private WebElement ddYear;
+
 	@B2BFindBy(xpath = "//h5[text()='Email']/parent::div//parent::div/descendant::input")
 	private WebElement txtBoxEmail;
 
@@ -80,7 +86,10 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//input[contains(@class,'PrivateSwitchBase') and @type='checkbox']")
 	private WebElement chkReviewDUPRPolicies;
-	
+
+	@B2BFindBy(xpath = "//p[contains(text(),'players under age 13')]")
+	private WebElement lblManageProfile;
+
 	@B2BFindBy(xpath = "//span[contains(@class,'MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-root MuiCheckbox-colorPrimary')]/input[contains(@class,'PrivateSwitchBase-input') and @type='checkbox']")
 	private WebElement chkManageProfile;
 
@@ -99,7 +108,8 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h5[text()='Full Name']")
 	private WebElement lblFullName;
 
-	//@B2BFindBy(xpath = "//h4[text()='Please enter your street address or city name']")
+	// @B2BFindBy(xpath = "//h4[text()='Please enter your street address or city
+	// name']")
 	@B2BFindBy(xpath = "//h4[text()='Invalid parameters']")
 	private WebElement lblStreetAddress;
 
@@ -310,11 +320,20 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 		logger.info("Ending of setFullName method");
 	}
 
-	public void setBirthDate(String BirthDate) {
+	public void setBirthDate() {
 		logger.info("Starting of setBirthDate method");
+
 		this.implicitWait();
-		// clickOnElement(txtBirthDateField);
-		sendKeys(txtBoxBirthDate, BirthDate);
+
+		clickOnWebElement(txtBoxBirthDate);
+		int date = this.getCurrentDate();
+		this.hardWait(3);
+		clickUsingActionsClass(ddYear);
+		this.hardWait(3);
+		clickOnSelectedYear(3);
+		this.clickOnCurrentDate(date);
+
+		// sendKeys(txtBoxBirthDate, BirthDate);
 
 		logger.info("Starting od setBirthDate method");
 	}
@@ -325,12 +344,7 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 		this.implicitWait();
 		this.txtBoxSearch.sendKeys(Keys.CONTROL + "a", Keys.DELETE);
 		this.txtBoxSearch.sendKeys(name);
-		/*
-		 * this.impicitWait(); String playerName = ""; for (WebElement player :
-		 * lstPlayersNames) { playerName = this.getText(player); break; }
-		 * this.sendKeys(txtBoxSearch, playerName); //
-		 * this.clickOnWebElement(btnClaimAccount);
-		 */
+
 		logger.info("Ending of searchPlayerName method");
 	}
 
@@ -408,7 +422,7 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 		txtBoxLocation.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		txtBoxLocation.sendKeys(location);
 		hardWait(3);
-		
+
 		clickOnWebElement(lblCountry);
 
 		logger.info("Ending of setLocation method");
@@ -449,14 +463,30 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 
 		logger.info("Ending of clickOnReviewDUPRPoliciesCheckBox method");
 	}
+
 	public void clickOnManageProfileCheckBox() {
 		logger.info("Starting of clickOnManageProfileCheckBox method");
 
 		this.implicitWait();
 		scrollIntoView(chkManageProfile);
-		this.chkManageProfile.click();
+		try {
+			clickUsingActionsClass(chkManageProfile);
+		} catch (Exception e) {
+			clickOnWebElement(chkManageProfile);
+		}
 
 		logger.info("Ending of clickOnManageProfileCheckBox method");
+	}
+
+	public boolean isManageProfileCheckBoxDisplayed() {
+		logger.info("Starting of isManageProfileCheckBoxDisplayed method");
+
+		this.implicitWait();
+		System.out.println("Manage Profile displayed: " + isDisplayed(lblManageProfile));
+
+		logger.info("Ending of isManageProfileCheckBoxDisplayed method");
+
+		return isDisplayed(lblManageProfile);
 	}
 
 	public boolean isCreateAccountButtonDisplayed() {
@@ -701,6 +731,27 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 		return isDisplayed(chkBoxDUPRReview);
 	}
 
+	public void setDateOfBirthWithBelow12Years() {
+		logger.info("Starting of setDateOfBirthWithBelow12Years method");
+
+		clickOnWebElement(txtBoxBirthDate);
+		int date = this.getCurrentDate();
+		
+		try {
+			hardWait(2);
+			clickUsingActionsClass(ddYear);
+		} catch (Exception e) {
+			hardWait(2);
+			clickOnWebElement(ddYear);
+		}
+		hardWait(2);
+		clickOnSelectedYear(12);
+		hardWait(2);
+		this.clickOnCurrentDate(date);
+
+		logger.info("Ending of setDateOfBirthWithBelow12Years method");
+	}
+
 	public void setDateOfBirthWithCurrentYear() {
 		logger.info("Starting of setDateOfBirthWithCurrentYear method");
 
@@ -729,19 +780,27 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 		logger.info("Ending of setDateOfBirthWithPreviousYear method");
 	}
 
-	public void setDateOfBirthWithBeforeTwoYear() {
-		logger.info("Starting of setDateOfBirthWithBeforeTwoYear method");
+	public void setDateOfBirthWithBeforeTwoYears() {
+		logger.info("Starting of setDateOfBirthWithBeforeTwoYears method");
 
-		LocalDate date = LocalDate.now();
-		LocalDate previousYear = date.minusYears(3);
-		DateTimeFormatter formatters = DateTimeFormatter.ofPattern("MM/dd/YYYY");
+		clickOnWebElement(txtBoxBirthDate);
+		int date = this.getCurrentDate();
 
-		String text = previousYear.format(formatters);
-		logger.debug("Before Two Years Birthdate: " + text);
+		clickUsingActionsClass(ddYear);
+		this.implicitWait();
+		clickOnSelectedYear(3);
+		this.clickOnCurrentDate(date);
 
-		this.txtBoxBirthDate.sendKeys(text);
+		// this.txtBoxBirthDate.sendKeys(text);
 
-		logger.info("Ending of setDateOfBirthWithBeforeTwoYear method");
+		logger.info("Ending of setDateOfBirthWithBeforeTwoYears method");
+	}
+
+	public boolean isBirthDateSelected() {
+		logger.info("Starting of isBirthDateSelected method");
+		logger.info("Starting of isBirthDateSelected method");
+
+		return txtBoxBirthDate.getAttribute("value").isEmpty();
 	}
 
 	public String getPlayerSinglesRatingInPlayerDashBoard() {

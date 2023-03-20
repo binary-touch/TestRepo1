@@ -201,7 +201,17 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		B2BPageFactory.initElements(driver, this);
 	}
 
-	private static int currentyear = 0;
+	public void clickOnCurrentYear() {
+
+		int currentYearValue = this.getCurrentYear();
+		System.out.println(currentYearValue);
+
+		try {
+			clickOnElementUsingActionClass(driver.findElement(By.xpath("//button[text()='" + currentYearValue + "']")));
+		} catch (Exception e) {
+			driver.findElement(By.xpath("//button[text()='" + currentYearValue + "']")).click();
+		}
+	}
 
 	public boolean isDisplayedRegistrationandCompetitionFieldslContains() {
 		log.info("Starting of isDisplayedRegistrationandCompetitionFieldslContains method");
@@ -590,24 +600,6 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		return futureDateValue;
 	}
 
-	public int getCurrentYear() {
-
-		LocalDateTime dateTime = LocalDateTime.now();
-		currentyear = dateTime.getYear();
-
-		return currentyear;
-	}
-
-	public void clickOnCurrentYear() {
-		int currentYearValue = this.getCurrentYear();
-		System.out.println(currentYearValue);
-		try {
-			clickOnElementUsingActionClass(driver.findElement(By.xpath("//button[text()='" + currentYearValue + "']")));
-		} catch (Exception e) {
-			driver.findElement(By.xpath("//button[text()='" + currentYearValue + "']")).click();
-		}
-	}
-
 	public boolean isLocalRangeDisplayed() {
 		log.info("Starting of isLocalRangeDisplayed method");
 		this.hardWait(5);
@@ -670,7 +662,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 
 	public boolean isOpenUpcommingRegistrationClosedStatusDisplayed() {
 		log.info("Starting of isOpenUpcommingRegistrationClosedStatusDisplayed method");
-		
+
 		hardWait(2);
 		boolean isOpenUpcommingRegistrationClosedStatusDisplayed = false;
 		try {
@@ -679,8 +671,8 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 				System.out.println(isOpenUpcommingRegistrationClosedStatusDisplayed = true);
 			} else if (this.isDisplayedUpcomingLabel()) {
 
-		System.out.println(isOpenUpcommingRegistrationClosedStatusDisplayed = true);
-				
+				System.out.println(isOpenUpcommingRegistrationClosedStatusDisplayed = true);
+
 			} else if (this.isDisplayedRegistrationClosedLabel()) {
 
 				System.out.println(isOpenUpcommingRegistrationClosedStatusDisplayed = true);
@@ -717,7 +709,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		try {
 			System.out.println(lblUpcoming.isDisplayed());
 			return lblUpcoming.isDisplayed();
-			
+
 		} catch (Exception e) {
 			return false;
 		}
@@ -1027,8 +1019,8 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		hardWait(5);
 		try {
 			btnIndianTime.click();
-		}catch(Exception e) {
-		clickOnElementUsingActionClass(btnIndianTime);
+		} catch (Exception e) {
+			clickOnElementUsingActionClass(btnIndianTime);
 		}
 
 		log.info("Ending of setNewDelhiTimeZone method");
@@ -1150,12 +1142,12 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		String meridiem = futureHour.format(DateTimeFormatter.ofPattern(pattern1));
 		String meridiemValue = meridiem.toUpperCase();
 		System.out.println(meridiemValue);
-		
+
 		this.clickOnCurrentDate(date);
 		this.clickOnCurrentTime(futureHourValue);
 		try {
-		clickOnElementUsingActionClass(btnTimeInMinutes);
-		}catch(Exception e) {
+			clickOnElementUsingActionClass(btnTimeInMinutes);
+		} catch (Exception e) {
 			elementClick(btnTimeInMinutes);
 		}
 		this.clickOnCurrentTime(meridiemValue);
@@ -1193,7 +1185,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		}
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
-		
+
 		this.clickOnCurrentTime(hours);
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnElementUsingActionClass(btnOK);
@@ -1225,7 +1217,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
 		this.clickOnCurrentTime(hours);
@@ -1234,7 +1226,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 
 		log.info("Ending of setCompetitionCurrentDate�method");
 	}
-	
+
 	public void setCompetitionEndDateInPastHours() {
 		log.info("Starting of setCompetitionEndDateInPastHours method");
 
@@ -1273,9 +1265,9 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 
 		try {
 			clickOnWebElement(txtBoxRegistrationStartDate);
-			
+
 		} catch (Exception e) {
-			clickOnElementUsingActionClass(txtBoxRegistrationStartDate);	
+			clickOnElementUsingActionClass(txtBoxRegistrationStartDate);
 		}
 		hardWait(2);
 		clickOnWebElement(ddRegistrationEndDate);
@@ -1305,11 +1297,11 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
-			
+
 			String hours = this.getCurrentHour();
 			String meridiem = this.getCurrentMeridiem();
 			this.clickOnCurrentTime(hours);
-	
+
 			clickOnElementUsingActionClass(btnTimeInMinutes);
 			this.clickOnCurrentTime(meridiem);
 			this.clickOnWebElement(btnOK);
@@ -1322,14 +1314,14 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 
 	public void setRegistrationEndDate() {
 		log.info("Starting of setRegistrationEndDate method");
-		
+
 		hardWait(2);
 		try {
 			clickOnWebElement(txtBoxRegistrationEndDate);
 		} catch (Exception e) {
 			clickOnElementUsingActionClass(txtBoxRegistrationEndDate);
 		}
-		
+
 		int date = this.getFutureDate(1);
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
@@ -1354,7 +1346,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	
+
 		this.clickOnCurrentTime(hours);
 		clickOnElementUsingActionClass(btnTimeInMinutes);
 		this.clickOnCurrentTime(meridiem);

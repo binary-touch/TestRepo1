@@ -93,7 +93,7 @@ public class DUPRClaimAccountSignUpTest extends DUPRBaseAutomationTest {
 		logger.info("Starting of verifySignUpFunctionality method");
 
 		duprSignUpPage.hardWait(3);
-		duprSignUpPage.setBirthDate(testDataProp.getProperty("date.of.birth"));
+		duprSignUpPage.setBirthDate();
 		duprSignUpPage.setMobileNumber(testDataProp.getProperty("invalid.mobile.number"));
 		duprSignUpPage.setEmail(testDataProp.getProperty("email"));
 		duprSignUpPage.setConfirmEmail();
@@ -176,7 +176,7 @@ public class DUPRClaimAccountSignUpTest extends DUPRBaseAutomationTest {
 		driver.get(testDataProp.getProperty("claim.account.url"));
 
 		duprSignUpPage.hardWait(1);
-		duprSignUpPage.setBirthDate(testDataProp.getProperty("date.of.birth.undertwelve"));
+		duprSignUpPage.setDateOfBirthWithBelow12Years();
 
 		Assert.assertTrue(duprSignUpPage.isDUPRReviewCheckBox());
 

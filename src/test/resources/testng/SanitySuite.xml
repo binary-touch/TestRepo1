@@ -2,8 +2,7 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Sanity UI Automation Tests"><!-- < parallel = "classes" thread-count = "4"> -->
 
-
-	<!-- <test name="Sprint 1">
+	<test name="Sprint 1">
 		<classes>
 			<class name="com.b2b.test.sprint1.sanity.SearchPlayersTest" />
 			<class name="com.b2b.test.sprint1.sanity.SignupTest" />
@@ -69,25 +68,31 @@
 			<class
 				name="com.b2b.test.sprint3.sanity.PreservingPageVisitsTest" />
 		</classes>
-	</test> -->
+	</test>
+
 	<test name="Sprint 4">
 		<classes>
-		<!-- 	<class name="com.b2b.test.sprint4.sanity.ChatTest" />
+			<class name="com.b2b.test.sprint4.sanity.ChatTest" />
 			<class name="com.b2b.test.sprint4.sanity.ShareTest" />
 			<class
 				name="com.b2b.test.sprint4.sanity.CombinationOfMatchTypeAndPlayerGroupTest" />
 			<class name="com.b2b.test.sprint4.sanity.FullRegistrationTest" />
-			<class name="com.b2b.test.sprint4.sanity.TimeZoneTest" /> -->
-			<class name="com.b2b.test.sprint4.sanity.SeedMatchesRoundRobinTest" />
+			<class name="com.b2b.test.sprint4.sanity.TimeZoneTest" />
+			<class
+				name="com.b2b.test.sprint4.sanity.SeedMatchesRoundRobinTest" />
 		</classes>
 	</test>
-	<!-- <test name="Sprint 5">
-		<classes>
-			<class name="com.b2b.test.sprint5.sanity.PaidEventAndPaidBracketWithWaterfallEventTest" />
-			<class name="com.b2b.test.sprint5.sanity.WaterfallRoundOneSeedingLogicTest" /> 
-		    <class name="com.b2b.test.sprint5.sanity.EditScoreAfterValidationTest" />
-			<class name="com.b2b.test.sprint5.sanity.SeedMatchesWaterFallTest" />
-		</classes> 
 
-	</test> -->
-</suite>
+	<test name="Sprint 5">
+		<classes>
+			<class
+				name="com.b2b.test.sprint5.sanity.PaidEventAndPaidBracketWithWaterfallEventTest" />
+			<class
+				name="com.b2b.test.sprint5.sanity.WaterfallRoundOneSeedingLogicTest" />
+			<class
+				name="com.b2b.test.sprint5.sanity.EditScoreAfterValidationTest" />
+			<class
+				name="com.b2b.test.sprint5.sanity.SeedMatchesWaterFallTest" />
+		</classes>
+	</test>
+</suite> 

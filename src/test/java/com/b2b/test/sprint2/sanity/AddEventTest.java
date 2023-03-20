@@ -21,6 +21,7 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
+
 @Epic("DUPR App")
 @Feature("Add Event Sanity")
 public class AddEventTest extends DUPRBaseAutomationTest {
@@ -780,6 +781,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 
 		addBracketPage.clickOnNoContinueToSummary();
 
+		clubLogoPage.hardWait(3);
 		Assert.assertTrue(addBracketPage.isEventDetailsSectionDisplayed());
 		Assert.assertTrue(addBracketPage.isEventPoliciesSectionDisplayed());
 		Assert.assertTrue(addBracketPage.isBracketsSectionDisplayed());
@@ -794,6 +796,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	public void verifyDeleteBracketDetailsInSummaryPage() {
 		logger.info("Starting of verifyDeleteBracketDetailsInSummaryPage method");
 
+		clubLogoPage.hardWait(3);
 		addBracketPage.clickOnEditBracketsButton();
 
 		addBracketPage.hardWait(3);
@@ -831,6 +834,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	public void verifyEditEventDetailsSectionByClickingOnEditIconInEventSummaryPage() {
 		logger.info("Starting of verifyEditEventDetailsSectionByClickingOnEditIconInEventSummaryPage method");
 
+		clubLogoPage.hardWait(3);
 		Assert.assertTrue(addBracketPage.isEditEventDetailsButtonDisplayed());
 		addBracketPage.clickOnEditEventDetailsButton();
 
@@ -856,6 +860,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	public void verifyEditBracketDetailsSectionByClickingOnEditIconInEventSummaryPage() {
 		logger.info("Starting of verifyEditBracketDetailsSectionByClickingOnEditIconInEventSummaryPage method");
 
+		clubLogoPage.hardWait(3);
 		addBracketPage.clickOnEditBracketsButton();
 		addBracketPage.hardWait(2);
 
@@ -884,7 +889,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	public void verifyPublishEventButton() {
 		logger.info("Starting of verifyPublishEventButton method");
 
-		addBracketPage.hardWait(2);
+		addBracketPage.hardWait(3);
 		addBracketPage.clickOnPublishEventButton();
 
 		Assert.assertTrue(addBracketPage.isPublishSuccessPopUpContains());
@@ -899,6 +904,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	public void verifyCloseIconInYourEventIsNowPublishedSuccessPopup() {
 		logger.info("Starting of verifyCloseIconInYourEventIsNowPublishedSuccessPopup method");
 
+		clubLogoPage.hardWait(3);
 		addBracketPage.clickOnEventSuccessClosePopupButton();
 
 		Assert.assertTrue(addEventPage.isClubPageContains());
@@ -913,6 +919,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	public void verifyRecentlyAddedEventUnderEventsTab() {
 		logger.info("Starting of verifyRecentlyAddedEventUnderEventsTab method");
 
+		clubLogoPage.hardWait(3);
 		addEventPage.clickOnEventsTab();
 		Assert.assertTrue(addEventPage.isRecentlyAddedEventDisplayed(eventName));
 
@@ -926,6 +933,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	public void verifyDeleteBracketFunctionalityAfterPublishingEvent() {
 		logger.info("Starting of VerifyRecentlyAddedEventUnderEventsTab method");
 
+		clubLogoPage.hardWait(3);
 		addEventPage.clickOnAddEventButton();
 
 		Assert.assertTrue(addEventPage.isEventInformationPageContains());
@@ -971,6 +979,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	public void verifyConfirmButtonFunctionalityInDeleteBracket() {
 		logger.info("Starting of verifyConfirmButtonFunctionalityInDeleteBracket method");
 
+		clubLogoPage.hardWait(3);
 		addBracketPage.clickOnConfirmButton();
 
 		addBracketPage.hardWait(3);
@@ -987,6 +996,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	public void verifyOkButtonFunctionalityInDeleteBracketSuccessPopUP() {
 		logger.info("Starting of verifyOkButtonFunctionalityInDeleteBracketSuccessPopUP method");
 
+		clubLogoPage.hardWait(3);
 		addBracketPage.clickOnOkButton();
 		addBracketPage.hardWait(3);
 		Assert.assertFalse(addBracketPage.isDeleteBracketSuccessPopUpDisplayed());
@@ -1003,7 +1013,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	public void verifyFreeEventFunctionality() {
 		logger.info("Starting of verifyFreeEventFunctionality method");
 
-		addEventPage.hardWait(3);
+		addEventPage.hardWait(4);
 		addEventPage.clickOnAddEventButton();
 
 		eventName = addEventPage.setEventName(testDataProp.getProperty("event.name"));
@@ -1044,6 +1054,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	public void verifyFreeBracketWithEventTypeAsRoundRobin() {
 		logger.info("Starting of verifyFreeBracketWithEventTypeAsRoundRobin method");
 
+		clubLogoPage.hardWait(3);
 		addEventPage.clickOnAddEventButton();
 
 		eventName = addEventPage.setEventName(testDataProp.getProperty("event.name"));
@@ -1140,6 +1151,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	public void verifyFreeBracketWithEventTypeAsWateFall() {
 		logger.info("Starting of verifyFreeBracketWithEventTypeAsWateFall method");
 
+		clubLogoPage.hardWait(3);
 		addEventPage.clickOnAddEventButton();
 
 		freeEventName = addEventPage.setEventName(testDataProp.getProperty("event.name"));
@@ -1234,6 +1246,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	public void verifyDeleteEventFunctionalityAfterPublishingEvent() {
 		logger.info("Starting of verifyDeleteEventFunctionalityAfterPublishingEvent method");
 
+		addBracketPage.hardWait(3);
 		addEventPage.clickOnEventsTab();
 		Assert.assertTrue(addEventPage.isRecentlyAddedEventDisplayed(freeEventName));
 		addEventPage.clickOnDeleteEventFromList(freeEventName);

@@ -20,6 +20,7 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
+
 @Epic("DUPR App")
 @Feature("Club Logo Sanity")
 public class ClubLogoTest extends DUPRBaseAutomationTest {
@@ -97,7 +98,7 @@ public class ClubLogoTest extends DUPRBaseAutomationTest {
 						.uploadProfilePicture(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("club.logo.path"));
 			}
 		} catch (Exception e) {
-			clubLogoPage.hardWait(1);
+			clubLogoPage.hardWait(2);
 			clubLogoPage.clickOnRemoveLogoOption();
 			profilePicturePage.clickOnYesButton();
 			clubLogoPage.hardWait(3);
@@ -120,6 +121,7 @@ public class ClubLogoTest extends DUPRBaseAutomationTest {
 	@Story("Test case #3, Verify Edit logo functionality in club page")
 	public void verifyEditLogoFunctionalityInClubPage() {
 		logger.info("Starting of verifyEditLogoFunctionalityInClubPage method");
+		profilePicturePage.hardWait(3);
 
 		profilePicturePage.clickOnCameraIcon();
 
@@ -159,10 +161,13 @@ public class ClubLogoTest extends DUPRBaseAutomationTest {
 	public void verifyTheStateOfSaveButtonAfterLogoEdit() {
 		logger.info("Starting of verifyTheStateOfSaveButtonAfterLogoEdit method");
 
+		profilePicturePage.hardWait(3);
 		profilePicturePage.clickOnCameraIcon();
 		clubLogoPage.clickOnChangeLogoOption();
+
 		clubLogoPage.hardWait(2);
 		Assert.assertTrue(profilePicturePage.isSaveButtonDisplayed());
+
 		clubLogoPage.hardWait(3);
 		profilePicturePage.clickOnCancelButton();
 		clubLogoPage.hardWait(3);
@@ -177,12 +182,13 @@ public class ClubLogoTest extends DUPRBaseAutomationTest {
 	public void verifyRemoveLogoFunctionalityInClubPage() {
 		logger.info("Starting of verifyRemoveLogoFunctionalityInClubPage method");
 
+		profilePicturePage.hardWait(3);
 		profilePicturePage.clickOnCameraIcon();
 		clubLogoPage.hardWait(3);
 		clubLogoPage.clickOnRemoveLogoOption();
-		
+
 		try {
-			if(profilePicturePage.isSaveButtonDisplayed()) {
+			if (profilePicturePage.isSaveButtonDisplayed()) {
 				driver.navigate().refresh();
 				profilePicturePage.hardWait(3);
 				profilePicturePage.clickOnCameraIcon();
@@ -190,10 +196,10 @@ public class ClubLogoTest extends DUPRBaseAutomationTest {
 				clubLogoPage.clickOnRemoveLogoOption();
 			}
 		} catch (Exception e) {
-			
+
 			System.out.println("****Pop Up Displayed****");
 		}
-		
+
 		Assert.assertTrue(clubLogoPage.isRemoveLogoPopupContains());
 
 		profilePicturePage.clickOnYesButton();

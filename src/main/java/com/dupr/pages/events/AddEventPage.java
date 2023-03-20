@@ -810,14 +810,6 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 		log.info("Ending of clickonDragandDropImageButton method");
 	}
 
-	/*
-	 * public void clickonBrowswrFilesButton() {
-	 * log.info("Starting of clickonBrowswrFilesButton method");
-	 * 
-	 * btnBrowswrFiles.click();
-	 * log.info("Ending of clickonBrowswrFilesButton method"); }
-	 */
-
 	public String getEntryFeeTitle() {
 		log.info("Starting of getEntryFeeTitle method");
 
@@ -836,13 +828,12 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 
 		this.txtBoxMemberPrice.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		txtBoxMemberPrice.sendKeys(memberPrice);
-        String memberPrice1=txtBoxMemberPrice.getAttribute("value");
-        float memberPrice2=Float.parseFloat(memberPrice1);
+		String memberPrice1 = txtBoxMemberPrice.getAttribute("value");
+		float memberPrice2 = Float.parseFloat(memberPrice1);
 		log.info("Ending of setMemberPrice method");
-		return  memberPrice2;
+		return memberPrice2;
 	}
 
-	
 	public void setSearchClubName(String clubName) {
 		log.info("Starting of setSearchClubName method");
 
@@ -864,11 +855,11 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 		this.txtBoxNonMemberPrice.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		txtBoxNonMemberPrice.sendKeys(nonMemberPrice);
 
-		String nonMemberPrice1= txtBoxNonMemberPrice.getAttribute("value");
-		float nonMemberPrice2=Float.parseFloat(nonMemberPrice1);
+		String nonMemberPrice1 = txtBoxNonMemberPrice.getAttribute("value");
+		float nonMemberPrice2 = Float.parseFloat(nonMemberPrice1);
 		log.info("Ending of setNonMemberPrice method");
-		
-		return nonMemberPrice2; 
+
+		return nonMemberPrice2;
 	}
 
 	public String getAboutTheEvents() {
@@ -901,7 +892,7 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 		elementClick(btnItalic);
 		elementClick(btnUnderline);
 		hardWait(2);
-		// txtAboutTheEvent.click();
+
 		log.info("Ending of clickonTextFormattingButtons method");
 	}
 
@@ -912,8 +903,6 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 		this.txtAboutTheEventEdit.sendKeys(Keys.CONTROL + "a");
 
 		elementClick(btnBold);
-
-		// txtAboutTheEvent.click();
 
 		log.info("Ending of clickonBoldTextFormattingButton method");
 	}
@@ -942,7 +931,6 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 		hardWait(2);
 		elementClick(btnItalic);
 
-		// txtAboutTheEvent.click();
 		log.info("Ending of clickonItalicTextFormattingButton method");
 	}
 
@@ -970,7 +958,6 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 		hardWait(2);
 		elementClick(btnUnderline);
 
-		// txtAboutTheEvent.click();
 		log.info("Ending of clickonUnderLineTextFormattingButton method");
 	}
 
@@ -1148,7 +1135,6 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 		log.info("Ending of getEventPoliciesTitle method");
 
 		return lblEventPolicies.getText();
-
 	}
 
 	public String getLiabilityWaiver() {
@@ -1157,8 +1143,8 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 		lblLiabilityWaiver.click();
 
 		log.info("Ending of getLiabilityWaiver method");
-		return lblLiabilityWaiver.getText();
 
+		return lblLiabilityWaiver.getText();
 	}
 
 	public String getRefundPolicyTitle() {
@@ -1167,8 +1153,8 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 		lblRefundPolicy.click();
 
 		log.info("Ending of getRefundPolicyTitle method");
-		return lblRefundPolicy.getText();
 
+		return lblRefundPolicy.getText();
 	}
 
 	public String setRefundEditor(String event) {
@@ -1181,7 +1167,6 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 		log.info("Ending of getRefundPolicyTitle method");
 
 		return txtBoxRefund.getText();
-
 	}
 
 	public String getHealthandSafetyPolicyTitle() {
@@ -1190,7 +1175,6 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 		log.info("Ending of getHealthandSafetyPolicyTitle method");
 
 		return lblHealthAndSafetyPolicy.getText();
-
 	}
 
 	public String setHealthandSafetyPolicyEditor(String event) {
@@ -1215,6 +1199,7 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 
 	public void clickonExitButton() {
 		log.info("Starting of clickonExitButton method");
+
 		hardWait(3);
 		elementClick(btnExit);
 
@@ -1346,7 +1331,6 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 
 	public boolean isEventRefundPolicyRequiredDisplayed() {
 		log.info("Starting of isEventRefundPolicyRequiredDisplayed method");
-
 		log.info("Ending of isEventRefundPolicyRequiredDisplayed method");
 
 		return msgEventRefundPolicyRequired.isDisplayed();

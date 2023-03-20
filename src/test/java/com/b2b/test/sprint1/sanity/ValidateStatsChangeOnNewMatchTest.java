@@ -65,6 +65,7 @@ public class ValidateStatsChangeOnNewMatchTest extends CommonBaseTest {
 		String pendingCount = validateStats.getPendingCountLabelText();
 
 		addAMatchPage.clickOnAddAMatchTab();
+		validateStats.hardWait(3);
 
 		verifySetMatchDetails();
 		validateStats.hardWait(3);
@@ -92,6 +93,7 @@ public class ValidateStatsChangeOnNewMatchTest extends CommonBaseTest {
 			String validPassword) {
 		log.info("Starting of verifyWinsStatsChange method");
 
+		validateStats.hardWait(3);
 		String winsCount = validateStats.getWinsCountLabelText();
 		String pendingCount = validateStats.getPendingCountLabelText();
 
@@ -153,6 +155,7 @@ public class ValidateStatsChangeOnNewMatchTest extends CommonBaseTest {
 			String validPassword) {
 		log.info("Starting of verifyLossesStatsChange method");
 
+		validateStats.hardWait(3);
 		String lossesCount = validateStats.getLossesCountLabelText();
 		String pendingCount = validateStats.getPendingCountLabelText();
 
@@ -227,6 +230,7 @@ public class ValidateStatsChangeOnNewMatchTest extends CommonBaseTest {
 	public void verifyWinsCheckBoxFunctionality() {
 		log.info("Starting of verifyWinsCheckBoxFunctionality method");
 
+		validateStats.hardWait(3);
 		validateStats.clickOnWinsCheckBox();
 
 		validateStats.hardWait(2);
@@ -247,6 +251,7 @@ public class ValidateStatsChangeOnNewMatchTest extends CommonBaseTest {
 	@Story("Test case #6, Verify losses check box functionality")
 	public void verifyLossesCheckBoxFunctionality() {
 		log.info("Starting of verifyLossesCheckBoxFunctionality method");
+		validateStats.hardWait(3);
 
 		validateStats.clickOnLossesCheckBox();
 
@@ -269,7 +274,7 @@ public class ValidateStatsChangeOnNewMatchTest extends CommonBaseTest {
 	public void verifyPendingCheckBoxFunctionality() {
 		log.info("Starting of verifyPendingCheckBoxFunctionality method");
 
-		validateStats.hardWait(2);
+		validateStats.hardWait(3);
 		validateStats.clickOnPendingCheckBox();
 
 		validateStats.hardWait(2);
