@@ -198,7 +198,7 @@ public class PlayerProfileTest extends CommonBaseTest {
 		logger.info("Starting of verifyBirthDateWithInvalidDateFormat method");
 
 		editProfilePage.scrollDown(-650);
-		editProfilePage.setBirthDate(testDataProp.getProperty("invalid.data.of.birth"));
+		editProfilePage.setBirthDate(/* testDataProp.getProperty("invalid.data.of.birth") */);
 
 		String birthdateValidation = editProfilePage.getBirthDateValidationText();
 		Assert.assertEquals(birthdateValidation,

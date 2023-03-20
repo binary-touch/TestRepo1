@@ -98,69 +98,11 @@ public class SignupTest extends DUPRBaseAutomationTest {
 
 		logger.info("Ending of verifySignUpFunctionalityWithInvalidLocation method");
 	}
-
-	//@Test(priority = 2, description = "Verify Sign up functionality with invalid birth date format")
-	@Description("Test case #2, Verify Sign up functionality with invalid birth date format")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #2, Verify Sign up functionality with invalid birth date format")
-	public void verifySignUpWithInvalidBirthDateFormat() {
-		logger.info("Starting of verifySignUpWithInvalidBirthDateFormat method");
-
-		driver.navigate().refresh();
-
-		String playerDetailsText = this.signupPage.getPlayerDetailsText();
-		Assert.assertEquals(playerDetailsText, expectedAssertionsProp.getProperty("player.details.label"));
-
-		Assert.assertFalse(signupPage.isFinishButtonEnabled());
-
-		signupPage.setBirthDate();
-		signupPage.hardWait(3);
-
-		String birthDateValidationMessage = this.signupPage.getBirthDateValidationMessage();
-		Assert.assertEquals(birthDateValidationMessage,
-				expectedAssertionsProp.getProperty("incorrect.date.format.validation"));
-
-		logger.info("Ending of verifySignUpWithInvalidBirthDateFormat method");
-	}
-
-	//@Test(priority = 3, description = "Verify birth date functionality with current date")
-	@Description("Test case #3, Verify birth date functionality with current date")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #3, Verify birth date functionality with current date")
-	public void verifyBirthdateWithCurrentDate() {
-		logger.info("Starting of verifyBirthdateWithCurrentDate method");
-
-		driver.navigate().refresh();
-		signupPage.setDateOfBirthWithCurrentYear();
-		signupPage.hardWait(3);
-
-		Assert.assertEquals(signupPage.getDateOfBirthValidationMessage(),
-				expectedAssertionsProp.getProperty("minimum.age.two.years.validation"));
-
-		logger.info("Ending of verifyBirthdateWithCurrentDate method");
-	}
-
-	//@Test(priority = 4, description = "Verify birth date functionality with previous year date")
-	@Description("Test case #4, Verify birth date functionality with previous year date")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #4, Verify birth date functionality with previous year date")
-	public void verifyBirthdateWithPreviousYearDate() {
-		logger.info("Starting of verifyBirthdateWithPreviousYearDate method");
-
-		driver.navigate().refresh();
-		signupPage.setDateOfBirthWithPreviousYear();
-		signupPage.hardWait(3);
-
-		Assert.assertEquals(signupPage.getDateOfBirthValidationMessage(),
-				expectedAssertionsProp.getProperty("minimum.age.two.years.validation"));
-
-		logger.info("Ending of verifyBirthdateWithPreviousYearDate method");
-	}
-
-	@Test(priority = 5, description = "Verify birth date functionality with before two years date")
-	@Description("Test case #5,Verify birth date functionality with before two years date")
+	
+	@Test(priority = 2, description = "Verify birth date functionality with before two years date")
+	@Description("Test case #2, Verify birth date functionality with before two years date")
 	@Severity(SeverityLevel.BLOCKER)
-	@Story("Test case #5,Verify birth date functionality with before two years date")
+	@Story("Test case #2, Verify birth date functionality with before two years date")
 	public void setDateOfBirthWithBeforeTwoYear() {
 		logger.info("Starting of verifyBirthdateWithBeforeTwoYearDate method");
 
@@ -172,10 +114,10 @@ public class SignupTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyBirthdateWithBeforeTwoYearDate method");
 	}
 
-	@Test(priority = 6, description = "Verify Sign up funtionality with valid details")
-	@Description("Test case #6, Verify Sign up funtionality with valid details")
+	@Test(priority = 3, description = "Verify Sign up funtionality with valid details")
+	@Description("Test case #3, Verify Sign up funtionality with valid details")
 	@Severity(SeverityLevel.BLOCKER)
-	@Story("Test case #6, Verify Sign up funtionality with valid details")
+	@Story("Test case #3, Verify Sign up funtionality with valid details")
 	public void verifySignupFunctionalityWithValidDetails() {
 		logger.info("Starting of verifySignupFunctionalityWithValidDetails method");
 
@@ -230,10 +172,10 @@ public class SignupTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifySignupFunctionalityWithValidDetails method");
 	}
 
-	@Test(priority = 7, description = "Verify Resend link button functionality by clearing email text field data")
-	@Description("Test case #7, Verify Resend link button functionality by clearing email text field data")
+	@Test(priority = 4, description = "Verify Resend link button functionality by clearing email text field data")
+	@Description("Test case #4, Verify Resend link button functionality by clearing email text field data")
 	@Severity(SeverityLevel.BLOCKER)
-	@Story("Test case #7, Verify Resend link button functionality by clearing email text field data")
+	@Story("Test case #4, Verify Resend link button functionality by clearing email text field data")
 	public void verifyResendLinkButtonWithoutEmail() {
 		logger.info("Starting of verifyResendLinkButtonWithoutEmail method");
 
@@ -257,10 +199,10 @@ public class SignupTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyResendLinkButtonWithoutEmail method");
 	}
 
-	@Test(priority = 8, description = "Verify Email address in edit profile page")
-	@Description("Test case #8, Verify Email address in edit profile page")
+	@Test(priority = 5, description = "Verify Email address in edit profile page")
+	@Description("Test case #5, Verify Email address in edit profile page")
 	@Severity(SeverityLevel.BLOCKER)
-	@Story("Test case #8, Verify Email address in edit profile page")
+	@Story("Test case #5, Verify Email address in edit profile page")
 	public void verifyEmailAddress() {
 		logger.info("Starting of verifyEmailAddress method");
 
