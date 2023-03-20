@@ -222,7 +222,7 @@ public class ValidateRecentlyAddedMatchTest extends CommonBaseTest {
 		validateRecentlyAddedMatchPage.clickOnPendingButton();
 		validateRecentlyAddedMatchPage.clickOnSinglesButton();
 
-		validateRecentlyAddedMatchPage.hardWait(5);
+		validateRecentlyAddedMatchPage.hardWait(8);
 
 		Assert.assertTrue(validateRecentlyAddedMatchPage.isDeleteORValidateButtonsDisplayed());
 		Assert.assertTrue(validateRecentlyAddedMatchPage.isPlayerNamesButtonsDisplayed());

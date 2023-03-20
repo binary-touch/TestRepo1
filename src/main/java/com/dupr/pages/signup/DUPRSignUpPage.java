@@ -327,9 +327,9 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 
 		clickOnWebElement(txtBoxBirthDate);
 		int date = this.getCurrentDate();
-
+		this.hardWait(3);
 		clickUsingActionsClass(ddYear);
-		this.implicitWait();
+		this.hardWait(3);
 		clickOnSelectedYear(3);
 		this.clickOnCurrentDate(date);
 
@@ -736,9 +736,17 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 
 		clickOnWebElement(txtBoxBirthDate);
 		int date = this.getCurrentDate();
-
-		clickUsingActionsClass(ddYear);
+		
+		try {
+			hardWait(2);
+			clickUsingActionsClass(ddYear);
+		} catch (Exception e) {
+			hardWait(2);
+			clickOnWebElement(ddYear);
+		}
+		hardWait(2);
 		clickOnSelectedYear(12);
+		hardWait(2);
 		this.clickOnCurrentDate(date);
 
 		logger.info("Ending of setDateOfBirthWithBelow12Years method");

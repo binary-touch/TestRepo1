@@ -33,7 +33,7 @@ public abstract class DUPRBaseAutomationTest extends B2BBaseAutomationTest {
 		log.debug("Site URL :{} " + loginURL);
 	}
 
-	protected void siteLogin(String siteURL, String email, String password, WebDriver webdriver) throws Exception {
+protected void siteLogin(String siteURL, String email, String password, WebDriver webdriver) throws Exception {
 
 		this.driver = webdriver;
 		goToSite(webdriver);

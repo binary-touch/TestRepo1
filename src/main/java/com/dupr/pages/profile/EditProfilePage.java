@@ -2,14 +2,13 @@ package com.dupr.pages.profile;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -67,7 +66,8 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h4[@id='customized-dialog-title']")
 	private WebElement lblUpdateProfile;
 
-	//@B2BFindBy(xpath = "//h6[text()='Please enter your street address or city name']")
+	// @B2BFindBy(xpath = "//h6[text()='Please enter your street address or city
+	// name']")
 	@B2BFindBy(xpath = "//h6[text()='Invalid parameters']")
 	private WebElement lblInvalidAddressValidation;
 
@@ -88,6 +88,12 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//h5[text()='Birth Date']/../following-sibling::div//input")
 	private WebElement txtBoxBirthDate;
+
+	@B2BFindBy(xpath = "//button[@aria-label='calendar view is open, switch to year view']")
+	private WebElement ddYear;
+	
+	@B2BFindBy(xpath = "//button[@title='Next month']")
+	private WebElement iconNextMonth;
 
 	@B2BFindBy(xpath = "//h5[text()='Birth Date']/../following-sibling::div//p")
 	private WebElement txtValidationBirthDate;
@@ -119,7 +125,7 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h5[contains(text(),'Phone')]/../following-sibling::div//input[contains(@class,'MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart')]")
 	private WebElement txtBoxPhoneNumber;
 
-	@B2BFindBy(xpath = "//h5[text()='Phone']/../following-sibling::div//div[contains(@class,'MuiInputAdornment-positionStart')]//div[@class='MuiBox-root css-0']")
+	@B2BFindBy(xpath = "//h5[contains(text(),'Phone')]/../following-sibling::div//div[contains(@class,'MuiInputAdornment-positionStart')]//div[@class='MuiBox-root css-0']")
 	private WebElement btnCountryCode;
 
 	@B2BFindBys(@B2BFindBy(xpath = "//div[contains(@class,'MuiPopover-root  MuiModal-root')]//ul/li/div/following-sibling::span[@class='country-name']"))
@@ -234,6 +240,20 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 		log.info("Starting of isProfileTabContains method");
 
 		boolean isProfileTabContains = false;
+
+		System.out.println(isDisplayed(txtBoxFirstName));
+		System.out.println(isDisplayed(txtBoxAddress));
+		System.out.println(isDisplayed(txtBoxBirthDate));
+		System.out.println(isDisplayed(txtBoxPhoneNumber));
+		System.out.println(isDisplayed(btnCountryCode));
+		System.out.println(isDisplayed(rdoDoubles));
+		System.out.println(isDisplayed(txtBoxDuprId));
+		System.out.println(isDisplayed(ddDominantHand));
+		System.out.println(isDisplayed(txtBoxPaddleBrand));
+		System.out.println(isDisplayed(txtBoxShoeBrand));
+		System.out.println(isDisplayed(txtBoxApparelBrand));
+		System.out.println(isDisplayed(txtBoxPrefferedBall));
+		System.out.println(isDisplayed(ddPreferredSide));
 
 		if (isDisplayed(txtBoxFirstName) && isDisplayed(txtBoxAddress) && isDisplayed(txtBoxBirthDate)
 				&& isDisplayed(txtBoxPhoneNumber) && isDisplayed(btnCountryCode) && isDisplayed(rdoDoubles)
@@ -363,12 +383,21 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 		return getText(txtValidationCongratulations);
 	}
 
-	public void setBirthDate(String birthDate) {
+	public void setBirthDate() {
 		log.info("Starting of setBirthDate method");
 
 		clickOnWebElement(txtBoxBirthDate);
-		this.txtBoxBirthDate.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
-		sendKeys(txtBoxBirthDate, birthDate);
+		hardWait(2);
+		clickUsingActionsClass(ddYear);
+		hardWait(2);
+		clickOnSelectedYear(22);
+		
+		hardWait(2);
+		clickUsingActionsClass(iconNextMonth);
+		clickUsingActionsClass(iconNextMonth);
+		
+		hardWait(2);
+		driver.findElement(By.xpath("//button[text()='3']"));
 
 		log.info("Ending of setBirthDate method");
 	}
@@ -380,17 +409,28 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 		return getText(txtValidationBirthDate);
 	}
 
+	public void clickOnCurrentYear() {
+
+		int currentYearValue = this.getCurrentYear();
+		System.out.println(currentYearValue);
+
+		try {
+			clickOnElementUsingActionClass(driver.findElement(By.xpath("//button[text()='" + currentYearValue + "']")));
+		} catch (Exception e) {
+			driver.findElement(By.xpath("//button[text()='" + currentYearValue + "']")).click();
+		}
+	}
+
 	public void setCurrentDateAsBirthDate() {
 		log.info("Starting of setCurrentDateAsBirthDate method");
 
-		LocalDate date = LocalDate.now();
-		DateTimeFormatter formatters = DateTimeFormatter.ofPattern("MM/dd/YYYY");
-
-		String strDate = date.format(formatters);
 		clickOnWebElement(txtBoxBirthDate);
-
-		this.txtBoxBirthDate.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
-		sendKeys(txtBoxBirthDate, strDate);
+		int date = this.getCurrentDate();
+		this.hardWait(3);
+		clickUsingActionsClass(ddYear);
+		this.hardWait(3);
+		clickOnCurrentYear();
+		this.clickOnCurrentDate(date);
 
 		log.info("Ending of setCurrentDateAsBirthDate method");
 	}
@@ -417,17 +457,20 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 	public void setBirthDateMinimumAge() {
 		log.info("Starting of setBirthDateMinimumAge method");
 
-		Calendar cal = Calendar.getInstance();
-		cal.add(Calendar.YEAR, -3);
-
-		Date systemDate = cal.getTime();
-		DateFormat formatDate = new SimpleDateFormat("MM/dd/YYYY");
-
-		String dateOfSystem = formatDate.format(systemDate);
 		clickOnWebElement(txtBoxBirthDate);
+		int date = this.getCurrentDate();
 
-		this.txtBoxBirthDate.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
-		sendKeys(txtBoxBirthDate, dateOfSystem);
+		try {
+			hardWait(2);
+			clickUsingActionsClass(ddYear);
+		} catch (Exception e) {
+			hardWait(2);
+			clickOnWebElement(ddYear);
+		}
+		hardWait(2);
+		clickOnSelectedYear(3);
+		hardWait(2);
+		this.clickOnCurrentDate(date);
 
 		log.info("Ending of setBirthDateMinimumAge method");
 	}
@@ -478,7 +521,7 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 		log.info("Starting of clickOnGenderDropDown method");
 
 		clickOnElementUsingActionClass(ddGender);
-		
+
 		log.info("Ending of clickOnGenderDropDown method");
 	}
 
@@ -545,9 +588,9 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 		log.info("Starting of clearPhoneNumber method");
 
 		clickOnWebElement(txtBoxPhoneNumber);
-		
+
 		int numberLength = txtBoxPhoneNumber.getAttribute("value").length();
-		
+
 		log.debug("Phone number length: " + numberLength);
 
 		try {
@@ -555,7 +598,7 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 				hardWait(5);
 				this.txtBoxPhoneNumber.sendKeys(Keys.BACK_SPACE);
 			}
-		} catch (Exception e) {		
+		} catch (Exception e) {
 			for (int i = numberLength; i > 0;) {
 				hardWait(5);
 				this.txtBoxPhoneNumber.sendKeys(Keys.BACK_SPACE);
@@ -569,7 +612,7 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 
 		clickOnWebElement(txtBoxPhoneNumber);
 		hardWait(2);
-		this.txtBoxPhoneNumber.sendKeys(phoneNumber+randomNumber(8));
+		this.txtBoxPhoneNumber.sendKeys(phoneNumber + randomNumber(8));
 
 		log.info("Ending of setValidPhoneNumber method");
 	}

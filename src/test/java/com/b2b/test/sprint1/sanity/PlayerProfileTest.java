@@ -71,6 +71,7 @@ public class PlayerProfileTest extends CommonBaseTest {
 	public void verifyFieldsUnderProfileTab() {
 		logger.info("Starting of verifyFieldsUnderProfileTab method");
 
+		editProfilePage.hardWait(3);
 		Assert.assertTrue(editProfilePage.isProfileTabContains());
 
 		logger.info("Ending of verifyFieldsUnderProfileTab method");
@@ -146,10 +147,10 @@ public class PlayerProfileTest extends CommonBaseTest {
 		logger.info("Ending of verifyBirthDateWithMinimumAge method");
 	}
 
-	@Test(priority = 7, description = "Verify full name ,address and birth date fields with valid data")
-	@Description("Test case #7, Verify full name ,address and birth date fields with valid data")
+	@Test(priority = 7, description = "Verify full name, address and birth date fields with valid data")
+	@Description("Test case #7, Verify full name, address and birth date fields with valid data")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #7, Verify full name ,address and birth date fields with valid data")
+	@Story("Test case #7, Verify full name, address and birth date fields with valid data")
 	public void verifyFieldsWithValidData() {
 		logger.info("Starting of verifyFieldsWithValidData method");
 
@@ -157,8 +158,9 @@ public class PlayerProfileTest extends CommonBaseTest {
 		editProfilePage.setFullName(testDataProp.getProperty("player.name"));
 		editProfilePage.setAddress(testDataProp.getProperty("location.city.name"),
 				testDataProp.getProperty("city.state.country.address"));
-		editProfilePage.setBirthDate(testDataProp.getProperty("date.of.birth"));
+		editProfilePage.setBirthDate();
 		editProfilePage.clickOnSaveButton();
+		editProfilePage.hardWait(2);
 
 		Assert.assertEquals(editProfilePage.getCongratulationsLabel(),
 				expectedAssertionsProp.getProperty("success.message.congratulation"));
@@ -196,6 +198,7 @@ public class PlayerProfileTest extends CommonBaseTest {
 
 		Assert.assertTrue(editProfilePage.isSaveEnabled());
 		editProfilePage.clickOnSaveButton();
+		editProfilePage.hardWait(2);
 		editProfilePage.clickOnOkButton();
 
 		logger.info("Ending of verifyGenderDropdown method");
@@ -209,6 +212,7 @@ public class PlayerProfileTest extends CommonBaseTest {
 		logger.info("Starting of verifyPhoneNumberWithValidPhoneNumber method");
 
 		editProfilePage.scrollDown(-400);
+		editProfilePage.hardWait(3);
 		editProfilePage.clickOnCountryCodePhoneNumber(testDataProp.getProperty("country.name.for.phone.number"));
 		editProfilePage.hardWait(3);
 		editProfilePage.clearPhoneNumber();

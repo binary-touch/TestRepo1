@@ -20,6 +20,7 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
+
 @Epic("DUPR App")
 @Feature("Add Club Match Sanity")
 public class AddClubMatchTest extends CommonBaseTest {
@@ -81,7 +82,8 @@ public class AddClubMatchTest extends CommonBaseTest {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}clubLogoPage.hardWait(3);
+		}
+		clubLogoPage.hardWait(5);
 
 		addClubMatchPage.clickOnAddAMatchButton();
 		addAMatchPage.setLocationInDoubles(testDataProp.getProperty("location.city.name"));
@@ -97,7 +99,8 @@ public class AddClubMatchTest extends CommonBaseTest {
 	public void verifyAddClubMatchFunctionalityForSinglesBySelectingAddYourselfCheckbox() {
 		logger.info("Starting of verifyAddClubMatchFunctionalityForSinglesBySelectingAddYourselfCheckbox method");
 
-		clubLogoPage.hardWait(3);addClubMatchPage.clickOnAddYourselfAsPlayerCheckbox();
+		clubLogoPage.hardWait(3);
+		addClubMatchPage.clickOnAddYourselfAsPlayerCheckbox();
 		Assert.assertTrue(addClubMatchPage.isDirectorNameDisplayedItSelf());
 
 		addAMatchPage.clickOnSinglesButton();
@@ -132,7 +135,8 @@ public class AddClubMatchTest extends CommonBaseTest {
 	public void verifyAddClubMatchFunctionalityForDoublesBySelectingAddYourselfCheckbox() {
 		logger.info("Starting of verifyAddClubMatchFunctionalityForDoublesBySelectingAddYourselfCheckbox method");
 
-		clubLogoPage.hardWait(3);addClubMatchPage.clickOnAddAMatchButton();
+		clubLogoPage.hardWait(3);
+		addClubMatchPage.clickOnAddAMatchButton();
 		addAMatchPage.setLocationInDoubles(testDataProp.getProperty("location.city.name"));
 		addAMatchPage.setEventName(testDataProp.getProperty("event.name.in.doubles"));
 
@@ -181,6 +185,7 @@ public class AddClubMatchTest extends CommonBaseTest {
 		logger.info(
 				"Starting of verifyAddClubMatchFunctionalityForSinglesByWithOutSelectingAddYourselfCheckbox method");
 
+		clubLogoPage.hardWait(3);
 		addClubMatchPage.clickOnAddAMatchButton();
 		addAMatchPage.setLocationInDoubles(testDataProp.getProperty("location.city.name"));
 		addAMatchPage.setEventName(testDataProp.getProperty("event.name.in.doubles"));
@@ -222,6 +227,7 @@ public class AddClubMatchTest extends CommonBaseTest {
 		logger.info(
 				"Starting of verifyAddClubMatchFunctionalityForDoublesByWithOutSelectingAddYourselfCheckbox method");
 
+		clubLogoPage.hardWait(3);
 		addClubMatchPage.clickOnAddAMatchButton();
 		addAMatchPage.setLocationInDoubles(testDataProp.getProperty("location.city.name"));
 		addAMatchPage.setEventName(testDataProp.getProperty("event.name.in.doubles"));
@@ -272,6 +278,7 @@ public class AddClubMatchTest extends CommonBaseTest {
 	public void validateClubMatchFunctionalityInMatchesTab() {
 		logger.info("Starting of validateClubMatchFunctionalityInMatchesTab method");
 
+		clubLogoPage.hardWait(3);
 		addClubMatchPage.clickOnMatchesButton();
 
 		logger.info("Ending of validateClubMatchFunctionalityInMatchesTab method");
@@ -284,6 +291,7 @@ public class AddClubMatchTest extends CommonBaseTest {
 	public void validateClubMatchSortFunctionalityInMatchesTab() {
 		logger.info("Starting of validateClubMatchSortFunctionalityInMatchesTab method");
 
+		clubLogoPage.hardWait(3);
 		addClubMatchPage.clickOnMatchesButton();
 		addClubMatchPage.clickOnSortButton();
 		Assert.assertTrue(addClubMatchPage.isSortFilterContains());
@@ -301,6 +309,7 @@ public class AddClubMatchTest extends CommonBaseTest {
 	public void validateClubMatchSinglesFunctionalityInMatchesTab() {
 		logger.info("Starting of validateClubMatchSinglesFunctionalityInMatchesTab method");
 
+		clubLogoPage.hardWait(3);
 		addClubMatchPage.clickOnSinglesButton();
 		Assert.assertTrue(addClubMatchPage.isRightMarkSinglesDisplayed());
 
@@ -314,6 +323,7 @@ public class AddClubMatchTest extends CommonBaseTest {
 	public void validateClubMatchDoublesFunctionalityInMatchesTab() {
 		logger.info("Starting of validateClubMatchDoublesFunctionalityInMatchesTab method");
 
+		clubLogoPage.hardWait(3);
 		addClubMatchPage.clickOnSinglesButton();
 		addClubMatchPage.clickOnDoublesButton();
 
@@ -329,6 +339,7 @@ public class AddClubMatchTest extends CommonBaseTest {
 	public void validateClubMatchClearFiltersFunctionalityInMatchesTab() {
 		logger.info("Starting of validateClubMatchClearFiltersFunctionalityInMatchesTab method");
 
+		clubLogoPage.hardWait(3);
 		addClubMatchPage.clickOnSinglesButton();
 		Assert.assertTrue(addClubMatchPage.isRightMarkSinglesDisplayed());
 		Assert.assertTrue(addClubMatchPage.isRightMarkDoublesDisplayed());
