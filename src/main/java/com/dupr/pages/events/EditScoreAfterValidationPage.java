@@ -64,8 +64,6 @@ public class EditScoreAfterValidationPage extends DUPRBaseAutomationPage {
 	
 	@B2BFindBy(xpath = "//button[text()='OK']")
 	private WebElement btnOK;
-	
-
 
 	public EditScoreAfterValidationPage(WebDriver driver) {
 		super(driver);
@@ -75,6 +73,7 @@ public class EditScoreAfterValidationPage extends DUPRBaseAutomationPage {
 	public String getFirstGameScoreText() {
 		log.info("Starting of getFirstGameScoreText method");
 
+		this.hardWait(3);
 		String FirstGameScore = lblFirstGameScore.getAttribute("value");
 
 		log.info("Ending of getFirstGameScoreText method");

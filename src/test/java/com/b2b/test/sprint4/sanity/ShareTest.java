@@ -21,7 +21,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 
 @Epic(value = "Home")
-@Feature(value = "Share")
+@Feature(value = "Share Sanity")
 public class ShareTest extends DUPRBaseAutomationTest {
 
 	private static final Logger logger = Logger.getLogger(ShareTest.class.getName());

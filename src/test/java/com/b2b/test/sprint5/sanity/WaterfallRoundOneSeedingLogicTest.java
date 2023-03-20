@@ -14,10 +14,13 @@ import com.dupr.pages.events.WaterfallRoundOneSeedingLogicPage;
 import com.dupr.test.CommonBaseTest;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
-
+@Epic(value = "Events")
+@Feature(value = "Waterfall Round One Seeding Logic Sanity")
 public class WaterfallRoundOneSeedingLogicTest extends CommonBaseTest {
 
 	private static final Logger logger = Logger.getLogger(SeedMatchesWaterFallTest.class.getName());

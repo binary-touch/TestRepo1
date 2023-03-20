@@ -114,12 +114,22 @@ public class PaidEventPage extends DUPRBaseAutomationPage {
 				this.txtBoxSearch.sendKeys(Keys.ENTER);
 
 				if (lblSimbaClubName.isDisplayed() == true) {
-					elementClick(lblSimbaClubName);
+					try {
+						clickUsingActionsClass(lblSimbaClubName);
+					} catch (Exception e) {
+						clickOnWebElement(lblSimbaClubName);
+					}
 				} else {
-					this.txtBoxSearch.sendKeys(Keys.BACK_SPACE);
-					sendKeys(txtBoxSearch, "a");
+					driver.navigate().refresh();
+					hardWait(3);
+					this.txtBoxSearch.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
+					sendKeys(txtBoxSearch, "si");
 					this.waitForElementToBeVisible(lblSimbaClubName);
-					elementClick(lblSimbaClubName);
+					try {
+						clickUsingActionsClass(lblSimbaClubName);
+					} catch (Exception e) {
+						clickOnWebElement(lblSimbaClubName);
+					}
 				}
 			}
 		} catch (Exception e) {

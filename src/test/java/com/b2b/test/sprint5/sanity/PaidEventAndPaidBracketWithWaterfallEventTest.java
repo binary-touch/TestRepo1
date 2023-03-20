@@ -145,11 +145,11 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 	}
 
 	@Parameters({ "devSiteURL", "validEmail", "validPassword" })
-	@Test(priority = 4, description = "Verify Paid Event Registration functionality with WateFall Event Type in Players View", groups = "sanity")
-	@Description("Test case #4, Verify Paid Event Registration functionality with WateFall Event Type in Players View")
+	@Test(priority = 4, description = "Verify Paid Event Registration functionality with WaterFall Event Type in Players View", groups = "sanity")
+	@Description("Test case #4, Verify Paid Event Registration functionality with WaterFall Event Type in Players View")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #4, Verify Paid Event Registration functionality with WateFall Event Type in Players View")
-	public void verifyPaidEventRegistrationFunctionalityWithWateFallEventTypeInPlayersView(String devSiteURL,
+	@Story("Test case #4, Verify Paid Event Registration functionality with WaterFall Event Type in Players View")
+	public void verifyPaidEventRegistrationFunctionalityWithWaterFallEventTypeInPlayersView(String devSiteURL,
 			String validEmail, String validPassword) throws Exception {
 		logger.info("Starting of verifyPaidEventRegistrationFunctionalityWithWateFallEventTypeInPlayersView method");
 
@@ -171,7 +171,7 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 		super.verifyRegisterFunctionalityWithNonMemberInPlayerAccount();
 		paidEventPage.clickOnContinuePaymentButton();
 
-		logger.info("Ending of verifyPaidEventRegistrationFunctionalityWithWateFallEventTypeInPlayersView method");
+		logger.info("Ending of verifyPaidEventRegistrationFunctionalityWithWaterFallEventTypeInPlayersView method");
 	}
 
 	@Test(priority = 5, description = "Verify Back Button functionality in Payment Page", groups = "sanity")
@@ -419,8 +419,7 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 	@Story("Test case #13, Verify Accept/Decline Paid Event with Partner Functionality in Director/Organizer View")
 	public void verifyAcceptOrDeclinePaidEventWithPartnerFunctionalityInDirectorOrOrganizerView(String browser,
 			String devSiteURL, String directorEmail, String directorPassword) throws Exception {
-		logger.info(
-				"Starting of verifyAcceptOrDeclinePaidEventWithPartnerFunctionalityInDirectorOrOrganizerView method");
+		logger.info("Starting of verifyAcceptOrDeclinePaidEventWithPartnerFunctionalityInDirectorOrOrganizerView method");
 
 		paidEventPage.hardWait(5);
 		userDashboardPage.clickOnOpenSettingsMenu();

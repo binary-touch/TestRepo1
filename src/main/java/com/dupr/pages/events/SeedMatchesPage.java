@@ -64,7 +64,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//button[@aria-label='scroll-left']")
 	private WebElement iconArrowDisabled;
 
-	@B2BFindBy(xpath = "//h6[contains(text(),'Click â€œCreate Matchesâ€� to')]")
+	@B2BFindBy(xpath = "//h6[contains(text(),'Click “Create Matches” to automatically create matches.')]")
 	private WebElement txtClick;
 
 	@B2BFindBy(xpath = "//h3[contains(text(),'Bracket')]")
@@ -386,9 +386,9 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 	public void clickOnTeamsTab() {
 		log.info("Starting of clickOnTeamsTab method");
 		try {
-			clickOnWebElement(tabTeams);
+			clickUsingActionsClass(tabTeams);
 		} catch (Exception e) {
-			elementClick(tabTeams);
+			clickOnWebElement(tabTeams);
 		}
 
 		log.info("Ending of clickOnTeamsTab method");
@@ -871,7 +871,12 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 	public void clickOnHomeMenu() {
 		log.info("Starting of clickOnHomeMenu method");
 
-		clickOnWebElement(mnuHome);
+		try {
+			clickUsingActionsClass(mnuHome);
+		} catch (Exception e) {
+			clickOnWebElement(mnuHome);
+		}
+
 		this.hardWait(3);
 
 		log.info("Ending of clickOnHomeMenu method");
@@ -931,8 +936,12 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 	public void clickOnAddScoresButton() {
 		log.info("Starting of clickOnAddScoresButton method");
+		try {
+			clickUsingActionsClass(btnAddScores);
+		} catch (Exception e) {
+			clickOnWebElement(btnAddScores);
+		}
 
-		clickOnWebElement(btnAddScores);
 		this.hardWait(3);
 
 		log.info("Ending of clickOnAddScoresButton method");

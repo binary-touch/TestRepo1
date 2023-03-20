@@ -136,7 +136,7 @@ public class ProfilePictureTest extends CommonBaseTest {
 
 		Assert.assertTrue(profilePicturePage.isProfilePicturePopupContains());
 		Assert.assertTrue(profilePicturePage.isSaveButtonDisplayed());
-		Assert.assertTrue(profilePicturePage.ispreviousUploadedImageDisplayed());
+		Assert.assertTrue(profilePicturePage.isPreviousUploadedImageDisplayed());
 		profilePicturePage.hardWait(2);
 		profilePicturePage.uploadProfilePicture(
 				BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("edit.profile.picture.path"));

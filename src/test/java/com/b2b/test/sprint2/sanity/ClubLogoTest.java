@@ -141,7 +141,7 @@ public class ClubLogoTest extends DUPRBaseAutomationTest {
 
 		Assert.assertTrue(clubLogoPage.isClubLogoPopupContains());
 		Assert.assertTrue(profilePicturePage.isSaveButtonDisplayed());
-		Assert.assertTrue(profilePicturePage.ispreviousUploadedImageDisplayed());
+		Assert.assertTrue(profilePicturePage.isPreviousUploadedImageDisplayed());
 		profilePicturePage.hardWait(2);
 		clubLogoPage.uploadProfilePicture(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("edit.club.logo.path"));
 		profilePicturePage.hardWait(3);
