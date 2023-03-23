@@ -877,6 +877,9 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 
 		playerEventRegistrationPage.clickOnClubMemberNoButton();
 		directorEventRegistrationPage.clickOnSelectYourBracketCheckbox();
+		
+		directorEventRegistrationPage.hardWait(3);
+		
 		Assert.assertTrue(directorEventRegistrationPage.isBracketCheckboxSelected());
 
 		directorEventRegistrationPage.clickOnRefundPolicyCheckbox();

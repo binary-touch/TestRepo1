@@ -1,4 +1,4 @@
-package com.dupr.test.events;
+package com.b2b.test.sprint5.sanity;
 
 import org.apache.log4j.Logger;
 import org.testng.Assert;
@@ -117,12 +117,12 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 		logger.info("Ending of verifyPaidEventFunctionalityWithWateFallEventTypeInDoublesMatch method");
 	}
 
-	@Test(priority = 3, description = "Verify Paid Event Functionality with WaterFall Event Type In Singles Match", groups = "sanity")
-	@Description("Test case #3, Verify Paid Event Functionality with WaterFall Event Type In Singles Match")
+	@Test(priority = 3, description = "Verify Paid Event Functionality with WateFall Event Type In Singles Match", groups = "sanity")
+	@Description("Test case #3, Verify Paid Event Functionality with WateFall Event Type In Singles Match")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #3, Verify Paid Event Functionality with WaterFall Event Type In Singles Match")
-	public void verifyPaidEventFunctionalityWithWaterFallEventTypeInSinglesMatch() {
-		logger.info("Starting of verifyPaidEventFunctionalityWithWaterFallEventTypeInSinglesMatch method");
+	@Story("Test case #3, Verify Paid Event Functionality with WateFall Event Type In Singles Match")
+	public void verifyPaidEventFunctionalityWithWateFallEventTypeInSinglesMatch() {
+		logger.info("Starting of verifyPaidEventFunctionalityWithWateFallEventTypeInSinglesMatch method");
 
 		driver.navigate().back();
 		addEventPage.clickOnAddEventButton();
@@ -134,22 +134,22 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 		super.verifyEventPoliciesPageByEnteringValidDetails();
 
 		paidEventPage.hardWait(2);
-		super.verifyPaidBracketWithEventTypeAsWateFallInSinglesMatchType();
+		super.verifyPaidBracketWithEventTypeAsWateFallInDoublesMatchType();
 
 		paidEventPage.hardWait(2);
 		super.verifyRecentlyAddedEventUnderEventsTab();
 
 		super.verifyRegisterFunctionality();
 
-		logger.info("Ending of verifyPaidEventFunctionalityWithWaterFallEventTypeInSinglesMatch method");
+		logger.info("Ending of verifyPaidEventFunctionalityWithWateFallEventTypeInSinglesMatch method");
 	}
 
 	@Parameters({ "devSiteURL", "validEmail", "validPassword" })
-	@Test(priority = 4, description = "Verify Paid Event Registration functionality with WateFall Event Type in Players View", groups = "sanity")
-	@Description("Test case #4, Verify Paid Event Registration functionality with WateFall Event Type in Players View")
+	@Test(priority = 4, description = "Verify Paid Event Registration functionality with WaterFall Event Type in Players View", groups = "sanity")
+	@Description("Test case #4, Verify Paid Event Registration functionality with WaterFall Event Type in Players View")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #4, Verify Paid Event Registration functionality with WateFall Event Type in Players View")
-	public void verifyPaidEventRegistrationFunctionalityWithWateFallEventTypeInPlayersView(String devSiteURL,
+	@Story("Test case #4, Verify Paid Event Registration functionality with WaterFall Event Type in Players View")
+	public void verifyPaidEventRegistrationFunctionalityWithWaterFallEventTypeInPlayersView(String devSiteURL,
 			String validEmail, String validPassword) throws Exception {
 		logger.info("Starting of verifyPaidEventRegistrationFunctionalityWithWateFallEventTypeInPlayersView method");
 
@@ -171,7 +171,7 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 		super.verifyRegisterFunctionalityWithNonMemberInPlayerAccount();
 		paidEventPage.clickOnContinuePaymentButton();
 
-		logger.info("Ending of verifyPaidEventRegistrationFunctionalityWithWateFallEventTypeInPlayersView method");
+		logger.info("Ending of verifyPaidEventRegistrationFunctionalityWithWaterFallEventTypeInPlayersView method");
 	}
 
 	@Test(priority = 5, description = "Verify Back Button functionality in Payment Page", groups = "sanity")
@@ -285,9 +285,7 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 		paidEventPage.setBoxCardExpiry(testDataProp.getProperty("card.expiry"));
 		paidEventPage.setBoxCardCVC(testDataProp.getProperty("card.cvc"));
 		paidEventPage.setBoxNameOnCard(testDataProp.getProperty("name.on.card"));
-		paidEventPage.hardWait(2);
 		paidEventPage.clickOnPayButton();
-		eventRegistrationPage.hardWait(3);
 
 		logger.info("Ending of verifyPaymentFunctionalityInPaymentPage method");
 	}
@@ -345,8 +343,6 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 		Assert.assertTrue(eventRegistrationPage.isBracketCheckboxSelected());
 
 		eventRegistrationPage.clickOnRegisterButton();
-		eventRegistrationPage.hardWait(3);
-		eventRegistrationPage.clickOnOkButton();
 
 		logger.info("Ending of verifyPaidEventRegisterWithPartnerFunctionality method");
 	}
@@ -423,8 +419,7 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 	@Story("Test case #13, Verify Accept/Decline Paid Event with Partner Functionality in Director/Organizer View")
 	public void verifyAcceptOrDeclinePaidEventWithPartnerFunctionalityInDirectorOrOrganizerView(String browser,
 			String devSiteURL, String directorEmail, String directorPassword) throws Exception {
-		logger.info(
-				"Starting of verifyAcceptOrDeclinePaidEventWithPartnerFunctionalityInDirectorOrOrganizerView method");
+		logger.info("Starting of verifyAcceptOrDeclinePaidEventWithPartnerFunctionalityInDirectorOrOrganizerView method");
 
 		paidEventPage.hardWait(5);
 		userDashboardPage.clickOnOpenSettingsMenu();

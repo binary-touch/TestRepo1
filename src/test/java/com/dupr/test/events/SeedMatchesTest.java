@@ -41,10 +41,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of initMethod in SeedAndReseedTest");
 	}
 
-	@Test(priority = 1, description = "Verify the results on Click of seed Matches", groups = "sanity")
-	@Description("Test case #1, Verify the results on Click of seed Matches")
+	@Test(priority = 1, description = "Verify Add Bracket With Round Robin Event Type", groups = "sanity")
+	@Description("Test case #1, Verify Add Bracket With Round Robin Event Type")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #1, Verify the results on Click of seed Matches")
+	@Story("Test case #1, Verify Add Bracket With Round Robin Event Type")
 	public void verifyAddBracketWithRoundRobinEventType() {
 		logger.info("Starting of verifyAddBracketWithRoundRobinEventType method");
 
@@ -62,10 +62,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of verifyAddBracketWithRoundRobinEventType method");
 	}
 
-	@Test(priority = 2, description = "Verify registration for the event", groups = "sanity")
-	@Description("Test case #2, Verify registration for the event")
+	@Test(priority = 2, description = "Verify Full Registration Functionality For An Event", groups = "sanity")
+	@Description("Test case #2, Verify Full Registration Functionality For An Event")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #2, Verify registration for the event")
+	@Story("Test case #2, Verify Full Registration Functionality For An Event")
 	public void verifyRegistrationFunctionalityForAnEvent() {
 		logger.info("Starting of verifyRegistrationFunctionalityForAnEvent method");
 
@@ -87,10 +87,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of verifyRegistrationFunctionalityForAnEvent method");
 	}
 
-	@Test(priority = 3, description = "Verify Adding Participants", groups = "sanity")
-	@Description("Test case #3, Verify Adding Participants")
+	@Test(priority = 3, description = "Verify Adding Participants Functionality", groups = "sanity")
+	@Description("Test case #3, Verify Adding Participants Functionality")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #3, Verify Adding Participants")
+	@Story("Test case #3, Verify Adding Participants Functionality")
 	public void verifyAddingParticipantsFunctionality() {
 		logger.info("Starting of verifyAddingParticipantsFunctionality method");
 
@@ -100,10 +100,10 @@ public class SeedMatchesTest extends CommonBaseTest {
 		logger.info("Ending of verifyAddingParticipantsFunctionality method");
 	}
 
-	@Test(priority = 4, description = "Verify creating teams", groups = "sanity")
-	@Description("Test case #4, Verify creating teams")
+	@Test(priority = 4, description = "Verify Creating Team For An Round Robin Event", groups = "sanity")
+	@Description("Test case #4, Verify Creating Team For An Round Robin Event")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #4, Verify creating teams")
+	@Story("Test case #4, Verify Creating Team For An Round Robin Event")
 	public void verifyCreatingTeamForAnRoundRobinEvent() {
 		logger.info("Starting of verifyCreatingTeamForAnRoundRobinEvent method");
 

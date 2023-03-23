@@ -1,4 +1,4 @@
-package com.dupr.test.events;
+package com.b2b.test.sprint4.sanity;
 
 import org.apache.log4j.Logger;
 import org.testng.Assert;
@@ -12,10 +12,13 @@ import com.dupr.pages.events.CombinationOfMatchTypeAndPlayerGroupPage;
 import com.dupr.test.CommonBaseTest;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
-
+@Epic(value = "Events")
+@Feature(value = "Combination Of Match Type And Player Group Sanity")
 public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 
 	private static final Logger logger = Logger.getLogger(CombinationOfMatchTypeAndPlayerGroupTest.class.getName());
@@ -35,10 +38,10 @@ public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 		logger.info("Ending of initMethod in CombinationOfMatchTypeAndPlayerGroupTest");
 	}
 
-	@Test(priority = 1, description = "verifyBracketWithMatchTypeSingleAndMixedPlayerGroup", groups = "sanity")
-	@Description("Test case #1, verify RegistVerifyBracketWithMatchTypeSingleAndMixedPlayerGroup")
+	@Test(priority = 1, description = "Verify Bracket With Match Type Single And Mixed Player Group", groups = "sanity")
+	@Description("Test case #1, Verify Bracket With Match Type Single And Mixed Player Group")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #1, verifyBracketWithMatchTypeSingleAndMixedPlayerGroup")
+	@Story("Test case #1, Verify Bracket With Match Type Single And Mixed Player Group")
 	public void verifyBracketWithMatchTypeSingleAndMixedPlayerGroup() {
 		logger.info("Starting of verifyBracketWithMatchTypeSingleAndMixedPlayerGroup method");
 
@@ -63,10 +66,10 @@ public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 		logger.info("Ending of verifyBracketWithMatchTypeSingleAndMixedPlayerGroup method");
 	}
 
-	@Test(priority = 2, description = "verifyBracketWithMatchTypeSingleAndOpenPlayerGroup", groups = "sanity")
-	@Description("Test case #2, verifyBracketWithMatchTypeSingleAndOpenPlayerGroup")
+	@Test(priority = 2, description = "Verify Bracket With Match Type Single And Open Player Group", groups = "sanity")
+	@Description("Test case #2, Verify Bracket With Match Type Single And Open Player Group")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #2, verifyBracketWithMatchTypeSingleAndOpenPlayerGroup")
+	@Story("Test case #2, Verify Bracket With Match Type Single And Open Player Group")
 	public void verifyBracketWithMatchTypeSingleAndOpenPlayerGroup() {
 		logger.info("Starting of verifyBracketWithMatchTypeSingleAndOpenPlayerGroup method");
 

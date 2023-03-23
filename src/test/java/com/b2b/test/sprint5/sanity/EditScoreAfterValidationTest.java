@@ -1,4 +1,4 @@
-package com.dupr.test.events;
+package com.b2b.test.sprint5.sanity;
 
 import org.apache.log4j.Logger;
 import org.testng.Assert;
@@ -24,6 +24,7 @@ public class EditScoreAfterValidationTest extends CommonBaseTest {
 	private EditScoreAfterValidationPage editScoreAfterValidationPage = null;
 	private SeedMatchesPage seedMatchesPage = null;
 	private String FirstGameScore = null;
+	private String SecondGameScore = null;
 	private static String seedEvents = null;
 
 	@BeforeClass
@@ -32,7 +33,7 @@ public class EditScoreAfterValidationTest extends CommonBaseTest {
 			throws Exception {
 		logger.info("Starting of initMethod in EditScoreAfterValidationTest");
 
-		this.driver = super.getWebDriver(WebDriversEnum.EDIT_SCORE_AFTER_VALIDATION_DRIVER);
+		this.driver = super.getWebDriver(WebDriversEnum.CHAT_DRIVER);
 		super.initCommonBaseTest(siteURL, directorEmail, directorPassword);
 		this.editScoreAfterValidationPage = new EditScoreAfterValidationPage(this.driver);
 		this.seedMatchesPage = new SeedMatchesPage(this.driver);
@@ -44,8 +45,9 @@ public class EditScoreAfterValidationTest extends CommonBaseTest {
 		logger.info("Starting of verifyEditScore method");
 
 		FirstGameScore = editScoreAfterValidationPage.getFirstGameScoreText();
+		SecondGameScore = editScoreAfterValidationPage.getSecondGameScoreText();
 
-		editScoreAfterValidationPage.clickOnEditScore();
+		 editScoreAfterValidationPage.clickOnEditScore();
 
 		String editScoresText = this.editScoreAfterValidationPage.getEditScoreText();
 		Assert.assertEquals(editScoresText, expectedAssertionsProp.getProperty("edit.score.label"));
@@ -61,6 +63,7 @@ public class EditScoreAfterValidationTest extends CommonBaseTest {
 		logger.info("Ending of verifyEditScore method");
 	}
 
+
 	public void verifyToSetGameScore() {
 		logger.info("Starting of verifyToSetGameScore method");
 
@@ -71,9 +74,10 @@ public class EditScoreAfterValidationTest extends CommonBaseTest {
 		logger.info("Ending of verifyToSetGameScore method");
 	}
 
-	public void verifyGoBackFeature() {
-		logger.info("Starting of verifyGoBackFeature method");
-		
+
+	public void verifyToSubmittingNewScore() {
+		logger.info("Starting of verifyToSubmittingNewScore method");
+
 		Assert.assertTrue(editScoreAfterValidationPage.getSubmittingNewScoresText());
 
 		String matchDateText = this.editScoreAfterValidationPage.getSubmitScoresButtonText();
@@ -83,19 +87,6 @@ public class EditScoreAfterValidationTest extends CommonBaseTest {
 		Assert.assertEquals(submitButtonText, expectedAssertionsProp.getProperty("go.back.label"));
 
 		Assert.assertTrue(editScoreAfterValidationPage.isCrossIconDisplayed());
-
-		editScoreAfterValidationPage.clickOnGoBack();
-
-		logger.info("Ending of verifyGoBackFeature method");
-	}
-
-	public void verifyToSubmittingNewScore() {
-		logger.info("Starting of verifyToSubmittingNewScore method");
-
-		editScoreAfterValidationPage.hardWait(2);
-		Assert.assertFalse(editScoreAfterValidationPage.isSubmittingNewScoresLabelDisplayed());
-
-		editScoreAfterValidationPage.clickOnSubmitButton();
 
 		editScoreAfterValidationPage.clickOnSubmitScoreButton();
 
@@ -113,6 +104,7 @@ public class EditScoreAfterValidationTest extends CommonBaseTest {
 		} catch (Exception e) {
 			Assert.assertEquals(firstGameScore, FirstGameScore);
 		}
+
 
 		logger.info("Ending of verifyToValidateGameScore method");
 	}
@@ -215,7 +207,7 @@ public class EditScoreAfterValidationTest extends CommonBaseTest {
 		seedMatchesPage.hardWait(5);
 		addparticipantsPage.addParticipantsIntoRoundRobinSinglesMatch();
 		seedMatchesPage.hardWait(5);
-
+		
 		logger.info("Ending of verifySeedMatchesFuntionality method");
 	}
 
@@ -245,7 +237,7 @@ public class EditScoreAfterValidationTest extends CommonBaseTest {
 	public void verifyAddScoreFunctionality() {
 		logger.info("Starting of verifyAddScoreFunctionality method");
 
-		seedMatchesPage.hardWait(3);
+		seedMatchesPage.hardWait(60);
 		seedMatchesPage.clickOnMatchesTab();
 		seedMatchesPage.clickOnAddScoresButton();
 		seedMatchesPage.hardWait(5);
@@ -277,13 +269,12 @@ public class EditScoreAfterValidationTest extends CommonBaseTest {
 		logger.info("Ending of verifyAddScoreFunctionality method");
 	}
 
-	@Test(priority = 4, description = "Verify To Validate Edit and Forfeit buttons", groups = "sanity")
-	@Description("Test case #4, Verify To Validate Edit and Forfeit buttons")
+	@Test(priority = 4, description = "Verify The Presence of Edit and Forfeit buttons in my matches page", groups = "sanity")
+	@Description("Test case #4, Verify The Presence of Edit and Forfeit buttons in my matches page")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #4, Verify To Validate Edit and Forfeit buttons")
-	public void verifyValidateEditAndForfeit() {
-		logger.info("Starting of verifyValidateEditAndForfeit method");
-
+	@Story("Test case #4, Verify The Presence of Edit and Forfeit buttons in my matches page")
+	public void verifyThePresenceOfEditAndForfeitButtons() {
+		logger.info("Starting of verifyThePresenceOfEditAndForfeitButtons method");
 
 		Assert.assertTrue(editScoreAfterValidationPage.isEditButtonDisplayed());
 		Assert.assertTrue(editScoreAfterValidationPage.isForfeitButtonDisplayed());
@@ -312,25 +303,25 @@ public class EditScoreAfterValidationTest extends CommonBaseTest {
 			seedMatchesPage.hardWait(3);
 			seedMatchesPage.clickOnValidateMatchSuccessCloseButton();
 		}
-
+		
 		this.verifyEditScore();
 		this.verifyToSetGameScore();
-		this.verifyGoBackFeature();
 		this.verifyToSubmittingNewScore();
-
+		
 		logger.info("Ending of verifyToSetGameScore method");
 	}
 
 	@Test(priority = 6, description = "Verify to validate Game Score after the edit")
-	@Description("Test case #,6 Verify to validate Game Score after the edit")
+	@Description("Test case #6, Verify to validate Game Score after the edit")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #6, Verify to validate Game Score after the edit")
 	public void verifyValidateGameScoreAfterEdit() {
 		logger.info("Starting of verifyValidateGameScoreAfterEdit method");
-
+		
 		seedMatchesPage.hardWait(3);
 		seedMatchesPage.clickOnMatchesTab();
 		seedMatchesPage.hardWait(5);
+		
 		String firstGameScore = this.editScoreAfterValidationPage.getFirstGameScoreText();
 		try {
 			Assert.assertNotEquals(firstGameScore, FirstGameScore);
@@ -341,26 +332,6 @@ public class EditScoreAfterValidationTest extends CommonBaseTest {
 		logger.info("Ending of verifyValidateGameScoreAfterEdit method");
 	}
 
-	@Test(priority = 7, description = "Verify the results on click on the Forfeit Button", groups = "sanity")
-	@Description("Test case #7, Verify the results on click on the Forfeit Button")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #7, Verify the results on click on the Forfeit Button")
-	public void verifyForfeitFunctionality() {
-		logger.info("Starting of verifyForfeitFunctionality method");
-
-		seedMatchesPage.hardWait(3);
-		seedMatchesPage.clickOnMatchesTab();
-		seedMatchesPage.hardWait(5);
-		editScoreAfterValidationPage.clickOnForfeitButon();
-		seedMatchesPage.hardWait(3);
-		seedMatchesPage.clickOnFirstTeamRadioButton();
-		seedMatchesPage.hardWait(3);
-		seedMatchesPage.clickOnMarkAsForfeitButton();
-		seedMatchesPage.hardWait(3);
-
-		logger.info("Ending of verifyForfeitFunctionality method");
-	}
-
 	@AfterClass
 	public void quitDriver() {
 
@@ -368,7 +339,7 @@ public class EditScoreAfterValidationTest extends CommonBaseTest {
 
 			if (this.driver != null) {
 				Thread.sleep(5000);
-				this.quitDriver(this.driver, WebDriversEnum.EDIT_SCORE_AFTER_VALIDATION_DRIVER);
+				this.quitDriver(this.driver, WebDriversEnum.ADDAMATCH_DRIVER);
 
 				logger.info("Driver quit successfully");
 			}

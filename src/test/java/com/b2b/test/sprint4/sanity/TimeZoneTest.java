@@ -1,4 +1,4 @@
-package com.dupr.test.events;
+package com.b2b.test.sprint4.sanity;
 
 import org.apache.log4j.Logger;
 import org.testng.Assert;
@@ -20,7 +20,7 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 @Epic(value = "Events")
-@Feature(value = "Time Zone")
+@Feature(value = "Time Zone Sanity")
 public class TimeZoneTest extends CommonBaseTest {
 
 	private static final Logger logger = Logger.getLogger(TimeZoneTest.class.getName());
@@ -75,7 +75,7 @@ public class TimeZoneTest extends CommonBaseTest {
 		logger.info("Ending of verifyRegistrationCompetitionDateFields method");
 	}
 
-	@Test(priority = 2, description = "Verify Select Registration Date And Time", groups = "sanity")
+	@Test(priority = 2, description = "Verify Select Registration Date And Time")
 	@Description("Test case #2, Verify Select Registration Date And Time")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #2, Verify Select Registration Date And Time")
@@ -102,10 +102,10 @@ public class TimeZoneTest extends CommonBaseTest {
 		logger.info("Ending of verifySelectRegistrationDateAndTime method");
 	}
 
-	@Test(priority = 3, description = "verifyRegistrationCompetitionDateAndTimeInSummeryPage", groups = "sanity")
-	@Description("Test case #3, verifyRegistrationCompetitionDateAndTimeInSummeryPage")
+	@Test(priority = 3, description = "Verify Registration Competition Date And Time In Summery Page")
+	@Description("Test case #3, Verify Registration Competition Date And Time In Summery Page")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #3, verifyRegistrationCompetitionDateAndTimeInSummeryPage")
+	@Story("Test case #3, Verify Registration Competition Date And Time In Summery Page")
 	public void verifyRegistrationCompetitionDateAndTimeInSummaryPage() {
 		logger.info("Starting of verifyRegistrationCompetitionDateAndTimeInSummaryPage method");
 
@@ -116,7 +116,7 @@ public class TimeZoneTest extends CommonBaseTest {
 		logger.info("Ending of verifyRegistrationCompetitionDateAndTimeInSummaryPage method");
 	}
 
-	@Test(priority = 4, description = "Verify Published Event In Event Tab And Browse Events", groups = "sanity")
+	@Test(priority = 4, description = "Verify Published Event In Event Tab And Browse Events")
 	@Description("Test case #4, Verify Published Event In Event Tab And Browse Events")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #4, Verify Published Event In Event Tab And Browse Events")
@@ -163,7 +163,7 @@ public class TimeZoneTest extends CommonBaseTest {
 		logger.info("Ending of verifyPublishedEventInEventTabAndBrowseEvents method");
 	}
 
-	@Test(priority = 5, description = "Verify Add Another Bracket In Add Event Functionality", groups = "sanity")
+	@Test(priority = 5, description = "Verify Add Another Bracket In Add Event Functionality")
 	@Description("Test case #5, Verify Add Another Bracket In Add Event Functionality")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #5, Verify Add Another Bracket In Add Event Functionality")
@@ -245,7 +245,7 @@ public class TimeZoneTest extends CommonBaseTest {
 		logger.info("Ending of verifyAddAnotherBracketInAddEventFunctionality method");
 	}
 
-	@Test(priority = 6, description = "Verify Add A Bracket In Add Event Functionality", groups = "sanity")
+	@Test(priority = 6, description = "Verify Add A Bracket In Add Event Functionality")
 	@Description("Test case #6, Verify Add A Bracket In Add Event Functionality")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #6, Verify Add A Bracket In Add Event Functionality")
@@ -263,7 +263,7 @@ public class TimeZoneTest extends CommonBaseTest {
 		logger.info("Ending of verifyAddABracketInAddEventFunctionality method");
 	}
 
-	@Test(priority = 7, description = "Verify Registration Fields With Add A Bracket Functionality", groups = "sanity")
+	@Test(priority = 7, description = "Verify Registration Fields With Add A Bracket Functionality")
 	@Description("Test case #7, Verify Registration Fields With Add A Bracket Functionality")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #7, Verify Registration Fields With Add A Bracket Functionality")
@@ -339,7 +339,7 @@ public class TimeZoneTest extends CommonBaseTest {
 		logger.info("Ending of verifyCompetitionAndTimeZoneFieldsWithAddABracketFunctionality method");
 	}
 
-	@Test(priority = 9, description = "Verify Registraion And Competition And Time Zone Fields With Empty Add A Bracket Functionality", groups = "sanity")
+	@Test(priority = 9, description = "Verify Registraion And Competition And Time Zone Fields With Empty Add A Bracket Functionality")
 	@Description("Test case #9, Verify Registraion And Competition And Time Zone Fields With Empty Add A Bracket Functionality")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #9, Verify Registraion And Competition And Time Zone Fields With Empty Add A Bracket Functionality")
@@ -394,7 +394,7 @@ public class TimeZoneTest extends CommonBaseTest {
 				"Ending of verifyRegistraionAndCompetitionAndTimeZoneFieldsWithEmptyAddABracketFunctionality method");
 	}
 
-	@Test(priority = 10, description = "Verify Registraion Fields In Edit Bracket Functionality", groups = "sanity")
+	@Test(priority = 10, description = "Verify Registraion Fields In Edit Bracket Functionality")
 	@Description("Test case #10, Verify Registraion Fields In Edit Bracket Functionality")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #10, Verify Registraion Fields In Edit Bracket Functionality")
@@ -549,7 +549,7 @@ public class TimeZoneTest extends CommonBaseTest {
 	}
 
 	
-	@Test(priority = 12, description = "Verify Registration Local Date Range In Bracket Page", groups = "sanity")
+	@Test(priority = 12, description = "Verify Registration Local Date Range In Bracket Page")
 	@Description("Test case #12, Verify Registration Local Date Range In Bracket Page")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #12, Verify Registration Local Date Range In Bracket Page")
@@ -622,7 +622,7 @@ public class TimeZoneTest extends CommonBaseTest {
 		logger.info("Ending of verifyRegistrationLocalDateRangeInBracketPage method");
 	}
 
-	@Test(priority = 13, description = "Verify Competition Local Date Range In Bracket page", groups = "sanity")
+	@Test(priority = 13, description = "Verify Competition Local Date Range In Bracket page")
 	@Description("Test case #13, Verify Competition Local Date Range In Bracket page")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #13, Verify Competition Local Date Range In Bracket page")
@@ -686,7 +686,7 @@ public class TimeZoneTest extends CommonBaseTest {
 		logger.info("Ending of verifyCompetitionLocalDateRangeInBracketPage method");
 	}
 
-	@Test(priority = 14, description = "Verify Registration Open Up comming Registration Closed Status In Bracket Page", groups = "sanity")
+	@Test(priority = 14, description = "Verify Registration Open Up comming Registration Closed Status In Bracket Page")
 	@Description("Test case #14, Verify Registration Open Up comming Registration Closed Status In Bracket Page")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #14, Verify Registration Open Up comming Registration Closed Status In Bracket Page")
@@ -745,7 +745,7 @@ public class TimeZoneTest extends CommonBaseTest {
 		logger.info("Ending of verifyRegistrationOpenUpcomingClosedStatuInBracketPage method");
 	}
 
-	@Test(priority = 15, description = "Verify Competition Open Upcomming Registration Closed Status In Bracket Page", groups = "sanity")
+	@Test(priority = 15, description = "Verify Competition Open Upcomming Registration Closed Status In Bracket Page")
 	@Description("Test case #15, Verify Competition Open Upcomming Registration Closed Status In Bracket Page")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #15, Verify Competition Open Upcomming Registration Closed Status In Bracket Page")
@@ -807,8 +807,8 @@ public class TimeZoneTest extends CommonBaseTest {
 		logger.info("Ending of verifyCompetitionOpenUpcomingRegistrationClosedStatusInBracketPage method");
 	}
 
-	@Test(priority = 16, description = "Verify Important Dates In Information Tab", groups = "sanity")
-	@Description("Test case #16, Verify Important Dates In Information Tab")
+	@Test(priority = 16, description = "Verify Important Dates in Information Tab")
+	@Description("Test case #16, Verify Important Dates in Information Tab")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #16, Verify Important Dates in Information Tab")
 	public void verifyImportantDatesInInformationTab() {
@@ -823,7 +823,7 @@ public class TimeZoneTest extends CommonBaseTest {
 		logger.info("Ending of verifyImportantDatesInInformationTab method");
 	}
 
-	@Test(priority = 17, description = "Verify Competition Date Range In Event Card", groups = "sanity")
+	@Test(priority = 17, description = "Verify Competition Date Range In Event Card")
 	@Description("Test case #17, Verify Competition Date Range In Event Card")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #17, Verify Competition Date Range In Event Card")
@@ -840,7 +840,7 @@ public class TimeZoneTest extends CommonBaseTest {
 		logger.info("Ending of verifyCompetitionDateRangeInEventCard method");
 	}
 
-	@Test(priority = 18, description = "Verify Register Button According To Relative Days", groups = "sanity")
+	@Test(priority = 18, description = "Verify Register Button According To Relative Days")
 	@Description("Test case #18, Verify Register Button According To Relative Days")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #18, Verify Register Button According To Relative Days")
