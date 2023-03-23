@@ -12,7 +12,8 @@
 			<class name="com.dupr.test.ForgotPasswordTest" />
 			<class name="com.dupr.test.addamatch.AddAMatchTest" />
 			<class name="com.dupr.test.home.ValidateRecentlyAddedMatchTest" />
-			<class name="com.dupr.test.home.ValidateStatsChangeOnNewMatchTest" />
+			<class
+				name="com.dupr.test.home.ValidateStatsChangeOnNewMatchTest" />
 			<class name="com.dupr.test.home.DeleteRecentlyAddedMatchTest" />
 			<class name="com.dupr.test.players.BrowsePlayersTest" />
 			<class name="com.dupr.test.profile.PlayerProfileTest" />
@@ -80,7 +81,7 @@
 		<classes>
 			<class
 				name="com.dupr.test.events.PaidEventAndPaidBracketWithWaterfallEventTest" />
-			 <class
+			<class
 				name="com.dupr.test.events.WaterfallRoundOneSeedingLogicTest" />
 			<class name="com.dupr.test.events.EditScoreAfterValidationTest" />
 			<class name="com.dupr.test.events.SeedMatchesWaterFallTest" />

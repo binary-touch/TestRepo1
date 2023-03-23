@@ -134,7 +134,7 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 		super.verifyEventPoliciesPageByEnteringValidDetails();
 
 		paidEventPage.hardWait(2);
-		super.verifyPaidBracketWithEventTypeAsWateFallInSinglesMatchType();
+		super.verifyPaidBracketWithEventTypeAsWateFallInDoublesMatchType();
 
 		paidEventPage.hardWait(2);
 		super.verifyRecentlyAddedEventUnderEventsTab();

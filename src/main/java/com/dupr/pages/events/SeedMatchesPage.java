@@ -448,7 +448,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		this.hardWait(3);
 
 		try {
-			elementClick(btnSeedMatches);
+			clickUsingActionsClass(btnSeedMatches);
 		} catch (Exception e) {
 			clickOnWebElement(btnSeedMatches);
 		}
@@ -1555,14 +1555,20 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		String meridiem = this.getCurrentMeridiem();
 
 		this.clickOnCurrentDate(date);
+		this.clickOnCurrentTime(meridiem);
 		this.clickOnCurrentTime(hours);
 		hardWait(1);
 		this.clickUsingActionsClass(btnDefaultTimeInMinutes);
 		hardWait(2);
-		this.clickOnCurrentTime(meridiem);
-		this.clickOnElementUsingActionClass(btnOK);
+		
+		try {
+			this.clickOnElementUsingActionClass(btnOK);
+		} catch (Exception e) {
+			System.out.println("***Ok button haven't displayed***");
+		}
+		
 
-		log.info("Ending of setRegistrationStartDateÂ method");
+		log.info("Ending of setRegistrationStartDate method");
 	}
 
 	public void setRegistrationEndDate() {
@@ -1601,11 +1607,17 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 				clickOnWebElement(txtBoxRegistrationEndDate);
 			}
 			this.clickOnCurrentDate(date);
+			this.clickOnCurrentTime(meridiem);
 			this.selectFutureHour();
 		}
 
-		this.clickOnCurrentTime(meridiem);
-		this.clickOnElementUsingActionClass(btnOK);
+		try {
+			if(btnOK.isDisplayed()==true) {
+				this.clickOnWebElement(btnOK);
+				}
+		} catch (Exception e) {
+			log.info("*** OK Button Haven't displayed***");
+		}
 
 		log.info("Ending of setRegistrationEndDateÂ method");
 	}
@@ -1680,12 +1692,16 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 			}
 
 			this.clickOnCurrentDate(date);
+			this.clickOnCurrentTime(meridiem);
 			this.selectFutureHour();
 		}
-
-		this.clickOnCurrentTime(meridiem);
-		this.clickOnElementUsingActionClass(btnOK);
-
+		try {
+			if(btnOK.isDisplayed()==true) {
+				this.clickOnWebElement(btnOK);
+				}
+		} catch (Exception e) {
+			log.info("*** OK Button Haven't displayed***");
+		}
 		log.info("Ending of setCompetitionStartDateÂ method");
 	}
 
