@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Sanity UI Automation Tests"><!-- parallel = "classes" thread-count = "4"> -->
+<suite name="Sanity UI Automation Tests">
+	<!-- parallel = "classes" thread-count = "4"> -->
 
 	<test name="Sprint 1">
 		<classes>
@@ -38,14 +39,14 @@
 			<class
 				name="com.b2b.test.sprint2.sanity.ImportPlayerViaCSVTest" />
 			<class name="com.b2b.test.sprint2.sanity.AddClubMatchTest" />
-			<!-- <class name="com.b2b.test.sprint2.sanity.AddEventTest" /> -->
+			<class name="com.b2b.test.sprint2.sanity.AddEventTest" />
 			<class name="com.b2b.test.sprint2.sanity.BrowseEventsTest" />
-			<!-- <class name="com.b2b.test.sprint2.sanity.EditEventsTest" />
-			<class name="com.b2b.test.sprint2.sanity.EditBracketsTest" /> -->
+			<class name="com.b2b.test.sprint2.sanity.EditEventsTest" />
+			<class name="com.b2b.test.sprint2.sanity.EditBracketsTest" />
 		</classes>
 	</test>
 
-	<!-- <test name="Sprint 3">
+	<test name="Sprint 3">
 		<classes>
 			<class
 				name="com.b2b.test.sprint3.sanity.AddEditRemoveEventLogoTest" />
@@ -69,7 +70,7 @@
 				name="com.b2b.test.sprint3.sanity.PreservingPageVisitsTest" />
 		</classes>
 	</test>
-	
+
 	<test name="Sprint 4">
 		<classes>
 			<class name="com.b2b.test.sprint4.sanity.ChatTest" />
@@ -81,7 +82,7 @@
 			<class name="com.b2b.test.sprint4.sanity.SeedMatchesTest" />
 		</classes>
 	</test>
-	
+
 	<test name="Sprint 5">
 		<classes>
 			<class
@@ -91,5 +92,5 @@
 			<class
 				name="com.b2b.test.sprint5.sanity.SeedMatchesWaterFallTest" />
 		</classes>
-	</test> -->
+	</test>
 </suite>
