@@ -973,19 +973,33 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	public void setRegistrationStartDate() {
 		log.info("Starting of setRegistrationStartDate method");
+		
+		try {
+			scrollDown(200);
 
-		scrollDown(200);
+			clickOnWebElement(txtBoxRegistrationStartDate);
 
-		clickOnWebElement(txtBoxRegistrationStartDate);
+			int date = this.getCurrentDate();
+			String hours = this.getCurrentHour();
+			String meridiem = this.getCurrentMeridiem();
 
-		int date = this.getCurrentDate();
-		String hours = this.getCurrentHour();
-		String meridiem = this.getCurrentMeridiem();
+			hardWait(2);
+			this.clickOnCurrentDate(date);
+			
+			hardWait(2);
+			this.clickOnCurrentTime(meridiem);
+			try {
+				clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
+			} catch (Exception e) {
+				clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
+			}
+			
+			hardWait(2);
+		} catch (Exception e) {
+			System.out.println();
+		}
 
-		this.clickOnCurrentDate(date);
-		this.clickOnCurrentTime(hours);
-		this.clickOnCurrentTime(meridiem);
-		this.clickOnElementUsingActionClass(btnOK);
+		// this.clickOnElementUsingActionClass(btnOK);
 
 		log.info("Ending of setRegistrationStartDate method");
 	}
@@ -1095,7 +1109,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	public void setRegistrationEndDate() {
 		log.info("Starting of setRegistrationEndDate method");
 		hardWait(2);
-		
+
 		try {
 			clickOnWebElement(txtBoxRegistrationEndDate);
 		} catch (Exception e) {
@@ -1124,16 +1138,18 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 			e.printStackTrace();
 		}
 
+		this.clickOnCurrentTime(meridiem);
+
 		this.clickOnCurrentTime(hours);
 		clickOnElementUsingActionClass(btnTimeInMinutes);
-		this.clickOnCurrentTime(meridiem);
-		this.clickOnElementUsingActionClass(btnOK);
+
+		// this.clickOnElementUsingActionClass(btnOK);
 
 		log.info("Ending of setRegistrationEndDate�method");
 	}
 
 	public void setInvalidRegistrationStartDate() {
-		log.info("Starting of setInvalidRegistrationStartDate method");
+		// log.info("Starting of setInvalidRegistrationStartDate method");
 
 		scrollDown(200);
 		clickOnWebElement(txtBoxRegistrationStartDate);
@@ -1143,11 +1159,17 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 			String hours = this.getCurrentHour();
 			String meridiem = this.getCurrentMeridiem();
 
+			hardWait(2);
 			this.clickOnCurrentDate(date);
+			hardWait(2);
+			this.clickOnCurrentTime(meridiem);
+
+			hardWait(2);
 			this.clickOnCurrentTime(hours);
 			clickOnElementUsingActionClass(btnTimeInMinutes);
-			this.clickOnCurrentTime(meridiem);
-			this.clickOnElementUsingActionClass(btnOK);
+			hardWait(2);
+
+			// this.clickOnElementUsingActionClass(btnOK);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1165,11 +1187,17 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
 
+		hardWait(2);
 		this.clickOnCurrentDate(date);
-		this.clickOnCurrentTime(hours);
-		clickOnElementUsingActionClass(btnTimeInMinutes);
+		hardWait(2);
 		this.clickOnCurrentTime(meridiem);
-		this.clickOnElementUsingActionClass(btnOK);
+		hardWait(2);
+		this.clickOnCurrentTime(hours);
+		hardWait(2);
+		clickOnElementUsingActionClass(btnTimeInMinutes);
+
+		hardWait(2);
+		// this.clickOnElementUsingActionClass(btnOK);
 
 		log.info("Ending of setInvalidRegistrationEndDate method");
 	}
@@ -1184,10 +1212,11 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		String meridiem = this.getCurrentMeridiem();
 
 		this.clickOnCurrentDate(date);
+		this.clickOnCurrentTime(meridiem);
 		this.clickOnCurrentTime(hours);
 		clickOnElementUsingActionClass(btnTimeInMinutes);
-		this.clickOnCurrentTime(meridiem);
-		this.clickOnElementUsingActionClass(btnOK);
+
+		// this.clickOnElementUsingActionClass(btnOK);
 
 		log.info("Ending of setInvalidCompetitionStartDate method");
 	}
@@ -1202,10 +1231,11 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		String meridiem = this.getCurrentMeridiem();
 
 		this.clickOnCurrentDate(date);
+		this.clickOnCurrentTime(meridiem);
 		this.clickOnCurrentTime(hours);
 		clickOnElementUsingActionClass(btnTimeInMinutes);
-		this.clickOnCurrentTime(meridiem);
-		this.clickOnElementUsingActionClass(btnOK);
+
+		// this.clickOnElementUsingActionClass(btnOK);
 
 		log.info("Ending of setInvalidCompetitionEndDate method");
 	}
@@ -1220,17 +1250,19 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		String meridiem = this.getCurrentMeridiem();
 
 		this.clickOnCurrentDate(date);
+		this.clickOnCurrentTime(meridiem);
 		this.clickOnCurrentTime(hours);
 		clickOnElementUsingActionClass(btnTimeInMinutes);
-		this.clickOnCurrentTime(meridiem);
-		this.clickOnElementUsingActionClass(btnOK);
+
+		// this.clickOnElementUsingActionClass(btnOK);
 
 		log.info("Ending of setIncorrectCompetitionStartDate method");
 	}
 
 	public void setCompetitionStartDate() {
 		log.info("Starting of setCompetitionStartDate method");
-        hardWait(3);
+
+		hardWait(3);
 		try {
 			clickOnWebElement(txtBoxCompetitionStartDate);
 		} catch (Exception e) {
@@ -1259,10 +1291,11 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 			e.printStackTrace();
 		}
 
+		this.clickOnCurrentTime(meridiem);
 		this.clickOnCurrentTime(hours);
 		clickOnElementUsingActionClass(btnTimeInMinutes);
-		this.clickOnCurrentTime(meridiem);
-		this.clickOnElementUsingActionClass(btnOK);
+
+		// this.clickOnElementUsingActionClass(btnOK);
 
 		log.info("Ending of setCompetitionStartDate method");
 	}
@@ -1298,10 +1331,11 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 			e.printStackTrace();
 		}
 
+		this.clickOnCurrentTime(meridiem);
 		this.clickOnCurrentTime(hours);
 		clickOnElementUsingActionClass(btnTimeInMinutes);
-		this.clickOnCurrentTime(meridiem);
-		this.clickOnElementUsingActionClass(btnOK);
+
+		// this.clickOnElementUsingActionClass(btnOK);
 
 		log.info("Ending of setCompetitionEndDate method");
 	}
@@ -1395,7 +1429,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	public void clickOnNewDelhiTimeZone() {
 		log.info("Starting of clickOnNewDelhiTimeZone method");
-		//hardWait(9);
+		// hardWait(9);
 		try {
 			scrollIntoView(btnNewDelhiTimeZone);
 			clickUsingActionsClass(btnNewDelhiTimeZone);
@@ -1725,7 +1759,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	public void clickOnEventSuccessClosePopupButton() {
 		log.info("Starting of clickOnEventSuccessClosePopupButton method");
-        
+
 		this.waitForElementToBeVisible(lblEventSuccessClosePopup);
 		elementClick(lblEventSuccessClosePopup);
 
@@ -2413,9 +2447,10 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 				String meridiem = this.getCurrentMeridiem();
 
 				this.clickOnCurrentDate(date);
-				this.clickOnCurrentTime(hours);
 				this.clickOnCurrentTime(meridiem);
-				this.clickOnElementUsingActionClass(btnOK);
+				this.clickOnCurrentTime(hours);
+
+				// this.clickOnElementUsingActionClass(btnOK);
 
 				this.hardWait(2);
 				this.clickUsingActionsClass(driver.findElement(By.xpath(
@@ -2423,10 +2458,11 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 								+ i + "]")));
 
 				this.clickOnCurrentDate(regEndDate);
+				this.clickOnCurrentTime(meridiem);
 				this.clickOnCurrentTime(hours);
 				clickOnElementUsingActionClass(btnTimeInMinutes);
-				this.clickOnCurrentTime(meridiem);
-				this.clickOnElementUsingActionClass(btnOK);
+
+				// this.clickOnElementUsingActionClass(btnOK);
 
 				this.hardWait(2);
 				this.clickUsingActionsClass(driver.findElement(By.xpath(
@@ -2434,10 +2470,11 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 								+ i + "]")));
 
 				this.clickOnCurrentDate(compStartDate);
+				this.clickOnCurrentTime(meridiem);
 				this.clickOnCurrentTime(hours);
 				clickOnElementUsingActionClass(btnTimeInMinutes);
-				this.clickOnCurrentTime(meridiem);
-				this.clickOnElementUsingActionClass(btnOK);
+
+				// this.clickOnElementUsingActionClass(btnOK);
 
 				this.hardWait(2);
 				this.clickUsingActionsClass(driver.findElement(By.xpath(
@@ -2445,10 +2482,11 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 								+ i + "]")));
 
 				this.clickOnCurrentDate(compEndDate);
+				this.clickOnCurrentTime(meridiem);
 				this.clickOnCurrentTime(hours);
 				clickOnElementUsingActionClass(btnTimeInMinutes);
-				this.clickOnCurrentTime(meridiem);
-				this.clickOnElementUsingActionClass(btnOK);
+
+				// this.clickOnElementUsingActionClass(btnOK);
 
 				scrollDown(300);
 				hardWait(2);

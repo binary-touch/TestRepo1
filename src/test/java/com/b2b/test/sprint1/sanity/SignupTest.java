@@ -218,7 +218,7 @@ public class SignupTest extends DUPRBaseAutomationTest {
 		editProfilePage.clickOnEditProfileButton();
 
 		signupPage.clickOnVerifyButton();
-		signupPage.hardWait(3);
+		signupPage.hardWait(5);
 
 		Assert.assertEquals(signupPage.getlinkSentEmailValidation(),
 				expectedAssertionsProp.getProperty("link.was.sent.mail"));
