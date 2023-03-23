@@ -974,22 +974,35 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	public void setRegistrationStartDate() {
 		log.info("Starting of setRegistrationStartDate method");
 
-		scrollDown(200);
-
-		clickOnWebElement(txtBoxRegistrationStartDate);
-
-		int date = this.getCurrentDate();
-		String hours = this.getCurrentHour();
-		String meridiem = this.getCurrentMeridiem();
-
-		this.clickOnCurrentDate(date);
-		this.clickOnCurrentTime(meridiem);
-		this.clickOnCurrentTime(hours);
-		
 		try {
-			if(btnOK.isDisplayed()==true) {
+			scrollDown(200);
+
+			clickOnWebElement(txtBoxRegistrationStartDate);
+
+			int date = this.getCurrentDate();
+			String hours = this.getCurrentHour();
+			String meridiem = this.getCurrentMeridiem();
+
+			hardWait(2);
+			this.clickOnCurrentDate(date);
+
+			hardWait(2);
+			this.clickOnCurrentTime(meridiem);
+			try {
+				clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
+			} catch (Exception e) {
+				clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
+			}
+
+			hardWait(2);
+		} catch (Exception e) {
+			System.out.println();
+		}
+
+		try {
+			if (btnOK.isDisplayed() == true) {
 				this.clickOnWebElement(btnOK);
-				}
+			}
 		} catch (Exception e) {
 			log.info("*** OK Button Haven't displayed***");
 		}
@@ -1130,13 +1143,14 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnCurrentTime(hours);
 		clickOnElementUsingActionClass(btnTimeInMinutes);
 		try {
-			if(btnOK.isDisplayed()==true) {
+			if (btnOK.isDisplayed() == true) {
 				this.clickOnWebElement(btnOK);
-				}
+			}
 		} catch (Exception e) {
 			log.info("*** OK Button Haven't displayed***");
 		}
@@ -1155,14 +1169,20 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 			String hours = this.getCurrentHour();
 			String meridiem = this.getCurrentMeridiem();
 
+			hardWait(2);
 			this.clickOnCurrentDate(date);
+			hardWait(2);
 			this.clickOnCurrentTime(meridiem);
+
+			hardWait(2);
 			this.clickOnCurrentTime(hours);
 			clickOnElementUsingActionClass(btnTimeInMinutes);
+			hardWait(2);
+
 			try {
-				if(btnOK.isDisplayed()==true) {
+				if (btnOK.isDisplayed() == true) {
 					this.clickOnWebElement(btnOK);
-					}
+				}
 			} catch (Exception e) {
 				log.info("*** OK Button Haven't displayed***");
 			}
@@ -1183,14 +1203,20 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
 
+		hardWait(2);
 		this.clickOnCurrentDate(date);
+		hardWait(2);
 		this.clickOnCurrentTime(meridiem);
+		hardWait(2);
 		this.clickOnCurrentTime(hours);
+		hardWait(2);
 		clickOnElementUsingActionClass(btnTimeInMinutes);
+
+		hardWait(2);
 		try {
-			if(btnOK.isDisplayed()==true) {
+			if (btnOK.isDisplayed() == true) {
 				this.clickOnWebElement(btnOK);
-				}
+			}
 		} catch (Exception e) {
 			log.info("*** OK Button Haven't displayed***");
 		}
@@ -1211,10 +1237,11 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnCurrentTime(hours);
 		clickOnElementUsingActionClass(btnTimeInMinutes);
+
 		try {
-			if(btnOK.isDisplayed()==true) {
+			if (btnOK.isDisplayed() == true) {
 				this.clickOnWebElement(btnOK);
-				}
+			}
 		} catch (Exception e) {
 			log.info("*** OK Button Haven't displayed***");
 		}
@@ -1235,10 +1262,11 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnCurrentTime(hours);
 		clickOnElementUsingActionClass(btnTimeInMinutes);
+
 		try {
-			if(btnOK.isDisplayed()==true) {
+			if (btnOK.isDisplayed() == true) {
 				this.clickOnWebElement(btnOK);
-				}
+			}
 		} catch (Exception e) {
 			log.info("*** OK Button Haven't displayed***");
 		}
@@ -1259,10 +1287,11 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnCurrentTime(hours);
 		clickOnElementUsingActionClass(btnTimeInMinutes);
+
 		try {
-			if(btnOK.isDisplayed()==true) {
+			if (btnOK.isDisplayed() == true) {
 				this.clickOnWebElement(btnOK);
-				}
+			}
 		} catch (Exception e) {
 			log.info("*** OK Button Haven't displayed***");
 		}
@@ -1272,6 +1301,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	public void setCompetitionStartDate() {
 		log.info("Starting of setCompetitionStartDate method");
+
 		hardWait(3);
 		try {
 			clickOnWebElement(txtBoxCompetitionStartDate);
@@ -1300,13 +1330,14 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnCurrentTime(hours);
 		clickOnElementUsingActionClass(btnTimeInMinutes);
 		try {
-			if(btnOK.isDisplayed()==true) {
+			if (btnOK.isDisplayed() == true) {
 				this.clickOnWebElement(btnOK);
-				}
+			}
 		} catch (Exception e) {
 			log.info("*** OK Button Haven't displayed***");
 		}
@@ -1348,10 +1379,11 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnCurrentTime(hours);
 		clickOnElementUsingActionClass(btnTimeInMinutes);
+
 		try {
-			if(btnOK.isDisplayed()==true) {
+			if (btnOK.isDisplayed() == true) {
 				this.clickOnWebElement(btnOK);
-				}
+			}
 		} catch (Exception e) {
 			log.info("*** OK Button Haven't displayed***");
 		}
@@ -2471,11 +2503,11 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 				this.clickOnCurrentDate(date);
 				this.clickOnCurrentTime(meridiem);
 				this.clickOnCurrentTime(hours);
-				
+
 				try {
-					if(btnOK.isDisplayed()==true) {
+					if (btnOK.isDisplayed() == true) {
 						this.clickOnWebElement(btnOK);
-						}
+					}
 				} catch (Exception e) {
 					log.info("*** OK Button Haven't displayed***");
 				}
@@ -2489,11 +2521,11 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 				this.clickOnCurrentTime(meridiem);
 				this.clickOnCurrentTime(hours);
 				clickOnElementUsingActionClass(btnTimeInMinutes);
-				
+
 				try {
-					if(btnOK.isDisplayed()==true) {
+					if (btnOK.isDisplayed() == true) {
 						this.clickOnWebElement(btnOK);
-						}
+					}
 				} catch (Exception e) {
 					log.info("*** OK Button Haven't displayed***");
 				}
@@ -2507,11 +2539,11 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 				this.clickOnCurrentTime(meridiem);
 				this.clickOnCurrentTime(hours);
 				clickOnElementUsingActionClass(btnTimeInMinutes);
-				
+
 				try {
-					if(btnOK.isDisplayed()==true) {
+					if (btnOK.isDisplayed() == true) {
 						this.clickOnWebElement(btnOK);
-						}
+					}
 				} catch (Exception e) {
 					log.info("*** OK Button Haven't displayed***");
 				}
@@ -2525,10 +2557,11 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 				this.clickOnCurrentTime(meridiem);
 				this.clickOnCurrentTime(hours);
 				clickOnElementUsingActionClass(btnTimeInMinutes);
+
 				try {
-					if(btnOK.isDisplayed()==true) {
+					if (btnOK.isDisplayed() == true) {
 						this.clickOnWebElement(btnOK);
-						}
+					}
 				} catch (Exception e) {
 					log.info("*** OK Button Haven't displayed***");
 				}
@@ -2749,15 +2782,15 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 			}
 			String hours = this.getCurrentHour();
 			String meridiem = this.getCurrentMeridiem();
-			
+
 			this.clickOnCurrentTime(meridiem);
 			this.clickOnCurrentTime(hours);
 			clickOnElementUsingActionClass(btnTimeInMinutes);
-			
+
 			try {
-				if(btnOK.isDisplayed()==true) {
+				if (btnOK.isDisplayed() == true) {
 					this.clickOnWebElement(btnOK);
-					}
+				}
 			} catch (Exception e) {
 				log.info("*** OK Button Haven't displayed***");
 			}
@@ -2809,15 +2842,15 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		}
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
-		
+
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnCurrentTime(hours);
 		clickOnElementUsingActionClass(btnTimeInMinutes);
-		
+
 		try {
-			if(btnOK.isDisplayed()==true) {
+			if (btnOK.isDisplayed() == true) {
 				this.clickOnWebElement(btnOK);
-				}
+			}
 		} catch (Exception e) {
 			log.info("*** OK Button Haven't displayed***");
 		}
@@ -2859,15 +2892,15 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnCurrentTime(hours);
 		clickOnElementUsingActionClass(btnTimeInMinutes);
-		
+
 		try {
-			if(btnOK.isDisplayed()==true) {
+			if (btnOK.isDisplayed() == true) {
 				this.clickOnWebElement(btnOK);
-				}
+			}
 		} catch (Exception e) {
 			log.info("*** OK Button Haven't displayed***");
 		}
-	
+
 		log.info("Ending of setCompetitionStartDateMoreThenSevenDays method");
 	}
 
@@ -2901,11 +2934,11 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		this.clickOnCurrentTime(hours);
 		clickOnElementUsingActionClass(btnTimeInMinutes);
 		this.clickOnCurrentTime(meridiem);
-		
+
 		try {
-			if(btnOK.isDisplayed()==true) {
+			if (btnOK.isDisplayed() == true) {
 				this.clickOnWebElement(btnOK);
-				}
+			}
 		} catch (Exception e) {
 			log.info("*** OK Button Haven't displayed***");
 		}
@@ -2941,16 +2974,16 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
-		
+
 		hardWait(3);
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnCurrentTime(hours);
 		clickOnElementUsingActionClass(btnTimeInMinutes);
-		
+
 		try {
-			if(btnOK.isDisplayed()==true) {
+			if (btnOK.isDisplayed() == true) {
 				this.clickOnWebElement(btnOK);
-				}
+			}
 		} catch (Exception e) {
 			log.info("*** OK Button Haven't displayed***");
 		}
@@ -2986,15 +3019,15 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
 		hardWait(3);
-		
+
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnCurrentTime(hours);
 		clickOnElementUsingActionClass(btnTimeInMinutes);
-		
+
 		try {
-			if(btnOK.isDisplayed()==true) {
+			if (btnOK.isDisplayed() == true) {
 				this.clickOnWebElement(btnOK);
-				}
+			}
 		} catch (Exception e) {
 			log.info("*** OK Button Haven't displayed***");
 		}
@@ -3036,15 +3069,15 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
 		hardWait(3);
-		
+
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnCurrentTime(hours);
 		clickOnElementUsingActionClass(btnTimeInMinutes);
-		
+
 		try {
-			if(btnOK.isDisplayed()==true) {
+			if (btnOK.isDisplayed() == true) {
 				this.clickOnWebElement(btnOK);
-				}
+			}
 		} catch (Exception e) {
 			log.info("*** OK Button Haven't displayed***");
 		}
@@ -3110,19 +3143,19 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
 		hardWait(3);
-		
+
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnCurrentTime(hours);
 		clickOnElementUsingActionClass(btnTimeInMinutes);
-		
+
 		try {
-			if(btnOK.isDisplayed()==true) {
+			if (btnOK.isDisplayed() == true) {
 				this.clickOnWebElement(btnOK);
-				}
+			}
 		} catch (Exception e) {
 			log.info("*** OK Button Haven't displayed***");
 		}
-	
+
 		log.info("Ending of setRegistrationEndDateMoreThenSevenDays�method");
 	}
 

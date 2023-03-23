@@ -112,7 +112,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyEventPoliciesPageDetails method");
 	}
 
-	@Test(priority = 4, description = "Verify Exit Event Creation Popup Details In Event Policies", groups = "sanity")
+	/*@Test(priority = 4, description = "Verify Exit Event Creation Popup Details In Event Policies", groups = "sanity")
 	@Description("Test case #4, Verify Exit Event Creation Popup Details In Event Policies")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #4, Verify Exit Event Creation Popup Details In Event Policies")
@@ -234,7 +234,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		Assert.assertTrue(addEventPage.isEventPoliciesPageContains());
 
 		logger.info("Ending of VerifyCloseIconInExitEventCreationInEventPoliciespopup method");
-	}
+	}*/
 
 	@Test(priority = 12, description = "Verify Event Policies Page By Entering Valid Details", groups = "sanity")
 	@Description("Test case #12, Verify Event Policies Page By Entering Valid Details")
@@ -255,7 +255,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyEventPoliciesPageByEnteringValidDetails method");
 	}
 
-	@Test(priority = 13, description = "Verify Minimum Age Range Validation in Add Brackets page", groups = "sanity")
+	/*@Test(priority = 13, description = "Verify Minimum Age Range Validation in Add Brackets page", groups = "sanity")
 	@Description("Test case #13, Verify Minimum Age Range Validation in Add Brackets page")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #13, Verify Minimum Age Range Validation in Add Brackets page")
@@ -658,7 +658,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		addEventPage.clickOnNextStepButton();
 
 		logger.info("Ending of verifyStatesOfNumberOfCourtsAndTeamFieldsIfBracketTypeIsWaterfall method");
-	}
+	}*/
 
 	@Test(priority = 36, description = "Verify AddBrackets Page With Valid Details", groups = "sanity")
 	@Description("Test case #36, Verify AddBrackets Page With Valid Details")

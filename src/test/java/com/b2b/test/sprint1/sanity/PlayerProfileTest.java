@@ -127,7 +127,7 @@ public class PlayerProfileTest extends CommonBaseTest {
 		logger.info("Starting of verifyBirthDateWithMinimumAge method");
 
 		editProfilePage.scrollDown(-650);
-		editProfilePage.setBirthDateMinimumAge();
+		editProfilePage.setBirthDateMinimumAge();editProfilePage.hardWait(3);
 
 		Assert.assertTrue(editProfilePage.isReviewDUPRPoliciesPopupContains());
 
