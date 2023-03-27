@@ -989,24 +989,21 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 			hardWait(2);
 			this.clickOnCurrentTime(meridiem);
 			try {
-				clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
+				clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'" +hours+ "')]")));
 			} catch (Exception e) {
-				clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
+				clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'" +hours+ "')]")));
 			}
 
 			hardWait(2);
 		} catch (Exception e) {
 			System.out.println();
 		}
+		clickOnElementUsingActionClass(btnTimeInMinutes);
 
-		try {
-			if (btnOK.isDisplayed() == true) {
-				this.clickOnWebElement(btnOK);
-			}
-		} catch (Exception e) {
-			log.info("*** OK Button Haven't displayed***");
-		}
-
+		/*
+		 * try { if (btnOK.isDisplayed() == true) { this.clickOnWebElement(btnOK); } }
+		 * catch (Exception e) { log.info("*** OK Button Haven't displayed***"); }
+		 */
 		log.info("Ending of setRegistrationStartDate method");
 	}
 
