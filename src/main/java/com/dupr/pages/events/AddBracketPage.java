@@ -1008,15 +1008,12 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			System.out.println();
 		}
+		clickOnElementUsingActionClass(btnTimeInMinutes);
 
-		try {
-			if (btnOK.isDisplayed() == true) {
-				this.clickOnWebElement(btnOK);
-			}
-		} catch (Exception e) {
-			log.info("*** OK Button Haven't displayed***");
-		}
-
+		/*
+		 * try { if (btnOK.isDisplayed() == true) { this.clickOnWebElement(btnOK); } }
+		 * catch (Exception e) { log.info("*** OK Button Haven't displayed***"); }
+		 */
 		log.info("Ending of setRegistrationStartDate method");
 	}
 
