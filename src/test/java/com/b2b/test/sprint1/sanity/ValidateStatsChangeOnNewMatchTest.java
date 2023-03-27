@@ -177,7 +177,7 @@ public class ValidateStatsChangeOnNewMatchTest extends CommonBaseTest {
 		intPendingCountAfterAddingNewMatch = intPendingCountAfterAddingNewMatch - 1;
 		String strPendingCountAfterAddingNewMatch = Integer.toString(intPendingCountAfterAddingNewMatch);
 
-		validateMatch.hardWait(2);
+		validateMatch.hardWait(3);
 		Assert.assertEquals(pendingCount, strPendingCountAfterAddingNewMatch);
 
 		loginPage.clickOnOpenSettingsMenu();

@@ -141,7 +141,7 @@ public class BrowseEventsTest extends DUPRBaseAutomationTest {
 		browseEventsPage.clickOnClearFiltersButton();
 		browseEventsPage.clickOnFindEventsNearMeToggleButton();
 
-		browseEventsPage.hardWait(2);
+		browseEventsPage.hardWait(3);
 		Assert.assertTrue(browseEventsPage.getToggleOnState());
 		browseEventsPage.hardWait(2);
 		browseEventsPage.clickOnFindEventsNearMeToggleButton();

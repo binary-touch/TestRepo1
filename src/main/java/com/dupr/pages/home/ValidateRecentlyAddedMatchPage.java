@@ -460,7 +460,7 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 				deleteButtonState = true;
 			}
 		} catch (Exception e) {
-			log.error("Reson for failure:", e);
+			log.error("Reason for failure:", e);
 		}
 		log.info("Ending of isValidateButtonsDisplayed method");
 

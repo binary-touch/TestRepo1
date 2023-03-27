@@ -13,6 +13,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -3194,17 +3195,16 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		log.info("Starting of clickOnBracketCaretIcon method");
 
 		try {
-			if (ddBracketCaretIcon.isDisplayed() == false) {
-				try {
-					clickUsingActionsClass(ddBracketCaretIcon);
-				} catch (Exception e) {
-					clickOnWebElement(ddBracketCaretIcon);
-				}
-			} else {
+			if (ddBracketCaretIcon.isDisplayed() == true) {
 				log.info("***Bracket opened***");
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (NoSuchElementException e) {
+			try {
+				log.info("*** Bracket minimized ***");
+				clickUsingActionsClass(ddBracketCaretIcon);
+			} catch (Exception e1) {
+				clickOnWebElement(ddBracketCaretIcon);
+			}
 		}
 
 		log.info("Ending of clickOnBracketCaretIcon method");
