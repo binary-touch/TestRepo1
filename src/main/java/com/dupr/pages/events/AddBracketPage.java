@@ -183,6 +183,9 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//span[text()='55']")
 	private WebElement btnTimeInMinutes;
+	
+	@B2BFindBy(xpath = "//span[text()='00']")
+	private WebElement btnDefaultTimeInMinutes;
 
 	@B2BFindBy(xpath = "//h3[text()='Time Zone']")
 	private WebElement lblTimeZone;
@@ -977,7 +980,11 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		try {
 			scrollDown(200);
 
-			clickOnWebElement(txtBoxRegistrationStartDate);
+			try {
+				clickOnWebElement(txtBoxRegistrationStartDate);
+			} catch (Exception e) {
+				clickOnElementUsingActionClass(txtBoxRegistrationStartDate);
+			}
 
 			int date = this.getCurrentDate();
 			String hours = this.getCurrentHour();
@@ -989,10 +996,12 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 			hardWait(2);
 			this.clickOnCurrentTime(meridiem);
 			try {
-				clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
+				clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'"+hours+"')]")));
 			} catch (Exception e) {
-				clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
+				clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'"+hours+"')]")));
 			}
+			
+			clickUsingActionsClass(btnDefaultTimeInMinutes);
 
 			hardWait(2);
 		} catch (Exception e) {
@@ -1145,7 +1154,11 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		}
 
 		this.clickOnCurrentTime(meridiem);
-		this.clickOnCurrentTime(hours);
+		try {
+			clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'"+hours+"')]")));
+		} catch (Exception e) {
+			clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'"+hours+"')]")));
+		}
 		clickOnElementUsingActionClass(btnTimeInMinutes);
 		try {
 			if (btnOK.isDisplayed() == true) {
@@ -2414,6 +2427,8 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	}
 
 	public void addBrackets(String minAgeRange, String maxAgeRange, String minRatingRange, String maxRatingRange) {
+		log.info("Starting of addBrackets method");
+		
 		this.hardWait(3);
 
 		try {
@@ -2503,6 +2518,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 				this.clickOnCurrentDate(date);
 				this.clickOnCurrentTime(meridiem);
 				this.clickOnCurrentTime(hours);
+				clickOnElementUsingActionClass(btnDefaultTimeInMinutes);
 
 				try {
 					if (btnOK.isDisplayed() == true) {
@@ -2519,7 +2535,11 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 				this.clickOnCurrentDate(regEndDate);
 				this.clickOnCurrentTime(meridiem);
-				this.clickOnCurrentTime(hours);
+				try {
+					clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'"+hours+"')]")));
+				} catch (Exception e) {
+					clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'"+hours+"')]")));
+				}
 				clickOnElementUsingActionClass(btnTimeInMinutes);
 
 				try {
@@ -2537,7 +2557,12 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 				this.clickOnCurrentDate(compStartDate);
 				this.clickOnCurrentTime(meridiem);
-				this.clickOnCurrentTime(hours);
+				this.hardWait(2);
+				try {
+					clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'"+hours+"')]")));
+				} catch (Exception e) {
+					clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'"+hours+"')]")));
+				}
 				clickOnElementUsingActionClass(btnTimeInMinutes);
 
 				try {
@@ -2555,7 +2580,11 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 				this.clickOnCurrentDate(compEndDate);
 				this.clickOnCurrentTime(meridiem);
-				this.clickOnCurrentTime(hours);
+				try {
+					clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'"+hours+"')]")));
+				} catch (Exception e) {
+					clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'"+hours+"')]")));
+				}
 				clickOnElementUsingActionClass(btnTimeInMinutes);
 
 				try {
@@ -2614,6 +2643,8 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		}
 		this.hardWait(4);
 		this.clickUsingActionsClass(driver.findElement(By.xpath("(//button[text()='Delete Bracket'])[3]")));
+	
+		log.info("Ending of addBrackets method");
 	}
 
 	// Combination methods

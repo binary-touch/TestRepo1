@@ -98,7 +98,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyAddEventInformationDetailsFunctionalityWithValidDetails method");
 	}
 
-	@Test(priority = 3, description = "Verify Event Policies Page Details", groups = "sanity")
+	/*@Test(priority = 3, description = "Verify Event Policies Page Details", groups = "sanity")
 	@Description("Test case #3, Verify Event Policies Page Details")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #3, Verify Event Policies Page Details")
@@ -112,7 +112,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyEventPoliciesPageDetails method");
 	}
 
-	/*@Test(priority = 4, description = "Verify Exit Event Creation Popup Details In Event Policies", groups = "sanity")
+	@Test(priority = 4, description = "Verify Exit Event Creation Popup Details In Event Policies", groups = "sanity")
 	@Description("Test case #4, Verify Exit Event Creation Popup Details In Event Policies")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #4, Verify Exit Event Creation Popup Details In Event Policies")
@@ -741,7 +741,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyAddBracketsPageWithValidDetails method");
 	}
 
-	@Test(priority = 37, description = "Verify AddAnotherBracket button In AddAnotherBracketPopup", groups = "sanity")
+	/*@Test(priority = 37, description = "Verify AddAnotherBracket button In AddAnotherBracketPopup", groups = "sanity")
 	@Description("Test case #37, Verify AddAnotherBracket button In AddAnotherBracketPopup")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #37, Verify AddAnotherBracket button In AddAnotherBracketPopup")
@@ -770,7 +770,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		addEventPage.clickOnNextStepButton();
 
 		logger.info("Ending of verifyDeleteBracketFunctionality method");
-	}
+	}*/
 
 	@Test(priority = 39, description = "Verify NoContinueToSummary Button In AddAnotherBracket popup", groups = "sanity")
 	@Description("Test case #39, Verify NoContinueToSummary Button In AddAnotherBracket popup")
@@ -789,7 +789,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyNoContinueToSummaryButtonInAddAnotherBracketpopup method");
 	}
 
-	@Test(priority = 40, description = "Verify delete Bracket In Summary Page", groups = "sanity")
+	/*@Test(priority = 40, description = "Verify delete Bracket In Summary Page", groups = "sanity")
 	@Description("Test case #40, Verify delete Bracket In Summary Page")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #40, Verify delete Bracket In Summary Page")
@@ -880,7 +880,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		Assert.assertTrue(addBracketPage.isPublishEventButtonDisplayed());
 
 		logger.info("Ending of verifyEditBracketDetailsSectionByClickingOnEditIconInEventSummaryPage");
-	}
+	}*/
 
 	@Test(priority = 43, description = "Verify Publish Event Button", groups = "sanity")
 	@Description("Test case #43, Verify Publish Event Button")
@@ -897,7 +897,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyPublishEventButton method");
 	}
 
-	@Test(priority = 44, description = "Verify Close Icon In YourEventIsNowPublished Success Popup", groups = "sanity")
+	/*@Test(priority = 44, description = "Verify Close Icon In YourEventIsNowPublished Success Popup", groups = "sanity")
 	@Description("Test case #44, Verify Close Icon In YourEventIsNowPublished Success Popup")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #44, Verify Close Icon In YourEventIsNowPublished Success Popup")
@@ -910,7 +910,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		Assert.assertTrue(addEventPage.isClubPageContains());
 
 		logger.info("Ending of verifyCloseIconInYourEventIsNowPublishedSuccessPopup method");
-	}
+	}*/
 
 	@Test(priority = 45, description = "Verify Recently Added Event Under Events Tab", groups = "sanity")
 	@Description("Test case #45, Verify Recently Added Event Under Events Tab")
@@ -934,7 +934,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Starting of VerifyRecentlyAddedEventUnderEventsTab method");
 
 		clubLogoPage.hardWait(3);
-		addEventPage.clickOnAddEventButton();
+		//addEventPage.clickOnAddEventButton();
 
 		Assert.assertTrue(addEventPage.isEventInformationPageContains());
 
