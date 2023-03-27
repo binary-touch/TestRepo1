@@ -49,6 +49,8 @@ public class DeleteRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 		log.info("Starting of isPendingLabelDisplayed method");
 
 		boolean isPendingLabelDisplayed = false;
+		scrollIntoView(driver.findElement(By.xpath("//p[contains(text(),'"+matchEvent+"')]")));
+		
 		WebElement lblPendingDisplayed = driver.findElement(By.xpath("//p[contains(text(),'"+matchEvent+"')]/ancestor::div[contains(@class, 'MuiGrid-grid-xs-8')]/following-sibling::div[@class='MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 MuiGrid-grid-md-2 css-lv0834']//span"));
 		try {
 			if (isDisplayed(lblPendingDisplayed) == true) {
@@ -68,7 +70,7 @@ public class DeleteRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 
 		boolean isDeleteMatchPopupContains = false;
 
-		if (isDisplayed(iconClose) && isDisplayed(btnDelete) && isDisplayed(btnGoBack))
+		if (isDisplayed(iconClose) && isDisplayed(btnDeleteInDeleteMatchPopup) && isDisplayed(btnGoBack))
 			isDeleteMatchPopupContains = true;
 
 		log.info("Ending of isDeleteMatchPopupContains method");
