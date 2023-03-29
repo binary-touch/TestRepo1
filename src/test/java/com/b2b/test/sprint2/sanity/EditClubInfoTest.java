@@ -20,7 +20,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 
 @Epic("DUPR App")
-@Feature("Edit Club Info Sanity")
+@Feature("Edit Club Info-Sanity")
 public class EditClubInfoTest extends DUPRBaseAutomationTest {
 
 	private static final Logger logger = Logger.getLogger(EditClubInfoTest.class.getName());

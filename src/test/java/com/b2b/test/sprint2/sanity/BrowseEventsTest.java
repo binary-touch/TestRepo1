@@ -20,7 +20,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 
 @Epic("DUPR App")
-@Feature("Browse Events Sanity")
+@Feature("Browse Events-Sanity")
 public class BrowseEventsTest extends DUPRBaseAutomationTest {
 	private static final Logger logger = Logger.getLogger(BrowseEventsTest.class.getName());
 	private ClubLogoPage clubLogoPage = null;

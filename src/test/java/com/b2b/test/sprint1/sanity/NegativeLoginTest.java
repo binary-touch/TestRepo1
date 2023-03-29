@@ -19,7 +19,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 
 @Epic("DUPR App")
-@Feature("Sanity Negative Login Scenarios")
+@Feature("Negative Login Scenarios-Sanity")
 public class NegativeLoginTest extends DUPRBaseAutomationTest {
 
 	private static final Logger logger = Logger.getLogger(NegativeLoginTest.class.getName());

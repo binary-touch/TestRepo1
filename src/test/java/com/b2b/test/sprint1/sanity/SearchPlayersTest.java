@@ -20,7 +20,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 
 @Epic("DUPR App")
-@Feature("Search Players Sanity")
+@Feature("Search Players-Sanity")
 public class SearchPlayersTest extends DUPRBaseAutomationTest {
 
 	private static final Logger logger = LogManager.getLogger(SearchPlayersTest.class.getName());
