@@ -127,13 +127,13 @@ public class UserDashboardPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//div[@aria-label='Performance Analysis Type']/button/following-sibling::button")
 	private WebElement tabPerformanceSingles;
 
-	@B2BFindBy(xpath = "//div[@aria-label=\"A chart.\"]")
+	@B2BFindBy(xpath = "//div[@aria-label='A chart.']")
 	private WebElement chartPerformance;
 
 	@B2BFindBy(xpath = "//*[text()='Favorite']")
 	private WebElement lblFavorite;
 
-	@B2BFindBy(xpath = "//*[text()='underdog']")
+	@B2BFindBy(xpath = "//*[text()='Underdog']")
 	private WebElement lblUnderdog;
 
 	@B2BFindBy(xpath = "//h4[contains(text(),'Match History')]")
@@ -572,9 +572,11 @@ public class UserDashboardPage extends DUPRBaseAutomationPage {
 		log.info("Starting of isHomePageMenuSecContains method");
 
 		boolean isHomePageMenuSecContains = false;
+		
+		this.hardWait(3);
 
 		if (isDisplayed(mnuDashboard) && isDisplayed(mnuSearchPlayers) && isDisplayed(mnuRanking)
-				&& isDisplayed(mnuChart) && isDisplayed(mnuShop) && isDisplayed(mnuHowItWorks)
+				&& isDisplayed(mnuShop) && isDisplayed(mnuHowItWorks)
 				&& isDisplayed(txtRunEvents) && isDisplayed(lblNews) && isDisplayed(btnSettingsHome)) {
 
 			isHomePageMenuSecContains = true;

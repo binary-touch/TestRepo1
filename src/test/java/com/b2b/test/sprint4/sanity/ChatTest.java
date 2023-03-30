@@ -88,7 +88,7 @@ public class ChatTest extends DUPRBaseAutomationTest {
 
 		addAMatchPage.clickOnPlayersTab();
 		browseEventsPage.hardWait(4);
-		chatpage.clickOnMessageIcon();
+		chatpage.clickOnMessageIcon(testDataProp.getProperty("player.name"));
 
 		Assert.assertTrue(chatpage.isMessagePopUpContains());
 

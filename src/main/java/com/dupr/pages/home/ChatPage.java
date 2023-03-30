@@ -61,21 +61,27 @@ public class ChatPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h4[contains(text(),'Verify your Email')]//button[contains(@class,'MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium')]")
 	private WebElement iconCloseOnVerifyEmail;
 
+	@B2BFindBy(xpath = "//input[@id='Search']")
+	private WebElement txtSearch;
+	
 	public ChatPage(WebDriver driver) {
 		super(driver);
 		B2BPageFactory.initElements(driver, this);
 	}
 
-	public void clickOnMessageIcon() {
+	public void clickOnMessageIcon(String meet) {
 		log.info("Starting of clickOnMessageIcon method");
 
 		try {
+			clickUsingActionsClass(txtSearch);
+			txtSearch.sendKeys(meet);
 			if (isDisplayed(iconMessage) == true) {
 				try {
 
 					elementClick(iconMessage);
 				} catch (Exception e) {
-					System.out.println(" ");
+					clickUsingActionsClass(txtSearch);
+					txtSearch.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 				}
 
 				// iconMessage.click();

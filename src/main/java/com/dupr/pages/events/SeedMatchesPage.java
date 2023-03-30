@@ -193,6 +193,9 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//button[contains(text(),'Submit')]")
 	private WebElement btnSubmit;
+	
+	@B2BFindBy(xpath = "//button[text()='Submit Scores']")
+	private WebElement btnSubmitScores;
 
 	@B2BFindBy(xpath = "//p[contains(text(),'Date format')]")
 	private WebElement txtDateValidation;
@@ -386,6 +389,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 	public void clickOnTeamsTab() {
 		log.info("Starting of clickOnTeamsTab method");
 		try {
+			this.scrollDown(-200);
 			clickUsingActionsClass(tabTeams);
 		} catch (Exception e) {
 			clickOnWebElement(tabTeams);
@@ -448,6 +452,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		this.hardWait(3);
 
 		try {
+			this.scrollDown(-100);
 			clickUsingActionsClass(btnSeedMatches);
 		} catch (Exception e) {
 			clickOnWebElement(btnSeedMatches);
@@ -567,6 +572,9 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		log.info("Starting of isStandingsTabDisplayed method");
 
 		boolean isStandingsTabDisplayed = false;
+		
+		driver.navigate().refresh();
+		this.hardWait(3);
 
 		if (isDisplayed(btnStandings)) {
 			isStandingsTabDisplayed = true;
@@ -919,7 +927,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		this.hardWait(3);
 		clickOnWebElement(chkBracket);
 		this.hardWait(3);
-
+         this.scrollDown(200);
 		clickOnWebElement(chkRefund);
 		this.hardWait(3);
 		clickOnWebElement(chkHealth);
@@ -952,9 +960,14 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 		boolean isAddScoresPopUpContains = false;
 		try {
-			if (isDisplayed(txtAddScores) && isDisplayed(iconCloseOnAddScores) && isDisplayed(txtMatchDate)
-					&& isDisplayed(btnCalender) && isDisplayed(txt1stpointOfPlayerOne)
-					&& isDisplayed(txt1stpointOfPlayerTwo) && isDisplayed(iconAdd) && isDisplayed(btnSubmit)) {
+			if (isDisplayed(txtAddScores)
+					&& isDisplayed(iconCloseOnAddScores) 
+					&& isDisplayed(txtMatchDate)
+					&& isDisplayed(btnCalender) 
+					&& isDisplayed(txt1stpointOfPlayerOne)
+					&& isDisplayed(txt1stpointOfPlayerTwo) 
+					&& isDisplayed(iconAdd)
+					&& isDisplayed(btnSubmit)) {
 				isAddScoresPopUpContains = true;
 			}
 
@@ -973,9 +986,14 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 		boolean isEditScoresPopUpContains = false;
 		try {
-			if (isDisplayed(txtEditScores) && isDisplayed(iconCloseOnEditScores) && isDisplayed(txtMatchDate)
-					&& isDisplayed(btnCalender) && isDisplayed(txt1stpointOfPlayerOne)
-					&& isDisplayed(txt1stpointOfPlayerTwo) && isDisplayed(txtWinnerTag) && isDisplayed(btnSubmit)) {
+			if (isDisplayed(txtEditScores) 
+					&& isDisplayed(iconCloseOnEditScores) 
+					&& isDisplayed(txtMatchDate)
+					&& isDisplayed(btnCalender) 
+					&& isDisplayed(txt1stpointOfPlayerOne)
+					&& isDisplayed(txt1stpointOfPlayerTwo)
+					&& isDisplayed(txtWinnerTag)
+					&& isDisplayed(btnSubmit)) {
 				isEditScoresPopUpContains = true;
 			}
 
@@ -1039,6 +1057,14 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		this.hardWait(2);
 
 		log.info("Ending of clickOnSubmitButton method");
+	}
+	public void clickOnSubmitScoresButton() {
+		log.info("Starting of clickOnSubmitScoresButton method");
+
+		clickOnWebElement(btnSubmitScores);
+		this.hardWait(2);
+
+		log.info("Ending of clickOnSubmitScoresButton method");
 	}
 
 	public String getDateValidationTxt() {
@@ -1594,8 +1620,9 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 		this.clickOnCurrentDate(date);
 		this.clickOnCurrentTime(meridiem);
-
+////span[contains(text(),'"+hours+"')]
 		try {
+			//driver.findElement(By.xpath("//span[contains(text(),'\"+hours+\"')]")).click();
 			clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'"+hours+"')]")));
 		} catch (Exception e) {
 			clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'"+hours+"')]")));
@@ -1607,6 +1634,11 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 				this.clickOnCurrentTime(min);
 			}
 		} catch (Exception e) {
+			try {
+				clickUsingActionsClass(txtBoxRegistrationEndDate);
+			} catch (Exception e2) {
+				clickOnWebElement(txtBoxRegistrationEndDate);
+			}
 			hardWait(2);
 			try {
 				clickUsingActionsClass(txtBoxRegistrationEndDate);
@@ -1692,6 +1724,11 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 			}
 		} catch (Exception e) {
 			hardWait(2);
+			try {
+				clickUsingActionsClass(txtBoxCompetitionStartDate);
+			} catch (Exception e2) {
+				clickOnWebElement(txtBoxCompetitionStartDate);
+			}
 			try {
 				clickUsingActionsClass(txtBoxCompetitionStartDate);
 			} catch (Exception e1) {

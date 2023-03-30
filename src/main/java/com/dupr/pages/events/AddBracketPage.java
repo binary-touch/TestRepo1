@@ -1006,8 +1006,9 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 			hardWait(2);
 		} catch (Exception e) {
 			System.out.println();
+			clickOnElementUsingActionClass(btnTimeInMinutes);
 		}
-		clickOnElementUsingActionClass(btnTimeInMinutes);
+		
 
 		/*
 		 * try { if (btnOK.isDisplayed() == true) { this.clickOnWebElement(btnOK); } }
@@ -1165,7 +1166,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 			log.info("*** OK Button Haven't displayed***");
 		}
 
-		log.info("Ending of setRegistrationEndDate�method");
+		log.info("Ending of setRegistrationEndDate method");
 	}
 
 	public void setInvalidRegistrationStartDate() {
@@ -1343,6 +1344,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnCurrentTime(hours);
+		hardWait(3);
 		clickOnElementUsingActionClass(btnTimeInMinutes);
 		try {
 			if (btnOK.isDisplayed() == true) {

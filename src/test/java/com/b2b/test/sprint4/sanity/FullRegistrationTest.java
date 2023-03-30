@@ -231,7 +231,7 @@ public class FullRegistrationTest extends CommonBaseTest {
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #6, Verify Add Participants Functionality")
 	public void verifyRegisterFunctionalityWithFullRegistration() {
-		logger.info("Starting of verifyAddParticipantsFunctionality method");
+		logger.info("Starting of verifyRegisterFunctionalityWithFullRegistration method");
 
 		for (int i = 0; i <= 1; i++) {
 
@@ -254,7 +254,7 @@ public class FullRegistrationTest extends CommonBaseTest {
 
 		Assert.assertTrue(fullRegistrationPage.isRegisterButtonDisableDisplayed());
 
-		logger.info("Ending of verifyAddParticipantsFunctionality method");
+		logger.info("Ending of verifyRegisterFunctionalityWithFullRegistration method");
 	}
 
 	@Test(priority = 7, description = "Verify Full Registration Functionality With WaterFall EventType", groups = "sanity")

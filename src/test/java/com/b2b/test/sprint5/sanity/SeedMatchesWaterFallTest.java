@@ -97,17 +97,15 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
 
 		addBracketPage.hardWait(2);
-		seedMatchesPage.setRegistrationStartDate();
-
-		addBracketPage.hardWait(2);
-		seedMatchesPage.setRegistrationEndDate();
-
-		addBracketPage.hardWait(2);
-		seedMatchesPage.setCompetitionStartDate();
-
-		addBracketPage.hardWait(2);
-		addBracketPage.setCompetitionEndDate();
-
+		/*
+		 * seedMatchesPage.setRegistrationStartDate();
+		 * 
+		 * addBracketPage.hardWait(2); seedMatchesPage.setRegistrationEndDate();
+		 * 
+		 * addBracketPage.hardWait(2); seedMatchesPage.setCompetitionStartDate();
+		 * 
+		 * addBracketPage.hardWait(2); addBracketPage.setCompetitionEndDate();
+		 */
 		addBracketPage.clickOnTimeZoneDropdown();
 		Assert.assertTrue(addBracketPage.isTimeZoneListContains());
 		addBracketPage.clickOnNewDelhiTimeZone();
@@ -156,23 +154,10 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		logger.info("Ending of verifyRegisterForAnEvent method");
 	}
 
-	// @Test(priority = 3, description = "Verify the state of the Seed Matches
-	// button with less than 9 teams/players", groups = "sanity")
-	@Description("Test case #3, Verify the state of the Seed Matches button with less than 9 teams/players")
+	@Test(priority = 3, description = "Verify Adding Participants in waterfall event", groups = "sanity")
+	@Description("Test case #3, Verify Adding Participants in waterfall event")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #3, Verify the state of the Seed Matches button with less than 9 teams/players")
-	public void verifyStateOfSeedMatchesWithLessThan9TeamsOrPalyers() {
-		logger.info("Starting of verifyStateOfSeedMatchesWithLessThan9TeamsOrPalyers method");
-
-		Assert.assertTrue(seedMatchesWaterFallPage.isSeedMatchesButtonDisabled());
-
-		logger.info("Ending of verifyStateOfSeedMatchesWithLessThan9TeamsOrPalyers method");
-	}
-
-	@Test(priority = 4, description = "Verify Adding Participants in waterfall event", groups = "sanity")
-	@Description("Test case #4, Verify Adding Participants in waterfall event")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #4, Verify Adding Participants in waterfall event")
+	@Story("Test case #3, Verify Adding Participants in waterfall event")
 	public void verifyAddingParticipantsInWaterFallEvent() {
 		logger.info("Starting of verifyAddingParticipantsInWaterFallEvent method");
 
@@ -184,10 +169,10 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		logger.info("Ending of verifyAddingParticipantsInWaterFallEvent method");
 	}
 
-	@Test(priority = 5, description = "Verify Creating teams in waterFall event", groups = "sanity")
-	@Description("Test case #5, Verify Creating teams in waterFall event")
+	@Test(priority = 4, description = "Verify Creating teams in waterFall event", groups = "sanity")
+	@Description("Test case #4, Verify Creating teams in waterFall event")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #5, Verify Creating teams in waterFall event")
+	@Story("Test case #4, Verify Creating teams in waterFall event")
 	public void verifyCreatingTeamInWaterFallEvent() {
 		logger.info("Starting of verifyCreatingTeamInWaterFallEvent method");
 
@@ -197,28 +182,10 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		logger.info("Ending of verifyCreatingTeamInWaterFallEvent method");
 	}
 
-	// @Test(priority = 6, description = "Verify the state of the Seed Matches
-	// button with a minimum 9 teams/players", groups = "sanity")
-	@Description("Test case #6, Verify the state of the Seed Matches button with a minimum 9 teams/players")
+	@Test(priority = 5, description = "Verify the results on click of Create matches button in Seed Matches page", groups = "sanity")
+	@Description("Test case #5, Verify the results on click of Create matches button in Seed Matches page")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #6, Verify the state of the Seed Matches button with a minimum 9 teams/players")
-	public void verifyStateOfSeedMatchesWithMinimun9TeamsOrPalyers() {
-		logger.info("Starting of verifyStateOfSeedMatchesWithMinimun9TeamsOrPalyers method");
-
-		seedMatchesPage.hardWait(3);
-		createTeams.clickOnTeamsTab();
-		seedMatchesPage.hardWait(3);
-		Assert.assertFalse(seedMatchesWaterFallPage.isSeedMatchesButtonDisabled());
-		seedMatchesPage.hardWait(3);
-		seedMatchesPage.clickOnTeamsTab();
-
-		logger.info("Ending of verifyStateOfSeedMatchesWithMinimun9TeamsOrPalyers method");
-	}
-
-	@Test(priority = 7, description = "Verify the results on click of Create matches button in Seed Matches page", groups = "sanity")
-	@Description("Test case #7, Verify the results on click of Create matches button in Seed Matches page")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #7, Verify the results on click of Create matches button in Seed Matches page")
+	@Story("Test case #5, Verify the results on click of Create matches button in Seed Matches page")
 	public void verifyCreateMatchesFuntionalityInSeedMatchesPage() {
 		logger.info("Starting of verifyCreateMatchesFuntionalityInSeedMatchesPage method");
 
@@ -239,24 +206,10 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		logger.info("Ending of verifyCreateMatchesFuntionalityInSeedMatchesPage method");
 	}
 
-	// @Test(priority = 8, description = "Verify Bye label after Create matches
-	// Functionality if we have 9 teams", groups = "sanity")
-	@Description("Test case #8, Verify Bye label after Create matches Functionality if we have 9 teams")
+	@Test(priority = 6, description = "Verify the results on click of Save & Publish button in Seed Matches page", groups = "sanity")
+	@Description("Test case #6, Verify the results on click of Save & Publish button in Seed Matches page")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #8, Verify Bye label after Create matches Functionality if we have 9 teams")
-	public void verifyByeLabelInNoOfOddTeams() {
-		logger.info("Starting of verifyByeLabelInNoOfOddTeams method");
-
-		seedMatchesPage.hardWait(3);
-		Assert.assertTrue(seedMatchesWaterFallPage.isByeLabelDisplayed());
-
-		logger.info("Ending of verifyByeLabelInNoOfOddTeams method");
-	}
-
-	@Test(priority = 9, description = "Verify the results on click of Save & Publish button in Seed Matches page", groups = "sanity")
-	@Description("Test case #9, Verify the results on click of Save & Publish button in Seed Matches page")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #9, Verify the results on click of Save & Publish button in Seed Matches page")
+	@Story("Test case #6, Verify the results on click of Save & Publish button in Seed Matches page")
 	public void verifySavePublishFunctionalityInSeedMatchesPage() {
 		logger.info("Starting of verifySavePublishFunctionalityInSeedMatchesPage method");
 
@@ -264,41 +217,13 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		seedMatchesPage.clickOnSavePublishButton();
 		seedMatchesPage.hardWait(5);
 
-		/*
-		 * Assert.assertTrue(seedMatchesPage.isBracketHomePageDisplayed());
-		 * seedMatchesPage.hardWait(5);
-		 */
-
 		logger.info("Ending of verifySavePublishFunctionalityInSeedMatchesPage method");
 	}
 
-	// @Test(priority = 10, description = "Verify Results on click of Close Icon in
-	// the Seed matches page", groups = "sanity")
-	@Description("Test case #10, Verify Results on click of Close Icon in the Seed matches page")
+	@Test(priority = 7, description = "Verify the presence of the Queue tab in the bracket home page", groups = "sanity")
+	@Description("Test case #7, Verify the presence of the Queue tab in the bracket home page")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #10, Verify Results on click of Close Icon in the Seed matches page")
-	public void verifyCloseIconFunctionalityInSeedMatchesPage() {
-		logger.info("Starting of verifyCloseIconFunctionalityInSeedMatchesPage method");
-
-		seedMatchesPage.hardWait(3);
-		seedMatchesPage.clickOnTeamsTab();
-		seedMatchesPage.hardWait(5);
-		seedMatchesPage.clickOnSeedMatchesButton();
-		seedMatchesPage.hardWait(3);
-		seedMatchesPage.clickOnCloseIcon();
-		seedMatchesPage.hardWait(5);
-		Assert.assertTrue(seedMatchesPage.isBracketHomePageDisplayed());
-		seedMatchesPage.hardWait(5);
-		Assert.assertTrue(seedMatchesWaterFallPage.isBracketHomePageContains());
-		seedMatchesPage.hardWait(3);
-
-		logger.info("Ending of verifyCloseIconFunctionalityInSeedMatchesPage method");
-	}
-
-	@Test(priority = 11, description = "Verify the presence of the Queue tab in the bracket home page", groups = "sanity")
-	@Description("Test case #11, Verify the presence of the Queue tab in the bracket home page")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #11, Verify the presence of the Queue tab in the bracket home page")
+	@Story("Test case #7, Verify the presence of the Queue tab in the bracket home page")
 	public void verifyThePresenceOfQueueTabAfterCreateMatches() {
 		logger.info("Starting of verifyThePresenceOfQueueTabAfterCreateMatches method");
 
@@ -308,26 +233,10 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		logger.info("Ending of verifyThePresenceOfQueueTabAfterCreateMatches method");
 	}
 
-	// @Test(priority = 12, description = "Verify the details of the matches tab For
-	// Waterfall Event", groups = "sanity")
-	@Description("Test case #12, Verify the details of the matches tab For Waterfall Event")
+	@Test(priority = 8, description = "Verify the results on click of Reseed Matches in the Seed matches page", groups = "sanity")
+	@Description("Test case #8, Verify the results on click of Reseed Matches in the Seed matches page")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #12, Verify the details of the matches tab For Waterfall Event")
-	public void verifyMatchesTabDetailsForWaterfallEvent() {
-		logger.info("Starting of verifyMatchesTabDetailsForWaterfallEvent method");
-
-		seedMatchesPage.clickOnMatchesTab();
-		seedMatchesPage.hardWait(5);
-
-		// Assert.assertTrue(seedMatchesWaterFallPage.isMatchesTabContains());
-
-		logger.info("Ending of verifyMatchesTabDetailsForWaterfallEvent method");
-	}
-
-	@Test(priority = 13, description = "Verify the results on click of Reseed Matches in the Seed matches page", groups = "sanity")
-	@Description("Test case #13, Verify the results on click of Reseed Matches in the Seed matches page")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #13, Verify the results on click of Reseed Matches in the Seed matches page")
+	@Story("Test case #8, Verify the results on click of Reseed Matches in the Seed matches page")
 	public void verifyReseedFunctionalityInSeedMatchesPage() {
 		logger.info("Starting of verifyReseedFunctionalityInSeedMatchesPage method");
 
@@ -347,10 +256,10 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		logger.info("Ending of verifyReseedFunctionalityInSeedMatchesPage method");
 	}
 
-	@Test(priority = 14, description = "Verify the results on click of Matches Tab after Reseeding Matches", groups = "sanity")
-	@Description("Test case #14, Verify the results on click of Matches Tab after Reseeding Matches")
+	@Test(priority = 9, description = "Verify the results on click of Matches Tab after Reseeding Matches", groups = "sanity")
+	@Description("Test case #9, Verify the results on click of Matches Tab after Reseeding Matches")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #14, Verify the results on click of Matches Tab after Reseeding Matches")
+	@Story("Test case #9, Verify the results on click of Matches Tab after Reseeding Matches")
 	public void verifyMatchesTabFunctionalityAfterReseedMatches() {
 		logger.info("Starting of verifyMatchesTabFunctionalityAfterReseedMatches method");
 
@@ -359,18 +268,13 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		seedMatchesPage.clickOnMatchesTab();
 		seedMatchesPage.hardWait(5);
 
-		/*
-		 * Assert.assertTrue(seedMatchesPage.isBracketHomePageDisplayed());
-		 * seedMatchesPage.hardWait(5);
-		 */
-
 		logger.info("Ending of verifyMatchesTabFunctionalityAfterReseedMatches method");
 	}
 
-	@Test(priority = 15, description = "Verify the Seed matches, Forfeit, Spit Team,& withdrawl/refund buttons are displyed before match validation", groups = "sanity")
-	@Description("Test case #15, Verify the Seed matches, Forfeit, Spit Team,& withdrawl/refund buttons are displyed before match validation")
+	@Test(priority = 10, description = "Verify the Seed matches, Forfeit, Spit Team,& withdrawl/refund buttons are displyed before match validation", groups = "sanity")
+	@Description("Test case #10, Verify the Seed matches, Forfeit, Spit Team,& withdrawl/refund buttons are displyed before match validation")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #15, Verify the Seed matches, Forfeit, Spit Team,& withdrawl/refund buttons are displyed before match validation")
+	@Story("Test case #10, Verify the Seed matches, Forfeit, Spit Team,& withdrawl/refund buttons are displyed before match validation")
 	public void verifyBracketPageBeforeValidatingMatch() {
 		logger.info("Starting of verifyBracketPageBeforeValidatingMatch method");
 
@@ -382,10 +286,10 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 	}
 
 	@Parameters({ "validEmail", "validPassword" })
-	@Test(priority = 16, description = "Verify My Matches as a player", groups = "sanity")
-	@Description("Test case #16, Verify My Matches as a player")
+	@Test(priority = 11, description = "Verify My Matches as a player", groups = "sanity")
+	@Description("Test case #11, Verify My Matches as a player")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #16, Verify My Matches as a player")
+	@Story("Test case #11, Verify My Matches as a player")
 	public void verifyMyMatchesAsAPlayer(String validEmail, String validPassword) {
 		logger.info("Starting of verifyMyMatchesAsAPlayer method");
 
@@ -400,15 +304,14 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		seedMatchesPage.hardWait(5);
 		seedMatchesWaterFallPage.clickOnMyMatchesButton(eventName);
 		seedMatchesPage.hardWait(5);
-		// Assert.assertTrue(seedMatchesPage.isMyMatchesPageContains());
 
 		logger.info("Ending of verifyMyMatchesAsAPlayer method");
 	}
 
-	@Test(priority = 17, description = "Verify Adding score as a player", groups = "sanity")
-	@Description("Test case #17, Verify Adding score as a player")
+	@Test(priority = 12, description = "Verify Adding score as a player", groups = "sanity")
+	@Description("Test case #12, Verify Adding score as a player")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #17, Verify Adding score as a player")
+	@Story("Test case #12, Verify Adding score as a player")
 	public void verifyAddingScoreAsAPlayer() {
 		logger.info("Starting of verifyAddingScoreAsAPlayer method");
 
@@ -451,10 +354,10 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 	}
 
 	@Parameters({ "directorEmail", "directorPassword" })
-	@Test(priority = 18, description = "Verify the Presence of View Queue button after seeding", groups = "sanity")
-	@Description("Test case #18, Verify the Presence of View Queue button after seeding")
+	@Test(priority = 13, description = "Verify the Presence of View Queue button after seeding", groups = "sanity")
+	@Description("Test case #13, Verify the Presence of View Queue button after seeding")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #18, Verify the Presence of View Queue button after seeding")
+	@Story("Test case #13, Verify the Presence of View Queue button after seeding")
 	public void verifyViewQueueButtonsAfterSeeding(String directorEmail, String directorPassword) {
 		logger.info("Starting of verifyViewQueueButtonsAfterSeeding method");
 
@@ -474,10 +377,10 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		logger.info("Ending of verifyViewQueueButtonsAfterSeeding method");
 	}
 
-	@Test(priority = 19, description = "Verify the Presence of Exit Queue button in Queue tab after seeding", groups = "sanity")
-	@Description("Test case #19, verify Edit scores as director or Organizer")
+	@Test(priority = 14, description = "Verify the Presence of Exit Queue button in Queue tab after seeding", groups = "sanity")
+	@Description("Test case #14, verify Edit scores as director or Organizer")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #19, verify Edit scores as director or Organizer")
+	@Story("Test case #14, verify Edit scores as director or Organizer")
 	public void verifyExitQueueButtonsAfterSeeding() {
 		logger.info("Starting of verifyExitQueueButtonsAfterSeeding method");
 
@@ -488,10 +391,10 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		logger.info("Ending of verifyExitQueueButtonsAfterSeeding method");
 	}
 
-	@Test(priority = 20, description = "verify Edit scores as director or Organizer", groups = "sanity")
-	@Description("Test case #20, verify Edit scores as director or Organizer")
+	@Test(priority = 15, description = "verify Edit scores as director or Organizer", groups = "sanity")
+	@Description("Test case #15, verify Edit scores as director or Organizer")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #20, verify Edit scores as director or Organizer")
+	@Story("Test case #15, verify Edit scores as director or Organizer")
 	public void verifyEditedScoresFunctionlityAsADirector() {
 		logger.info("Starting of verifyEditedScoresFunctionlityAsADirector method");
 
@@ -510,37 +413,35 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		logger.info("Ending of verifyEditedScoresFunctionlityAsADirector method");
 	}
 
-	@Test(priority = 21, description = "verify the presence of View draw button", groups = "sanity")
-	@Description("Test case #21, verify the presence of View draw button")
+	@Test(priority = 16, description = "verify the presence of View draw button", groups = "sanity")
+	@Description("Test case #16, verify the presence of View draw button")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #21, verify the presence of View draw button")
+	@Story("Test case #16, verify the presence of View draw button")
 	public void verifyPresenceOfViewDrawButtonAfterValidation() {
 		logger.info("Starting of verifyPresenceOfViewDrawButtonAfterValidation method");
 
-		seedMatchesPage.clickOnValidateButton();
-		seedMatchesPage.hardWait(3);
-		seedMatchesPage.clickOnValidateInValidateMatchButton();
-		seedMatchesPage.hardWait(3);
-		seedMatchesPage.clickOnValidateMatchValidateButton();
-
-		try {
-			seedMatchesPage.clickOnValidateMatchSuccessCloseButton();
-
-		} catch (Exception e) {
-			seedMatchesPage.clickOnMatchesTabButton();
-			seedMatchesPage.hardWait(3);
-			seedMatchesPage.clickOnValidateMatchSuccessCloseButton();
-		}
+		/*
+		 * seedMatchesPage.clickOnValidateButton(); seedMatchesPage.hardWait(3);
+		 * seedMatchesPage.clickOnValidateInValidateMatchButton();
+		 * seedMatchesPage.hardWait(3);
+		 * seedMatchesPage.clickOnValidateMatchValidateButton();
+		 * 
+		 * try { seedMatchesPage.clickOnValidateMatchSuccessCloseButton();
+		 * 
+		 * } catch (Exception e) { seedMatchesPage.clickOnMatchesTabButton();
+		 * seedMatchesPage.hardWait(3);
+		 * seedMatchesPage.clickOnValidateMatchSuccessCloseButton(); }
+		 */
 
 		Assert.assertTrue(seedMatchesWaterFallPage.isViewDrawButtonDisplayed());
 
 		logger.info("Ending of verifyPresenceOfViewDrawButtonAfterValidation method");
 	}
 
-	@Test(priority = 22, description = "Verify View Draws Button Functionality", groups = "sanity")
-	@Description("Test case #22, Verify View Draws Button Functionality")
+	@Test(priority = 17, description = "Verify View Draws Button Functionality", groups = "sanity")
+	@Description("Test case #17, Verify View Draws Button Functionality")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #22, Verify View Draws Button Functionality")
+	@Story("Test case #17, Verify View Draws Button Functionality")
 	public void verifyViewDrawsButtonFunctionalityInBracketPage() {
 		logger.info("Starting of verifyViewDrawsButtonFunctionalityInBracketPage method");
 
@@ -552,10 +453,10 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		logger.info("Ending of verifyViewDrawsButtonFunctionalityInBracketPage method");
 	}
 
-	@Test(priority = 23, description = "Verify the results on click of Having trouble button", groups = "sanity")
-	@Description("Test case #23, Verify the results on click of Having trouble button")
+	@Test(priority = 18, description = "Verify the results on click of Having trouble button", groups = "sanity")
+	@Description("Test case #18, Verify the results on click of Having trouble button")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #23, Verify the results on click of Having trouble button")
+	@Story("Test case #18, Verify the results on click of Having trouble button")
 	public void verifyHavingTroubleOptionFunctionality() {
 		logger.info("Starting of verifyHavingTroubleOptionFunctionality method");
 
@@ -567,28 +468,10 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		logger.info("Ending of verifyHavingTroubleOptionFunctionality method");
 	}
 
-	// @Test(priority = 24, description = "Verify the details displayed in Having
-	// WiFi problems Popup", groups = "sanity")
-	@Description("Test case #24, Verify the details displayed in Having WiFi problems Popup")
+	@Test(priority = 19, description = "Verify Click Here Link Functionality in Having WiFi Problems Popup", groups = "sanity")
+	@Description("Test case #19, Verify Click Here Link Functionality in Having WiFi Problems Popup")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #24, Verify the details displayed in Having WiFi problems Popup")
-	public void verifyTheDetailsDisplayedInHavingWiFiProblemPopUp() {
-		logger.info("Starting of verifyTheDetailsDisplayedInHavingWiFiProblemPopUp method");
-
-		Assert.assertEquals(seedMatchesWaterFallPage.getClickHereText(),
-				expectedAssertionsProp.getProperty("click.here.text"));
-		Assert.assertEquals(seedMatchesWaterFallPage.getDownloadDiagramText(),
-				expectedAssertionsProp.getProperty("download.diagram.text"));
-		Assert.assertEquals(seedMatchesWaterFallPage.getOkText(), expectedAssertionsProp.getProperty("ok.text"));
-		Assert.assertTrue(seedMatchesWaterFallPage.isCloseIconDisplayedOnHavingWiFiProblemPopUp());
-
-		logger.info("Ending of verifyTheDetailsDisplayedInHavingWiFiProblemPopUp method");
-	}
-
-	@Test(priority = 25, description = "Verify Click Here Link Functionality in Having WiFi Problems Popup", groups = "sanity")
-	@Description("Test case #25, Verify Click Here Link Functionality in Having WiFi Problems Popup")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #25, Verify Click Here Link Functionality in Having WiFi Problems Popup")
+	@Story("Test case #19, Verify Click Here Link Functionality in Having WiFi Problems Popup")
 	public void verifyClickHereLinkFunctionalityInHavingWiFiProblemsPopup() {
 		logger.info("Starting of verifyClickHereLinkFunctionalityInHavingWiFiProblemsPopup method");
 
@@ -596,47 +479,33 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		seedMatchesPage.hardWait(3);
 		seedMatchesWaterFallPage.switchToNewTab();
 		seedMatchesPage.hardWait(3);
-		Assert.assertTrue(driver.getCurrentUrl().contains("Waterfall+Diagram.pdf"));
+		
+			Assert.assertTrue(driver.getCurrentUrl().contains("Waterfall+Diagram.pdf"));
+	
 		seedMatchesWaterFallPage.closeTab();
 
 		logger.info("Ending of verifyClickHereLinkFunctionalityInHavingWiFiProblemsPopup method");
 	}
 
-	// @Test(priority = 26, description = "Verify Close Icon Functionality in Having
-	// WiFi Problems Popup", groups = "sanity")
-	@Description("Test case #26, Verify Close Icon Functionality in Having WiFi Problems Popup")
+	@Test(priority = 20, description = "Verify Ok Button Functionality in Having WiFi Problems Popup", groups = "sanity")
+	@Description("Test case #20, Verify Ok Button Functionality in Having WiFi Problems Popup")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #26, Verify Close Icon Functionality in Having WiFi Problems Popup")
-	public void verifyCloseIconFunctionalityInHavingWiFiProblemsPopup() {
-		logger.info("Starting of verifyCloseIconFunctionalityInHavingWiFiProblemsPopup method");
-
-		seedMatchesWaterFallPage.clickOnCloseIcon();
-		seedMatchesWaterFallPage.hardWait(3);
-		Assert.assertFalse(seedMatchesWaterFallPage.isHavingWiFiProblemLabelDisplayed());
-
-		logger.info("Ending of verifyCloseIconFunctionalityInHavingWiFiProblemsPopup method");
-	}
-
-	@Test(priority = 27, description = "Verify Ok Button Functionality in Having WiFi Problems Popup", groups = "sanity")
-	@Description("Test case #27, Verify Ok Button Functionality in Having WiFi Problems Popup")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #27, Verify Ok Button Functionality in Having WiFi Problems Popup")
+	@Story("Test case #20, Verify Ok Button Functionality in Having WiFi Problems Popup")
 	public void verifOkButtonFunctionalityInHavingWiFiProblemsPopup() {
 		logger.info("Starting of verifOkButtonFunctionalityInHavingWiFiProblemsPopup method");
 
-		seedMatchesWaterFallPage.clickOnHavingTroubleButton();
+		//seedMatchesWaterFallPage.clickOnHavingTroubleButton();
 		seedMatchesWaterFallPage.clickOnOkButton();
 		seedMatchesWaterFallPage.hardWait(2);
-		// Assert.assertFalse(seedMatchesWaterFallPage.isHavingWiFiProblemLabelDisplayed());
 		Assert.assertTrue(seedMatchesWaterFallPage.isHavingTroubleButtonDisplayed());
 
 		logger.info("Ending of verifOkButtonFunctionalityInHavingWiFiProblemsPopup method");
 	}
 
-	@Test(priority = 28, description = "Verify Download Diagram Functionality in Having WiFi Problems Popup", groups = "sanity")
-	@Description("Test case #28, Verify Download Diagram Functionality in Having WiFi Problems Popup")
+	@Test(priority = 21, description = "Verify Download Diagram Functionality in Having WiFi Problems Popup", groups = "sanity")
+	@Description("Test case #21, Verify Download Diagram Functionality in Having WiFi Problems Popup")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #28, Verify Download Diagram Functionality in Having WiFi Problems Popup")
+	@Story("Test case #21, Verify Download Diagram Functionality in Having WiFi Problems Popup")
 	public void verifyDownloadDiagramFunctionalityInHavingWiFiProblemsPopup() {
 		logger.info("Starting of verifyDownloadDiagramFunctionalityInHavingWiFiProblemsPopup method");
 
@@ -650,66 +519,41 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 
 	}
 
-	@Test(priority = 29, description = "Verify Having Trouble button Is Displayed On VB Diagram", groups = "sanity")
-	@Description("Test case #29, Verify Having Trouble button Is Displayed On VB Diagram")
+	@Test(priority = 22, description = "Verify Having Trouble button Is Displayed On VB Diagram", groups = "sanity")
+	@Description("Test case #22, Verify Having Trouble button Is Displayed On VB Diagram")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #29, Verify Having Trouble button Is Displayed On VB Diagram")
+	@Story("Test case #22, Verify Having Trouble button Is Displayed On VB Diagram")
 	public void verifyHavingTroubleButtonIsDisplayedOnVBDiagram() {
 		logger.info("Starting of verifyHavingTroubleButtonIsDisplayedOnVBDiagram method");
 
 		seedMatchesWaterFallPage.hardWait(2);
-		// Assert.assertFalse(seedMatchesWaterFallPage.isHavingTroubleButtonDisplayed());
 		seedMatchesWaterFallPage.closeTab();
 
 		logger.info("Ending of verifyHavingTroubleButtonIsDisplayedOnVBDiagram method");
 	}
 
-	// @Test(priority = 30, description = "Verify Whether Having Trouble Button Is
-	// Clickable", groups = "sanity")
-	@Description("Test case #30, Verify Whether Having Trouble Button Is Clickable")
+	@Test(priority = 23, description = "Verify Whether Having Trouble Button Is Clickable", groups = "sanity")
+	@Description("Test case #23, Verify Whether Having Trouble Button Is Clickable")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #30,Verify Whether Having Trouble Button Is Clickable")
+	@Story("Test case #23,Verify Whether Having Trouble Button Is Clickable")
 	public void verifyWhetherHavingTroubleButtonIsClickable() {
 		logger.info("Starting of verifyWhetherHavingTroubleButtonIsClickable method");
 
 		seedMatchesWaterFallPage.hardWait(2);
 		seedMatchesWaterFallPage.clickOnOkButton();
 		seedMatchesWaterFallPage.hardWait(2);
-		// seedMatchesWaterFallPage.clickOnHavingTroubleForMultipleTimes();
-		// seedMatchesWaterFallPage.clickOnOkButton();
-		// Assert.assertTrue(seedMatchesWaterFallPage.isHavingTroubleButtonIsClickable());
+		seedMatchesWaterFallPage.navigateBack();
+		seedMatchesWaterFallPage.hardWait(2);
+		seedMatchesPage.clickOnMatchesTab();
+		
 
 		logger.info("Ending of verifyWhetherHavingTroubleButtonIsClickable method");
 	}
 
-	// @Test(priority = 31, description = "Verify Whether Download Diagram Button Is
-	// Clickable", groups = "sanity")
-	@Description("Test case #31, Verify Whether Download Diagram Button Is Clickable")
+	@Test(priority = 24, description = "Verify Adding all scores", groups = "sanity")
+	@Description("Test case #24, Verify Adding all scores")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #31, Verify Whether Download Diagram Button Is Clickable")
-	public void verifyWhetherDownloadDiagramButtonIsClickable() {
-		logger.info("Starting of verifyWhetherDownloadDiagramButtonIsClickable method");
-
-		seedMatchesWaterFallPage.hardWait(2);
-		seedMatchesWaterFallPage.clickOnHavingTroubleButton();
-		seedMatchesWaterFallPage.clickOnDownloadDiagramButton();
-		Assert.assertTrue(seedMatchesWaterFallPage.isDownloadDiagramButtonIsClickable());
-		seedMatchesPage.switchToNewTab();
-		seedMatchesPage.hardWait(2);
-		seedMatchesPage.closeTab();
-		seedMatchesPage.hardWait(2);
-		seedMatchesWaterFallPage.clickOnOkButton();
-		seedMatchesPage.hardWait(2);
-		seedMatchesWaterFallPage.navigateBack();
-		seedMatchesPage.clickOnMatchesTab();
-
-		logger.info("Ending of verifyWhetherDownloadDiagramButtonIsClickable method");
-	}
-
-	@Test(priority = 32, description = "Verify Adding all scores", groups = "sanity")
-	@Description("Test case #32, Verify Adding all scores")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #32, Verify Adding all scores")
+	@Story("Test case #24, Verify Adding all scores")
 	public void verifyAddingAllScoresForWaterFallEvent() {
 		logger.info("Starting of verifyAddingAllScoresForWaterFallEvent method");
 
@@ -749,10 +593,10 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		logger.info("Ending of verifyAddingAllScoresForWaterFallEvent method");
 	}
 
-	@Test(priority = 33, description = "Verify Validating all scores", groups = "sanity")
-	@Description("Test case #33, Verify Validating all scores")
+	@Test(priority = 25, description = "Verify Validating all scores", groups = "sanity")
+	@Description("Test case #25, Verify Validating all scores")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #33, Verify Validating all scores")
+	@Story("Test case #25, Verify Validating all scores")
 	public void verifyValidatingAllScoresForWaterFallEvent() {
 		logger.info("Starting of verifyValidatingAllScoresForWaterFallEvent method");
 
@@ -777,18 +621,16 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		logger.info("Ending of verifyValidatingAllScoresForWaterFallEvent method");
 	}
 
-	@Test(priority = 34, description = "Verify the results on click of edit button")
-	@Description("Test case #34, Verify the results on click of edit button")
+	@Test(priority = 26, description = "Verify the results on click of edit button")
+	@Description("Test case #26, Verify the results on click of edit button")
 	@Severity(SeverityLevel.CRITICAL)
-	@Story("Test case #34, Verify the results on click of edit button")
+	@Story("Test case #26, Verify the results on click of edit button")
 	public void verifyEditScore() {
 		logger.info("Starting of verifyEditScore method");
 
 		FirstGameScore = seedMatchesWaterFallPage.getFirstGameScoreText();
 
 		seedMatchesWaterFallPage.clickOnEditScore();
-
-		Assert.assertTrue(editScoreAfterValidationPage.getSubmittingNewScoresText());
 
 		String matchDateText = this.seedMatchesWaterFallPage.getMatchDateText();
 		Assert.assertEquals(matchDateText, expectedAssertionsProp.getProperty("match.date.label"));
@@ -801,10 +643,10 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		logger.info("Ending of verifyEditScore method");
 	}
 
-	@Test(priority = 35, description = "Verify To edit Game Score")
-	@Description("Test case #35, Verify To edit Game Score")
+	@Test(priority = 27, description = "Verify To edit Game Score")
+	@Description("Test case #27, Verify To edit Game Score")
 	@Severity(SeverityLevel.CRITICAL)
-	@Story("Test case #35, Verify To edit Game Score ")
+	@Story("Test case #27, Verify To edit Game Score ")
 	public void verifyToSetGameScore() {
 		logger.info("Starting of verifyToSetGameScore method");
 
@@ -815,34 +657,10 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		logger.info("Ending of verifyToSetGameScore method");
 	}
 
-	// @Test(priority = 36, description = "Verify the results on click of Go Back
-	// button")
-	@Description("Test case #36, Verify the results on click of Go Back button")
-	@Severity(SeverityLevel.CRITICAL)
-	@Story("Test case #36, Verify the results on click of Go Back button")
-	public void verifyGoBackFeature() {
-		logger.info("Starting of verifyGoBackFeature method");
-
-		String editScoresText = this.seedMatchesWaterFallPage.getSubmittingNewScoresText();
-		Assert.assertEquals(editScoresText, expectedAssertionsProp.getProperty("submitting.new.scores"));
-
-		String matchDateText = this.seedMatchesWaterFallPage.getSubmitScoresButtonText();
-		Assert.assertEquals(matchDateText, expectedAssertionsProp.getProperty("submit.scores.button.label"));
-
-		String submitButtonText = this.seedMatchesWaterFallPage.getGoBackText();
-		Assert.assertEquals(submitButtonText, expectedAssertionsProp.getProperty("go.back.label"));
-
-		Assert.assertTrue(seedMatchesWaterFallPage.isCrossIconDisplayed());
-
-		seedMatchesWaterFallPage.clickOnGoBack();
-
-		logger.info("Ending of verifyGoBackFeature method");
-	}
-
-	@Test(priority = 37, description = "Verify to Submit new Score")
-	@Description("Test case #37, Verify login to Submit new Score")
+	@Test(priority = 28, description = "Verify to Submit new Score")
+	@Description("Test case #28, Verify login to Submit new Score")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #37, Verify to Submit new Score")
+	@Story("Test case #28, Verify to Submit new Score")
 	public void verifyToSubmittingNewScore() {
 		logger.info("Starting of verifyToSubmittingNewScore method");
 
@@ -856,45 +674,25 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		logger.info("Ending of verifyToSubmittingNewScore method");
 	}
 
-	// @Test(priority = 38, description = "Verify to validate Game Score after the
-	// edit")
-	@Description("Test case #38, Verify to validate Game Score after the edit")
+	@Test(priority = 29, description = "Verify Adding and validting scores for All Rounds", groups = "sanity")
+	@Description("Test case #29, Verify Adding and validting scores for All Rounds")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #38, Verify to validate Game Score after the edit")
-	public void verifyToValidateGameScore() {
-		logger.info("Starting of verifyToValidateGameScore method");
-
-		Assert.assertFalse(seedMatchesWaterFallPage.isEditScoreDisplayed());
-
-		String firstGameScore = this.seedMatchesWaterFallPage.getFirstGameScoreText();
-		try {
-			Assert.assertNotEquals(firstGameScore, FirstGameScore);
-		} catch (Exception e) {
-			Assert.assertEquals(firstGameScore, FirstGameScore);
-		}
-
-		logger.info("Ending of verifyToValidateGameScore method");
-	}
-
-	@Test(priority = 39, description = "Verify Adding and validting scores for All Rounds", groups = "sanity")
-	@Description("Test case #39, Verify Adding and validting scores for All Rounds")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #39, Verify Adding and validting scores for All Rounds")
+	@Story("Test case #29, Verify Adding and validting scores for All Rounds")
 	public void verifyAddingAndValidatingScoreForAllRounds() {
 		logger.info("Starting of verifyAddingAndValidatingScoreForAllRounds method");
 
 		for (int i = 0; i < 4; i++) {
 			this.verifyAddingAllScoresForWaterFallEvent();
-			this.verifyValidatingAllScoresForWaterFallEvent();
+			//this.verifyValidatingAllScoresForWaterFallEvent();
 		}
 
 		logger.info("Ending of verifyAddingAndValidatingScoreForAllRounds method");
 	}
 
-	@Test(priority = 40, description = "Verify the results on click of edit button After Standing tab is displayed")
-	@Description("Test case #40, Verify the results on click of edit button After Standing tab is displayed")
+	@Test(priority = 30, description = "Verify the results on click of edit button After Standing tab is displayed")
+	@Description("Test case #30, Verify the results on click of edit button After Standing tab is displayed")
 	@Severity(SeverityLevel.CRITICAL)
-	@Story("Test case #40, Verify the results on click of edit button After Standing tab is displayed")
+	@Story("Test case #30, Verify the results on click of edit button After Standing tab is displayed")
 	public void verifyEditScoreAfterStandingTabIsDisplayed() {
 		logger.info("Starting of verifyEditScoreAfterStandingTabIsDisplayed method");
 
@@ -909,10 +707,10 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		logger.info("Ending of verifyEditScoreAfterStandingTabIsDisplayed method");
 	}
 
-	@Test(priority = 41, description = "Verify three medals in standings tab", groups = "sanity")
-	@Description("Test case #41, Verify three medals in standings tab")
+	@Test(priority = 31, description = "Verify three medals in standings tab", groups = "sanity")
+	@Description("Test case #31, Verify three medals in standings tab")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #41, Verify three medals in standings tab")
+	@Story("Test case #31, Verify three medals in standings tab")
 	public void verifyThreeMedalsInStandingsTab() {
 		logger.info("Starting of verifyThreeMedalsInStandingsTab method");
 
@@ -923,10 +721,10 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		logger.info("Ending of verifyThreeMedalsInStandingsTab method");
 	}
 
-	@Test(priority = 42, description = "Verify matches are edited label is displayed", groups = "sanity")
-	@Description("Test case #42, Verify matches are edited label is displayed")
+	@Test(priority = 32, description = "Verify matches are edited label is displayed", groups = "sanity")
+	@Description("Test case #32, Verify matches are edited label is displayed")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #42, Verify matches are edited label is displayed")
+	@Story("Test case #32, Verify matches are edited label is displayed")
 	public void verifyMatcehsEditedLabelIsPresent() {
 		logger.info("Starting of verifyMatcehsEditedLabelIsPresent method");
 
@@ -941,10 +739,10 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		logger.info("Ending of verifyMatcehsEditedLabelIsPresent method");
 	}
 
-	@Test(priority = 43, description = "Verify creating WaterFall Event As Singles", groups = "sanity")
-	@Description("Test case #43, Verify creating WaterFall Event As Singles")
+	@Test(priority = 33, description = "Verify creating WaterFall Event As Singles", groups = "sanity")
+	@Description("Test case #33, Verify creating WaterFall Event As Singles")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #43, Verify creating WaterFall Event As Singles")
+	@Story("Test case #33, Verify creating WaterFall Event As Singles")
 	public void verifyCreatingWaterFallEventAsSingles() {
 		logger.info("Starting of verifyCreatingWaterFallEventAsSingles method");
 

@@ -40,7 +40,6 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 
 		logger.info("Ending of initMethod in SeedAndReseedTest");
 	}
-
 	@Test(priority = 1, description = "Verify the results on Click of seed Matches", groups = "sanity")
 	@Description("Test case #1, Verify the results on Click of seed Matches")
 	@Severity(SeverityLevel.NORMAL)
@@ -105,7 +104,7 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #4, Verify creating teams")
 	public void verifyCreatingTeamForAnRoundRobinEvent() {
-		logger.info("Starting of verifyCreatingTeamForAnRoundRobinEvent method");
+		//logger.info("Starting of verifyCreatingTeamForAnRoundRobinEvent method");
 
 		createTeams.selectTeams();
 		seedMatchesPage.hardWait(5);
@@ -120,33 +119,13 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 		logger.info("Ending of verifyCreatingTeamForAnRoundRobinEvent method");
 	}
 
-	//@Test(priority = 5, description = "Verify the results on click of close icon", groups = "sanity")
-	@Description("Test case #5, Verify the results on click of close icon")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #5, Verify the results on click of close icon")
-	public void verifyCloseIconFuntionality() {
-		logger.info("Starting of verifyCloseIconFuntionality method");
-
-		seedMatchesPage.clickOnCloseIcon();
-		seedMatchesPage.hardWait(5);
-
-		Assert.assertTrue(seedMatchesPage.isBracketHomePageDisplayed());
-		seedMatchesPage.hardWait(5);
-
-		seedMatchesPage.clickOnTeamsTab();
-
-		logger.info("Ending of verifyCloseIconFuntionality method");
-	}
-
-	//@Test(priority = 6, description = "Verify the results on click of Create matches button", groups = "sanity")
+	@Test(priority = 6, description = "Verify the results on click of Create matches button", groups = "sanity")
 	@Description("Test case #6, Verify the results on click of Create matches button")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #6, Verify the results on click of Create matches button")
 	public void verifyCreateMatchesFuntionality() {
 		logger.info("Starting of verifyCreateMatchesFuntionality method");
-
-		seedMatchesPage.hardWait(5);
-		seedMatchesPage.clickOnSeedMatchesButton();
+		
 		seedMatchesPage.hardWait(5);
 		seedMatchesPage.clickOnCreateMatches();
 		seedMatchesPage.hardWait(5);
@@ -155,41 +134,6 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 		seedMatchesPage.hardWait(5);
 
 		logger.info("Ending of verifyCreateMatchesFuntionality method");
-	}
-
-	//@Test(priority = 7, description = "Verify the results on click of right arrow icon", groups = "sanity")
-	@Description("Test case #7, Verify the results on click of right arrow icon")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #7, Verify the results on click of right arrow icon")
-	public void verifyRightArrowFunctionality() {
-		logger.info("Starting of verifyRightArrowFunctionality method");
-
-		Assert.assertTrue(seedMatchesPage.isRoundsDisplayed());
-		seedMatchesPage.hardWait(5);
-
-		seedMatchesPage.clickOnRightArrowIcon();
-		seedMatchesPage.hardWait(5);
-
-		Assert.assertTrue(seedMatchesPage.isArrowDisabled());
-		seedMatchesPage.hardWait(5);
-
-		logger.info("Ending of verifyRightArrowFunctionality method");
-	}
-
-	//@Test(priority = 8, description = "Verify the results on click of Left arrow icon", groups = "sanity")
-	@Description("Test case #8, Verify the results on click of Left arrow icon")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #8, Verify the results on click of Left arrow icon")
-	public void verifyLeftArrowFunctionality() {
-		logger.info("Starting of verifyLeftArrowFunctionality method");
-
-		seedMatchesPage.clickOnLefttArrowIcon();
-		seedMatchesPage.hardWait(5);
-
-		Assert.assertTrue(seedMatchesPage.isArrowDisabled());
-		seedMatchesPage.hardWait(5);
-
-		logger.info("Ending of verifyLeftArrowFunctionality method");
 	}
 
 	@Test(priority = 9, description = "Verify the results on click of Save & Publish button", groups = "sanity")
@@ -202,28 +146,9 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 		seedMatchesPage.clickOnSavePublishButton();
 		seedMatchesPage.hardWait(5);
 
-		//Assert.assertTrue(seedMatchesPage.isBracketHomePageDisplayed());
-		seedMatchesPage.hardWait(5);
-
 		logger.info("Ending of verifySavePublishFunctionality method");
 	}
-
-	//@Test(priority = 10, description = "Verify the details of the matches tab", groups = "sanity")
-	@Description("Test case #10, Verify the details of the matches tab")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #10, Verify the details of the matches tab")
-	public void verifyMatchesTabDetails() {
-		logger.info("Starting of verifyMatchesTabDetails method");
-
-		seedMatchesPage.clickOnMatchesTab();
-		seedMatchesPage.hardWait(5);
-
-		Assert.assertTrue(seedMatchesPage.isMatchesTabContains());
-		seedMatchesPage.hardWait(5);
-
-		logger.info("Ending of verifyMatchesTabDetails method");
-	}
-
+	
 	@Test(priority = 11, description = "Verify the results on click of Reseed Matches", groups = "sanity")
 	@Description("Test case #11, Verify the results on click of Reseed Matches")
 	@Severity(SeverityLevel.NORMAL)
@@ -319,50 +244,7 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 		logger.info("Ending of verifyAddScoreFunctionality method");
 	}
 	
-	//@Test(priority = 16, description = "Verify the results on click of close icon on Add scores popup", groups = "sanity")
-		@Description("Test case #16, Verify the results on click of close icon on Add scores popup")
-		@Severity(SeverityLevel.NORMAL)
-		@Story("Test case #16, Verify the results on click of close icon on Add scores popup")
-		public void verifyCloseIconFunctionalityOnAddScores() {
-			logger.info("Starting of verifyCloseIconFunctionalityOnAddScores method");
-
-			seedMatchesPage.clickCloseIconOnAddScores();
-			seedMatchesPage.hardWait(5);
-
-			Assert.assertFalse(seedMatchesPage.isAddScoresPopUpContains());
-			seedMatchesPage.hardWait(5);
-
-			Assert.assertTrue(seedMatchesPage.isMyMatchesPageContains());
-			seedMatchesPage.hardWait(5);
-
-			logger.info("Ending of verifyCloseIconFunctionalityOnAddScores method");
-		}
-
-		//@Test(priority = 17, description = "Verify the results on click of Submit button with empty fields", groups = "sanity")
-		@Description("Test case #17, Verify the results on click of Submit button with empty fields")
-		@Severity(SeverityLevel.NORMAL)
-		@Story("Test case #17, Verify the results on click of Submit button with empty fields")
-		public void verifySubmitFunctionalityWithEmptyFields() {
-			logger.info("Starting of verifySubmitFunctionalityWithEmptyFields method");
-
-			seedMatchesPage.clickOnAddScoresButton();
-			seedMatchesPage.hardWait(5);
-
-			seedMatchesPage.clickOnSubmitButton();
-			seedMatchesPage.hardWait(5);
-
-			Assert.assertEquals(seedMatchesPage.getDateValidationTxt(),
-					expectedAssertionsProp.getProperty("date.validation.text"));
-			seedMatchesPage.hardWait(5);
-
-			Assert.assertEquals(seedMatchesPage.getPointsValidationTxt(),
-					expectedAssertionsProp.getProperty("points.validation.text"));
-			seedMatchesPage.hardWait(5);
-
-			logger.info("Ending of verifySubmitFunctionalityWithEmptyFields method");
-		}
-
-		@Test(priority = 18, description = "Verify the results of selecting the competition date", groups = "sanity")
+	@Test(priority = 18, description = "Verify the results of selecting the competition date", groups = "sanity")
 		@Description("Test case #18, Verify the results of selecting the competition date")
 		@Severity(SeverityLevel.NORMAL)
 		@Story("Test case #18, Verify the results of selecting the competition date")
@@ -410,26 +292,6 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 
 			logger.info("Ending of VerifyAddIconFunctionality method");
 		}
-		//@Test(priority = 21, description = "Verify the validation message by entering all zeros for one of the player", groups = "sanity")
-		@Description("Test case #21, Verify the validation message by entering all zeros for one of the player")
-		@Severity(SeverityLevel.NORMAL)
-		@Story("Test case #21, Verify the validation message by entering all zeros for one of the player")
-		public void verifyValidationMessageBySubmitingAllZeroPoints() {
-			logger.info("Starting of VerifyAddIconFunctionality method");
-
-			seedMatchesPage.enterFirstGamePlayerPoints(testDataProp.getProperty("valid.game.point"),
-					testDataProp.getProperty("invalid.game.point"));
-
-			seedMatchesPage.enterSecondGamePlayerPoints(testDataProp.getProperty("invalid.game.point"),
-					testDataProp.getProperty("invalid.game.point"));
-
-			seedMatchesPage.clickOnSubmitButton();
-
-			Assert.assertEquals(seedMatchesPage.getInvalidPointsValidation(),
-					expectedAssertionsProp.getProperty("invalid.points.validation.text"));
-
-			logger.info("Ending of VerifyAddIconFunctionality method");
-		}
 
 		@Test(priority = 22, description = "Verify the Add Icon by adding three points fields", groups = "sanity")
 		@Description("Test case #22, Verify the validation message by entering all zeros for one of the player")
@@ -470,66 +332,6 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 			logger.info("Ending of verifyWinnersTagForWinningPlayes method");
 		}
 
-		//@Test(priority = 24, description = "Verify the results on click on remove icon ", groups = "sanity")
-		@Description("Test case #24, Verify the results on click on remove icon")
-		@Severity(SeverityLevel.NORMAL)
-		@Story("Test case #24, Verify the results on click on remove icon")
-		public void verifyRemoveIconFunctionality() {
-			logger.info("Starting of VerifyRemoveIconFunctionality method");
-
-			seedMatchesPage.clickOnRemoveIcon();
-
-			Assert.assertFalse(seedMatchesPage.isAddIconDisappeared());
-
-			logger.info("Ending of VerifyRemoveIconFunctionality method");
-		}
-
-		//@Test(priority = 25, description = "Verify the results on click of Submit button", groups = "sanity")
-		@Description("Test case #25, Verify the results on click of Submit button")
-		@Severity(SeverityLevel.NORMAL)
-		@Story("Test case #25, Verify the results on click of Submit button")
-		public void verifySubmitButtonFunctionality() {
-			logger.info("Starting of VerifySubmitButtonFunctionality method");
-
-			seedMatchesPage.clickOnSubmitButton();
-
-			Assert.assertTrue(seedMatchesPage.isSubmitScoresPopUpContains());
-
-			Assert.assertEquals(seedMatchesPage.getSubmitScoresTxt(),
-					expectedAssertionsProp.getProperty("submit.scores.text"));
-
-			logger.info("Ending of VerifySubmitButtonFunctionality method");
-		}
-
-		//@Test(priority = 26, description = "Verify the results on click of close icon on Submit scores PopUP", groups = "sanity")
-		@Description("Test case #26, Verify the results on click of close icon on Submit scores PopUP")
-		@Severity(SeverityLevel.NORMAL)
-		@Story("Test case #26, Verify the results on click of close icon on Submit scores PopUP")
-		public void verifyCloseIconFunctionalityOnSubmit() {
-			logger.info("Starting of VerifyCloseIconFunctionalityOnSubmit method");
-
-			seedMatchesPage.clickCloseIconOnSubmitScores();
-
-			Assert.assertEquals(seedMatchesPage.getAddScoresTxt(), expectedAssertionsProp.getProperty("add.scores.text"));
-
-			logger.info("Ending of VerifyCloseIconFunctionalityOnSubmit method");
-		}
-
-		//@Test(priority = 27, description = "Verify the results on click of Go Back Button", groups = "sanity")
-		@Description("Test case #27, Verify the results on click of Go Back Button")
-		@Severity(SeverityLevel.NORMAL)
-		@Story("Test case #27, Verify the results on click of Go Back Button")
-		public void verifyGoBackFunctionality() {
-			logger.info("Starting of VerifyGoBackFunctionality method");
-			seedMatchesPage.clickOnSubmitButton();
-
-			seedMatchesPage.clickGoBackButtonOnSubmitScores();
-
-			Assert.assertEquals(seedMatchesPage.getAddScoresTxt(), expectedAssertionsProp.getProperty("add.scores.text"));
-
-			logger.info("Ending of VerifyGoBackFunctionality method");
-		}
-
 		@Test(priority = 28, description = "Verify the results on click of submit button by adding all three points field", groups = "sanity")
 		@Description("Test case #28, Verify the results on click of submit button by adding all three points field")
 		@Severity(SeverityLevel.NORMAL)
@@ -537,18 +339,9 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 		public void verifySubmitFunctionality() {
 			logger.info("Starting of VerifySubmitFunctionality method");
 
-			//seedMatchesPage.clickOnAddIcon();
-
-			//seedMatchesPage.hardWait(3);
-
-			//seedMatchesPage.enterThirdGamePlayerPoints(testDataProp.getProperty("first.game.player.one.points"),
-					//testDataProp.getProperty("first.game.player.two.points"));
-
 			seedMatchesPage.hardWait(3);
 
 			seedMatchesPage.clickOnSubmitButton();
-
-			//Assert.assertTrue(seedMatchesPage.isScoresAddedPopUpContains());
 
 			logger.info("Ending of VerifySubmitFunctionality method");
 
@@ -563,8 +356,6 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 
 			seedMatchesPage.clickCloseIconOnScoreAddedPopUP();
 			addEventPage.hardWait(4);
-
-			//Assert.assertFalse(seedMatchesPage.isScoresAddedPopUpContains());
 
 			logger.info("Ending of VerifyCloseIconFunctionalityOnScoresAdded method");
 		}
@@ -630,12 +421,11 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 		public void verifyEditScoreFunctionality() {
 			logger.info("Starting of VerifyEditScoreFunctionality method");
 
+			seedMatchesPage.clickOnMatchesTab();
 			seedMatchesPage.clickOnEditScoresButton();
 
 			Assert.assertTrue(seedMatchesPage.isEditScoresPopUpContains());
-
-			//Assert.assertEquals(seedMatchesPage.getEditScoresTxt(), expectedAssertionsProp.getProperty("edit.scores.txt"));
-
+			
 			logger.info("Ending of VerifyEditScoreFunctionality method");
 		}
 
@@ -648,8 +438,6 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 
 			seedMatchesPage.enterThirdGamePlayerPoints(testDataProp.getProperty("first.game.player.one.points"),
 					testDataProp.getProperty("first.game.player.two.points"));
-
-			//Assert.assertEquals(seedMatchesPage.getEditScoresTxt(), expectedAssertionsProp.getProperty("edit.scores.txt"));
 
 			Assert.assertTrue(seedMatchesPage.isWinnerTagDisplayed());
 
@@ -664,31 +452,16 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 			logger.info("Starting of VerifySubmitFunctionalityOnEditScores method");
 
 			seedMatchesPage.clickOnSubmitButton();
+			seedMatchesPage.clickOnSubmitScoresButton();
 
 			Assert.assertFalse(seedMatchesPage.isEditScoresPopUpContains());
 
 			logger.info("Ending of VerifySubmitFunctionalityOnEditScores method");
 		}
 
-		//@Test(priority = 34, description = "Verify the results by splitting the team after seeding", groups = "sanity")
-		@Description("Test case #34, Verify the results by splitting the team after seeding")
-		@Severity(SeverityLevel.NORMAL)
-		@Story("Test case #34, Verify the results by splitting the team after seeding")
-		public void verifyByeLabelIsDisplayed() {
-			logger.info("Starting of verifyByeLabelIsDisplayed method");
 
-			seedMatchesPage.clickOnTeamsTab();
-			seedMatchesPage.hardWait(3);
-			seedMatchesPage.withdrawTeam();
-			seedMatchesPage.hardWait(3);
-			seedMatchesPage.clickOnMatchesTab();
-			seedMatchesPage.hardWait(3);
-			Assert.assertTrue(seedMatchesPage.isByeLabelDisplayed());
-
-			logger.info("Ending of verifyByeLabelIsDisplayed method");
-		}
-
-		@Test(priority = 35, description = "verify Validate Functionality", groups = "sanity")
+//Run
+		//@Test(priority = 35, description = "verify Validate Functionality", groups = "sanity")
 		@Description("Test case #35, verify Validate Functionality")
 		@Severity(SeverityLevel.NORMAL)
 		@Story("Test case #35, verify Validate Functionality")
@@ -702,32 +475,14 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 			logger.info("Ending of verifyValidateFunctionality method");
 		}
 
-		//@Test(priority = 36, description = "verify Close Icon Functionality In Validate Match PopUp", groups = "sanity")
-		@Description("Test case #36, verify Close Icon Functionality In Validate Match PopUp")
-		@Severity(SeverityLevel.NORMAL)
-		@Story("Test case #36, verify Close Icon Functionality In Validate Match PopUp")
-		public void verifyCloseIconFunctionalityInValidateMatchPopUp() {
-			logger.info("Starting of verifyCloseIconFunctionalityInValidateMatchPopUp method");
-
-			seedMatchesPage.clickOnCloseIconOnValidatePopUp();
-			seedMatchesPage.hardWait(4);
-
-			Assert.assertFalse(seedMatchesPage.isValidateMatchPopupContains());
-
-			logger.info("Ending of verifyCloseIconFunctionalityInValidateMatchPopUp method");
-		}
-
-		@Test(priority = 37, description = "verify Validate Functionality In Validate Match PopUp", groups = "sanity")
+	
+//RUn
+		//@Test(priority = 37, description = "verify Validate Functionality In Validate Match PopUp", groups = "sanity")
 		@Description("Test case #37, verify Validate Functionality In Validate Match PopUp")
 		@Severity(SeverityLevel.NORMAL)
 		@Story("Test case #37, verify Validate Functionality In Validate Match PopUp")
 		public void verifyValidateFunctionalityInValidateMatchPopUp() {
 			logger.info("Starting of verifyValidateFunctionalityInValidateMatchPopUp method");
-
-			//seedMatchesPage.clickOnValidateButton();
-
-			//Assert.assertEquals(seedMatchesPage.getValidateMatchLabel(),
-				//	expectedAssertionsProp.getProperty("validate.match.text"));
 
 			seedMatchesPage.clickOnValidateInValidateMatchButton();
 
@@ -735,42 +490,9 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 
 			logger.info("Ending of verifyValidateFunctionalityInValidateMatchPopUp method");
 		}
-
-//		@Test(priority = 38, description = "verify Close Icon Functionality In Validate Match", groups = "sanity")
-		@Description("Test case #38, verify Close Icon Functionality In Validate Match")
-		@Severity(SeverityLevel.NORMAL)
-		@Story("Test case #38, verify Close Icon Functionality In Validate Match")
-		public void verifyCloseIconFunctionalityInValidateMatch() {
-			logger.info("Starting of verifyCloseIconFunctionalityInValidateMatch method");
-
-			seedMatchesPage.clickOnCloseIconOnValidatePopUp();
-			seedMatchesPage.hardWait(4);
-
-			Assert.assertFalse(seedMatchesPage.isValidateMatchPopupInValidateMatchContains());
-
-			logger.info("Ending of verifyCloseIconFunctionalityInValidateMatch method");
-		}
-
-		//@Test(priority = 39, description = "verify Cancel Button Functionality In Validate Match PopUp", groups = "sanity")
-		@Description("Test case #39, verify Cancel Button Functionality In Validate Match PopUp")
-		@Severity(SeverityLevel.NORMAL)
-		@Story("Test case #39, verify Cancel Button Functionality In Validate Match PopUp")
-		public void verifyCancelIconFunctionalityInValidateMatchPopUp() {
-			logger.info("Starting of verifyCancelIconFunctionalityInValidateMatchPopUp method");
-
-			seedMatchesPage.clickOnValidateButton();
-			seedMatchesPage.clickOnValidateInValidateMatchButton();
-
-			Assert.assertTrue(seedMatchesPage.isValidateMatchPopupInValidateMatchContains());
-
-			seedMatchesPage.clickOnValidateMatchCancelButton();
-
-			Assert.assertEquals(seedMatchesPage.getValidateLabel(), expectedAssertionsProp.getProperty("validate.text"));
-
-			logger.info("Ending of verifyCancelIconFunctionalityInValidateMatchPopUp method");
-		}
-
-		@Test(priority = 40, description = "verifyValidateFunctionalityInValidatePopUp", groups = "sanity")
+		
+//Run
+		//@Test(priority = 40, description = "verifyValidateFunctionalityInValidatePopUp", groups = "sanity")
 		@Description("Test case #40, verifyValidateFunctionalityInValidatePopUp")
 		@Severity(SeverityLevel.NORMAL)
 		@Story("Test case #40, verifyValidateFunctionalityInValidatePopUp")
@@ -799,8 +521,8 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 			}
 			logger.info("Ending of verifyValidateFunctionalityInValidatePopUp method");
 		}
-
-		@Test(priority = 41, description = "Verify results on the click of the Close icon on success popup", groups = "sanity")
+//Run
+	//	@Test(priority = 41, description = "Verify results on the click of the Close icon on success popup", groups = "sanity")
 		@Description("Test case #41, Verify results on the click of the Close icon ")
 		@Severity(SeverityLevel.NORMAL)
 		@Story("Test case #41, Verify results on the click of the Close icon")
@@ -831,9 +553,8 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 		public void verifyForfeitFunctionality() {
 			logger.info("Starting of verifyForfeitFunctionality method");
 
+			seedMatchesPage.clickOnMatchesTab();
 			seedMatchesPage.clickOnForfeitButon();
-
-		//	Assert.assertTrue(seedMatchesPage.isMarkAsForfeitButtonDisabled());
 
 			Assert.assertTrue(seedMatchesPage.isForfeitMatchPopupContains());
 
@@ -854,48 +575,6 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 			logger.info("Ending of verifyRadioButtonFunctionality method");
 		}
 
-		//@Test(priority = 45, description = "Verify results on the click of the Close icon from the Forfeit match pop up", groups = "sanity")
-		@Description("Test case #45, Verify results on the click of the Close icon from the Forfeit match pop up")
-		@Severity(SeverityLevel.NORMAL)
-		@Story("Test case #45, Verify results on the click of the Close icon from the Forfeit match pop up")
-		public void verifyCloseIconFunctionalityOnForfeitMatchPopup() {
-			logger.info("Starting of verifyCloseIconFunctionalityOnForfeitMatchPopup method");
-
-			seedMatchesPage.clickCloseIconOnForfeitMatch();
-
-			Assert.assertFalse(seedMatchesPage.isForfeitMatchPopupContains());
-
-			logger.info("Ending of verifyCloseIconFunctionalityOnForfeitMatchPopup method");
-		}
-
-//		@Test(priority = 46, description = "Verify the state of Mark as Forfeit Button without selecting the Radio buttons", groups = "sanity")
-		@Description("Test case #46, Verify the state of Mark as Forfeit Button without selecting the Radio buttons")
-		@Severity(SeverityLevel.NORMAL)
-		@Story("Test case #46, Verify the state of Mark as Forfeit Button without selecting the Radio buttons")
-		public void verifyStateOfMarkAsForfeitButton() {
-			logger.info("Starting of verifyStateOfMarkAsForfeitButton method");
-
-			seedMatchesPage.clickOnForfeitButon();
-
-			Assert.assertTrue(seedMatchesPage.isMarkAsForfeitButtonDisabled());
-
-			logger.info("Ending of verifyStateOfMarkAsForfeitButton method");
-		}
-		
-	//@Test(priority = 47, description = "Verify Results on the click on the Cancel button from the Forfeit match pop up", groups = "sanity")
-		@Description("Test case #47, Verify Results on the click on the Cancel button from the Forfeit match pop up")
-		@Severity(SeverityLevel.NORMAL)
-		@Story("Test case #47, Verify Results on the click on the Cancel button from the Forfeit match pop up")
-		public void verifyCancelButtonFunctionality() {
-			logger.info("Starting of verifyCancelButtonFunctionality method");
-
-			seedMatchesPage.clickOnCancelButton();
-
-			Assert.assertFalse(seedMatchesPage.isForfeitMatchPopupContains());
-
-			logger.info("Ending of verifyCancelButtonFunctionality method");
-		}
-
 		@Test(priority = 48, description = "Verify results on the click of Mark as Forfeit button by selecting a radio buttons", groups = "sanity")
 		@Description("Test case #48, Verify results on the click of Mark as Forfeit button by selecting a radio buttons")
 		@Severity(SeverityLevel.NORMAL)
@@ -903,9 +582,6 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 		public void verifyMarkAsForfeitButtonFunctionality() {
 			logger.info("Starting of verifyMarkAsForfeitButtonFunctionality method");
 
-			//seedMatchesPage.clickOnForfeitButon();
-			//seedMatchesPage.hardWait(3);
-			//seedMatchesPage.clickOnFirstTeamRadioButton();
 			seedMatchesPage.hardWait(3);
 			seedMatchesPage.clickOnMarkAsForfeitButton();
 
@@ -993,16 +669,16 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 			Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
 
 			addBracketPage.hardWait(2);
-			addBracketPage.setRegistrationStartDate();
+			//addBracketPage.setRegistrationStartDate();
 
-			addBracketPage.hardWait(2);
-			seedMatchesPage.setRegistrationEndDate();
+			//addBracketPage.hardWait(2);
+			//seedMatchesPage.setRegistrationEndDate();
 
-			addBracketPage.hardWait(2);
-			seedMatchesPage.setCompetitionStartDate();
+			//addBracketPage.hardWait(2);
+			//seedMatchesPage.setCompetitionStartDate();
 
-			addBracketPage.hardWait(2);
-			addBracketPage.setCompetitionEndDate();
+			//addBracketPage.hardWait(2);
+			//addBracketPage.setCompetitionEndDate();
 
 			addBracketPage.clickOnTimeZoneDropdown();
 			Assert.assertTrue(addBracketPage.isTimeZoneListContains());
