@@ -15,7 +15,7 @@
 			<class name="com.b2b.test.sprint1.sanity.ForgotPasswordTest" />
 			<class name="com.b2b.test.sprint1.sanity.AddAMatchTest" />
 			<class
-				name="com.b2b.test.sprint1.sanity.ValidateRecentlyAddedMatchTest" /> 
+				name="com.b2b.test.sprint1.sanity.ValidateRecentlyAddedMatchTest" />
 			<class
 				name="com.b2b.test.sprint1.sanity.ValidateStatsChangeOnNewMatchTest" />
 			<class
@@ -41,18 +41,13 @@
 				name="com.b2b.test.sprint2.sanity.ImportPlayerViaCSVTest" />
 			<class name="com.b2b.test.sprint2.sanity.AddClubMatchTest" />
 			<class name="com.b2b.test.sprint2.sanity.AddEventTest" />
-			<class name="com.b2b.test.sprint2.sanity.BrowseEventsTest" /> 
+			<class name="com.b2b.test.sprint2.sanity.BrowseEventsTest" />
 			<class name="com.b2b.test.sprint2.sanity.EditEventsTest" />
 			<class name="com.b2b.test.sprint2.sanity.EditBracketsTest" />
 		</classes>
 	</test>
-<<<<<<< HEAD
  -->
 	<test name="Sprint 3">
-=======
-
-	<!-- <test name="Sprint 3">
->>>>>>> 5f388411ceef328742f710e4687e63b97eb36e88
 		<classes>
 			<!-- <class
 				name="com.b2b.test.sprint3.sanity.AddEditRemoveEventLogoTest" />
@@ -79,13 +74,14 @@
 
 	<test name="Sprint 4">
 		<classes>
-			<!-- <class name="com.b2b.test.sprint4.sanity.ChatTest" />
-			<class name="com.b2b.test.sprint4.sanity.ShareTest" /> -->
+			 <class name="com.b2b.test.sprint4.sanity.ChatTest" />
+			<class name="com.b2b.test.sprint4.sanity.ShareTest" /> 
 			<!-- <class
 				name="com.b2b.test.sprint4.sanity.CombinationOfMatchTypeAndPlayerGroupTest" />
 			<class name="com.b2b.test.sprint4.sanity.FullRegistrationTest" /> -->
 			<!-- <class name="com.b2b.test.sprint4.sanity.TimeZoneTest" /> -->
-			<class name="com.b2b.test.sprint4.sanity.SeedMatchesRoundRobinTest" />
+			<!-- <class name="com.b2b.test.sprint4.sanity.SeedMatchesRoundRobinTest" />-->
+			
 			
 		</classes>
 	</test>
@@ -94,12 +90,12 @@
 		<classes>
 			<!-- <class
 				name="com.b2b.test.sprint5.sanity.PaidEventAndPaidBracketWithWaterfallEventTest" />-->
-			 <class
-				name="com.b2b.test.sprint5.sanity.WaterfallRoundOneSeedingLogicTest" /> 
+			 <!-- <class
+				name="com.b2b.test.sprint5.sanity.WaterfallRoundOneSeedingLogicTest" />  -->
 			<!-- <class
 				name="com.b2b.test.sprint5.sanity.EditScoreAfterValidationTest" /> -->
-			<class
-				name="com.b2b.test.sprint5.sanity.SeedMatchesWaterFallTest" /> 
+		<!-- 	<class
+				name="com.b2b.test.sprint5.sanity.SeedMatchesWaterFallTest" />  -->
 		</classes>
-	</test> -->
+	</test>
 </suite>
