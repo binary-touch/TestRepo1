@@ -19,7 +19,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 
 @Epic("DUPR App")
-@Feature("Forgot Password Sanity")
+@Feature("Forgot Password-Sanity")
 public class ForgotPasswordTest extends DUPRBaseAutomationTest {
 
 	private static final Logger logger = Logger.getLogger(ForgotPasswordTest.class.getName());

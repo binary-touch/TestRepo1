@@ -20,7 +20,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 
 @Epic("DUPR App")
-@Feature("Change password sanity")
+@Feature("Change password-Sanity")
 public class ChangePasswordTest extends CommonBaseTest {
 
 	private static final Logger logger = Logger.getLogger(ChangePasswordTest.class.getName());

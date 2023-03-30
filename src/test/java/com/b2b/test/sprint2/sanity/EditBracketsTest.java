@@ -20,7 +20,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 
 @Epic("DUPR App")
-@Feature("Edit Bracket Sanity")
+@Feature("Edit Brackets-Sanity")
 public class EditBracketsTest extends CommonBaseTest {
 	private static final Logger logger = Logger.getLogger(EditBracketsTest.class.getName());
 

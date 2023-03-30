@@ -18,8 +18,9 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
+
 @Epic("DUPR App")
-@Feature("Edit Club Info Sanity")
+@Feature("Edit Club Info-Sanity")
 public class EditClubInfoTest extends DUPRBaseAutomationTest {
 
 	private static final Logger logger = Logger.getLogger(EditClubInfoTest.class.getName());
@@ -191,6 +192,7 @@ public class EditClubInfoTest extends DUPRBaseAutomationTest {
 		editClubInfoPage.hardWait(2);
 		editClubInfoPage.clickOnBackButtonInDirectorsPage();
 		editClubInfoPage.clickOnAddDescriptionButton();
+		editClubInfoPage.hardWait(3);
 
 		editClubInfoPage.setEditInfoDescription(testDataProp.getProperty("club.descrption"));
 
@@ -202,7 +204,8 @@ public class EditClubInfoTest extends DUPRBaseAutomationTest {
 		editClubInfoPage.clickOnItalicImageButton();
 		editClubInfoPage.clickOnUnderlineImageButton();
 
-		editClubInfoPage.clickOnSaveChangesButton();editClubInfoPage.hardWait(3);
+		editClubInfoPage.clickOnSaveChangesButton();
+		editClubInfoPage.hardWait(3);
 		Assert.assertTrue(editClubInfoPage.isSuccessPopUpContains());
 
 		editClubInfoPage.clickOnOkButton();
@@ -217,6 +220,7 @@ public class EditClubInfoTest extends DUPRBaseAutomationTest {
 	public void verifyEditClubDescriptionFunctionality() {
 		logger.info("Starting of verifyEditClubDescriptionFunctionality method");
 
+		editClubInfoPage.hardWait(3);
 		editClubInfoPage.clickOnSeeClubDetailsDropdown();
 		editClubInfoPage.clickOnEditAboutIcon();
 		editClubInfoPage.setEditInfoDescription(testDataProp.getProperty("club.descrption"));
@@ -235,6 +239,7 @@ public class EditClubInfoTest extends DUPRBaseAutomationTest {
 	public void verifyDownloadORExportClubMembersFunctionality() {
 		logger.info("Starting of verifyDownloadORExportClubMembersFunctionality method");
 
+		editClubInfoPage.hardWait(3);
 		Assert.assertTrue(editClubInfoPage.isExportCSVButtonDisplayed());
 		editClubInfoPage.clickOnExportCSVButton();
 
@@ -249,6 +254,7 @@ public class EditClubInfoTest extends DUPRBaseAutomationTest {
 		logger.info("Starting of verifyWhetherAMemberCanEditClubInfo method And Member");
 
 		editClubInfoPage.clickOnBackButtonInDirectorsPage();
+		editClubInfoPage.hardWait(3);
 		editClubInfoPage.clickOnBrowseClubsButton();
 
 		Assert.assertTrue(editClubInfoPage.isBrowserClubsLabelDisplayed());

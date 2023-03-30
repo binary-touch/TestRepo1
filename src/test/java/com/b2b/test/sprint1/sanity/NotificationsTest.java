@@ -20,7 +20,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 
 @Epic("DUPR App")
-@Feature("sanity scenarios Notifications")
+@Feature("Notifications-Sanity")
 public class NotificationsTest extends CommonBaseTest {
 
 	private static final Logger logger = Logger.getLogger(NotificationsTest.class.getName());

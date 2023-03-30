@@ -21,7 +21,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 
 @Epic("DUPR App")
-@Feature("SignUp Sanity")
+@Feature("SignUp-Sanity")
 public class SignupTest extends DUPRBaseAutomationTest {
 
 	private DUPRSignUpPage signupPage = null;

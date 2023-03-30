@@ -19,7 +19,7 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 @Epic("DUPR App")
-@Feature("Add Remove Organizer Sanity")
+@Feature("Add Remove Organizer-Sanity")
 public class AddRemoveOrganizerTest extends DUPRBaseAutomationTest {
 
 	private static final Logger logger = Logger.getLogger(AddRemoveOrganizerTest.class.getName());

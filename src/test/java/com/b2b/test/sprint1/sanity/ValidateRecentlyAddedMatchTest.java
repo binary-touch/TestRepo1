@@ -21,7 +21,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 
 @Epic("DUPR App")
-@Feature("Validate Recently Added Match sanity")
+@Feature("Validate Recently Added Match-Sanity")
 public class ValidateRecentlyAddedMatchTest extends CommonBaseTest {
 
 	private static final Logger logger = Logger.getLogger(ValidateRecentlyAddedMatchTest.class.getName());

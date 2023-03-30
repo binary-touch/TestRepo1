@@ -20,7 +20,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 
 @Epic("DUPR App")
-@Feature("Validate stats change on new match sanity")
+@Feature("Validate stats changes on New Match-Sanity")
 public class ValidateStatsChangeOnNewMatchTest extends CommonBaseTest {
 
 	private static final Logger log = Logger.getLogger(ValidateStatsChangeOnNewMatchTest.class.getName());
@@ -177,7 +177,7 @@ public class ValidateStatsChangeOnNewMatchTest extends CommonBaseTest {
 		intPendingCountAfterAddingNewMatch = intPendingCountAfterAddingNewMatch - 1;
 		String strPendingCountAfterAddingNewMatch = Integer.toString(intPendingCountAfterAddingNewMatch);
 
-		validateMatch.hardWait(2);
+		validateMatch.hardWait(3);
 		Assert.assertEquals(pendingCount, strPendingCountAfterAddingNewMatch);
 
 		loginPage.clickOnOpenSettingsMenu();

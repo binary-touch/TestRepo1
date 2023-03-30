@@ -22,7 +22,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 
 @Epic("DUPR App")
-@Feature("Club Logo Sanity")
+@Feature("Club Logo-Sanity")
 public class ClubLogoTest extends DUPRBaseAutomationTest {
 	private static final Logger logger = Logger.getLogger(ClubLogoTest.class.getName());
 	private ClubLogoPage clubLogoPage = null;
