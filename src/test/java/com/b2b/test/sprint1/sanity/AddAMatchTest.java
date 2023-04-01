@@ -18,7 +18,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 
 @Epic("DUPR App")
-@Feature("Add a Match Sanity")
+@Feature("Add a Match-Sanity")
 public class AddAMatchTest extends CommonBaseTest {
 
 	private static final Logger logger = Logger.getLogger(AddAMatchTest.class.getName());

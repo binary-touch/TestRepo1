@@ -177,7 +177,8 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h5[text()='As a Director']/following-sibling::div//h4[contains(@class,'MuiTypography-root MuiTypography-h4')]")
 	private List<WebElement> lstDirectorNames;
 
-	@B2BFindBy(xpath = "//div[contains(@class,'MuiBox-root')]/button[contains(@class,'MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium')]/*[contains(@class,'MuiSvgIcon-root MuiSvgIcon-colorPrimary')]")
+	//@B2BFindBy(xpath = "//div[contains(@class,'MuiBox-root')]/button[contains(@class,'MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium')]/*[contains(@class,'MuiSvgIcon-root MuiSvgIcon-colorPrimary')]")
+	@B2BFindBy(xpath = "//h3[contains(text(),'Club')]/preceding-sibling::div//button")
 	private WebElement btnBackInDirectorsPage;
 
 	@B2BFindBy(xpath = "//button[@aria-label='close']")

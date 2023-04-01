@@ -21,7 +21,7 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 @Epic("DUPR App")
-@Feature("Import Player Via CSV Sanity")
+@Feature("Import Player Via CSV-Sanity")
 public class ImportPlayerViaCSVTest extends DUPRBaseAutomationTest {
 
 	private static final Logger logger = Logger.getLogger(ImportPlayerViaCSVTest.class.getName());

@@ -76,8 +76,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		this.directorEventRegistrationPage = new EventRegistrationPage(this.driver);
 		this.playerEventRegistrationPage = new PlayerEventRegistrationPage(this.driver);
 		this.paidEventPage = new PaidEventPage(this.driver);
-       
-        
+
 		logger.info("Ending of initTest in CommonBaseTest");
 	}
 
@@ -216,7 +215,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		Assert.assertTrue(addBracketPage.isPublishSuccessPopUpContains());
 		addBracketPage.hardWait(3);
 		addBracketPage.clickOnEventSuccessClosePopupButton();
-		
+
 		logger.info("Ending of VerifyPublishEventButton method");
 	}
 
@@ -359,6 +358,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
 
 		addBracketPage.hardWait(2);
+
 		addBracketPage.setRegistrationStartDate();
 
 		addBracketPage.hardWait(2);
@@ -388,7 +388,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		this.verifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
 
 		this.verifyPublishEventButton();
-	
+
 		logger.info("Ending of verifyFreeBracketWithSinglesTypeAndRoundRobinEvent method");
 	}
 
@@ -492,6 +492,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		addBracketPage.setCompetitionStartDate();
 		addBracketPage.setCompetitionEndDate();
 
+		addBracketPage.hardWait(3);
 		addBracketPage.clickOnTimeZoneDropdown();
 		addBracketPage.hardWait(5);
 		addBracketPage.clickOnNewDelhiTimeZone();
@@ -778,7 +779,6 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyAddBracketsForRegisterFunctionalityWithValidDetails method");
 	}
 
-
 	public void verifyRegisterFunctionality() {
 		logger.info("Starting of verifyRegisterFunctionality method");
 
@@ -877,9 +877,9 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 
 		playerEventRegistrationPage.clickOnClubMemberNoButton();
 		directorEventRegistrationPage.clickOnSelectYourBracketCheckbox();
-		
+
 		directorEventRegistrationPage.hardWait(3);
-		
+
 		Assert.assertTrue(directorEventRegistrationPage.isBracketCheckboxSelected());
 
 		directorEventRegistrationPage.clickOnRefundPolicyCheckbox();

@@ -1421,7 +1421,11 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 			String hours = this.getCurrentHour();
 			String meridiem = this.getCurrentMeridiem();
 			this.clickOnCurrentTime(meridiem);
-			this.clickOnCurrentTime(hours);
+			try {
+				clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'"+hours+"')]")));
+			} catch (Exception e) {
+				clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'"+hours+"')]")));
+			}
 
 			clickOnElementUsingActionClass(btnTimeInMinutes);
 			
@@ -1443,7 +1447,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 	public void setRegistrationEndDate() {
 		log.info("Starting of setRegistrationEndDate method");
 
-		hardWait(2);
+		//hardWait(2);
 		try {
 			clickOnWebElement(txtBoxRegistrationEndDate);
 		} catch (Exception e) {
@@ -1476,7 +1480,11 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		String meridiem = this.getCurrentMeridiem();
 		
 		this.clickOnCurrentTime(meridiem);
-		this.clickOnCurrentTime(hours);
+		try {
+			clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'"+hours+"')]")));
+		} catch (Exception e) {
+			clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'"+hours+"')]")));
+		}
 		clickOnElementUsingActionClass(btnTimeInMinutes);
 		
 		try {
@@ -1507,7 +1515,11 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		
 		this.clickOnCurrentDate(date);
 		this.clickOnCurrentTime(meridiem);
-		this.clickOnCurrentTime(hours);
+		try {
+			clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'"+hours+"')]")));
+		} catch (Exception e) {
+			clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'"+hours+"')]")));
+		}
 		clickOnElementUsingActionClass(btnTimeInMinutes);
 		
 		try {

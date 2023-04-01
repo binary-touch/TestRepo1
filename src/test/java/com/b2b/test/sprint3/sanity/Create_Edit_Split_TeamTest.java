@@ -66,15 +66,19 @@ public class Create_Edit_Split_TeamTest extends DUPRBaseAutomationTest {
 		log.info("Starting of verifyDetailsDisplayedOnUnMatchedPlayersTab method");
 
 		clubLogoPage.hardWait(3);
-		addParticipantsPage.clickOnMyBracketsDropdown();
+		teamsPage.clickOnEventsTab();
+		//addParticipantsPage.clickOnMyBracketsDropdown();
 		clubLogoPage.hardWait(3);
 
-		Assert.assertEquals(userDashboardPage.getBracketsTitle(), expectedAssertionsProp.getProperty("brackets.text"));
-		Assert.assertTrue(userDashboardPage.isMyBracketsPageContains());
+		Assert.assertEquals(teamsPage.getEventsText(), expectedAssertionsProp.getProperty("txt.event"));
+		Assert.assertTrue(teamsPage.isMyEventsPageContains());
+		//Assert.assertEquals(userDashboardPage.getBracketsTitle(), expectedAssertionsProp.getProperty("brackets.text"));
+		//Assert.assertTrue(userDashboardPage.isMyBracketsPageContains());
 
 		teamsPage.clickOnEventLabel();
 		endEventpage.hardWait(5);
-
+		teamsPage.clickOnBracketLabel();
+       
 		try {
 			if (teamsPage.isNoResultsFoundDisplayed() == true) {
 				teamsPage.addMultiplePlayers();
@@ -388,7 +392,9 @@ public class Create_Edit_Split_TeamTest extends DUPRBaseAutomationTest {
 		log.info("Starting of verifySplitTeamFunctionality method");
 
 		teamsPage.clickOnSaveChangesButton();
+		teamsPage.hardWait(2);
 		teamsPage.clickOnConfirmButton();
+		teamsPage.hardWait(2);
 		teamsPage.clickOnGoBackButton();
 
 		clubLogoPage.hardWait(3);

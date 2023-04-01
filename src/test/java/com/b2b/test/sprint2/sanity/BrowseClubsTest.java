@@ -19,7 +19,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 
 @Epic("DUPR App")
-@Feature("Browse clubs Sanity")
+@Feature("Browse clubs-Sanity")
 public class BrowseClubsTest extends CommonBaseTest {
 
 	private static final Logger logger = Logger.getLogger(BrowseClubsTest.class.getName());

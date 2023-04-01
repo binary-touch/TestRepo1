@@ -19,10 +19,35 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//button[text()='Unmatched Players']")
 	private WebElement tabUnmatchedPlayes;
+	
+	@B2BFindBy(xpath = "//h6[text()='Events']")
+	private WebElement tabEvents;
+	
+	@B2BFindBy(xpath = "//h3[contains(text(),'Events')]")
+	private WebElement txtEvents;
+	
+	@B2BFindBy(xpath = "//button[text()='Browse all Events']")
+	private WebElement btnBrowseAllEvents;
+
+	@B2BFindBy(xpath = "//h5[text()='My Events']")
+	private WebElement txtMyEvents;
+	
+	@B2BFindBys({
+		@B2BFindBy(xpath = "//h4[contains(@class,'MuiTypography-root MuiTypography-h4')]") })
+	private List<WebElement> lblEventsInEventsTab;
+	
+	@B2BFindBy(xpath = "//div[contains(@class,'MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation3')]//h4")
+	private WebElement lblBracket;
 
 	@B2BFindBys({
 			@B2BFindBy(xpath = "//h4[contains(@class,'MuiTypography-root MuiTypography-h4') and contains(text(), 'DOUBLES')]") })
 	private List<WebElement> lblEvent;
+	
+	@B2BFindBy(xpath = "//h3[text()='Player Group']/parent::div//div[contains(@class,'MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl')]")
+	private WebElement btnPlayerGroup;
+
+	@B2BFindBy(xpath = "//li[text()='Open']")
+	private WebElement lstOpen;
 
 	@B2BFindBy(xpath = "//*[contains(@class,'MuiSvgIcon-root MuiSvgIcon-colorPrimary MuiSvgIcon-fontSizeMedium')]")
 	private WebElement btnBack;
@@ -179,8 +204,14 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//span[contains(text(),'Yes')]")
 	private WebElement rdoYes;
 
+	@B2BFindBy(xpath = "//button[text()='Add Participant']")
+	private WebElement btnAddparticipant;
+
 	@B2BFindBy(xpath = "//button[text()='Add']")
 	private WebElement btnAdd;
+
+	@B2BFindBy(xpath = "//button[text()='OK']")
+	private WebElement btnOK;
 
 	@B2BFindBy(xpath = "//button[text()='Save Changes']")
 	private WebElement btnSaveChanges;
@@ -215,21 +246,21 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//p[text()='Team withdrawn Successfully!']")
 	private WebElement lblTeamWithdrawnSuccess;
 
-	@B2BFindBy(xpath = "//h6[text()='Are you sure you want to edit team?']")
+	@B2BFindBy(xpath = "//h6[text()='Are you sure you want to remove']")
 	private WebElement lblAreYouSure;
 
 	@B2BFindBy(xpath = "//input[@type='checkbox']/parent::span/following-sibling::span//h4")
 	private WebElement txtName;
-	
+
 	@B2BFindBy(xpath = "//h4[text()='Players must be different genders']")
 	private WebElement lblPlayersMustBeDifferentGenders;
-	
+
 	@B2BFindBy(xpath = "//button[text()='Cancel']")
 	private WebElement btnCancelOnMixedPlayerPopUp;
-	
+
 	@B2BFindBy(xpath = "//h4[text()='Players must be different genders']/button")
 	private WebElement iconClosePopUp;
-	
+
 	@B2BFindBy(xpath = "//button[text()='Edit Bracket']")
 	private WebElement btnEditBracket;
 
@@ -237,8 +268,61 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 		super(driver);
 		B2BPageFactory.initElements(driver, this);
 	}
-
+	
 	public void clickOnEventLabel() {
+		log.info("Starting of clickOnEventLabel method");
+		
+		scrollDown(10000);
+		this.hardWait(3);
+		for (int i = 1; i < lblEventsInEventsTab.size();) {
+		driver.findElement(By.xpath(
+				(("(//span[text()='Open']/parent::div/parent::div/parent::div/following-sibling::div//h4[contains(text(),'pickleball_')])["
+						+ i + "]"))))
+				.click();
+
+			this.hardWait(3);
+			break;
+		}
+		
+		log.info("Ending of clickOnEventLabel method");
+	}
+	
+	public void clickOnBracketLabel() {
+		log.info("Starting of clickOnBracketLabel method");
+		
+		try {
+			clickUsingActionsClass(lblBracket);
+		} catch (Exception e) {
+			clickOnWebElement(lblBracket);
+		}
+		this.hardWait(3);
+		
+		clickOnWebElement(driver.findElement(By.xpath("(//h3[contains(text(),'Bracket')]/parent::div//following-sibling::div//h3[contains(@class,'MuiTypography-root MuiTypography-h3')])[1]")));
+		this.clickOnEditBracketButton();
+		
+		this.selectPlayerGroup();
+		this.selectOpenPlayerGroup();
+		
+		log.info("Ending of clickOnBracketLabel method");
+	}
+	
+	public void selectPlayerGroup() {
+		log.info("Starting of selectPlayerGroup method");
+
+		clickOnElement(btnPlayerGroup);
+
+		log.info("Ending of selectPlayerGroup method");
+	}
+
+
+	public void selectOpenPlayerGroup() {
+		log.info("Starting of selectOpenPlayerGroup method");
+
+		elementClick(lstOpen);
+
+		log.info("Ending of selectOpenPlayerGroup method");
+	}
+	public void clickOnEventsLabel() {
 		log.info("Starting of clickOnEventLabel method");
 
 		for (int i = 1; i < lblEvent.size(); i++) {
@@ -260,6 +344,40 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 		}
 
 		log.info("Ending of clickOnEventLabel method");
+	}
+	
+	public void clickOnEventsTab() {
+		log.info("Starting of clickOnEventsTab method");
+
+			try {
+				clickUsingActionsClass(tabEvents);
+			} catch (Exception e) {
+				clickOnWebElement(tabEvents);
+			}
+
+		log.info("Ending of clickOnEventsTab method");
+	}
+	
+	public String getEventsText() {
+		log.info("Starting of gettxtEventsText method");
+		log.info("Ending of gettxtEventsText method");
+
+		return getText(txtEvents);
+	}
+	
+	public boolean isMyEventsPageContains() {
+		log.info("Starting of isMyEventsPageContains method");
+
+		boolean isMyEventsPageContains = false;
+
+		if (isDisplayed(txtEvents) && isDisplayed(btnBrowseAllEvents) && isDisplayed(txtMyEvents)) {
+
+			isMyEventsPageContains = true;
+		}
+
+		log.info("Ending of isMyEventsPageContains method");
+
+		return isMyEventsPageContains;
 	}
 
 	public boolean isUmMatchedPlayersTabContains() {
@@ -354,6 +472,7 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 
 		return lblPlayersMustBeDifferentGenders.isDisplayed();
 	}
+
 	public boolean isUnMatchedPlayerDoublesRatingsDisplayed() {
 		log.info("Starting of isUnMatchedPlayerDoublesRatingsDisplayed method");
 
@@ -488,6 +607,7 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 				clickOnWebElement(rdoSelectParticipant);
 				clickOnWebElement(btnAddParticipant);
 				clickOnWebElement(btnAdd);
+				clickOnWebElement(btnOK);
 
 				hardWait(2);
 				clickOnWebElement(tabUnmatchedPlayes);
@@ -542,7 +662,9 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 			this.implicitWait();
 			clickOnWebElement(rdoSelectParticipant);
 			clickOnWebElement(btnAddParticipant);
+			clickOnWebElement(btnAddparticipant);
 			clickOnWebElement(btnAdd);
+			clickOnWebElement(btnOK);
 
 			hardWait(2);
 		}
@@ -555,15 +677,17 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 		log.info("Starting of addAnotherPlayer method");
 
 		driver.navigate().refresh();
-		
-	//	
+
+		//
 
 		clickOnWebElement(tabPlayers);
 		clickOnElement(btnAddParticipants);
 		this.txtBoxSearchParticipant.sendKeys("Mohit");
 		clickOnWebElement(rdoSelectParticipant);
-	//-------
+		// -------
+		clickOnWebElement(btnAddparticipant);
 		clickOnWebElement(btnAdd);
+		clickOnWebElement(btnOK);
 		clickOnWebElement(tabUnmatchedPlayes);
 		selectPlayerCheckbox();
 		clickOnCreateTeamButton();
@@ -576,9 +700,7 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 
 		boolean isCreateTeamPopupContains = false;
 
-		if (isDisplayed(lblCreateTeam)
-				&& isDisplayed(lblCreateTeamQuestion)
-				&& isDisplayed(btnCreate)
+		if (isDisplayed(lblCreateTeam) && isDisplayed(lblCreateTeamQuestion) && isDisplayed(btnCreate)
 				&& isDisplayed(iconCloseCreateTeamPopup)) {
 
 			isCreateTeamPopupContains = true;
@@ -599,7 +721,7 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 
 		log.info("Ending of clickOnCancelButton method");
 	}
-	
+
 	public void clickOnCancelButtonOnMixedBracketPopUp() {
 		log.info("Starting of clickOnCancelButtonOnMixedBracketPopUp method");
 		try {
@@ -649,24 +771,19 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 	}
 
 	public boolean isTeamTabContains() {
-		//log.info("Starting of isTeamTabContains method");
+		// log.info("Starting of isTeamTabContains method");
 
 		boolean isTeamTabContains = false;
-try {
-	if (isDisplayed(lblTeamConfirmed) 
-			&& isDisplayed(btnSort)
-			&& isDisplayed(btnClearFilter)
-			&& isDisplayed(iconInfoInTeamsTab)
-			&& isDisplayed(lblTeamOne)
-			&& isDisplayed(btnEditTeam)
-			&& isDisplayed(btnSplitTeam)) {
+		try {
+			if (isDisplayed(lblTeamConfirmed) && isDisplayed(btnSort) && isDisplayed(btnClearFilter)
+					&& isDisplayed(iconInfoInTeamsTab) && isDisplayed(lblTeamOne) && isDisplayed(btnEditTeam)
+					&& isDisplayed(btnSplitTeam)) {
 
-		isTeamTabContains = true;
-	}
-} catch (Exception e) {
-	isTeamTabContains = false;
-}
-		
+				isTeamTabContains = true;
+			}
+		} catch (Exception e) {
+			isTeamTabContains = false;
+		}
 
 		log.info("Ending of isTeamTabContains method");
 
@@ -800,19 +917,26 @@ try {
 
 	public void clickOnAddButton() {
 		log.info("Starting of clickOnAddButton method");
-
-		clickOnElement(btnAdd);
+		try {
+			clickUsingActionsClass(btnAdd);
+		} catch (Exception e) {
+			clickOnWebElement(btnAdd);
+		}
 
 		log.info("Ending of clickOnAddButton method");
 	}
 
 	public void clickOnSaveChangesButton() {
 		log.info("Starting of clickOnSaveChangesButton method");
-
-		clickOnElement(btnSaveChanges);
+		try {
+			clickUsingActionsClass(btnSaveChanges);
+		} catch (Exception e) {
+			clickOnElement(btnSaveChanges);
+		}
 
 		log.info("Ending of clickOnSaveChangesButton method");
 	}
+
 	public void clickOnEditBracketButton() {
 		log.info("Starting of clickOnEditBracketButton method");
 
@@ -985,6 +1109,7 @@ try {
 		log.info("Starting of selectTeams method");
 		this.hardWait(5);
 		try {
+			this.scrollDown(-200);
 			clickOnElementUsingActionClass(tabUnmatchedPlayes);
 			this.hardWait(5);
 		} catch (Exception e) {

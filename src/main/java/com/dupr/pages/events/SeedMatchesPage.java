@@ -37,7 +37,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//button[text()='Matches']")
 	private WebElement tabMatches;
 
-	@B2BFindBy(xpath = "//div[contains(@class,'MuiTabPanel-root')]//h4[contains(@class,'MuiTypography-root MuiTypography-h4')]")
+	@B2BFindBy(xpath = "//div[@id='simple-tabpanel-brackets']//h4")
 	private WebElement lblBracketCard;
 
 	@B2BFindBy(xpath = "//button[contains(@class,'MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium')]")
@@ -194,6 +194,9 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//button[contains(text(),'Submit')]")
 	private WebElement btnSubmit;
 
+	@B2BFindBy(xpath = "//button[text()='Submit Scores']")
+	private WebElement btnSubmitScores;
+
 	@B2BFindBy(xpath = "//p[contains(text(),'Date format')]")
 	private WebElement txtDateValidation;
 
@@ -345,6 +348,9 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//div[@role='dialog']//button[text()='Cancel']")
 	private WebElement btnCancelCalender;
 
+	@B2BFindBy(xpath = "//button[text()='Players']")
+	private WebElement tabPlayers;
+
 	public SeedMatchesPage(WebDriver driver) {
 		super(driver);
 		B2BPageFactory.initElements(driver, this);
@@ -386,6 +392,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 	public void clickOnTeamsTab() {
 		log.info("Starting of clickOnTeamsTab method");
 		try {
+			this.scrollDown(-200);
 			clickUsingActionsClass(tabTeams);
 		} catch (Exception e) {
 			clickOnWebElement(tabTeams);
@@ -448,6 +455,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		this.hardWait(3);
 
 		try {
+			this.scrollDown(-100);
 			clickUsingActionsClass(btnSeedMatches);
 		} catch (Exception e) {
 			clickOnWebElement(btnSeedMatches);
@@ -568,6 +576,9 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 		boolean isStandingsTabDisplayed = false;
 
+		driver.navigate().refresh();
+		this.hardWait(3);
+
 		if (isDisplayed(btnStandings)) {
 			isStandingsTabDisplayed = true;
 		}
@@ -619,6 +630,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 	public void clickOnCreateMatches() {
 		log.info("Starting of clickOnCreateMatches method");
 		try {
+			this.hardWait(3);
 			clickUsingActionsClass(btnCreateMatches);
 		} catch (Exception e) {
 			clickOnWebElement(btnCreateMatches);
@@ -919,7 +931,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		this.hardWait(3);
 		clickOnWebElement(chkBracket);
 		this.hardWait(3);
-
+		this.scrollDown(200);
 		clickOnWebElement(chkRefund);
 		this.hardWait(3);
 		clickOnWebElement(chkHealth);
@@ -937,6 +949,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 	public void clickOnAddScoresButton() {
 		log.info("Starting of clickOnAddScoresButton method");
 		try {
+			this.hardWait(3);
 			clickUsingActionsClass(btnAddScores);
 		} catch (Exception e) {
 			clickOnWebElement(btnAddScores);
@@ -1039,6 +1052,15 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		this.hardWait(2);
 
 		log.info("Ending of clickOnSubmitButton method");
+	}
+
+	public void clickOnSubmitScoresButton() {
+		log.info("Starting of clickOnSubmitScoresButton method");
+
+		clickOnWebElement(btnSubmitScores);
+		this.hardWait(2);
+
+		log.info("Ending of clickOnSubmitScoresButton method");
 	}
 
 	public String getDateValidationTxt() {
@@ -1560,13 +1582,12 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		hardWait(1);
 		this.clickUsingActionsClass(btnDefaultTimeInMinutes);
 		hardWait(2);
-		
+
 		try {
 			this.clickOnElementUsingActionClass(btnOK);
 		} catch (Exception e) {
 			System.out.println("***Ok button haven't displayed***");
 		}
-		
 
 		log.info("Ending of setRegistrationStartDate method");
 	}
@@ -1574,6 +1595,8 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 	public void setRegistrationEndDate() {
 		log.info("Starting of setRegistrationEndDate method");
 
+		this.scrollDown(200);
+		this.hardWait(2);
 		try {
 			clickUsingActionsClass(txtBoxRegistrationEndDate);
 		} catch (Exception e) {
@@ -1592,38 +1615,51 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		System.out.println(futureHourValue);
 
 		this.clickOnCurrentDate(date);
-		this.clickOnCurrentTime(hours);
+		this.clickOnCurrentTime(meridiem);
+////span[contains(text(),'"+hours+"')]
+		try {
+			// driver.findElement(By.xpath("//span[contains(text(),'\"+hours+\"')]")).click();
+			clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
+		} catch (Exception e) {
+			clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
+		}
+
 		try {
 			min = String.valueOf(this.getMinutes());
 			if (driver.findElement(By.xpath("//span[text()='" + min + "']")).isDisplayed()) {
 				this.clickOnCurrentTime(min);
 			}
 		} catch (Exception e) {
-			this.clickOnCancelCalenderButton();
+			try {
+				clickUsingActionsClass(txtBoxRegistrationEndDate);
+			} catch (Exception e2) {
+				clickOnWebElement(txtBoxRegistrationEndDate);
+			}
 			hardWait(2);
 			try {
 				clickUsingActionsClass(txtBoxRegistrationEndDate);
-			} catch (Exception e1) {
+			} catch (Exception e2) {
 				clickOnWebElement(txtBoxRegistrationEndDate);
 			}
+
 			this.clickOnCurrentDate(date);
 			this.clickOnCurrentTime(meridiem);
 			this.selectFutureHour();
 		}
 
 		try {
-			if(btnOK.isDisplayed()==true) {
+			if (btnOK.isDisplayed() == true) {
 				this.clickOnWebElement(btnOK);
-				}
+			}
 		} catch (Exception e) {
 			log.info("*** OK Button Haven't displayed***");
 		}
 
-		log.info("Ending of setRegistrationEndDateÂ method");
+		log.info("Ending of setRegistrationEndDate method");
 	}
 
 	public void selectFutureHour() {
-		log.info("Starting of selectFutureHourÂ method");
+		log.info("Starting of selectFutureHour method");
 
 		String pattern = "h";
 		LocalTime currentHour = LocalTime.now();
@@ -1651,7 +1687,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 			this.clickOnCurrentTime(min);
 		}
 
-		log.info("Ending of selectFutureHourÂ method");
+		log.info("Ending of selectFutureHour method");
 	}
 
 	public void setCompetitionStartDate() {
@@ -1674,6 +1710,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		System.out.println(futureHourValue);
 
 		this.clickOnCurrentDate(date);
+		this.clickOnCurrentTime(meridiem);
 		this.clickOnCurrentTime(hours);
 		String min = null;
 		try {
@@ -1682,9 +1719,12 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 				this.clickOnCurrentTime(min);
 			}
 		} catch (Exception e) {
-			this.clickOnCancelCalenderButton();
 			hardWait(2);
-
+			try {
+				clickUsingActionsClass(txtBoxCompetitionStartDate);
+			} catch (Exception e2) {
+				clickOnWebElement(txtBoxCompetitionStartDate);
+			}
 			try {
 				clickUsingActionsClass(txtBoxCompetitionStartDate);
 			} catch (Exception e1) {
@@ -1696,13 +1736,13 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 			this.selectFutureHour();
 		}
 		try {
-			if(btnOK.isDisplayed()==true) {
+			if (btnOK.isDisplayed() == true) {
 				this.clickOnWebElement(btnOK);
-				}
+			}
 		} catch (Exception e) {
 			log.info("*** OK Button Haven't displayed***");
 		}
-		log.info("Ending of setCompetitionStartDateÂ method");
+		log.info("Ending of setCompetitionStartDate method");
 	}
 
 	public boolean isRoundOneDisplayed() {
@@ -1721,5 +1761,16 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		log.info("Ending of isRoundOneDisplayed method");
 
 		return isRoundOneDisplayed;
+	}
+
+	public void clickOnPlayersTab() {
+		log.info("Starting of clickOnPlayersTab method");
+
+		try {
+			clickUsingActionsClass(tabPlayers);
+		} catch (Exception e) {
+			clickOnWebElement(tabPlayers);
+		}
+		log.info("Ending of clickOnPlayersTab method");
 	}
 }

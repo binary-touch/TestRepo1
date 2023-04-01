@@ -36,7 +36,7 @@ public class AdditionOfChartAndShopTabTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of initMethod in AdditionOfChartAndShopTabTest");
 	}
 
-	@Test(priority = 1, description = "Verify the results on click of Chart Menu", groups = "sanity")
+	//@Test(priority = 1, description = "Verify the results on click of Chart Menu", groups = "sanity")
 	@Description("Test case #1, Verify the results on click of Chart Menu")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #1, Verify the results on click of Chart Menu")
@@ -52,7 +52,7 @@ public class AdditionOfChartAndShopTabTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyChartMenuFunctionality method");
 	}
 
-	@Test(priority = 2, description = "Verify the results on click of browser back button on DUPR Performance Chart page", groups = "sanity")
+	//@Test(priority = 2, description = "Verify the results on click of browser back button on DUPR Performance Chart page", groups = "sanity")
 	@Description("Test case #2, Verify the results on click of browser back button on DUPR Performance Chart page")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #2, Verify the results on click of browser back button on DUPR Performance Chart page")

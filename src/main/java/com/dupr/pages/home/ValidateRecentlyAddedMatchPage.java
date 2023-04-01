@@ -147,6 +147,21 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 	public void clickOnDeleteButton(String eventName) {
 		log.info("Ending of clickOnDeleteButton method");
 
+		this.clickOnDoublesButton();
+		try {
+			hardWait(3);
+			if (driver.findElement(By.xpath("//p[contains(text(),'" + eventName + "')]")).isDisplayed() == true) {
+				log.info("***Event displayed***");
+				scrollIntoView(driver.findElement(By.xpath("//p[contains(text(),'" + eventName + "')]")));
+				scrollDown(-200);
+			}
+		} catch (Exception e) {
+			//scrollDown(8000);
+			hardWait(3);
+			scrollIntoView(driver.findElement(By.xpath("//p[contains(text(),'" + eventName + "')]")));
+			scrollDown(-200);
+		}
+
 		WebElement btnDeleteDisplayed = driver.findElement(By.xpath("//p[contains(text(),'" + eventName
 				+ "')]/ancestor::div[contains(@class, 'MuiGrid-grid-xs-8')]/following-sibling::div//button"));
 
@@ -267,6 +282,7 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 
 		explicitWait(lstMatchDetailsBoxes);
 		boolean validateButtonState = false;
+		scrollIntoView(driver.findElement(By.xpath("//p[contains(text(),'" + eventName + "')]")));
 
 		WebElement btnDeleteDisplayed = driver.findElement(By.xpath("//p[contains(text(),'" + eventName
 				+ "')]/ancestor::div[contains(@class, 'MuiGrid-grid-xs-8')]/following-sibling::div//button"));
@@ -307,8 +323,7 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 		boolean isValidateMatchPopupContains = false;
 		try {
 
-			if (lblValidateMatch.isDisplayed()
-					&& btnValidateOnValidateMatchPopup.isDisplayed()
+			if (lblValidateMatch.isDisplayed() && btnValidateOnValidateMatchPopup.isDisplayed()
 					&& iconClose.isDisplayed())
 
 				isValidateMatchPopupContains = true;
@@ -421,6 +436,21 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 
 		explicitWait(lstMatchDetailsBoxes);
 		boolean deleteButtonState = false;
+		this.clickOnDoublesButton();
+
+		try {
+			hardWait(3);
+			if (driver.findElement(By.xpath("//p[contains(text(),'" + eventName + "')]")).isDisplayed() == true) {
+				log.info("***Event displayed***");
+				scrollIntoView(driver.findElement(By.xpath("//p[contains(text(),'" + eventName + "')]")));
+				scrollDown(-200);
+			}
+		} catch (Exception e) {
+			//scrollDown(8000);
+			hardWait(3);
+			scrollIntoView(driver.findElement(By.xpath("//p[contains(text(),'" + eventName + "')]")));
+			scrollDown(-200);
+		}
 
 		WebElement btnDeleteDisplayed = driver.findElement(By.xpath("//p[contains(text(),'" + eventName
 				+ "')]/ancestor::div[contains(@class, 'MuiGrid-grid-xs-8')]/following-sibling::div//button"));
@@ -430,7 +460,7 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 				deleteButtonState = true;
 			}
 		} catch (Exception e) {
-			log.error("Reson for failure:", e);
+			log.error("Reason for failure:", e);
 		}
 		log.info("Ending of isValidateButtonsDisplayed method");
 

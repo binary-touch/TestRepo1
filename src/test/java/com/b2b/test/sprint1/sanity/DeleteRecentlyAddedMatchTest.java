@@ -21,7 +21,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 
 @Epic("DUPR App")
-@Feature("Delete Recently Added Match sanity")
+@Feature("Delete Recently Added Match-Sanity")
 public class DeleteRecentlyAddedMatchTest extends CommonBaseTest {
 	private static final Logger logger = Logger.getLogger(DeleteRecentlyAddedMatchTest.class.getName());
 
@@ -167,6 +167,7 @@ public class DeleteRecentlyAddedMatchTest extends CommonBaseTest {
 		OldTotalCount = Integer.parseInt(totalMatches);
 
 		validateRecentlyAddedMatchPage.clickOnMatchHistoryTab();
+		validateRecentlyAddedMatchPage.hardWait(3);
 		validateRecentlyAddedMatchPage.clickOnDeleteButton(matchEvent);
 
 		deleteRecentlyAddedMatchPage.hardWait(2);
@@ -186,6 +187,7 @@ public class DeleteRecentlyAddedMatchTest extends CommonBaseTest {
 	public void verifyDeleteButtonInDeleteMatchPopup() {
 		logger.info("Starting of verifyClickOnDeleteInDeleteMatchPopup method");
 
+		validateRecentlyAddedMatchPage.hardWait(3);
 		deleteRecentlyAddedMatchPage.clickOnDeleteButtonInDeleteMatchPopup();
 		deleteRecentlyAddedMatchPage.hardWait(2);
 
@@ -204,6 +206,7 @@ public class DeleteRecentlyAddedMatchTest extends CommonBaseTest {
 	public void verifyMatchCountInPlayerProfile() {
 		logger.info("Starting of verifyMatchCountInPlayerProfile method");
 
+		validateRecentlyAddedMatchPage.hardWait(3);
 		deleteRecentlyAddedMatchPage.clickOnCloseIcon();
 		deleteRecentlyAddedMatchPage.clickOnHomeTab();
 

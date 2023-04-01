@@ -63,6 +63,7 @@ public class UserDashboardTest extends DUPRBaseAutomationTest {
 		Assert.assertTrue(userDashboardPage.isDashboardUserNameSecContains());
 		Assert.assertTrue(userDashboardPage.isDashboardDoublesSinglesSecContains());
 		Assert.assertTrue(userDashboardPage.isDashboardResultSecContains());
+		userDashboardPage.hardWait(3);
 		Assert.assertTrue(userDashboardPage.isDashboardPerformanceSecContains());
 		Assert.assertTrue(userDashboardPage.isDashboardMatchesSecContains());
 		Assert.assertTrue(userDashboardPage.isDashboardClubsSecContains());

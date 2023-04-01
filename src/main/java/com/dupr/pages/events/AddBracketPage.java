@@ -13,6 +13,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -183,6 +184,9 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//span[text()='05' and @aria-label='05 minutes']")
 	private WebElement btnTimeInMinutes;
+
+	@B2BFindBy(xpath = "//span[text()='00']")
+	private WebElement btnDefaultTimeInMinutes;
 
 	@B2BFindBy(xpath = "//h3[text()='Time Zone']")
 	private WebElement lblTimeZone;
@@ -977,7 +981,11 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		try {
 			scrollDown(400);
 
-			clickOnWebElement(txtBoxRegistrationStartDate);
+			try {
+				clickOnWebElement(txtBoxRegistrationStartDate);
+			} catch (Exception e) {
+				clickOnElementUsingActionClass(txtBoxRegistrationStartDate);
+			}
 
 			int date = this.getCurrentDate();
 			String hours = this.getCurrentHour();
@@ -994,9 +1002,12 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 				clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
 			}
 
+			clickUsingActionsClass(btnDefaultTimeInMinutes);
+
 			hardWait(2);
 		} catch (Exception e) {
 			System.out.println();
+			clickOnElementUsingActionClass(btnTimeInMinutes);
 		}
 		clickOnElementUsingActionClass(btnTimeInMinutes);
 
@@ -1141,9 +1152,9 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 			} else {
 				try {
 					clickOnWebElement(driver.findElement(By.xpath("//button[@title='Next month']")));
-					}catch(Exception e) {
-						clickUsingActionsClass(driver.findElement(By.xpath("//button[@title='Next month']")));
-					}
+				} catch (Exception e) {
+					clickUsingActionsClass(driver.findElement(By.xpath("//button[@title='Next month']")));
+				}
 				this.clickOnCurrentDate(date);
 			}
 		} catch (Exception e) {
@@ -1151,11 +1162,14 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		}
 
 		this.clickOnCurrentTime(meridiem);
-		this.clickOnCurrentTime(hours);
-		System.out.println(hours);
 		try {
-		clickOnElementUsingActionClass(btnTimeInMinutes);
-		}catch(Exception e) {
+			clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
+		} catch (Exception e) {
+			clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
+		}
+		try {
+			clickOnElementUsingActionClass(btnTimeInMinutes);
+		} catch (Exception e) {
 			clickOnWebElement(btnTimeInMinutes);
 		}
 		try {
@@ -1331,16 +1345,15 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		String lblmonth = lblMonth.getText();
 		String monthvalue = String.valueOf(lblmonth.split(" ")[0]).toUpperCase().trim();
 		log.debug("Text is " + monthvalue);
-
+		this.hardWait(3);
 		try {
 			if ((mValue).equals(monthvalue)) {
+				this.hardWait(3);
 				this.clickOnCurrentDate(date);
 			} else {
-				try {
-					clickOnWebElement(driver.findElement(By.xpath("//button[@title='Next month']")));
-				}catch(Exception e) {
-					clickUsingActionsClass(driver.findElement(By.xpath("//button[@title='Next month']")));
-				}
+				this.hardWait(3);
+				clickUsingActionsClass(driver.findElement(By.xpath("//button[@title='Next month']")));
+
 				this.clickOnCurrentDate(date);
 			}
 		} catch (Exception e) {
@@ -1349,7 +1362,6 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnCurrentTime(hours);
-		System.out.println(hours);
 		clickOnElementUsingActionClass(btnTimeInMinutes);
 		try {
 			if (btnOK.isDisplayed() == true) {
@@ -1382,16 +1394,16 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		String lblmonth = lblMonth.getText();
 		String monthvalue = String.valueOf(lblmonth.split(" ")[0]).toUpperCase().trim();
 		log.debug("Text is " + monthvalue);
+		this.hardWait(3);
 
 		try {
 			if ((mValue).equals(monthvalue)) {
+				this.hardWait(3);
 				this.clickOnCurrentDate(date);
 			} else {
-				try {
-				clickOnWebElement(driver.findElement(By.xpath("//button[@title='Next month']")));
-				}catch(Exception e) {
-					clickUsingActionsClass(driver.findElement(By.xpath("//button[@title='Next month']")));
-				}
+				this.hardWait(3);
+				clickUsingActionsClass(driver.findElement(By.xpath("//button[@title='Next month']")));
+
 				this.clickOnCurrentDate(date);
 			}
 		} catch (Exception e) {
@@ -1504,13 +1516,13 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	public void clickOnNewDelhiTimeZone() {
 		log.info("Starting of clickOnNewDelhiTimeZone method");
-		 hardWait(9);
+		hardWait(9);
 		try {
 			scrollIntoView(btnNewDelhiTimeZone);
-	     hardWait(3);
+			hardWait(3);
 			clickUsingActionsClass(btnNewDelhiTimeZone);
 		} catch (Exception e) {
-			 hardWait(3);
+			hardWait(3);
 			elementClick(btnNewDelhiTimeZone);
 		}
 
@@ -2440,6 +2452,8 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	}
 
 	public void addBrackets(String minAgeRange, String maxAgeRange, String minRatingRange, String maxRatingRange) {
+		log.info("Starting of addBrackets method");
+
 		this.hardWait(3);
 
 		try {
@@ -2529,6 +2543,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 				this.clickOnCurrentDate(date);
 				this.clickOnCurrentTime(meridiem);
 				this.clickOnCurrentTime(hours);
+				clickOnElementUsingActionClass(btnDefaultTimeInMinutes);
 
 				try {
 					if (btnOK.isDisplayed() == true) {
@@ -2545,7 +2560,11 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 				this.clickOnCurrentDate(regEndDate);
 				this.clickOnCurrentTime(meridiem);
-				this.clickOnCurrentTime(hours);
+				try {
+					clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
+				} catch (Exception e) {
+					clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
+				}
 				clickOnElementUsingActionClass(btnTimeInMinutes);
 
 				try {
@@ -2563,7 +2582,12 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 				this.clickOnCurrentDate(compStartDate);
 				this.clickOnCurrentTime(meridiem);
-				this.clickOnCurrentTime(hours);
+				this.hardWait(2);
+				try {
+					clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
+				} catch (Exception e) {
+					clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
+				}
 				clickOnElementUsingActionClass(btnTimeInMinutes);
 
 				try {
@@ -2581,7 +2605,11 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 				this.clickOnCurrentDate(compEndDate);
 				this.clickOnCurrentTime(meridiem);
-				this.clickOnCurrentTime(hours);
+				try {
+					clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
+				} catch (Exception e) {
+					clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
+				}
 				clickOnElementUsingActionClass(btnTimeInMinutes);
 
 				try {
@@ -2640,6 +2668,8 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		}
 		this.hardWait(4);
 		this.clickUsingActionsClass(driver.findElement(By.xpath("(//button[text()='Delete Bracket'])[3]")));
+
+		log.info("Ending of addBrackets method");
 	}
 
 	// Combination methods
@@ -3181,24 +3211,23 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 			log.info("*** OK Button Haven't displayed***");
 		}
 
-		log.info("Ending of setRegistrationEndDateMoreThenSevenDays�method");
+		log.info("Ending of setRegistrationEndDateMoreThenSevenDays method");
 	}
 
 	public void clickOnBracketCaretIcon() {
 		log.info("Starting of clickOnBracketCaretIcon method");
 
 		try {
-			if (ddBracketCaretIcon.isDisplayed() == false) {
-				try {
-					clickUsingActionsClass(ddBracketCaretIcon);
-				} catch (Exception e) {
-					clickOnWebElement(ddBracketCaretIcon);
-				}
-			} else {
+			if (ddBracketCaretIcon.isDisplayed() == true) {
 				log.info("***Bracket opened***");
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (NoSuchElementException e) {
+			try {
+				log.info("*** Bracket minimized ***");
+				clickUsingActionsClass(ddBracketCaretIcon);
+			} catch (Exception e1) {
+				clickOnWebElement(ddBracketCaretIcon);
+			}
 		}
 
 		log.info("Ending of clickOnBracketCaretIcon method");

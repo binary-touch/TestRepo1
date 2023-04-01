@@ -20,7 +20,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 
 @Epic("DUPR App")
-@Feature("Remove ClubMember Sanity")
+@Feature("Remove ClubMember-Sanity")
 public class RemoveClubMemberTest extends DUPRBaseAutomationTest {
 	private static final Logger logger = Logger.getLogger(RemoveClubMemberTest.class.getName());
 	private ClubLogoPage clubLogoPage = null;
