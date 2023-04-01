@@ -1,12 +1,10 @@
 package com.dupr.pages.events;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Month;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.LogManager;
@@ -996,7 +994,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 			hardWait(2);
 			this.clickOnCurrentTime(meridiem);
-			try {
+			hardWait(3);try {
 				clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
 			} catch (Exception e) {
 				clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
@@ -1008,14 +1006,6 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			System.out.println();
 			clickOnElementUsingActionClass(btnTimeInMinutes);
-		}
-
-		try {
-			if (btnOK.isDisplayed() == true) {
-				this.clickOnWebElement(btnOK);
-			}
-		} catch (Exception e) {
-			log.info("*** OK Button Haven't displayed***");
 		}
 
 		log.info("Ending of setRegistrationStartDate method");
@@ -1040,87 +1030,6 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		clickOnElementUsingActionClass(btnTimeInMinutes);
 
 		log.info("Ending of clickOnRegistrationEndDate method");
-	}
-
-	public int getCurrentDate() {
-		log.info("Starting of getCurrentDate method");
-
-		LocalDateTime dateTime = LocalDateTime.now();
-		int date = dateTime.getDayOfMonth();
-
-		System.out.println("Date Value = " + date);
-
-		log.info("Starting of getCurrentDate method");
-
-		return date;
-	}
-
-	public int getFutureDate(int days) {
-		log.info("Starting of getFutureDate method");
-
-		LocalDateTime dateTime = LocalDateTime.now();
-		LocalDateTime date = dateTime.plusDays(days);
-		int dateValue = date.getDayOfMonth();
-		System.out.println("Date Value = " + dateValue);
-
-		log.info("Starting of getFutureDate method");
-
-		return dateValue;
-	}
-
-	public String getCurrentHour() {
-		log.info("Starting of getCurrentHour method");
-
-		SimpleDateFormat simpleformat = new SimpleDateFormat("dd-MMM-yyyy hh:mm:ss a z");
-
-		simpleformat = new SimpleDateFormat("h");
-		String strHour = simpleformat.format(new Date());
-		System.out.println("Hour in h format = " + strHour);
-
-		log.info("Ending of getCurrentHour method");
-		return strHour;
-	}
-
-	public String getCurrentMinute() {
-		log.info("Starting of getCurrentMinute method");
-
-		SimpleDateFormat simpleformat = new SimpleDateFormat("dd-MMM-yyyy hh:mm:ss a z");
-
-		simpleformat = new SimpleDateFormat("m");
-		String strMinutes = simpleformat.format(new Date());
-		System.out.println("Minutes format = " + strMinutes);
-
-		log.info("Ending of getCurrentMinute method");
-		return strMinutes;
-	}
-
-	public String getCurrentMeridiem() {
-		log.info("Starting of getCurrentMeridiem method");
-
-		SimpleDateFormat simpleformat = new SimpleDateFormat("dd-MMM-yyyy hh:mm:ss a z");
-
-		simpleformat = new SimpleDateFormat("a");
-		String meridiem = simpleformat.format(new Date());
-
-		System.out.println("Meridiem format = " + meridiem);
-		String meridiemValue = meridiem.toUpperCase();
-		System.out.println("Meridiem = " + meridiemValue);
-
-		log.info("Ending of getCurrentMeridiem method");
-		return meridiemValue;
-	}
-
-	public String getCurrentZone() {
-		log.info("Starting of getCurrentZone method");
-
-		SimpleDateFormat simpleformat = new SimpleDateFormat("dd-MMM-yyyy hh:mm:ss a z");
-
-		simpleformat = new SimpleDateFormat("z");
-		String zone = simpleformat.format(new Date());
-		System.out.println("Zone format = " + zone);
-
-		log.info("Ending of clickOnRegistrationEndDate method");
-		return zone;
 	}
 
 	public void setRegistrationEndDate() {
@@ -1398,7 +1307,18 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		}
 
 		this.clickOnCurrentTime(meridiem);
-		this.clickOnCurrentTime(hours);
+		
+		System.out.println(driver.findElement(By.cssSelector("div>span[aria-label='"+hours+" hours']")));
+		WebElement currentHourValue = driver.findElement(By.cssSelector("div>span[aria-label='"+hours+" hours']"));
+		
+		try {
+			this.hardWait(2);
+			Actions action = new Actions(driver);
+			action.moveToElement(currentHourValue).contextClick(currentHourValue).build().perform();
+		} catch (Exception e) {
+			clickOnWebElement(driver.findElement(By.cssSelector("div>span[aria-label='"+hours+" hours']")));
+		}
+		
 		clickOnElementUsingActionClass(btnTimeInMinutes);
 
 		try {
@@ -2318,7 +2238,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 		txtAgeRangeMinimum.sendKeys(ageRangeMinimum);
 
-		log.info("Ending of setAgeRangeMinimum�method");
+		log.info("Ending of setAgeRangeMinimum method");
 	}
 
 	public boolean isMinimumAgeValidationDisplayed() {

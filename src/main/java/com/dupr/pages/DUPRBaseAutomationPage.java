@@ -1,6 +1,7 @@
 package com.dupr.pages;
 
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
@@ -11,9 +12,12 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.b2b.base.B2BBaseAutomationPage;
 import com.b2b.support.B2BPageFactory;
@@ -269,6 +273,29 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 		return monthValue;
 	}
 
+	public static WebElement getElementIfVisible(WebDriver driver, WebElement element) {
+		log.info("Starting of getElementIfVisible method");
+
+		try {
+			element = (new WebDriverWait(driver, Duration.ofSeconds(20))
+					.until(ExpectedConditions.visibilityOf(element)));
+		} catch (StaleElementReferenceException se) {
+			try {
+				element = new WebDriverWait(driver, Duration.ofSeconds(20))
+						.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOf(element)));
+			} catch (Exception e) {
+				log.error("Element unavailable\n" + se.getMessage());
+
+			}
+		} catch (Exception e) {
+			log.error("Element unavailable\n" + e.getMessage());
+
+		}
+
+		log.info("Ending of getElementIfVisible method");
+		return element;
+	}
+
 	public Month getCurrentMonth() {
 		log.info("Starting of getCurrentMonth method");
 
@@ -309,7 +336,8 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 		System.out.println(requiredYearValue);
 		this.hardWait(3);
 		try {
-			clickUsingActionsClass(driver.findElement(By.xpath("//button[contains(text(),'" + requiredYearValue + "')]")));
+			clickUsingActionsClass(
+					driver.findElement(By.xpath("//button[contains(text(),'" + requiredYearValue + "')]")));
 		} catch (Exception e) {
 			clickOnWebElement(driver.findElement(By.xpath("//button[contains(text(),'" + requiredYearValue + "')]")));
 		}
