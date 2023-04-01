@@ -446,7 +446,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		addBracketPage.setInvalidRegistrationEndDate();
 
 		addEventPage.clickOnNextStepButton();
-		addEventPage.hardWait(3);
+		addEventPage.hardWait(4);
 
 		Assert.assertTrue(addBracketPage.isRegistrationEndDateValidationDisplayed());
 
@@ -480,7 +480,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		addBracketPage.setInvalidCompetitionEndDate();
 
 		addEventPage.clickOnNextStepButton();
-		addEventPage.hardWait(3);
+		addEventPage.hardWait(4);
 
 		Assert.assertTrue(addBracketPage.isCompetitionEndDatewithPreviousDateOfStartDateMsgDisplayed());
 
@@ -499,7 +499,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 
 		addBracketPage.setIncorrectCompetitionStartDate();
 		addEventPage.clickOnNextStepButton();
-		addEventPage.hardWait(3);
+		addEventPage.hardWait(4);
 
 		Assert.assertTrue(addBracketPage.isComStartDateHighRegEndDateDisplayed());
 
@@ -721,6 +721,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		addBracketPage.setCompetitionEndDate();
 
 		addBracketPage.clickOnTimeZoneDropdown();
+		addBracketPage.hardWait(3);
 		Assert.assertTrue(addBracketPage.isTimeZoneListContains());
 		addBracketPage.clickOnNewDelhiTimeZone();
 
@@ -748,6 +749,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	public void verifyAddAnotherBracketbuttonInAddAnotherBracketPopup() {
 		logger.info("Starting of verifyAddAnotherBracketbuttonInAddAnotherBracketPopup method");
 
+		addBracketPage.hardWait(3);
 		addBracketPage.clickOnAddAnotherBracketButton();
 		addBracketPage.clickonBracket1Button();
 
@@ -763,6 +765,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	public void verifyDeleteBracketFunctionality() {
 		logger.info("Starting of verifyDeleteBracketFunctionality method");
 
+		addBracketPage.hardWait(3);
 		addBracketPage.clickOnDeleteBracketButton();
 
 		Assert.assertFalse(addBracketPage.isDeleteBracketDisplayed());
@@ -779,6 +782,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	public void verifyNoContinueToSummaryButtonInAddAnotherBracketpopup() {
 		logger.info("Starting of verifyNoContinueToSummaryButtonInAddAnotherBracketpopup method");
 
+		addBracketPage.hardWait(3);
 		addBracketPage.clickOnNoContinueToSummary();
 
 		clubLogoPage.hardWait(3);
@@ -796,7 +800,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	public void verifyDeleteBracketDetailsInSummaryPage() {
 		logger.info("Starting of verifyDeleteBracketDetailsInSummaryPage method");
 
-		clubLogoPage.hardWait(3);
+		clubLogoPage.hardWait(4);
 		addBracketPage.clickOnEditBracketsButton();
 
 		addBracketPage.hardWait(3);
@@ -926,85 +930,99 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyRecentlyAddedEventUnderEventsTab method");
 	}
 
-	/*@Test(priority = 46, description = "Verify Delete Bracket Functionality After Publishing Event", groups = "sanity")
-	@Description("Test case #46, Verify Delete Bracket Functionality After Publishing Event")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #46, Verify Delete Bracket Functionality After Publishing Event")
-	public void verifyDeleteBracketFunctionalityAfterPublishingEvent() {
-		logger.info("Starting of VerifyRecentlyAddedEventUnderEventsTab method");
-
-		clubLogoPage.hardWait(3);
-		addEventPage.clickOnAddEventButton();
-
-		Assert.assertTrue(addEventPage.isEventInformationPageContains());
-
-		this.verifyAddEventInformationDetailsFunctionalityWithValidDetails();
-		addEventPage.clickOnNextStepButton();
-
-		addEventPage.setRefundPolicy(testDataProp.getProperty("refund.policy"));
-		addEventPage.clickOnNextStepButton();
-		addEventPage.hardWait(2);
-
-		this.addBracketPage.addBrackets(testDataProp.getProperty("min.age.range"),
-				testDataProp.getProperty("max.age.range"), testDataProp.getProperty("min.rating.range"),
-				testDataProp.getProperty("max.rating.range"));
-
-		addEventPage.clickOnNextStepButton();
-
-		addEventPage.hardWait(2);
-		addBracketPage.clickOnNoContinueToSummary();
-
-		addEventPage.hardWait(3);
-		addBracketPage.clickOnPublishEventButton();
-
-		addBracketPage.clickOnEventSuccessClosePopupButton();
-
-		addEventPage.hardWait(3);
-		addEventPage.clickOnEventsTab();
-
-		addEventPage.hardWait(2);
-		addEventPage.clickOnRecentlyAddedEvent(eventName);
-
-		addBracketPage.clickonDeleteBracket();
-
-		Assert.assertTrue(addBracketPage.isDeleteBracketPopUpDisplayed());
-
-		logger.info("Ending of VerifyRecentlyAddedEventUnderEventsTab method");
-	}
-
-	@Test(priority = 47, description = "Verify Confirm Button Functionality In DeleteBracket", groups = "sanity")
-	@Description("Test case #47, Verify Confirm Button Functionality In DeleteBracket")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #47, Verify Confirm  Button Functionality In DeleteBracket")
-	public void verifyConfirmButtonFunctionalityInDeleteBracket() {
-		logger.info("Starting of verifyConfirmButtonFunctionalityInDeleteBracket method");
-
-		clubLogoPage.hardWait(3);
-		addBracketPage.clickOnConfirmButton();
-
-		addBracketPage.hardWait(3);
-
-		Assert.assertTrue(addBracketPage.isDeleteBracketSuccessPopUpDisplayed());
-
-		logger.info("Ending of verifyConfirmButtonFunctionalityInDeleteBracket method");
-	}
-
-	@Test(priority = 48, description = "Verify Ok Button Functionality In DeleteBracket SuccessPopUP", groups = "sanity")
-	@Description("Test case #48, Verify Ok Button Functionality In DeleteBracket SuccessPopUP")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #48, Verify Ok  Button Functionality In DeleteBracket SuccessPopUP")
-	public void verifyOkButtonFunctionalityInDeleteBracketSuccessPopUP() {
-		logger.info("Starting of verifyOkButtonFunctionalityInDeleteBracketSuccessPopUP method");
-
-		clubLogoPage.hardWait(3);
-		addBracketPage.clickOnOkButton();
-		addBracketPage.hardWait(3);
-		Assert.assertFalse(addBracketPage.isDeleteBracketSuccessPopUpDisplayed());
-
-		driver.navigate().back();
-
-		logger.info("Ending of verifyOkButtonFunctionalityInDeleteBracketSuccessPopUP method");
-	}*/
+	/*
+	 * @Test(priority = 46, description =
+	 * "Verify Delete Bracket Functionality After Publishing Event", groups =
+	 * "sanity")
+	 * 
+	 * @Description("Test case #46, Verify Delete Bracket Functionality After Publishing Event"
+	 * )
+	 * 
+	 * @Severity(SeverityLevel.NORMAL)
+	 * 
+	 * @Story("Test case #46, Verify Delete Bracket Functionality After Publishing Event"
+	 * ) public void verifyDeleteBracketFunctionalityAfterPublishingEvent() {
+	 * logger.info("Starting of VerifyRecentlyAddedEventUnderEventsTab method");
+	 * 
+	 * clubLogoPage.hardWait(3); addEventPage.clickOnAddEventButton();
+	 * 
+	 * Assert.assertTrue(addEventPage.isEventInformationPageContains());
+	 * 
+	 * this.verifyAddEventInformationDetailsFunctionalityWithValidDetails();
+	 * addEventPage.clickOnNextStepButton();
+	 * 
+	 * addEventPage.setRefundPolicy(testDataProp.getProperty("refund.policy"));
+	 * addEventPage.clickOnNextStepButton(); addEventPage.hardWait(2);
+	 * 
+	 * this.addBracketPage.addBrackets(testDataProp.getProperty("min.age.range"),
+	 * testDataProp.getProperty("max.age.range"),
+	 * testDataProp.getProperty("min.rating.range"),
+	 * testDataProp.getProperty("max.rating.range"));
+	 * 
+	 * addEventPage.clickOnNextStepButton();
+	 * 
+	 * addEventPage.hardWait(2); addBracketPage.clickOnNoContinueToSummary();
+	 * 
+	 * addEventPage.hardWait(3); addBracketPage.clickOnPublishEventButton();
+	 * 
+	 * addBracketPage.clickOnEventSuccessClosePopupButton();
+	 * 
+	 * addEventPage.hardWait(3); addEventPage.clickOnEventsTab();
+	 * 
+	 * addEventPage.hardWait(2); addEventPage.clickOnRecentlyAddedEvent(eventName);
+	 * 
+	 * addBracketPage.clickonDeleteBracket();
+	 * 
+	 * Assert.assertTrue(addBracketPage.isDeleteBracketPopUpDisplayed());
+	 * 
+	 * logger.info("Ending of VerifyRecentlyAddedEventUnderEventsTab method"); }
+	 * 
+	 * @Test(priority = 47, description =
+	 * "Verify Confirm Button Functionality In DeleteBracket", groups = "sanity")
+	 * 
+	 * @Description("Test case #47, Verify Confirm Button Functionality In DeleteBracket"
+	 * )
+	 * 
+	 * @Severity(SeverityLevel.NORMAL)
+	 * 
+	 * @Story("Test case #47, Verify Confirm  Button Functionality In DeleteBracket"
+	 * ) public void verifyConfirmButtonFunctionalityInDeleteBracket() { logger.
+	 * info("Starting of verifyConfirmButtonFunctionalityInDeleteBracket method");
+	 * 
+	 * clubLogoPage.hardWait(3); addBracketPage.clickOnConfirmButton();
+	 * 
+	 * addBracketPage.hardWait(3);
+	 * 
+	 * Assert.assertTrue(addBracketPage.isDeleteBracketSuccessPopUpDisplayed());
+	 * 
+	 * logger.
+	 * info("Ending of verifyConfirmButtonFunctionalityInDeleteBracket method"); }
+	 * 
+	 * @Test(priority = 48, description =
+	 * "Verify Ok Button Functionality In DeleteBracket SuccessPopUP", groups =
+	 * "sanity")
+	 * 
+	 * @Description("Test case #48, Verify Ok Button Functionality In DeleteBracket SuccessPopUP"
+	 * )
+	 * 
+	 * @Severity(SeverityLevel.NORMAL)
+	 * 
+	 * @Story("Test case #48, Verify Ok  Button Functionality In DeleteBracket SuccessPopUP"
+	 * ) public void verifyOkButtonFunctionalityInDeleteBracketSuccessPopUP() {
+	 * logger.
+	 * info("Starting of verifyOkButtonFunctionalityInDeleteBracketSuccessPopUP method"
+	 * );
+	 * 
+	 * clubLogoPage.hardWait(3); addBracketPage.clickOnOkButton();
+	 * addBracketPage.hardWait(3);
+	 * Assert.assertFalse(addBracketPage.isDeleteBracketSuccessPopUpDisplayed());
+	 * 
+	 * driver.navigate().back();
+	 * 
+	 * logger.
+	 * info("Ending of verifyOkButtonFunctionalityInDeleteBracketSuccessPopUP method"
+	 * ); }
+	 */
 
 	@Test(priority = 49, description = "Verify Free Event Functionality", groups = "sanity")
 	@Description("Test case #49, Verify Free Event Functionality")
