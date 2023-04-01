@@ -199,7 +199,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 
 	public void verifyNoContinueToSummaryButtonInAddAnotherBracketpopup() {
 		logger.info("Starting of VerifyNoContinueToSummaryButtonInAddAnotherBracketpopup method");
-
+		addBracketPage.hardWait(4);
 		addBracketPage.clickOnNoContinueToSummary();
 
 		Assert.assertTrue(addBracketPage.isEventDetailsSectionDisplayed());
@@ -421,7 +421,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		timeZonePage.setRegistrationEndDate();
 		addBracketPage.setCompetitionStartDate();
 		addBracketPage.setCompetitionEndDate();
-
+		addBracketPage.hardWait(3);
 		addBracketPage.clickOnTimeZoneDropdown();
 		addBracketPage.hardWait(3);
 		addBracketPage.clickOnNewDelhiTimeZone();
@@ -493,7 +493,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		addBracketPage.setCompetitionEndDate();
 
 		addBracketPage.clickOnTimeZoneDropdown();
-		addBracketPage.hardWait(3);
+		addBracketPage.hardWait(5);
 		addBracketPage.clickOnNewDelhiTimeZone();
 
 		addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("zero.value"));

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Sanity UI Automation Tests">
-	<!-- < parallel = "classes" thread-count = "4"> -->
+
 
 	<test name="Sprint 1">
 		<classes>
@@ -73,6 +73,7 @@
 
 	<test name="Sprint 4">
 		<classes>
+
 			<class name="com.b2b.test.sprint4.sanity.ChatTest" />
 			<class name="com.b2b.test.sprint4.sanity.ShareTest" />
 			<class

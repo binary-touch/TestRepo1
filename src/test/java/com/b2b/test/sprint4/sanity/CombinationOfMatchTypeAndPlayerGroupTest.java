@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 
 import com.b2b.common.WebDriversEnum;
 import com.dupr.pages.events.CombinationOfMatchTypeAndPlayerGroupPage;
+import com.dupr.pages.events.TimeZonePage;
 import com.dupr.test.CommonBaseTest;
 
 import io.qameta.allure.Description;
@@ -32,7 +33,7 @@ public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 
 		this.driver = super.getWebDriver(WebDriversEnum.COMBINATION_OF_MATCHTYPE_AND_PLAYERGROUP_DRIVER);
 		super.initCommonBaseTest(siteURL, directorEmail, directorPassword);
-
+		this.timeZonePage = new TimeZonePage(this.driver);
 		this.combinationOfMatchTypeAndPlayerGroupPage = new CombinationOfMatchTypeAndPlayerGroupPage(this.driver);
 
 		logger.info("Ending of initMethod in CombinationOfMatchTypeAndPlayerGroupTest");

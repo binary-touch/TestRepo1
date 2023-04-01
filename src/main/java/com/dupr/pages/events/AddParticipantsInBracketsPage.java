@@ -371,7 +371,7 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 	public void clickOnAddParticipantsButton() {
 		log.info("Starting of clickOnAddParticipantsButton method");
 
-		this.waitForElementToBeVisible(btnAddParticipants);
+		//this.waitForElementToBeVisible(btnAddParticipants);
 		clickOnWebElement(btnAddParticipants);
 
 		log.info("Ending of clickOnAddParticipantsButton method");
