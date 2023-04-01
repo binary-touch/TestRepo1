@@ -121,7 +121,7 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 
 		System.out.println("Date Value = " + date);
 
-		log.info("Starting of getCurrentDate method");
+		log.info("Ending of getCurrentDate method");
 
 		return date;
 	}
@@ -134,7 +134,7 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 		int dateValue = date.getDayOfMonth();
 		System.out.println("Date Value = " + dateValue);
 
-		log.info("Starting of getFutureDate method");
+		log.info("Ending of getFutureDate method");
 
 		return dateValue;
 	}
@@ -188,27 +188,37 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 		String zone = simpleformat.format(new Date());
 		System.out.println("Zone format = " + zone);
 
-		log.info("Ending of clickOnRegistrationEndDate method");
+		log.info("Ending of getCurrentZone method");
 		return zone;
 	}
 
 	public void clickOnCurrentDate(int date) {
+		log.info("Starting of clickOnCurrentDate method");
 		hardWait(3);
 		try {
+			System.out.println("*** Current Date: //button[text()='" + date + "']***");
 			clickUsingActionsClass(driver.findElement(By.xpath("//button[text()='" + date + "']")));
 
 		} catch (Exception e) {
+			System.out.println("*** Current Date: //button[text()='" + date + "']***");
 			clickOnWebElement(driver.findElement(By.xpath("//button[text()='" + date + "']")));
 		}
+		
+		log.info("Ending of clickOnCurrentDate method");
 	}
 
 	public void clickOnCurrentTime(String strHour) {
+		log.info("Starting of clickOnCurrentTime method");
 		hardWait(2);
 		try {
+			System.out.println("*** Current Time/Meridiem: //span[contains(text(),'" + strHour + "')]***");
 			clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'" + strHour + "')]")));
 		} catch (Exception e) {
+			System.out.println("*** Current Time/Meridiem: //span[contains(text(),'" + strHour + "')]***");
 			clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'" + strHour + "')]")));
 		}
+		
+		log.info("Ending of clickOnCurrentTime method");
 	}
 
 	public void switchToNewTab() {
@@ -255,7 +265,7 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 		Month monthValue = date.getMonth();
 		System.out.println("Month Value = " + monthValue);
 
-		log.info("Starting of getFutureMonth method");
+		log.info("Ending of getFutureMonth method");
 
 		return monthValue;
 	}
@@ -309,9 +319,12 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 	}
 
 	public int getCurrentYear() {
-
+		log.info("Starting of getCurrentYear method");
+		
 		LocalDateTime dateTime = LocalDateTime.now();
 		currentyear = dateTime.getYear();
+		
+		log.info("Ending of getCurrentYear method");
 
 		return currentyear;
 	}
@@ -324,7 +337,7 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 		Year = yr.getYear();
 		System.out.println("Year Value = " + Year);
 
-		log.info("Starting of getPreviousYear method");
+		log.info("Ending of getPreviousYear method");
 
 		return Year;
 	}
@@ -342,6 +355,6 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 			clickOnWebElement(driver.findElement(By.xpath("//button[contains(text(),'" + requiredYearValue + "')]")));
 		}
 
-		log.info("Starting of clickOnSelectedYear method");
+		log.info("Ending of clickOnSelectedYear method");
 	}
 }
