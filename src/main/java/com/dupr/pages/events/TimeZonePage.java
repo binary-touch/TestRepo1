@@ -398,6 +398,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 
 	public String getIndianTimeZoneText() {
 		log.info("Starting of getIndianTimeZoneText method");
+		 System.out.println(getText(txtIndianTimeZone));
 		log.info("Ending of getIndianTimeZoneText method");
 
 		return txtIndianTimeZone.getText();
@@ -405,7 +406,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 
 	public String getTimeZoneInEventDetails() {
 		log.info("Starting of getTimeZoneInEventDetails method");
-		// System.out.println(getText(txtTimeZoneInEventDetails));
+		System.out.println(getText(txtTimeZoneInEventDetails));
 		log.info("Ending of getTimeZoneInEventDetails method");
 
 		return txtTimeZoneInEventDetails.getText();
@@ -413,8 +414,8 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 
 	public String getIndianTimeZoneInEventDetails() {
 		log.info("Starting of getIndianTimeZoneInEventDetails method");
-
 		this.hardWait(3);
+		System.out.println(getText(txtNewDelhiTimeZoneInEventDetails));
 		log.info("Ending of getIndianTimeZoneInEventDetails method");
 
 		return txtNewDelhiTimeZoneInEventDetails.getText();
@@ -561,10 +562,12 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 
 	public void clickOnEditBracketButton() {
 		log.info("Starting of clickOnEditBracketButton method");
-
+      ;
 		try {
+			 this.waitForElementToBeVisible(btnEditBracket);
 			btnEditBracket.click();
 		} catch (Exception e) {
+			driver.navigate().refresh();
 			elementClick(btnEditBracket);
 		}
 		this.hardWait(3);
@@ -907,10 +910,27 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		clickOnWebElement(txtBoxRegistrationEndDate);
 		hardWait(3);
 		int date = this.getPastDate(3);
+		Month monthValue = this.getPreviousMonth(4);
+		String mValue = monthValue.toString();
+		System.out.println(mValue);
+
+		String lblmonth = lblMonth.getText();
+		String pNewTabValue = String.valueOf(lblmonth.split(" ")[0]).toUpperCase();
+		log.debug("Text is " + pNewTabValue);
+		System.out.println(mValue.equals(pNewTabValue));
+		try {
+			if (mValue.equals(pNewTabValue)) {
+				this.clickOnCurrentDate(date);
+			} else {
+				clickUsingActionsClass(driver.findElement(By.xpath("//button[@title='Previous month']")));
+				this.clickOnCurrentDate(date);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
-
-		this.clickOnCurrentDate(date);
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnCurrentTime(hours);
 		clickOnElementUsingActionClass(btnTimeInMinutes);
@@ -1194,7 +1214,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		log.info("Starting of setCompetitionEndDateInHour method");
 
 		clickOnWebElement(txtBoxCompetitionEndDate);
-		hardWait(2);
+		hardWait(4);
 		clickOnWebElement(ddRegistrationEndDate);
 		hardWait(2);
 
@@ -1304,9 +1324,11 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
+
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnCurrentTime(hours);
-		
+		clickOnElementUsingActionClass(btnTimeInMinutes);
+
 		try {
 			if(btnOK.isDisplayed()==true) {
 				this.clickOnWebElement(btnOK);
@@ -1433,8 +1455,6 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		}
 
 		int date = this.getFutureDate(1);
-		String hours = this.getCurrentHour();
-		String meridiem = this.getCurrentMeridiem();
 		Month monthValue = this.getFutureMonth(1);
 		String mValue = monthValue.toString();
 
@@ -1456,7 +1476,9 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		String hours = this.getCurrentHour();
+		String meridiem = this.getCurrentMeridiem();
+		
 		this.clickOnCurrentTime(meridiem);
 		try {
 			clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'"+hours+"')]")));

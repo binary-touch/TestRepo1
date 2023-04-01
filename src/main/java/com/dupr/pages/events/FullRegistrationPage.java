@@ -36,6 +36,9 @@ public class FullRegistrationPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//span[@aria-disabled='true']")
 	private WebElement chkSelectBracketDisabled;
 
+	@B2BFindBy(xpath = "(//input[@type='checkbox'])[2]")
+	private WebElement chkSelectBracket;
+	
 	@B2BFindBy(xpath = "//h6[contains(text(),'*Registration Full')]")
 	private WebElement msgRegistrationFull;
 
@@ -84,6 +87,14 @@ public class FullRegistrationPage extends DUPRBaseAutomationPage {
 		elementClick(lblDoublesMixed);
 
 		log.info("Ending of clickOnDoublesMixedCard method");
+	}
+	
+	public void clickOnbracketCheckbox() {
+		log.info("Starting of clickOnbracketCheckbox method");
+
+		elementClick(chkSelectBracket);
+
+		log.info("Ending of clickOnbracketCheckbox method");
 	}
 
 	public void clickOnOpenSinglesCard() {
@@ -171,10 +182,9 @@ public class FullRegistrationPage extends DUPRBaseAutomationPage {
 
 		this.clickOnCurrentDate(date);
 		this.clickOnCurrentTime(hours);
-		clickOnElementUsingActionClass(btnTimeInMinutes);
 		this.clickOnCurrentTime(meridiem);
-		this.clickOnElementUsingActionClass(btnOK);
-
+		clickOnElementUsingActionClass(btnTimeInMinutes);
+		
 		log.info("Ending of setCompetitionStartDate method");
 	}
 }

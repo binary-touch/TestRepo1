@@ -7,7 +7,6 @@
 		<classes>
 			<class name="com.b2b.test.sprint1.sanity.SignupTest" />
 			<class name="com.b2b.test.sprint1.sanity.SearchPlayersTest" />
-
 			<class
 				name="com.b2b.test.sprint1.sanity.DUPRClaimAccountSignUpTest" />
 			<class name="com.b2b.test.sprint1.sanity.DUPRLoginTest" />
@@ -42,6 +41,7 @@
 			<class name="com.b2b.test.sprint2.sanity.AddClubMatchTest" />
 			<class name="com.b2b.test.sprint2.sanity.AddEventTest" />
 			<class name="com.b2b.test.sprint2.sanity.BrowseEventsTest" />
+
 			<class name="com.b2b.test.sprint2.sanity.EditEventsTest" />
 			<class name="com.b2b.test.sprint2.sanity.EditBracketsTest" />
 		</classes>

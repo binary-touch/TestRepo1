@@ -277,7 +277,6 @@ public class AddAnotherBracketPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h2[text()='Bracket #2']")
 	private WebElement lblBracket2;
 
-	
 	public AddAnotherBracketPage(WebDriver driver) {
 		super(driver);
 		B2BPageFactory.initElements(driver, this);
@@ -879,8 +878,6 @@ public class AddAnotherBracketPage extends DUPRBaseAutomationPage {
 		clickOnElementUsingActionClass(btnRegistrationEndDateNextYearSelectDateTime);
 
 		clickOnElementUsingActionClass(btnRegistrationEndDateNextYearSelectDateTimeMinutes);
-
-		 btnOk.click();
 		 
 		log.info("Ending of clickOnRegistrationStartDate method");
 	}
@@ -910,8 +907,6 @@ public class AddAnotherBracketPage extends DUPRBaseAutomationPage {
 
 		clickOnElementUsingActionClass(btnRegistrationEndDateNextYearSelectDateTimeMinutes);
 		
-        btnOk.click();
-        
 		log.info("Ending of clickOnRegistrationEndDate method");
 	}
 
@@ -938,8 +933,6 @@ public class AddAnotherBracketPage extends DUPRBaseAutomationPage {
 		clickOnElementUsingActionClass(btnRegistrationEndDateNextYearSelectDateTime);
 
 		clickOnElementUsingActionClass(btnRegistrationEndDateNextYearSelectDateTimeMinutes);
-
-		 btnOk.click();
 		 
 		log.info("Ending of clickOnCompetitionStartDate method");
 	}
@@ -969,8 +962,6 @@ public class AddAnotherBracketPage extends DUPRBaseAutomationPage {
 
 		clickOnElementUsingActionClass(btnRegistrationEndDateNextYearSelectDateTimeMinutes);
 
-		 btnOk.click();
-		 
 		log.info("Ending of clickOnCompetitionEndDate method");
 	}
 

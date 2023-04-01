@@ -198,7 +198,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 
 	public void verifyNoContinueToSummaryButtonInAddAnotherBracketpopup() {
 		logger.info("Starting of VerifyNoContinueToSummaryButtonInAddAnotherBracketpopup method");
-
+		addBracketPage.hardWait(4);
 		addBracketPage.clickOnNoContinueToSummary();
 
 		Assert.assertTrue(addBracketPage.isEventDetailsSectionDisplayed());
@@ -421,7 +421,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		timeZonePage.setRegistrationEndDate();
 		addBracketPage.setCompetitionStartDate();
 		addBracketPage.setCompetitionEndDate();
-
+		addBracketPage.hardWait(3);
 		addBracketPage.clickOnTimeZoneDropdown();
 		addBracketPage.hardWait(3);
 		addBracketPage.clickOnNewDelhiTimeZone();
@@ -494,7 +494,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 
 		addBracketPage.hardWait(3);
 		addBracketPage.clickOnTimeZoneDropdown();
-		addBracketPage.hardWait(3);
+		addBracketPage.hardWait(5);
 		addBracketPage.clickOnNewDelhiTimeZone();
 
 		addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("zero.value"));
@@ -511,11 +511,12 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 	public void verifyEventInformationPageWithValidDetails() {
 		logger.info("Starting of verifyEventInformationPageWithValidDetails method");
 
+		addEventPage.hardWait(4);
 		eventName = addEventPage.setEventName(testDataProp.getProperty("event.name"));
 
 		System.out.println("event name in Common base test: " + eventName);
 
-		addEventPage.hardWait(2);
+		addEventPage.hardWait(3);
 		addEventPage.setLocation(testDataProp.getProperty("state.address"));
 		addEventPage.uploadEventLogo(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("edit.club.logo.path"));
 		addEventPage.setMemberPrice(testDataProp.getProperty("zero.value"));
