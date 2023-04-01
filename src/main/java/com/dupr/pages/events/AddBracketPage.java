@@ -988,9 +988,11 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 		hardWait(4);
 		this.clickOnCurrentDate(date);
+		System.out.println("*** Clicked on Date ***");
 
 		hardWait(3);
 		this.clickOnCurrentTime(meridiem);
+		System.out.println("*** Clicked on Meridiem ***");
 		hardWait(3);
 		try {
 			try {
@@ -998,8 +1000,9 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 			} catch (Exception e) {
 				clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
 			}
-
+			System.out.println("*** Clicked on Hour ***");
 			clickUsingActionsClass(btnDefaultTimeInMinutes);
+			System.out.println("*** Clicked on Minutes ***");
 			hardWait(2);
 		} catch (Exception e) {
 			System.out.println();
