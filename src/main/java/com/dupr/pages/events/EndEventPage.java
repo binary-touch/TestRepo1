@@ -182,7 +182,11 @@ public class EndEventPage extends DUPRBaseAutomationPage {
 	public void clickOnEndEventButton() {
 		log.info("Starting of clickOnEndEventButton method");
 
-		clickOnElement(btnEndEvent);
+		try {
+			clickUsingActionsClass(btnEndEvent);
+		} catch (Exception e) {
+			clickOnWebElement(btnEndEvent);
+		}
 
 		log.info("Ending of clickOnEndEventButton method");
 	}

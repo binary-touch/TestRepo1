@@ -28,9 +28,9 @@
 		</classes>
 	</test> -->
 
-	<!-- <test name="Sprint 2">
+	<test name="Sprint 2">
 		<classes>
-			<class name="com.b2b.test.sprint2.sanity.BrowseClubsTest" />
+			<!-- <class name="com.b2b.test.sprint2.sanity.BrowseClubsTest" />
 			<class name="com.b2b.test.sprint2.sanity.MyClubsTest" />
 			<class name="com.b2b.test.sprint2.sanity.EditClubInfoTest" />
 			<class name="com.b2b.test.sprint2.sanity.ClubLogoTest" />
@@ -41,11 +41,11 @@
 				name="com.b2b.test.sprint2.sanity.ImportPlayerViaCSVTest" />
 			<class name="com.b2b.test.sprint2.sanity.AddClubMatchTest" />
 			<class name="com.b2b.test.sprint2.sanity.AddEventTest" />
-			<class name="com.b2b.test.sprint2.sanity.BrowseEventsTest" />
+			<class name="com.b2b.test.sprint2.sanity.BrowseEventsTest" /> -->
 			<class name="com.b2b.test.sprint2.sanity.EditEventsTest" />
 			<class name="com.b2b.test.sprint2.sanity.EditBracketsTest" />
 		</classes>
-	</test> -->
+	</test>
 
 	<test name="Sprint 3">
 		<classes>
