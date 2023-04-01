@@ -602,21 +602,26 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 			seedMatchesPage.clickOnHomeMenu();
 
 			seedMatchesPage.hardWait(3);
-
-			super.verifyAddEventFunctionality();
-			seedMatchesPage.hardWait(3);
-			super.verifyFreeBracketWithSinglesTypeAndRoundRobinEvent();
-
-			addEventPage.clickOnEventsTab();
-			seedMatchesPage.hardWait(3);
-			addEventPage.clickOnRecentlyAddedEvent(event);
-			seedMatchesPage.hardWait(3);
+			
+			  super.verifyAddEventFunctionality(); 
+			  seedMatchesPage.hardWait(3);
+			  super.verifyFreeBracketWithSinglesTypeAndRoundRobinEvent();
+			  
+			  addEventPage.clickOnEventsTab(); 
+			  seedMatchesPage.hardWait(3);
+			  addEventPage.clickOnRecentlyAddedEvent(event); 
+			  seedMatchesPage.hardWait(3);
+			 
 
 			seedMatchesPage.clickOnBracketCard();
 			seedMatchesPage.hardWait(3);
 
 			addparticipantsPage.addParticipantsIntoRoundRobinSinglesMatch();
 			seedMatchesPage.hardWait(3);
+			
+			seedMatchesPage.hardWait(5);
+			seedMatchesPage.clickOnSeedMatchesButton();
+			seedMatchesPage.hardWait(5);
 
 			this.verifyCreateMatchesFuntionality();
 			seedMatchesPage.hardWait(3);

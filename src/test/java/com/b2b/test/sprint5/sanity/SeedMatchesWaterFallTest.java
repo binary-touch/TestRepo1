@@ -479,9 +479,9 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		seedMatchesPage.hardWait(3);
 		seedMatchesWaterFallPage.switchToNewTab();
 		seedMatchesPage.hardWait(3);
-		
-			Assert.assertTrue(driver.getCurrentUrl().contains("Waterfall+Diagram.pdf"));
-	
+
+		Assert.assertTrue(driver.getCurrentUrl().contains("Waterfall+Diagram.pdf"));
+
 		seedMatchesWaterFallPage.closeTab();
 
 		logger.info("Ending of verifyClickHereLinkFunctionalityInHavingWiFiProblemsPopup method");
@@ -494,7 +494,7 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 	public void verifOkButtonFunctionalityInHavingWiFiProblemsPopup() {
 		logger.info("Starting of verifOkButtonFunctionalityInHavingWiFiProblemsPopup method");
 
-		//seedMatchesWaterFallPage.clickOnHavingTroubleButton();
+		// seedMatchesWaterFallPage.clickOnHavingTroubleButton();
 		seedMatchesWaterFallPage.clickOnOkButton();
 		seedMatchesWaterFallPage.hardWait(2);
 		Assert.assertTrue(seedMatchesWaterFallPage.isHavingTroubleButtonDisplayed());
@@ -545,7 +545,6 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		seedMatchesWaterFallPage.navigateBack();
 		seedMatchesWaterFallPage.hardWait(2);
 		seedMatchesPage.clickOnMatchesTab();
-		
 
 		logger.info("Ending of verifyWhetherHavingTroubleButtonIsClickable method");
 	}
@@ -683,7 +682,7 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 
 		for (int i = 0; i < 4; i++) {
 			this.verifyAddingAllScoresForWaterFallEvent();
-			//this.verifyValidatingAllScoresForWaterFallEvent();
+			// this.verifyValidatingAllScoresForWaterFallEvent();
 		}
 
 		logger.info("Ending of verifyAddingAndValidatingScoreForAllRounds method");
