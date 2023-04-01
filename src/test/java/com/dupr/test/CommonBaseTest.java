@@ -488,8 +488,14 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
 
 		addBracketPage.setRegistrationStartDate();
+		addBracketPage.hardWait(3);
+		
 		addBracketPage.setRegistrationEndDate();
+		addBracketPage.hardWait(3);
+		
 		addBracketPage.setCompetitionStartDate();
+		addBracketPage.hardWait(3);
+		
 		addBracketPage.setCompetitionEndDate();
 
 		addBracketPage.hardWait(3);
