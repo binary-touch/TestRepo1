@@ -99,7 +99,7 @@ public class PreservingPageVisitsPage extends DUPRBaseAutomationPage {
 	public void clickOnBackButton() {
 		log.info("Starting of clickOnBackButton method");
 		try {
-			elementClick(btnBack);
+			driver.navigate().back();
 
 		} catch (Exception e) {
 			clickOnWebElement(btnBack);

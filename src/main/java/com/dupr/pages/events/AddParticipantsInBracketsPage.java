@@ -326,6 +326,8 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 		log.info("Starting of InClubMembershipPopup method");
 
 		clickOnWebElement(btnAdd);
+		this.hardWait(4);
+		clickOnWebElement(btnOk);
 
 		log.info("Ending of InClubMembershipPopup method");
 	}

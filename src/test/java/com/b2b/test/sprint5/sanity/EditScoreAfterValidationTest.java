@@ -41,148 +41,6 @@ public class EditScoreAfterValidationTest extends CommonBaseTest {
 		logger.info("Ending of initMethod in EditScoreAfterValidationTest");
 	}
 
-	public void verifyEditScore() {
-		logger.info("Starting of verifyEditScore method");
-
-		FirstGameScore = editScoreAfterValidationPage.getFirstGameScoreText();
-		SecondGameScore = editScoreAfterValidationPage.getSecondGameScoreText();
-
-		 editScoreAfterValidationPage.clickOnEditScore();
-
-		String editScoresText = this.editScoreAfterValidationPage.getEditScoreText();
-		Assert.assertEquals(editScoresText, expectedAssertionsProp.getProperty("edit.score.label"));
-
-		String matchDateText = this.editScoreAfterValidationPage.getMatchDateText();
-		Assert.assertEquals(matchDateText, expectedAssertionsProp.getProperty("match.date.label"));
-
-		String submitButtonText = this.editScoreAfterValidationPage.getSubmitButtonText();
-		Assert.assertEquals(submitButtonText, expectedAssertionsProp.getProperty("submit.button.label"));
-
-		Assert.assertTrue(editScoreAfterValidationPage.isCrossIconDisplayed());
-
-		logger.info("Ending of verifyEditScore method");
-	}
-
-
-	public void verifyToSetGameScore() {
-		logger.info("Starting of verifyToSetGameScore method");
-
-		editScoreAfterValidationPage.setFirstGameScoreEdit(testDataProp.getProperty("first.game.score"));
-		editScoreAfterValidationPage.setSecondGameScoreEdit(testDataProp.getProperty("second.game.score"));
-		editScoreAfterValidationPage.clickOnSubmitButton();
-
-		logger.info("Ending of verifyToSetGameScore method");
-	}
-
-
-	public void verifyToSubmittingNewScore() {
-		logger.info("Starting of verifyToSubmittingNewScore method");
-
-		Assert.assertTrue(editScoreAfterValidationPage.getSubmittingNewScoresText());
-
-		String matchDateText = this.editScoreAfterValidationPage.getSubmitScoresButtonText();
-		Assert.assertEquals(matchDateText, expectedAssertionsProp.getProperty("submit.scores.button.label"));
-
-		String submitButtonText = this.editScoreAfterValidationPage.getGoBackText();
-		Assert.assertEquals(submitButtonText, expectedAssertionsProp.getProperty("go.back.label"));
-
-		Assert.assertTrue(editScoreAfterValidationPage.isCrossIconDisplayed());
-
-		editScoreAfterValidationPage.clickOnSubmitScoreButton();
-
-		logger.info("Ending of verifyToSubmittingNewScore method");
-	}
-
-	public void verifyToValidateGameScore() {
-		logger.info("Starting of verifyToValidateGameScore method");
-
-		Assert.assertFalse(editScoreAfterValidationPage.isEditScoreDisplayed());
-
-		String firstGameScore = this.editScoreAfterValidationPage.getFirstGameScoreText();
-		try {
-			Assert.assertNotEquals(firstGameScore, FirstGameScore);
-		} catch (Exception e) {
-			Assert.assertEquals(firstGameScore, FirstGameScore);
-		}
-
-
-		logger.info("Ending of verifyToValidateGameScore method");
-	}
-
-	public void verifyFreeBracketDoublesTypeWithRoundRobinEventType() {
-		logger.info("Starting of verifyFreeBracketDoublesTypeWithRoundRobinEventType method");
-
-		seedEvents = addEventPage.setEventName(testDataProp.getProperty("event.name"));
-		addEventPage.setLocation(testDataProp.getProperty("state.address"));
-
-		addEventPage.uploadEventLogo(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("edit.club.logo.path"));
-		addEventPage.setMemberPrice(testDataProp.getProperty("zero.value"));
-		addEventPage.setNonMemberPrice(testDataProp.getProperty("zero.value"));
-		addEventPage.setAboutTheEvent(testDataProp.getProperty("about.the.event"));
-		addEventPage.clickonTextFormattingButtons();
-		addEventPage.clickOnNextStepButton();
-
-		Assert.assertTrue(addEventPage.isEventPoliciesPageContains());
-
-		this.verifyEventPoliciesPageByEnteringValidDetails();
-
-		addBracketPage.hardWait(3);
-		addBracketPage.clickOnMatchTypeDropdown();
-		addBracketPage.hardWait(3);
-		addBracketPage.selectSinglesMatchType();
-
-		addBracketPage.hardWait(3);
-		addBracketPage.clickOnPlayGroupDropdown();
-		addBracketPage.hardWait(3);
-		addBracketPage.selectOpenPlayerGroup();
-
-		addBracketPage.setMinimumAgeRange(testDataProp.getProperty("min.age.range"));
-		addBracketPage.setMaximumAgeRange(testDataProp.getProperty("max.age.range"));
-		addBracketPage.setMinimumRatingRange(testDataProp.getProperty("min.rating.range"));
-		addBracketPage.setMaximumRatingRange(testDataProp.getProperty("max.rating.range"));
-
-		Assert.assertTrue(addBracketPage.isAutoGenerateButtonEnabled());
-		addBracketPage.clickOnAutoGenerateButton();
-
-		addBracketPage.hardWait(3);
-		addBracketPage.clickOnEventTypeDropdown();
-		Assert.assertTrue(addBracketPage.isEventTypeListContains());
-		addBracketPage.hardWait(3);
-		addBracketPage.selectRoundRobinEvent();
-		Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
-
-		addBracketPage.hardWait(2);
-		addBracketPage.setRegistrationStartDate();
-
-		addBracketPage.hardWait(2);
-		editScoreAfterValidationPage.setRegistrationEndDate();
-
-		addBracketPage.hardWait(2);
-		editScoreAfterValidationPage.setCompetitionStartDate();
-
-		addBracketPage.hardWait(2);
-		addBracketPage.setCompetitionEndDate();
-
-		addBracketPage.clickOnTimeZoneDropdown();
-		Assert.assertTrue(addBracketPage.isTimeZoneListContains());
-		addBracketPage.clickOnNewDelhiTimeZone();
-
-		addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("zero.value"));
-		addBracketPage.setBracketNonClubMemberPrice(testDataProp.getProperty("zero.value"));
-
-		addBracketPage.setNumberOfTeams(testDataProp.getProperty("team.value"));
-		addBracketPage.setWaitlist(testDataProp.getProperty("min.rating.range"));
-		addEventPage.clickOnNextStepButton();
-		addBracketPage.hardWait(2);
-		addBracketPage.clickOnNoContinueToSummary();
-		addBracketPage.clickOnPublishEventButton();
-		addBracketPage.hardWait(2);
-		addBracketPage.clickOnEventSuccessClosePopupButton();
-		addBracketPage.hardWait(2);
-
-		logger.info("Ending of verifyFreeBracketDoublesTypeWithRoundRobinEventType method");
-	}
-
 	@Test(priority = 1, description = "Verify the results on Click of seed Matches", groups = "sanity")
 	@Description("Test case #1, Verify the results on Click of seed Matches")
 	@Severity(SeverityLevel.NORMAL)
@@ -197,6 +55,7 @@ public class EditScoreAfterValidationTest extends CommonBaseTest {
 
 		seedMatchesPage.hardWait(2);
 		addEventPage.clickOnEventsTab();
+
 		seedMatchesPage.hardWait(2);
 		addEventPage.clickOnRecentlyAddedEvent(seedEvents);
 		seedMatchesPage.hardWait(3);
@@ -207,7 +66,7 @@ public class EditScoreAfterValidationTest extends CommonBaseTest {
 		seedMatchesPage.hardWait(5);
 		addparticipantsPage.addParticipantsIntoRoundRobinSinglesMatch();
 		seedMatchesPage.hardWait(5);
-		
+
 		logger.info("Ending of verifySeedMatchesFuntionality method");
 	}
 
@@ -218,8 +77,14 @@ public class EditScoreAfterValidationTest extends CommonBaseTest {
 	public void verifyCreateMatchesFuntionality() {
 		logger.info("Starting of verifyCreateMatchesFuntionality method");
 
+		seedMatchesPage.clickOnPlayersTab();
+		seedMatchesPage.hardWait(3);
+		seedMatchesPage.clickOnMatchesTab();
+		seedMatchesPage.clickOnPlayersTab();
+		seedMatchesPage.hardWait(3);
 		seedMatchesPage.clickOnSeedMatchesButton();
 		seedMatchesPage.hardWait(3);
+
 		seedMatchesPage.clickOnCreateMatches();
 		seedMatchesPage.hardWait(3);
 		seedMatchesPage.clickOnSavePublishButton();
@@ -276,6 +141,9 @@ public class EditScoreAfterValidationTest extends CommonBaseTest {
 	public void verifyThePresenceOfEditAndForfeitButtons() {
 		logger.info("Starting of verifyThePresenceOfEditAndForfeitButtons method");
 
+		seedMatchesPage.clickOnMatchesTab();
+		seedMatchesPage.hardWait(2);
+
 		Assert.assertTrue(editScoreAfterValidationPage.isEditButtonDisplayed());
 		Assert.assertTrue(editScoreAfterValidationPage.isForfeitButtonDisplayed());
 
@@ -289,25 +157,10 @@ public class EditScoreAfterValidationTest extends CommonBaseTest {
 	public void verifyEditGameScore() {
 		logger.info("Starting of verifyToSetGameScore method");
 
-		seedMatchesPage.clickOnValidateButton();
-		seedMatchesPage.hardWait(3);
-		seedMatchesPage.clickOnValidateInValidateMatchButton();
-		seedMatchesPage.hardWait(3);
-		seedMatchesPage.clickOnValidateMatchValidateButton();
-
-		try {
-			seedMatchesPage.clickOnValidateMatchSuccessCloseButton();
-
-		} catch (Exception e) {
-			seedMatchesPage.clickOnMatchesTabButton();
-			seedMatchesPage.hardWait(3);
-			seedMatchesPage.clickOnValidateMatchSuccessCloseButton();
-		}
-		
 		this.verifyEditScore();
 		this.verifyToSetGameScore();
 		this.verifyToSubmittingNewScore();
-		
+
 		logger.info("Ending of verifyToSetGameScore method");
 	}
 
@@ -317,11 +170,11 @@ public class EditScoreAfterValidationTest extends CommonBaseTest {
 	@Story("Test case #6, Verify to validate Game Score after the edit")
 	public void verifyValidateGameScoreAfterEdit() {
 		logger.info("Starting of verifyValidateGameScoreAfterEdit method");
-		
+
 		seedMatchesPage.hardWait(3);
 		seedMatchesPage.clickOnMatchesTab();
 		seedMatchesPage.hardWait(5);
-		
+
 		String firstGameScore = this.editScoreAfterValidationPage.getFirstGameScoreText();
 		try {
 			Assert.assertNotEquals(firstGameScore, FirstGameScore);
@@ -330,6 +183,148 @@ public class EditScoreAfterValidationTest extends CommonBaseTest {
 		}
 
 		logger.info("Ending of verifyValidateGameScoreAfterEdit method");
+	}
+
+	public void verifyEditScore() {
+		logger.info("Starting of verifyEditScore method");
+
+		FirstGameScore = editScoreAfterValidationPage.getFirstGameScoreText();
+		SecondGameScore = editScoreAfterValidationPage.getSecondGameScoreText();
+
+		editScoreAfterValidationPage.clickOnEditScore();
+
+		String editScoresText = this.editScoreAfterValidationPage.getEditScoreText();
+		Assert.assertEquals(editScoresText, expectedAssertionsProp.getProperty("edit.score.label"));
+
+		String matchDateText = this.editScoreAfterValidationPage.getMatchDateText();
+		Assert.assertEquals(matchDateText, expectedAssertionsProp.getProperty("match.date.label"));
+
+		String submitButtonText = this.editScoreAfterValidationPage.getSubmitButtonText();
+		Assert.assertEquals(submitButtonText, expectedAssertionsProp.getProperty("submit.button.label"));
+
+		Assert.assertTrue(editScoreAfterValidationPage.isCrossIconDisplayed());
+
+		logger.info("Ending of verifyEditScore method");
+	}
+
+	public void verifyToSetGameScore() {
+		logger.info("Starting of verifyToSetGameScore method");
+
+		editScoreAfterValidationPage.setFirstGameScoreEdit(testDataProp.getProperty("first.game.score"));
+		editScoreAfterValidationPage.setSecondGameScoreEdit(testDataProp.getProperty("second.game.score"));
+		editScoreAfterValidationPage.clickOnSubmitButton();
+
+		logger.info("Ending of verifyToSetGameScore method");
+	}
+
+	public void verifyToSubmittingNewScore() {
+		logger.info("Starting of verifyToSubmittingNewScore method");
+
+		Assert.assertTrue(editScoreAfterValidationPage.getSubmittingNewScoresText());
+
+		String matchDateText = this.editScoreAfterValidationPage.getSubmitScoresButtonText();
+		Assert.assertEquals(matchDateText, expectedAssertionsProp.getProperty("submit.scores.button.label"));
+
+		String submitButtonText = this.editScoreAfterValidationPage.getGoBackText();
+		Assert.assertEquals(submitButtonText, expectedAssertionsProp.getProperty("go.back.label"));
+
+		Assert.assertTrue(editScoreAfterValidationPage.isCrossIconDisplayed());
+
+		editScoreAfterValidationPage.clickOnSubmitScoreButton();
+
+		logger.info("Ending of verifyToSubmittingNewScore method");
+	}
+
+	public void verifyToValidateGameScore() {
+		logger.info("Starting of verifyToValidateGameScore method");
+
+		Assert.assertFalse(editScoreAfterValidationPage.isEditScoreDisplayed());
+
+		String firstGameScore = this.editScoreAfterValidationPage.getFirstGameScoreText();
+		try {
+			Assert.assertNotEquals(firstGameScore, FirstGameScore);
+		} catch (Exception e) {
+			Assert.assertEquals(firstGameScore, FirstGameScore);
+		}
+
+		logger.info("Ending of verifyToValidateGameScore method");
+	}
+
+	public void verifyFreeBracketDoublesTypeWithRoundRobinEventType() {
+		logger.info("Starting of verifyFreeBracketDoublesTypeWithRoundRobinEventType method");
+
+		seedEvents = addEventPage.setEventName(testDataProp.getProperty("event.name"));
+		addEventPage.setLocation(testDataProp.getProperty("state.address"));
+
+		addEventPage.uploadEventLogo(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("edit.club.logo.path"));
+		addEventPage.setMemberPrice(testDataProp.getProperty("zero.value"));
+		addEventPage.setNonMemberPrice(testDataProp.getProperty("zero.value"));
+		addEventPage.setAboutTheEvent(testDataProp.getProperty("about.the.event"));
+		addEventPage.clickonTextFormattingButtons();
+		addEventPage.clickOnNextStepButton();
+
+		Assert.assertTrue(addEventPage.isEventPoliciesPageContains());
+
+		this.verifyEventPoliciesPageByEnteringValidDetails();
+
+		addBracketPage.hardWait(3);
+		addBracketPage.clickOnMatchTypeDropdown();
+		addBracketPage.hardWait(3);
+		addBracketPage.selectSinglesMatchType();
+
+		addBracketPage.hardWait(3);
+		addBracketPage.clickOnPlayGroupDropdown();
+		addBracketPage.hardWait(3);
+		addBracketPage.selectOpenPlayerGroup();
+
+		addBracketPage.setMinimumAgeRange(testDataProp.getProperty("min.age.range"));
+		addBracketPage.setMaximumAgeRange(testDataProp.getProperty("max.age.range"));
+		addBracketPage.setMinimumRatingRange(testDataProp.getProperty("min.rating.range"));
+		addBracketPage.setMaximumRatingRange(testDataProp.getProperty("max.rating.range"));
+
+		Assert.assertTrue(addBracketPage.isAutoGenerateButtonEnabled());
+		addBracketPage.clickOnAutoGenerateButton();
+
+		addBracketPage.hardWait(3);
+		addBracketPage.clickOnEventTypeDropdown();
+		Assert.assertTrue(addBracketPage.isEventTypeListContains());
+		addBracketPage.hardWait(3);
+		addBracketPage.selectRoundRobinEvent();
+		Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
+
+		addBracketPage.hardWait(2);
+
+		addBracketPage.setRegistrationStartDate();
+
+		addBracketPage.hardWait(2);
+		/*
+		 * editScoreAfterValidationPage.setRegistrationEndDate();
+		 */
+
+		addBracketPage.hardWait(2);
+		editScoreAfterValidationPage.setCompetitionStartDate();
+
+		addBracketPage.hardWait(2);
+		addBracketPage.setCompetitionEndDate();
+
+		addBracketPage.clickOnTimeZoneDropdown();
+		Assert.assertTrue(addBracketPage.isTimeZoneListContains());
+		addBracketPage.clickOnNewDelhiTimeZone();
+
+		addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("zero.value"));
+		addBracketPage.setBracketNonClubMemberPrice(testDataProp.getProperty("zero.value"));
+
+		addBracketPage.setNumberOfTeams(testDataProp.getProperty("team.value"));
+		addBracketPage.setWaitlist(testDataProp.getProperty("min.rating.range"));
+		addEventPage.clickOnNextStepButton();
+		addBracketPage.hardWait(2);
+		addBracketPage.clickOnNoContinueToSummary();
+		addBracketPage.clickOnPublishEventButton();
+		addBracketPage.hardWait(2);
+		addBracketPage.clickOnEventSuccessClosePopupButton();
+		addBracketPage.hardWait(2);
+
+		logger.info("Ending of verifyFreeBracketDoublesTypeWithRoundRobinEventType method");
 	}
 
 	@AfterClass

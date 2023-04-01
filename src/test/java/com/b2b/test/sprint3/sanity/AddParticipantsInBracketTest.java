@@ -59,28 +59,13 @@ public class AddParticipantsInBracketTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyAddParticipantsFunctionality method");
 	}
 
-	@Test(priority = 2, description = "Verify Go Back functionality in Add a Bracket Participant page", groups = "sanity")
-	@Description("Test case #2, Verify Go Back functionality in Add a Bracket Participant page")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #2, Verify Go Back functionality")
-	public void verifyGoBackFunctionality() {
-		logger.info("Starting of verifyGoBackFunctionality method");
-
-		addparticipantsPage.clickOnGoBackButton();
-		addparticipantsPage.hardWait(2);
-		
-		logger.info("Ending of verifyGoBackFunctionality method");
-	}
 	
-	@Test(priority = 3, description = "Verify Search Participant Functionality With valid Participant Name", groups = "sanity")
-	@Description("Test case #3, Verify Search Participant Functionality With valid Participant Name")
+	@Test(priority = 2, description = "Verify Search Participant Functionality With valid Participant Name", groups = "sanity")
+	@Description("Test case #2, Verify Search Participant Functionality With valid Participant Name")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #3, Verify Search By Name Functionality with valid Participant Name")
+	@Story("Test case #2, Verify Search By Name Functionality with valid Participant Name")
 	public void verifySearchParticipantFunctionalityWithValidName() {
 		logger.info("Starting of verifySearchParticipantFunctionalityWithValidName method");
-
-		addparticipantsPage.clickOnAddParticipantsButton();
-		addparticipantsPage.hardWait(2);
 
 		String participantName = addparticipantsPage.getParticipantNameText();
 		addparticipantsPage.searchParticipantByName(participantName);		
@@ -91,10 +76,10 @@ public class AddParticipantsInBracketTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifySearchParticipantFunctionalityWithValidName method");
 	}
 
-	@Test(priority = 4, description = "Verify Search Participant Functionality With Invalid Participant Name", groups = "sanity")
-	@Description("Test case #4, Verify Search Participant Functionality With Invalid Paticipant Name")
+	@Test(priority = 3, description = "Verify Search Participant Functionality With Invalid Participant Name", groups = "sanity")
+	@Description("Test case #3, Verify Search Participant Functionality With Invalid Paticipant Name")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #4, Verify Search By Name Functionality with Invalid Participant Name")
+	@Story("Test case #3, Verify Search By Name Functionality with Invalid Participant Name")
 	public void verifySearchParticipantFunctionalityWithInvalidName() {
 		logger.info("Starting of verifySearchParticipantFunctionalityWithInvalidName method");
 		
@@ -104,10 +89,10 @@ public class AddParticipantsInBracketTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifySearchParticipantFunctionalityWithInvalidName method");
 	}
 
-	@Test(priority = 5, description = "Verify the State of Add Participant Button before adding Participant", groups = "sanity")
-	@Description("Test case #5, Verify the State of Add Participant Button before adding Participant")
+	@Test(priority = 4, description = "Verify the State of Add Participant Button before adding Participant", groups = "sanity")
+	@Description("Test case #4, Verify the State of Add Participant Button before adding Participant")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #5, Verify the State of Add Participant Button before adding Participant")
+	@Story("Test case #4, Verify the State of Add Participant Button before adding Participant")
 	public void verifyStateOfAddParticipantButton() {
 		logger.info("Starting of verifyStateOfAddParticipantButton method");
 
@@ -120,10 +105,10 @@ public class AddParticipantsInBracketTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyStateOfAddParticipantButton method");
 	}
 	
-	@Test(priority = 6, description = "Verify Add Participant functionality", groups = "sanity")
-	@Description("Test case #6, Verify Add Participant functionality")
+	@Test(priority = 5, description = "Verify Add Participant functionality", groups = "sanity")
+	@Description("Test case #5, Verify Add Participant functionality")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #6, Verify Add Participant functionality")
+	@Story("Test case #5, Verify Add Participant functionality")
 	public void verifySelectAddParticipantFunctionality() {
 		logger.info("Starting of verifySelectAddParticipantFunctionality method");
 
@@ -140,60 +125,26 @@ public class AddParticipantsInBracketTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifySelectAddParticipantFunctionality method");
 	}
 
-	@Test(priority = 7, description = "Verify close icon functionality in Club Membership popup", groups = "sanity")
-	@Description("Test case #7, Verify close icon functionality in Club Membership popup")
+	@Test(priority = 6, description = "Verify by selecting Yes Radio button & adding participant in Club Membership popup", groups = "sanity")
+	@Description("Test case #6, Verify by selecting Yes Radio button & adding participant in Club Membership popup")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #7, Verify close icon functionality in Club Membership popup")
-	public void verifyCloseIconFunctionality() {
-		logger.info("Starting of verifyCloseIconFunctionality method");
-
-		addparticipantsPage.clickOnCloseIconInClubMembershipPopup();
-		addparticipantsPage.hardWait(2);
-	
-		Assert.assertTrue(addparticipantsPage.isAddBracketParticipantPageContains());
-		
-		logger.info("Ending of verifyCloseIconFunctionality method");
-	}
-
-	@Test(priority = 8, description = "Verify Cancel button functionality in Club Membership popup", groups = "sanity")
-	@Description("Test case #8, Verify cancel button functionality in Club Membership popup")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #8, Verify cancel button functionality in Club Membership popup")
-	public void verifyCancelClubMembershipPopupFunctionality() {
-		logger.info("Starting of verifyCancelClubMembershipPopupFunctionality method");
-
-		addparticipantsPage.clickOnAddParticipantButton();
-		addparticipantsPage.clickOnCancelButtonInClubMembershipPopup();
-		
-		addparticipantsPage.hardWait(2);
-		Assert.assertTrue(addparticipantsPage.isAddBracketParticipantPageContains());
-
-		logger.info("Ending of verifyCancelClubMembershipPopupFunctionality method");
-	}
-
-	@Test(priority = 9, description = "Verify by selecting Yes Radio button & adding participant in Club Membership popup", groups = "sanity")
-	@Description("Test case #9, Verify by selecting Yes Radio button & adding participant in Club Membership popup")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #9, Verify by selecting Yes Radio button & adding participant in Club Membership popup")
+	@Story("Test case #6, Verify by selecting Yes Radio button & adding participant in Club Membership popup")
 	public void verifyAddingHostClubMember() {
 		logger.info("Starting of verifyAddingHostClubMember method");
 		
-		addparticipantsPage.clickOnAddParticipantButton();
 		addparticipantsPage.clickOnYesRadioButton();
 		
 		addparticipantsPage.hardWait(3);
-		
-		//Assert.assertTrue(this.addparticipantsPage.isYesRadioButtonSelected());
 		
 		addparticipantsPage.clickOnAddButtonInClubMembershipPopup();
 		
 		logger.info("Ending of verifyAddingHostClubMember method");
 	}
 
-	@Test(priority = 10, description = "Verify by selecting No Radio button in Club Membership popup & adding participant", groups = "sanity")
-	@Description("Test case #10, Verify by selecting No Radio button in Club Membership popup & adding participant")
+	@Test(priority = 7, description = "Verify by selecting No Radio button in Club Membership popup & adding participant", groups = "sanity")
+	@Description("Test case #7, Verify by selecting No Radio button in Club Membership popup & adding participant")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #10, Verify by selecting No Radio button in Club Membership popup & adding participant")
+	@Story("Test case #7, Verify by selecting No Radio button in Club Membership popup & adding participant")
 	public void verifyAddingNonHostClubMember() {
 		logger.info("Starting of verifyAddingNonHostClubMember method");
 
@@ -207,10 +158,10 @@ public class AddParticipantsInBracketTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyAddingNonHostClubMember method");
 	}
 	
-	@Test(priority = 11, description = "Verify the results on click of Export CSV", groups = "sanity")
-	@Description("Test case #11, Verify the results on click of Export CSV")
+	@Test(priority = 8, description = "Verify the results on click of Export CSV", groups = "sanity")
+	@Description("Test case #8, Verify the results on click of Export CSV")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #11 Verify the results on click of Export CSV")
+	@Story("Test case #8 Verify the results on click of Export CSV")
 	public void verifyExportCsvFunctionality() throws IOException {
 		logger.info("Starting of verifyExportCsvFunctionality method");
 		

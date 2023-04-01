@@ -1007,6 +1007,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 			hardWait(2);
 		} catch (Exception e) {
 			System.out.println();
+			clickOnElementUsingActionClass(btnTimeInMinutes);
 		}
 
 		try {
@@ -1349,6 +1350,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnCurrentTime(hours);
+		hardWait(3);
 		clickOnElementUsingActionClass(btnTimeInMinutes);
 		try {
 			if (btnOK.isDisplayed() == true) {
