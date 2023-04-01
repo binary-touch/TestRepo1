@@ -975,7 +975,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	public void setRegistrationStartDate() {
 		log.info("Starting of setRegistrationStartDate method");
-
+		scrollDown(400);
 		try {
 			clickOnWebElement(txtBoxRegistrationStartDate);
 		} catch (Exception e) {
@@ -1036,6 +1036,8 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	public void setRegistrationEndDate() {
 		log.info("Starting of setRegistrationEndDate method");
 		hardWait(2);
+		
+		scrollDown(200);
 
 		try {
 			clickOnElementUsingActionClass(txtBoxRegistrationEndDate);
