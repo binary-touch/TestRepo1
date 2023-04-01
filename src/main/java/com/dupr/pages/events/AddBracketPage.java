@@ -986,10 +986,10 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
 
-		hardWait(2);
+		hardWait(4);
 		this.clickOnCurrentDate(date);
 
-		hardWait(2);
+		hardWait(3);
 		this.clickOnCurrentTime(meridiem);
 		hardWait(3);
 		try {
@@ -1054,6 +1054,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 		try {
 			if ((mValue).equals(monthvalue)) {
+				hardWait(4);
 				this.clickOnCurrentDate(date);
 			} else {
 				try {
@@ -1066,13 +1067,15 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		hardWait(3);
 		this.clickOnCurrentTime(meridiem);
+		hardWait(4);
 		try {
 			clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
 		} catch (Exception e) {
 			clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
 		}
+		hardWait(2);
 		try {
 			clickOnElementUsingActionClass(btnTimeInMinutes);
 		} catch (Exception e) {
