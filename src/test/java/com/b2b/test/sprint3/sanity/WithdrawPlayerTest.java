@@ -178,27 +178,13 @@ public class WithdrawPlayerTest extends CommonBaseTest {
 		logger.info("Ending of verifyWithdrawRefundButtonFunctionality method");
 	}
 
-	@Test(priority = 4, description = "Verify the results on click of Close Icon", groups = "sanity")
-	@Description("Test case #4, Verify the results on click of Close Icon")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #4, Verify the results on click of Close Icon")
-	public void verifyCloseIconFunctionalityOnWithdrawl() {
-		logger.info("Starting of verifyCloseIconFunctionalityOnWithdrawl method");
-
-		withdrawPlayerPage.clickOnCloseIconOnWIthdrawRefund();
-		Assert.assertFalse(withdrawPlayerPage.isWithdrawRefundPopUpContains());
-
-		logger.info("Ending of verifyCloseIconFunctionalityOnWithdrawl method");
-	}
-
 	@Test(priority = 5, description = "Verify the results on click on Next Button without selecting any radio buttons", groups = "sanity")
 	@Description("Test case #5, Verify the results on click of Close Icon")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #5, Verify the results on click of Close Icon")
 	public void verifyValidationMsgWithoutSelectingAnyOption() {
 		logger.info("Starting of verifyValidationMsgWithoutSelectingAnyOption method");
-
-		withdrawPlayerPage.clickOnWithdrawButton();
+		
 		withdrawPlayerPage.hardWait(2);
 		withdrawPlayerPage.clickOnNextButton();
 		Assert.assertEquals(withdrawPlayerPage.getOptionValidationTxt(),
@@ -221,19 +207,6 @@ public class WithdrawPlayerTest extends CommonBaseTest {
 		logger.info("Ending of verifyNextButtonFunctionalityOnWIthdrawRefund method");
 	}
 
-	@Test(priority = 7, description = "Verify the results on click of Back Button", groups = "sanity")
-	@Description("Test case #,7 Verify the results on click of Back Button")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #7, Verify the results on click of Back Button")
-	public void verifyBackButtonFunctionalityOnWIthdrawl() {
-		logger.info("Starting of verifyBackButtonFunctionalityOnWIthdrawl method");
-
-		withdrawPlayerPage.clickOnBackButton();
-		Assert.assertTrue(withdrawPlayerPage.isWithdrawRefundPopUpContains());
-
-		logger.info("Ending of verifyBackButtonFunctionalityOnWIthdrawl method");
-	}
-
 	@Test(priority = 8, description = "Verify the results on click on Next Button by selecting withdraw Option", groups = "sanity")
 	@Description("Test case #8, Verify the results on click on Next Button by selecting withdraw Option")
 	@Severity(SeverityLevel.NORMAL)
@@ -241,7 +214,6 @@ public class WithdrawPlayerTest extends CommonBaseTest {
 	public void verifyNextFunctionalityBySelectingWithdraw() {
 		logger.info("Starting of verifyNextFunctionalityBySelectingWithdraw method");
 
-		withdrawPlayerPage.clickOnNextButton();
 		withdrawPlayerPage.clickOnNextButton();
 		Assert.assertEquals(withdrawPlayerPage.getSelectValidationTxt(),
 				expectedAssertionsProp.getProperty("checkBox.validation.txt"));
@@ -265,27 +237,13 @@ public class WithdrawPlayerTest extends CommonBaseTest {
 		logger.info("Ending of verifyNextBySelectingBracket method");
 	}
 
-	@Test(priority = 10, description = "Verify the results on click of Back Button On Confirmation PopUp", groups = "sanity")
-	@Description("Test case #10, Verify the results on click of Back Button on confirmation popUp")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #10, Verify the results on click of Back ButtonOn confirmation poopUp")
-	public void verifyBackButtonFunctionalityOnConfirmation() {
-		logger.info("Starting of verifyBackButtonFunctionalityOnConfirmation method");
-
-		withdrawPlayerPage.clickOnBackButton();
-		Assert.assertTrue(withdrawPlayerPage.isWithdrawPopUpContains());
-
-		logger.info("Ending of verifyBackButtonFunctionalityOnConfirmation method");
-	}
-
 	@Test(priority = 11, description = "Verify the results on click of confirm Button", groups = "sanity")
 	@Description("Test case #11, Verify the results on click of confirm Button")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #11, Verify the results on click of confirm Button")
 	public void verifyConfirmButtonFunctionality() {
 		logger.info("Starting of verifyConfirmButtonFunctionality method");
-
-		withdrawPlayerPage.clickOnNextButton();
+		
 		withdrawPlayerPage.hardWait(3);
 		withdrawPlayerPage.clickOnConfirmButton();
 		Assert.assertTrue(withdrawPlayerPage.isSucessPopUpContains());

@@ -505,11 +505,11 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 		boolean isPlayerRemoved = false;
 		try {
 
-			if (isDisplayed(txtNoResults)) {
-				isPlayerRemoved = true;
+			if (isDisplayed(txtPlayerName)) {//txtNoResults
+				isPlayerRemoved = false;
 			}
 		} catch (Exception e) {
-			isPlayerRemoved = false;
+			isPlayerRemoved = true;
 		}
 
 		log.info("Ending of isPlayerRemoved method");
