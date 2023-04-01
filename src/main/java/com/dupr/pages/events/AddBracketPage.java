@@ -978,15 +978,12 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	public void setRegistrationStartDate() {
 		log.info("Starting of setRegistrationStartDate method");
 
-		try {
-			scrollDown(400);
-
 			try {
 				clickOnWebElement(txtBoxRegistrationStartDate);
 			} catch (Exception e) {
 				clickOnElementUsingActionClass(txtBoxRegistrationStartDate);
 			}
-
+		
 			int date = this.getCurrentDate();
 			String hours = this.getCurrentHour();
 			String meridiem = this.getCurrentMeridiem();
@@ -996,32 +993,18 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 			hardWait(2);
 			this.clickOnCurrentTime(meridiem);
+		
 			try {
 				clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
 			} catch (Exception e) {
 				clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
 			}
-
+		
 			clickUsingActionsClass(btnDefaultTimeInMinutes);
-
-			hardWait(2);
-		} catch (Exception e) {
-			System.out.println();
-			clickOnElementUsingActionClass(btnTimeInMinutes);
-		}
-		clickOnElementUsingActionClass(btnTimeInMinutes);
-
-		try {
-			if (btnOK.isDisplayed() == true) {
-				this.clickOnWebElement(btnOK);
-			}
-		} catch (Exception e) {
-			log.info("*** OK Button Haven't displayed***");
-		}
-
+		
 		log.info("Ending of setRegistrationStartDate method");
 	}
-
+	
 	public void setFutureRegistrationEndDate() {
 		log.info("Starting of clickOnRegistrationEndDate method");
 
