@@ -73,11 +73,17 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h4[text()='Time Zone']/following-sibling::p[text()='(GMT-06:00) Central America']")
 	private WebElement txtTimeZoneInEventDetails;
 
+	@B2BFindBy(xpath = "//h4[text()='Time Zone']/following-sibling::p")
+	private WebElement lblTimezoneEventDetails;
+	
 	@B2BFindBy(xpath = "//h4[text()='Time Zone']/following-sibling::p[text()='(GMT+05:30) Chennai, Kolkata, Mumbai, New Delhi']")
 	private WebElement txtNewDelhiTimeZoneInEventDetails;
 
 	@B2BFindBy(xpath = "//h4[text()='Time Zone']/following-sibling::p[text()='(GMT-07:00) Arizona']")
 	private WebElement txtArizonaTimeZoneInEventDetails;
+
+	@B2BFindBy(xpath = "//h4[text()='Time Zone']/following-sibling::p[text()='(GMT+05:45) Kathmandu']")
+	private WebElement txtkathmanduTimeZoneInEventDetails;
 
 	@B2BFindBy(xpath = "//span[text()='Upcoming']")
 	private WebElement lblUpcoming;
@@ -180,6 +186,9 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//span[text()='55']")
 	private WebElement btnTimeInMinutes;
+
+	@B2BFindBy(xpath = "//span[text()='55']")
+	private WebElement btnDefaultTimeInMinutes;
 
 	@B2BFindBy(xpath = "//button[text()='OK']")
 	private WebElement btnOK;
@@ -365,6 +374,15 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		return txtRegEndDateInEventDetails.getText();
 	}
 
+	public String getTimeZoneLabelInEventDetails() {
+		log.info("Starting of getTimeZoneLabelInEventDetails method");
+		System.out.println(getText(lblTimezoneEventDetails));
+		log.info("Ending of getTimeZoneLabelInEventDetails method");
+
+		return lblTimezoneEventDetails.getText();
+	}
+
+	
 	public String getCompStartDaeInEventDetails() {
 		log.info("Starting of getCompetitionStartDaeText method");
 		// System.out.println(getText(txtCompetitionStartDateTime));
@@ -403,7 +421,15 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 
 		return txtIndianTimeZone.getText();
 	}
+	
+	public String getTimeZoneKathmanduInEventDetails() {
+		log.info("Starting of getTimeZoneKathmanduInEventDetails method");
+		//System.out.println(getText(txtkathmanduTimeZoneInEventDetails));
+		log.info("Ending of getTimeZoneKathmanduInEventDetails method");
 
+		return txtkathmanduTimeZoneInEventDetails.getText();
+	}
+	
 	public String getTimeZoneInEventDetails() {
 		log.info("Starting of getTimeZoneInEventDetails method");
 		System.out.println(getText(txtTimeZoneInEventDetails));
@@ -414,8 +440,9 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 
 	public String getIndianTimeZoneInEventDetails() {
 		log.info("Starting of getIndianTimeZoneInEventDetails method");
-		this.hardWait(3);
-		System.out.println(getText(txtNewDelhiTimeZoneInEventDetails));
+		this.hardWait(6);
+		this.scrollIntoView(txtNewDelhiTimeZoneInEventDetails);
+		//System.out.println(getText(txtNewDelhiTimeZoneInEventDetails));
 		log.info("Ending of getIndianTimeZoneInEventDetails method");
 
 		return txtNewDelhiTimeZoneInEventDetails.getText();
@@ -1447,7 +1474,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 	public void setRegistrationEndDate() {
 		log.info("Starting of setRegistrationEndDate method");
 
-		//hardWait(2);
+		hardWait(4);
 		try {
 			clickOnWebElement(txtBoxRegistrationEndDate);
 		} catch (Exception e) {
@@ -1476,6 +1503,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
 		
@@ -1485,7 +1513,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'"+hours+"')]")));
 		}
-		clickOnElementUsingActionClass(btnTimeInMinutes);
+		clickOnElementUsingActionClass(btnDefaultTimeInMinutes);
 		
 		try {
 			if(btnOK.isDisplayed()==true) {

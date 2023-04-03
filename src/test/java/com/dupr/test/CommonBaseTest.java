@@ -523,9 +523,10 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		addEventPage.setNonMemberPrice(testDataProp.getProperty("zero.value"));
 		addEventPage.setAboutTheEvent(testDataProp.getProperty("about.the.event"));
 		addEventPage.clickonTextFormattingButtons();
+		addEventPage.hardWait(4);
 		addEventPage.clickOnNextStepButton();
 
-		addEventPage.hardWait(2);
+		addEventPage.hardWait(5);
 		Assert.assertTrue(addEventPage.isEventPoliciesPageContains());
 
 		logger.info("Ending of verifyEventInformationPageWithValidDetails method");
