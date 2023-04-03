@@ -13,6 +13,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 import com.b2b.support.B2BFindBy;
 import com.b2b.support.B2BPageFactory;
@@ -656,7 +657,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 	}
 
 	public void clickOnFirstTeamRadioButton() {
-		// log.info("Starting of clickOnFirstTeamRadioButton method");
+		log.info("Starting of clickOnFirstTeamRadioButton method");
 
 		try {
 			elementClick(rdoFirstTeam);
@@ -795,7 +796,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 	}
 
 	public boolean isMatchesTabContains() {
-		// log.info("Starting of isMatchesTabContains method");
+		log.info("Starting of isMatchesTabContains method");
 
 		boolean isMatchesTabContains = true;
 		this.scrollDown(170);
@@ -1206,7 +1207,6 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		this.hardWait(3);
 
 		log.info("Ending of enterSecondGamePlayerPoints method");
-
 	}
 
 	public String getInvalidPointsValidation() {
@@ -1285,7 +1285,6 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		this.hardWait(3);
 
 		log.info("Ending of enterThirdGamePlayerPoints method");
-
 	}
 
 	public boolean isWinnerTagDisplayed() {
@@ -1583,12 +1582,6 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		this.clickUsingActionsClass(btnDefaultTimeInMinutes);
 		hardWait(2);
 
-		try {
-			this.clickOnElementUsingActionClass(btnOK);
-		} catch (Exception e) {
-			System.out.println("***Ok button haven't displayed***");
-		}
-
 		log.info("Ending of setRegistrationStartDate method");
 	}
 
@@ -1616,18 +1609,29 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 		this.clickOnCurrentDate(date);
 		this.clickOnCurrentTime(meridiem);
-////span[contains(text(),'"+hours+"')]
+
 		try {
-			// driver.findElement(By.xpath("//span[contains(text(),'\"+hours+\"')]")).click();
-			clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
+			System.out.println(driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']")));
+			WebElement currentHourValue = driver
+					.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']"));
+
+			this.hardWait(2);
+			Actions action = new Actions(driver);
+			action.moveToElement(currentHourValue).contextClick(currentHourValue).build().perform();
 		} catch (Exception e) {
-			clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
+			clickOnWebElement(driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']")));
 		}
 
 		try {
 			min = String.valueOf(this.getMinutes());
-			if (driver.findElement(By.xpath("//span[text()='" + min + "']")).isDisplayed()) {
-				this.clickOnCurrentTime(min);
+			if (driver.findElement(By.cssSelector("span[aria-label='" + min + " minutes']")).isDisplayed()) {
+				try {
+					this.clickOnCurrentTime(min);
+				} catch (Exception e) {
+					Actions action = new Actions(driver);
+					action.moveToElement(driver.findElement(By.cssSelector("span[aria-label='" + min + " minutes']")))
+							.click().perform();
+				}
 			}
 		} catch (Exception e) {
 			try {
@@ -1645,14 +1649,6 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 			this.clickOnCurrentDate(date);
 			this.clickOnCurrentTime(meridiem);
 			this.selectFutureHour();
-		}
-
-		try {
-			if (btnOK.isDisplayed() == true) {
-				this.clickOnWebElement(btnOK);
-			}
-		} catch (Exception e) {
-			log.info("*** OK Button Haven't displayed***");
 		}
 
 		log.info("Ending of setRegistrationEndDate method");
@@ -1711,12 +1707,28 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 		this.clickOnCurrentDate(date);
 		this.clickOnCurrentTime(meridiem);
-		this.clickOnCurrentTime(hours);
+		System.out.println(driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']")));
+		WebElement currentHourValue = driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']"));
+
+		try {
+			this.hardWait(2);
+			Actions action = new Actions(driver);
+			action.moveToElement(currentHourValue).contextClick(currentHourValue).build().perform();
+		} catch (Exception e) {
+			clickOnWebElement(driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']")));
+		}
+
 		String min = null;
 		try {
 			min = String.valueOf(this.getMinutes());
-			if (driver.findElement(By.xpath("//span[text()='" + min + "']")).isDisplayed()) {
-				this.clickOnCurrentTime(min);
+			if (driver.findElement(By.cssSelector("span[aria-label='" + min + " minutes']")).isDisplayed()) {
+				try {
+					this.clickOnCurrentTime(min);
+				} catch (Exception e) {
+					Actions action = new Actions(driver);
+					action.moveToElement(driver.findElement(By.cssSelector("span[aria-label='" + min + " minutes']")))
+							.click().perform();
+				}
 			}
 		} catch (Exception e) {
 			hardWait(2);
@@ -1735,13 +1747,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 			this.clickOnCurrentTime(meridiem);
 			this.selectFutureHour();
 		}
-		try {
-			if (btnOK.isDisplayed() == true) {
-				this.clickOnWebElement(btnOK);
-			}
-		} catch (Exception e) {
-			log.info("*** OK Button Haven't displayed***");
-		}
+
 		log.info("Ending of setCompetitionStartDate method");
 	}
 

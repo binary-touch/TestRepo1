@@ -1,6 +1,7 @@
 package com.dupr.pages;
 
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
@@ -11,9 +12,12 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.b2b.base.B2BBaseAutomationPage;
 import com.b2b.support.B2BPageFactory;
@@ -117,7 +121,7 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 
 		System.out.println("Date Value = " + date);
 
-		log.info("Starting of getCurrentDate method");
+		log.info("Ending of getCurrentDate method");
 
 		return date;
 	}
@@ -130,7 +134,7 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 		int dateValue = date.getDayOfMonth();
 		System.out.println("Date Value = " + dateValue);
 
-		log.info("Starting of getFutureDate method");
+		log.info("Ending of getFutureDate method");
 
 		return dateValue;
 	}
@@ -184,27 +188,37 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 		String zone = simpleformat.format(new Date());
 		System.out.println("Zone format = " + zone);
 
-		log.info("Ending of clickOnRegistrationEndDate method");
+		log.info("Ending of getCurrentZone method");
 		return zone;
 	}
 
 	public void clickOnCurrentDate(int date) {
+		log.info("Starting of clickOnCurrentDate method");
 		hardWait(3);
 		try {
+			System.out.println("*** Current Date: //button[text()='" + date + "']***");
 			clickUsingActionsClass(driver.findElement(By.xpath("//button[text()='" + date + "']")));
 
 		} catch (Exception e) {
+			System.out.println("*** Current Date: //button[text()='" + date + "']***");
 			clickOnWebElement(driver.findElement(By.xpath("//button[text()='" + date + "']")));
 		}
+		
+		log.info("Ending of clickOnCurrentDate method");
 	}
 
 	public void clickOnCurrentTime(String strHour) {
+		log.info("Starting of clickOnCurrentTime method");
 		hardWait(2);
 		try {
+			System.out.println("*** Current Time/Meridiem: //span[contains(text(),'" + strHour + "')]***");
 			clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'" + strHour + "')]")));
 		} catch (Exception e) {
+			System.out.println("*** Current Time/Meridiem: //span[contains(text(),'" + strHour + "')]***");
 			clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'" + strHour + "')]")));
 		}
+		
+		log.info("Ending of clickOnCurrentTime method");
 	}
 
 	public void switchToNewTab() {
@@ -251,7 +265,7 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 		Month monthValue = date.getMonth();
 		System.out.println("Month Value = " + monthValue);
 
-		log.info("Starting of getFutureMonth method");
+		log.info("Ending of getFutureMonth method");
 
 		return monthValue;
 	}
@@ -269,6 +283,29 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 		return monthValue;
 	}
 
+	public static WebElement getElementIfVisible(WebDriver driver, WebElement element) {
+		log.info("Starting of getElementIfVisible method");
+
+		try {
+			element = (new WebDriverWait(driver, Duration.ofSeconds(20))
+					.until(ExpectedConditions.visibilityOf(element)));
+		} catch (StaleElementReferenceException se) {
+			try {
+				element = new WebDriverWait(driver, Duration.ofSeconds(20))
+						.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOf(element)));
+			} catch (Exception e) {
+				log.error("Element unavailable\n" + se.getMessage());
+
+			}
+		} catch (Exception e) {
+			log.error("Element unavailable\n" + e.getMessage());
+
+		}
+
+		log.info("Ending of getElementIfVisible method");
+		return element;
+	}
+
 	public Month getCurrentMonth() {
 		log.info("Starting of getCurrentMonth method");
 
@@ -282,9 +319,12 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 	}
 
 	public int getCurrentYear() {
-
+		log.info("Starting of getCurrentYear method");
+		
 		LocalDateTime dateTime = LocalDateTime.now();
 		currentyear = dateTime.getYear();
+		
+		log.info("Ending of getCurrentYear method");
 
 		return currentyear;
 	}
@@ -297,7 +337,7 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 		Year = yr.getYear();
 		System.out.println("Year Value = " + Year);
 
-		log.info("Starting of getPreviousYear method");
+		log.info("Ending of getPreviousYear method");
 
 		return Year;
 	}
@@ -309,11 +349,12 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 		System.out.println(requiredYearValue);
 		this.hardWait(3);
 		try {
-			clickUsingActionsClass(driver.findElement(By.xpath("//button[contains(text(),'" + requiredYearValue + "')]")));
+			clickUsingActionsClass(
+					driver.findElement(By.xpath("//button[contains(text(),'" + requiredYearValue + "')]")));
 		} catch (Exception e) {
 			clickOnWebElement(driver.findElement(By.xpath("//button[contains(text(),'" + requiredYearValue + "')]")));
 		}
 
-		log.info("Starting of clickOnSelectedYear method");
+		log.info("Ending of clickOnSelectedYear method");
 	}
 }
