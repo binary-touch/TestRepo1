@@ -669,16 +669,16 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 			Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
 
 			addBracketPage.hardWait(2);
-			//addBracketPage.setRegistrationStartDate();
+			addBracketPage.setRegistrationStartDate();
 
-			//addBracketPage.hardWait(2);
-			//seedMatchesPage.setRegistrationEndDate();
+			addBracketPage.hardWait(2);
+			seedMatchesPage.setRegistrationEndDate();
 
-			//addBracketPage.hardWait(2);
-			//seedMatchesPage.setCompetitionStartDate();
+			addBracketPage.hardWait(2);
+			seedMatchesPage.setCompetitionStartDate();
 
-			//addBracketPage.hardWait(2);
-			//addBracketPage.setCompetitionEndDate();
+			addBracketPage.hardWait(2);
+			addBracketPage.setCompetitionEndDate();
 
 			addBracketPage.clickOnTimeZoneDropdown();
 			Assert.assertTrue(addBracketPage.isTimeZoneListContains());
