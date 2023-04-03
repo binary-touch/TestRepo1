@@ -91,7 +91,7 @@ public class FullRegistrationTest extends CommonBaseTest {
 		addBracketPage.setRegistrationEndDate();
 		addBracketPage.setCompetitionStartDate();
 		addBracketPage.setCompetitionEndDate();
-
+		
 		addBracketPage.clickOnTimeZoneDropdown();
 		Assert.assertTrue(addBracketPage.isTimeZoneListContains());
 		addBracketPage.clickOnNewDelhiTimeZone();
@@ -153,16 +153,11 @@ public class FullRegistrationTest extends CommonBaseTest {
 		Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
 
 		addBracketPage.setRegistrationStartDate();
-
-		addBracketPage.hardWait(2);
 		addBracketPage.setRegistrationEndDate();
-
-		addBracketPage.hardWait(2);
-		fullRegistrationPage.setCompetitionStartDate();
-
-		addBracketPage.hardWait(2);
+		addBracketPage.setCompetitionStartDate();
 		addBracketPage.setCompetitionEndDate();
-
+		
+		addBracketPage.hardWait(2);
 		addBracketPage.clickOnTimeZoneDropdown();
 		addBracketPage.hardWait(2);
 		Assert.assertTrue(addBracketPage.isTimeZoneListContains());
@@ -233,6 +228,7 @@ public class FullRegistrationTest extends CommonBaseTest {
 	public void verifyRegisterFunctionalityWithFullRegistration() {
 		logger.info("Starting of verifyRegisterFunctionalityWithFullRegistration method");
 
+		addparticipantsPage.hardWait(4);
 		for (int i = 0; i <= 1; i++) {
 
 			addparticipantsPage.hardWait(3);
@@ -246,8 +242,9 @@ public class FullRegistrationTest extends CommonBaseTest {
 
 		Assert.assertEquals(fullRegistrationPage.getEventRegistrationText(),
 				expectedAssertionsProp.getProperty("event.registration.text"));
-
-		Assert.assertTrue(fullRegistrationPage.isSelectBracketCheckBoxDisabledDisplayed());
+		
+		fullRegistrationPage.clickOnbracketCheckbox();
+	
 
 		Assert.assertEquals(fullRegistrationPage.getRegistrationFullText(),
 				expectedAssertionsProp.getProperty("registration.full"));
@@ -286,6 +283,7 @@ public class FullRegistrationTest extends CommonBaseTest {
 		}
 
 		addparticipantsPage.hardWait(3);
+		
 		Assert.assertFalse(this.addparticipantsPage.isAddParticiPantsButtonDisplayed());
 
 		logger.info("Ending of verifyFullRegistrationFunctionalityWithWaterFallEventType method");
@@ -307,8 +305,6 @@ public class FullRegistrationTest extends CommonBaseTest {
 
 		Assert.assertEquals(fullRegistrationPage.getEventRegistrationText(),
 				expectedAssertionsProp.getProperty("event.registration.text"));
-
-		Assert.assertTrue(fullRegistrationPage.isSelectBracketCheckBoxDisabledDisplayed());
 
 		Assert.assertEquals(fullRegistrationPage.getRegistrationFullText(),
 				expectedAssertionsProp.getProperty("registration.full"));

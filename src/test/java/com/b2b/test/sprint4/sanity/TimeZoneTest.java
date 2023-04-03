@@ -26,7 +26,6 @@ public class TimeZoneTest extends CommonBaseTest {
 	private static final Logger logger = Logger.getLogger(TimeZoneTest.class.getName());
 
 	private MyClubsPage myClubsPage = null;
-	private TimeZonePage timeZonePage = null;
 	private static String RegStartDateTime = null;
 	private static String RegEndDateTime = null;
 	private static String CompStartDateTime = null;
@@ -50,7 +49,6 @@ public class TimeZoneTest extends CommonBaseTest {
 		super.initCommonBaseTest(siteURL, directorEmail, directorPassword);
 
 		this.myClubsPage = new MyClubsPage(this.driver);
-		this.timeZonePage = new TimeZonePage(this.driver);
 		this.addAnotherBracketPage = new AddAnotherBracketPage(this.driver);
 
 		logger.info("Ending of initMethod in TimeZoneTest");
@@ -123,6 +121,7 @@ public class TimeZoneTest extends CommonBaseTest {
 	public void verifyPublishedEventInEventTabAndBrowseEvents() {
 		logger.info("Starting of verifyPublishedEventInEventTabAndBrowseEvents method");
 
+		timeZonePage.hardWait(4);
 		String RegStartDateTimeInEventDetails = timeZonePage.getRegStartInEventDetails();
 
 		System.out.println(RegStartDateTime);
@@ -131,14 +130,14 @@ public class TimeZoneTest extends CommonBaseTest {
 		Assert.assertSame(RegStartDateTime, RegStartDateTimeInEventDetails);
 
 		String RegEndDateTimeInEventDetails = timeZonePage.getRegEndDateInEventDetails();
-
+		timeZonePage.hardWait(4);
 		System.out.println(RegEndDateTime);
 		System.out.println(RegEndDateTimeInEventDetails);
 
 		Assert.assertEquals(RegEndDateTime, RegEndDateTimeInEventDetails);
-
+		timeZonePage.hardWait(4);
 		String ComStartDateTimeInEventDetails = timeZonePage.getCompStartDaeInEventDetails();
-
+		
 		System.out.println(CompStartDateTime);
 		System.out.println(ComStartDateTimeInEventDetails);
 
@@ -150,7 +149,7 @@ public class TimeZoneTest extends CommonBaseTest {
 		System.out.println(CompEndDateTimeInEventDetails);
 
 		Assert.assertEquals(CompEndDateTime, CompEndDateTimeInEventDetails);
-
+		timeZonePage.hardWait(4);
 		String TimeZoneInEventDetails = timeZonePage.getIndianTimeZoneInEventDetails();
 		Assert.assertEquals(TimeZone, TimeZoneInEventDetails);
 
@@ -170,6 +169,7 @@ public class TimeZoneTest extends CommonBaseTest {
 	public void verifyAddAnotherBracketInAddEventFunctionality() {
 		logger.info("Starting of verifyAddAnotherBracketInAddEventFunctionality method");
 
+		timeZonePage.hardWait(4);
 		addEventPage.clickOnAddEventButton();
 		addBracketPage.hardWait(3);
 		super.verifyEventInformationPageWithValidDetails();
@@ -286,6 +286,7 @@ public class TimeZoneTest extends CommonBaseTest {
 	public void verifyCompetitionAndTimeZoneFieldsWithAddABracketFunctionality() {
 		logger.info("Starting of verifyCompetitionAndTimeZoneFieldsWithAddABracketFunctionality method");
 
+		addBracketPage.hardWait(3);
 		addBracketPage.clickOnMatchTypeDropDownInAddABracket();
 		Assert.assertTrue(addBracketPage.isMatchTypeListContains());
 		addBracketPage.selectDoublesMatchType();
@@ -470,6 +471,7 @@ public class TimeZoneTest extends CommonBaseTest {
 	public void verifyCompetitionAndTimeZoneFieldsInEditBracketFunctionality() {
 		logger.info("Starting of verifyCompetitionAndTimeZoneFieldsInEditBracketFunctionality method");
 
+		timeZonePage.hardWait(3);
 		timeZonePage.clickOnEditBracketButton();
 
 		addBracketPage.hardWait(3);

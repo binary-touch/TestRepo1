@@ -17,7 +17,7 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
-@Epic("DUPR App")
+@Epic("Events")
 @Feature("Edit Events-Sanity")
 public class EditEventsTest extends CommonBaseTest {
 	private static final Logger logger = Logger.getLogger(EditEventsTest.class.getName());
