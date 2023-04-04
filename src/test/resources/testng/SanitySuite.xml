@@ -77,7 +77,9 @@
 	</test>
 
 	 <test name="Sprint 4">
+	 
 		<classes>
+		
 			<class name="com.b2b.test.sprint4.sanity.ChatTest" />
 			<class name="com.b2b.test.sprint4.sanity.ShareTest" />
 			<class
@@ -86,11 +88,13 @@
 			<class name="com.b2b.test.sprint4.sanity.TimeZoneTest" />
 			<class
 				name="com.b2b.test.sprint4.sanity.SeedMatchesRoundRobinTest" />
-				</classes>
+				
+ </classes>
 	</test>
 
 	<test name="Sprint 5">
 		<classes>
+	
 			<class
 				name="com.b2b.test.sprint5.sanity.PaidEventAndPaidBracketWithWaterfallEventTest" />
 			<class

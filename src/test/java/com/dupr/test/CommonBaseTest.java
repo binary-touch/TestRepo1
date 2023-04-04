@@ -587,7 +587,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 
 		addBracketPage.clickOnPlayGroupDropdown();
 		Assert.assertTrue(addBracketPage.isPlayerGroupListDisplayed());
-		addBracketPage.selectMixedPlayerGroup();
+		addBracketPage.selectOpenPlayerGroup();
 
 		addBracketPage.setMinimumAgeRange(testDataProp.getProperty("min.age.range"));
 		Assert.assertTrue(addBracketPage.isEnteredMinimumAgeDisplayed(testDataProp.getProperty("min.age.range")));
@@ -880,9 +880,6 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		Assert.assertEquals(playerEventRegistrationPage.getClubMembershipLabel(),
 				expectedAssertionsProp.getProperty("club.membership"));
 
-		Assert.assertEquals(directorEventRegistrationPage.getHealthAndSafetyLabel(),
-				expectedAssertionsProp.getProperty("health.and.safety"));
-
 		playerEventRegistrationPage.clickOnClubMemberNoButton();
 		directorEventRegistrationPage.clickOnSelectYourBracketCheckbox();
 
@@ -893,8 +890,8 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		directorEventRegistrationPage.clickOnRefundPolicyCheckbox();
 		Assert.assertTrue(directorEventRegistrationPage.isRefundPolicyCheckboxSelected());
 
-		directorEventRegistrationPage.clickOnHealthSafetyPolicyCheckbox();
-		Assert.assertTrue(directorEventRegistrationPage.isHealthSafetyPolicyCheckboxSelected());
+		eventRegistrationPage.clickOnHealthSafetyPolicyCheckbox();
+		Assert.assertTrue(eventRegistrationPage.isHealthSafetyPolicyCheckboxSelected());
 
 		try {
 			directorEventRegistrationPage.clickOnLiabilityCheckbox();

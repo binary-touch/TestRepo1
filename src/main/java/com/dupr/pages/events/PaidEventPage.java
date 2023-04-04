@@ -110,7 +110,9 @@ public class PaidEventPage extends DUPRBaseAutomationPage {
 				this.txtBoxSearch.click();
 				this.txtBoxSearch.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 
-				sendKeys(txtBoxSearch, "simba");
+				sendKeys(txtBoxSearch, "Simba");
+				this.txtBoxSearch.sendKeys(Keys.BACK_SPACE);
+				this.txtBoxSearch.sendKeys("a");
 				this.txtBoxSearch.sendKeys(Keys.ENTER);
 
 				if (lblSimbaClubName.isDisplayed() == true) {
@@ -123,7 +125,7 @@ public class PaidEventPage extends DUPRBaseAutomationPage {
 					driver.navigate().refresh();
 					hardWait(3);
 					this.txtBoxSearch.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
-					sendKeys(txtBoxSearch, "si");
+					sendKeys(txtBoxSearch, "Simb");
 					this.waitForElementToBeVisible(lblSimbaClubName);
 					try {
 						clickUsingActionsClass(lblSimbaClubName);

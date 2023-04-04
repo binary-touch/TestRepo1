@@ -31,6 +31,7 @@ public abstract class DUPRBaseAutomationTest extends B2BBaseAutomationTest {
 		this.loadProjectConfigFiles();
 		this.initTestAutomation(siteURL, language, browser, headless, false);
 		log.debug("Site URL :{} " + loginURL);
+		 this.loginPage = new DUPRLoginPage(driver);
 	}
 
 protected void siteLogin(String siteURL, String email, String password, WebDriver webdriver) throws Exception {
@@ -53,6 +54,7 @@ protected void siteLogin(String siteURL, String email, String password, WebDrive
 	protected void devSiteLogin(String devSiteURL, String email, String password, WebDriver webdriver) throws Exception {
 
 		this.driver = webdriver;
+		loginPage.hardWait(3);
 		driver.get(devSiteURL);
 		this.loginPage = new DUPRLoginPage(webdriver);
 
