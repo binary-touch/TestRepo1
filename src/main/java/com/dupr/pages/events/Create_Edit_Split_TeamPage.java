@@ -271,17 +271,18 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 	
 	public void clickOnEventLabel() {
 		log.info("Starting of clickOnEventLabel method");
-		
-		scrollDown(10000);
+			
 		this.hardWait(3);
 		for (int i = 1; i < lblEventsInEventsTab.size();) {
-		driver.findElement(By.xpath(
-				(("(//span[text()='Open']/parent::div/parent::div/parent::div/following-sibling::div//h4[contains(text(),'pickleball_')])["
-						+ i + "]"))))
-				.click();
+			try {
+				driver.findElement(By.xpath((("(//span[text()='Open']/parent::div/parent::div/parent::div/following-sibling::div//h4[contains(text(),'pickleball_')])["+ i + "]")))).click();
+				break;
+			} catch (Exception e) {
+				scrollDown(10000);
+			}
 
 			this.hardWait(3);
-			break;
+			
 		}
 		
 		log.info("Ending of clickOnEventLabel method");
@@ -1052,12 +1053,18 @@ public class Create_Edit_Split_TeamPage extends DUPRBaseAutomationPage {
 	public boolean isAreYouSurePopupContains() {
 		log.info("Starting of isAreYouSurePopupContains method");
 		boolean isAreYouSurePopupContains = false;
+try {
+	if (isDisplayed(lblAreYouSure) 
+			&& isDisplayed(btnGoBack) 
+			&& isDisplayed(btnConfirm)
+			&& isDisplayed(iconCloseCreateTeamPopup)) {
 
-		if (isDisplayed(lblAreYouSure) && isDisplayed(btnGoBack) && isDisplayed(btnConfirm)
-				&& isDisplayed(iconCloseCreateTeamPopup)) {
-
-			isAreYouSurePopupContains = true;
-		}
+		isAreYouSurePopupContains = true;
+	}
+} catch (Exception e) {
+	System.out.println("   ");
+}
+	
 		log.info("Ending of isAreYouSurePopupContains method");
 		return isAreYouSurePopupContains;
 	}

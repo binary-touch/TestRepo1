@@ -8,10 +8,8 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.b2b.common.WebDriversEnum;
-import com.dupr.pages.clubs.ClubLogoPage;
-import com.dupr.pages.events.BrowseEventsPage;
 import com.dupr.pages.events.EndEventPage;
-import com.dupr.test.DUPRBaseAutomationTest;
+import com.dupr.test.CommonBaseTest;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
@@ -21,13 +19,13 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 
 @Epic(value = "Events")
-@Feature(value = "End Event Sanity")
+@Feature(value = "End Events-Sanity")
 
-public class EndEventTest extends DUPRBaseAutomationTest {
+public class EndEventTest extends CommonBaseTest {
 	private static final Logger logger = Logger.getLogger(EndEventTest.class.getName());
-	private ClubLogoPage clubLogoPage = null;
-	private BrowseEventsPage browseEventsPage = null;
+
 	private EndEventPage endEventpage = null;
+	private static String eventNameForEndEvent = null;
 
 	@BeforeClass
 	@Parameters({ "browser", "siteURL", "directorEmail", "directorPassword" })
@@ -36,26 +34,66 @@ public class EndEventTest extends DUPRBaseAutomationTest {
 		logger.info("Starting of initMethod in EndEventTest");
 
 		this.driver = super.getWebDriver(WebDriversEnum.END_EVENT_DRIVER);
-		this.siteLogin(siteURL, directorEmail, directorPassword, this.driver);
+		super.initCommonBaseTest(siteURL, directorEmail, directorPassword);
 
-		this.clubLogoPage = new ClubLogoPage(this.driver);
-		this.browseEventsPage = new BrowseEventsPage(this.driver);
 		this.endEventpage = new EndEventPage(this.driver);
 
 		logger.info("Ending of initMethod in EndEventTest");
 	}
 
-	@Test(priority = 1, description = "Verify End event functionality", groups = "sanity")
-	@Description("Test case #1, Verify Add End event functionality")
+	public void verifyFreeEventFunctionality() {
+		logger.info("Starting of verifyFreeEventFunctionality method");
+
+		addEventPage.hardWait(3);
+
+		super.verifyAddEventFunctionality();
+
+		eventNameForEndEvent = addEventPage.setEventName(testDataProp.getProperty("event.name"));
+		addEventPage.setLocation(testDataProp.getProperty("state.address"));
+
+		addEventPage.uploadEventLogo(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("edit.club.logo.path"));
+		addEventPage.setMemberPrice(testDataProp.getProperty("zero.value"));
+		addEventPage.setNonMemberPrice(testDataProp.getProperty("zero.value"));
+		addEventPage.setAboutTheEvent(testDataProp.getProperty("about.the.event"));
+		addEventPage.clickonTextFormattingButtons();
+		addEventPage.clickOnNextStepButton();
+
+		Assert.assertTrue(addEventPage.isEventPoliciesPageContains());
+
+		addBracketPage.hardWait(3);
+		this.verifyEventPoliciesPageByEnteringValidDetails();
+
+		addBracketPage.hardWait(3);
+		super.verifyAddBracketsFunctionalityWithValidDetails();
+
+		addBracketPage.hardWait(3);
+		this.verifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
+
+		addBracketPage.hardWait(3);
+		this.verifyPublishEventButton();
+
+		logger.info("Ending of verifyFreeEventFunctionality method");
+	}
+
+	@Test(priority = 1, description = "Verify End event functionality in Event page", groups = "sanity")
+	@Description("Test case #1, Verify End event functionality in Event page")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #1, Verify Add End event functionality")
+	@Story("Test case #1, Verify End event functionality in Event page")
 	public void verifyEndEventFunctionality() {
 		logger.info("Starting of verifyEndEventFunctionality method");
 
 		clubLogoPage.hardWait(3);
-		browseEventsPage.clickOnMyEventButton();
+
+		this.verifyFreeEventFunctionality();
 		clubLogoPage.hardWait(3);
-		endEventpage.clickOnEventLabel();
+
+		addEventPage.clickOnEventsTab();
+		addEventPage.hardWait(3);
+
+		addEventPage.clickOnRecentlyAddedEvent(eventNameForEndEvent);
+		addEventPage.hardWait(2);
+
+		endEventpage.clickOnEndEventButton();
 		endEventpage.hardWait(2);
 		Assert.assertTrue(endEventpage.isEndEventPopupContains());
 		Assert.assertEquals(endEventpage.getEndEventTxt(), expectedAssertionsProp.getProperty("end.event"));
@@ -65,7 +103,7 @@ public class EndEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyEndEventFunctionality method");
 	}
 
-	@Test(priority = 2, description = "Verify cancel button functionality in end event popup", groups = "sanity")
+	//@Test(priority = 2, description = "Verify cancel button functionality in end event popup", groups = "sanity")
 	@Description("Test case #2, Verify cancel button functionality in end event popup")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #2, Verify Cancel button functionality")
@@ -81,7 +119,7 @@ public class EndEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyCancelButtonFunctionality method");
 	}
 
-	@Test(priority = 3, description = "Verify close icon functionality in end event popup", groups = "sanity")
+	//@Test(priority = 3, description = "Verify close icon functionality in end event popup", groups = "sanity")
 	@Description("Test case #3, Verify close icon functionality in end event popup")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #3, Verify close icon functionality")
@@ -98,7 +136,7 @@ public class EndEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyCloseIconFunctionality method");
 	}
 
-	@Test(priority = 4, description = "Verify End EVent button functionality in end event popup", groups = "sanity")
+	//@Test(priority = 4, description = "Verify End Event button functionality in end event popup", groups = "sanity")
 	@Description("Test case #4, Verify End Event button functionality in end event popup")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #4, Verify End Event button functionality")

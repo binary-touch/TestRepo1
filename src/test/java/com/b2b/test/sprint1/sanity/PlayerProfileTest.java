@@ -253,7 +253,7 @@ public class PlayerProfileTest extends CommonBaseTest {
 		logger.info("Starting of verifyDominantHandDropdown method");
 
 		editProfilePage.clickOnDominantHandDropDownListOption();
-		editProfilePage.hardWait(3);
+		editProfilePage.hardWait(4);
 
 		Assert.assertTrue(editProfilePage.isSaveEnabled());
 		editProfilePage.clickOnSaveButton();
