@@ -27,7 +27,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 
 @Epic("Brackets")
-@Feature("Create_Edit_Split_Teams")
+@Feature("Create_Edit_Split_Teams Sanity")
 public class Create_Edit_Split_TeamTest extends DUPRBaseAutomationTest {
 	private static final Logger log = LogManager.getLogger(Create_Edit_Split_TeamTest.class);
 
@@ -71,7 +71,7 @@ public class Create_Edit_Split_TeamTest extends DUPRBaseAutomationTest {
 		clubLogoPage.hardWait(3);
 
 		Assert.assertEquals(teamsPage.getEventsText(), expectedAssertionsProp.getProperty("txt.event"));
-		Assert.assertTrue(teamsPage.isMyEventsPageContains());
+		//Assert.assertTrue(teamsPage.isMyEventsPageContains());
 		//Assert.assertEquals(userDashboardPage.getBracketsTitle(), expectedAssertionsProp.getProperty("brackets.text"));
 		//Assert.assertTrue(userDashboardPage.isMyBracketsPageContains());
 

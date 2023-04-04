@@ -21,7 +21,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 
 @Epic(value = "Events")
-@Feature(value = "End Event")
+@Feature(value = "End Event Sanity")
 
 public class EndEventTest extends DUPRBaseAutomationTest {
 	private static final Logger logger = Logger.getLogger(EndEventTest.class.getName());

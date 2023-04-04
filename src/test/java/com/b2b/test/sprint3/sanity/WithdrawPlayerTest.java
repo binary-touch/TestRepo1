@@ -22,7 +22,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 
 @Epic(value = "Players")
-@Feature(value = "Withdraw player")
+@Feature(value = "Withdraw player Sanity")
 public class WithdrawPlayerTest extends CommonBaseTest {
 	private static final Logger logger = Logger.getLogger(WithdrawPlayerTest.class.getName());
 

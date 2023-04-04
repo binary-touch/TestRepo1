@@ -14,10 +14,13 @@ import com.dupr.pages.events.AddParticipantsInBracketsPage;
 import com.dupr.test.DUPRBaseAutomationTest;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
-
+@Epic(value = "Brackets")
+@Feature(value = "Add Participants In Bracket Sanity")
 public class AddParticipantsInBracketTest extends DUPRBaseAutomationTest {
 	
 	private static final Logger logger = Logger.getLogger(AddParticipantsInBracketTest.class.getName());

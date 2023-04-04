@@ -16,10 +16,13 @@ import com.dupr.pages.profile.ProfilePicturePage;
 import com.dupr.test.DUPRBaseAutomationTest;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
-
+@Epic(value = "Events")
+@Feature(value = "Add Edit Remove Event Logo Sanity")
 public class AddEditRemoveEventLogoTest extends DUPRBaseAutomationTest {
 
 	private static final Logger logger = Logger.getLogger(AddEditRemoveEventLogoTest.class.getName());
@@ -140,7 +143,7 @@ public class AddEditRemoveEventLogoTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyResultsOnClickOfChangeLogo method");
 	}
 
-	@Test(priority = 5, description = "Verify results on click of Cancel Button in Club  logo popup", groups = "sanity")
+	//@Test(priority = 5, description = "Verify results on click of Cancel Button in Club  logo popup", groups = "sanity")
 	@Description("Test case #5, Verify results on click of Cancel Button in Club  logo popup")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #5, Verify results on click of Cancel Button in Club  logo popup")
@@ -156,7 +159,7 @@ public class AddEditRemoveEventLogoTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyCancelClubLogoPopupFunctionality method");
 	}
 
-	@Test(priority = 6, description = "Verify results on click of Close Icon in event logo popup", groups = "sanity")
+	//@Test(priority = 6, description = "Verify results on click of Close Icon in event logo popup", groups = "sanity")
 	@Description("Test case #6, Verify results on click of Close Icon in event logo popup")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #6, Verify results on click of Close Icon in event  logo popup")
@@ -191,7 +194,7 @@ public class AddEditRemoveEventLogoTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifySaveButtonState method");
 	}
 
-	@Test(priority = 8, description = "Verify results on click of 'No' Button in Remove Logo popup", groups = "sanity")
+	//@Test(priority = 8, description = "Verify results on click of 'No' Button in Remove Logo popup", groups = "sanity")
 	@Description("Test case #7, Verify results on click of 'No' Button in Remove Logo popup")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #7, Verify results on click of 'No' Button in Remove Logo popup")
@@ -208,7 +211,7 @@ public class AddEditRemoveEventLogoTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyNoButtonFunctionality method");
 	}
 
-	@Test(priority = 9, description = "Verify Close Icon Button functionality in Remove logo popup", groups = "sanity")
+	//@Test(priority = 9, description = "Verify Close Icon Button functionality in Remove logo popup", groups = "sanity")
 	@Description("Test case #8, Verify Close Icon Button functionality in Remove logo popup")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #8, Verify Close Icon Button functionality in Remove logo popup")

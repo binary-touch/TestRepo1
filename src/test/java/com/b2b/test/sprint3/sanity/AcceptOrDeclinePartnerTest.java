@@ -24,7 +24,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 
 @Epic(value = "Brackets")
-@Feature(value = "Accept or Decline Partner")
+@Feature(value = "Accept or Decline Partner Sanity")
 public class AcceptOrDeclinePartnerTest extends CommonBaseTest {
 
 	private static final Logger logger = Logger.getLogger(AcceptOrDeclinePartnerTest.class.getName());

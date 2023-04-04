@@ -472,8 +472,13 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 
 	public void clickOnEventsTab() {
 		log.info("Starting of clickOnEventsTab method");
+		try {
+			clickUsingActionsClass(tabEvents);
 
-		elementClick(tabEvents);
+		} catch (Exception e) {
+			clickOnWebElement(tabEvents);
+
+		}
 
 		log.info("Ending of clickOnEventsTab method");
 	}

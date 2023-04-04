@@ -14,10 +14,13 @@ import com.dupr.pages.events.PlayerEventRegistrationPage;
 import com.dupr.test.CommonBaseTest;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
-
+@Epic(value = "Events")
+@Feature(value = "Player Event Registration Sanity")
 public class PlayerEventRegistrationTest extends CommonBaseTest {
 
 	private static final Logger logger = Logger.getLogger(PlayerEventRegistrationTest.class.getName());
@@ -81,7 +84,7 @@ public class PlayerEventRegistrationTest extends CommonBaseTest {
 		playerEventRegistrationPage.clickOnRegisterButtonInEventPage();
 		
 		Assert.assertEquals(directorEventRegistrationPage.getEventRegistrationLabel(),
-				expectedAssertionsProp.getProperty("Event.registration"));
+				expectedAssertionsProp.getProperty("event.registration"));
 
 		Assert.assertEquals(playerEventRegistrationPage.getClubMembershipLabel(),
 				expectedAssertionsProp.getProperty("club.membership"));
