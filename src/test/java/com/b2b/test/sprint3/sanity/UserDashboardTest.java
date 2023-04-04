@@ -18,10 +18,13 @@ import com.dupr.pages.players.BrowsePlayersPage;
 import com.dupr.test.DUPRBaseAutomationTest;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
-
+@Epic(value = "DUPR App")
+@Feature(value = "UserDashboard Sanity")
 public class UserDashboardTest extends DUPRBaseAutomationTest {
 
 	private static final Logger logger = Logger.getLogger(UserDashboardTest.class.getName());

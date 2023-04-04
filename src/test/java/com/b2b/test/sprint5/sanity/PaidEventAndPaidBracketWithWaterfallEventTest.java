@@ -42,7 +42,8 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 	private EditBracketsPage editBracketsPage = null;
 	private WithdrawPlayerPage withdrawPlayerPage = null;
 	private Create_Edit_Split_TeamPage teamsPage = null;
-
+    
+    
 	@BeforeClass
 	@Parameters({ "browser", "devSiteURL", "directorEmail", "directorPassword" })
 	public void initMethod(String browser, String devSiteURL, String directorEmail, String directorPassword)
@@ -69,7 +70,7 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 		this.editBracketsPage = new EditBracketsPage(this.driver);
 		this.withdrawPlayerPage = new WithdrawPlayerPage(this.driver);
 		this.teamsPage = new Create_Edit_Split_TeamPage(this.driver);
-
+       
 		logger.info("Ending of initMethod in PaidEventAndPaidBracketWithWaterfallEventTest");
 	}
 
@@ -134,7 +135,7 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 		super.verifyEventPoliciesPageByEnteringValidDetails();
 
 		paidEventPage.hardWait(2);
-		super.verifyPaidBracketWithEventTypeAsWateFallInDoublesMatchType();
+		super.verifyPaidBracketWithEventTypeAsWateFallInSinglesMatchType();
 
 		paidEventPage.hardWait(2);
 		super.verifyRecentlyAddedEventUnderEventsTab();
@@ -161,14 +162,16 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 		paidEventPage.hardWait(3);
 		this.devSiteLogin(devSiteURL, validEmail, validPassword, driver);
 		paidEventPage.hardWait(3);
+		driver.navigate().refresh();
 		clubLogoPage.clickOnMyClubsTab();
 		clubLogoPage.clickOnBrowseClubs();
-
+		driver.navigate().refresh();
 		paidEventPage.clickOnSimbaClubName();
 		addEventPage.clickOnEventsTab();
 		addEventPage.clickOnRecentlyAddedEvent(eventName);
 
 		super.verifyRegisterFunctionalityWithNonMemberInPlayerAccount();
+		paidEventPage.hardWait(3);
 		paidEventPage.clickOnContinuePaymentButton();
 
 		logger.info("Ending of verifyPaidEventRegistrationFunctionalityWithWaterFallEventTypeInPlayersView method");
@@ -199,7 +202,7 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 		paidEventPage.clickOnRegistrationUnsuccessfulOkButton();
 
 		super.verifyRegisterFunctionalityWithNonMemberInPlayerAccount();
-
+		paidEventPage.hardWait(3);
 		paidEventPage.clickOnContinuePaymentButton();
 
 		logger.info("Ending of verifyOkButtonFunctionalityInRegistrationUnsuccessfullPopUp method");
@@ -220,7 +223,7 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 		paidEventPage.clickOnRegistrationUnsuccessfulOkButton();
 
 		super.verifyRegisterFunctionalityWithNonMemberInPlayerAccount();
-
+		paidEventPage.hardWait(3);
 		paidEventPage.clickOnContinuePaymentButton();
 
 		logger.info("Ending of verifyCloseIconFunctionalityInPaymentPage method");
@@ -256,6 +259,7 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 		paidEventPage.clickOnBackTodkarsButton();
 		paidEventPage.clickOnRegistrationUnsuccessfulOkButton();
 		super.verifyRegisterFunctionalityWithMemberInPlayerAccount();
+		paidEventPage.hardWait(3);
 		paidEventPage.clickOnContinuePaymentButton();
 
 		float clubMemberEventPrice = paidEventPage.getEventClubMemberPriceValue();
@@ -367,7 +371,7 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 		clubLogoPage.clickOnMyClubsTab();
 		clubLogoPage.clickOnBrowseClubs();
 		paidEventPage.hardWait(3);
-		clubLogoPage.clickOnSimbaClubName();
+		paidEventPage.clickOnSimbaClubName();
 		addEventPage.clickOnEventsTab();
 		addEventPage.clickOnRecentlyAddedEvent(eventName);
 
@@ -499,7 +503,7 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 		clubLogoPage.clickOnMyClubsTab();
 		clubLogoPage.clickOnBrowseClubs();
 		paidEventPage.hardWait(3);
-		addEventPage.clickOnSimbaClubName();
+		paidEventPage.clickOnSimbaClubName();
 		paidEventPage.hardWait(3);
 		addEventPage.clickOnEventsTab();
 		addEventPage.clickOnRecentlyAddedEvent(eventName);
@@ -540,7 +544,7 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 		paidEventPage.hardWait(3);
 
 		clubLogoPage.clickOnMyClubsTab();
-		addEventPage.clickOnSimbaClubName();
+		paidEventPage.clickOnSimbaClubName();
 		paidEventPage.hardWait(3);
 
 		addEventPage.clickOnEventsTab();

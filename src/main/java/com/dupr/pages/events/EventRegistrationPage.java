@@ -1,9 +1,11 @@
 package com.dupr.pages.events;
 
+import java.time.Month;
 import java.util.List;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -18,15 +20,30 @@ public class EventRegistrationPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h3[text()='Event']")
 	private WebElement lblEvent;
 
+	@B2BFindBy(xpath = "//h3[text()='Registration Date']/following-sibling::div//h5[text()='Start Date & Time']/parent::div/following-sibling::div//input")
+	private WebElement txtBoxRegistrationStartDate;
+
+	@B2BFindBy(xpath = "//div[contains(@class,'MuiPickersFadeTransitionGroup-root')]//div[contains(@class,'MuiPickersCalendarHeader-label')]")
+	private WebElement lblMonth;
+
+	@B2BFindBy(xpath = "//span[text()='55']")
+	private WebElement btnTimeInMinutes;
+
+	@B2BFindBy(xpath = "//span[text()='00']")
+	private WebElement btnDefaultTimeInMinutes;
+
+	@B2BFindBy(xpath = "//h3[text()='Registration Date']/following-sibling::div//h5[text()='End Date & Time']/parent::div/following-sibling::div//input")
+	private WebElement txtBoxRegistrationEndDate;
+
 	@B2BFindBy(xpath = "//h3[text()='Event']/parent::div//button")
 	private WebElement btnEventBack;
 
 	@B2BFindBy(xpath = "//button[text()='Register']")
 	private WebElement btnRegister;
-	
+
 	@B2BFindBy(xpath = "//button[contains(text(),'OK')]")
 	private WebElement btnOK;
-	
+
 	@B2BFindBy(xpath = "//button[text()='Add a Bracket']")
 	private WebElement btnAddABracket;
 
@@ -93,17 +110,17 @@ public class EventRegistrationPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h4[text()='Registration Complete']")
 	private WebElement lblRegistrationCompleted;
 
-	@B2BFindBy(xpath = "//span[text()='Open']/parent::div/parent::div/parent::div/following-sibling::div//h4")
+	@B2BFindBy(xpath = "//span[text()='Open']/parent::div/parent::div/parent::div/following-sibling::div//p[contains(text(),'Registered Players')]/parent::div//h4")
 	private WebElement lstOpenEvents;
 
 	@B2BFindBy(xpath = "//span[text()='Ongoing']/parent::div/parent::div/parent::div/following-sibling::div//h4")
 	private WebElement lstOngoingEvents;
 
-	@B2BFindBy(xpath = "//span[text()='Complete']/parent::div/parent::div/parent::div/following-sibling::div//h4")
+	@B2BFindBy(xpath = "//span[text()='Completed']/parent::div/parent::div/parent::div/following-sibling::div//h4")
 	private WebElement lstCompletedEvents;
 
-	@B2BFindBy(xpath = "//span[text()='Registration closed']/parent::div/parent::div/parent::div/following-sibling::div//h4")
-	private WebElement lstRegistrationCompleted;
+	@B2BFindBys(@B2BFindBy(xpath = "//span[text()='Registration closed']/parent::div/parent::div/parent::div/following-sibling::div//h4"))
+	private List<WebElement> lstRegistrationCompleted;
 
 	@B2BFindBy(xpath = "//span[text()='Upcoming']/parent::div/parent::div/parent::div/following-sibling::div//h4")
 	private WebElement lstUpComingEvents;
@@ -498,10 +515,10 @@ public class EventRegistrationPage extends DUPRBaseAutomationPage {
 		return isRegisterButtonDisplayedForOnGoingEventCard;
 	}
 
-	public boolean isRegisterButtonDisplayedForCompleteEventCard() {
-		log.info("Starting of isRegisterButtonDisplayedForCompleteEventCard method");
+	public boolean isRegisterButtonDisplayedForCompletedEventCard() {
+		log.info("Starting of isRegisterButtonDisplayedForCompletedEventCard method");
 
-		boolean isRegisterButtonDisplayedForCompleteEventCard = true;
+		boolean isRegisterButtonDisplayedForCompletedEventCard = true;
 		for (int i = 0; i < 4; i++) {
 			try {
 				if (isDisplayed(lstCompletedEvents)) {
@@ -509,10 +526,10 @@ public class EventRegistrationPage extends DUPRBaseAutomationPage {
 					this.hardWait(3);
 					try {
 						if (btnRegister.isDisplayed()) {
-							isRegisterButtonDisplayedForCompleteEventCard = true;
+							isRegisterButtonDisplayedForCompletedEventCard = true;
 						}
 					} catch (Exception e) {
-						isRegisterButtonDisplayedForCompleteEventCard = false;
+						isRegisterButtonDisplayedForCompletedEventCard = false;
 						break;
 					}
 				}
@@ -521,9 +538,9 @@ public class EventRegistrationPage extends DUPRBaseAutomationPage {
 			}
 		}
 
-		log.info("Ending of isRegisterButtonDisplayedForCompleteEventCard method");
+		log.info("Ending of isRegisterButtonDisplayedForCompletedEventCard method");
 
-		return isRegisterButtonDisplayedForCompleteEventCard;
+		return isRegisterButtonDisplayedForCompletedEventCard;
 	}
 
 	public boolean isRegisterButtonDisplayedForRegistrationClosedEventCard() {
@@ -532,8 +549,14 @@ public class EventRegistrationPage extends DUPRBaseAutomationPage {
 		boolean isRegisterButtonDisplayedForRegistrationClosedEventCard = true;
 		for (int i = 0; i < 4; i++) {
 			try {
-				if (isDisplayed(lstRegistrationCompleted)) {
-					clickOnElement(lstRegistrationCompleted);
+				scrollIntoView(driver.findElement(By.xpath("//span[text()='Registration closed']")));
+				if (isDisplayed(lstRegistrationCompleted.get(i))) {
+					try {
+						clickUsingActionsClass(lstRegistrationCompleted.get(i));
+					} catch (Exception e) {
+						clickOnElement(lstRegistrationCompleted.get(i));
+					}
+
 					this.hardWait(3);
 					try {
 						if (btnRegister.isDisplayed()) {
@@ -552,6 +575,113 @@ public class EventRegistrationPage extends DUPRBaseAutomationPage {
 		log.info("Ending of isRegisterButtonDisplayedForRegistrationClosedEventCard method");
 
 		return isRegisterButtonDisplayedForRegistrationClosedEventCard;
+	}
+
+	public void setRegistrationStartDate() {
+		log.info("Starting of setRegistrationStartDate method");
+
+		try {
+			scrollDown(200);
+
+			try {
+				clickOnWebElement(txtBoxRegistrationStartDate);
+			} catch (Exception e) {
+				clickOnElementUsingActionClass(txtBoxRegistrationStartDate);
+			}
+
+			int date = this.getFutureDate(2);
+			Month monthValue = this.getFutureMonth(2);
+			String mValue = monthValue.toString();
+			System.out.println(mValue);
+			String hours = this.getCurrentHour();
+			String meridiem = this.getCurrentMeridiem();
+
+			String lblmonth = lblMonth.getText();
+			String monthvalue = String.valueOf(lblmonth.split(" ")[0]).toUpperCase().trim();
+			log.debug("Text is " + monthvalue);
+
+			try {
+				if ((mValue).equals(monthvalue)) {
+					this.clickOnCurrentDate(date);
+				} else {
+					clickUsingActionsClass(driver.findElement(By.xpath("//button[@title='Next month']")));
+					this.clickOnCurrentDate(date);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			hardWait(2);
+			this.clickOnCurrentTime(meridiem);
+			try {
+				clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
+			} catch (Exception e) {
+				clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
+			}
+
+			clickUsingActionsClass(btnDefaultTimeInMinutes);
+
+			hardWait(2);
+		} catch (Exception e) {
+			System.out.println();
+			clickOnElementUsingActionClass(btnTimeInMinutes);
+		}
+
+		log.info("Ending of setRegistrationStartDate method");
+	}
+
+	public void setRegistrationEndDate() {
+		log.info("Starting of setRegistrationEndDate method");
+
+		// hardWait(2);
+		try {
+			clickOnWebElement(txtBoxRegistrationEndDate);
+		} catch (Exception e) {
+			clickOnElementUsingActionClass(txtBoxRegistrationEndDate);
+		}
+
+		int date = this.getFutureDate(2);
+		String hours = this.getCurrentHour();
+		String meridiem = this.getCurrentMeridiem();
+		Month monthValue = this.getFutureMonth(3);
+		String mValue = monthValue.toString();
+
+		String lblmonth = lblMonth.getText();
+		String monthvalue = String.valueOf(lblmonth.split(" ")[0]).toUpperCase().trim();
+		log.debug("Derived Month value: " + mValue);
+		log.debug("Current Month Value: " + monthvalue);
+		log.debug("Are Current Month & Derived Month values matched: " + (mValue).equals(monthvalue));
+
+		try {
+			if ((mValue).equals(monthvalue)) {
+				this.clickOnCurrentDate(date);
+			} else {
+				log.debug("Are Current Month & Derived Month values matched: " + (mValue).equals(monthvalue));
+				log.info("***Current Month & Derived Month values are not matched, Selecting next month***");
+				clickUsingActionsClass(driver.findElement(By.xpath("//button[@title='Next month']")));
+				this.clickOnCurrentDate(date);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		this.clickOnCurrentTime(meridiem);
+		try {
+			clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
+		} catch (Exception e) {
+			clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
+		}
+		clickOnElementUsingActionClass(btnTimeInMinutes);
+
+		try {
+			if (btnOK.isDisplayed() == true) {
+				this.clickOnWebElement(btnOK);
+			}
+		} catch (Exception e) {
+			log.info("*** OK Button Haven't displayed***");
+		}
+
+		log.info("Ending of setRegistrationEndDate method");
 	}
 
 	public boolean isRegisterButtonDisplayedForUpcomingEventCard() {

@@ -18,8 +18,6 @@ import com.dupr.pages.events.Create_Edit_Split_TeamPage;
 import com.dupr.pages.events.EndEventPage;
 import com.dupr.pages.events.SeedMatchesPage;
 import com.dupr.pages.home.UserDashboardPage;
-import com.dupr.test.DUPRBaseAutomationTest;
-
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;

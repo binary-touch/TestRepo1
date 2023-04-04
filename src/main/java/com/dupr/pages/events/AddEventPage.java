@@ -472,8 +472,13 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 
 	public void clickOnEventsTab() {
 		log.info("Starting of clickOnEventsTab method");
+		try {
+			clickUsingActionsClass(tabEvents);
 
-		elementClick(tabEvents);
+		} catch (Exception e) {
+			clickOnWebElement(tabEvents);
+
+		}
 
 		log.info("Ending of clickOnEventsTab method");
 	}
@@ -606,16 +611,14 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 		hardWait(2);
 		this.txtLocation.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		txtLocation.click();
-		this.txtLocation.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
-
 		txtLocation.sendKeys(location);
 		// for(WebElement loc : lstEventLocations)
 		// if(loc.equals(lblEventLocation.getText()))
-		hardWait(3);
+		hardWait(9);
 		try {
-			clickOnElementUsingActionClass(lstEventLocations.get(0));
-		} catch (Exception e) {
 			lstEventLocations.get(0).click();
+		} catch (Exception e) {
+			clickOnElementUsingActionClass(lstEventLocations.get(0));
 		}
 
 		log.info("Ending of setLocation method");

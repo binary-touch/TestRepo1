@@ -349,7 +349,7 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 				this.txtBoxSearch.click();
 				this.txtBoxSearch.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 
-				sendKeys(txtBoxSearch, "simba");
+				sendKeys(txtBoxSearch, "Simba");
 				//this.txtBoxSearch.sendKeys(Keys.ENTER);
 				
 				this.txtBoxSearch.sendKeys(Keys.BACK_SPACE);
