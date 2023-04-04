@@ -26,7 +26,6 @@ public class TimeZoneTest extends CommonBaseTest {
 	private static final Logger logger = Logger.getLogger(TimeZoneTest.class.getName());
 
 	private MyClubsPage myClubsPage = null;
-	private TimeZonePage timeZonePage = null;
 	private static String RegStartDateTime = null;
 	private static String RegEndDateTime = null;
 	private static String CompStartDateTime = null;
@@ -50,7 +49,6 @@ public class TimeZoneTest extends CommonBaseTest {
 		super.initCommonBaseTest(siteURL, directorEmail, directorPassword);
 
 		this.myClubsPage = new MyClubsPage(this.driver);
-		this.timeZonePage = new TimeZonePage(this.driver);
 		this.addAnotherBracketPage = new AddAnotherBracketPage(this.driver);
 
 		logger.info("Ending of initMethod in TimeZoneTest");

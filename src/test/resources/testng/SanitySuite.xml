@@ -51,48 +51,78 @@
 
 	<test name="Sprint 3">
 		<classes>
-			<class
-				name="com.b2b.test.sprint3.sanity.AddEditRemoveEventLogoTest" />
+			<!-- <class
+
+				name="com.b2b.test.sprint3.sanity.AddEditRemoveEventLogoTest" />-->
+			<!--<class
+				name="com.b2b.test.sprint3.sanity.AddParticipantsInBracketTest" />-->
+
+			<!--<class name="com.b2b.test.sprint3.sanity.AddAnnouncementTest" />-->
 			
-			<class name="com.b2b.test.sprint3.sanity.EndEventTest" />
-			 <class name="com.b2b.test.sprint3.sanity.AddAnnouncementTest" />
+			<!--<class name="com.b2b.test.sprint3.sanity.AntiScrappingCaptchaTest" />-->
+			<!--<class
+
+				name="com.b2b.test.sprint3.sanity.AddEditRemoveEventLogoTest" />
+			<class
+				name="com.b2b.test.sprint3.sanity.AddParticipantsInBracketTest" /> -->
+			<!--<class name="com.b2b.test.sprint3.sanity.EndEventTest" />-->
+			<!-- <class name="com.b2b.test.sprint3.sanity.AddAnnouncementTest" />
 
 			<class
 				name="com.b2b.test.sprint3.sanity.AntiScrappingCaptchaTest" />
 			<class
+
 				name="com.b2b.test.sprint3.sanity.PlayerEventRegistrationTest" />
 			<class
 				name="com.b2b.test.sprint3.sanity.AcceptOrDeclinePartnerTest" />
 			<class
+
+				name="com.b2b.test.sprint3.sanity.DirectorEventRegistrationTest" />-->
+			<!--<class name="com.b2b.test.sprint3.sanity.WithdrawPlayerTest" />-->
+		 <!-- <class
+				name="com.b2b.test.sprint3.sanity.Create_Edit_Split_TeamTest" /> -->
+			 <!--<class
+				name="com.b2b.test.sprint3.sanity.AdditionOfChartAndShopTabTest" />-->
+			<!-- <class name="com.b2b.test.sprint3.sanity.UserDashboardTest" /> -->
+			 <!--<class
+
 				name="com.b2b.test.sprint3.sanity.DirectorEventRegistrationTest" />
-			<class name="com.b2b.test.sprint3.sanity.WithdrawPlayerTest" />
-			<class
-				name="com.b2b.test.sprint3.sanity.Create_Edit_Split_TeamTest" />
-			<class
+			<class name="com.b2b.test.sprint3.sanity.WithdrawPlayerTest" />-->
+		<!--	<class
+				name="com.b2b.test.sprint3.sanity.Create_Edit_Split_TeamTest" />-->
+			<!--<class
 				name="com.b2b.test.sprint3.sanity.AdditionOfChartAndShopTabTest" />
 			<class name="com.b2b.test.sprint3.sanity.UserDashboardTest" />
 			<class
-				name="com.b2b.test.sprint3.sanity.PreservingPageVisitsTest" />
+				name="com.b2b.test.sprint3.sanity.PreservingPageVisitsTest" /> -->
 		</classes>
 	</test>
 
-	 <test name="Sprint 4">
-	 
+	<test name="Sprint 4">
 		<classes>
+
+			
+		<class name="com.b2b.test.sprint4.sanity.ChatTest" />
+			<class name="com.b2b.test.sprint4.sanity.ShareTest" />
+		<!-- <class name="com.b2b.test.sprint4.sanity.CombinationOfMatchTypeAndPlayerGroupTest" />
+			<class name="com.b2b.test.sprint4.sanity.FullRegistrationTest" /> 
+		<class name="com.b2b.test.sprint4.sanity.TimeZoneTest" /> 
+			 <class name="com.b2b.test.sprint4.sanity.SeedMatchesRoundRobinTest" />
 		
 			<class name="com.b2b.test.sprint4.sanity.ChatTest" />
 			<class name="com.b2b.test.sprint4.sanity.ShareTest" />
 			<class
 				name="com.b2b.test.sprint4.sanity.CombinationOfMatchTypeAndPlayerGroupTest" />
 			<class name="com.b2b.test.sprint4.sanity.FullRegistrationTest" />
-			<class name="com.b2b.test.sprint4.sanity.TimeZoneTest" />
-			<class
-				name="com.b2b.test.sprint4.sanity.SeedMatchesRoundRobinTest" />
-				
- </classes>
+			<class name="com.b2b.test.sprint4.sanity.TimeZoneTest" />-->
+			<!--<class
+				name="com.b2b.test.sprint4.sanity.SeedMatchesRoundRobinTest" />-->
+
+		</classes>
+
 	</test>
 
-	<test name="Sprint 5">
+	<!--<test name="Sprint 5">
 		<classes>
 	
 			<class
@@ -104,5 +134,6 @@
 			<class
 				name="com.b2b.test.sprint5.sanity.SeedMatchesWaterFallTest" />
 		</classes>
-	</test>
+		</test>-->
+		
 </suite>

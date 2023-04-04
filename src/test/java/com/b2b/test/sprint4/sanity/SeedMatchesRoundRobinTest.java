@@ -684,7 +684,7 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 
 			addBracketPage.hardWait(2);
 			addBracketPage.setCompetitionEndDate();
-
+			addBracketPage.hardWait(2);
 			addBracketPage.clickOnTimeZoneDropdown();
 			Assert.assertTrue(addBracketPage.isTimeZoneListContains());
 			addBracketPage.clickOnNewDelhiTimeZone();

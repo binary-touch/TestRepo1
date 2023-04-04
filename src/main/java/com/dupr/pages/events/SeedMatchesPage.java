@@ -1586,7 +1586,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 	}
 
 	public void setRegistrationEndDate() {
-		log.info("Starting of setRegistrationEndDate method");
+		//log.info("Starting of setRegistrationEndDate method");
 
 		this.scrollDown(200);
 		this.hardWait(2);

@@ -9,13 +9,14 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
+import com.dupr.test.CommonBaseTest;
 import com.b2b.common.WebDriversEnum;
 import com.dupr.pages.clubs.ClubLogoPage;
 import com.dupr.pages.events.AddBracketPage;
 import com.dupr.pages.events.AddParticipantsInBracketsPage;
 import com.dupr.pages.events.Create_Edit_Split_TeamPage;
 import com.dupr.pages.events.EndEventPage;
+import com.dupr.pages.events.SeedMatchesPage;
 import com.dupr.pages.home.UserDashboardPage;
 import com.dupr.test.DUPRBaseAutomationTest;
 
@@ -28,25 +29,26 @@ import io.qameta.allure.Story;
 
 @Epic("Brackets")
 @Feature("Create_Edit_Split_Teams")
-public class Create_Edit_Split_TeamTest extends DUPRBaseAutomationTest {
+public class Create_Edit_Split_TeamTest extends CommonBaseTest {
 	private static final Logger log = LogManager.getLogger(Create_Edit_Split_TeamTest.class);
 
 	private ClubLogoPage clubLogoPage = null;
 	private EndEventPage endEventpage = null;
 	private UserDashboardPage userDashboardPage = null;
 
+	private SeedMatchesPage seedMatchesPage = null;
 	private AddBracketPage addBracketPage = null;
 	private Create_Edit_Split_TeamPage teamsPage = null;
 	private AddParticipantsInBracketsPage addParticipantsPage = null;
-
+	private static String TeamEvents = null;
 	@BeforeClass
 	@Parameters({ "browser", "siteURL", "directorEmail", "directorPassword" })
 	public void initMethod(String browser, String siteURL, String directorEmail, String directorPassword)
 			throws Exception {
-		log.info("Starting of initMethod in Create_Edit_Split_TeamTest");
+		log.info("Starting of initMethod in SeedAndReseedTest");
 
-		this.driver = super.getWebDriver(WebDriversEnum.TEAMS_DRIVER);
-		this.siteLogin(siteURL, directorEmail, directorPassword, this.driver);
+		this.driver = super.getWebDriver(WebDriversEnum.SEED_MATCHES_DRIVER);
+		super.initCommonBaseTest(siteURL, directorEmail, directorPassword);
 
 		this.clubLogoPage = new ClubLogoPage(this.driver);
 		this.endEventpage = new EndEventPage(this.driver);
@@ -55,38 +57,46 @@ public class Create_Edit_Split_TeamTest extends DUPRBaseAutomationTest {
 		this.addParticipantsPage = new AddParticipantsInBracketsPage(driver);
 		this.userDashboardPage = new UserDashboardPage(this.driver);
 
-		log.info("Ending of initMethod in Create_Edit_Split_TeamTest");
+		this.seedMatchesPage = new SeedMatchesPage(this.driver);
+		
+
+		log.info("Ending of initMethod in SeedAndReseedTest");
 	}
 
-	@Test(priority = 1, description = "Verify Details Displayed On UnMatchedPlayers Tab", groups = "sanity")
-	@Description("Test case #1, Verify Details Displayed On UnMatchedPlayers Tab")
+	@Test(priority = 1, description = "Verify the results on Click of seed Matches", groups = "sanity")
+	@Description("Test case #1, Verify the results on Click of seed Matches")
+	@Severity(SeverityLevel.NORMAL)
+	@Story("Test case #1, Verify the results on Click of seed Matches")
+	public void verifyAddBracketWithRoundRobinEventType() {
+		log.info("Starting of verifyAddBracketWithRoundRobinEventType method");
+
+		clubLogoPage.hardWait(3);
+
+		super.verifyAddEventFunctionality();
+		this.verifyFreeBracketDoublesTypeWithRoundRobinEventType();
+
+		clubLogoPage.hardWait(2);
+		addEventPage.clickOnEventsTab();
+		clubLogoPage.hardWait(2);
+		addEventPage.clickOnRecentlyAddedEvent(TeamEvents);
+		clubLogoPage.hardWait(3);
+		
+		seedMatchesPage.clickOnBracketCard();
+		seedMatchesPage.hardWait(5);
+
+		log.info("Ending of verifyAddBracketWithRoundRobinEventType method");
+	}
+	@Test(priority = 2, description = "Verify Details Displayed On UnMatchedPlayers Tab", groups = "sanity")
+	@Description("Test case #2, Verify Details Displayed On UnMatchedPlayers Tab")
 	@Severity(SeverityLevel.CRITICAL)
-	@Story("Test case #1, Verify Details Displayed On UnMatchedPlayers Tab")
+	@Story("Test case #2, Verify Details Displayed On UnMatchedPlayers Tab")
 	public void verifyDetailsDisplayedOnUnMatchedPlayersTab() {
-		log.info("Starting of verifyDetailsDisplayedOnUnMatchedPlayersTab method");
-
-		clubLogoPage.hardWait(3);
-		teamsPage.clickOnEventsTab();
-		//addParticipantsPage.clickOnMyBracketsDropdown();
-		clubLogoPage.hardWait(3);
-
-		Assert.assertEquals(teamsPage.getEventsText(), expectedAssertionsProp.getProperty("txt.event"));
-		Assert.assertTrue(teamsPage.isMyEventsPageContains());
-		//Assert.assertEquals(userDashboardPage.getBracketsTitle(), expectedAssertionsProp.getProperty("brackets.text"));
-		//Assert.assertTrue(userDashboardPage.isMyBracketsPageContains());
-
-		teamsPage.clickOnEventLabel();
-		endEventpage.hardWait(5);
-		teamsPage.clickOnBracketLabel();
-       
-		try {
-			if (teamsPage.isNoResultsFoundDisplayed() == true) {
-				teamsPage.addMultiplePlayers();
-			}
-		} catch (Exception e) {
-			log.info("****UnMatched Players Displayed****");
-		}
-
+		log.info("Starting of verifyDetailsDisplayedOnUnMatchedPlayersTab method");     
+	
+		addparticipantsPage.addParticipantsIntoRoundRobinSinglesMatch();
+		
+		teamsPage.clickOnUnMatchedPlayersTab();
+		
 		Assert.assertTrue(this.teamsPage.isUmMatchedPlayersTabContains());
 
 		Assert.assertTrue(this.teamsPage.isUnMatchedPlayersChkboxesDisplayed());
@@ -99,10 +109,10 @@ public class Create_Edit_Split_TeamTest extends DUPRBaseAutomationTest {
 		log.info("Ending of verifyDetailsDisplayedOnUnMatchedPlayersTab method");
 	}
 
-	@Test(priority = 2, description = "Verify the state of Create Team button before Selecting Players", groups = "sanity")
-	@Description("Test case #2, Verify the state of Create Team button before Selecting Players")
+	@Test(priority = 3, description = "Verify the state of Create Team button before Selecting Players", groups = "sanity")
+	@Description("Test case #3, Verify the state of Create Team button before Selecting Players")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #2, Verify the state of Create Team button before Selecting Players")
+	@Story("Test case #3, Verify the state of Create Team button before Selecting Players")
 	public void verifyStateOfCreateTeamBeforeSelectingPlayers() {
 		log.info("Starting of verifyStateOfCreateTeamBeforeSelectingPlayers method");
 
@@ -111,10 +121,10 @@ public class Create_Edit_Split_TeamTest extends DUPRBaseAutomationTest {
 		log.info("Ending of verifyStateOfCreateTeamBeforeSelectingPlayers method");
 	}
 
-	@Test(priority = 3, description = "Verify the state of Create Team button If User Selects Only Player/More than 2 Players", groups = "sanity")
-	@Description("Test case #3, Verify the state of Create Team button If User Selects Only Player/More than 2 Players")
+	@Test(priority = 4, description = "Verify the state of Create Team button If User Selects Only Player/More than 2 Players", groups = "sanity")
+	@Description("Test case #4, Verify the state of Create Team button If User Selects Only Player/More than 2 Players")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #3, Verify the state of Create Team button If User Selects Only Player/More than 2 Players")
+	@Story("Test case #4, Verify the state of Create Team button If User Selects Only Player/More than 2 Players")
 	public void verifyCreateTeamStateIfOneOrThreePlayersSelected() {
 		log.info("Starting of verifyCreateTeamStateIfOneOrThreePlayersSelected method");
 
@@ -126,10 +136,10 @@ public class Create_Edit_Split_TeamTest extends DUPRBaseAutomationTest {
 		log.info("Ending of verifyCreateTeamStateIfOneOrThreePlayersSelected method");
 	}
 
-	@Test(priority = 4, description = "Verify Players Selection From List in UnMatched Players tab", groups = "sanity")
-	@Description("Test case #4, Verify Players Selection From List in UnMatched Players tab")
+	@Test(priority = 5, description = "Verify Players Selection From List in UnMatched Players tab", groups = "sanity")
+	@Description("Test case #5, Verify Players Selection From List in UnMatched Players tab")
 	@Severity(SeverityLevel.CRITICAL)
-	@Story("Test case #4, Verify Players Selection From List in UnMatched Players tab")
+	@Story("Test case #5, Verify Players Selection From List in UnMatched Players tab")
 	public void verifyPlayersSelectionFromList() {
 		log.info("Starting of verifyPlayersSelectionFromList method");
 
@@ -145,10 +155,10 @@ public class Create_Edit_Split_TeamTest extends DUPRBaseAutomationTest {
 		log.info("Ending of verifyPlayersSelectionFromList method");
 	}
 
-	@Test(priority = 5, description = "Verify the results on click of Create Team button", groups = "sanity")
-	@Description("Test case #5, Verify the results on click of Create Team button")
+	@Test(priority = 6, description = "Verify the results on click of Create Team button", groups = "sanity")
+	@Description("Test case #6, Verify the results on click of Create Team button")
 	@Severity(SeverityLevel.CRITICAL)
-	@Story("Test case #5, Verify the results on click of Create Team button")
+	@Story("Test case #6, Verify the results on click of Create Team button")
 	public void verifyResultsOnClickOfCreateTeam() {
 		log.info("Starting of verifyResultsOnClickOfCreateTeam method");
 
@@ -183,52 +193,13 @@ public class Create_Edit_Split_TeamTest extends DUPRBaseAutomationTest {
 		log.info("Ending of verifyResultsOnClickOfCreateTeam method");
 	}
 
-	@Test(priority = 6, description = "Verify the results on click of Close Icon in Create Team Popup", groups = "sanity")
-	@Description("Test case #6,Verify the results on click of Close Icon in Create Team Popup")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #6,Verify the results on click of Close Icon in Create Team Popup")
-	public void verifyResultsOnClickOfCloseCreateTeamPopup() {
-		log.info("Starting of verifyResultsOnClickOfCloseCreateTeamPopup method");
-
-		teamsPage.clickOnCloseIcon();
-		clubLogoPage.hardWait(3);
-
-		Assert.assertTrue(this.teamsPage.isPlayersCheckboxSelected());
-		boolean createTeam = teamsPage.isCreateTeamEnabled();
-		assertTrue(createTeam);
-
-		log.info("Ending of verifyResultsOnClickOfCloseCreateTeamPopup method");
-	}
-
-	@Test(priority = 7, description = "Verify the results on click of Cancel button in Create Team Popup", groups = "sanity")
-	@Description("Test case #7, Verify the results on click of Cancel button in Create Team Popup")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case # 7, Verify the results on click of Cancel button in Create Team Popup")
-	public void verifyResultsOnClickOfCancelPopup() {
-		log.info("Starting of verifyResultsOnClickOfCancelPopup method");
-
-		teamsPage.clickOnCreateTeamButton();
-		clubLogoPage.hardWait(3);
-		Assert.assertTrue(this.teamsPage.isCreateTeamPopupContains());
-
-		teamsPage.clickOnCancelButton();
-		clubLogoPage.hardWait(3);
-
-		Assert.assertTrue(this.teamsPage.isPlayersCheckboxSelected());
-		boolean createTeam = teamsPage.isCreateTeamEnabled();
-		assertTrue(createTeam);
-
-		log.info("Ending of verifyResultsOnClickOfCancelPopup method");
-	}
-
-	@Test(priority = 8, description = "Verify Create Team Functionality", groups = "sanity")
-	@Description("Test case #8, Verify Create Team Functionality")
+	@Test(priority = 7, description = "Verify Create Team Functionality", groups = "sanity")
+	@Description("Test case #7, Verify Create Team Functionality")
 	@Severity(SeverityLevel.CRITICAL)
-	@Story("Test case #8, Verify Create Team Functionality")
+	@Story("Test case #7, Verify Create Team Functionality")
 	public void verifyCreateTeamFunctionality() {
 		log.info("Starting of verifyCreateTeamFunctionality method");
 
-		teamsPage.clickOnCreateTeamButton();
 		clubLogoPage.hardWait(3);
 
 		teamsPage.clickOnCreateButton();
@@ -251,10 +222,10 @@ public class Create_Edit_Split_TeamTest extends DUPRBaseAutomationTest {
 		log.info("Ending of verifyCreateTeamFunctionality method");
 	}
 
-	@Test(priority = 9, description = "Verify the recently created team in Teams tab", groups = "sanity")
-	@Description("Test case #9, Verify the recently created team in Teams tab")
+	@Test(priority = 8, description = "Verify the recently created team in Teams tab", groups = "sanity")
+	@Description("Test case #8, Verify the recently created team in Teams tab")
 	@Severity(SeverityLevel.CRITICAL)
-	@Story("Test case #9, Verify the recently created team in Teams tab")
+	@Story("Test case #8, Verify the recently created team in Teams tab")
 	public void verifyRecentlyCreatedTeam() {
 		log.info("Starting of verifyRecentlyCreatedTeam method");
 
@@ -267,10 +238,10 @@ public class Create_Edit_Split_TeamTest extends DUPRBaseAutomationTest {
 		log.info("Ending of verifyRecentlyCreatedTeam method");
 	}
 
-	@Test(priority = 10, description = "Verify Results On Click Of Edit Team Option", groups = "sanity")
-	@Description("Test case #10, Verify Results On Click Of Edit Team Option")
+	@Test(priority = 9, description = "Verify Results On Click Of Edit Team Option", groups = "sanity")
+	@Description("Test case #9, Verify Results On Click Of Edit Team Option")
 	@Severity(SeverityLevel.CRITICAL)
-	@Story("Test case #10, Verify Results On Click Of Edit Team Option")
+	@Story("Test case #9, Verify Results On Click Of Edit Team Option")
 	public void verifyResultsOnClickOfEditTeamOption() {
 		log.info("Starting of verifyResultsOnClickOfEditTeamOption method");
 
@@ -283,29 +254,14 @@ public class Create_Edit_Split_TeamTest extends DUPRBaseAutomationTest {
 		log.info("Ending of verifyResultsOnClickOfEditTeamOption method");
 	}
 
-	@Test(priority = 11, description = "Verify Cancel Option In Edit Team Popup", groups = "sanity")
-	@Description("Test case #11, Verify Cancel Option In Edit Team Popup")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #11, Verify Cancel Option In Edit Team Popup")
-	public void verifyCancelOptionInEditTeamPopup() {
-		log.info("Starting of verifyEditTeamFunctionality method");
-
-		teamsPage.clickOnCancelButton();
-
-		clubLogoPage.hardWait(3);
-		Assert.assertTrue(this.teamsPage.isTeamTabContains());
-
-		log.info("Ending of verifyEditTeamFunctionality method");
-	}
-
-	@Test(priority = 12, description = "Verify Edit Team Functionality", groups = "sanity")
-	@Description("Test case #12, Verify Edit Team Functionality")
+	
+	@Test(priority = 10, description = "Verify Edit Team Functionality", groups = "sanity")
+	@Description("Test case #10, Verify Edit Team Functionality")
 	@Severity(SeverityLevel.CRITICAL)
-	@Story("Test case #12, Verify Edit Team Functionality")
+	@Story("Test case #10, Verify Edit Team Functionality")
 	public void verifyEditTeamFunctionality() {
 		log.info("Starting of verifyRemovePlayerFunctionality method");
 
-		teamsPage.clickOnEditTeamButton();
 		teamsPage.clickOnRemovePlayerIcon();
 
 		clubLogoPage.hardWait(3);
@@ -345,70 +301,79 @@ public class Create_Edit_Split_TeamTest extends DUPRBaseAutomationTest {
 		log.info("Ending of verifyRemovePlayerFunctionality method");
 	}
 
-	@Test(priority = 13, description = "Verify GoBack Functionality in Are you sure popup", groups = "sanity")
-	@Description("Test case #13, Verify GoBack Functionality in Are you sure popup")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #13, Verify GoBack Functionality in Are you sure popup")
-	public void verifyGoBackFunctionality() {
-		log.info("Starting of verifyGoBackFunctionality method");
 
-		teamsPage.clickOnEditTeamButton();
+	public void verifyFreeBracketDoublesTypeWithRoundRobinEventType() {
+		log.info("Starting of verifyFreeBracketDoublesTypeWithRoundRobinEventType method");
 
-		clubLogoPage.hardWait(3);
-		boolean buttons = teamsPage.isResultsOnClickOfEditTeamDisplayed();
-		assertTrue(buttons);
+		TeamEvents = addEventPage.setEventName(testDataProp.getProperty("event.name"));
+		addEventPage.setLocation(testDataProp.getProperty("state.address"));
 
-		teamsPage.clickOnSaveChangesButton();
+		addEventPage.uploadEventLogo(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("edit.club.logo.path"));
+		addEventPage.setMemberPrice(testDataProp.getProperty("zero.value"));
+		addEventPage.setNonMemberPrice(testDataProp.getProperty("zero.value"));
+		addEventPage.setAboutTheEvent(testDataProp.getProperty("about.the.event"));
+		addEventPage.clickonTextFormattingButtons();
+		addEventPage.clickOnNextStepButton();
 
-		Assert.assertTrue(this.teamsPage.isAreYouSurePopupContains());
+		Assert.assertTrue(addEventPage.isEventPoliciesPageContains());
 
-		teamsPage.clickOnGoBackButton();
-		Assert.assertTrue(this.teamsPage.isResultsOnClickOfEditTeamDisplayed());
+		this.verifyEventPoliciesPageByEnteringValidDetails();
 
-		log.info("Ending of verifyGoBackFunctionality method");
-	}
+		addBracketPage.hardWait(3);
+		addBracketPage.clickOnMatchTypeDropdown();
+		addBracketPage.hardWait(3);
+		addBracketPage.selectDoublesMatchType();
 
-	@Test(priority = 14, description = "Verify Close Icon In Edit Team Popup", groups = "sanity")
-	@Description("Test case #14, Verify Close Icon In Edit Team Popup")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #14, Verify Close Icon In Edit Team Popup")
-	public void verifyCloseIconInEditTeamPopup() {
-		log.info("Starting of verifyCloseIconInEditTeamPopup method");
+		addBracketPage.hardWait(3);
+		addBracketPage.clickOnPlayGroupDropdown();
+		addBracketPage.hardWait(3);
+		addBracketPage.selectOpenPlayerGroup();
 
-		teamsPage.clickOnSaveChangesButton();
-		clubLogoPage.hardWait(3);
+		addBracketPage.setMinimumAgeRange(testDataProp.getProperty("min.age.range"));
+		addBracketPage.setMaximumAgeRange(testDataProp.getProperty("max.age.range"));
+		addBracketPage.setMinimumRatingRange(testDataProp.getProperty("min.rating.range"));
+		addBracketPage.setMaximumRatingRange(testDataProp.getProperty("max.rating.range"));
 
-		teamsPage.clickOnCloseIconInEditTeam();
-		Assert.assertTrue(this.teamsPage.isResultsOnClickOfEditTeamDisplayed());
+		Assert.assertTrue(addBracketPage.isAutoGenerateButtonEnabled());
+		addBracketPage.clickOnAutoGenerateButton();
 
-		log.info("Ending of verifyCloseIconInEditTeamPopup method");
-	}
+		addBracketPage.hardWait(3);
+		addBracketPage.clickOnEventTypeDropdown();
+		Assert.assertTrue(addBracketPage.isEventTypeListContains());
+		addBracketPage.hardWait(3);
+		addBracketPage.selectRoundRobinEvent();
+		Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
+		
+		addBracketPage.setRegistrationStartDate();
 
-	@Test(priority = 15, description = "Verify Split Team Functionality", groups = "sanity")
-	@Description("Test case #15, Verify Split Team Functionality")
-	@Severity(SeverityLevel.CRITICAL)
-	@Story("Test case #15, Verify Split Team Functionality")
-	public void verifySplitTeamFunctionality() {
-		log.info("Starting of verifySplitTeamFunctionality method");
+		addBracketPage.hardWait(2);
+		addBracketPage.setRegistrationEndDate();
 
-		teamsPage.clickOnSaveChangesButton();
-		teamsPage.hardWait(2);
-		teamsPage.clickOnConfirmButton();
-		teamsPage.hardWait(2);
-		teamsPage.clickOnGoBackButton();
+		addBracketPage.hardWait(2);
+		addBracketPage.setCompetitionStartDate();
 
-		clubLogoPage.hardWait(3);
-		teamsPage.clickOnSplitTeamButton();
+		addBracketPage.hardWait(2);
+		addBracketPage.setCompetitionEndDate();
+		
+		addBracketPage.hardWait(2);
+		addBracketPage.clickOnTimeZoneDropdown();
+		Assert.assertTrue(addBracketPage.isTimeZoneListContains());
+		addBracketPage.clickOnNewDelhiTimeZone();
 
-		String teamWithdrawnSuccesfullyText = this.teamsPage.getTeamWithdrawnSuccessText();
-		Assert.assertEquals(teamWithdrawnSuccesfullyText,
-				expectedAssertionsProp.getProperty("team.withdrawn.success.message"));
+		addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("zero.value"));
+		addBracketPage.setBracketNonClubMemberPrice(testDataProp.getProperty("zero.value"));
 
-		Assert.assertTrue(this.teamsPage.isGoBackButtonDisplayed());
+		addBracketPage.setNumberOfTeams(testDataProp.getProperty("team.value"));
+		addBracketPage.setWaitlist(testDataProp.getProperty("min.rating.range"));
+		addEventPage.clickOnNextStepButton();
+		addBracketPage.hardWait(2);
+		addBracketPage.clickOnNoContinueToSummary();
+		addBracketPage.clickOnPublishEventButton();
+		addBracketPage.hardWait(2);
+		addBracketPage.clickOnEventSuccessClosePopupButton();
+		addBracketPage.hardWait(2);
 
-		teamsPage.clickOnGoBackButton();
-
-		log.info("Ending of verifySplitTeamFunctionality method");
+		log.info("Ending of verifyFreeBracketDoublesTypeWithRoundRobinEventType method");
 	}
 
 	@AfterClass

@@ -1433,7 +1433,8 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		hardWait(2);
 		scrollDown(400);
 		try {
-			clickOnElementUsingActionClass(ddTimeZone);
+			clickUsingActionsClass(ddTimeZone);
+			//clickOnElementUsingActionClass(ddTimeZone);
 		} catch (Exception e) {
 			clickOnWebElement(ddTimeZone);
 		}

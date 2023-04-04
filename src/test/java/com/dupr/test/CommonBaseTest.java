@@ -76,6 +76,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		this.directorEventRegistrationPage = new EventRegistrationPage(this.driver);
 		this.playerEventRegistrationPage = new PlayerEventRegistrationPage(this.driver);
 		this.paidEventPage = new PaidEventPage(this.driver);
+		this.timeZonePage = new TimeZonePage(this.driver);
 
 		logger.info("Ending of initTest in CommonBaseTest");
 	}
