@@ -36,7 +36,7 @@ public class ProfilePicturePage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h4[text()='Profile Picture']")
 	private WebElement lblProfilePicture;
 
-	@B2BFindBy(xpath = "//h4[contains(text(),'Remove Profile Picture')]//button")
+	@B2BFindBy(xpath = "//h4[contains(text(),'Remove')]//button")
 	private WebElement iconCloseOnRemoveLogo;
 	
 	@B2BFindBy(xpath = "//h4[contains(text(),'Remove Logo')]//button")
