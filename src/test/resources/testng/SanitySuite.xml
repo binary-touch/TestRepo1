@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Sanity UI Automation Tests">
-
-	<!-- parallel = "classes" thread-count = "4"> -->
+<!-- <parallel = "classes" thread-count = "4"> -->
 
 	<!-- <test name="Sprint 1">
 		<classes>
@@ -26,9 +25,9 @@
 			<class name="com.b2b.test.sprint1.sanity.ChangePasswordTest" />
 			<class name="com.b2b.test.sprint1.sanity.ProfilePictureTest" />
 		</classes>
-	</test>-->
+	</test>
 
-	<!-- <test name="Sprint 2">
+	<test name="Sprint 2">
 		<classes>
 			<class name="com.b2b.test.sprint2.sanity.BrowseClubsTest" />
 			<class name="com.b2b.test.sprint2.sanity.MyClubsTest" />
@@ -51,57 +50,57 @@
 	<test name="Sprint 3">
 		<classes>
 			<!-- <class
-
 				name="com.b2b.test.sprint3.sanity.AddEditRemoveEventLogoTest" />-->
 			<!--<class
 				name="com.b2b.test.sprint3.sanity.AddParticipantsInBracketTest" />-->
-
+				
 			<!--<class name="com.b2b.test.sprint3.sanity.AddAnnouncementTest" />-->
 			
 			<!--<class name="com.b2b.test.sprint3.sanity.AntiScrappingCaptchaTest" />-->
-			<!-- <class
-				name="com.b2b.test.sprint3.sanity.PlayerEventRegistrationTest" /> -->
-							<!-- <class name="com.b2b.test.sprint3.sanity.EndEventTest" /> 
-			<class
-				name="com.b2b.test.sprint3.sanity.AcceptOrDeclinePartnerTest" /> -->
-			<!-- <class
-				name="com.b2b.test.sprint3.sanity.DirectorEventRegistrationTest" /> -->
-			<!--<class name="com.b2b.test.sprint3.sanity.WithdrawPlayerTest" />-->
-		 <!--  <class
-				name="com.b2b.test.sprint3.sanity.Create_Edit_Split_TeamTest" /> --> 
-			 <!--<class
-				name="com.b2b.test.sprint3.sanity.AdditionOfChartAndShopTabTest" />-->
-			<!-- <class name="com.b2b.test.sprint3.sanity.UserDashboardTest" /> 
 
-			<class name="com.b2b.test.sprint3.sanity.PreservingPageVisitsTest" /> -->
+			<!--<class name="com.b2b.test.sprint3.sanity.EndEventTest" />-->
+			<!-- 	
+			<class
+				name="com.b2b.test.sprint3.sanity.PlayerEventRegistrationTest" />
+			<class
+				name="com.b2b.test.sprint3.sanity.AcceptOrDeclinePartnerTest" />
+			<class
+				name="com.b2b.test.sprint3.sanity.DirectorEventRegistrationTest" />-->
+			<!--<class name="com.b2b.test.sprint3.sanity.WithdrawPlayerTest" />-->
+		<!--	<class
+				name="com.b2b.test.sprint3.sanity.Create_Edit_Split_TeamTest" />-->
+			<!--<class
+				name="com.b2b.test.sprint3.sanity.AdditionOfChartAndShopTabTest" />
+			<class name="com.b2b.test.sprint3.sanity.UserDashboardTest" />
+			<class
+				name="com.b2b.test.sprint3.sanity.PreservingPageVisitsTest" /> -->
 		</classes>
 	</test>
 
 	<test name="Sprint 4">
 		<classes>
-			<class name="com.b2b.test.sprint4.sanity.ChatTest" />
-			<class name="com.b2b.test.sprint4.sanity.ShareTest" />
-			<!-- <class
-				name="com.b2b.test.sprint4.sanity.CombinationOfMatchTypeAndPlayerGroupTest" />
-			<class name="com.b2b.test.sprint4.sanity.FullRegistrationTest" />
- -->			<!--<class name="com.b2b.test.sprint4.sanity.TimeZoneTest" />
-			<class
-				name="com.b2b.test.sprint4.sanity.SeedMatchesRoundRobinTest" />-->
-
+		
+		<class name="com.b2b.test.sprint4.sanity.ChatTest" />
+		<class name="com.b2b.test.sprint4.sanity.ShareTest" />
+		<!-- <class name="com.b2b.test.sprint4.sanity.CombinationOfMatchTypeAndPlayerGroupTest" />
+			<class name="com.b2b.test.sprint4.sanity.FullRegistrationTest" /> 
+		<class name="com.b2b.test.sprint4.sanity.TimeZoneTest" /> 
+			 <class name="com.b2b.test.sprint4.sanity.SeedMatchesRoundRobinTest" />	-->
+		
 		</classes>
 	</test>
 
-	<test name="Sprint 5">
+	<!--<test name="Sprint 5">
 		<classes>
-			<!-- <class
-				name="com.b2b.test.sprint5.sanity.PaidEventAndPaidBracketWithWaterfallEventTest" />-->
-			 <!-- <class
-				name="com.b2b.test.sprint5.sanity.WaterfallRoundOneSeedingLogicTest" />  -->
-			<!-- <class
-				name="com.b2b.test.sprint5.sanity.EditScoreAfterValidationTest" /> -->
-		<!-- 	<class
-				name="com.b2b.test.sprint5.sanity.SeedMatchesWaterFallTest" />  -->
+			<class
+				name="com.b2b.test.sprint5.sanity.PaidEventAndPaidBracketWithWaterfallEventTest" />
+			<class
+				name="com.b2b.test.sprint5.sanity.WaterfallRoundOneSeedingLogicTest" />
+			<class
+				name="com.b2b.test.sprint5.sanity.EditScoreAfterValidationTest" />
+			<class
+				name="com.b2b.test.sprint5.sanity.SeedMatchesWaterFallTest" />
 		</classes>
-	</test> 
+	</test> -->
 	
 </suite>

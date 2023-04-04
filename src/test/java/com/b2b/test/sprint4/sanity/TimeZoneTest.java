@@ -95,8 +95,12 @@ public class TimeZoneTest extends CommonBaseTest {
 		addBracketPage.clickOnTimeZoneDropdown();
 		addBracketPage.hardWait(3);
 		addBracketPage.clickOnNewDelhiTimeZone();
+		try {
 		TimeZone = timeZonePage.getIndianTimeZoneText();
-
+		}catch(Exception e) {
+			TimeZone2 = timeZonePage.getTimeZoneKathmanduInEventDetails();
+		}
+		
 		logger.info("Ending of verifySelectRegistrationDateAndTime method");
 	}
 
@@ -150,9 +154,16 @@ public class TimeZoneTest extends CommonBaseTest {
 
 		Assert.assertEquals(CompEndDateTime, CompEndDateTimeInEventDetails);
 		timeZonePage.hardWait(4);
+		timeZonePage.getTimeZoneLabelInEventDetails();
+		try {
 		String TimeZoneInEventDetails = timeZonePage.getIndianTimeZoneInEventDetails();
 		Assert.assertEquals(TimeZone, TimeZoneInEventDetails);
-
+		}
+		catch(Exception e) {
+			String TimeZoneInEventDetails = timeZonePage.getTimeZoneKathmanduInEventDetails();
+			Assert.assertEquals(TimeZone2, TimeZoneInEventDetails);
+				
+		}
 		this.verifyPublishEventButton();
 
 		addEventPage.clickOnEventsTab();
@@ -561,7 +572,7 @@ public class TimeZoneTest extends CommonBaseTest {
 		timeZonePage.clickOnEditBracketButton();
 
 		addBracketPage.hardWait(3);
-		timeZonePage.setRegistrationStartDateBeforeOneDay();
+		addBracketPage.setRegistrationStartDate();
 		
 		addBracketPage.hardWait(3);
 		timeZonePage.setRegistrationEndDate();

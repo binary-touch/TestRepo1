@@ -1009,7 +1009,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 			clickOnElementUsingActionClass(btnTimeInMinutes);
 		}
 
-		log.info("Ending of setRegistrationStartDateÂ method");
+		log.info("Ending of setRegistrationStartDate method");
 	}
 
 	public void setFutureRegistrationEndDate() {
@@ -1079,26 +1079,18 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		System.out.println("*** Clicked on Meridiem ***");
 		hardWait(4);
 		try {
-			clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
-			System.out.println("*** Clicked on Hour ***");
-		} catch (Exception e) {
-			clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
-			System.out.println("*** Clicked on Hour ***");
-		}
-		hardWait(2);
-		try {
-			clickOnElementUsingActionClass(btnTimeInMinutes);
-			System.out.println("*** Clicked on Minutes ***");
-		} catch (Exception e) {
-			clickOnWebElement(btnTimeInMinutes);
-			System.out.println("*** Clicked on Minutes ***");
-		}
-		try {
-			if (btnOK.isDisplayed() == true) {
-				this.clickOnWebElement(btnOK);
+			try {
+				clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
+			} catch (Exception e) {
+				clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
 			}
+			System.out.println("*** Clicked on Hour ***");
+			btnDefaultTimeInMinutes.click();
+			System.out.println("*** Clicked on Minutes ***");
+			hardWait(2);
 		} catch (Exception e) {
-			log.info("*** OK Button Haven't displayed***");
+			//System.out.println();
+			clickOnElementUsingActionClass(btnTimeInMinutes);
 		}
 
 		log.info("Ending of setRegistrationEndDate method");
@@ -1217,7 +1209,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 			log.info("*** OK Button Haven't displayed***");
 		}
 
-		log.info("Ending of setInvalidCompetitionEndDatesï¿½method");
+		log.info("Ending of setInvalidCompetitionEndDate method");
 	}
 
 	public void setIncorrectCompetitionStartDate() {
@@ -1242,7 +1234,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 			log.info("*** OK Button Haven't displayed***");
 		}
 
-		log.info("Ending of setIncorrectCompetitionStartDateï¿½method");
+		log.info("Ending of setIncorrectCompetitionStartDate method");
 	}
 
 	public void setCompetitionStartDate() {
