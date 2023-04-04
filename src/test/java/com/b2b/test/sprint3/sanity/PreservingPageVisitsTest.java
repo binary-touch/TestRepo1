@@ -26,7 +26,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 
 @Epic(value = "Home")
-@Feature(value = "Preserving Page Visits")
+@Feature(value = "Preserving Page Visits Sanity")
 public class PreservingPageVisitsTest extends CommonBaseTest {
 	private static final Logger logger = Logger.getLogger(WithdrawPlayerTest.class.getName());
 	private BrowsePlayersPage browsePlayersPage = null;;

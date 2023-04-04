@@ -22,7 +22,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 
 @Epic(value = "Events")
-@Feature(value = "Add Announcement")
+@Feature(value = "Add Announcement Sanity")
 public class AddAnnouncementTest extends DUPRBaseAutomationTest {
 
 	private static final Logger logger = Logger.getLogger(AddAnnouncementTest.class.getName());

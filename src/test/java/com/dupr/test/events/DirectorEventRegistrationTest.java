@@ -240,7 +240,7 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 		logger.info("Starting of verifyRegisterFunctionalityInCompleteStatusEvent method");
 
 		addBracketPage.hardWait(3);
-		Assert.assertFalse(eventRegistrationPage.isRegisterButtonDisplayedForCompleteEventCard());
+		Assert.assertFalse(eventRegistrationPage.isRegisterButtonDisplayedForCompletedEventCard());
 
 		logger.info("Ending of verifyRegisterFunctionalityInCompleteStatusEvent method");
 	}

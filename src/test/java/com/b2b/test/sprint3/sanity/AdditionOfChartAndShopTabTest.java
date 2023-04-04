@@ -19,7 +19,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 
 @Epic(value = "Home")
-@Feature(value = "Chart_Shop")
+@Feature(value = "Chart_Shop Sanity")
 public class AdditionOfChartAndShopTabTest extends DUPRBaseAutomationTest {
 	private static final Logger logger = Logger.getLogger(AdditionOfChartAndShopTabTest.class.getName());
 	private AdditionOfChartAndShopTabPage chart_ShopPage = null;

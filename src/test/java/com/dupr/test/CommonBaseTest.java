@@ -183,7 +183,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 	}
 
 	public void verifyEventPoliciesPageByEnteringValidDetails() {
-		logger.info("Starting of VerifyEventPoliciesPageByEnteringValidDetails method");
+		logger.info("Starting of verifyEventPoliciesPageByEnteringValidDetails method");
 
 		addEventPage.uploadLiabilityWaiverFile(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("upload.image"));
 
@@ -194,7 +194,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 
 		addEventPage.clickOnNextStepButton();
 
-		logger.info("Ending of VerifyEventPoliciesPageByEnteringValidDetails method");
+		logger.info("Ending of erifyEventPoliciesPageByEnteringValidDetails method");
 	}
 
 	public void verifyNoContinueToSummaryButtonInAddAnotherBracketpopup() {
