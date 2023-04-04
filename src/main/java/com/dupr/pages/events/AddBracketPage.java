@@ -1085,14 +1085,13 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 				clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
 			}
 			System.out.println("*** Clicked on Hour ***");
-			btnDefaultTimeInMinutes.click();
+			clickUsingActionsClass(btnDefaultTimeInMinutes);
 			System.out.println("*** Clicked on Minutes ***");
 			hardWait(2);
 		} catch (Exception e) {
-			//System.out.println();
+			System.out.println();
 			clickOnElementUsingActionClass(btnTimeInMinutes);
 		}
-
 		log.info("Ending of setRegistrationEndDate method");
 	}
 
