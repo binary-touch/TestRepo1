@@ -1036,7 +1036,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	public void setRegistrationEndDate() {
 		log.info("Starting of setRegistrationEndDate method");
 		hardWait(2);
-		
+
 		scrollDown(200);
 
 		try {
@@ -1238,7 +1238,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	public void setCompetitionStartDate() {
 		log.info("Starting of setCompetitionStartDate method");
-
+		this.scrollDown(200);
 		hardWait(3);
 		try {
 			clickOnElementUsingActionClass(txtBoxCompetitionStartDate);
@@ -1260,37 +1260,44 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		this.hardWait(3);
 		try {
 			if ((mValue).equals(monthvalue)) {
-				this.hardWait(3);
+				hardWait(4);
 				this.clickOnCurrentDate(date);
 				System.out.println("*** Clicked on Date ***");
 			} else {
-				this.hardWait(3);
-				clickUsingActionsClass(driver.findElement(By.xpath("//button[@title='Next month']")));
-
+				try {
+					clickOnWebElement(driver.findElement(By.xpath("//button[@title='Next month']")));
+				} catch (Exception e) {
+					clickUsingActionsClass(driver.findElement(By.xpath("//button[@title='Next month']")));
+				}
 				this.clickOnCurrentDate(date);
 				System.out.println("*** Clicked on Date ***");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		hardWait(3);
 		this.clickOnCurrentTime(meridiem);
 		System.out.println("*** Clicked on Meridiem ***");
-
-		this.clickOnCurrentTime(hours);
-		System.out.println("*** Clicked on Hour ***");
-
-		clickOnElementUsingActionClass(btnTimeInMinutes);
-		System.out.println("*** Clicked on Minutes ***");
-
+		hardWait(4);
 		try {
-			if (btnOK.isDisplayed() == true) {
-				this.clickOnWebElement(btnOK);
+			try {
+				clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
+			} catch (Exception e) {
+				clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
 			}
-		} catch (Exception e) {
-			log.info("*** OK Button Haven't displayed***");
-		}
+			System.out.println("*** Clicked on Hour ***");
+			try {
+				btnDefaultTimeInMinutes.click();
+			} catch (Exception e) {
+				clickOnElementUsingActionClass(btnTimeInMinutes);
+			}
 
+			System.out.println("*** Clicked on Minutes ***");
+			hardWait(2);
+		} catch (Exception e) {
+			System.out.println();
+		}
+		
 		log.info("Ending of setCompetitionStartDate method");
 	}
 
@@ -1349,12 +1356,13 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 		clickOnElementUsingActionClass(btnTimeInMinutes);
 		System.out.println("*** Clicked on Minutes ***");
-
+		clickOutside();
 		try {
 			if (btnOK.isDisplayed() == true) {
 				this.clickOnWebElement(btnOK);
 			}
 		} catch (Exception e) {
+			
 			log.info("*** OK Button Haven't displayed***");
 		}
 
@@ -1433,7 +1441,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		scrollDown(400);
 		try {
 			clickUsingActionsClass(ddTimeZone);
-			//clickOnElementUsingActionClass(ddTimeZone);
+			// clickOnElementUsingActionClass(ddTimeZone);
 		} catch (Exception e) {
 			clickOnWebElement(ddTimeZone);
 		}
@@ -1444,6 +1452,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	public boolean isTimeZoneListContains() {
 		log.info("Starting of isTimeZoneListContains method");
 		hardWait(2);
+		this.scrollDown(500);
 		log.info("Ending of isTimeZoneListContains method");
 
 		return ddListTimeZone.isDisplayed();
@@ -1451,14 +1460,19 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	public void clickOnNewDelhiTimeZone() {
 		log.info("Starting of clickOnNewDelhiTimeZone method");
-		hardWait(9);
+
+		hardWait(5);
 		try {
 			scrollIntoView(btnNewDelhiTimeZone);
 			hardWait(3);
-			clickUsingActionsClass(btnNewDelhiTimeZone);
+			try {
+				clickUsingActionsClass(btnNewDelhiTimeZone);
+			} catch (Exception e) {
+				clickOnWebElement(btnNewDelhiTimeZone);
+			}
 		} catch (Exception e) {
 			hardWait(3);
-			elementClick(btnNewDelhiTimeZone);
+			btnNewDelhiTimeZone.click();
 		}
 
 		log.info("Ending of clickOnNewDelhiTimeZone method");
