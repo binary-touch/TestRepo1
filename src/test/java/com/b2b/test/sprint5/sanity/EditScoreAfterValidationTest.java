@@ -297,9 +297,9 @@ public class EditScoreAfterValidationTest extends CommonBaseTest {
 		addBracketPage.setRegistrationStartDate();
 
 		addBracketPage.hardWait(2);
-		/*
-		 * editScoreAfterValidationPage.setRegistrationEndDate();
-		 */
+		
+		  editScoreAfterValidationPage.setRegistrationEndDate();
+		 
 
 		addBracketPage.hardWait(2);
 		editScoreAfterValidationPage.setCompetitionStartDate();

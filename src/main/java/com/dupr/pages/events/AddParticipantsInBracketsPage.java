@@ -444,7 +444,7 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 		for (int i = 0; i < 16; i++) {
 			try {
 				this.hardWait(3);
-				clickOnWebElement(btnAddParticipants);
+				clickUsingActionsClass(btnAddParticipant);
 				this.hardWait(4);
 				clickOnWebElement(rdoSelectParticipant);
 				this.hardWait(3);
@@ -457,7 +457,7 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 				clickOnWebElement(btnOk);
 			} catch (Exception e) {
 				this.hardWait(3);
-				clickOnWebElement(btnAddParticipants);
+				clickUsingActionsClass(btnAddParticipant);
 				this.hardWait(4);
 				clickOnWebElement(rdoSelectParticipant);
 				this.hardWait(3);
