@@ -381,7 +381,12 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 		log.info("Starting of clickOnAddEventButton method");
 
 		this.waitForElementToBeVisible(btnAddEvent);
-		elementClick(btnAddEvent);
+		try {
+			clickUsingActionsClass(btnAddEvent);
+		} catch (Exception e) {
+			elementClick(btnAddEvent);
+		}
+		
 
 		log.info("Ending of clickOnAddEventButton method");
 	}

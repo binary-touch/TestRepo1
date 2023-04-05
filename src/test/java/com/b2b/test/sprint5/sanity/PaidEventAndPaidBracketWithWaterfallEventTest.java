@@ -261,7 +261,7 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 		super.verifyRegisterFunctionalityWithMemberInPlayerAccount();
 		paidEventPage.hardWait(3);
 		paidEventPage.clickOnContinuePaymentButton();
-
+		
 		float clubMemberEventPrice = paidEventPage.getEventClubMemberPriceValue();
 		Assert.assertSame(memberPrice, clubMemberEventPrice);
 

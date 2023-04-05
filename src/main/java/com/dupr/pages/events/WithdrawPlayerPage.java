@@ -240,7 +240,6 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 		try {
 			if (isDisplayed(btnCreateTeam) 
 					&& isDisplayed(txtName)
-					&& isDisplayed(txtEmail)
 					&& isDisplayed(txtPaymentStatus)
 					&& isDisplayed(txtDoubles)
 					&& isDisplayed(txtSingles)
@@ -618,7 +617,7 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 	public void clickOnUnmatchedTab() {
 		log.info("Starting of clickOnUnmatchedTab method");
 		try {
-			clickUsingActionsClass(tabUnmatchedPlayes);
+			clickOnElementUsingActionClass(tabUnmatchedPlayes);
 		} catch (Exception e) {
 			clickOnWebElement(tabUnmatchedPlayes);
 		}

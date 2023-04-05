@@ -19,7 +19,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 
 @Epic(value = "Events")
-@Feature(value = "End Events-Sanity")
+@Feature(value = "End Event Sanity")
 
 public class EndEventTest extends CommonBaseTest {
 	private static final Logger logger = Logger.getLogger(EndEventTest.class.getName());
@@ -101,57 +101,6 @@ public class EndEventTest extends CommonBaseTest {
 		Assert.assertEquals(endEventpage.getAreYouSureToEndEvent(), expectedAssertionsProp.getProperty("are.you.sure"));
 
 		logger.info("Ending of verifyEndEventFunctionality method");
-	}
-
-	//@Test(priority = 2, description = "Verify cancel button functionality in end event popup", groups = "sanity")
-	@Description("Test case #2, Verify cancel button functionality in end event popup")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #2, Verify Cancel button functionality")
-	public void verifyCancelButtonFunctionality() {
-		logger.info("Starting of verifyCancelButtonFunctionality method");
-
-		endEventpage.clickOnCancelButton();
-		endEventpage.hardWait(2);
-
-		Assert.assertFalse(endEventpage.isEndEventPopupContains());
-		Assert.assertEquals(endEventpage.getEventTxt(), expectedAssertionsProp.getProperty("event.txt"));
-
-		logger.info("Ending of verifyCancelButtonFunctionality method");
-	}
-
-	//@Test(priority = 3, description = "Verify close icon functionality in end event popup", groups = "sanity")
-	@Description("Test case #3, Verify close icon functionality in end event popup")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #3, Verify close icon functionality")
-	public void verifyCloseIconFunctionality() {
-		logger.info("Starting of verifyCloseIconFunctionality method");
-
-		endEventpage.clickOnEndEventButton();
-		endEventpage.hardWait(2);
-		endEventpage.clickOnCloseIcon();
-
-		Assert.assertFalse(endEventpage.isEndEventPopupContains());
-		Assert.assertEquals(endEventpage.getEventTxt(), expectedAssertionsProp.getProperty("event.txt"));
-
-		logger.info("Ending of verifyCloseIconFunctionality method");
-	}
-
-	//@Test(priority = 4, description = "Verify End Event button functionality in end event popup", groups = "sanity")
-	@Description("Test case #4, Verify End Event button functionality in end event popup")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #4, Verify End Event button functionality")
-	public void verifyEndEventButtonFunctionality() {
-		logger.info("Starting of verifyEndEventButtonFunctionality method");
-
-		endEventpage.clickOnEndEventButton();
-		endEventpage.hardWait(2);
-		endEventpage.clickOnConfirmEndEventButton();
-		endEventpage.hardWait(3);
-		Assert.assertEquals(endEventpage.getEventTxt(), expectedAssertionsProp.getProperty("event.txt"));
-		Assert.assertTrue(endEventpage.isEndEventPageContains());
-		Assert.assertTrue(endEventpage.getBracketsStatusText());
-
-		logger.info("Ending of verifyEndEventButtonFunctionality method");
 	}
 
 	@AfterClass

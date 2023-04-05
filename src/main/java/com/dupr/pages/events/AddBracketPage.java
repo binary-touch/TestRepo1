@@ -1009,7 +1009,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 			clickOnElementUsingActionClass(btnTimeInMinutes);
 		}
 
-		log.info("Ending of setRegistrationStartDate method");
+		log.info("Ending of setRegistrationStartDateï¿½method");
 	}
 
 	public void setFutureRegistrationEndDate() {
