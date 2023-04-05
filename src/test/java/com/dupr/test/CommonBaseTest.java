@@ -172,11 +172,14 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 
 	public void verifyAddEventFunctionality() {
 		logger.info("Starting of verifyAddEventFunctionality method");
-
-		clubLogoPage.clickOnMyClubsTab();
-		editClubInfoPage.clickOnSimbaOrganizerButton();
-		addEventPage.clickOnAddEventButton();
-
+		try {
+			clubLogoPage.clickOnMyClubsTab();
+			editClubInfoPage.clickOnSimbaOrganizerButton();
+			addEventPage.clickOnAddEventButton();
+		} catch (Exception e) {
+			driver.navigate().refresh();
+			addEventPage.clickOnAddEventButton();
+		}
 		Assert.assertTrue(addEventPage.isEventInformationPageContains());
 
 		logger.info("Ending of verifyAddEventFunctionality method");
@@ -233,6 +236,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		nonmemberPrice = addEventPage.setNonMemberPrice(testDataProp.getProperty("zero.value"));
 		addEventPage.setAboutTheEvent(testDataProp.getProperty("about.the.event"));
 		addEventPage.clickonTextFormattingButtons();
+		addEventPage.hardWait(3);
 		addEventPage.clickOnNextStepButton();
 
 		Assert.assertTrue(addEventPage.isEventPoliciesPageContains());
@@ -420,7 +424,9 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 
 		addBracketPage.setRegistrationStartDate();
 		timeZonePage.setRegistrationEndDate();
+		addBracketPage.hardWait(3);
 		addBracketPage.setCompetitionStartDate();
+		addBracketPage.hardWait(3);
 		addBracketPage.setCompetitionEndDate();
 		addBracketPage.hardWait(3);
 		addBracketPage.clickOnTimeZoneDropdown();
@@ -490,13 +496,13 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 
 		addBracketPage.setRegistrationStartDate();
 		addBracketPage.hardWait(3);
-		
+
 		addBracketPage.setRegistrationEndDate();
 		addBracketPage.hardWait(3);
-		
+
 		addBracketPage.setCompetitionStartDate();
 		addBracketPage.hardWait(3);
-		
+
 		addBracketPage.setCompetitionEndDate();
 
 		addBracketPage.hardWait(3);

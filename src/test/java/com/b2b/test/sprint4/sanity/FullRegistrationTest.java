@@ -88,7 +88,7 @@ public class FullRegistrationTest extends CommonBaseTest {
 		Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
 
 		addBracketPage.setRegistrationStartDate();
-		addBracketPage.setRegistrationEndDate();
+		timeZonePage.setRegistrationEndDate();
 		addBracketPage.setCompetitionStartDate();
 		addBracketPage.setCompetitionEndDate();
 		
@@ -153,7 +153,7 @@ public class FullRegistrationTest extends CommonBaseTest {
 		Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
 
 		addBracketPage.setRegistrationStartDate();
-		addBracketPage.setRegistrationEndDate();
+		timeZonePage.setRegistrationEndDate();
 		addBracketPage.setCompetitionStartDate();
 		addBracketPage.setCompetitionEndDate();
 		

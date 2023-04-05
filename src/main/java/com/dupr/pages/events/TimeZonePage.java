@@ -336,7 +336,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 
 	public String getRegStartInEventDetails() {
 		log.info("Starting of getRegStartInEventDetails method");
-		System.out.println(getText(txtRegStartDateInEventDetails));
+		//System.out.println(getText(txtRegStartDateInEventDetails));
 		log.info("Ending of getRegStartInEventDetails method");
 
 		return txtRegStartDateInEventDetails.getText();
