@@ -204,6 +204,7 @@ public class AddEditRemoveEventLogoTest extends DUPRBaseAutomationTest {
 		clubLogoPage.hardWait(4);
 		profilePicturePage.clickOnCameraIcon();
 		clubLogoPage.implicitWait();
+		clubLogoPage.hardWait(2);
 		clubLogoPage.clickOnRemoveLogoOption();
 		clubLogoPage.hardWait(2);
 		profilePicturePage.clickOnNoButton();
