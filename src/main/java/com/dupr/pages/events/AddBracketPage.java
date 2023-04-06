@@ -1362,7 +1362,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 		clickOnElementUsingActionClass(btnTimeInMinutes);
 		System.out.println("*** Clicked on Minutes ***");
-		clickOutside();
+		
 		try {
 			if (btnOK.isDisplayed() == true) {
 				this.clickOnWebElement(btnOK);

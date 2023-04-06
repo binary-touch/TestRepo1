@@ -596,7 +596,7 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 	public String setEventName(String eventname) {
 		log.info("Starting of setEventName method");
 
-		hardWait(3);
+		hardWait(5);
 		this.txtEventName.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		txtEventName.click();
 		this.txtEventName.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);

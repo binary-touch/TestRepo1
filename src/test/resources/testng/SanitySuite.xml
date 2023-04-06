@@ -50,7 +50,7 @@
 	<test name="Sprint 3">
 
 		<classes> 
-			<!--<class
+			<!-- <class
 
 				name="com.b2b.test.sprint3.sanity.AddEditRemoveEventLogoTest" />
 			<class
@@ -58,18 +58,18 @@
 				
 			<class name="com.b2b.test.sprint3.sanity.AddAnnouncementTest" />
 			
-			<class name="com.b2b.test.sprint3.sanity.AntiScrappingCaptchaTest" /> -->
+			<class name="com.b2b.test.sprint3.sanity.AntiScrappingCaptchaTest" />
 
-			<!-- <class name="com.b2b.test.sprint3.sanity.EndEventTest" /> -->
+			<class name="com.b2b.test.sprint3.sanity.EndEventTest" />
 				
-			<!-- <class
+			<class
 				name="com.b2b.test.sprint3.sanity.PlayerEventRegistrationTest" />
 			<class
-				name="com.b2b.test.sprint3.sanity.AcceptOrDeclinePartnerTest" /> -->
-			<!-- <class
-				name="com.b2b.test.sprint3.sanity.DirectorEventRegistrationTest" /> -->
+				name="com.b2b.test.sprint3.sanity.AcceptOrDeclinePartnerTest" />
+			<class
+				name="com.b2b.test.sprint3.sanity.DirectorEventRegistrationTest" />
 			<class name="com.b2b.test.sprint3.sanity.WithdrawPlayerTest" />
-			<!-- <class
+			<class
 				name="com.b2b.test.sprint3.sanity.Create_Edit_Split_TeamTest" />
 			<class
 				name="com.b2b.test.sprint3.sanity.AdditionOfChartAndShopTabTest" />
@@ -86,22 +86,17 @@
 			<class
 				name="com.b2b.test.sprint3.sanity.PreservingPageVisitsTest" />
 
-
- 		</classes>
-
-				name="com.b2b.test.sprint3.sanity.PreservingPageVisitsTest" /> -->
-		</classes>
+ -->
+ 				</classes>
 
 	</test>
 
 	<test name="Sprint 4">
 		<classes>
 
-		<class name="com.b2b.test.sprint4.sanity.ChatTest" />
+		<!-- <class name="com.b2b.test.sprint4.sanity.ChatTest" />
 			<class name="com.b2b.test.sprint4.sanity.ShareTest" />
-		 <class name="com.b2b.test.sprint4.sanity.CombinationOfMatchTypeAndPlayerGroupTest" />
-			<class name="com.b2b.test.sprint4.sanity.FullRegistrationTest" /> 
-		<class name="com.b2b.test.sprint4.sanity.TimeZoneTest" /> 
+		
 			 <class name="com.b2b.test.sprint4.sanity.SeedMatchesRoundRobinTest" />
 		<class name="com.b2b.test.sprint4.sanity.ChatTest" />
 		<class name="com.b2b.test.sprint4.sanity.ShareTest" />
@@ -113,13 +108,14 @@
 
 			 <class name="com.b2b.test.sprint4.sanity.SeedMatchesRoundRobinTest" />
 
- 		</classes>
+ -->
+  		</classes>
 	</test>
 
 	<test name="Sprint 5">
 		<classes>
-			<!-- <class
-				name="com.b2b.test.sprint5.sanity.PaidEventAndPaidBracketWithWaterfallEventTest" /> -->
+			<class
+				name="com.b2b.test.sprint5.sanity.PaidEventAndPaidBracketWithWaterfallEventTest" />
 			<!-- <class
 				name="com.b2b.test.sprint5.sanity.WaterfallRoundOneSeedingLogicTest" />
 			<class
