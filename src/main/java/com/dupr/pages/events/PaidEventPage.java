@@ -151,6 +151,7 @@ public class PaidEventPage extends DUPRBaseAutomationPage {
 
 	public void clickOnBackTodkarsButton() {
 		log.info("Starting of clickOnBackTodkarsButton method");
+		this.hardWait(3);
 		try {
 			elementClick(btnBackTodkars);
 		} catch (Exception e) {

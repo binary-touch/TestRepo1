@@ -58,7 +58,7 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h2[text()='Add a Bracket Participant']/parent::div/child::div//input[@id='Search']")
 	private WebElement txtBoxSearchParticipant;
 
-	@B2BFindBy(xpath = "//button[text()='Add Participants']")
+	@B2BFindBy(xpath = "//button[text()='Add Participant']")
 	private WebElement btnAddParticipant;
 
 	@B2BFindBy(xpath = "//button[text()='Add Participant' and @disabled]")
@@ -443,35 +443,29 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 		log.info("Starting of addParticipants method");
 
 		for (int i = 0; i < 16; i++) {
-			try {
-				this.hardWait(3);
-				//Actions action = new Actions(driver);
-				//action.moveToElement(btnAddParticipant).doubleClick(btnAddParticipant).build().perform();
-				clickUsingActionsClass(btnAddParticipant);
+			
+				this.hardWait(2);
+				this.scrollDown(-400);
+				this.scrollDown(-400);
+				System.out.println(i);
+				this.hardWait(3);		
+				clickUsingActionsClass(btnAddParticipants);
 				this.hardWait(4);
-				clickOnWebElement(rdoSelectParticipant);
-				this.hardWait(3);
-				clickOnElement(btnAddParticipant);
-				this.hardWait(4);
-				clickOnWebElement(rdoNo);
-				this.hardWait(3);
-				clickOnWebElement(btnAdd);
-				this.hardWait(5);
-				clickOnWebElement(btnOk);
-			} catch (Exception e) {
+				clickUsingActionsClass(rdoSelectParticipant);
 				this.hardWait(3);
 				clickUsingActionsClass(btnAddParticipant);
 				this.hardWait(4);
-				clickOnWebElement(rdoSelectParticipant);
+				clickUsingActionsClass(rdoNo);
 				this.hardWait(3);
-				clickOnElement(btnAddParticipant);
-				this.hardWait(4);
-				clickOnWebElement(rdoNo);
-				this.hardWait(3);
-				clickOnWebElement(btnAdd);
+				clickUsingActionsClass(btnAdd);
 				this.hardWait(5);
-				clickOnWebElement(btnOk);
-			}
+				try {
+					clickUsingActionsClass(btnOk);
+				} catch (Exception e) {
+					System.out.println("Ok button is not displayed");
+				}
+				
+			
 
 		}
 
@@ -483,6 +477,8 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 
 		for (int i = 0; i < 2; i++) {
 			try {
+				this.scrollDown(-400);
+				this.scrollDown(-400);
 				this.hardWait(3);
 				clickOnWebElement(btnAddParticipants);
 				this.hardWait(4);
@@ -494,7 +490,11 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 				this.hardWait(3);
 				clickOnWebElement(btnAdd);
 				this.hardWait(5);
-				clickOnWebElement(btnOk);
+				try {
+					clickUsingActionsClass(btnOk);
+				} catch (Exception e) {
+					System.out.println("Ok button is not displayed");
+				}
 			} catch (Exception e) {
 				this.hardWait(3);
 				clickOnWebElement(btnAddParticipants);
@@ -507,7 +507,11 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 				this.hardWait(3);
 				clickOnWebElement(btnAdd);
 				this.hardWait(5);
-				clickOnWebElement(btnOk);
+				try {
+					clickUsingActionsClass(btnOk);
+				} catch (Exception e1) {
+					System.out.println("Ok button is not displayed");
+				}
 			}
 
 		}
@@ -520,7 +524,9 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 
 		for (int i = 0; i < 16; i++) {
 			try {
-				if (btnAddParticipants.isDisplayed() == true) {
+				this.scrollDown(-400);
+				this.scrollDown(-400);
+				if (btnAddParticipants.isDisplayed() == true) {	
 					this.hardWait(3);
 					clickOnWebElement(btnAddParticipants);
 					this.hardWait(4);
@@ -532,7 +538,11 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 					this.hardWait(3);
 					clickOnWebElement(btnAdd);
 					this.hardWait(5);
-					clickOnWebElement(btnOk);
+					try {
+						clickUsingActionsClass(btnOk);
+					} catch (Exception e) {
+						System.out.println("Ok button is not displayed");
+					}
 				}
 			} catch (Exception e) {
 				try {
@@ -548,7 +558,11 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 						this.hardWait(3);
 						clickOnWebElement(btnAdd);
 						this.hardWait(5);
-						clickOnWebElement(btnOk);
+						try {
+							clickUsingActionsClass(btnOk);
+						} catch (Exception e1) {
+							System.out.println("Ok button is not displayed");
+						}
 					}
 				} catch (Exception e2) {
 					System.out.println();
@@ -578,7 +592,11 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 			this.hardWait(3);
 			clickOnWebElement(btnAdd);
 			this.hardWait(5);
-			clickOnWebElement(btnOk);
+			try {
+				clickUsingActionsClass(btnOk);
+			} catch (Exception e) {
+				System.out.println("Ok button is not displayed");
+			}
 		} catch (Exception e) {
 			this.hardWait(3);
 			clickOnWebElement(btnAddParticipants);
@@ -593,7 +611,11 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 			this.hardWait(3);
 			clickOnWebElement(btnAdd);
 			this.hardWait(5);
-			clickOnWebElement(btnOk);
+			try {
+				clickUsingActionsClass(btnOk);
+			} catch (Exception e1) {
+				System.out.println("Ok button is not displayed");
+			}
 		}
 
 		log.info("Ending of addMeetPlayerForWaterFallEvent method");
@@ -603,6 +625,8 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 
 		for (int i = 0; i < 3; i++) {
 			try {
+				this.scrollDown(-400);
+				this.scrollDown(-400);
 				if (btnAddParticipants.isDisplayed() == true) {
 					this.hardWait(3);
 					clickOnWebElement(btnAddParticipants);
@@ -615,7 +639,11 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 					this.hardWait(3);
 					clickOnWebElement(btnAdd);
 					this.hardWait(5);
-					clickOnWebElement(btnOk);
+					try {
+						clickUsingActionsClass(btnOk);
+					} catch (Exception e) {
+						System.out.println("Ok button is not displayed");
+					}
 				}
 			} catch (Exception e) {
 				try {
@@ -632,7 +660,11 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 						this.hardWait(3);
 						clickOnWebElement(btnAdd);
 						this.hardWait(5);
-						clickOnWebElement(btnOk);
+						try {
+							clickUsingActionsClass(btnOk);
+						} catch (Exception e1) {
+							System.out.println("Ok button is not displayed");
+						}
 					}
 				} catch (Exception e2) {
 					System.out.println();

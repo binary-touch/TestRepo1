@@ -265,7 +265,7 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 		logger.info("Starting of isSignUpPageContains method");
 
 		boolean isSignUpPageContains = false;
-
+		this.hardWait(3);
 		if (isDisplayed(btnGoBack) && isDisplayed(txtBoxBirthDate) && isDisplayed(txtBoxEmail)
 				&& isDisplayed(txtBoxConfirmEmail) && isDisplayed(txtBoxLocation) && isDisplayed(txtBoxMobileNumber))
 			isSignUpPageContains = true;
@@ -736,7 +736,7 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 
 		clickOnWebElement(txtBoxBirthDate);
 		int date = this.getCurrentDate();
-		
+
 		try {
 			hardWait(2);
 			clickUsingActionsClass(ddYear);
