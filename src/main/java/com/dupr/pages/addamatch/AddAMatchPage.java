@@ -269,7 +269,7 @@ public class AddAMatchPage extends DUPRBaseAutomationPage {
 
 	public void setLocationInDoubles(String location) {
 		log.info("Starting of setLocationInDoubles method");
-
+		this.hardWait(3);
 		explicitWait(txtBoxLocation);
 		this.clickOnWebElement(txtBoxLocation);
 		hardWait(3);
@@ -278,7 +278,8 @@ public class AddAMatchPage extends DUPRBaseAutomationPage {
 
 		try {
 			for (WebElement citylocation : lstLocations) {
-				this.implicitWait();hardWait(2);
+				this.implicitWait();
+				hardWait(2);
 				if (citylocation.getText().equalsIgnoreCase("Hyderabad, Telangana, India")) {
 					hardWait(3);
 					try {

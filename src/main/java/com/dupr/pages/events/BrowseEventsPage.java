@@ -179,8 +179,11 @@ public class BrowseEventsPage extends DUPRBaseAutomationPage {
 
 	public void clickOnOpen() {
 		log.info("Starting of clickOnOpen method");
-
-		clickOnElement(btnOpen);
+		try {
+			clickUsingActionsClass(btnOpen);
+		} catch (Exception e) {
+			clickOnWebElement(btnOpen);
+		}
 
 		log.info("Ending of clickOnOpen method");
 	}

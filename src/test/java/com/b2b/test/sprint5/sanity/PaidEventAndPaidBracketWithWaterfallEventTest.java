@@ -103,25 +103,10 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 		logger.info("Ending of verifyAddEventInformationPage method");
 	}
 
-	@Test(priority = 2, description = "Verify Paid Event Functionality with WateFall Event Type In Doubles Match", groups = "sanity")
-	@Description("Test case #2, Verify Paid Event Functionality with WateFall Event Type In Doubles Match")
+	@Test(priority = 2, description = "Verify Paid Event Functionality with WateFall Event Type In Singles Match", groups = "sanity")
+	@Description("Test case #2, Verify Paid Event Functionality with WateFall Event Type In Singles Match")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #2, Verify Paid Event Functionality with WateFall Event Type In Doubles Match")
-	public void verifyPaidEventFunctionalityWithWateFallEventTypeInDoublesMatch() {
-		logger.info("Starting of verifyPaidEventFunctionalityWithWateFallEventTypeInDoublesMatch method");
-
-		super.verifyPaidEventInformationPageWithValidDetails();
-		super.verifyEventPoliciesPageByEnteringValidDetails();
-		super.verifyPaidBracketWithEventTypeAsWateFallInDoublesMatchType();
-		super.verifyRecentlyAddedEventUnderEventsTab();
-
-		logger.info("Ending of verifyPaidEventFunctionalityWithWateFallEventTypeInDoublesMatch method");
-	}
-
-	@Test(priority = 3, description = "Verify Paid Event Functionality with WateFall Event Type In Singles Match", groups = "sanity")
-	@Description("Test case #3, Verify Paid Event Functionality with WateFall Event Type In Singles Match")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #3, Verify Paid Event Functionality with WateFall Event Type In Singles Match")
+	@Story("Test case #2, Verify Paid Event Functionality with WateFall Event Type In Singles Match")
 	public void verifyPaidEventFunctionalityWithWateFallEventTypeInSinglesMatch() {
 		logger.info("Starting of verifyPaidEventFunctionalityWithWateFallEventTypeInSinglesMatch method");
 
@@ -144,6 +129,23 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 
 		logger.info("Ending of verifyPaidEventFunctionalityWithWateFallEventTypeInSinglesMatch method");
 	}
+	
+	@Test(priority = 3, description = "Verify Paid Event Functionality with WateFall Event Type In Doubles Match", groups = "sanity")
+	@Description("Test case #3, Verify Paid Event Functionality with WateFall Event Type In Doubles Match")
+	@Severity(SeverityLevel.NORMAL)
+	@Story("Test case #3, Verify Paid Event Functionality with WateFall Event Type In Doubles Match")
+	public void verifyPaidEventFunctionalityWithWateFallEventTypeInDoublesMatch() {
+		logger.info("Starting of verifyPaidEventFunctionalityWithWateFallEventTypeInDoublesMatch method");
+        
+		this.verifyAddEventInformationPage();
+		super.verifyPaidEventInformationPageWithValidDetails();
+		super.verifyEventPoliciesPageByEnteringValidDetails();
+		super.verifyPaidBracketWithEventTypeAsWateFallInDoublesMatchType();
+		super.verifyRecentlyAddedEventUnderEventsTab();
+
+		logger.info("Ending of verifyPaidEventFunctionalityWithWateFallEventTypeInDoublesMatch method");
+	}
+
 
 	@Parameters({ "devSiteURL", "validEmail", "validPassword" })
 	@Test(priority = 4, description = "Verify Paid Event Registration functionality with WaterFall Event Type in Players View", groups = "sanity")
@@ -261,7 +263,7 @@ public class PaidEventAndPaidBracketWithWaterfallEventTest extends CommonBaseTes
 		super.verifyRegisterFunctionalityWithMemberInPlayerAccount();
 		paidEventPage.hardWait(3);
 		paidEventPage.clickOnContinuePaymentButton();
-
+		
 		float clubMemberEventPrice = paidEventPage.getEventClubMemberPriceValue();
 		Assert.assertSame(memberPrice, clubMemberEventPrice);
 

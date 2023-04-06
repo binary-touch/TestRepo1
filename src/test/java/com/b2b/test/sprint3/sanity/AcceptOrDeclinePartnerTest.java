@@ -255,7 +255,7 @@ public class AcceptOrDeclinePartnerTest extends CommonBaseTest {
 		clubLogoPage.clickOnMyClubsTab();
 		clubLogoPage.clickOnBrowseClubs();
 		paidEventPage.hardWait(3);
-		addEventPage.clickOnSimbaClubName();
+		paidEventPage.clickOnSimbaClubName();
 		paidEventPage.hardWait(3);
 		addEventPage.clickOnEventsTab();
 		addEventPage.clickOnRecentlyAddedEvent(eventName);

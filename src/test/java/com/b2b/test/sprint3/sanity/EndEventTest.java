@@ -19,7 +19,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 
 @Epic(value = "Events")
-@Feature(value = "End Events-Sanity")
+@Feature(value = "End Event Sanity")
 
 public class EndEventTest extends CommonBaseTest {
 	private static final Logger logger = Logger.getLogger(EndEventTest.class.getName());
@@ -103,7 +103,8 @@ public class EndEventTest extends CommonBaseTest {
 		logger.info("Ending of verifyEndEventFunctionality method");
 	}
 
-	//@Test(priority = 2, description = "Verify cancel button functionality in end event popup", groups = "sanity")
+
+	@Test(priority = 2, description = "Verify cancel button functionality in end event popup", groups = "sanity")
 	@Description("Test case #2, Verify cancel button functionality in end event popup")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #2, Verify Cancel button functionality")
@@ -119,7 +120,7 @@ public class EndEventTest extends CommonBaseTest {
 		logger.info("Ending of verifyCancelButtonFunctionality method");
 	}
 
-	//@Test(priority = 3, description = "Verify close icon functionality in end event popup", groups = "sanity")
+	@Test(priority = 3, description = "Verify close icon functionality in end event popup", groups = "sanity")
 	@Description("Test case #3, Verify close icon functionality in end event popup")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #3, Verify close icon functionality")
@@ -136,7 +137,7 @@ public class EndEventTest extends CommonBaseTest {
 		logger.info("Ending of verifyCloseIconFunctionality method");
 	}
 
-	//@Test(priority = 4, description = "Verify End Event button functionality in end event popup", groups = "sanity")
+	@Test(priority = 4, description = "Verify End Event button functionality in end event popup", groups = "sanity")
 	@Description("Test case #4, Verify End Event button functionality in end event popup")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #4, Verify End Event button functionality")
@@ -153,7 +154,6 @@ public class EndEventTest extends CommonBaseTest {
 
 		logger.info("Ending of verifyEndEventButtonFunctionality method");
 	}
-
 	@AfterClass
 	public void quitDriver() {
 
