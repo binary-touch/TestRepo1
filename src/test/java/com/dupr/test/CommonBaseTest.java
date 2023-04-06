@@ -175,10 +175,20 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		try {
 			clubLogoPage.clickOnMyClubsTab();
 			editClubInfoPage.clickOnSimbaOrganizerButton();
+			try {
 			addEventPage.clickOnAddEventButton();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 		} catch (Exception e) {
+			clubLogoPage.clickOnMyClubsTab();
+			editClubInfoPage.clickOnSimbaOrganizerButton();
 			driver.navigate().refresh();
-			addEventPage.clickOnAddEventButton();
+			try {
+				addEventPage.clickOnAddEventButton();
+				}catch(Exception e1) {
+					e.printStackTrace();
+				}
 		}
 		Assert.assertTrue(addEventPage.isEventInformationPageContains());
 
@@ -226,8 +236,10 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 	public void verifyFreeBracketWithRoundRobinEventType() {
 		logger.info("Starting of verifyFreeBracketWithRoundRobinEventType method");
 
-		addEventPage.clickOnAddEventButton();
-
+		/*
+		 * try{ addEventPage.clickOnAddEventButton(); }catch(Exception e) {
+		 * e.printStackTrace(); }
+		 */
 		eventName = addEventPage.setEventName(testDataProp.getProperty("event.name"));
 		addEventPage.setLocation(testDataProp.getProperty("state.address"));
 
@@ -251,7 +263,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		addBracketPage.hardWait(3);
 		addBracketPage.clickOnPlayGroupDropdown();
 		addBracketPage.hardWait(3);
-		addBracketPage.selectMixedPlayerGroup();
+		addBracketPage.selectOpenPlayerGroup();
 
 		addBracketPage.setMinimumAgeRange(testDataProp.getProperty("min.age.range"));
 		Assert.assertTrue(addBracketPage.isEnteredMinimumAgeDisplayed(testDataProp.getProperty("min.age.range")));

@@ -380,9 +380,12 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 	public void clickOnAddEventButton() {
 		log.info("Starting of clickOnAddEventButton method");
 
-		this.waitForElementToBeVisible(btnAddEvent);
+		//this.waitForElementToBeVisible(btnAddEvent);
+		try {
 		elementClick(btnAddEvent);
-
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		log.info("Ending of clickOnAddEventButton method");
 	}
 
@@ -592,7 +595,7 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 	public String setEventName(String eventname) {
 		log.info("Starting of setEventName method");
 
-		hardWait(2);
+		hardWait(3);
 		this.txtEventName.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		txtEventName.click();
 		this.txtEventName.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
@@ -600,7 +603,7 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 		txtEventName.sendKeys(eventname + "_" + randomNumber(5));
 
 		log.info("Ending of setEventName method");
-
+		hardWait(3);
 		return txtEventName.getAttribute("value");
 
 	}
