@@ -19,6 +19,9 @@ public class PlayerEventRegistrationPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h6[text()='Events']")
 	private WebElement tabEvents;
 
+	@B2BFindBy(xpath = "//h4[contains(text(),'Add your Partner')]")
+	private WebElement btnAddYourPartner;
+
 	@B2BFindBy(xpath = "//span[text()='Yes']/parent::label//input")
 	private WebElement rdoYes;
 
@@ -79,6 +82,14 @@ public class PlayerEventRegistrationPage extends DUPRBaseAutomationPage {
 		log.info("Ending of getEventHeadingLabel method");
 
 		return lblEventHeading.getText();
+	}
+	
+	public void clickOnAddYourPartnerButton() {
+		log.info("Starting of clickOnAddYourPartnerButton method");
+
+		elementClick(btnAddYourPartner);
+
+		log.info("Ending of clickOnAddYourPartnerButton method");
 	}
 
 	public void clickOnClubMemberYesButton() {

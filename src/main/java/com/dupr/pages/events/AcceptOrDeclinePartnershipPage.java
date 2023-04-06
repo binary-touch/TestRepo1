@@ -308,6 +308,13 @@ public class AcceptOrDeclinePartnershipPage extends DUPRBaseAutomationPage {
 		log.info("Ending of clickOnRegisterButton method");
 	}
 
+	public boolean isRegisterButtonDisplayed() {
+		log.info("Starting of isRegisterButtonDisplayed method");
+		log.info("Ending of isRegisterButtonDisplayed method");
+
+		return btnRegister.isDisplayed();
+	}
+
 	public boolean isYesRadioButtonSelected() {
 		log.info("Starting of isYesRadioButtonSelected method");
 		log.info("Ending of isYesRadioButtonSelected method");
