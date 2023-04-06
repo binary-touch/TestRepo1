@@ -1044,7 +1044,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		hardWait(2);
 
 		scrollDown(200);
-
+		hardWait(2);
 		try {
 			clickOnElementUsingActionClass(txtBoxRegistrationEndDate);
 		} catch (Exception e) {
@@ -1085,10 +1085,17 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		System.out.println("*** Clicked on Meridiem ***");
 		hardWait(4);
 		try {
+
 			try {
-				clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
+				System.out.println(driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']")));
+				WebElement currentHourValue = driver
+						.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']"));
+
+				this.hardWait(2);
+				Actions action = new Actions(driver);
+				action.moveToElement(currentHourValue).contextClick(currentHourValue).build().perform();
 			} catch (Exception e) {
-				clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
+				clickOnWebElement(driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']")));
 			}
 			System.out.println("*** Clicked on Hour ***");
 			clickUsingActionsClass(btnDefaultTimeInMinutes);
@@ -1286,10 +1293,17 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		System.out.println("*** Clicked on Meridiem ***");
 		hardWait(4);
 		try {
+
 			try {
-				clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
+				System.out.println(driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']")));
+				WebElement currentHourValue = driver
+						.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']"));
+
+				this.hardWait(2);
+				Actions action = new Actions(driver);
+				action.moveToElement(currentHourValue).contextClick(currentHourValue).build().perform();
 			} catch (Exception e) {
-				clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
+				clickOnWebElement(driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']")));
 			}
 			System.out.println("*** Clicked on Hour ***");
 			try {
