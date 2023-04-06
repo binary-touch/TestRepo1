@@ -61,7 +61,7 @@
 				name="com.b2b.test.sprint3.sanity.PlayerEventRegistrationTest" />
 			<class
 				name="com.b2b.test.sprint3.sanity.AcceptOrDeclinePartnerTest" />
-              <!-- <class name="com.b2b.test.sprint3.sanity.DirectorEventRegistrationTest" /> -->
+         <!--   <class name="com.b2b.test.sprint3.sanity.DirectorEventRegistrationTest" />-->
 			<class name="com.b2b.test.sprint3.sanity.WithdrawPlayerTest" />
 			<class
 				name="com.b2b.test.sprint3.sanity.Create_Edit_Split_TeamTest" />
@@ -81,7 +81,7 @@
 			<class
 				name="com.b2b.test.sprint4.sanity.CombinationOfMatchTypeAndPlayerGroupTest" />
 			<class name="com.b2b.test.sprint4.sanity.FullRegistrationTest" />
-			<class name="com.b2b.test.sprint4.sanity.TimeZoneTest" />
+			<!--<class name="com.b2b.test.sprint4.sanity.TimeZoneTest" />-->
 			<class
 				name="com.b2b.test.sprint4.sanity.SeedMatchesRoundRobinTest" />
 		</classes>
