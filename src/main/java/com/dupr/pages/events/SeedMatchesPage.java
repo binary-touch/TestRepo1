@@ -401,7 +401,20 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 		log.info("Ending of clickOnTeamsTab method");
 	}
-
+	public void scrollUp() {
+		log.info("Starting of scrollUp method");
+	
+			this.scrollDown(-800);
+			
+		log.info("Ending of scrollUp method");
+	}
+	public void scrollUptoDate() {
+		log.info("Starting of scrollUp method");
+	
+			this.scrollDown(-400);
+			
+		log.info("Ending of scrollUp method");
+	}
 	public void clickOnEventCard(String event) {
 		log.info("Starting of clickOnEventCard method");
 
@@ -1586,9 +1599,8 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 	}
 
 	public void setRegistrationEndDate() {
-		//log.info("Starting of setRegistrationEndDate method");
+		log.info("Starting of setRegistrationEndDate method");
 
-		this.scrollDown(200);
 		this.hardWait(2);
 		try {
 			clickUsingActionsClass(txtBoxRegistrationEndDate);
@@ -1650,7 +1662,58 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 			this.clickOnCurrentTime(meridiem);
 			this.selectFutureHour();
 		}
+		
+		this.hardWait(3);
+		
+		try {
+			clickUsingActionsClass(txtBoxCompetitionStartDate);
+		} catch (Exception e) {
+			clickOnWebElement(txtBoxCompetitionStartDate);
+		}
+		
+		this.clickOnCurrentDate(date);
+		this.clickOnCurrentTime(meridiem);
+		System.out.println(driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']")));
+		WebElement currentHourValue = driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']"));
 
+		try {
+			this.hardWait(2);
+			Actions action = new Actions(driver);
+			action.moveToElement(currentHourValue).contextClick(currentHourValue).build().perform();
+		} catch (Exception e) {
+			clickOnWebElement(driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']")));
+		}
+
+		String min = null;
+		try {
+			min = String.valueOf(this.getMinutes());
+			if (driver.findElement(By.cssSelector("span[aria-label='" + min + " minutes']")).isDisplayed()) {
+				try {
+					this.clickOnCurrentTime(min);
+				} catch (Exception e) {
+					Actions action = new Actions(driver);
+					action.moveToElement(driver.findElement(By.cssSelector("span[aria-label='" + min + " minutes']")))
+							.click().perform();
+				}
+			}
+		} catch (Exception e) {
+			hardWait(2);
+			try {
+				clickUsingActionsClass(txtBoxCompetitionStartDate);
+			} catch (Exception e2) {
+				clickOnWebElement(txtBoxCompetitionStartDate);
+			}
+			try {
+				clickUsingActionsClass(txtBoxCompetitionStartDate);
+			} catch (Exception e1) {
+				clickOnWebElement(txtBoxCompetitionStartDate);
+			}
+
+			this.clickOnCurrentDate(date);
+			this.clickOnCurrentTime(meridiem);
+			this.selectFutureHour();
+		}
+		
 		log.info("Ending of setRegistrationEndDate method");
 	}
 

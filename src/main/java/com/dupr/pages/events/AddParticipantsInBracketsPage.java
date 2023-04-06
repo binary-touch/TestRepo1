@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 import com.b2b.support.B2BFindBy;
 import com.b2b.support.B2BFindBys;
@@ -57,7 +58,7 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h2[text()='Add a Bracket Participant']/parent::div/child::div//input[@id='Search']")
 	private WebElement txtBoxSearchParticipant;
 
-	@B2BFindBy(xpath = "//button[text()='Add Participant']")
+	@B2BFindBy(xpath = "//button[text()='Add Participants']")
 	private WebElement btnAddParticipant;
 
 	@B2BFindBy(xpath = "//button[text()='Add Participant' and @disabled]")
@@ -444,7 +445,9 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 		for (int i = 0; i < 16; i++) {
 			try {
 				this.hardWait(3);
-				clickOnWebElement(btnAddParticipants);
+				//Actions action = new Actions(driver);
+				//action.moveToElement(btnAddParticipant).doubleClick(btnAddParticipant).build().perform();
+				clickUsingActionsClass(btnAddParticipant);
 				this.hardWait(4);
 				clickOnWebElement(rdoSelectParticipant);
 				this.hardWait(3);
@@ -457,7 +460,7 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 				clickOnWebElement(btnOk);
 			} catch (Exception e) {
 				this.hardWait(3);
-				clickOnWebElement(btnAddParticipants);
+				clickUsingActionsClass(btnAddParticipant);
 				this.hardWait(4);
 				clickOnWebElement(rdoSelectParticipant);
 				this.hardWait(3);

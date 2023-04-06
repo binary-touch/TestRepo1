@@ -996,7 +996,13 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		hardWait(3);
 		try {
 			try {
-				clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
+				System.out.println(driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']")));
+				WebElement currentHourValue = driver
+						.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']"));
+
+				this.hardWait(2);
+				Actions action = new Actions(driver);
+				action.moveToElement(currentHourValue).contextClick(currentHourValue).build().perform();
 			} catch (Exception e) {
 				clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
 			}
@@ -1009,7 +1015,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 			clickOnElementUsingActionClass(btnTimeInMinutes);
 		}
 
-		log.info("Ending of setRegistrationStartDate method");
+		log.info("Ending of setRegistrationStartDateï¿½method");
 	}
 
 	public void setFutureRegistrationEndDate() {
@@ -1438,10 +1444,13 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		log.info("Starting of clickOnTimeZoneDropdown method");
 
 		hardWait(2);
-		scrollDown(400);
+		scrollDown(300);
 		try {
-			clickUsingActionsClass(ddTimeZone);
+			Actions action = new Actions(driver);
+			action.moveToElement(ddTimeZone).clickAndHold(ddTimeZone).build().perform();
+
 			// clickOnElementUsingActionClass(ddTimeZone);
+
 		} catch (Exception e) {
 			clickOnWebElement(ddTimeZone);
 		}

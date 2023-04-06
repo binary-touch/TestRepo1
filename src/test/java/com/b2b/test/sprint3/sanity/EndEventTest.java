@@ -19,7 +19,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 
 @Epic(value = "Events")
-@Feature(value = "End Events-Sanity")
+@Feature(value = "End Event Sanity")
 
 public class EndEventTest extends CommonBaseTest {
 	private static final Logger logger = Logger.getLogger(EndEventTest.class.getName());
@@ -103,6 +103,7 @@ public class EndEventTest extends CommonBaseTest {
 		logger.info("Ending of verifyEndEventFunctionality method");
 	}
 
+
 	@Test(priority = 2, description = "Verify cancel button functionality in end event popup", groups = "sanity")
 	@Description("Test case #2, Verify cancel button functionality in end event popup")
 	@Severity(SeverityLevel.NORMAL)
@@ -153,7 +154,6 @@ public class EndEventTest extends CommonBaseTest {
 
 		logger.info("Ending of verifyEndEventButtonFunctionality method");
 	}
-
 	@AfterClass
 	public void quitDriver() {
 

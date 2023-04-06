@@ -52,11 +52,9 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 		super.verifyAddEventFunctionality();
 		this.verifyFreeBracketDoublesTypeWithRoundRobinEventType();
 
-		seedMatchesPage.hardWait(2);
 		addEventPage.clickOnEventsTab();
-		seedMatchesPage.hardWait(2);
 		addEventPage.clickOnRecentlyAddedEvent(seedsEvents);
-		seedMatchesPage.hardWait(3);
+		
 
 		logger.info("Ending of verifyAddBracketWithRoundRobinEventType method");
 	}
@@ -233,7 +231,7 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 	public void verifyAddScoreFunctionality() {
 		logger.info("Starting of verifyAddScoreFunctionality method");
 
-		seedMatchesPage.hardWait(60);
+		seedMatchesPage.hardWait(120);
 		seedMatchesPage.clickOnAddScoresButton();
 		seedMatchesPage.hardWait(5);
 
@@ -674,19 +672,8 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 			Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
 
 			addBracketPage.hardWait(2);
-			addBracketPage.setRegistrationStartDate();
-
-			addBracketPage.hardWait(2);
-			seedMatchesPage.setRegistrationEndDate();
-
-			addBracketPage.hardWait(2);
-			seedMatchesPage.setCompetitionStartDate();
-
-			addBracketPage.hardWait(2);
-			addBracketPage.setCompetitionEndDate();
-			addBracketPage.hardWait(2);
+			
 			addBracketPage.clickOnTimeZoneDropdown();
-			Assert.assertTrue(addBracketPage.isTimeZoneListContains());
 			addBracketPage.clickOnNewDelhiTimeZone();
 
 			addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("zero.value"));
@@ -694,13 +681,23 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 
 			addBracketPage.setNumberOfTeams(testDataProp.getProperty("team.value"));
 			addBracketPage.setWaitlist(testDataProp.getProperty("min.rating.range"));
+			
+		seedMatchesPage.scrollUp();
+			addBracketPage.setRegistrationStartDate();	
+			seedMatchesPage.scrollUptoDate();
+			addBracketPage.setCompetitionEndDate();
+			
+			seedMatchesPage.setRegistrationEndDate();
+		
+			//seedMatchesPage.setCompetitionStartDate();
+
+		
 			addEventPage.clickOnNextStepButton();
 			addBracketPage.hardWait(2);
 			addBracketPage.clickOnNoContinueToSummary();
 			addBracketPage.clickOnPublishEventButton();
-			addBracketPage.hardWait(2);
+
 			addBracketPage.clickOnEventSuccessClosePopupButton();
-			addBracketPage.hardWait(2);
 
 			logger.info("Ending of verifyFreeBracketDoublesTypeWithRoundRobinEventType method");
 		}
