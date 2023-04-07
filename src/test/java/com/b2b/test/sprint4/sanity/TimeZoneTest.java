@@ -10,7 +10,6 @@ import org.testng.annotations.Test;
 import com.b2b.common.WebDriversEnum;
 import com.dupr.pages.clubs.MyClubsPage;
 import com.dupr.pages.events.AddAnotherBracketPage;
-import com.dupr.pages.events.TimeZonePage;
 import com.dupr.test.CommonBaseTest;
 
 import io.qameta.allure.Description;
@@ -30,9 +29,9 @@ public class TimeZoneTest extends CommonBaseTest {
 	private static String RegEndDateTime = null;
 	private static String CompStartDateTime = null;
 	private static String CompEndDateTime = null;
-	private static String TimeZone = null;
-	private static String TimeZone2 = null;
 
+	private static String TimeZone2 = null;
+	private static String TimeZoneText1 = null;
 	private static String s1 = null;
 	private static String s2 = null;
 	private static String s3 = null;
@@ -95,12 +94,10 @@ public class TimeZoneTest extends CommonBaseTest {
 		addBracketPage.clickOnTimeZoneDropdown();
 		addBracketPage.hardWait(3);
 		addBracketPage.clickOnNewDelhiTimeZone();
-		try {
-		TimeZone = timeZonePage.getIndianTimeZoneText();
-		}catch(Exception e) {
-			TimeZone2 = timeZonePage.getTimeZoneKathmanduInEventDetails();
-		}
+	
+	    addBracketPage.hardWait(3);
 		
+	
 		logger.info("Ending of verifySelectRegistrationDateAndTime method");
 	}
 
@@ -111,8 +108,64 @@ public class TimeZoneTest extends CommonBaseTest {
 	public void verifyRegistrationCompetitionDateAndTimeInSummaryPage() {
 		logger.info("Starting of verifyRegistrationCompetitionDateAndTimeInSummaryPage method");
 
-		super.verifyAddBracketsFunctionalityWithValidDetails();
+		addBracketPage.clickOnMatchTypeDropdown();
+		Assert.assertTrue(addBracketPage.isMatchTypeListContains());
+		addBracketPage.selectDoublesMatchType();
+		Assert.assertTrue(addBracketPage.isSelectedMatchTypeDisplayed());
 
+		addBracketPage.clickOnPlayGroupDropdown();
+		Assert.assertTrue(addBracketPage.isPlayerGroupListDisplayed());
+		addBracketPage.selectMixedPlayerGroup();
+		Assert.assertTrue(addBracketPage.isSelectedPlayerGroupTypeDisplayed());
+
+		addBracketPage.setAgeRangeMinimum(testDataProp.getProperty("min.age.range"));
+		Assert.assertTrue(addBracketPage.isEnteredMinimumAgeDisplayed(testDataProp.getProperty("min.age.range")));
+
+		addBracketPage.setMaximumAgeRange(testDataProp.getProperty("max.age.range"));
+		Assert.assertTrue(addBracketPage.isEnteredMaximumAgeDisplayed(testDataProp.getProperty("max.age.range")));
+
+		addBracketPage.setMinimumRatingRange(testDataProp.getProperty("min.rating.range"));
+		Assert.assertTrue(
+				addBracketPage.isEnteredMinimumRatingRangeDisplayed(testDataProp.getProperty("min.rating.range")));
+
+		addBracketPage.setMaximumRatingRange(testDataProp.getProperty("max.rating.range"));
+		Assert.assertTrue(
+				addBracketPage.isEnteredMaximumRatingRangeDisplayed(testDataProp.getProperty("max.rating.range")));
+
+		Assert.assertTrue(addBracketPage.isAutoGenerateButtonEnabled());
+		addBracketPage.clickOnAutoGenerateButton();
+
+		addBracketPage.clickOnEventTypeDropdown();
+		Assert.assertTrue(addBracketPage.isEventTypeListContains());
+		addBracketPage.selectRoundRobinEvent();
+		Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
+
+		addBracketPage.setRegistrationStartDate();
+		addBracketPage.hardWait(3);
+
+		addBracketPage.setRegistrationEndDate();
+		addBracketPage.hardWait(3);
+
+		addBracketPage.setCompetitionStartDate();
+		addBracketPage.hardWait(3);
+
+		addBracketPage.setCompetitionEndDate();
+
+		addBracketPage.hardWait(3);
+		addBracketPage.clickOnTimeZoneDropdown();
+		addBracketPage.hardWait(7);
+		addBracketPage.clickOnNewDelhiTimeZone();
+
+	    addBracketPage.hardWait(3);
+	    TimeZoneText1 = timeZonePage.getTimeZoneInBracketText();
+		
+		addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("zero.value"));
+		addBracketPage.setBracketNonClubMemberPrice(testDataProp.getProperty("zero.value"));
+		addBracketPage.setNumberOfTeams(testDataProp.getProperty("number.of.courts"));
+		addBracketPage.setWaitlist(testDataProp.getProperty("wait.list"));
+		Assert.assertTrue(addBracketPage.isWaitListCountDisplayed(testDataProp.getProperty("wait.list")));
+
+		addEventPage.clickOnNextStepButton();
 		super.verifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
 
 		logger.info("Ending of verifyRegistrationCompetitionDateAndTimeInSummaryPage method");
@@ -154,16 +207,11 @@ public class TimeZoneTest extends CommonBaseTest {
 
 		Assert.assertEquals(CompEndDateTime, CompEndDateTimeInEventDetails);
 		timeZonePage.hardWait(4);
-		timeZonePage.getTimeZoneLabelInEventDetails();
-		try {
-		String TimeZoneInEventDetails = timeZonePage.getIndianTimeZoneInEventDetails();
-		Assert.assertEquals(TimeZone, TimeZoneInEventDetails);
-		}
-		catch(Exception e) {
-			String TimeZoneInEventDetails = timeZonePage.getTimeZoneKathmanduInEventDetails();
-			Assert.assertEquals(TimeZone2, TimeZoneInEventDetails);
-				
-		}
+		
+		String TimeZoneInEventDetails = timeZonePage.getTimeZoneLabelInEventDetails();
+	
+		Assert.assertEquals(TimeZoneText1, TimeZoneInEventDetails);
+
 		this.verifyPublishEventButton();
 
 		addEventPage.clickOnEventsTab();
@@ -416,7 +464,7 @@ public class TimeZoneTest extends CommonBaseTest {
 		addEventPage.clickonExitButton();
 
 		timeZonePage.clickOnMixedDoubleBracket();
-
+        addBracketPage.clickOnBackButton();
 		timeZonePage.clickOnEditBracketButton();
 
 		Assert.assertTrue(addBracketPage.isRegstartDateDisplayed());
