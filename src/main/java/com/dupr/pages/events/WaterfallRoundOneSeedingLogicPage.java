@@ -99,16 +99,19 @@ public class WaterfallRoundOneSeedingLogicPage extends DUPRBaseAutomationPage {
 					clickOnWebElement(btnAddParticipants);
 					this.hardWait(4);
 					for (int i = 0; i <= txtSinglesRating.size(); i++) {
+						this.hardWait(2);
 						if (txtSinglesRating.get(i).getText().equals("NR") && s < 7) {
 							txtSinglesRating.get(i).click();
 							s++;
 							break;
 						} else {
+							this.hardWait(2);
 							if (k < 7) {
 								if (txtSinglesRating.get(i).getText().equals("NR")) {
 
 									scrollIntoView(txtSinglesRating.get(i));
 								} else {
+									this.hardWait(2);
 									txtSinglesRating.get(i).click();
 									k++;
 									break;
@@ -173,7 +176,7 @@ public class WaterfallRoundOneSeedingLogicPage extends DUPRBaseAutomationPage {
 	public void selectHighToLowRadioButton() {
 		log.info("Starting of selectHighToLowRadioButton method");
 		
-		hardWait(2);
+		hardWait(3);
 		try {
 			clickUsingActionsClass(rdoHightToLow);
 		} catch (Exception e) {
