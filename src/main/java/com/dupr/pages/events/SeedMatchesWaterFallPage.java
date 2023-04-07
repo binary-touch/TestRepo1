@@ -421,6 +421,7 @@ public class SeedMatchesWaterFallPage extends DUPRBaseAutomationPage {
 		boolean isExitTheQueuebuttonDisplayed = false;
 
 		clickOnElementUsingActionClass(tabQueue);
+		this.hardWait(2);
 		try {
 			if (btnExitTheQueue.isDisplayed() == true) {
 
@@ -461,7 +462,7 @@ public class SeedMatchesWaterFallPage extends DUPRBaseAutomationPage {
 	}
 	public void clickOnHomeMenu() {
 		log.info("Starting of clickOnHomeMenu method");
-
+this.driver.navigate().back();
 		this.clickOnWebElement(mnuHome);
 
 		log.info("Ending of clickOnHomeMenu method");

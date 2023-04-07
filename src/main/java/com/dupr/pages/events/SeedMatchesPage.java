@@ -1061,9 +1061,14 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 		boolean isEditScoresPopUpContains = false;
 		try {
-			if (isDisplayed(txtEditScores) && isDisplayed(iconCloseOnEditScores) && isDisplayed(txtMatchDate)
-					&& isDisplayed(btnCalender) && isDisplayed(txt1stpointOfPlayerOne)
-					&& isDisplayed(txt1stpointOfPlayerTwo) && isDisplayed(txtWinnerTag) && isDisplayed(btnSubmit)) {
+			if (isDisplayed(txtEditScores) 
+					&& isDisplayed(iconCloseOnEditScores) 
+					&& isDisplayed(txtMatchDate)
+					&& isDisplayed(btnCalender) 
+					&& isDisplayed(txt1stpointOfPlayerOne)
+					&& isDisplayed(txt1stpointOfPlayerTwo) 
+					&& isDisplayed(txtWinnerTag) 
+					&& isDisplayed(btnSubmit)) {
 				isEditScoresPopUpContains = true;
 			}
 
@@ -1175,7 +1180,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 			this.hardWait(3);
 			clickOnWebElement(btnCalender);
 		} catch (Exception e) {
-			elementClick(btnCalender);
+			clickUsingActionsClass(btnCalender);
 		}
 
 		this.hardWait(2);
