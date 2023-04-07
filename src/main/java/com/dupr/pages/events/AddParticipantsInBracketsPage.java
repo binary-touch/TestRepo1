@@ -454,8 +454,13 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 				clickUsingActionsClass(rdoSelectParticipant);
 				this.hardWait(3);
 				clickUsingActionsClass(btnAddParticipant);
-				this.hardWait(4);
-				clickUsingActionsClass(rdoNo);
+				this.hardWait(5);
+				try {
+					clickUsingActionsClass(rdoNo);
+				} catch (Exception e) {
+					clickOnElement(rdoNo);
+				}
+				
 				this.hardWait(3);
 				clickUsingActionsClass(btnAdd);
 				this.hardWait(5);
