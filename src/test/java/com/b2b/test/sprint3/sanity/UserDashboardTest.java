@@ -23,6 +23,7 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
+
 @Epic(value = "DUPR App")
 @Feature(value = "UserDashboard Sanity")
 public class UserDashboardTest extends DUPRBaseAutomationTest {
@@ -112,7 +113,7 @@ public class UserDashboardTest extends DUPRBaseAutomationTest {
 		logger.info("Starting of verifyUserInstructionFunctionality method");
 
 		userDashboardPage.clickOnUserInstructionIcon();
-
+		userDashboardPage.hardWait(3);
 		Assert.assertTrue(userDashboardPage.isUserInstructionPopUpContains());
 		Assert.assertEquals(userDashboardPage.getInstructionPopUpTitle(),
 				expectedAssertionsProp.getProperty("user.instruction.title"));
@@ -130,6 +131,7 @@ public class UserDashboardTest extends DUPRBaseAutomationTest {
 		logger.info("Starting of verifyCloseIconFunctionalityOnProvisionalPopUp method");
 
 		userDashboardPage.clickOnCloseIcon();
+		userDashboardPage.hardWait(3);
 		Assert.assertFalse(userDashboardPage.isUserInstructionPopUpContains());
 
 		logger.info("Ending of verifyCloseIconFunctionalityOnProvisionalPopUp method");
@@ -146,6 +148,7 @@ public class UserDashboardTest extends DUPRBaseAutomationTest {
 		userDashboardPage.hardWait(2);
 		userDashboardPage.clickOnOkButton();
 
+		userDashboardPage.hardWait(3);
 		Assert.assertFalse(userDashboardPage.isUserInstructionPopUpContains());
 
 		logger.info("Ending of verifyOkFunctionalityOnProvisionalPopUp method");
@@ -177,6 +180,7 @@ public class UserDashboardTest extends DUPRBaseAutomationTest {
 		logger.info("Starting of verifyCloseFunctionalityOnResultsPopUp method");
 
 		userDashboardPage.clickOnCloseIcon();
+		userDashboardPage.hardWait(3);
 		Assert.assertFalse(userDashboardPage.isResultsInstructionPopUpContains());
 
 		logger.info("Ending of verifyCloseFunctionalityOnResultsPopUp method");
@@ -193,6 +197,7 @@ public class UserDashboardTest extends DUPRBaseAutomationTest {
 		userDashboardPage.hardWait(2);
 		userDashboardPage.clickOnOkButton();
 
+		userDashboardPage.hardWait(3);
 		Assert.assertFalse(userDashboardPage.isResultsInstructionPopUpContains());
 
 		logger.info("Ending of verifyOkFunctionalityOnResultsPopUp method");
@@ -225,6 +230,7 @@ public class UserDashboardTest extends DUPRBaseAutomationTest {
 		logger.info("Starting of verifyCloseFunctionalityOnperformancePopUp method");
 
 		userDashboardPage.clickOnCloseIcon();
+		userDashboardPage.hardWait(3);
 		Assert.assertFalse(userDashboardPage.isPerformanceInstructionPopUpContains());
 
 		logger.info("Ending of verifyCloseFunctionalityOnperformancePopUp method");
@@ -308,7 +314,7 @@ public class UserDashboardTest extends DUPRBaseAutomationTest {
 
 		logger.info("Ending of verifyMyEventsFunctionality method");
 	}
-	
+
 	@Test(priority = 17, description = "Verify my Brackets functionality", groups = "sanity")
 	@Description("Test case #17, Verify my Brackets functionality")
 	@Severity(SeverityLevel.NORMAL)
@@ -363,7 +369,7 @@ public class UserDashboardTest extends DUPRBaseAutomationTest {
 	public void verifyBrowseClubs() {
 		logger.info("Starting of verifyBrowseClubs method");
 		browseClubsPage.clickOnBrowseClubsTab();
-	Assert.assertTrue(browseClubsPage.isBrowseClubsPageContains());
+		Assert.assertTrue(browseClubsPage.isBrowseClubsPageContains());
 		logger.info("Ending of verifyBrowseClubs method");
 	}
 
