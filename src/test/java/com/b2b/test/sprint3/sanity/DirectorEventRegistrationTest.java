@@ -194,12 +194,9 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 	public void verifyRegisterFunctionalityInRegistrationClosedEvent() {
 		logger.info("Starting of verifyRegisterFunctionalityInRegistrationClosedEvent method");
 
-		super.verifyAddEventFunctionality();
-
-		super.verifyFreeBracketWithSinglesTypeAndRoundRobinEvent();
-
-		addEventPage.clickOnEventsTab();
-
+		addBracketPage.hardWait(3);
+		eventRegistrationPage.clickOnMyEventsButton();
+		addBracketPage.hardWait(5);
 		Assert.assertFalse(eventRegistrationPage.isRegisterButtonDisplayedForRegistrationClosedEventCard());
 
 		logger.info("Ending of verifyRegisterFunctionalityInRegistrationClosedEvent method");
@@ -216,79 +213,6 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 		addBracketPage.clickOnBackButton();
 		addBracketPage.hardWait(3);
 
-		addEventPage.clickOnAddEventButton();
-		super.verifyEventInformationPageWithValidDetails();
-		super.verifyEventPoliciesPageByEnteringValidDetails();
-
-		addBracketPage.clickOnMatchTypeDropdown();
-		Assert.assertTrue(addBracketPage.isMatchTypeListContains());
-		addBracketPage.selectSinglesMatchType();
-		Assert.assertTrue(addBracketPage.isSelectedMatchTypeDisplayed());
-
-		addBracketPage.clickOnPlayGroupDropdown();
-		Assert.assertTrue(addBracketPage.isPlayerGroupListDisplayed());
-		addBracketPage.selectOpenPlayerGroup();
-		Assert.assertTrue(addBracketPage.isSelectedPlayerGroupTypeDisplayed());
-
-		addBracketPage.setMinimumAgeRange(testDataProp.getProperty("min.age.range"));
-		Assert.assertTrue(addBracketPage.isEnteredMinimumAgeDisplayed(testDataProp.getProperty("min.age.range")));
-
-		addBracketPage.setMaximumAgeRange(testDataProp.getProperty("max.age.range"));
-		Assert.assertTrue(addBracketPage.isEnteredMaximumAgeDisplayed(testDataProp.getProperty("max.age.range")));
-
-		addBracketPage.setMinimumRatingRange(testDataProp.getProperty("min.rating.range"));
-		Assert.assertTrue(
-				addBracketPage.isEnteredMinimumRatingRangeDisplayed(testDataProp.getProperty("min.rating.range")));
-
-		addBracketPage.setMaximumRatingRange(testDataProp.getProperty("max.rating.range"));
-		Assert.assertTrue(
-				addBracketPage.isEnteredMaximumRatingRangeDisplayed(testDataProp.getProperty("max.rating.range")));
-
-		Assert.assertTrue(addBracketPage.isAutoGenerateButtonEnabled());
-		addBracketPage.clickOnAutoGenerateButton();
-
-		addBracketPage.hardWait(3);
-		addBracketPage.clickOnEventTypeDropdown();
-		Assert.assertTrue(addBracketPage.isEventTypeListContains());
-		addBracketPage.hardWait(3);
-		addBracketPage.selectRoundRobinEvent();
-		Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
-
-		addBracketPage.hardWait(2);
-
-		eventRegistrationPage.setRegistrationStartDate();
-
-		addBracketPage.hardWait(2);
-		eventRegistrationPage.setRegistrationEndDate();
-
-		addBracketPage.hardWait(2);
-		addBracketPage.setCompetitionStartDate();
-
-		addBracketPage.hardWait(2);
-		addBracketPage.setCompetitionEndDate();
-
-		addBracketPage.clickOnTimeZoneDropdown();
-		addBracketPage.hardWait(3);
-		addBracketPage.clickOnNewDelhiTimeZone();
-
-		bracketMember = addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("paid.value"));
-		bracketNonMember = addBracketPage.setBracketNonClubMemberPrice(testDataProp.getProperty("paid.value"));
-
-		addBracketPage.setNumberOfTeams(testDataProp.getProperty("min.rating.range"));
-		Assert.assertTrue(addBracketPage.isNumberOfTeamsCountDisplayed(testDataProp.getProperty("min.rating.range")));
-
-		addBracketPage.setWaitlist(testDataProp.getProperty("min.rating.range"));
-		Assert.assertTrue(addBracketPage.isWaitListCountDisplayed(testDataProp.getProperty("min.rating.range")));
-
-		addEventPage.clickOnNextStepButton();
-
-		super.verifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
-
-		super.verifyPublishEventButton();
-
-		addBracketPage.hardWait(3);
-		addEventPage.clickOnEventsTab();
-
 		Assert.assertFalse(eventRegistrationPage.isRegisterButtonDisplayedForUpcomingEventCard());
 
 		logger.info("Ending of verifyRegisterFunctionalityInUpcomingEvent method");
@@ -300,6 +224,9 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 	@Story("Test case #10, Verify Register Functionality In Ongoing Event")
 	public void verifyRegisterFunctionalityInOngoingEvent() {
 		logger.info("Starting of verifyRegisterFunctionalityInOngoingEvent method");
+
+		addBracketPage.hardWait(3);
+		addBracketPage.clickOnBackButton();
 
 		addBracketPage.hardWait(3);
 
@@ -316,6 +243,9 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 		logger.info("Starting of verifyRegisterFunctionalityInCompletedStatusEvent method");
 
 		addBracketPage.hardWait(3);
+		addBracketPage.clickOnBackButton();
+
+		addBracketPage.hardWait(3);
 		Assert.assertFalse(eventRegistrationPage.isRegisterButtonDisplayedForCompletedEventCard());
 
 		logger.info("Ending of verifyRegisterFunctionalityInCompletedStatusEvent method");
@@ -329,36 +259,43 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 		logger.info("Starting of verifyRegisterFunctionalityInOpenRegisteredPlayerEvent method");
 
 		addBracketPage.hardWait(3);
+		addBracketPage.clickOnBackButton();
+
+		addBracketPage.hardWait(3);
 		Assert.assertFalse(eventRegistrationPage.isRegisterButtonDisplayedForOpenEventCard());
 
 		logger.info("Ending of verifyRegisterFunctionalityInOpenRegisteredPlayerEvent method");
 	}
 
-	
-	  @Test(priority = 13, description ="Verify Register Functionality with Open Double Bracket", groups = "sanity")
-	  @Description("Test case #13, Verify Register Functionality with Open Double Bracket")
-	  @Severity(SeverityLevel.NORMAL)
-	  @Story("Test case #13, Verify Register Functionality with Open Double Bracket") 
-	  public void verifyRegisterFunctionalityWithOpenDoubleBracket() { 
-		  
-		  logger.info("Starting of verifyRegisterFunctionalityWithOpenDoubleBracket method");
-	  
-	  addBracketPage.hardWait(3); super.verifyAddEventFunctionality();
-	  super.verifyFreeBracketWithRoundRobinEventType();
-	  
-	  addEventPage.clickOnEventsTab();
-	  Assert.assertTrue(addEventPage.isRecentlyAddedEventDisplayed(eventName));
-	  
-	  this.verifyRegisterFunctionality();
-	  this.verifyEventRegistrationBackButtonFunctionality();
-	  this.verifySelectYourBracketCheckboxFunctionality();
-	  this.verifyLeaguePolicyCheckboxFunctionality();
-	  this.verifyRegisterFunctionalityInEventRegistrationPage();
-	  this.verifyRegisterFunctionalityInRegistrationClosedEvent();
-	  
-	  logger.info("Ending of verifyRegisterFunctionalityWithOpenDoubleBracket method"); }
-	  
-	 
+	@Test(priority = 13, description = "Verify Register Functionality with Open Double Bracket", groups = "sanity")
+	@Description("Test case #13, Verify Register Functionality with Open Double Bracket")
+	@Severity(SeverityLevel.NORMAL)
+	@Story("Test case #13, Verify Register Functionality with Open Double Bracket")
+	public void verifyRegisterFunctionalityWithOpenDoubleBracket() {
+
+		logger.info("Starting of verifyRegisterFunctionalityWithOpenDoubleBracket method");
+
+		addBracketPage.hardWait(3);
+		addBracketPage.clickOnBackButton();
+		addBracketPage.clickOnBackButton();
+		super.verifyAddEventFunctionality();
+
+		super.verifyFreeBracketWithRoundRobinEventType();
+
+		addEventPage.clickOnEventsTab();
+		Assert.assertTrue(addEventPage.isRecentlyAddedEventDisplayed(eventName));
+
+		this.verifyRegisterFunctionality();
+
+		this.verifyEventRegistrationBackButtonFunctionality();
+		this.verifySelectYourBracketCheckboxFunctionality();
+		this.verifyLeaguePolicyCheckboxFunctionality();
+		this.verifyRegisterFunctionalityInEventRegistrationPage();
+		this.verifyRegisterFunctionalityInRegistrationClosedEvent();
+
+		logger.info("Ending of verifyRegisterFunctionalityWithOpenDoubleBracket method");
+	}
+
 	@AfterClass
 	public void quitDriver() {
 
