@@ -284,7 +284,7 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 
 		addEventPage.clickOnEventsTab();
 		Assert.assertTrue(addEventPage.isRecentlyAddedEventDisplayed(eventName));
-
+		addEventPage.clickOnRecentlyAddedEvent(eventName);
 		this.verifyRegisterFunctionality();
 
 		this.verifyEventRegistrationBackButtonFunctionality();

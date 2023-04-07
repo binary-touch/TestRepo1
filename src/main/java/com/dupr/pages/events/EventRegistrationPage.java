@@ -520,6 +520,7 @@ public class EventRegistrationPage extends DUPRBaseAutomationPage {
 
 			} catch (Exception e) {
 				this.scrollDown(1000);
+				hardWait(5);
 			}
 
 		}
@@ -536,7 +537,7 @@ public class EventRegistrationPage extends DUPRBaseAutomationPage {
 		for (int i = 0; i < 4; i++) { 
 			
 			try {
-				scrollIntoView(driver.findElement(By.xpath("//span[text()='Completed']")));
+				//scrollIntoView(driver.findElement(By.xpath("//span[text()='Completed']")));
 				if (isDisplayed(lstCompletedEvents)) {
 					lstCompletedEvents.click();
 					this.hardWait(3);
@@ -551,6 +552,7 @@ public class EventRegistrationPage extends DUPRBaseAutomationPage {
 				}
 			} catch (Exception e) {
 				this.scrollDown(1000);
+				hardWait(5);
 			}
 		}
 
@@ -585,6 +587,7 @@ public class EventRegistrationPage extends DUPRBaseAutomationPage {
 				}
 			} catch (Exception e) {
 				this.scrollDown(1000);
+				hardWait(5);
 			}
 		}
 
@@ -721,6 +724,7 @@ public class EventRegistrationPage extends DUPRBaseAutomationPage {
 			} catch (Exception e) {
 				
 				this.scrollDown(1000);
+				hardWait(5);
 			}
 		}
 
@@ -736,7 +740,7 @@ public class EventRegistrationPage extends DUPRBaseAutomationPage {
 		for (int i = 0; i < 4; i++) {
 			try {
 				if (isDisplayed(lstOpenEvents)) {
-					clickOnElement(lstOpenEvents);
+					elementClick(lstOpenEvents);
 					this.hardWait(3);
 					try {
 						if (btnRegister.isDisplayed()) {
@@ -749,6 +753,7 @@ public class EventRegistrationPage extends DUPRBaseAutomationPage {
 				}
 			} catch (Exception e) {
 				this.scrollDown(1000);
+				hardWait(5);
 			}
 		}
 
