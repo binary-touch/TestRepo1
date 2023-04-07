@@ -63,11 +63,9 @@
 				name="com.b2b.test.sprint3.sanity.PlayerEventRegistrationTest" />
 			<class
 				name="com.b2b.test.sprint3.sanity.AcceptOrDeclinePartnerTest" />
-<<<<<<< HEAD
+
             <class name="com.b2b.test.sprint3.sanity.DirectorEventRegistrationTest" />
-=======
-           <class name="com.b2b.test.sprint3.sanity.DirectorEventRegistrationTest" />
->>>>>>> b6d63cc89f9c9a23fcd09b3e640e90289555b8d6
+
 			<class name="com.b2b.test.sprint3.sanity.WithdrawPlayerTest" />
 			<class
 				name="com.b2b.test.sprint3.sanity.Create_Edit_Split_TeamTest" />
@@ -99,12 +97,12 @@
 			<!--<class
 				name="com.b2b.test.sprint5.sanity.PaidEventAndPaidBracketWithWaterfallEventTest" />-->
 
-			 <class
-				name="com.b2b.test.sprint5.sanity.WaterfallRoundOneSeedingLogicTest" />
-			<!--<class
+			<!-- <class
+				name="com.b2b.test.sprint5.sanity.WaterfallRoundOneSeedingLogicTest" />-->
+			<class
 				name="com.b2b.test.sprint5.sanity.EditScoreAfterValidationTest" />
 			<class
-				name="com.b2b.test.sprint5.sanity.SeedMatchesWaterFallTest" />-->
+				name="com.b2b.test.sprint5.sanity.SeedMatchesWaterFallTest" />
 		</classes>
 	</test>
 
