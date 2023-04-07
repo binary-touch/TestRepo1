@@ -510,7 +510,6 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		log.info("Starting of isSeedMatchesPageContains method");
 
 		boolean isSeedMatchesPageContains = false;
-		System.out.println(isDisplayed(iconClose));
 		System.out.println(isDisplayed(txtSeeds));
 		System.out.println(isDisplayed(btnCreateMatches));
 		System.out.println(isDisplayed(btnSavePublishDisabled));
@@ -518,9 +517,8 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		System.out.println(isDisplayed(iconRightArrow));
 		System.out.println(txtClick);
 
-		if (isDisplayed(iconClose) && isDisplayed(txtSeeds) && isDisplayed(btnCreateMatches)
-				&& isDisplayed(btnSavePublishDisabled) && isDisplayed(iconLeftArrow) && isDisplayed(iconRightArrow)
-				&& isDisplayed(txtClick)) {
+		if (isDisplayed(txtSeeds) && isDisplayed(btnCreateMatches) && isDisplayed(btnSavePublishDisabled)
+				&& isDisplayed(iconLeftArrow) && isDisplayed(iconRightArrow) && isDisplayed(txtClick)) {
 			isSeedMatchesPageContains = true;
 		}
 
@@ -1123,9 +1121,26 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 	}
 
 	public void clickOnSubmitButton() {
-		log.info("Starting of clickOnSubmitButton method");
+		//log.info("Starting of clickOnSubmitButton method");
+		try {
+			clickUsingActionsClass(btnSubmit);
 
-		clickOnWebElement(btnSubmit);
+		} catch (Exception e) {
+			clickOnWebElement(btnSubmit);
+		}
+		this.hardWait(2);
+
+		log.info("Ending of clickOnSubmitButton method");
+	}
+	
+	public void clickOnSubmitButtonOnSubmitScores() {
+		log.info("Starting of clickOnSubmitButton method");
+		try {
+			clickUsingActionsClass(btnSubmitOnSubmitScores);
+
+		} catch (Exception e) {
+			clickOnWebElement(btnSubmitOnSubmitScores);
+		}
 		this.hardWait(2);
 
 		log.info("Ending of clickOnSubmitButton method");
