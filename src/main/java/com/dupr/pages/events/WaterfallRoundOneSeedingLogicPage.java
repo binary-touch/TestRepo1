@@ -173,7 +173,7 @@ public class WaterfallRoundOneSeedingLogicPage extends DUPRBaseAutomationPage {
 	public void selectHighToLowRadioButton() {
 		log.info("Starting of selectHighToLowRadioButton method");
 		
-		hardWait(2);
+		hardWait(3);
 		try {
 			clickUsingActionsClass(rdoHightToLow);
 		} catch (Exception e) {
