@@ -70,6 +70,9 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//div[text()='(GMT+05:30) Chennai, Kolkata, Mumbai, New Delhi']")
 	private WebElement txtIndianTimeZone;
 
+	@B2BFindBy(xpath = "//h3[text()='Time Zone']/parent::div//div[@aria-haspopup='listbox']")
+	private WebElement txtTimeZone;
+
 	@B2BFindBy(xpath = "//h4[text()='Time Zone']/following-sibling::p[text()='(GMT-06:00) Central America']")
 	private WebElement txtTimeZoneInEventDetails;
 
@@ -366,6 +369,14 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		return txtRegistrationEndDateTime.getText();
 	}
 
+	public String getTimeZoneInBracketText() {
+		log.info("Starting of getTimeZoneInBracketText method");
+		System.out.println(getText(txtTimeZone));
+		log.info("Ending of getTimeZoneInBracketText method");
+
+		return txtTimeZone.getText();
+	}
+
 	public String getRegEndDateInEventDetails() {
 		log.info("Starting of getRegEndDateInEventDetails method");
 		System.out.println(getText(txtRegEndDateInEventDetails));
@@ -416,7 +427,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 
 	public String getIndianTimeZoneText() {
 		log.info("Starting of getIndianTimeZoneText method");
-		 System.out.println(getText(txtIndianTimeZone));
+		// System.out.println(getText(txtIndianTimeZone));
 		log.info("Ending of getIndianTimeZoneText method");
 
 		return txtIndianTimeZone.getText();
@@ -425,6 +436,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 	public String getTimeZoneKathmanduInEventDetails() {
 		log.info("Starting of getTimeZoneKathmanduInEventDetails method");
 		//System.out.println(getText(txtkathmanduTimeZoneInEventDetails));
+		hardWait(5);
 		log.info("Ending of getTimeZoneKathmanduInEventDetails method");
 
 		return txtkathmanduTimeZoneInEventDetails.getText();
@@ -583,6 +595,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			elementClick(lblMixedDoubleBracketBracketCreated);
 		}
+		
 		log.info("Ending of clickOnMixedDoubleBracket method");
 
 	}

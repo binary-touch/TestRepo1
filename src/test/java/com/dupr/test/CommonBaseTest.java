@@ -519,7 +519,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 
 		addBracketPage.hardWait(3);
 		addBracketPage.clickOnTimeZoneDropdown();
-		addBracketPage.hardWait(5);
+		addBracketPage.hardWait(7);
 		addBracketPage.clickOnNewDelhiTimeZone();
 
 		addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("zero.value"));
