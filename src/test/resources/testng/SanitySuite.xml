@@ -39,7 +39,7 @@
 			<class
 				name="com.b2b.test.sprint2.sanity.ImportPlayerViaCSVTest" />
 			<class name="com.b2b.test.sprint2.sanity.AddClubMatchTest" />
-			
+
 			<class name="com.b2b.test.sprint2.sanity.AddEventTest" />
 			<class name="com.b2b.test.sprint2.sanity.BrowseEventsTest" />
 			<class name="com.b2b.test.sprint2.sanity.EditEventsTest" />
@@ -48,15 +48,8 @@
 	</test>
 
 	<test name="Sprint 3">
-<<<<<<< HEAD
-		<classes> 
+		<classes>
 			<class
-=======
-
-		<classes> 
-
-		<class
->>>>>>> b6d63cc89f9c9a23fcd09b3e640e90289555b8d6
 				name="com.b2b.test.sprint3.sanity.AddEditRemoveEventLogoTest" />
 			<class
 				name="com.b2b.test.sprint3.sanity.AddParticipantsInBracketTest" />
@@ -68,11 +61,10 @@
 				name="com.b2b.test.sprint3.sanity.PlayerEventRegistrationTest" />
 			<class
 				name="com.b2b.test.sprint3.sanity.AcceptOrDeclinePartnerTest" />
-<<<<<<< HEAD
-              <class name="com.b2b.test.sprint3.sanity.DirectorEventRegistrationTest" />
-=======
-           <class name="com.b2b.test.sprint3.sanity.DirectorEventRegistrationTest" />
->>>>>>> b6d63cc89f9c9a23fcd09b3e640e90289555b8d6
+
+			<class
+				name="com.b2b.test.sprint3.sanity.DirectorEventRegistrationTest" />
+
 			<class name="com.b2b.test.sprint3.sanity.WithdrawPlayerTest" />
 			<class
 				name="com.b2b.test.sprint3.sanity.Create_Edit_Split_TeamTest" />
@@ -86,17 +78,13 @@
 
 	<test name="Sprint 4">
 		<classes>
-			
-				 <class name="com.b2b.test.sprint4.sanity.ChatTest" />
+
+			<class name="com.b2b.test.sprint4.sanity.ChatTest" />
 			<class name="com.b2b.test.sprint4.sanity.ShareTest" />
 			<class
 				name="com.b2b.test.sprint4.sanity.CombinationOfMatchTypeAndPlayerGroupTest" />
 			<class name="com.b2b.test.sprint4.sanity.FullRegistrationTest" />
-<<<<<<< HEAD
 			<!-- <class name="com.b2b.test.sprint4.sanity.TimeZoneTest" /> -->
-=======
-			<!--<class name="com.b2b.test.sprint4.sanity.TimeZoneTest" />-->
->>>>>>> b6d63cc89f9c9a23fcd09b3e640e90289555b8d6
 			<class
 				name="com.b2b.test.sprint4.sanity.SeedMatchesRoundRobinTest" />
 		</classes>
@@ -104,15 +92,11 @@
 
 	<test name="Sprint 5">
 		<classes>
-<<<<<<< HEAD
-			 <class
-=======
-		<class
->>>>>>> b6d63cc89f9c9a23fcd09b3e640e90289555b8d6
+			<class
 				name="com.b2b.test.sprint5.sanity.PaidEventAndPaidBracketWithWaterfallEventTest" />
-			 <class
+			<class
 				name="com.b2b.test.sprint5.sanity.WaterfallRoundOneSeedingLogicTest" />
-			 <class
+			<class
 				name="com.b2b.test.sprint5.sanity.EditScoreAfterValidationTest" />
 			<class
 				name="com.b2b.test.sprint5.sanity.SeedMatchesWaterFallTest" />
