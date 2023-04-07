@@ -350,8 +350,8 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 			seedMatchesPage.hardWait(3);
 
 			seedMatchesPage.clickOnSubmitButton();
-			
-			seedMatchesPage.clickOnSubmitButton();
+			seedMatchesPage.hardWait(3);
+			seedMatchesPage.clickOnSubmitButtonOnSubmitScores();
 
 			logger.info("Ending of VerifySubmitFunctionality method");
 
@@ -431,7 +431,7 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 		@Story("Test case #31, Verify the results on click on Edit Score button")
 		public void verifyEditScoreFunctionality() {
 			logger.info("Starting of VerifyEditScoreFunctionality method");
-
+	
 			seedMatchesPage.clickOnMatchesTab();
 			seedMatchesPage.clickOnEditScoresButton();
 
@@ -620,7 +620,7 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 			  
 			  addEventPage.clickOnEventsTab(); 
 			  seedMatchesPage.hardWait(3);
-			  addEventPage.clickOnRecentlyAddedEvent(event); 
+			  addEventPage.clickOnRecentlyAddedEvent(eventName); 
 			  seedMatchesPage.hardWait(3);
 			 
 

@@ -303,10 +303,10 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//button[contains(text(),'Edit Bracket')]")
 	private WebElement btnEditBracket;
-	
+
 	@B2BFindBy(xpath = "//button[contains(text(),'Save Changes')]")
 	private WebElement btnSaveChanges;
-	
+
 	@B2BFindBy(xpath = "//h4[contains(text(),'Simba')]")
 	private WebElement btnSimbaClub;
 
@@ -464,7 +464,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 		log.info("Ending of clickOnForfeitButon method");
 	}
-	
+
 	public void clickOnSaveChangesButon() {
 		log.info("Starting of clickOnSaveChangesButon method");
 		try {
@@ -510,7 +510,6 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		log.info("Starting of isSeedMatchesPageContains method");
 
 		boolean isSeedMatchesPageContains = false;
-		System.out.println(isDisplayed(iconClose));
 		System.out.println(isDisplayed(txtSeeds));
 		System.out.println(isDisplayed(btnCreateMatches));
 		System.out.println(isDisplayed(btnSavePublishDisabled));
@@ -518,9 +517,8 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		System.out.println(isDisplayed(iconRightArrow));
 		System.out.println(txtClick);
 
-		if (isDisplayed(iconClose) && isDisplayed(txtSeeds) && isDisplayed(btnCreateMatches)
-				&& isDisplayed(btnSavePublishDisabled) && isDisplayed(iconLeftArrow) && isDisplayed(iconRightArrow)
-				&& isDisplayed(txtClick)) {
+		if (isDisplayed(txtSeeds) && isDisplayed(btnCreateMatches) && isDisplayed(btnSavePublishDisabled)
+				&& isDisplayed(iconLeftArrow) && isDisplayed(iconRightArrow) && isDisplayed(txtClick)) {
 			isSeedMatchesPageContains = true;
 		}
 
@@ -684,6 +682,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 		log.info("Ending of clickOnSimbaClub method");
 	}
+
 	public void clickOnCancelButton() {
 		log.info("Starting of clickOnCancelButton method");
 
@@ -896,7 +895,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 	public void clickOnEditBracketButton() {
 		log.info("Starting of clickOnEditBracketButton method");
-		
+
 		try {
 			elementClick(btnEditBracket);
 		} catch (Exception e) {
@@ -904,7 +903,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		}
 		this.hardWait(2);
 		this.scrollDown(400);
-		
+
 		log.info("Ending of clickOnEditBracketButton method");
 	}
 
@@ -982,24 +981,24 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 		return isMyMatchesPageContains;
 	}
-	
+
 	public boolean isRegisterButtonDisplayed() {
 		log.info("Starting of isRegisterButtonDisplayed method");
-		
+
 		boolean isRegisterButtonDisplayed = false;
 		try {
-			if(btnRegister.isDisplayed()==true) {
-				isRegisterButtonDisplayed=true;			
+			if (btnRegister.isDisplayed() == true) {
+				isRegisterButtonDisplayed = true;
 			}
 		} catch (Exception e) {
-			isRegisterButtonDisplayed=false;
+			isRegisterButtonDisplayed = false;
 		}
-		
+
 		log.info("Ending of isRegisterButtonDisplayed method");
-		
+
 		return isRegisterButtonDisplayed;
 	}
-	
+
 	public void registerEvent() {
 		log.info("Starting of registerEvent method");
 
@@ -1122,9 +1121,26 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 	}
 
 	public void clickOnSubmitButton() {
-		log.info("Starting of clickOnSubmitButton method");
+		//log.info("Starting of clickOnSubmitButton method");
+		try {
+			clickUsingActionsClass(btnSubmit);
 
-		clickOnWebElement(btnSubmit);
+		} catch (Exception e) {
+			clickOnWebElement(btnSubmit);
+		}
+		this.hardWait(2);
+
+		log.info("Ending of clickOnSubmitButton method");
+	}
+	
+	public void clickOnSubmitButtonOnSubmitScores() {
+		log.info("Starting of clickOnSubmitButton method");
+		try {
+			clickUsingActionsClass(btnSubmitOnSubmitScores);
+
+		} catch (Exception e) {
+			clickOnWebElement(btnSubmitOnSubmitScores);
+		}
 		this.hardWait(2);
 
 		log.info("Ending of clickOnSubmitButton method");
@@ -1797,7 +1813,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 			clickOnWebElement(driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']")));
 		}
 
-			this.selectFutureHour();
+		this.selectFutureHour();
 
 		log.info("Ending of setCompetitionStartDate method");
 

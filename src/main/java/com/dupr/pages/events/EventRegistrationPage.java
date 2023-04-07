@@ -20,6 +20,9 @@ public class EventRegistrationPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h3[text()='Event']")
 	private WebElement lblEvent;
 
+	@B2BFindBy(xpath = "//h4[text()='My Events']")
+	private WebElement lblEvents;
+
 	@B2BFindBy(xpath = "//h3[text()='Registration Date']/following-sibling::div//h5[text()='Start Date & Time']/parent::div/following-sibling::div//input")
 	private WebElement txtBoxRegistrationStartDate;
 
@@ -119,8 +122,11 @@ public class EventRegistrationPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//span[text()='Completed']/parent::div/parent::div/parent::div/following-sibling::div//h4")
 	private WebElement lstCompletedEvents;
 
-	@B2BFindBys(@B2BFindBy(xpath = "//span[text()='Registration closed']/parent::div/parent::div/parent::div/following-sibling::div//h4"))
-	private List<WebElement> lstRegistrationCompleted;
+	@B2BFindBy(xpath = "//span[text()='Registration closed']/parent::div/parent::div/parent::div/following-sibling::div//h4")
+	private WebElement lstRegistrationCompleted;
+
+	@B2BFindBy(xpath = "//span[text()='Registration closed']/parent::div/parent::div/parent::div/following-sibling::div//h4")
+	private WebElement lblRegistrationClosed;
 
 	@B2BFindBy(xpath = "//span[text()='Upcoming']/parent::div/parent::div/parent::div/following-sibling::div//h4")
 	private WebElement lstUpComingEvents;
@@ -327,6 +333,14 @@ public class EventRegistrationPage extends DUPRBaseAutomationPage {
 
 		log.info("Ending of clickonRegisterButton method");
 	}
+	
+	public void clickOnMyEventsButton() {
+		log.info("Starting of clickOnMyEventsButton method");
+
+		elementClick(lblEvents);
+
+		log.info("Ending of clickOnMyEventsButton method");
+	}
 
 	public boolean isRegisterButtonDisplayed() {
 		log.info("Starting of isRegisterButtonDisplayed method");
@@ -490,8 +504,8 @@ public class EventRegistrationPage extends DUPRBaseAutomationPage {
 		boolean isRegisterButtonDisplayedForOnGoingEventCard = true;
 		for (int i = 0; i < 4; i++) {
 			try {
-				if (isDisplayed(lstOngoingEvents)) {
-					clickOnElement(lstOngoingEvents);
+				if (lstOngoingEvents.isDisplayed()==true) {
+					elementClick(lstOngoingEvents);
 					this.hardWait(3);
 					try {
 						if (btnRegister.isDisplayed()) {
@@ -519,10 +533,12 @@ public class EventRegistrationPage extends DUPRBaseAutomationPage {
 		log.info("Starting of isRegisterButtonDisplayedForCompletedEventCard method");
 
 		boolean isRegisterButtonDisplayedForCompletedEventCard = true;
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < 4; i++) { 
+			
 			try {
+				scrollIntoView(driver.findElement(By.xpath("//span[text()='Completed']")));
 				if (isDisplayed(lstCompletedEvents)) {
-					clickOnElement(lstCompletedEvents);
+					lstCompletedEvents.click();
 					this.hardWait(3);
 					try {
 						if (btnRegister.isDisplayed()) {
@@ -549,14 +565,14 @@ public class EventRegistrationPage extends DUPRBaseAutomationPage {
 		boolean isRegisterButtonDisplayedForRegistrationClosedEventCard = true;
 		for (int i = 0; i < 4; i++) {
 			try {
-				scrollIntoView(driver.findElement(By.xpath("//span[text()='Registration closed']")));
-				if (isDisplayed(lstRegistrationCompleted.get(i))) {
+				
+				if(lblRegistrationClosed.isDisplayed()==true);{
 					try {
-						clickUsingActionsClass(lstRegistrationCompleted.get(i));
+						elementClick(lstRegistrationCompleted);
 					} catch (Exception e) {
-						clickOnElement(lstRegistrationCompleted.get(i));
+						clickUsingActionsClass(lstRegistrationCompleted);
 					}
-
+					
 					this.hardWait(3);
 					try {
 						if (btnRegister.isDisplayed()) {
@@ -690,19 +706,20 @@ public class EventRegistrationPage extends DUPRBaseAutomationPage {
 		boolean isRegisterButtonDisplayedForUpcomingEventCard = true;
 		for (int i = 0; i < 4; i++) {
 			try {
-				if (isDisplayed(lstUpComingEvents)) {
-					clickOnElement(lstUpComingEvents);
+				if (lstUpComingEvents.isDisplayed()==true) {
+					elementClick(lstUpComingEvents);
 					this.hardWait(3);
 					try {
 						if (btnRegister.isDisplayed()) {
 							isRegisterButtonDisplayedForUpcomingEventCard = true;
 						}
 					} catch (Exception e) {
+						isRegisterButtonDisplayedForUpcomingEventCard = false;
 						break;
 					}
 				}
 			} catch (Exception e) {
-				isRegisterButtonDisplayedForUpcomingEventCard = false;
+				
 				this.scrollDown(1000);
 			}
 		}
@@ -726,6 +743,7 @@ public class EventRegistrationPage extends DUPRBaseAutomationPage {
 							isRegisterButtonDisplayedForOpenEventCard = true;
 						}
 					} catch (Exception e) {
+						isRegisterButtonDisplayedForOpenEventCard = false;
 						break;
 					}
 				}
