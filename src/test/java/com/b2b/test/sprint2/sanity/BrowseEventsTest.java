@@ -99,24 +99,24 @@ public class BrowseEventsTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyCompleteFunctionality method");
 	}
 
-	@Test(priority = 5, description = "Verify complete filter functionality", groups = "sanity")
-	@Description("Test case #5, Verify complete filter  functionality")
+	@Test(priority = 5, description = "Verify complete & open filter functionality", groups = "sanity")
+	@Description("Test case #5, Verify complete & open filter functionality")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #5, Verify complete filter  functionality")
-	public void verifyCompletAndOpenFilterFunctionality() {
-		logger.info("Starting of verifyCompletAndOpenFilterFunctionality method");
+	@Story("Test case #5, Verify complete & open filter functionality")
+	public void verifyCompleteAndOpenFilterFunctionality() {
+		logger.info("Starting of verifyCompleteAndOpenFilterFunctionality method");
 
 		browseEventsPage.hardWait(3);
 		browseEventsPage.clickOnOpen();
 		Assert.assertTrue(browseEventsPage.getCompleteOpenEventsText());
 
-		logger.info("Ending of verifyCompletAndOpenFilterFunctionality method");
+		logger.info("Ending of verifyCompleteAndOpenFilterFunctionality method");
 	}
 
 	@Test(priority = 6, description = "Verify open filter functionality", groups = "sanity")
-	@Description("Test case #6, Verify open filter  functionality")
+	@Description("Test case #6, Verify open filter functionality")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #6, Verify open filter  functionality")
+	@Story("Test case #6, Verify open filter functionality")
 	public void verifyOpenFilterFunctionality() {
 		logger.info("Starting of verifyOpenFilterFunctionality method");
 

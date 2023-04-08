@@ -72,12 +72,17 @@ public class DUPRClaimAccountSignUpTest extends DUPRBaseAutomationTest {
 		searchPlayerName = duprSignUpPage.clickOnClaimAccountButton();
 
 		Assert.assertFalse(duprSignUpPage.isFinishButtonEnabled());
-
+        this.hardWait(6);
 		String playerDetailsValidationText = this.duprSignUpPage.getPlayerDetailsText();
 		Assert.assertEquals(playerDetailsValidationText, expectedAssertionsProp.getProperty("player.details.label"));
 		Assert.assertTrue(duprSignUpPage.isSignUpPageContains());
 
 		logger.info("Ending of verifyClaimAccountButtonFunctionality method");
+	}
+
+	private void hardWait(int i) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Test(priority = 3, description = "Verify Claim your account functionality with valid details")

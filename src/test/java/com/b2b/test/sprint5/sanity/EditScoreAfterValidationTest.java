@@ -130,7 +130,8 @@ public class EditScoreAfterValidationTest extends CommonBaseTest {
 
 		seedMatchesPage.clickOnSubmitButton();
 		seedMatchesPage.hardWait(3);
-
+		seedMatchesPage.clickOnSubmitButtonOnSubmitScores();
+		
 		logger.info("Ending of verifyAddScoreFunctionality method");
 	}
 
@@ -140,9 +141,10 @@ public class EditScoreAfterValidationTest extends CommonBaseTest {
 	@Story("Test case #4, Verify The Presence of Edit and Forfeit buttons in my matches page")
 	public void verifyThePresenceOfEditAndForfeitButtons() {
 		logger.info("Starting of verifyThePresenceOfEditAndForfeitButtons method");
-
+		
+		seedMatchesPage.hardWait(3);
 		seedMatchesPage.clickOnMatchesTab();
-		seedMatchesPage.hardWait(2);
+		seedMatchesPage.hardWait(4);
 
 		Assert.assertTrue(editScoreAfterValidationPage.isEditButtonDisplayed());
 		Assert.assertTrue(editScoreAfterValidationPage.isForfeitButtonDisplayed());

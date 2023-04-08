@@ -21,6 +21,7 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
+
 @Epic(value = "Events")
 @Feature(value = "Add Edit Remove Event Logo Sanity")
 public class AddEditRemoveEventLogoTest extends DUPRBaseAutomationTest {
@@ -49,8 +50,8 @@ public class AddEditRemoveEventLogoTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of initMethod in AddEditRemoveEventLogoTest");
 	}
 
-	@Test(priority = 1, description = "Verify Add Event  logo  functionality", groups = "sanity")
-	@Description("Test case #1, Verify Add event  logo  functionality")
+	@Test(priority = 1, description = "Verify Add Event logo functionality", groups = "sanity")
+	@Description("Test case #1, Verify Add event logo functionality")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #1, Verify Add event logo functionality")
 	public void verifyAddEventLogoFunctionality() {
@@ -88,11 +89,11 @@ public class AddEditRemoveEventLogoTest extends DUPRBaseAutomationTest {
 						.uploadProfilePicture(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("club.logo.path"));
 			}
 		} catch (Exception e) {
-			clubLogoPage.hardWait(1);
+			clubLogoPage.hardWait(3);
 			clubLogoPage.clickOnRemoveLogoOption();
 			profilePicturePage.clickOnYesButton();
 			clubLogoPage.hardWait(3);
-			profilePicturePage.clickOnCameraIcon();
+			profilePicturePage.clickOnCameraIcon();clubLogoPage.hardWait(3);
 			clubLogoPage.uploadProfilePicture(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("club.logo.path"));
 		}
 
@@ -105,13 +106,14 @@ public class AddEditRemoveEventLogoTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyChooseEventLogoFunctionality method");
 	}
 
-	@Test(priority = 3, description = "Verify Change  logo functionality", groups = "sanity")
-	@Description("Test case #3, Verify Change  logo functionality")
+	@Test(priority = 3, description = "Verify Change logo functionality", groups = "sanity")
+	@Description("Test case #3, Verify Change logo functionality")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #3, Verify Change  logo functionality")
+	@Story("Test case #3, Verify Change logo functionality")
 	public void verifyEditEventLogoFunctionality() {
 		logger.info("Starting of verifyEditEventLogoFunctionality method");
 
+		profilePicturePage.hardWait(3);
 		profilePicturePage.clickOnCameraIcon();
 
 		Assert.assertTrue(clubLogoPage.isChangeLogoDisplayed());
@@ -143,42 +145,10 @@ public class AddEditRemoveEventLogoTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyResultsOnClickOfChangeLogo method");
 	}
 
-	//@Test(priority = 5, description = "Verify results on click of Cancel Button in Club  logo popup", groups = "sanity")
-	@Description("Test case #5, Verify results on click of Cancel Button in Club  logo popup")
+	@Test(priority = 5, description = "Verify the state of save button", groups = "sanity")
+	@Description("Test case #5, Verify the state of save button")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #5, Verify results on click of Cancel Button in Club  logo popup")
-	public void verifyCancelClubLogoPopupFunctionality() {
-		logger.info("Starting of verifyCancelClubLogoPopupFunctionality method");
-
-		profilePicturePage.hardWait(3);
-		profilePicturePage.clickOnCameraIcon();
-		clubLogoPage.clickOnChangeLogoOption();
-
-		profilePicturePage.clickOnCancelButton();
-
-		logger.info("Ending of verifyCancelClubLogoPopupFunctionality method");
-	}
-
-	//@Test(priority = 6, description = "Verify results on click of Close Icon in event logo popup", groups = "sanity")
-	@Description("Test case #6, Verify results on click of Close Icon in event logo popup")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #6, Verify results on click of Close Icon in event  logo popup")
-	public void verifyCloseIconInEventLogoPopUp() {
-		logger.info("Starting of verifyCloseIconInEventLogoPopUp method");
-
-		profilePicturePage.hardWait(3);
-		profilePicturePage.clickOnCameraIcon();
-		clubLogoPage.clickOnChangeLogoOption();
-
-		profilePicturePage.clickOnCloseIconOnEventLogo();
-
-		logger.info("Ending of verifyCloseIconInEventLogoPopUp method");
-	}
-
-	@Test(priority = 7, description = "Verify the state of save button", groups = "sanity")
-	@Description("Test case #9, Verify the state of save button")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #9, Verify the state of save button")
+	@Story("Test case #5, Verify the state of save button")
 	public void verifySaveButtonState() {
 		logger.info("Starting of verifySaveButtonState method");
 
@@ -194,45 +164,10 @@ public class AddEditRemoveEventLogoTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifySaveButtonState method");
 	}
 
-	//@Test(priority = 8, description = "Verify results on click of 'No' Button in Remove Logo popup", groups = "sanity")
-	@Description("Test case #7, Verify results on click of 'No' Button in Remove Logo popup")
+	@Test(priority = 6, description = "Verify remove logo functionality", groups = "sanity")
+	@Description("Test case #6, Verify remove logo functionality")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #7, Verify results on click of 'No' Button in Remove Logo popup")
-	public void verifyNoButtonFunctionality() {
-		logger.info("Starting of verifyNoButtonFunctionality method");
-
-		clubLogoPage.hardWait(4);
-		profilePicturePage.clickOnCameraIcon();
-		clubLogoPage.implicitWait();
-		clubLogoPage.hardWait(2);
-		clubLogoPage.clickOnRemoveLogoOption();
-		clubLogoPage.hardWait(2);
-		profilePicturePage.clickOnNoButton();
-
-		logger.info("Ending of verifyNoButtonFunctionality method");
-	}
-
-	//@Test(priority = 9, description = "Verify Close Icon Button functionality in Remove logo popup", groups = "sanity")
-	@Description("Test case #8, Verify Close Icon Button functionality in Remove logo popup")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #8, Verify Close Icon Button functionality in Remove logo popup")
-	public void verifyCloseIconButtonInRemoveLogoPopup() {
-		logger.info("Starting of verifyCloseIconButtonInRemoveLogoPopup method");
-
-		profilePicturePage.hardWait(3);
-		profilePicturePage.clickOnCameraIcon();
-		clubLogoPage.hardWait(2);
-		clubLogoPage.clickOnRemoveLogoOption();
-		clubLogoPage.hardWait(2);
-		profilePicturePage.iconCloseOnRemoveLogo();
-
-		logger.info("Ending of verifyCloseIconButtonInRemoveLogoPopup method");
-	}
-
-	@Test(priority = 10, description = "Verify remove logo functionality", groups = "sanity")
-	@Description("Test case #9, Verify remove logo functionality")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #9, Verify remove logo functionality")
+	@Story("Test case #6, Verify remove logo functionality")
 	public void verifyRemoveLogo() {
 		logger.info("Starting of verifyRemoveLogo method");
 

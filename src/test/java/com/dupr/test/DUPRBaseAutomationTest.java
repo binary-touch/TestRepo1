@@ -30,6 +30,7 @@ public abstract class DUPRBaseAutomationTest extends B2BBaseAutomationTest {
 	public void initAutomation(String siteURL, String language, String browser, boolean headless) {
 		this.loadProjectConfigFiles();
 		this.initTestAutomation(siteURL, language, browser, headless, false);
+		
 		log.debug("Site URL :{} " + loginURL);
 		 this.loginPage = new DUPRLoginPage(driver);
 	}
