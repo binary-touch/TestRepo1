@@ -1374,7 +1374,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 			System.out.println("*** Clicked on Hour ***");
 		}
 
-		clickOnElementUsingActionClass(btnTimeInMinutes);
+		clickOnElementUsingActionClass(btnDefaultTimeInMinutes);
 		System.out.println("*** Clicked on Minutes ***");
 		
 		try {
