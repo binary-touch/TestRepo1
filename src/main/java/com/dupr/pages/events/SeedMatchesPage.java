@@ -489,7 +489,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		this.hardWait(3);
 
 		try {
-			this.scrollDown(-100);
+			this.scrollDown(-300);
 			clickUsingActionsClass(btnSeedMatches);
 		} catch (Exception e) {
 			clickOnWebElement(btnSeedMatches);
