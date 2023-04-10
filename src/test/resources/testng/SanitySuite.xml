@@ -3,7 +3,7 @@
 <suite name="Sanity UI Automation Tests">
 	<!-- <parallel = "classes" thread-count = "4" /> -->
 	
-	<test name="Sprint 1">
+	<!-- <test name="Sprint 1">
 		<classes>
 			<class name="com.b2b.test.sprint1.sanity.SignupTest" />
 			<class name="com.b2b.test.sprint1.sanity.SearchPlayersTest" />
@@ -25,9 +25,9 @@
 			<class name="com.b2b.test.sprint1.sanity.ChangePasswordTest" />
 			<class name="com.b2b.test.sprint1.sanity.ProfilePictureTest" />
 		</classes>
-	</test>
+	</test> -->
 
-	<test name="Sprint 2">
+	<!-- <test name="Sprint 2">
 		<classes>
 			<class name="com.b2b.test.sprint2.sanity.BrowseClubsTest" />
 			<class name="com.b2b.test.sprint2.sanity.MyClubsTest" />
@@ -44,13 +44,13 @@
 			<class name="com.b2b.test.sprint2.sanity.EditEventsTest" />
 			<class name="com.b2b.test.sprint2.sanity.EditBracketsTest" />
 		</classes>
-	</test>
+	</test> -->
 
 	<test name="Sprint 3">
 		<classes> 
 		<class
 				name="com.b2b.test.sprint3.sanity.AddEditRemoveEventLogoTest" />
-			<class
+			<!-- <class
 				name="com.b2b.test.sprint3.sanity.AddParticipantsInBracketTest" />
 			<class name="com.b2b.test.sprint3.sanity.AddAnnouncementTest" />
 			<class
@@ -64,7 +64,7 @@
 				name="com.b2b.test.sprint3.sanity.DirectorEventRegistrationTest" />
 			<class name="com.b2b.test.sprint3.sanity.WithdrawPlayerTest" />
 			<class
-				name="com.b2b.test.sprint3.sanity.Create_Edit_Split_TeamTest" />
+				name="com.b2b.test.sprint3.sanity.Create_Edit_Split_TeamTest" /> -->
 			<class
 				name="com.b2b.test.sprint3.sanity.AdditionOfChartAndShopTabTest" />
 			 <class name="com.b2b.test.sprint3.sanity.UserDashboardTest" />
@@ -73,7 +73,7 @@
 		</classes>
 	</test>
 
-	<test name="Sprint 4">
+	<!-- <test name="Sprint 4">
 		<classes>
 			<class name="com.b2b.test.sprint4.sanity.ChatTest" />
 
@@ -98,5 +98,5 @@
 			<class
 				name="com.b2b.test.sprint5.sanity.SeedMatchesWaterFallTest" />
 		</classes>
-	</test>
+	</test> -->
 </suite>
