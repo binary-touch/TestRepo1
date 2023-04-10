@@ -462,7 +462,7 @@ public class SeedMatchesWaterFallPage extends DUPRBaseAutomationPage {
 	}
 	public void clickOnHomeMenu() {
 		log.info("Starting of clickOnHomeMenu method");
-       
+		
 		this.clickOnWebElement(mnuHome);
 
 		log.info("Ending of clickOnHomeMenu method");

@@ -422,6 +422,7 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		seedMatchesPage.hardWait(3);
 		seedMatchesPage.clickOnSubmitButton();
 		seedMatchesPage.hardWait(3);
+		seedMatchesPage.clickOnSubmitScoresButton();
 
 		Assert.assertFalse(seedMatchesPage.isEditScoresPopUpContains());
 
@@ -766,6 +767,8 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 	public void verifyCreatingWaterFallEventAsSingles() {
 		logger.info("Starting of verifyCreatingWaterFallEventAsSingles method");
 
+		seedMatchesPage.hardWait(3);
+		seedMatchesWaterFallPage.navigateBack();
 		seedMatchesPage.hardWait(3);
 		seedMatchesWaterFallPage.clickOnHomeMenu();
 		seedMatchesPage.hardWait(3);
