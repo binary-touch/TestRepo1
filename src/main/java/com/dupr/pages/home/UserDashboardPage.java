@@ -572,12 +572,12 @@ public class UserDashboardPage extends DUPRBaseAutomationPage {
 		log.info("Starting of isHomePageMenuSecContains method");
 
 		boolean isHomePageMenuSecContains = false;
-		
+
 		this.hardWait(3);
 
 		if (isDisplayed(mnuDashboard) && isDisplayed(mnuSearchPlayers) && isDisplayed(mnuRanking)
-				&& isDisplayed(mnuShop) && isDisplayed(mnuHowItWorks)
-				&& isDisplayed(txtRunEvents) && isDisplayed(lblNews) && isDisplayed(btnSettingsHome)) {
+				&& isDisplayed(mnuShop) && isDisplayed(mnuHowItWorks) && isDisplayed(txtRunEvents)
+				&& isDisplayed(lblNews) && isDisplayed(btnSettingsHome)) {
 
 			isHomePageMenuSecContains = true;
 		}
@@ -807,10 +807,13 @@ public class UserDashboardPage extends DUPRBaseAutomationPage {
 		log.info("Starting of clickOnResultsInstructionIcon method");
 
 		try {
-			clickOnWebElement(iconResultsInstruction);
+			clickUsingActionsClass(iconResultsInstruction);
 		} catch (Exception e) {
-			Actions action = new Actions(driver);
-			action.moveToElement(iconResultsInstruction).click().build().perform();
+			/*
+			 * Actions action = new Actions(driver);
+			 * action.moveToElement(iconResultsInstruction).click().build().perform();
+			 */
+			clickOnWebElement(iconResultsInstruction);
 		}
 
 		log.info("Ending of clickOnResultsInstructionIcon method");
@@ -837,10 +840,13 @@ public class UserDashboardPage extends DUPRBaseAutomationPage {
 		this.scrollDown(150);
 
 		try {
-			clickOnWebElement(iconPerformanceInstruction);
+			clickUsingActionsClass(iconPerformanceInstruction);
 		} catch (Exception e) {
-			Actions action = new Actions(driver);
-			action.moveToElement(iconPerformanceInstruction).click().build().perform();
+			/*
+			 * Actions action = new Actions(driver);
+			 * action.moveToElement(iconPerformanceInstruction).click().build().perform();
+			 */
+			clickOnWebElement(iconPerformanceInstruction);
 		}
 
 		log.info("Ending of clickOnPerformanceInstructionIcon method");
@@ -862,7 +868,7 @@ public class UserDashboardPage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			clickOnElementUsingActionClass(iconShare);
 		}
-		
+
 		this.hardWait(2);
 
 		log.info("Ending of clickOnSettings method");
@@ -891,9 +897,9 @@ public class UserDashboardPage extends DUPRBaseAutomationPage {
 			clickUsingActionsClass(mnuOpenSettings);
 		} catch (Exception e) {
 			clickOnWebElement(mnuOpenSettings);
-	        hardWait(2);
+			hardWait(2);
 		}
-        
+
 		log.info("Ending of clickOnOpenSettingsMenu method");
 	}
 }

@@ -36,6 +36,8 @@ public class AddEditRemoveEventLogoPage extends DUPRBaseAutomationPage {
 	private WebElement btnSaveInDisabled;
 
 	@B2BFindBy(xpath = "//h2[@id='customized-dialog-title']/h4[text()='Event Logo']")
+	// @B2BFindBy(xpath = "//span/div[contains(@class,'MuiAvatar-root
+	// MuiAvatar-circular')]/img")
 	private WebElement lblEventLogo;
 
 	@B2BFindBy(xpath = "//button[@aria-label='close']")
@@ -92,7 +94,7 @@ public class AddEditRemoveEventLogoPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//p[text()='Select an image to upload']")
 	private WebElement lblSelectAnImageToUpload;
 
-	@B2BFindBy(xpath = "(//h4[contains(@class,'MuiTypography-root MuiTypography-h4')])")
+	@B2BFindBy(xpath = "//h5[contains(text(),'My Events')]/parent::div/parent::div//following-sibling::div//h4[contains(@class,'MuiTypography-root MuiTypography-h4')]")
 	private List<WebElement> lblEvent;
 
 	@B2BFindBy(xpath = "//*[contains(@class,'MuiSvgIcon-root MuiSvgIcon-colorPrimary MuiSvgIcon-fontSizeMedium')]")
@@ -115,20 +117,30 @@ public class AddEditRemoveEventLogoPage extends DUPRBaseAutomationPage {
 		log.info("Starting of clickOnEventLabel method");
 
 		for (int i = 1; i < lblEvent.size(); i++) {
-			this.hardWait(2);
-			driver.findElement(
-					By.xpath((("(//h4[contains(@class,'MuiTypography-root MuiTypography-h4')])[" + i + "]")))).click();
-
 			this.hardWait(3);
+
+			try {
+				clickUsingActionsClass(driver.findElement(
+						By.xpath((("(//h4[contains(text(), 'pickleball') and contains(@class,'MuiTypography-root MuiTypography-h4')])[" + i + "]")))));
+				this.hardWait(3);
+			} catch (Exception e) {
+				driver.findElement(
+						By.xpath((("(//h4[contains(text(), 'pickleball') and contains(@class,'MuiTypography-root MuiTypography-h4')])[" + i + "]"))))
+						.click();
+				this.hardWait(3);
+			}
+
+			this.hardWait(4);
+			System.out.println("***Event page is displayed ***");
 			try {
 				if ((isDisplayed(iconCamera) == true)) {
 					clickOnElement(iconCamera);
 					break;
 				}
 			} catch (Exception e) {
+				this.hardWait(2);
 				clickOnElement(btnBack);
 			}
-
 		}
 
 		log.info("Ending of clickOnEventLabel method");

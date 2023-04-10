@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 import com.b2b.support.B2BFindBy;
 import com.b2b.support.B2BPageFactory;
@@ -208,6 +209,19 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//div[contains(@class,'MuiPickersFadeTransitionGroup-root')]//div[contains(@class,'MuiPickersCalendarHeader-label')]")
 	private WebElement lblMonth;
 
+	@B2BFindBy(xpath = "//span[text()='Completed']/parent::div/following-sibling::button")
+	private WebElement btnDeleteBracket;
+
+	@B2BFindBy(xpath = "//button[text()='Confirm']")
+	private WebElement btnConfirm;
+
+	@B2BFindBy(xpath = "//button[text()='Ok']")
+	private WebElement btnOk;
+	
+	@B2BFindBy(xpath = "(//div/span[text()='Completed'])[1]")
+	private WebElement lblCompleted;
+	
+	//button[text()='Switch Bracket']
 	public TimeZonePage(WebDriver driver) {
 		super(driver);
 		B2BPageFactory.initElements(driver, this);
@@ -602,9 +616,9 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 
 	public void clickOnEditBracketButton() {
 		log.info("Starting of clickOnEditBracketButton method");
-      ;
+      
 		try {
-			 this.waitForElementToBeVisible(btnEditBracket);
+			this.waitForElementToBeVisible(btnEditBracket);
 			btnEditBracket.click();
 		} catch (Exception e) {
 			driver.navigate().refresh();
@@ -1334,7 +1348,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 			log.info("*** OK Button Haven't displayed***");
 		}
 
-		log.info("Ending of setCompetitionCurrentEndDateï¿½method");
+		log.info("Ending of setCompetitionCurrentEndDate method");
 	}
 
 	public void setCompetitionCurrentDate() {
@@ -1343,41 +1357,39 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		clickOnWebElement(txtBoxCompetitionStartDate);
 
 		int date = this.getCurrentDate();
-		Month monthValue = this.getCurrentMonth();
-		String mValue = monthValue.toString();
-		System.out.println(mValue);
-
-		String lblmonth = lblMonth.getText();
-		String pNewTabValue = String.valueOf(lblmonth.split(" ")[0]).toUpperCase().trim();
-		log.debug("Text is " + pNewTabValue);
-
-		try {
-			if ((mValue).equals(pNewTabValue)) {
-				this.clickOnCurrentDate(date);
-			} else {
-				clickUsingActionsClass(driver.findElement(By.xpath("//button[@aria-label='Previous month']")));
-				this.clickOnCurrentDate(date);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
 
-		this.clickOnCurrentTime(meridiem);
-		this.clickOnCurrentTime(hours);
-		clickOnElementUsingActionClass(btnTimeInMinutes);
+		hardWait(4);
+		this.clickOnCurrentDate(date);
+		System.out.println("*** Clicked on Date ***");
 
+		hardWait(3);
+		this.clickOnCurrentTime(meridiem);
+		System.out.println("*** Clicked on Meridiem ***");
+		hardWait(3);
 		try {
-			if(btnOK.isDisplayed()==true) {
-				this.clickOnWebElement(btnOK);
-				}
+			try {
+				System.out.println(driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']")));
+				WebElement currentHourValue = driver
+						.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']"));
+
+				this.hardWait(2);
+				Actions action = new Actions(driver);
+				action.moveToElement(currentHourValue).contextClick(currentHourValue).build().perform();
+			} catch (Exception e) {
+				clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
+			}
+			System.out.println("*** Clicked on Hour ***");
+			clickUsingActionsClass(btnDefaultTimeInMinutes);
+			System.out.println("*** Clicked on Minutes ***");
+			hardWait(2);
 		} catch (Exception e) {
-			log.info("*** OK Button Haven't displayed***");
+			System.out.println();
+			clickOnElementUsingActionClass(btnTimeInMinutes);
 		}
 
-		log.info("Ending of setCompetitionCurrentDateï¿½method");
+		log.info("Ending of setCompetitionCurrentDate method");
 	}
 
 	public void setCompetitionEndDateInPastHours() {
@@ -1417,7 +1429,63 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 			log.info("*** OK Button Haven't displayed***");
 		}
 
-		log.info("Ending of setCompetitionEndDateInPastHoursï¿½method");
+		log.info("Ending of setCompetitionEndDateInPastHours method");
+	}
+
+	public void setCompetitionNextDayEndDate() {
+		log.info("Starting of setCompetitionNextDayEndDate method");
+
+		hardWait(4);
+		try {
+			clickOnElementUsingActionClass(txtBoxCompetitionEndDate);
+		} catch (Exception e) {
+			clickOnWebElement(txtBoxCompetitionEndDate);
+		}
+
+
+		int date = this.getFutureDate(1);
+		Month monthValue = this.getFutureMonth(1);
+		String mValue = monthValue.toString();
+
+		String lblmonth = lblMonth.getText();
+		String monthvalue = String.valueOf(lblmonth.split(" ")[0]).toUpperCase().trim();
+		log.debug("Derived Month value: " + mValue);
+		log.debug("Current Month Value: " + monthvalue);
+		log.debug("Are Current Month & Derived Month values matched: " + (mValue).equals(monthvalue));
+
+		try {
+			if ((mValue).equals(monthvalue)) {
+				this.clickOnCurrentDate(date);
+			} else {
+				log.debug("Are Current Month & Derived Month values matched: " + (mValue).equals(monthvalue));
+				log.info("***Current Month & Derived Month values are not matched, Selecting next month***");
+				clickUsingActionsClass(driver.findElement(By.xpath("//button[@title='Next month']")));
+				this.clickOnCurrentDate(date);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		String hours = this.getCurrentHour();
+		String meridiem = this.getCurrentMeridiem();
+		
+		this.clickOnCurrentTime(meridiem);
+		try {
+			clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'"+hours+"')]")));
+		} catch (Exception e) {
+			clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'"+hours+"')]")));
+		}
+		clickOnElementUsingActionClass(btnDefaultTimeInMinutes);
+		
+		try {
+			if(btnOK.isDisplayed()==true) {
+				this.clickOnWebElement(btnOK);
+				}
+		} catch (Exception e) {
+			log.info("*** OK Button Haven't displayed***");
+		}
+
+		log.info("Ending of setCompetitionNextDayEndDate method");
 	}
 
 	public void setRegistrationStartDateBeforeOneDay() {
@@ -1481,7 +1549,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 			e2.printStackTrace();
 		}
 
-		log.info("Ending of setRegistrationStartDateBeforeOneDayï¿½method");
+		log.info("Ending of setRegistrationStartDateBeforeOneDay method");
 	}
 
 	public void setRegistrationEndDate() {
@@ -1537,6 +1605,153 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		}
 
 		log.info("Ending of setRegistrationEndDate method");
+	}
+
+	
+	public void setRegistrationEndDateAfterTwodays() {
+		log.info("Starting of setRegistrationEndDateAfterTwodays method");
+
+		hardWait(4);
+		try {
+			clickOnWebElement(txtBoxRegistrationEndDate);
+		} catch (Exception e) {
+			clickOnElementUsingActionClass(txtBoxRegistrationEndDate);
+		}
+
+		int date = this.getFutureDate(2);
+		Month monthValue = this.getFutureMonth(2);
+		String mValue = monthValue.toString();
+
+		String lblmonth = lblMonth.getText();
+		String monthvalue = String.valueOf(lblmonth.split(" ")[0]).toUpperCase().trim();
+		log.debug("Derived Month value: " + mValue);
+		log.debug("Current Month Value: " + monthvalue);
+		log.debug("Are Current Month & Derived Month values matched: " + (mValue).equals(monthvalue));
+
+		try {
+			if ((mValue).equals(monthvalue)) {
+				this.clickOnCurrentDate(date);
+			} else {
+				log.debug("Are Current Month & Derived Month values matched: " + (mValue).equals(monthvalue));
+				log.info("***Current Month & Derived Month values are not matched, Selecting next month***");
+				clickUsingActionsClass(driver.findElement(By.xpath("//button[@title='Next month']")));
+				this.clickOnCurrentDate(date);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		String hours = this.getCurrentHour();
+		String meridiem = this.getCurrentMeridiem();
+		
+		this.clickOnCurrentTime(meridiem);
+		try {
+			clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'"+hours+"')]")));
+		} catch (Exception e) {
+			clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'"+hours+"')]")));
+		}
+		clickOnElementUsingActionClass(btnDefaultTimeInMinutes);
+		
+		try {
+			if(btnOK.isDisplayed()==true) {
+				this.clickOnWebElement(btnOK);
+				}
+		} catch (Exception e) {
+			log.info("*** OK Button Haven't displayed***");
+		}
+
+		log.info("Ending of setRegistrationEndDateAfterTwodays method");
+	}
+
+	public void setCompetitionStartDateMoreThenSixDays() {
+		log.info("Starting of setCompetitionStartDateMoreThenSevenDays method");
+		try {
+			clickOnWebElement(txtBoxCompetitionStartDate);
+
+		} catch (Exception e) {
+			clickOnElementUsingActionClass(txtBoxCompetitionStartDate);
+		}
+		hardWait(3);
+		int date = this.getFutureDate(6);
+		Month monthValue = this.getFutureMonth(6);
+		String mValue = monthValue.toString();
+		System.out.println(mValue);
+
+		String lblmonth = lblMonth.getText();
+		String pNewTabValue = String.valueOf(lblmonth.split(" ")[0]).toUpperCase().trim();
+		log.debug("Text is " + pNewTabValue);
+
+		try {
+			if ((mValue).equals(pNewTabValue)) {
+				this.clickOnCurrentDate(date);
+			} else {
+				clickUsingActionsClass(driver.findElement(By.xpath("//button[@title='Next month']")));
+				this.clickOnCurrentDate(date);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		String hours = this.getCurrentHour();
+		String meridiem = this.getCurrentMeridiem();
+
+		this.clickOnCurrentTime(meridiem);
+		this.clickOnCurrentTime(hours);
+		clickOnElementUsingActionClass(btnTimeInMinutes);
+
+		try {
+			if (btnOK.isDisplayed() == true) {
+				this.clickOnWebElement(btnOK);
+			}
+		} catch (Exception e) {
+			log.info("*** OK Button Haven't displayed***");
+		}
+
+		log.info("Ending of setCompetitionStartDateMoreThenSixDays method");
+	}
+
+	public void setCompetitionEndDateMoreThenSixDays() {
+		log.info("Starting of setCompetitionEndDateMoreThenSixDays method");
+
+		clickOnWebElement(txtBoxCompetitionEndDate);
+		hardWait(3);
+		int date = this.getFutureDate(7);
+		System.out.println(date);
+		Month monthValue = this.getFutureMonth(7);
+		String mValue = monthValue.toString();
+		System.out.println(mValue);
+
+		String lblmonth = lblMonth.getText();
+		String pNewTabValue = String.valueOf(lblmonth.split(" ")[0]).toUpperCase().trim();
+		log.debug("Text is " + pNewTabValue);
+
+		try {
+			if ((mValue).equals(pNewTabValue)) {
+				this.clickOnCurrentDate(date);
+			} else {
+				clickUsingActionsClass(driver.findElement(By.xpath("//button[@title='Next month']")));
+				this.clickOnCurrentDate(date);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		String hours = this.getCurrentHour();
+		String meridiem = this.getCurrentMeridiem();
+
+		hardWait(3);
+		this.clickOnCurrentTime(meridiem);
+		this.clickOnCurrentTime(hours);
+		clickOnElementUsingActionClass(btnTimeInMinutes);
+
+		try {
+			if (btnOK.isDisplayed() == true) {
+				this.clickOnWebElement(btnOK);
+			}
+		} catch (Exception e) {
+			log.info("*** OK Button Haven't displayed***");
+		}
+
+		log.info("Ending of setCompetitionEndDateMoreThenSixDays method");
 	}
 
 	public void setCompetitionStartDateHour() {
