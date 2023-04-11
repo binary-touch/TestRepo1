@@ -483,7 +483,7 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 
 		logger.info("Ending of verifyHavingTroubleOptionFunctionality method");
 	}
-
+	
 	@Test(priority = 19, description = "Verify Click Here Link Functionality in Having WiFi Problems Popup", groups = "sanity")
 	@Description("Test case #19, Verify Click Here Link Functionality in Having WiFi Problems Popup")
 	@Severity(SeverityLevel.NORMAL)
