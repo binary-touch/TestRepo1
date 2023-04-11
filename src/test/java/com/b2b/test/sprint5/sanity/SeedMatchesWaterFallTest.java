@@ -97,17 +97,17 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
 
 		addBracketPage.hardWait(2);
-		  seedMatchesPage.setRegistrationStartDate();
-		  
-		  addBracketPage.hardWait(2); 
-		  seedMatchesPage.setRegistrationEndDate();
-		  
-		  addBracketPage.hardWait(2);
-		  seedMatchesPage.setCompetitionStartDate();
-		  
-		  addBracketPage.hardWait(2);
-		  addBracketPage.setCompetitionEndDate();
-		 
+		seedMatchesPage.setRegistrationStartDate();
+
+		addBracketPage.hardWait(2);
+		seedMatchesPage.setRegistrationEndDate();
+
+		addBracketPage.hardWait(2);
+		seedMatchesPage.setCompetitionStartDate();
+
+		addBracketPage.hardWait(2);
+		addBracketPage.setCompetitionEndDate();
+
 		addBracketPage.clickOnTimeZoneDropdown();
 		Assert.assertTrue(addBracketPage.isTimeZoneListContains());
 		addBracketPage.clickOnNewDelhiTimeZone();
@@ -131,7 +131,8 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		logger.info("Ending of verifyCreatingWaterFallEventAsDoubles method");
 	}
 
-	//@Test(priority = 2, description = "Verify register for the event", groups = "sanity")
+	// @Test(priority = 2, description = "Verify register for the event", groups =
+	// "sanity")
 	@Description("Test case #2, Verify register for the event")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #2, Verify register for the event")
@@ -290,7 +291,8 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 	}
 
 	@Parameters({ "validEmail", "validPassword" })
-	//@Test(priority = 11, description = "Verify My Matches as a player", groups = "sanity")
+	// @Test(priority = 11, description = "Verify My Matches as a player", groups =
+	// "sanity")
 	@Description("Test case #11, Verify My Matches as a player")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #11, Verify My Matches as a player")
@@ -352,12 +354,13 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		seedMatchesPage.hardWait(3);
 		seedMatchesPage.clickOnSubmitButtonOnSubmitScores();
 		seedMatchesPage.hardWait(3);
-		
+
 		logger.info("Ending of verifyAddingScoreAsAPlayer method");
 	}
 
 	@Parameters({ "directorEmail", "directorPassword" })
-	//@Test(priority = 13, description = "Verify the Presence of View Queue button after seeding", groups = "sanity")
+	// @Test(priority = 13, description = "Verify the Presence of View Queue button
+	// after seeding", groups = "sanity")
 	@Description("Test case #13, Verify the Presence of View Queue button after seeding")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #13, Verify the Presence of View Queue button after seeding")
@@ -374,10 +377,10 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		seedMatchesPage.hardWait(5);
 		clubLogoPage.clickOnMyClubsTab();
 		editClubInfoPage.clickOnSimbaOrganizerButton();
-		//userDashboardPage.clickOnMyBracketsButton();
+		// userDashboardPage.clickOnMyBracketsButton();
 		seedMatchesPage.hardWait(5);
 
-		//Assert.assertTrue(seedMatchesWaterFallPage.isViewTheQueuebuttonDisplayed());
+		// Assert.assertTrue(seedMatchesWaterFallPage.isViewTheQueuebuttonDisplayed());
 
 		logger.info("Ending of verifyViewQueueButtonsAfterSeeding method");
 	}
@@ -389,14 +392,14 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 	public void verifyExitQueueButtonsAfterSeeding() {
 		logger.info("Starting of verifyExitQueueButtonsAfterSeeding method");
 
-		//addEventPage.clickOnEventsTab();
-		//seedMatchesPage.hardWait(5);
-		//addEventPage.clickOnRecentlyAddedEvent(eventName);
-		//addEventPage.hardWait(5);
-		
-		//seedMatchesPage.clickOnBracketCard();
+		// addEventPage.clickOnEventsTab();
+		// seedMatchesPage.hardWait(5);
+		// addEventPage.clickOnRecentlyAddedEvent(eventName);
+		// addEventPage.hardWait(5);
+
+		// seedMatchesPage.clickOnBracketCard();
 		seedMatchesPage.hardWait(5);
-		//seedMatchesWaterFallPage.clickOnViewQueueButton(eventName);
+		// seedMatchesWaterFallPage.clickOnViewQueueButton(eventName);
 		seedMatchesPage.hardWait(3);
 		Assert.assertTrue(seedMatchesWaterFallPage.isExitTheQueuebuttonDisplayed());
 
@@ -419,6 +422,7 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		seedMatchesPage.hardWait(3);
 		seedMatchesPage.clickOnSubmitButton();
 		seedMatchesPage.hardWait(3);
+		seedMatchesPage.clickOnSubmitScoresButton();
 
 		Assert.assertFalse(seedMatchesPage.isEditScoresPopUpContains());
 
@@ -479,7 +483,7 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 
 		logger.info("Ending of verifyHavingTroubleOptionFunctionality method");
 	}
-
+	
 	@Test(priority = 19, description = "Verify Click Here Link Functionality in Having WiFi Problems Popup", groups = "sanity")
 	@Description("Test case #19, Verify Click Here Link Functionality in Having WiFi Problems Popup")
 	@Severity(SeverityLevel.NORMAL)
@@ -606,7 +610,8 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		logger.info("Ending of verifyAddingAllScoresForWaterFallEvent method");
 	}
 
-	//@Test(priority = 25, description = "Verify Validating all scores", groups = "sanity")
+	// @Test(priority = 25, description = "Verify Validating all scores", groups =
+	// "sanity")
 	@Description("Test case #25, Verify Validating all scores")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #25, Verify Validating all scores")
@@ -640,10 +645,10 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 	@Story("Test case #26, Verify the results on click of edit button")
 	public void verifyEditScore() {
 		logger.info("Starting of verifyEditScore method");
-		
+
 		seedMatchesPage.clickOnMatchesTab();
 		seedMatchesPage.hardWait(3);
-		
+
 		FirstGameScore = seedMatchesWaterFallPage.getFirstGameScoreText();
 
 		seedMatchesWaterFallPage.clickOnEditScore();
@@ -763,6 +768,8 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		logger.info("Starting of verifyCreatingWaterFallEventAsSingles method");
 
 		seedMatchesPage.hardWait(3);
+		seedMatchesWaterFallPage.navigateBack();
+		seedMatchesPage.hardWait(3);
 		seedMatchesWaterFallPage.clickOnHomeMenu();
 		seedMatchesPage.hardWait(3);
 
@@ -835,7 +842,7 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		addEventPage.clickOnEventsTab();
 		seedMatchesPage.hardWait(5);
 		addEventPage.clickOnRecentlyAddedEvent(eventName);
-		addEventPage.hardWait(5);
+		addEventPage.hardWait(6);
 		seedMatchesPage.clickOnBracketCard();
 		seedMatchesPage.hardWait(5);
 

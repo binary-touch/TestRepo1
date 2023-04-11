@@ -462,11 +462,12 @@ public class SeedMatchesWaterFallPage extends DUPRBaseAutomationPage {
 	}
 	public void clickOnHomeMenu() {
 		log.info("Starting of clickOnHomeMenu method");
-this.driver.navigate().back();
+		
 		this.clickOnWebElement(mnuHome);
 
 		log.info("Ending of clickOnHomeMenu method");
 	}
+
 	public void clickOnHavingTroubleButton() {
 		log.info("Starting of clickOnHavingTroubleButton method");
 

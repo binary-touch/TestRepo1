@@ -489,7 +489,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		this.hardWait(3);
 
 		try {
-			this.scrollDown(-100);
+			this.scrollDown(-300);
 			clickUsingActionsClass(btnSeedMatches);
 		} catch (Exception e) {
 			clickOnWebElement(btnSeedMatches);
@@ -1759,6 +1759,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		String pattern = "h";
 		LocalTime currentHour = LocalTime.now();
 
+		System.out.println(lastMinutes.substring(0, 1));
 		if (lastMinutes.substring(0, 1).contains("5")) {
 			if (lastMinutes.substring(1).contains("5")) {
 				System.out.println();
@@ -1767,9 +1768,17 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 			} else {
 				String currentHourValue = currentHour.format(DateTimeFormatter.ofPattern(pattern));
 				System.out.println(currentHourValue);
+				this.hardWait(1);
 				this.clickOnCurrentTime(currentHourValue);
 				min = "05";
-				this.clickOnCurrentTime(min);
+				
+				try {
+					clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'05')]")));
+				} catch (Exception e) {
+					
+					clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'05')]")));
+				}
+				//this.clickOnCurrentTime(min);
 			}
 		}
 
@@ -1779,7 +1788,14 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 			System.out.println(futureHourValue);
 			this.clickOnCurrentTime(futureHourValue);
 			min = "05";
-			this.clickOnCurrentTime(min);
+			this.hardWait(1);
+			try {
+				clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'05')]")));
+			} catch (Exception e) {
+				
+				clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'05')]")));
+			}
+			//this.clickOnCurrentTime(min);
 		}
 
 		log.info("Ending of selectFutureHour method");
