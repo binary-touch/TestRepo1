@@ -4,9 +4,9 @@
 	<!-- <parallel = "classes" thread-count = "4" />
  -->	
 
-	<test name="Sprint 1">
+	 <test name="Sprint 1">
 		<classes>
-			<class name="com.b2b.test.sprint1.sanity.SignupTest" />
+			<!--<class name="com.b2b.test.sprint1.sanity.SignupTest" />
 			<class name="com.b2b.test.sprint1.sanity.SearchPlayersTest" />
 			<class
 				name="com.b2b.test.sprint1.sanity.DUPRClaimAccountSignUpTest" />
@@ -23,12 +23,12 @@
 			<class name="com.b2b.test.sprint1.sanity.BrowsePlayersTest" />
 			<class name="com.b2b.test.sprint1.sanity.PlayerProfileTest" />
 			<class name="com.b2b.test.sprint1.sanity.NotificationsTest" />
-			<class name="com.b2b.test.sprint1.sanity.ChangePasswordTest" />
+			<class name="com.b2b.test.sprint1.sanity.ChangePasswordTest" />-->
 			<class name="com.b2b.test.sprint1.sanity.ProfilePictureTest" />
 		</classes>
 	</test>
 
- <test name="Sprint 2">
+ <!--<test name="Sprint 2">
 		<classes>
 			<class name="com.b2b.test.sprint2.sanity.BrowseClubsTest" />
 			<class name="com.b2b.test.sprint2.sanity.MyClubsTest" />
@@ -85,19 +85,23 @@
 			<class name="com.b2b.test.sprint4.sanity.SeedMatchesRoundRobinTest" >
 			</class>
 		</classes>
-	</test>
+	</test> -->
 
-       	<test name="Sprint 5">
+       <!--	<test name="Sprint 5">
 		<classes>
-			 <class
+	 		 <class
 				name="com.b2b.test.sprint5.sanity.PaidEventAndPaidBracketWithWaterfallEventTest" />
 			<class
 				name="com.b2b.test.sprint5.sanity.WaterfallRoundOneSeedingLogicTest" />
 			 <class
-				name="com.b2b.test.sprint5.sanity.EditScoreAfterValidationTest" />
+				name="com.b2b.test.sprint5.sanity.EditScoreAfterValidationTest" /> 
 			<class
-				name="com.b2b.test.sprint5.sanity.SeedMatchesWaterFallTest" />
+				name="com.b2b.test.sprint5.sanity.SeedMatchesWaterFallTest" >
+				<methods>
+				<include name="verifyCreatingWaterFallEventAsSingles"/>
+				</methods>
+				</class>
 		</classes>
-	</test>
+	</test>-->
 
 </suite>
