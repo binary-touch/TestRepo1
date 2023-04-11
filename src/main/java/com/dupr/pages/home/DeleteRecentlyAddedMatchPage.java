@@ -25,6 +25,9 @@ public class DeleteRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//button[contains(@class,'MuiButton-whitecontained') and text()='Delete']")
 	private WebElement btnDelete;
 
+	@B2BFindBy(xpath = "//h4[text()='Delete Match']/following-sibling::div/button[text()='Delete'and @type='button']")
+	private WebElement btnDeleteInDeleteMatchPopUp;
+
 	@B2BFindBy(xpath = "//button[contains(@class,'MuiButton-contained') and text()='Go Back']")
 	private WebElement btnGoBack;
 	
@@ -113,6 +116,15 @@ public class DeleteRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 		log.info("Ending of clickOnCloseIcon method");
 	}
 
+	public void clickOnDeleteInDeleteMatchPopUp() {
+		log.info("Starting of clickOnDeleteInDeleteMatchPopUp method");
+
+		elementClick(btnDeleteInDeleteMatchPopUp);
+
+		log.info("Ending of clickOnDeleteInDeleteMatchPopUp method");
+	}
+
+	
 	public void clickOnDeleteButtonInDeleteMatchPopup() {
 		log.info("Starting of clickOnDeleteButtonInDeleteMatchPopup method");
 

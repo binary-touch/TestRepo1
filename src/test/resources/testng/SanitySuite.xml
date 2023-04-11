@@ -46,7 +46,7 @@
 		</classes>
 	</test>
 
-	<test name="Sprint 3">
+ 	<test name="Sprint 3">
 		<classes> 
 		<class
 				name="com.b2b.test.sprint3.sanity.AddEditRemoveEventLogoTest" />
@@ -99,4 +99,5 @@
 				name="com.b2b.test.sprint5.sanity.SeedMatchesWaterFallTest" />
 		</classes>
 	</test>
+	
 </suite>
