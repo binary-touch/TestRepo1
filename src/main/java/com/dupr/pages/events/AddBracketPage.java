@@ -10,6 +10,7 @@ import java.util.List;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -1324,11 +1325,10 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	public void setCompetitionEndDate() {
 		log.info("Starting of setCompetitionEndDate method");
 
-		try {
-			clickOnElementUsingActionClass(txtBoxCompetitionEndDate);
-		} catch (Exception e) {
-			clickOnWebElement(txtBoxCompetitionEndDate);
-		}
+		/*
+		 * try { clickOnElementUsingActionClass(txtBoxCompetitionEndDate); } catch
+		 * (Exception e) { clickOnWebElement(txtBoxCompetitionEndDate); }
+		 */
 
 		int date = this.getFutureDate(3);
 		Month monthValue = this.getFutureMonth(3);
@@ -1343,6 +1343,11 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		log.debug("Text is " + monthvalue);
 		this.hardWait(3);
 
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		executor. executeScript("arguments[0]. click();", txtBoxCompetitionEndDate);
+		
+		System.out.println("clicked on txtBoxRegistrationEndDate");
+		this.hardWait(2);
 		try {
 			if ((mValue).equals(monthvalue)) {
 				this.hardWait(3);
