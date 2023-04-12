@@ -1702,6 +1702,14 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		hardWait(1);
 		this.clickUsingActionsClass(btnDefaultTimeInMinutes);
 		hardWait(2);
+		
+		try {
+			if (btnOK.isDisplayed() == true) {
+				this.clickOnWebElement(btnOK);
+			}
+		} catch (Exception e) {
+			log.info("*** OK Button Haven't displayed***");
+		}
 
 		log.info("Ending of setRegistrationStartDate method");
 	}
@@ -1784,6 +1792,14 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 			this.selectFutureHour();
 
 			this.setfutureCompitionDate();
+		}
+		
+		try {
+			if (btnOK.isDisplayed() == true) {
+				this.clickOnWebElement(btnOK);
+			}
+		} catch (Exception e) {
+			log.info("*** OK Button Haven't displayed***");
 		}
 
 		log.info("Ending of setRegistrationEndDate method");
@@ -1945,6 +1961,14 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 			this.clickOnCurrentDate(date);
 			this.clickOnCurrentTime(meridiem);
 			this.selectFutureHour();
+		}
+		
+		try {
+			if (btnOK.isDisplayed() == true) {
+				this.clickOnWebElement(btnOK);
+			}
+		} catch (Exception e) {
+			log.info("*** OK Button Haven't displayed***");
 		}
 
 		log.info("Ending of setCompetitionStartDate method");
