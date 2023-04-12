@@ -127,6 +127,8 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		seedMatchesPage.hardWait(5);
 		addEventPage.clickOnRecentlyAddedEvent(eventName);
 		addEventPage.hardWait(5);
+		seedMatchesPage.clickOnBracketCard();
+		seedMatchesPage.hardWait(5);
 
 		logger.info("Ending of verifyCreatingWaterFallEventAsDoubles method");
 	}
@@ -164,8 +166,6 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 	public void verifyAddingParticipantsInWaterFallEvent() {
 		logger.info("Starting of verifyAddingParticipantsInWaterFallEvent method");
 
-		seedMatchesPage.clickOnBracketCard();
-		seedMatchesPage.hardWait(5);
 		seedMatchesPage.hardWait(3);
 		addparticipantsPage.addMeetPlayerForWaterFallEvent(testDataProp.getProperty("player.name"));
 		seedMatchesPage.hardWait(3);
@@ -183,6 +183,8 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 
 		seedMatchesPage.hardWait(3);
 		createTeams.selectTeamsInWaterFall();
+		seedMatchesPage.hardWait(3);
+		seedMatchesPage.clickOnTeamsTab();
 
 		logger.info("Ending of verifyCreatingTeamInWaterFallEvent method");
 	}
@@ -194,8 +196,6 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 	public void verifyCreateMatchesFuntionalityInSeedMatchesPage() {
 		logger.info("Starting of verifyCreateMatchesFuntionalityInSeedMatchesPage method");
 
-		seedMatchesPage.hardWait(3);
-		seedMatchesPage.clickOnTeamsTab();
 		seedMatchesPage.hardWait(7);
 		seedMatchesPage.clickOnSeedMatchesButton();
 		seedMatchesPage.hardWait(5);
@@ -768,7 +768,7 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		logger.info("Starting of verifyCreatingWaterFallEventAsSingles method");
 
 		seedMatchesPage.hardWait(3);
-		seedMatchesWaterFallPage.navigateBack();
+		//seedMatchesWaterFallPage.navigateBack();
 		seedMatchesPage.hardWait(3);
 		seedMatchesWaterFallPage.clickOnHomeMenu();
 		seedMatchesPage.hardWait(3);
@@ -846,7 +846,8 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		seedMatchesPage.clickOnBracketCard();
 		seedMatchesPage.hardWait(5);
 
-		this.verifyAddingParticipantsInWaterFallEvent();
+		seedMatchesPage.hardWait(3);
+		addparticipantsPage.addParticipantsForWaterFall();
 
 		addEventPage.hardWait(5);
 

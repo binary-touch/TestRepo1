@@ -1346,11 +1346,16 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		try {
 			if ((mValue).equals(monthvalue)) {
 				this.hardWait(3);
+				
+				WebElement Date =driver.findElement(By.xpath("//button[text()='" + date + "']"));
+				this.waitForElementToBeVisible(Date);
 				this.clickOnCurrentDate(date);
 			} else {
 				this.hardWait(3);
 				clickUsingActionsClass(driver.findElement(By.xpath("//button[@title='Next month']")));
 
+				WebElement Date =driver.findElement(By.xpath("//button[text()='" + date + "']"));
+				this.waitForElementToBeVisible(Date);
 				this.clickOnCurrentDate(date);
 				System.out.println("*** Clicked on Date ***");
 			}
