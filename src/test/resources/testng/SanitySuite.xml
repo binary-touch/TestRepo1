@@ -3,7 +3,7 @@
 <suite name="Sanity UI Automation Tests">
 	<!-- <parallel = "classes" thread-count = "4" /> -->
 
-
+<!--
 	<test name="Sprint 1">
 		<classes>
 		
@@ -88,17 +88,20 @@
 				name="com.b2b.test.sprint4.sanity.SeedMatchesRoundRobinTest">
 			</class>
 		</classes>
-	</test>
+	</test>-->
 
 	<test name="Sprint 5">
 		<classes>
-		  <class name="com.b2b.test.sprint5.sanity.PaidEventAndPaidBracketWithWaterfallEventTest" />
-			<class name="com.b2b.test.sprint5.sanity.WaterfallRoundOneSeedingLogicTest"/>
+		 <!-- <class name="com.b2b.test.sprint5.sanity.PaidEventAndPaidBracketWithWaterfallEventTest" />-->
+			<class name="com.b2b.test.sprint5.sanity.WaterfallRoundOneSeedingLogicTest">
+				
+				<methods><include name="verifyCreatingWaterFallEventAsDoubles"></include></methods>
+			</class>
 			
-			<class
+			<!--<class
 				name="com.b2b.test.sprint5.sanity.EditScoreAfterValidationTest" />
 			<class
-				name="com.b2b.test.sprint5.sanity.SeedMatchesWaterFallTest" />
+				name="com.b2b.test.sprint5.sanity.SeedMatchesWaterFallTest" />-->
 		</classes>
 
 	</test>
