@@ -187,10 +187,11 @@ public class DeleteRecentlyAddedMatchTest extends CommonBaseTest {
 	public void verifyDeleteButtonInDeleteMatchPopup() {
 		logger.info("Starting of verifyClickOnDeleteInDeleteMatchPopup method");
 
-		validateRecentlyAddedMatchPage.hardWait(3);
+		validateRecentlyAddedMatchPage.hardWait(5);
 		deleteRecentlyAddedMatchPage.clickOnDeleteButtonInDeleteMatchPopup();
-		deleteRecentlyAddedMatchPage.hardWait(2);
-
+		deleteRecentlyAddedMatchPage.hardWait(5);
+		deleteRecentlyAddedMatchPage.clickOnDeleteInDeleteMatchPopUp();
+		deleteRecentlyAddedMatchPage.hardWait(5);
 		String successTextInSuccessPopup = deleteRecentlyAddedMatchPage.getSuccessText();
 		Assert.assertEquals(successTextInSuccessPopup, expectedAssertionsProp.getProperty("success.label"));
 

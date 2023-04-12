@@ -371,6 +371,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		log.info("Starting of clickOnBracketCard method");
 
 		try {
+			this.hardWait(3);
 			clickUsingActionsClass(lblBracketCard);
 		} catch (Exception e) {
 			clickOnWebElement(lblBracketCard);
