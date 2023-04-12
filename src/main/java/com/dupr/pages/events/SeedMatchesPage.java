@@ -1666,12 +1666,19 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		log.info("Starting of setRegistrationStartDate method");
 
 		scrollDown(200);
-		clickOnWebElement(txtBoxRegistrationStartDate);
-
+		try {
+			clickUsingActionsClass(txtBoxRegistrationStartDate);
+		} catch (Exception e) {
+			clickOnWebElement(txtBoxRegistrationStartDate);
+		}
+		
 		int date = this.getCurrentDate();
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
-
+		
+		WebElement Date =driver.findElement(By.xpath("//button[text()='" + date + "']"));
+		this.waitForElementToBeVisible(Date);
+		
 		this.clickOnCurrentDate(date);
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnCurrentTime(hours);
