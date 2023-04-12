@@ -175,7 +175,7 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 
 		explicitWait(lstMatchDetailsBoxes);
 		boolean isMatchHistoryOptionsPageContains = false;
-
+        this.hardWait(3);
 		System.out.println(isDisplayed(lblMatchHistory));
 		System.out.println(isDisplayed(btnPending));
 		System.out.println(isDisplayed(btnCompleted));

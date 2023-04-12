@@ -180,6 +180,8 @@ public class BrowseEventsPage extends DUPRBaseAutomationPage {
 	public void clickOnOpen() {
 		log.info("Starting of clickOnOpen method");
 		try {
+			this.hardWait(3);
+			scrollIntoView(btnOpen);
 			clickUsingActionsClass(btnOpen);
 		} catch (Exception e) {
 			clickOnWebElement(btnOpen);
