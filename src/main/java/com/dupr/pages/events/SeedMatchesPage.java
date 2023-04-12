@@ -1704,10 +1704,12 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		this.clickUsingActionsClass(btnDefaultTimeInMinutes);
 		hardWait(2);
 		System.out.println("*** Clicked on Minutes ***");
-		
+	
 		try {
+			hardWait(2);
 			if (btnOK.isDisplayed() == true) {
 				this.clickOnWebElement(btnOK);
+				System.out.println("*** Clicked on OK button ***");
 			}
 		} catch (Exception e) {
 			log.info("*** OK Button Haven't displayed***");
@@ -1800,8 +1802,10 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		}
 		
 		try {
+			hardWait(2);
 			if (btnOK.isDisplayed() == true) {
 				this.clickOnWebElement(btnOK);
+				System.out.println("*** Clicked on OK button ***");
 			}
 		} catch (Exception e) {
 			log.info("*** OK Button Haven't displayed***");
@@ -1830,10 +1834,13 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 				min = "05";
 				
 				try {
+					System.out.println("Minutes Value: " + min);
 					clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'05')]")));
+					System.out.println("*** Clicked on Minutes ***");
 				} catch (Exception e) {
-					
+					System.out.println("Minutes Value: " + min);
 					clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'05')]")));
+					System.out.println("*** Clicked on Minutes ***");
 				}
 				//this.clickOnCurrentTime(min);
 			}
@@ -1847,10 +1854,13 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 			min = "05";
 			this.hardWait(1);
 			try {
+				System.out.println("Minutes Value: " + min);
 				clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'05')]")));
+				System.out.println("*** Clicked on Minutes ***");
 			} catch (Exception e) {
-				
+				System.out.println("Minutes Value: " + min);
 				clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'05')]")));
+				System.out.println("*** Clicked on Minutes ***");
 			}
 			//this.clickOnCurrentTime(min);
 		}
@@ -1969,8 +1979,10 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		}
 		
 		try {
+			hardWait(2);
 			if (btnOK.isDisplayed() == true) {
 				this.clickOnWebElement(btnOK);
+				System.out.println("*** Clicked on OK button ***");
 			}
 		} catch (Exception e) {
 			log.info("*** OK Button Haven't displayed***");
@@ -2042,8 +2054,10 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		System.out.println("*** Clicked on Minutes ***");
 		
 		try {
+			hardWait(2);
 			if (btnOK.isDisplayed() == true) {
 				this.clickOnWebElement(btnOK);
+				System.out.println("*** Clicked on OK button ***");
 			}
 		} catch (Exception e) {
 			
