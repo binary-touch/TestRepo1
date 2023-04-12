@@ -72,9 +72,9 @@ public class BrowseEventsTest extends DUPRBaseAutomationTest {
 	public void verifySearchFieldFunctionality() {
 		logger.info("Starting of verifySearchFieldFunctionality method");
 
-		browseEventsPage.clickOnSearchFeild(testDataProp.getProperty("invalid.event.search"));
+		browseEventsPage.clickOnSearchField(testDataProp.getProperty("invalid.event.search"));
 
-		Assert.assertEquals(browseEventsPage.getNoResultsFountTxt(),
+		Assert.assertEquals(browseEventsPage.getNoResultsFoundText(),
 				expectedAssertionsProp.getProperty("no.events.found"));
 
 		logger.info("Ending of verifySearchFieldFunctionality method");
@@ -87,7 +87,7 @@ public class BrowseEventsTest extends DUPRBaseAutomationTest {
 	public void verifyCompleteFunctionality() {
 		logger.info("Starting of verifyCompleteFunctionality method");
 
-		browseEventsPage.ClearSearchFeild();
+		browseEventsPage.clearSearchField();
 		browseEventsPage.hardWait(2);
 		browseEventsPage.clickOnCompleted();
 		Assert.assertTrue(browseEventsPage.getCompleteText());
