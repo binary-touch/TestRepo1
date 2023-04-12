@@ -1884,8 +1884,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		 * e) { clickOnWebElement(txtBoxCompetitionStartDate); }
 		 */
 
-		JavascriptExecutor executor = (JavascriptExecutor) driver;
-		executor. executeScript("arguments[0]. click();", txtBoxCompetitionStartDate);
+		
 		
 		int date = this.getCurrentDate();
 		String hours = this.getCurrentHour();
@@ -1897,6 +1896,12 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		String futureHourValue = futureHour.format(DateTimeFormatter.ofPattern(pattern));
 		System.out.println(futureHourValue);
 
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		executor. executeScript("arguments[0]. click();", txtBoxCompetitionStartDate);
+		
+		System.out.println("clicked on txtBoxRegistrationEndDate");
+		this.hardWait(2);
+		
 		WebElement Date =driver.findElement(By.xpath("//button[text()='" + date + "']"));
 		this.waitForElementToBeVisible(Date);
 		this.clickOnCurrentDate(date);
@@ -1951,8 +1956,6 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		 * (Exception e) { clickOnWebElement(txtBoxCompetitionEndDate); }
 		 */
 		
-		JavascriptExecutor executor = (JavascriptExecutor) driver;
-		executor. executeScript("arguments[0]. click();", txtBoxCompetitionEndDate);
 
 		int date = this.getFutureDate(3);
 		Month monthValue = this.getFutureMonth(3);
@@ -1967,6 +1970,11 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		log.debug("Text is " + monthvalue);
 		this.hardWait(3);
 
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		executor. executeScript("arguments[0]. click();", txtBoxCompetitionEndDate);
+		
+		System.out.println("clicked on txtBoxRegistrationEndDate");
+		this.hardWait(2);
 		try {
 			if ((mValue).equals(monthvalue)) {
 				this.hardWait(3);
