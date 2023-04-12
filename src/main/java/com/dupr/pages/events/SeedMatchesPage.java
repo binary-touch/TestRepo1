@@ -1704,10 +1704,6 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		LocalTime futureHour = currentHour.plusHours(1);
 		String futureHourValue = futureHour.format(DateTimeFormatter.ofPattern(pattern));
 		System.out.println(futureHourValue);
-
-		WebElement Date =driver.findElement(By.xpath("//button[text()='" + date + "']"));
-		this.waitForElementToBeVisible(Date);
-		System.out.println("date");
 		
 		try {
 			clickUsingActionsClass(txtBoxRegistrationEndDate);
@@ -1716,6 +1712,10 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		}
 		System.out.println("clicked on txtBoxRegistrationEndDate");
 		this.hardWait(2);
+		
+		WebElement Date =driver.findElement(By.xpath("//button[text()='" + date + "']"));
+		this.waitForElementToBeVisible(Date);
+		System.out.println("date");
 		
 		this.clickOnCurrentDate(date);
 		this.clickOnCurrentTime(meridiem);

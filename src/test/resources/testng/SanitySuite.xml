@@ -94,7 +94,11 @@
 			<!-- <class
 				name="com.b2b.test.sprint5.sanity.PaidEventAndPaidBracketWithWaterfallEventTest" />-->
 			<class
-				name="com.b2b.test.sprint5.sanity.WaterfallRoundOneSeedingLogicTest" />
+				name="com.b2b.test.sprint5.sanity.WaterfallRoundOneSeedingLogicTest" >
+				<methods>
+					<include name="verifyCreatingWaterFallEventWithSinglesMatchType"></include>
+				</methods>
+				</class>
 			<!--<class
 				name="com.b2b.test.sprint5.sanity.EditScoreAfterValidationTest" />
 			<class
