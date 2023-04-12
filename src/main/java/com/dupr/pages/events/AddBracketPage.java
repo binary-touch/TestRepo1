@@ -1346,6 +1346,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		try {
 			if ((mValue).equals(monthvalue)) {
 				this.hardWait(3);
+				
 				this.clickOnCurrentDate(date);
 			} else {
 				this.hardWait(3);

@@ -227,30 +227,30 @@ public class BrowseEventsPage extends DUPRBaseAutomationPage {
 		log.info("Ending of clickOnClearFiltersButton method");
 	}
 
-	public void clickOnSearchFeild(String event) {
-		log.info("Starting of clickOnSearchFeild method");
+	public void clickOnSearchField(String event) {
+		log.info("Starting of clickOnSearchField method");
 
 		clickOnElement(txtSearch);
 		this.txtSearch.sendKeys(event);
 		hardWait(2);
 		this.txtSearch.sendKeys(event);
 
-		log.info("Ending of clickOnSearchFeild method");
+		log.info("Ending of clickOnSearchField method");
 	}
 
-	public String getNoResultsFountTxt() {
-		log.info("Starting of getNoResultsFountTxt method");
-		log.info("Ending of getNoResultsFountTxt method");
+	public String getNoResultsFoundText() {
+		log.info("Starting of getNoResultsFoundText method");
+		log.info("Ending of getNoResultsFoundText method");
 
 		return getText(txtNoEvents);
 	}
 
-	public void ClearSearchFeild() {
-		log.info("Starting of ClearSearchFeild method");
+	public void clearSearchField() {
+		log.info("Starting of clearSearchField method");
 
 		clickOnElement(txtSearch);
 		this.txtSearch.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 
-		log.info("Ending of ClearSearchFeild method");
+		log.info("Ending of clearSearchField method");
 	}
 }

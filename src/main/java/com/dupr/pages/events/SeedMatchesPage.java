@@ -4,12 +4,14 @@ import static org.testng.Assert.expectThrows;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -333,8 +335,8 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//h4[(text()='Match Validated Successfully')]")
 	private WebElement lblMatchValidateSuccessfully;
-
-	@B2BFindBy(xpath = "//h3[text()='Registration Date']/following-sibling::div//h5[text()='Start Date & Time']/parent::div/following-sibling::div//input")
+	//h3[text()='Registration Date']/following-sibling::div//h5[text()='Start Date & Time']/parent::div/following-sibling::div//input
+	@B2BFindBy(xpath = "//h3[text()='Registration Date']/following-sibling::div//h5[text()='Start Date & Time']/parent::div/following-sibling::div//fieldset")
 	private WebElement txtBoxRegistrationStartDate;
 
 	@B2BFindBy(xpath = "//h3[text()='Registration Date']/following-sibling::div//h5[text()='End Date & Time']/parent::div/following-sibling::div//input")
@@ -357,6 +359,9 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//button[text()='Players']")
 	private WebElement tabPlayers;
+	
+	@B2BFindBy(xpath = "//div[contains(@class,'MuiPickersFadeTransitionGroup-root')]//div[contains(@class,'MuiPickersCalendarHeader-label')]")
+	private WebElement lblMonth;
 
 	public SeedMatchesPage(WebDriver driver) {
 		super(driver);
@@ -1666,12 +1671,31 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		log.info("Starting of setRegistrationStartDate method");
 
 		scrollDown(200);
-		clickOnWebElement(txtBoxRegistrationStartDate);
 
+		this.hardWait(2);
+		Actions action = new Actions(driver);
+		//action.moveToElement(txtBoxRegistrationStartDate).contextClick(txtBoxRegistrationStartDate).build().perform();
+		
+		try {
+			action.click(txtBoxRegistrationStartDate).build().perform();
+		} catch (Exception e) {
+			System.out.println("catch");
+			action.moveToElement(txtBoxRegistrationStartDate).click(txtBoxRegistrationStartDate).build().perform();
+		}
+		
+		
+		/*
+		 * try { clickUsingActionsClass(txtBoxRegistrationStartDate); } catch (Exception
+		 * e) { clickOnWebElement(txtBoxRegistrationStartDate); }
+		 */
+		 
 		int date = this.getCurrentDate();
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
-
+		
+		WebElement Date =driver.findElement(By.xpath("//button[text()='" + date + "']"));
+		this.waitForElementToBeVisible(Date);
+		
 		this.clickOnCurrentDate(date);
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnCurrentTime(hours);
@@ -1686,11 +1710,6 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		log.info("Starting of setRegistrationEndDate method");
 
 		this.hardWait(2);
-		try {
-			clickUsingActionsClass(txtBoxRegistrationEndDate);
-		} catch (Exception e) {
-			clickOnWebElement(txtBoxRegistrationEndDate);
-		}
 
 		int date = this.getCurrentDate();
 		String hours = this.getCurrentHour();
@@ -1702,7 +1721,23 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		LocalTime futureHour = currentHour.plusHours(1);
 		String futureHourValue = futureHour.format(DateTimeFormatter.ofPattern(pattern));
 		System.out.println(futureHourValue);
-
+		
+		
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		executor. executeScript("arguments[0]. click();", txtBoxRegistrationEndDate);
+		
+		/*
+		 * try { clickUsingActionsClass(txtBoxRegistrationEndDate); } catch (Exception
+		 * e) { clickOnWebElement(txtBoxRegistrationEndDate); }
+		 */
+		 
+		System.out.println("clicked on txtBoxRegistrationEndDate");
+		this.hardWait(2);
+		
+		WebElement Date =driver.findElement(By.xpath("//button[text()='" + date + "']"));
+		this.waitForElementToBeVisible(Date);
+		System.out.println("date");
+		
 		this.clickOnCurrentDate(date);
 		this.clickOnCurrentTime(meridiem);
 
@@ -1712,8 +1747,8 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 					.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']"));
 
 			this.hardWait(2);
-			Actions action = new Actions(driver);
-			action.moveToElement(currentHourValue).contextClick(currentHourValue).build().perform();
+			Actions action1 = new Actions(driver);
+			action1.moveToElement(currentHourValue).contextClick(currentHourValue).build().perform();
 		} catch (Exception e) {
 			clickOnWebElement(driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']")));
 		}
@@ -1726,8 +1761,8 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 					this.setCompetitionStartDate();
 				} catch (Exception e) {
-					Actions action = new Actions(driver);
-					action.moveToElement(driver.findElement(By.cssSelector("span[aria-label='" + min + " minutes']")))
+					Actions action1 = new Actions(driver);
+					action1.moveToElement(driver.findElement(By.cssSelector("span[aria-label='" + min + " minutes']")))
 							.click().perform();
 				}
 			}
@@ -1844,12 +1879,13 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 	public void setCompetitionStartDate() {
 		log.info("Starting of setCompetitionStartDate method");
 
-		try {
-			clickUsingActionsClass(txtBoxCompetitionStartDate);
-		} catch (Exception e) {
-			clickOnWebElement(txtBoxCompetitionStartDate);
-		}
+		/*
+		 * try { clickUsingActionsClass(txtBoxCompetitionStartDate); } catch (Exception
+		 * e) { clickOnWebElement(txtBoxCompetitionStartDate); }
+		 */
 
+		
+		
 		int date = this.getCurrentDate();
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
@@ -1860,6 +1896,14 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		String futureHourValue = futureHour.format(DateTimeFormatter.ofPattern(pattern));
 		System.out.println(futureHourValue);
 
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		executor. executeScript("arguments[0]. click();", txtBoxCompetitionStartDate);
+		
+		System.out.println("clicked on txtBoxRegistrationEndDate");
+		this.hardWait(2);
+		
+		WebElement Date =driver.findElement(By.xpath("//button[text()='" + date + "']"));
+		this.waitForElementToBeVisible(Date);
 		this.clickOnCurrentDate(date);
 		this.clickOnCurrentTime(meridiem);
 		System.out.println(driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']")));
@@ -1905,7 +1949,78 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 		log.info("Ending of setCompetitionStartDate method");
 	}
+	public void setCompetitionEndDate() {
+		log.info("Starting of setCompetitionEndDate method");
+		/*
+		 * try { clickOnElementUsingActionClass(txtBoxCompetitionEndDate); } catch
+		 * (Exception e) { clickOnWebElement(txtBoxCompetitionEndDate); }
+		 */
+		
 
+		int date = this.getFutureDate(3);
+		Month monthValue = this.getFutureMonth(3);
+		String mValue = monthValue.toString();
+		System.out.println(mValue);
+		String hours = this.getCurrentHour();
+		System.out.println(hours);
+		String meridiem = this.getCurrentMeridiem();
+
+		String lblmonth = lblMonth.getText();
+		String monthvalue = String.valueOf(lblmonth.split(" ")[0]).toUpperCase().trim();
+		log.debug("Text is " + monthvalue);
+		this.hardWait(3);
+
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		executor. executeScript("arguments[0]. click();", txtBoxCompetitionEndDate);
+		
+		System.out.println("clicked on txtBoxRegistrationEndDate");
+		this.hardWait(2);
+		try {
+			if ((mValue).equals(monthvalue)) {
+				this.hardWait(3);
+				
+				this.clickOnCurrentDate(date);
+			} else {
+				this.hardWait(3);
+				clickUsingActionsClass(driver.findElement(By.xpath("//button[@title='Next month']")));
+
+				this.clickOnCurrentDate(date);
+				System.out.println("*** Clicked on Date ***");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		this.clickOnCurrentTime(meridiem);
+		System.out.println("*** Clicked on Meridiem ***");
+
+		System.out.println(driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']")));
+		WebElement currentHourValue = driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']"));
+
+		try {
+			this.hardWait(2);
+			Actions action = new Actions(driver);
+			action.moveToElement(currentHourValue).contextClick(currentHourValue).build().perform();
+			System.out.println("*** Clicked on Hour ***");
+		} catch (Exception e) {
+			clickOnWebElement(driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']")));
+			System.out.println("*** Clicked on Hour ***");
+		}
+
+		clickOnElementUsingActionClass(btnDefaultTimeInMinutes);
+		System.out.println("*** Clicked on Minutes ***");
+		
+		try {
+			if (btnOK.isDisplayed() == true) {
+				this.clickOnWebElement(btnOK);
+			}
+		} catch (Exception e) {
+			
+			log.info("*** OK Button Haven't displayed***");
+		}
+
+		log.info("Ending of setCompetitionEndDate method");
+	}
 	public boolean isRoundOneDisplayed() {
 		log.info("Starting of isRoundOneDisplayed method");
 
