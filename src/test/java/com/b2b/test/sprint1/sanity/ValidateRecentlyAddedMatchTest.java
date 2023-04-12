@@ -187,23 +187,29 @@ public class ValidateRecentlyAddedMatchTest extends CommonBaseTest {
 	public void verifyResultsByCompletedAndDoublesFilters() {
 		logger.info("Starting of verifyResultsByCompletedAndDoublesFilters method");
 
+		validateRecentlyAddedMatchPage.hardWait(5);
 		validateRecentlyAddedMatchPage.clickOnClearFiltersButton();
-
+		validateRecentlyAddedMatchPage.hardWait(5);
 		validateRecentlyAddedMatchPage.clickOnCompletedButton();
-		validateRecentlyAddedMatchPage.hardWait(3);
+		validateRecentlyAddedMatchPage.hardWait(5);
 
 		validateRecentlyAddedMatchPage.clickOnDoublesButton();
 		validateRecentlyAddedMatchPage.hardWait(5);
 
 		Assert.assertTrue(validateRecentlyAddedMatchPage.isTickIconDisplayed());
+		validateRecentlyAddedMatchPage.hardWait(5);
 		Assert.assertFalse(validateRecentlyAddedMatchPage.isValidateButtonsDisplayed());
+		validateRecentlyAddedMatchPage.hardWait(5);
 		Assert.assertFalse(validateRecentlyAddedMatchPage.isDeleteButtonsDisplayed());
 
-		validateRecentlyAddedMatchPage.hardWait(3);
+		validateRecentlyAddedMatchPage.hardWait(5);
 
 		Assert.assertTrue(validateRecentlyAddedMatchPage.isPlayerButtonsDisplayed());
+		validateRecentlyAddedMatchPage.hardWait(5);
 		Assert.assertTrue(validateRecentlyAddedMatchPage.isPlayerPartnerButtonsDisplayed());
+		validateRecentlyAddedMatchPage.hardWait(5);
 		Assert.assertTrue(validateRecentlyAddedMatchPage.isOpponentButtonsDisplayed());
+		validateRecentlyAddedMatchPage.hardWait(5);
 		Assert.assertTrue(validateRecentlyAddedMatchPage.isOpponentPartnerButtonsDisplayed());
 
 		logger.info("Ending of verifyResultsByCompletedAndDoublesFilters method");
@@ -218,14 +224,17 @@ public class ValidateRecentlyAddedMatchTest extends CommonBaseTest {
 
 		validateRecentlyAddedMatchPage.hardWait(2);
 		validateRecentlyAddedMatchPage.clickOnClearFiltersButton();
-
+		validateRecentlyAddedMatchPage.hardWait(5);
 		validateRecentlyAddedMatchPage.clickOnPendingButton();
+		validateRecentlyAddedMatchPage.hardWait(5);
 		validateRecentlyAddedMatchPage.clickOnSinglesButton();
 
 		validateRecentlyAddedMatchPage.hardWait(8);
 
 		Assert.assertTrue(validateRecentlyAddedMatchPage.isDeleteORValidateButtonsDisplayed());
+		validateRecentlyAddedMatchPage.hardWait(5);
 		Assert.assertTrue(validateRecentlyAddedMatchPage.isPlayerNamesButtonsDisplayed());
+		validateRecentlyAddedMatchPage.hardWait(5);
 		Assert.assertTrue(validateRecentlyAddedMatchPage.isOpponentPlayerNamesButtonsDisplayed());
 
 		logger.info("Ending of verifyResultsWithPendingAndSinglesFilters method");
@@ -238,22 +247,26 @@ public class ValidateRecentlyAddedMatchTest extends CommonBaseTest {
 	public void verifyResultsWithPendingAndDoublesFilters() {
 		logger.info("Starting of verifyResultsWithPendingAndDoublesFilters method");
 
-		validateRecentlyAddedMatchPage.hardWait(2);
+		validateRecentlyAddedMatchPage.hardWait(5);
 		validateRecentlyAddedMatchPage.clickOnClearFiltersButton();
-
+		validateRecentlyAddedMatchPage.hardWait(5);
 		validateRecentlyAddedMatchPage.clickOnPendingButton();
-
+		validateRecentlyAddedMatchPage.hardWait(5);
 		validateRecentlyAddedMatchPage.clickOnDoublesButton();
 
 		validateRecentlyAddedMatchPage.hardWait(5);
 
 		Assert.assertTrue(validateRecentlyAddedMatchPage.isDeleteORValidateButtonsDisplayed());
 
-		validateRecentlyAddedMatchPage.hardWait(3);
+		validateRecentlyAddedMatchPage.hardWait(5);
 
 		Assert.assertTrue(validateRecentlyAddedMatchPage.isPlayerButtonsDisplayed());
+		validateRecentlyAddedMatchPage.hardWait(5);
+		
 		Assert.assertTrue(validateRecentlyAddedMatchPage.isPlayerPartnerButtonsDisplayed());
+		validateRecentlyAddedMatchPage.hardWait(5);
 		Assert.assertTrue(validateRecentlyAddedMatchPage.isOpponentButtonsDisplayed());
+		validateRecentlyAddedMatchPage.hardWait(5);
 		Assert.assertTrue(validateRecentlyAddedMatchPage.isOpponentPartnerButtonsDisplayed());
 
 		logger.info("Ending of verifyResultsWithPendingAndDoublesFilters method");

@@ -2,9 +2,10 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Sanity UI Automation Tests">
 	<!-- <parallel = "classes" thread-count = "4" /> -->
-	
+
 	<test name="Sprint 1">
 		<classes>
+
 			<class name="com.b2b.test.sprint1.sanity.SignupTest" />
 			<class name="com.b2b.test.sprint1.sanity.SearchPlayersTest" />
 			<class
@@ -47,15 +48,15 @@
 	</test>
 
 	<test name="Sprint 3">
-		<classes> 
-		<class
-				name="com.b2b.test.sprint3.sanity.AddEditRemoveEventLogoTest" /> 
+		<classes>
+			<class
+				name="com.b2b.test.sprint3.sanity.AddEditRemoveEventLogoTest" />
 			<class
 				name="com.b2b.test.sprint3.sanity.AddParticipantsInBracketTest" />
 			<class name="com.b2b.test.sprint3.sanity.AddAnnouncementTest" />
 			<class
 				name="com.b2b.test.sprint3.sanity.AntiScrappingCaptchaTest" />
-		<class name="com.b2b.test.sprint3.sanity.EndEventTest" />
+			<class name="com.b2b.test.sprint3.sanity.EndEventTest" />
 			<class
 				name="com.b2b.test.sprint3.sanity.PlayerEventRegistrationTest" />
 			<class
@@ -64,11 +65,11 @@
 				name="com.b2b.test.sprint3.sanity.DirectorEventRegistrationTest" />
 			<class name="com.b2b.test.sprint3.sanity.WithdrawPlayerTest" />
 			<class
-				name="com.b2b.test.sprint3.sanity.Create_Edit_Split_TeamTest" /> 
+				name="com.b2b.test.sprint3.sanity.Create_Edit_Split_TeamTest" />
 			<class
 				name="com.b2b.test.sprint3.sanity.AdditionOfChartAndShopTabTest" />
-			 <class name="com.b2b.test.sprint3.sanity.UserDashboardTest" />
-			 <class
+			<class name="com.b2b.test.sprint3.sanity.UserDashboardTest" />
+			<class
 				name="com.b2b.test.sprint3.sanity.PreservingPageVisitsTest" />
 		</classes>
 	</test>
@@ -76,14 +77,14 @@
 	<test name="Sprint 4">
 		<classes>
 			<class name="com.b2b.test.sprint4.sanity.ChatTest" />
-
 			<class name="com.b2b.test.sprint4.sanity.ShareTest" />
 			<class
 				name="com.b2b.test.sprint4.sanity.CombinationOfMatchTypeAndPlayerGroupTest" />
 			<class name="com.b2b.test.sprint4.sanity.FullRegistrationTest" />
 			<class name="com.b2b.test.sprint4.sanity.TimeZoneTest" />
 			<class
-				name="com.b2b.test.sprint4.sanity.SeedMatchesRoundRobinTest" />
+				name="com.b2b.test.sprint4.sanity.SeedMatchesRoundRobinTest">
+			</class>
 		</classes>
 	</test>
 

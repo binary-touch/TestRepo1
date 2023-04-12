@@ -187,15 +187,15 @@ public class DeleteRecentlyAddedMatchTest extends CommonBaseTest {
 	public void verifyDeleteButtonInDeleteMatchPopup() {
 		logger.info("Starting of verifyClickOnDeleteInDeleteMatchPopup method");
 
-		validateRecentlyAddedMatchPage.hardWait(3);
+		validateRecentlyAddedMatchPage.hardWait(5);
 		deleteRecentlyAddedMatchPage.clickOnDeleteButtonInDeleteMatchPopup();
-		deleteRecentlyAddedMatchPage.hardWait(2);
-
+		deleteRecentlyAddedMatchPage.hardWait(5);
 		String successTextInSuccessPopup = deleteRecentlyAddedMatchPage.getSuccessText();
 		Assert.assertEquals(successTextInSuccessPopup, expectedAssertionsProp.getProperty("success.label"));
 
 		Assert.assertTrue(deleteRecentlyAddedMatchPage.isSuccessPopupContains());
-
+		validateRecentlyAddedMatchPage.hardWait(3);
+		deleteRecentlyAddedMatchPage.clickOnCloseIcon();
 		logger.info("Ending of verifyClickOnDeleteInDeleteMatchPopup method");
 	}
 
@@ -206,8 +206,6 @@ public class DeleteRecentlyAddedMatchTest extends CommonBaseTest {
 	public void verifyMatchCountInPlayerProfile() {
 		logger.info("Starting of verifyMatchCountInPlayerProfile method");
 
-		validateRecentlyAddedMatchPage.hardWait(3);
-		deleteRecentlyAddedMatchPage.clickOnCloseIcon();
 		deleteRecentlyAddedMatchPage.clickOnHomeTab();
 
 		deleteRecentlyAddedMatchPage.hardWait(3);

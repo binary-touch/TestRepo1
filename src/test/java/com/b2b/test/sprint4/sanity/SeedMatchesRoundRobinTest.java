@@ -114,12 +114,12 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 		seedMatchesPage.hardWait(5);
 		seedMatchesPage.clickOnTeamsTab();
 		seedMatchesPage.hardWait(5);
+
 		seedMatchesPage.clickOnSeedMatchesButton();
 		seedMatchesPage.hardWait(5);
-
+		
 		Assert.assertTrue(seedMatchesPage.isSeedMatchesPageContains());
 		seedMatchesPage.hardWait(5);
-
 		logger.info("Ending of verifyCreatingTeamForAnRoundRobinEvent method");
 	}
 
@@ -130,7 +130,10 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 	public void verifyCreateMatchesFuntionality() {
 		logger.info("Starting of verifyCreateMatchesFuntionality method");
 		
+
 		seedMatchesPage.hardWait(5);
+	
+
 		seedMatchesPage.clickOnCreateMatches();
 		seedMatchesPage.hardWait(5);
 
@@ -623,7 +626,6 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 			  addEventPage.clickOnRecentlyAddedEvent(eventName); 
 			  seedMatchesPage.hardWait(3);
 			 
-
 			seedMatchesPage.clickOnBracketCard();
 			seedMatchesPage.hardWait(3);
 
@@ -634,8 +636,9 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 			seedMatchesPage.clickOnSeedMatchesButton();
 			seedMatchesPage.hardWait(5);
 
-			this.verifyCreateMatchesFuntionality();
-			seedMatchesPage.hardWait(3);
+			seedMatchesPage.hardWait(5);
+			seedMatchesPage.clickOnCreateMatches();
+			seedMatchesPage.hardWait(5);
 
 			this.verifySavePublishFunctionality();
 
