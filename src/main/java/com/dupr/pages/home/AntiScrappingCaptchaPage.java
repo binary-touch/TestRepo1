@@ -63,6 +63,9 @@ public class AntiScrappingCaptchaPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//span[text()='Edit Partner']")
 	private WebElement btnEditPartner;
+	
+	@B2BFindBys(@B2BFindBy(xpath = "//div[contains(@class,'MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation3')]"))
+	private List<WebElement> lstBracketCards;
 
 	@B2BFindBys(@B2BFindBy(xpath = "//h4[contains(@class,'MuiTypography-root MuiTypography-h4 MuiTypography-noWrap')]"))
 	private List<WebElement> lnkBracketNames;
@@ -242,8 +245,20 @@ public class AntiScrappingCaptchaPage extends DUPRBaseAutomationPage {
 
 	public void clickOnBracketKebabButton() {
 		log.info("Starting of clickOnBracketKebabButton method");
-
-		clickOnWebElement(btnkebabBracket);
+		
+		for(int i=0;i<lstBracketCards.size();i++) {
+			System.out.println("I value is: "+ i);
+			System.out.println("Bracket cards size is: " + lstBracketCards.size());
+		try {
+			
+				if(btnkebabBracket.isDisplayed()==true) {
+					clickOnWebElement(btnkebabBracket);
+					break;
+				}
+		} catch (Exception e) {
+			scrollDown(300);
+		}
+	}
 
 		log.info("Ending of clickOnBracketKebabButton method");
 	}

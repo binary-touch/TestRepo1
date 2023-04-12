@@ -19,7 +19,7 @@ public class AddAnnouncementPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//*[contains(@class,'MuiSvgIcon-root MuiSvgIcon-colorPrimary MuiSvgIcon-fontSizeMedium')]")
 	private WebElement btnBack;
 
-	@B2BFindBy(xpath = "(//h4[contains(@class,'MuiTypography-root MuiTypography-h4')])")
+	@B2BFindBy(xpath = "//h4[contains(@class,'MuiTypography-root MuiTypography-h4')]")
 	private List<WebElement> lblEvent;
 
 	@B2BFindBy(xpath = "//button[text()='Add An Announcement']")
