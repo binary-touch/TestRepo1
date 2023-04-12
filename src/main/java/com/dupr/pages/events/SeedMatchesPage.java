@@ -333,8 +333,8 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//h4[(text()='Match Validated Successfully')]")
 	private WebElement lblMatchValidateSuccessfully;
-
-	@B2BFindBy(xpath = "//h3[text()='Registration Date']/following-sibling::div//h5[text()='Start Date & Time']/parent::div/following-sibling::div//input")
+	//h3[text()='Registration Date']/following-sibling::div//h5[text()='Start Date & Time']/parent::div/following-sibling::div//input
+	@B2BFindBy(xpath = "//h3[text()='Registration Date']/following-sibling::div//h5[text()='Start Date & Time']/parent::div/following-sibling::div//fieldset")
 	private WebElement txtBoxRegistrationStartDate;
 
 	@B2BFindBy(xpath = "//h3[text()='Registration Date']/following-sibling::div//h5[text()='End Date & Time']/parent::div/following-sibling::div//input")
@@ -1669,13 +1669,21 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 		this.hardWait(2);
 		Actions action = new Actions(driver);
-		action.moveToElement(txtBoxRegistrationStartDate).contextClick(txtBoxRegistrationStartDate).build().perform();
+		//action.moveToElement(txtBoxRegistrationStartDate).contextClick(txtBoxRegistrationStartDate).build().perform();
+		
+		try {
+			action.click(txtBoxRegistrationStartDate).build().perform();
+		} catch (Exception e) {
+			System.out.println("catch");
+			action.moveToElement(txtBoxRegistrationStartDate).click(txtBoxRegistrationStartDate).build().perform();
+		}
+		
 		
 		/*
 		 * try { clickUsingActionsClass(txtBoxRegistrationStartDate); } catch (Exception
 		 * e) { clickOnWebElement(txtBoxRegistrationStartDate); }
 		 */
-		
+		 
 		int date = this.getCurrentDate();
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
@@ -1709,12 +1717,11 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		String futureHourValue = futureHour.format(DateTimeFormatter.ofPattern(pattern));
 		System.out.println(futureHourValue);
 		
-		Actions action = new Actions(driver);
-		action.moveToElement(txtBoxRegistrationEndDate).contextClick(txtBoxRegistrationEndDate).build().perform();
-		/*
-		 * try { clickUsingActionsClass(txtBoxRegistrationEndDate); } catch (Exception
-		 * e) { clickOnWebElement(txtBoxRegistrationEndDate); }
-		 */
+		
+		  try { clickUsingActionsClass(txtBoxRegistrationEndDate);
+		  } catch (Exception e) {
+			  clickOnWebElement(txtBoxRegistrationEndDate); }
+		 
 		System.out.println("clicked on txtBoxRegistrationEndDate");
 		this.hardWait(2);
 		
