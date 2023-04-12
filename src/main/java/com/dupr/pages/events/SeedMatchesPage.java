@@ -1731,8 +1731,8 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 					.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']"));
 
 			this.hardWait(2);
-			Actions action = new Actions(driver);
-			action.moveToElement(currentHourValue).contextClick(currentHourValue).build().perform();
+			Actions action1 = new Actions(driver);
+			action1.moveToElement(currentHourValue).contextClick(currentHourValue).build().perform();
 		} catch (Exception e) {
 			clickOnWebElement(driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']")));
 		}
@@ -1745,8 +1745,8 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 					this.setCompetitionStartDate();
 				} catch (Exception e) {
-					Actions action = new Actions(driver);
-					action.moveToElement(driver.findElement(By.cssSelector("span[aria-label='" + min + " minutes']")))
+					Actions action1 = new Actions(driver);
+					action1.moveToElement(driver.findElement(By.cssSelector("span[aria-label='" + min + " minutes']")))
 							.click().perform();
 				}
 			}
