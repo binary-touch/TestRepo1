@@ -1338,13 +1338,14 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		System.out.println(hours);
 		String meridiem = this.getCurrentMeridiem();
 
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		executor. executeScript("arguments[0]. click();", txtBoxCompetitionEndDate);
+		
 		String lblmonth = lblMonth.getText();
 		String monthvalue = String.valueOf(lblmonth.split(" ")[0]).toUpperCase().trim();
 		log.debug("Text is " + monthvalue);
 		this.hardWait(3);
 
-		JavascriptExecutor executor = (JavascriptExecutor) driver;
-		executor. executeScript("arguments[0]. click();", txtBoxCompetitionEndDate);
 		
 		System.out.println("clicked on txtBoxRegistrationEndDate");
 		this.hardWait(2);
