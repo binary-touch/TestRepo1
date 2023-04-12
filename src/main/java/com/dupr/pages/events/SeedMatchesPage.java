@@ -10,6 +10,7 @@ import java.util.Date;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -1718,9 +1719,13 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		System.out.println(futureHourValue);
 		
 		
-		  try { clickUsingActionsClass(txtBoxRegistrationEndDate);
-		  } catch (Exception e) {
-			  clickOnWebElement(txtBoxRegistrationEndDate); }
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		executor. executeScript("arguments[0]. click();", txtBoxRegistrationEndDate);
+		
+		/*
+		 * try { clickUsingActionsClass(txtBoxRegistrationEndDate); } catch (Exception
+		 * e) { clickOnWebElement(txtBoxRegistrationEndDate); }
+		 */
 		 
 		System.out.println("clicked on txtBoxRegistrationEndDate");
 		this.hardWait(2);
