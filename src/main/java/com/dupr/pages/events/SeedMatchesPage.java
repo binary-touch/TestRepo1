@@ -1710,6 +1710,9 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		String futureHourValue = futureHour.format(DateTimeFormatter.ofPattern(pattern));
 		System.out.println(futureHourValue);
 
+		WebElement Date =driver.findElement(By.xpath("//button[text()='" + date + "']"));
+		this.waitForElementToBeVisible(Date);
+		
 		this.clickOnCurrentDate(date);
 		this.clickOnCurrentTime(meridiem);
 
@@ -1867,6 +1870,8 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		String futureHourValue = futureHour.format(DateTimeFormatter.ofPattern(pattern));
 		System.out.println(futureHourValue);
 
+		WebElement Date =driver.findElement(By.xpath("//button[text()='" + date + "']"));
+		this.waitForElementToBeVisible(Date);
 		this.clickOnCurrentDate(date);
 		this.clickOnCurrentTime(meridiem);
 		System.out.println(driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']")));
