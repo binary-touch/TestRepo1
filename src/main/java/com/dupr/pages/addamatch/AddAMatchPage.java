@@ -617,7 +617,7 @@ public class AddAMatchPage extends DUPRBaseAutomationPage {
 	public String getValidationScoreIsRequired() {
 		log.info("Starting of getValidationvalidationScorerequired method");
 		log.info("Ending of getValidationvalidationScorerequired method");
-
+        this.hardWait(3);
 		return getText(txtValidationScoreRequired);
 	}
 
