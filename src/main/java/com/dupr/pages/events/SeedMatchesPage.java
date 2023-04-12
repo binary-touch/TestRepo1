@@ -1670,6 +1670,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 	public void setRegistrationStartDate() {
 		log.info("Starting of setRegistrationStartDate method");
 
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		scrollDown(200);
 
 		this.hardWait(2);
@@ -1708,7 +1709,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		try {
 			hardWait(2);
 			if (btnOK.isDisplayed() == true) {
-				this.clickOnWebElement(btnOK);
+				executor. executeScript("arguments[0]. click();", btnOK);
 				System.out.println("*** Clicked on OK button ***");
 			}
 		} catch (Exception e) {
@@ -1804,7 +1805,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		try {
 			hardWait(2);
 			if (btnOK.isDisplayed() == true) {
-				this.clickOnWebElement(btnOK);
+				executor. executeScript("arguments[0]. click();", btnOK);
 				System.out.println("*** Clicked on OK button ***");
 			}
 		} catch (Exception e) {
@@ -1981,7 +1982,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		try {
 			hardWait(2);
 			if (btnOK.isDisplayed() == true) {
-				this.clickOnWebElement(btnOK);
+				executor. executeScript("arguments[0]. click();", btnOK);
 				System.out.println("*** Clicked on OK button ***");
 			}
 		} catch (Exception e) {
