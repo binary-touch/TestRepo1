@@ -155,6 +155,8 @@ public class WaterfallRoundOneSeedingLogicTest extends CommonBaseTest {
 	public void verifySortingplayersAsRatingHighToLow() {
 		logger.info("Starting of verifySortingplayersAsRatingHighToLow method");
 
+		
+		waterfallRoundOneSeedingLogicPage.hardWait(3);
 		waterfallRoundOneSeedingLogicPage.clickOnSortButton();
 		waterfallRoundOneSeedingLogicPage.hardWait(3);
 		waterfallRoundOneSeedingLogicPage.selectHighToLowRadioButton();
