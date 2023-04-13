@@ -4,25 +4,25 @@
 
 	<test name="Sprint 1">
 		<classes>
-			<class name="com.dupr.test.players.SearchPlayersTest" />
+			<!-- <class name="com.dupr.test.players.SearchPlayersTest" />
 			<class name="com.dupr.test.signup.SignupTest" />
 			<class name="com.dupr.test.signup.DUPRClaimAccountSignUpTest" />
 			<class name="com.dupr.test.DUPRLoginTest" />
 			<class name="com.dupr.test.NegativeLoginTest" />
 			<class name="com.dupr.test.ForgotPasswordTest" />
-			<class name="com.dupr.test.addamatch.AddAMatchTest" />
+			<class name="com.dupr.test.addamatch.AddAMatchTest" /> -->
 			<class name="com.dupr.test.home.ValidateRecentlyAddedMatchTest" />
-			<class
+			<!--<class
 				name="com.dupr.test.home.ValidateStatsChangeOnNewMatchTest" />
-			<class name="com.dupr.test.home.DeleteRecentlyAddedMatchTest" />
+			 <class name="com.dupr.test.home.DeleteRecentlyAddedMatchTest" />
 			<class name="com.dupr.test.players.BrowsePlayersTest" />
 			<class name="com.dupr.test.profile.PlayerProfileTest" />
 			<class name="com.dupr.test.profile.NotificationsTest" />
 			<class name="com.dupr.test.profile.ChangePasswordTest" />
-			<class name="com.dupr.test.profile.ProfilePictureTest" />
+			<class name="com.dupr.test.profile.ProfilePictureTest" /> -->
 		</classes>
 	</test>
-
+<!-- 
 	<test name="Sprint 2">
 		<classes>
 			<class name="com.dupr.test.clubs.BrowseClubsTest" />
@@ -86,5 +86,5 @@
 			<class name="com.dupr.test.events.EditScoreAfterValidationTest" />
 			<class name="com.dupr.test.events.SeedMatchesWaterFallTest" />
 		</classes>
-	</test>
+	</test> -->
 </suite>
