@@ -100,10 +100,10 @@ public class WaterfallRoundOneSeedingLogicTest extends CommonBaseTest {
 		seedMatchesPage.setRegistrationEndDate();
 
 		addBracketPage.hardWait(2);
-		seedMatchesPage.setCompetitionStartDate();
+		//seedMatchesPage.setCompetitionStartDate();
 
 		addBracketPage.hardWait(2);
-		seedMatchesPage.setCompetitionEndDate();
+		addBracketPage.setCompetitionEndDate();
 
 		addBracketPage.clickOnTimeZoneDropdown();
 		Assert.assertTrue(addBracketPage.isTimeZoneListContains());

@@ -144,7 +144,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 	private WebElement lblcompetitionRange;
 
 	@B2BFindBy(xpath = "//h4[contains(@class,'MuiTypography-root MuiTypography-h4')]/parent::div/div/following-sibling::div/p[contains(@class,'MuiTypography-root MuiTypography-body2')]/following-sibling::h6")
-	private WebElement lblLessthenSevenRelativeDays;
+	private WebElement lblLessThanSevenRelativeDays;
 
 	@B2BFindBy(xpath = "//h4[contains(@class,'MuiTypography-root MuiTypography-h4')]/parent::div/div/following-sibling::div/p[contains(@class,'MuiTypography-root MuiTypography-body2')]/following-sibling::h6/div/span")
 	private WebElement lblhoursAndMins;
@@ -221,7 +221,6 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "(//div/span[text()='Completed'])[1]")
 	private WebElement lblCompleted;
 	
-	//button[text()='Switch Bracket']
 	public TimeZonePage(WebDriver driver) {
 		super(driver);
 		B2BPageFactory.initElements(driver, this);
@@ -353,7 +352,6 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 
 	public String getRegStartInEventDetails() {
 		log.info("Starting of getRegStartInEventDetails method");
-		//System.out.println(getText(txtRegStartDateInEventDetails));
 		log.info("Ending of getRegStartInEventDetails method");
 
 		return txtRegStartDateInEventDetails.getText();
@@ -408,17 +406,15 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 	}
 
 	
-	public String getCompStartDaeInEventDetails() {
-		log.info("Starting of getCompetitionStartDaeText method");
-		// System.out.println(getText(txtCompetitionStartDateTime));
-		log.info("Ending of getCompetitionStartDaeText method");
+	public String getCompStartDateInEventDetails() {
+		log.info("Starting of getCompStartDateInEventDetails method");
+		log.info("Ending of getCompStartDateInEventDetails method");
 
 		return txtComstartDateInEventDetails.getText();
 	}
 
 	public String getCompEndDateInEventDetails() {
 		log.info("Starting of getCompEndDateInEventDetails method");
-		// System.out.println(getText(txtCompEndDateInEventDetails));
 		log.info("Ending of getCompEndDateInEventDetails method");
 
 		return txtCompEndDateInEventDetails.getText();
@@ -441,7 +437,6 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 
 	public String getIndianTimeZoneText() {
 		log.info("Starting of getIndianTimeZoneText method");
-		// System.out.println(getText(txtIndianTimeZone));
 		log.info("Ending of getIndianTimeZoneText method");
 
 		return txtIndianTimeZone.getText();
@@ -449,7 +444,6 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 	
 	public String getTimeZoneKathmanduInEventDetails() {
 		log.info("Starting of getTimeZoneKathmanduInEventDetails method");
-		//System.out.println(getText(txtkathmanduTimeZoneInEventDetails));
 		hardWait(5);
 		log.info("Ending of getTimeZoneKathmanduInEventDetails method");
 
@@ -468,7 +462,6 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		log.info("Starting of getIndianTimeZoneInEventDetails method");
 		this.hardWait(6);
 		this.scrollIntoView(txtNewDelhiTimeZoneInEventDetails);
-		//System.out.println(getText(txtNewDelhiTimeZoneInEventDetails));
 		log.info("Ending of getIndianTimeZoneInEventDetails method");
 
 		return txtNewDelhiTimeZoneInEventDetails.getText();
@@ -595,7 +588,6 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 
 	public boolean isMixedDoubleBracketBracketDisplayed() {
 		log.info("Starting of isMixedDoubleBracketBracketDisplayed method");
-		// System.out.println(getText(txtTimeZoneInEventDetails));
 		log.info("Ending of isMixedDoubleBracketBracketDisplayed method");
 
 		return lblMixedDoubleBracketBracketCreated.isDisplayed();
@@ -611,7 +603,6 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		}
 		
 		log.info("Ending of clickOnMixedDoubleBracket method");
-
 	}
 
 	public void clickOnEditBracketButton() {
@@ -642,7 +633,6 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 	public int getCurrentHourIn24HourFormat() {
 
 		LocalDateTime dateTime = LocalDateTime.now();
-		// int date = dateTime.getDayOfMonth();
 		int hour = dateTime.getHour();
 
 		return hour;
@@ -674,19 +664,20 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 		return state;
 	}
 
-	public boolean isLessthenSevenRelativeDaysDisplayed() {
-		log.info("Starting of isLessthenSevenRelativeDaysDisplayed method");
+	public boolean isLessThanSevenRelativeDaysDisplayed() {
+		log.info("Starting of isLessThanSevenRelativeDaysDisplayed method");
+		
 		this.hardWait(5);
 		scrollDown(-800);
 		boolean state = false;
 		try {
-			if (lblLessthenSevenRelativeDays.isDisplayed()) {
+			if (lblLessThanSevenRelativeDays.isDisplayed()) {
 				state = true;
 			}
 		} catch (Exception e) {
 			state = false;
 		}
-		log.info("Ending of isLessthenSevenRelativeDaysDisplayed method");
+		log.info("Ending of isLessThanSevenRelativeDaysDisplayed method");
 
 		return state;
 	}
@@ -955,7 +946,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 			log.info("*** OK Button Haven't displayed***");
 		}
 
-		log.info("Ending of setRegistrationEndDateMoreThenSevenDaysï¿½method");
+		log.info("Ending of setRegistrationEndDateMoreThenSevenDays method");
 	}
 
 	public void setRegistrationEndDateBeforeThreeDays() {
@@ -997,7 +988,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 			log.info("*** OK Button Haven't displayed***");
 		}
 
-		log.info("Ending of setRegistrationEndDateBeforeThreeDaysï¿½method");
+		log.info("Ending of setRegistrationEndDateBeforeThreeDays method");
 	}
 
 	public void setCompetitionStartDateMoreThenSevenDays() {
@@ -1022,7 +1013,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 			log.info("*** OK Button Haven't displayed***");
 		}
 
-		log.info("Ending of setCompetitionStartDateMoreThenSevenDaysï¿½method");
+		log.info("Ending of setCompetitionStartDateMoreThenSevenDays method");
 	}
 
 	public void setCompetitionStartDateBeforeTwoDays() {
@@ -1049,7 +1040,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 			log.info("*** OK Button Haven't displayed***");
 		}
 
-		log.info("Ending of setCompetitionStartDateBeforeTwoDaysï¿½method");
+		log.info("Ending of setCompetitionStartDateBeforeTwoDays method");
 	}
 
 	public void setCompetitionStartDateBeforeOneDay() {
@@ -1076,7 +1067,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 			log.info("*** OK Button Haven't displayed***");
 		}
 
-		log.info("Ending of setCompetitionStartDateBeforeOneDayï¿½method");
+		log.info("Ending of setCompetitionStartDateBeforeOneDay method");
 	}
 
 	public void setCompetitionEndDateMoreThenSevenDays() {
@@ -1101,7 +1092,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 			log.info("*** OK Button Haven't displayed***");
 		}
 
-		log.info("Ending of setCompetitionEndDateMoreThenSevenDaysï¿½method");
+		log.info("Ending of setCompetitionEndDateMoreThenSevenDays method");
 	}
 
 	public void setCompetitionEndDateBeforeOneDay() {
@@ -1126,7 +1117,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 			log.info("*** OK Button Haven't displayed***");
 		}
 
-		log.info("Ending of setCompetitionEndDateBeforeOneDayï¿½method");
+		log.info("Ending of setCompetitionEndDateBeforeOneDay method");
 	}
 
 	public void setNewDelhiTimeZone() {
@@ -1184,7 +1175,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 			log.info("*** OK Button Haven't displayed***");
 		}
 
-		log.info("Ending of setRegistrationEndDateInHourï¿½method");
+		log.info("Ending of setRegistrationEndDateInHour method");
 	}
 
 	public void setRegistrationEndDateInHour() {
@@ -1261,7 +1252,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 			log.info("*** OK Button Haven't displayed***");
 		}
 
-		log.info("Ending of setRegistrationEndDateInMinusHourï¿½method");
+		log.info("Ending of setRegistrationEndDateInMinusHour method");
 	}
 
 	public void setCompetitionEndDateInHour() {
@@ -1706,7 +1697,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 			log.info("*** OK Button Haven't displayed***");
 		}
 
-		log.info("Ending of setCompetitionStartDateMoreThenSixDays method");
+		log.info("Ending of setCompetitionStartDateMoreThenSixDays method");
 	}
 
 	public void setCompetitionEndDateMoreThenSixDays() {
@@ -1751,7 +1742,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 			log.info("*** OK Button Haven't displayed***");
 		}
 
-		log.info("Ending of setCompetitionEndDateMoreThenSixDays method");
+		log.info("Ending of setCompetitionEndDateMoreThenSixDays method");
 	}
 
 	public void setCompetitionStartDateHour() {
@@ -1786,6 +1777,6 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 			log.info("*** OK Button Haven't displayed***");
 		}
 
-		log.info("Ending of setCompetitionStartDateHourï¿½method");
+		log.info("Ending of setCompetitionStartDateHour method");
 	}
 }
