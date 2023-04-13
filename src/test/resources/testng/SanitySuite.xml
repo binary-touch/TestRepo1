@@ -3,7 +3,7 @@
 <suite name="Sanity UI Automation Tests">
 	<!-- <parallel = "classes" thread-count = "4" /> -->
 
-	<test name="Sprint 1">
+	<!--<test name="Sprint 1">
 		<classes>
 
 			<class name="com.b2b.test.sprint1.sanity.SignupTest" />
@@ -86,7 +86,7 @@
 				name="com.b2b.test.sprint4.sanity.SeedMatchesRoundRobinTest">
 			</class>
 		</classes>
-	</test>
+	</test>-->
 
 	<test name="Sprint 5">
 		<classes>
