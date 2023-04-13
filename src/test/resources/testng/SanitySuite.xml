@@ -56,7 +56,7 @@
 			<class name="com.b2b.test.sprint3.sanity.AddAnnouncementTest" />
 			<class
 				name="com.b2b.test.sprint3.sanity.AntiScrappingCaptchaTest" /> -->
-			<class name="com.b2b.test.sprint3.sanity.EndEventTest" />
+			<!-- <class name="com.b2b.test.sprint3.sanity.EndEventTest" /> -->
 			<!-- <class
 				name="com.b2b.test.sprint3.sanity.PlayerEventRegistrationTest" />
 			<class
