@@ -1790,7 +1790,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 	}
 
 	public void selectFutureHour() {
-		log.info("Starting of selectFutureHour method");
+		//log.info("Starting of selectFutureHour method");
 
 		String pattern = "h";
 		LocalTime currentHour = LocalTime.now();
@@ -1824,13 +1824,9 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 			System.out.println(futureHourValue);
 			this.clickOnCurrentTime(futureHourValue);
 			min = "05";
-			this.hardWait(1);
-			try {
+			this.hardWait(2);
 				clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'05')]")));
-			} catch (Exception e) {
-				
-				clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'05')]")));
-			}
+			
 			//this.clickOnCurrentTime(min);
 		}
 
