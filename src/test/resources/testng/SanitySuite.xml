@@ -5,7 +5,6 @@
 
 	<test name="Sprint 1">
 		<classes>
-
 			<class name="com.b2b.test.sprint1.sanity.SignupTest" />
 			<class name="com.b2b.test.sprint1.sanity.SearchPlayersTest" />
 			<class
@@ -92,7 +91,6 @@
 		<classes>
 			<class
 				name="com.b2b.test.sprint5.sanity.PaidEventAndPaidBracketWithWaterfallEventTest" />
-
 			<class
 				name="com.b2b.test.sprint5.sanity.WaterfallRoundOneSeedingLogicTest" />
 			<class
