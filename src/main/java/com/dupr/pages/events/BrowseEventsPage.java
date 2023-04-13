@@ -59,6 +59,12 @@ public class BrowseEventsPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//span[contains(@class,'Mui-checked ')]")
 	private WebElement tglLocationIsOnState;
+	
+	@B2BFindBy(xpath = "//h4[contains(text(),'Location Permission')]")
+	private WebElement lblLocationPopup;
+	
+	@B2BFindBy(xpath = "//button[contains(text(),'OK')]")
+	private WebElement btnOK;
 
 	public BrowseEventsPage(WebDriver driver) {
 		super(driver);
@@ -104,15 +110,30 @@ public class BrowseEventsPage extends DUPRBaseAutomationPage {
 	}
 
 	public String getEventsText() {
-		log.info("Starting of gettxtEventsText method");
-		log.info("Ending of gettxtEventsText method");
+		log.info("Starting of getEventsText method");
+		log.info("Ending of getEventsText method");
 
 		return getText(txtEvents);
 	}
+	
+	public void clickOnOKButton() {
+		log.info("Starting of clickOnOKButton method");
+		
+		try {
+			if(lblLocationPopup.isDisplayed()==true) {
+				clickOnWebElement(btnOK);
+				System.out.println("*** OK button is displayed ***");
+			}
+		} catch (Exception e) {
+			System.out.println("*** OK button haven't displayed ***");
+		}
+		
+		log.info("Ending of clickOnOKButton method");
+	}
 
 	public boolean getToggleOnState() {
-		log.info("Starting of gettxtEventsText method");
-		log.info("Ending of gettxtEventsText method");
+		log.info("Starting of getToggleOnState method");
+		log.info("Ending of getToggleOnState method");
 
 		return isDisplayed(tglLocationIsOnState);
 	}
