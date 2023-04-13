@@ -546,6 +546,14 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 
 		log.info("Ending of clickOnDoublesButton method");
 	}
+	
+	public void pageRefresh() {
+		log.info("Starting of pageRefresh method");
+
+		driver.navigate().refresh();
+
+		log.info("Ending of pageRefresh method");
+	}
 
 	public boolean isRightMarkIconsDisplayed() {
 		log.info("Starting of isRightMarkIconsDisplayed method");

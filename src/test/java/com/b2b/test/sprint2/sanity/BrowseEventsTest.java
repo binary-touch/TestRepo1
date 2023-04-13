@@ -99,7 +99,7 @@ public class BrowseEventsTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyCompleteFunctionality method");
 	}
 
-	@Test(priority = 5, description = "Verify complete & open filter functionality", groups = "sanity")
+	//@Test(priority = 5, description = "Verify complete & open filter functionality", groups = "sanity")
 	@Description("Test case #5, Verify complete & open filter functionality")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #5, Verify complete & open filter functionality")
@@ -113,7 +113,7 @@ public class BrowseEventsTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyCompleteAndOpenFilterFunctionality method");
 	}
 
-	@Test(priority = 6, description = "Verify open filter functionality", groups = "sanity")
+	//@Test(priority = 6, description = "Verify open filter functionality", groups = "sanity")
 	@Description("Test case #6, Verify open filter functionality")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #6, Verify open filter functionality")

@@ -94,9 +94,9 @@ public class ValidateRecentlyAddedMatchTest extends CommonBaseTest {
 	@Story("Test case #4, Verify matches with doubles filter")
 	public void verifyDoublesFilterFunctionality() {
 		logger.info("Starting of verifyDoublesFilterFunctionality method");
-		
-		driver.navigate().refresh();
 
+		
+		validateRecentlyAddedMatchPage.pageRefresh();
 		validateRecentlyAddedMatchPage.clickOnDoublesButton();
 		validateRecentlyAddedMatchPage.hardWait(3);
 

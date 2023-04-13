@@ -692,9 +692,9 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 			System.out.println("Recently drafted event name:" + draftEventName);
 			System.out.println(lstEvents.get(i).getText().equals(draftEventName));
 			if (lstEvents.get(i).getText().equals(draftEventName)) {
-				System.out.println(lstDrafts.get(i++).getText().contains("Draft"));
+				System.out.println(lstDrafts.get(i).getText().contains("Draft"));
 				
-				if (lstDrafts.get(i++).getText().contains("Draft")) {
+				if (lstDrafts.get(i).getText().contains("Draft")) {
 					isDraftEventDisplayed = true;
 					break;
 				}
