@@ -1790,7 +1790,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 	}
 
 	public void selectFutureHour() {
-		//log.info("Starting of selectFutureHour method");
+		log.info("Starting of selectFutureHour method");
 
 		String pattern = "h";
 		LocalTime currentHour = LocalTime.now();
@@ -1879,8 +1879,6 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		 * try { clickUsingActionsClass(txtBoxCompetitionStartDate); } catch (Exception
 		 * e) { clickOnWebElement(txtBoxCompetitionStartDate); }
 		 */
-
-		
 		
 		int date = this.getCurrentDate();
 		String hours = this.getCurrentHour();

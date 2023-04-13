@@ -100,13 +100,15 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		seedMatchesPage.setRegistrationEndDate();
 
 		addBracketPage.hardWait(2);
-		seedMatchesPage.setCompetitionStartDate();
+		//seedMatchesPage.setCompetitionStartDate();
 
 		addBracketPage.hardWait(2);
-		addBracketPage.setCompetitionEndDate();
+		seedMatchesPage.setCompetitionEndDate();
 
 		addBracketPage.clickOnTimeZoneDropdown();
+		addBracketPage.hardWait(2);
 		Assert.assertTrue(addBracketPage.isTimeZoneListContains());
+		addBracketPage.hardWait(2);
 		addBracketPage.clickOnNewDelhiTimeZone();
 
 		addBracketPage.hardWait(2);
