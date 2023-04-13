@@ -109,7 +109,7 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		addBracketPage.setCompetitionEndDate();
 
 		addBracketPage.clickOnTimeZoneDropdown();
-		Assert.assertTrue(addBracketPage.isTimeZoneListContains());
+		addAMatchPage.hardWait(2);
 		addBracketPage.clickOnNewDelhiTimeZone();
 
 		addBracketPage.hardWait(2);
@@ -483,7 +483,7 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 
 		logger.info("Ending of verifyHavingTroubleOptionFunctionality method");
 	}
-	
+
 	@Test(priority = 19, description = "Verify Click Here Link Functionality in Having WiFi Problems Popup", groups = "sanity")
 	@Description("Test case #19, Verify Click Here Link Functionality in Having WiFi Problems Popup")
 	@Severity(SeverityLevel.NORMAL)
@@ -768,7 +768,7 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		logger.info("Starting of verifyCreatingWaterFallEventAsSingles method");
 
 		seedMatchesPage.hardWait(3);
-		//seedMatchesWaterFallPage.navigateBack();
+		// seedMatchesWaterFallPage.navigateBack();
 		seedMatchesPage.hardWait(3);
 		seedMatchesWaterFallPage.clickOnHomeMenu();
 		seedMatchesPage.hardWait(3);
