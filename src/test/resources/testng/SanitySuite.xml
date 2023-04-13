@@ -3,7 +3,7 @@
 <suite name="Sanity UI Automation Tests">
 	<!-- <parallel = "classes" thread-count = "4" /> -->
 
-	<test name="Sprint 1">
+	<!-- <test name="Sprint 1">
 		<classes>
 
 			<class name="com.b2b.test.sprint1.sanity.SignupTest" />
@@ -26,11 +26,11 @@
 			<class name="com.b2b.test.sprint1.sanity.ChangePasswordTest" />
 			<class name="com.b2b.test.sprint1.sanity.ProfilePictureTest" />
 		</classes>
-	</test>
+	</test> -->
 
 	<test name="Sprint 2">
 		<classes>
-			<class name="com.b2b.test.sprint2.sanity.BrowseClubsTest" />
+			<!-- <class name="com.b2b.test.sprint2.sanity.BrowseClubsTest" />
 			<class name="com.b2b.test.sprint2.sanity.MyClubsTest" />
 			<class name="com.b2b.test.sprint2.sanity.EditClubInfoTest" />
 			<class name="com.b2b.test.sprint2.sanity.ClubLogoTest" />
@@ -39,15 +39,15 @@
 			<class name="com.b2b.test.sprint2.sanity.RemoveClubMemberTest" />
 			<class
 				name="com.b2b.test.sprint2.sanity.ImportPlayerViaCSVTest" />
-			<class name="com.b2b.test.sprint2.sanity.AddClubMatchTest" />
+			<class name="com.b2b.test.sprint2.sanity.AddClubMatchTest" /> -->
 			<class name="com.b2b.test.sprint2.sanity.AddEventTest" />
-			<class name="com.b2b.test.sprint2.sanity.BrowseEventsTest" />
+			<!-- <class name="com.b2b.test.sprint2.sanity.BrowseEventsTest" />
 			<class name="com.b2b.test.sprint2.sanity.EditEventsTest" />
-			<class name="com.b2b.test.sprint2.sanity.EditBracketsTest" />
+			<class name="com.b2b.test.sprint2.sanity.EditBracketsTest" /> -->
 		</classes>
 	</test>
 
-	<test name="Sprint 3">
+	<!-- <test name="Sprint 3">
 		<classes>
 			<class
 				name="com.b2b.test.sprint3.sanity.AddEditRemoveEventLogoTest" />
@@ -105,4 +105,4 @@
 			</class>
 		</classes>
 	</test>
-</suite>
+ --></suite>

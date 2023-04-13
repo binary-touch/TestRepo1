@@ -13,10 +13,13 @@ import com.dupr.pages.clubs.ClubLogoPage;
 import com.dupr.test.DUPRBaseAutomationTest;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
-
+@Epic("DUPR App")
+@Feature("Add Remove Organizer")
 public class AddRemoveOrganizerTest extends DUPRBaseAutomationTest {
 
 	private static final Logger logger = Logger.getLogger(AddRemoveOrganizerTest.class.getName());

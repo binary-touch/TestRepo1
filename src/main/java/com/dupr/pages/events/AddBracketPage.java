@@ -976,7 +976,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	public void setRegistrationStartDate() {
 		log.info("Starting of setRegistrationStartDate method");
-		
+
 		scrollDown(400);
 		try {
 			clickOnWebElement(txtBoxRegistrationStartDate);
@@ -1016,7 +1016,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 			System.out.println();
 			clickOnElementUsingActionClass(btnTimeInMinutes);
 		}
-		
+
 		try {
 			hardWait(2);
 			if (btnOK.isDisplayed() == true) {
@@ -1111,7 +1111,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 				clickOnWebElement(driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']")));
 			}
 			System.out.println("*** Clicked on Hour ***");
-			
+
 			clickUsingActionsClass(btnDefaultTimeInMinutes);
 			System.out.println("*** Clicked on Minutes ***");
 			hardWait(2);
@@ -1119,7 +1119,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 			System.out.println();
 			clickOnElementUsingActionClass(btnTimeInMinutes);
 		}
-		
+
 		try {
 			hardWait(2);
 			if (btnOK.isDisplayed() == true) {
@@ -1130,7 +1130,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			log.info("*** OK Button Haven't displayed***");
 		}
-		
+
 		log.info("Ending of setRegistrationEndDate method");
 	}
 
@@ -1147,17 +1147,26 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 			hardWait(2);
 			this.clickOnCurrentDate(date);
+			System.out.println("*** Clicked on Date ***");
+
 			hardWait(2);
 			this.clickOnCurrentTime(meridiem);
+			System.out.println("*** Clicked on Meridiem ***");
 
 			hardWait(2);
 			this.clickOnCurrentTime(hours);
+			System.out.println("*** Clicked on Hour ***");
+
 			clickOnElementUsingActionClass(btnTimeInMinutes);
 			hardWait(2);
+			System.out.println("*** Clicked on Minutes ***");
 
 			try {
+				hardWait(2);
 				if (btnOK.isDisplayed() == true) {
-					this.clickOnWebElement(btnOK);
+					JavascriptExecutor executor = (JavascriptExecutor) driver;
+					executor.executeScript("arguments[0]. click();", btnOK);
+					System.out.println("*** Clicked on OK button ***");
 				}
 			} catch (Exception e) {
 				log.info("*** OK Button Haven't displayed***");
@@ -1181,17 +1190,27 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 		hardWait(2);
 		this.clickOnCurrentDate(date);
+		System.out.println("*** Clicked on Date***");
+
 		hardWait(2);
 		this.clickOnCurrentTime(meridiem);
+		System.out.println("*** Clicked on Meridiem ***");
+
 		hardWait(2);
 		this.clickOnCurrentTime(hours);
+		System.out.println("*** Clicked on Hour ***");
+
 		hardWait(2);
 		clickOnElementUsingActionClass(btnTimeInMinutes);
+		System.out.println("*** Clicked on Minutes ***");
 
 		hardWait(2);
 		try {
+			hardWait(2);
 			if (btnOK.isDisplayed() == true) {
-				this.clickOnWebElement(btnOK);
+				JavascriptExecutor executor = (JavascriptExecutor) driver;
+				executor.executeScript("arguments[0]. click();", btnOK);
+				System.out.println("*** Clicked on OK button ***");
 			}
 		} catch (Exception e) {
 			log.info("*** OK Button Haven't displayed***");
@@ -1210,13 +1229,23 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		String meridiem = this.getCurrentMeridiem();
 
 		this.clickOnCurrentDate(date);
+		System.out.println("*** Clicked on Date ***");
+
 		this.clickOnCurrentTime(meridiem);
+		System.out.println("*** Clicked on Meridiem ***");
+
 		this.clickOnCurrentTime(hours);
+		System.out.println("*** Clicked on Hour ***");
+
 		clickOnElementUsingActionClass(btnTimeInMinutes);
+		System.out.println("*** Clicked on Minutes ***");
 
 		try {
+			hardWait(2);
 			if (btnOK.isDisplayed() == true) {
-				this.clickOnWebElement(btnOK);
+				JavascriptExecutor executor = (JavascriptExecutor) driver;
+				executor.executeScript("arguments[0]. click();", btnOK);
+				System.out.println("*** Clicked on OK button ***");
 			}
 		} catch (Exception e) {
 			log.info("*** OK Button Haven't displayed***");
@@ -1235,13 +1264,23 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		String meridiem = this.getCurrentMeridiem();
 
 		this.clickOnCurrentDate(date);
+		System.out.println("*** Clicked on Date ***");
+
 		this.clickOnCurrentTime(meridiem);
+		System.out.println("*** Clicked on Meridiem ***");
+
 		this.clickOnCurrentTime(hours);
+		System.out.println("*** Clicked on Hour ***");
+
 		clickOnElementUsingActionClass(btnTimeInMinutes);
+		System.out.println("*** Clicked on Minutes ***");
 
 		try {
+			hardWait(2);
 			if (btnOK.isDisplayed() == true) {
-				this.clickOnWebElement(btnOK);
+				JavascriptExecutor executor = (JavascriptExecutor) driver;
+				executor.executeScript("arguments[0]. click();", btnOK);
+				System.out.println("*** Clicked on OK button ***");
 			}
 		} catch (Exception e) {
 			log.info("*** OK Button Haven't displayed***");
@@ -1260,13 +1299,23 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		String meridiem = this.getCurrentMeridiem();
 
 		this.clickOnCurrentDate(date);
-		this.clickOnCurrentTime(meridiem);
-		this.clickOnCurrentTime(hours);
-		clickOnElementUsingActionClass(btnTimeInMinutes);
+		System.out.println("*** Clicked on Date ***");
 
+		this.clickOnCurrentTime(meridiem);
+		System.out.println("*** Clicked on Meridiem ***");
+
+		this.clickOnCurrentTime(hours);
+		System.out.println("*** Clicked on Hour ***");
+
+		clickOnElementUsingActionClass(btnTimeInMinutes);
+		System.out.println("*** Clicked on Minutes ***");
+		
 		try {
+			hardWait(2);
 			if (btnOK.isDisplayed() == true) {
-				this.clickOnWebElement(btnOK);
+				JavascriptExecutor executor = (JavascriptExecutor) driver;
+				executor.executeScript("arguments[0]. click();", btnOK);
+				System.out.println("*** Clicked on OK button ***");
 			}
 		} catch (Exception e) {
 			log.info("*** OK Button Haven't displayed***");
@@ -1277,7 +1326,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	public void setCompetitionStartDate() {
 		log.info("Starting of setCompetitionStartDate method");
-		
+
 		this.scrollDown(200);
 		hardWait(3);
 		try {
@@ -1344,7 +1393,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			System.out.println();
 		}
-		
+
 		try {
 			hardWait(2);
 			if (btnOK.isDisplayed() == true) {
@@ -1355,7 +1404,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			log.info("*** OK Button Haven't displayed***");
 		}
-		
+
 		log.info("Ending of setCompetitionStartDate method");
 	}
 
@@ -1376,20 +1425,19 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		String meridiem = this.getCurrentMeridiem();
 
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
-		executor. executeScript("arguments[0]. click();", txtBoxCompetitionEndDate);
-		
+		executor.executeScript("arguments[0]. click();", txtBoxCompetitionEndDate);
+
 		String lblmonth = lblMonth.getText();
 		String monthvalue = String.valueOf(lblmonth.split(" ")[0]).toUpperCase().trim();
 		log.debug("Text is " + monthvalue);
 		this.hardWait(3);
 
-		
 		System.out.println("clicked on txtBoxRegistrationEndDate");
 		this.hardWait(2);
 		try {
 			if ((mValue).equals(monthvalue)) {
 				this.hardWait(3);
-				
+
 				this.clickOnCurrentDate(date);
 			} else {
 				this.hardWait(3);
@@ -1420,7 +1468,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 		clickOnElementUsingActionClass(btnDefaultTimeInMinutes);
 		System.out.println("*** Clicked on Minutes ***");
-		
+
 		try {
 			hardWait(2);
 			if (btnOK.isDisplayed() == true) {

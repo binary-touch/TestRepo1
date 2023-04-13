@@ -609,7 +609,9 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		addBracketPage.hardWait(2);
 		addBracketPage.selectMixedPlayerGroup();
 
-		addEventPage.clickOnNextStepButton();addBracketPage.hardWait(3);
+		addEventPage.clickOnNextStepButton();
+		addBracketPage.hardWait(3);
+		
 		Assert.assertTrue(addBracketPage.isMixedGroupSinglesValidationDisplayed());
 
 		logger.info("Ending of verifyBracketCombinationOfMixedPlayerGroupAndSingleType method");
