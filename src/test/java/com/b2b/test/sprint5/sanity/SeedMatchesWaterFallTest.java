@@ -815,10 +815,10 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		seedMatchesPage.setRegistrationStartDate();
 
 		addBracketPage.hardWait(2);
-		addBracketPage.setRegistrationEndDate();
+		seedMatchesPage.setRegistrationEndDate();
 
 		addBracketPage.hardWait(2);
-		addBracketPage.setCompetitionStartDate();
+		seedMatchesPage.setCompetitionStartDate();
 
 		addBracketPage.hardWait(2);
 		seedMatchesPage.setCompetitionEndDate();
