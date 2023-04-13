@@ -703,13 +703,18 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 		addBracketPage.setWaitlist(testDataProp.getProperty("min.rating.range"));
 
 		seedMatchesPage.scrollUp();
-		addBracketPage.setRegistrationStartDate();
-		seedMatchesPage.scrollUptoDate();
+		addBracketPage.hardWait(2);
+		seedMatchesPage.setRegistrationStartDate();
+
+		addBracketPage.hardWait(2);
+		addBracketPage.setRegistrationEndDate();
+
+		addBracketPage.hardWait(2);
+		seedMatchesPage.setSampleCompitionStartDate();
+
+		addBracketPage.hardWait(2);
 		addBracketPage.setCompetitionEndDate();
 
-		seedMatchesPage.setRegistrationEndDate();
-
-		seedMatchesPage.setCompetitionStartDate();
 
 		addEventPage.clickOnNextStepButton();
 		addBracketPage.clickOnNoContinueToSummary();
