@@ -1670,6 +1670,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 	public void setRegistrationStartDate() {
 		log.info("Starting of setRegistrationStartDate method");
 
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		scrollDown(200);
 
 		this.hardWait(2);
@@ -1682,12 +1683,6 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 			System.out.println("catch");
 			action.moveToElement(txtBoxRegistrationStartDate).click(txtBoxRegistrationStartDate).build().perform();
 		}
-		
-		
-		/*
-		 * try { clickUsingActionsClass(txtBoxRegistrationStartDate); } catch (Exception
-		 * e) { clickOnWebElement(txtBoxRegistrationStartDate); }
-		 */
 		 
 		int date = this.getCurrentDate();
 		String hours = this.getCurrentHour();
@@ -1700,8 +1695,20 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		this.clickOnCurrentTime(meridiem);
 		this.clickOnCurrentTime(hours);
 		hardWait(1);
+		System.out.println("Minutes Value: " + btnDefaultTimeInMinutes);
 		this.clickUsingActionsClass(btnDefaultTimeInMinutes);
 		hardWait(2);
+		System.out.println("*** Clicked on Minutes ***");
+	
+		try {
+			hardWait(2);
+			if (btnOK.isDisplayed() == true) {
+				executor. executeScript("arguments[0]. click();", btnOK);
+				System.out.println("*** Clicked on OK button ***");
+			}
+		} catch (Exception e) {
+			log.info("*** OK Button Haven't displayed***");
+		}
 
 		log.info("Ending of setRegistrationStartDate method");
 	}
@@ -1757,7 +1764,10 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 			min = String.valueOf(this.getMinutes());
 			if (driver.findElement(By.cssSelector("span[aria-label='" + min + " minutes']")).isDisplayed()) {
 				try {
+					System.out.println("Minutes Value: " + min);
 					this.clickOnCurrentTime(min);
+					
+					System.out.println("*** Clicked on Minutes ***");
 
 					this.setCompetitionStartDate();
 				} catch (Exception e) {
@@ -1785,6 +1795,16 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 
 			this.setfutureCompitionDate();
 		}
+		
+		try {
+			hardWait(2);
+			if (btnOK.isDisplayed() == true) {
+				executor. executeScript("arguments[0]. click();", btnOK);
+				System.out.println("*** Clicked on OK button ***");
+			}
+		} catch (Exception e) {
+			log.info("*** OK Button Haven't displayed***");
+		}
 
 		log.info("Ending of setRegistrationEndDate method");
 	}
@@ -1809,10 +1829,13 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 				min = "05";
 				
 				try {
+					System.out.println("Minutes Value: " + min);
 					clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'05')]")));
+					System.out.println("*** Clicked on Minutes ***");
 				} catch (Exception e) {
-					
+					System.out.println("Minutes Value: " + min);
 					clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'05')]")));
+					System.out.println("*** Clicked on Minutes ***");
 				}
 				//this.clickOnCurrentTime(min);
 			}
@@ -1824,9 +1847,16 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 			System.out.println(futureHourValue);
 			this.clickOnCurrentTime(futureHourValue);
 			min = "05";
-			this.hardWait(2);
+			this.hardWait(1);
+			try {
+				System.out.println("Minutes Value: " + min);
 				clickUsingActionsClass(driver.findElement(By.xpath("//span[contains(text(),'05')]")));
-			
+				System.out.println("*** Clicked on Minutes ***");
+			} catch (Exception e) {
+				System.out.println("Minutes Value: " + min);
+				clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'05')]")));
+				System.out.println("*** Clicked on Minutes ***");
+			}
 			//this.clickOnCurrentTime(min);
 		}
 
@@ -1893,7 +1923,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		executor. executeScript("arguments[0]. click();", txtBoxCompetitionStartDate);
 		
-		System.out.println("clicked on txtBoxRegistrationEndDate");
+		System.out.println("clicked on txtBoxCompetitionStartDate");
 		this.hardWait(2);
 		
 		WebElement Date =driver.findElement(By.xpath("//button[text()='" + date + "']"));
@@ -1916,7 +1946,9 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 			min = String.valueOf(this.getMinutes());
 			if (driver.findElement(By.cssSelector("span[aria-label='" + min + " minutes']")).isDisplayed()) {
 				try {
+					System.out.println("Minutes Value: " + min);
 					this.clickOnCurrentTime(min);
+					System.out.println("*** Clicked on Minutes ***");
 				} catch (Exception e) {
 					Actions action = new Actions(driver);
 					action.moveToElement(driver.findElement(By.cssSelector("span[aria-label='" + min + " minutes']")))
@@ -1939,6 +1971,16 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 			this.clickOnCurrentDate(date);
 			this.clickOnCurrentTime(meridiem);
 			this.selectFutureHour();
+		}
+		
+		try {
+			hardWait(2);
+			if (btnOK.isDisplayed() == true) {
+				executor. executeScript("arguments[0]. click();", btnOK);
+				System.out.println("*** Clicked on OK button ***");
+			}
+		} catch (Exception e) {
+			log.info("*** OK Button Haven't displayed***");
 		}
 
 		log.info("Ending of setCompetitionStartDate method");
@@ -1967,7 +2009,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		executor. executeScript("arguments[0]. click();", txtBoxCompetitionEndDate);
 		
-		System.out.println("clicked on txtBoxRegistrationEndDate");
+		System.out.println("clicked on txtBoxCompetitionEndDate");
 		this.hardWait(2);
 		try {
 			if ((mValue).equals(monthvalue)) {
@@ -2001,12 +2043,16 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 			System.out.println("*** Clicked on Hour ***");
 		}
 
+		System.out.println("Minutes Value: " + btnDefaultTimeInMinutes);
 		clickOnElementUsingActionClass(btnDefaultTimeInMinutes);
+		
 		System.out.println("*** Clicked on Minutes ***");
 		
 		try {
+			hardWait(2);
 			if (btnOK.isDisplayed() == true) {
 				this.clickOnWebElement(btnOK);
+				System.out.println("*** Clicked on OK button ***");
 			}
 		} catch (Exception e) {
 			
