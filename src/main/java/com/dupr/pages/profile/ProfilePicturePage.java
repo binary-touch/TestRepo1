@@ -38,16 +38,16 @@ public class ProfilePicturePage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//h4[contains(text(),'Remove')]//button")
 	private WebElement iconCloseOnRemoveLogo;
-	
+
 	@B2BFindBy(xpath = "//h4[contains(text(),'Remove Logo')]//button")
 	private WebElement iconCloseOnRemoveClubLogo;
 
 	@B2BFindBy(xpath = "//h4[text()='Event Logo']/parent::h2//button")
 	private WebElement iconCloseOnEventLogo;
-	
+
 	@B2BFindBy(xpath = "//h4[text()='Club Logo']/parent::h2//button")
 	private WebElement iconCloseOnClubLogo;
-	
+
 	@B2BFindBy(xpath = "//h4[text()='Profile Picture']/parent::h2//button")
 	private WebElement iconCloseOnProfilePicture;
 
@@ -116,6 +116,7 @@ public class ProfilePicturePage extends DUPRBaseAutomationPage {
 
 		waitForElementToBeVisible(iconCamera);
 		try {
+			this.hardWait(3);
 			clickUsingActionsClass(iconCamera);
 		} catch (Exception e) {
 			clickOnWebElement(iconCamera);
@@ -175,20 +176,27 @@ public class ProfilePicturePage extends DUPRBaseAutomationPage {
 
 	public void clickOnCloseIconOnEventLogo() {
 		log.info("Starting of clickOnCloseIconOnEventLogo method");
+		try {
+			clickUsingActionsClass(iconCloseOnEventLogo);
 
-		elementClick(iconCloseOnEventLogo);
+		} catch (Exception e) {
+			elementClick(iconCloseOnEventLogo);
+		}
 
 		log.info("Ending of clickOnCloseIconOnEventLogo method");
 	}
-	
+
 	public void clickOnCloseIconOnClubLogo() {
 		log.info("Starting of clickOnCloseIconOnClubLogo method");
-
-		elementClick(iconCloseOnClubLogo);
+		try {
+			clickUsingActionsClass(iconCloseOnClubLogo);
+		} catch (Exception e) {
+			elementClick(iconCloseOnClubLogo);
+		}
 
 		log.info("Ending of clickOnCloseIconOnClubLogo method");
 	}
-	
+
 	public void clickOnIconCloseOnRemoveClubLogo() {
 		log.info("Starting of clickOnIconCloseOnRemoveClubLogo method");
 
@@ -212,7 +220,7 @@ public class ProfilePicturePage extends DUPRBaseAutomationPage {
 
 	public void clickOnRemoveProfilePicture() {
 		log.info("Starting of clickOnRemoveProfilePicture method");
-		
+
 		try {
 			clickUsingActionsClass(btnRemoveProfilePicture);
 		} catch (Exception e) {
@@ -326,7 +334,7 @@ public class ProfilePicturePage extends DUPRBaseAutomationPage {
 		log.info("Starting of isRemoveProfilePicturePopupContains method");
 
 		boolean isRemoveProfilePicturePopupContains = false;
-		
+
 		System.out.println(isDisplayed(lblRemoveProfilePicture));
 		System.out.println(isDisplayed(btnYes));
 		System.out.println(isDisplayed(btnNo));
