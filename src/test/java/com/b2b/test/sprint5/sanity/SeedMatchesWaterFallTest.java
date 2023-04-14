@@ -109,7 +109,7 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		addBracketPage.setCompetitionEndDate();
 
 		addBracketPage.clickOnTimeZoneDropdown();
-		addAMatchPage.hardWait(2);
+		Assert.assertTrue(addBracketPage.isTimeZoneListContains());
 		addBracketPage.clickOnNewDelhiTimeZone();
 
 		addBracketPage.hardWait(2);
