@@ -85,6 +85,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		logger.info("Starting of verifySetMatchDetails method");
 
 		addAMatchPage.hardWait(3);
+
 		addAMatchPage.setLocationInDoubles(testDataProp.getProperty("location.city.name"));
 
 		matchEvent = addAMatchPage.setEventName(testDataProp.getProperty("event.name.in.doubles"));
@@ -207,11 +208,12 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 
 		addEventPage.clickOnNextStepButton();
 
-		logger.info("Ending of erifyEventPoliciesPageByEnteringValidDetails method");
+		logger.info("Ending of verifyEventPoliciesPageByEnteringValidDetails method");
 	}
 
 	public void verifyNoContinueToSummaryButtonInAddAnotherBracketpopup() {
-		logger.info("Starting of VerifyNoContinueToSummaryButtonInAddAnotherBracketpopup method");
+		logger.info("Starting of verifyNoContinueToSummaryButtonInAddAnotherBracketpopup method");
+		
 		addBracketPage.hardWait(4);
 		addBracketPage.clickOnNoContinueToSummary();
 
@@ -219,18 +221,18 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		Assert.assertTrue(addBracketPage.isEventPoliciesSectionDisplayed());
 		Assert.assertTrue(addBracketPage.isBracketsSectionDisplayed());
 
-		logger.info("Ending of VerifyNoContinueToSummaryButtonInAddAnotherBracketpopup method");
+		logger.info("Ending of verifyNoContinueToSummaryButtonInAddAnotherBracketpopup method");
 	}
 
 	public void verifyPublishEventButton() {
-		logger.info("Starting of VerifyPublishEventButton method");
+		logger.info("Starting of verifyPublishEventButton method");
 
 		addBracketPage.clickOnPublishEventButton();
 		Assert.assertTrue(addBracketPage.isPublishSuccessPopUpContains());
 		addBracketPage.hardWait(3);
 		addBracketPage.clickOnEventSuccessClosePopupButton();
 
-		logger.info("Ending of VerifyPublishEventButton method");
+		logger.info("Ending of verifyPublishEventButton method");
 	}
 
 	public void verifyFreeBracketWithRoundRobinEventType() {

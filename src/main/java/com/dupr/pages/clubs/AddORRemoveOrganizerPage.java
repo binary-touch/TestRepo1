@@ -102,7 +102,7 @@ public class AddORRemoveOrganizerPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//p[contains(text(),'Email is required.')]")
 	private WebElement txtEmail;
 
-	@B2BFindBy(xpath = "//p[text()='Email is invalid.']")
+	@B2BFindBy(xpath = "//p[text()='Invalid email address.']")
 	private WebElement txtInvalidEmail;
 
 	public AddORRemoveOrganizerPage(WebDriver driver) {

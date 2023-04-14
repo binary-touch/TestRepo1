@@ -175,7 +175,7 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 
 		explicitWait(lstMatchDetailsBoxes);
 		boolean isMatchHistoryOptionsPageContains = false;
-
+        this.hardWait(3);
 		System.out.println(isDisplayed(lblMatchHistory));
 		System.out.println(isDisplayed(btnPending));
 		System.out.println(isDisplayed(btnCompleted));
@@ -545,6 +545,14 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 		clickOnWebElement(btnDoubles);
 
 		log.info("Ending of clickOnDoublesButton method");
+	}
+	
+	public void pageRefresh() {
+		log.info("Starting of pageRefresh method");
+
+		driver.navigate().refresh();
+
+		log.info("Ending of pageRefresh method");
 	}
 
 	public boolean isRightMarkIconsDisplayed() {

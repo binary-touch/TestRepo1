@@ -119,8 +119,6 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 		LocalDateTime dateTime = LocalDateTime.now();
 		int date = dateTime.getDayOfMonth();
 
-		System.out.println("Date Value = " + date);
-
 		log.info("Ending of getCurrentDate method");
 
 		return date;
@@ -132,7 +130,6 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 		LocalDateTime dateTime = LocalDateTime.now();
 		LocalDateTime date = dateTime.plusDays(days);
 		int dateValue = date.getDayOfMonth();
-		System.out.println("Date Value = " + dateValue);
 
 		log.info("Ending of getFutureDate method");
 
@@ -146,7 +143,6 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 
 		simpleformat = new SimpleDateFormat("h");
 		String strHour = simpleformat.format(new Date());
-		System.out.println("Hour in h format = " + strHour);
 
 		log.info("Ending of getCurrentHour method");
 		return strHour;
@@ -159,7 +155,6 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 
 		simpleformat = new SimpleDateFormat("m");
 		String strMinutes = simpleformat.format(new Date());
-		System.out.println("Minutes format = " + strMinutes);
 
 		log.info("Ending of getCurrentMinute method");
 		return strMinutes;
@@ -173,7 +168,6 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 		simpleformat = new SimpleDateFormat("a");
 		String meridiem = simpleformat.format(new Date());
 		String meridiemValue = meridiem.toUpperCase();
-		System.out.println("Meridiem format = " + meridiemValue);
 
 		log.info("Ending of getCurrentMeridiem method");
 		return meridiemValue;
@@ -186,7 +180,6 @@ public class DUPRBaseAutomationPage extends B2BBaseAutomationPage {
 
 		simpleformat = new SimpleDateFormat("z");
 		String zone = simpleformat.format(new Date());
-		System.out.println("Zone format = " + zone);
 
 		log.info("Ending of getCurrentZone method");
 		return zone;

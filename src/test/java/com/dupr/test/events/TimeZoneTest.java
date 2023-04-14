@@ -137,7 +137,7 @@ public class TimeZoneTest extends CommonBaseTest {
 
 		Assert.assertEquals(RegEndDateTime, RegEndDateTimeInEventDetails);
 
-		String ComStartDateTimeInEventDetails = timeZonePage.getCompStartDaeInEventDetails();
+		String ComStartDateTimeInEventDetails = timeZonePage.getCompStartDateInEventDetails();
 
 		System.out.println(CompStartDateTime);
 		System.out.println(ComStartDateTimeInEventDetails);
@@ -578,7 +578,7 @@ public class TimeZoneTest extends CommonBaseTest {
 
 		Assert.assertTrue(timeZonePage.isLocalRangeDisplayed());
 
-		Assert.assertTrue(timeZonePage.isLessthenSevenRelativeDaysDisplayed());
+		Assert.assertTrue(timeZonePage.isLessThanSevenRelativeDaysDisplayed());
 
 		timeZonePage.clickOnEditBracketButton();
 
@@ -596,7 +596,7 @@ public class TimeZoneTest extends CommonBaseTest {
 
 		timeZonePage.clickOnSaveChangesButton();
 		timeZonePage.hardWait(4);
-		Assert.assertFalse(timeZonePage.isLessthenSevenRelativeDaysDisplayed());
+		Assert.assertFalse(timeZonePage.isLessThanSevenRelativeDaysDisplayed());
 
 		timeZonePage.clickOnEditBracketButton();
 
@@ -648,7 +648,7 @@ public class TimeZoneTest extends CommonBaseTest {
 		timeZonePage.clickOnSaveChangesButton();
 
 		Assert.assertTrue(timeZonePage.isLocalRangeDisplayed());
-		Assert.assertTrue(timeZonePage.isLessthenSevenRelativeDaysDisplayed());
+		Assert.assertTrue(timeZonePage.isLessThanSevenRelativeDaysDisplayed());
 
 		timeZonePage.clickOnEditBracketButton();
 
@@ -663,7 +663,7 @@ public class TimeZoneTest extends CommonBaseTest {
 
 		timeZonePage.clickOnSaveChangesButton();
 		timeZonePage.hardWait(4);
-		Assert.assertFalse(timeZonePage.isLessthenSevenRelativeDaysDisplayed());
+		Assert.assertFalse(timeZonePage.isLessThanSevenRelativeDaysDisplayed());
 
 		timeZonePage.clickOnEditBracketButton();
 
@@ -710,7 +710,7 @@ public class TimeZoneTest extends CommonBaseTest {
 		timeZonePage.clickOnSaveChangesButton();
 
 		Assert.assertTrue(timeZonePage.isLocalRangeDisplayed());
-		Assert.assertTrue(timeZonePage.isLessthenSevenRelativeDaysDisplayed());
+		Assert.assertTrue(timeZonePage.isLessThanSevenRelativeDaysDisplayed());
 
 		timeZonePage.clickOnEditBracketButton();
 
@@ -725,7 +725,7 @@ public class TimeZoneTest extends CommonBaseTest {
 
 		timeZonePage.clickOnSaveChangesButton();
 		timeZonePage.hardWait(4);
-		Assert.assertFalse(timeZonePage.isLessthenSevenRelativeDaysDisplayed());
+		Assert.assertFalse(timeZonePage.isLessThanSevenRelativeDaysDisplayed());
 		
 		timeZonePage.clickOnEditBracketButton();
 		addBracketPage.hardWait(3);
@@ -770,7 +770,7 @@ public class TimeZoneTest extends CommonBaseTest {
 
 		timeZonePage.clickOnSaveChangesButton();
 		Assert.assertTrue(timeZonePage.isLocalRangeDisplayed());
-		Assert.assertTrue(timeZonePage.isLessthenSevenRelativeDaysDisplayed());
+		Assert.assertTrue(timeZonePage.isLessThanSevenRelativeDaysDisplayed());
 		timeZonePage.clickOnEditBracketButton();
 		addBracketPage.hardWait(3);
 		addBracketPage.setRegistrationStartDateBeforeFourDays();
@@ -783,7 +783,7 @@ public class TimeZoneTest extends CommonBaseTest {
 
 		timeZonePage.clickOnSaveChangesButton();
 		timeZonePage.hardWait(4);
-		Assert.assertFalse(timeZonePage.isLessthenSevenRelativeDaysDisplayed());
+		Assert.assertFalse(timeZonePage.isLessThanSevenRelativeDaysDisplayed());
 
 
 		timeZonePage.clickOnEditBracketButton();

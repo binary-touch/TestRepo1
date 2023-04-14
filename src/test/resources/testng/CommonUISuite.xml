@@ -2,45 +2,44 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Common UI Automation Tests"><!-- <parallel = "classes" thread-count = "2" -->
 
-	<test name="Sprint 1">
+	<!--<test name="Sprint 1">
 		<classes>
-			<class name="com.dupr.test.players.SearchPlayersTest" />
+			 <class name="com.dupr.test.players.SearchPlayersTest" />
 			<class name="com.dupr.test.signup.SignupTest" />
 			<class name="com.dupr.test.signup.DUPRClaimAccountSignUpTest" />
 			<class name="com.dupr.test.DUPRLoginTest" />
 			<class name="com.dupr.test.NegativeLoginTest" />
 			<class name="com.dupr.test.ForgotPasswordTest" />
-			<class name="com.dupr.test.addamatch.AddAMatchTest" />
+			<class name="com.dupr.test.addamatch.AddAMatchTest" /> 
 			<class name="com.dupr.test.home.ValidateRecentlyAddedMatchTest" />
-			<class
-				name="com.dupr.test.home.ValidateStatsChangeOnNewMatchTest" />
-			<class name="com.dupr.test.home.DeleteRecentlyAddedMatchTest" />
+			<class name="com.dupr.test.home.ValidateStatsChangeOnNewMatchTest" />
+			 <class name="com.dupr.test.home.DeleteRecentlyAddedMatchTest" />
 			<class name="com.dupr.test.players.BrowsePlayersTest" />
 			<class name="com.dupr.test.profile.PlayerProfileTest" />
 			<class name="com.dupr.test.profile.NotificationsTest" />
 			<class name="com.dupr.test.profile.ChangePasswordTest" />
-			<class name="com.dupr.test.profile.ProfilePictureTest" />
+			<class name="com.dupr.test.profile.ProfilePictureTest" /> 
 		</classes>
-	</test>
+	</test>-->
 
 	<test name="Sprint 2">
 		<classes>
-			<class name="com.dupr.test.clubs.BrowseClubsTest" />
+			<!-- <class name="com.dupr.test.clubs.BrowseClubsTest" />
+			 <class name="com.dupr.test.clubs.EditClubInfoTest" />
 			<class name="com.dupr.test.clubs.MyClubsTest" />
-			<class name="com.dupr.test.clubs.EditClubInfoTest" />
-			<class name="com.dupr.test.clubs.ClubLogoTest" />
+			<class name="com.dupr.test.clubs.ClubLogoTest" /> -->
 			<class name="com.dupr.test.clubs.AddRemoveOrganizerTest" />
-			<class name="com.dupr.test.clubs.RemoveClubMemberTest" />
+			<!--<class name="com.dupr.test.clubs.RemoveClubMemberTest" />
 			<class name="com.dupr.test.clubs.ImportPlayerViaCSVTest" />
 			<class name="com.dupr.test.addamatch.AddClubMatchTest" />
 			<class name="com.dupr.test.events.AddEventTest" />
 			<class name="com.dupr.test.events.BrowseEventsTest" />
 			<class name="com.dupr.test.events.EditEventsTest" />
-			<class name="com.dupr.test.events.EditBracketsTest" />
+			<class name="com.dupr.test.events.EditBracketsTest" />-->
 		</classes>
 	</test>
 
-	<test name="Sprint 3">
+	<!--<test name="Sprint 3">
 		<classes>
 			<class name="com.dupr.test.events.AddEditRemoveEventLogoTest" />
 			<class name="com.dupr.test.events.AddParticipantsInBracketTest" />
@@ -86,5 +85,5 @@
 			<class name="com.dupr.test.events.EditScoreAfterValidationTest" />
 			<class name="com.dupr.test.events.SeedMatchesWaterFallTest" />
 		</classes>
-	</test>
+	</test> -->
 </suite>

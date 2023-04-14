@@ -176,7 +176,7 @@ public class ClubLogoTest extends DUPRBaseAutomationTest {
 		profilePicturePage.clickOnCameraIcon();
 		clubLogoPage.clickOnChangeLogoOption();
 
-		profilePicturePage.clickOnCloseIconOnEventLogo();
+		profilePicturePage.clickOnCloseIconOnClubLogo();
 
 		Assert.assertTrue(clubLogoPage.isClubPageContains());
 
@@ -204,11 +204,13 @@ public class ClubLogoTest extends DUPRBaseAutomationTest {
 	@Story("Test case #8, Verify 'No' Button functionality in Remove Logo popup")
 	public void verifyNoButtonFunctionalityInRemoveLogoPopup() {
 		logger.info("Starting of verifyNoButtonFunctionalityInRemoveLogoPopup method");
-
+		
+		profilePicturePage.hardWait(3);
 		profilePicturePage.clickOnCancelButton();
 		clubLogoPage.hardWait(2);
 
 		profilePicturePage.clickOnCameraIcon();
+		profilePicturePage.hardWait(2);
 		clubLogoPage.clickOnRemoveLogoOption();
 		clubLogoPage.hardWait(2);
 
@@ -225,8 +227,10 @@ public class ClubLogoTest extends DUPRBaseAutomationTest {
 	@Story("Test case #9, Verify Close Icon Button functionality in Remove logo popup")
 	public void verifyCloseIconInRemoveLogoPopup() {
 		logger.info("Starting of verifyCloseIconInRemoveLogoPopup method");
-
+		
+		profilePicturePage.hardWait(3);
 		profilePicturePage.clickOnCameraIcon();
+		profilePicturePage.hardWait(3);
 		clubLogoPage.clickOnRemoveLogoOption();
 
 		clubLogoPage.hardWait(2);
@@ -243,7 +247,8 @@ public class ClubLogoTest extends DUPRBaseAutomationTest {
 	@Story("Test case #10, Verify remove logo functionality in club page")
 	public void verifyRemoveLogoFunctionalityInClubPage() {
 		logger.info("Starting of verifyRemoveLogoFunctionalityInClubPage method");
-
+		
+		profilePicturePage.hardWait(2);
 		profilePicturePage.clickOnCameraIcon();
 		clubLogoPage.hardWait(3);
 		clubLogoPage.clickOnRemoveLogoOption();

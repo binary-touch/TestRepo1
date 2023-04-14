@@ -59,6 +59,12 @@ public class BrowseEventsPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//span[contains(@class,'Mui-checked ')]")
 	private WebElement tglLocationIsOnState;
+	
+	@B2BFindBy(xpath = "//h4[contains(text(),'Location Permission')]")
+	private WebElement lblLocationPopup;
+	
+	@B2BFindBy(xpath = "//button[contains(text(),'OK')]")
+	private WebElement btnOK;
 
 	public BrowseEventsPage(WebDriver driver) {
 		super(driver);
@@ -106,15 +112,30 @@ public class BrowseEventsPage extends DUPRBaseAutomationPage {
 	}
 
 	public String getEventsText() {
-		log.info("Starting of gettxtEventsText method");
-		log.info("Ending of gettxtEventsText method");
+		log.info("Starting of getEventsText method");
+		log.info("Ending of getEventsText method");
 
 		return getText(txtEvents);
 	}
+	
+	public void clickOnOKButton() {
+		log.info("Starting of clickOnOKButton method");
+		
+		try {
+			if(lblLocationPopup.isDisplayed()==true) {
+				clickOnWebElement(btnOK);
+				System.out.println("*** OK button is displayed ***");
+			}
+		} catch (Exception e) {
+			System.out.println("*** OK button haven't displayed ***");
+		}
+		
+		log.info("Ending of clickOnOKButton method");
+	}
 
 	public boolean getToggleOnState() {
-		log.info("Starting of gettxtEventsText method");
-		log.info("Ending of gettxtEventsText method");
+		log.info("Starting of getToggleOnState method");
+		log.info("Ending of getToggleOnState method");
 
 		return isDisplayed(tglLocationIsOnState);
 	}
@@ -182,6 +203,8 @@ public class BrowseEventsPage extends DUPRBaseAutomationPage {
 	public void clickOnOpen() {
 		log.info("Starting of clickOnOpen method");
 		try {
+			this.hardWait(3);
+			scrollIntoView(btnOpen);
 			clickUsingActionsClass(btnOpen);
 		} catch (Exception e) {
 			clickOnWebElement(btnOpen);
@@ -227,30 +250,30 @@ public class BrowseEventsPage extends DUPRBaseAutomationPage {
 		log.info("Ending of clickOnClearFiltersButton method");
 	}
 
-	public void clickOnSearchFeild(String event) {
-		log.info("Starting of clickOnSearchFeild method");
+	public void clickOnSearchField(String event) {
+		log.info("Starting of clickOnSearchField method");
 
 		clickOnElement(txtSearch);
 		this.txtSearch.sendKeys(event);
 		hardWait(2);
 		this.txtSearch.sendKeys(event);
 
-		log.info("Ending of clickOnSearchFeild method");
+		log.info("Ending of clickOnSearchField method");
 	}
 
-	public String getNoResultsFountTxt() {
-		log.info("Starting of getNoResultsFountTxt method");
-		log.info("Ending of getNoResultsFountTxt method");
+	public String getNoResultsFoundText() {
+		log.info("Starting of getNoResultsFoundText method");
+		log.info("Ending of getNoResultsFoundText method");
 
 		return getText(txtNoEvents);
 	}
 
-	public void ClearSearchFeild() {
-		log.info("Starting of ClearSearchFeild method");
+	public void clearSearchField() {
+		log.info("Starting of clearSearchField method");
 
 		clickOnElement(txtSearch);
 		this.txtSearch.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 
-		log.info("Ending of ClearSearchFeild method");
+		log.info("Ending of clearSearchField method");
 	}
 }

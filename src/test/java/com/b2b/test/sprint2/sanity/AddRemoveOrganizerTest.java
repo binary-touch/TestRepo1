@@ -114,7 +114,7 @@ public class AddRemoveOrganizerTest extends DUPRBaseAutomationTest {
 		addRemoveOrganizerPage.setOrganizerEmail(testDataProp.getProperty("organizer.email"));
 		addRemoveOrganizerPage.setOrganizerNumber(testDataProp.getProperty("organizer.num"));
 
-		addRemoveOrganizerPage.clickOnSaveChangesButton();
+		addRemoveOrganizerPage.clickOnSaveChangesButton();clubLogoPage.hardWait(2);
 		
 		String clubOrgText = addRemoveOrganizerPage.getClubOrganizerLabelText();
 		Assert.assertEquals(clubOrgText, expectedAssertionsProp.getProperty("club.organizer.label"));		

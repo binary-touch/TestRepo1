@@ -109,7 +109,7 @@ public class RemoveClubMemberPage extends DUPRBaseAutomationPage {
 				}
 			} catch (Exception e) {
 				scrollDown(500);
-			}			 
+			}
 		}
 
 		log.info("Ending of clickOnClubNameLink method");
@@ -201,7 +201,7 @@ public class RemoveClubMemberPage extends DUPRBaseAutomationPage {
 	public String getNoResultsTxt() {
 		log.info("Starting of getNoResultsTxt method");
 		log.info("Ending of getNoResultsTxt method");
-
+		this.hardWait(3);
 		return getText(txtNoResults);
 	}
 

@@ -609,7 +609,9 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		addBracketPage.hardWait(2);
 		addBracketPage.selectMixedPlayerGroup();
 
-		addEventPage.clickOnNextStepButton();addBracketPage.hardWait(3);
+		addBracketPage.hardWait(3);addEventPage.clickOnNextStepButton();
+		addBracketPage.hardWait(3);
+		
 		Assert.assertTrue(addBracketPage.isMixedGroupSinglesValidationDisplayed());
 
 		logger.info("Ending of verifyBracketCombinationOfMixedPlayerGroupAndSingleType method");
@@ -746,8 +748,8 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	@Description("Test case #37, Verify AddAnotherBracket button In AddAnotherBracketPopup")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #37, Verify AddAnotherBracket button In AddAnotherBracketPopup")
-	public void verifyAddAnotherBracketbuttonInAddAnotherBracketPopup() {
-		logger.info("Starting of verifyAddAnotherBracketbuttonInAddAnotherBracketPopup method");
+	public void verifyAddAnotherBracketButtonInAddAnotherBracketPopup() {
+		logger.info("Starting of verifyAddAnotherBracketButtonInAddAnotherBracketPopup method");
 
 		addBracketPage.hardWait(3);
 		addBracketPage.clickOnAddAnotherBracketButton();
@@ -755,7 +757,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 
 		Assert.assertTrue(addBracketPage.isAddNewBracketPageContainsDisplayed());
 
-		logger.info("Ending of verifyAddAnotherBracketbuttonInAddAnotherBracketPopup method");
+		logger.info("Ending of verifyAddAnotherBracketButtonInAddAnotherBracketPopup method");
 	}
 
 	@Test(priority = 38, description = "Verify  Delete Bracket button fuctionality", groups = "sanity")

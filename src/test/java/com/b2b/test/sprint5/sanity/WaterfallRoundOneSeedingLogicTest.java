@@ -94,13 +94,13 @@ public class WaterfallRoundOneSeedingLogicTest extends CommonBaseTest {
 		Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
 
 		addBracketPage.hardWait(2);
-		seedMatchesPage.setRegistrationStartDate();
+		addBracketPage.setRegistrationStartDate();
 
 		addBracketPage.hardWait(2);
-		seedMatchesPage.setRegistrationEndDate();
+		seedMatchesPage.setSampleRegistrationEndDate();
 
 		addBracketPage.hardWait(2);
-		seedMatchesPage.setCompetitionStartDate();
+		seedMatchesPage.setSampleCompitionStartDate();
 
 		addBracketPage.hardWait(2);
 		addBracketPage.setCompetitionEndDate();
@@ -155,6 +155,8 @@ public class WaterfallRoundOneSeedingLogicTest extends CommonBaseTest {
 	public void verifySortingplayersAsRatingHighToLow() {
 		logger.info("Starting of verifySortingplayersAsRatingHighToLow method");
 
+		
+		waterfallRoundOneSeedingLogicPage.hardWait(3);
 		waterfallRoundOneSeedingLogicPage.clickOnSortButton();
 		waterfallRoundOneSeedingLogicPage.hardWait(3);
 		waterfallRoundOneSeedingLogicPage.selectHighToLowRadioButton();

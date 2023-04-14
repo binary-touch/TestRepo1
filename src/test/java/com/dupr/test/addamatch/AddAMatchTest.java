@@ -286,7 +286,7 @@ public class AddAMatchTest extends CommonBaseTest {
 		addAMatchPage.clickOnPlusIcon();
 
 		addAMatchPage.clickOnSubmitButton();
-
+		addAMatchPage.hardWait(3);
 		String scoreValidationMessage = addAMatchPage.getValidationScoreIsRequired();
 		Assert.assertEquals(scoreValidationMessage,
 				expectedAssertionsProp.getProperty("validation.message.score.required"));

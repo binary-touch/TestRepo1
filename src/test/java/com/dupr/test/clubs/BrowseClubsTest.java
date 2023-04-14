@@ -59,8 +59,9 @@ public class BrowseClubsTest extends CommonBaseTest {
 		logger.info("Starting of verifySearchByClubNameFilterWithNotAvailaleClub method");
 
 		browseClubsPage.setSearchByClubNameWithClubName(testDataProp.getProperty("player.invalid.name"));
-
+        browseClubsPage.hardWait(3);
 		String noMoreResults = browseClubsPage.getNoMoreResultsText();
+		browseClubsPage.hardWait(3);
 		Assert.assertEquals(noMoreResults, expectedAssertionsProp.getProperty("no.more.results"));
 
 		logger.info("Ending of verifySearchByClubNameFilterWithNotAvailaleClub method");
