@@ -251,6 +251,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		addEventPage.setAboutTheEvent(testDataProp.getProperty("about.the.event"));
 		addEventPage.clickonTextFormattingButtons();
 		addEventPage.hardWait(3);
+		
 		addEventPage.clickOnNextStepButton();
 
 		Assert.assertTrue(addEventPage.isEventPoliciesPageContains());

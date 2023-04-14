@@ -572,6 +572,7 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 		logger.info("Starting of verifyForfeitFunctionality method");
 
 		seedMatchesPage.clickOnMatchesTab();
+		seedMatchesPage.hardWait(2);
 		seedMatchesPage.clickOnForfeitButon();
 
 		Assert.assertTrue(seedMatchesPage.isForfeitMatchPopupContains());
@@ -585,7 +586,7 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 	@Story("Test case #44, Verify the results on click on the Forfeit Button")
 	public void verifyRadioButtonFunctionality() {
 		logger.info("Starting of verifyRadioButtonFunctionality method");
-
+		seedMatchesPage.hardWait(2);
 		seedMatchesPage.clickOnFirstTeamRadioButton();
 
 		Assert.assertTrue(seedMatchesPage.isFirstTeamRadioButtonSelected());
@@ -623,11 +624,80 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 
 		super.verifyAddEventFunctionality();
 		seedMatchesPage.hardWait(3);
-		super.verifyFreeBracketWithSinglesTypeAndRoundRobinEvent();
+		seedsEvents = addEventPage.setEventName(testDataProp.getProperty("event.name"));
+		addEventPage.setLocation(testDataProp.getProperty("state.address"));
+
+		addEventPage.uploadEventLogo(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("edit.club.logo.path"));
+		addEventPage.setMemberPrice(testDataProp.getProperty("zero.value"));
+		addEventPage.setNonMemberPrice(testDataProp.getProperty("zero.value"));
+		addEventPage.setAboutTheEvent(testDataProp.getProperty("about.the.event"));
+		addEventPage.clickonTextFormattingButtons();
+		addEventPage.clickOnNextStepButton();
+
+		Assert.assertTrue(addEventPage.isEventPoliciesPageContains());
+
+		this.verifyEventPoliciesPageByEnteringValidDetails();
+
+		addBracketPage.hardWait(3);
+		addBracketPage.clickOnMatchTypeDropdown();
+		addBracketPage.hardWait(3);
+		addBracketPage.selectSinglesMatchType();
+
+		addBracketPage.hardWait(3);
+		addBracketPage.clickOnPlayGroupDropdown();
+		addBracketPage.hardWait(3);
+		addBracketPage.selectOpenPlayerGroup();
+
+		addBracketPage.setMinimumAgeRange(testDataProp.getProperty("min.age.range"));
+		addBracketPage.setMaximumAgeRange(testDataProp.getProperty("max.age.range"));
+		addBracketPage.setMinimumRatingRange(testDataProp.getProperty("min.rating.range"));
+		addBracketPage.setMaximumRatingRange(testDataProp.getProperty("max.rating.range"));
+
+		Assert.assertTrue(addBracketPage.isAutoGenerateButtonEnabled());
+		addBracketPage.clickOnAutoGenerateButton();
+
+		addBracketPage.hardWait(3);
+		addBracketPage.clickOnEventTypeDropdown();
+		Assert.assertTrue(addBracketPage.isEventTypeListContains());
+		addBracketPage.hardWait(3);
+		addBracketPage.selectRoundRobinEvent();
+		Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
+		
+		addBracketPage.hardWait(2);
+		addBracketPage.setRegistrationStartDate();
+
+		addBracketPage.hardWait(2);
+		seedMatchesPage.setSampleRegistrationEndDate();
+
+		addBracketPage.hardWait(2);
+		seedMatchesPage.setSampleCompitionStartDate();
+
+		addBracketPage.hardWait(2);
+		addBracketPage.setCompetitionEndDate();
+		addBracketPage.hardWait(2);
+		addBracketPage.clickOnTimeZoneDropdown();
+		Assert.assertTrue(addBracketPage.isTimeZoneListContains());
+		addBracketPage.clickOnNewDelhiTimeZone();
+
+		addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("zero.value"));
+		addBracketPage.setBracketNonClubMemberPrice(testDataProp.getProperty("zero.value"));
+
+		addBracketPage.setNumberOfTeams(testDataProp.getProperty("team.value"));
+		addBracketPage.setWaitlist(testDataProp.getProperty("min.rating.range"));
+
+		//seedMatchesPage.scrollUp();
+
+		addBracketPage.hardWait(2);
+
+		addEventPage.clickOnNextStepButton();
+		addBracketPage.clickOnNoContinueToSummary();
+		addBracketPage.clickOnPublishEventButton();
+
+		addBracketPage.clickOnEventSuccessClosePopupButton();
 
 		addEventPage.clickOnEventsTab();
 		seedMatchesPage.hardWait(3);
-		addEventPage.clickOnRecentlyAddedEvent(eventName);
+		addEventPage.clickOnRecentlyAddedEvent(seedsEvents);
 		seedMatchesPage.hardWait(3);
 
 		seedMatchesPage.clickOnBracketCard();
@@ -690,10 +760,21 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 		addBracketPage.hardWait(3);
 		addBracketPage.selectRoundRobinEvent();
 		Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
+		
+		addBracketPage.hardWait(2);
+		addBracketPage.setRegistrationStartDate();
 
 		addBracketPage.hardWait(2);
+		seedMatchesPage.setSampleRegistrationEndDate();
 
+		addBracketPage.hardWait(2);
+		seedMatchesPage.setSampleCompitionStartDate();
+
+		addBracketPage.hardWait(2);
+		addBracketPage.setCompetitionEndDate();
+		addBracketPage.hardWait(2);
 		addBracketPage.clickOnTimeZoneDropdown();
+		Assert.assertTrue(addBracketPage.isTimeZoneListContains());
 		addBracketPage.clickOnNewDelhiTimeZone();
 
 		addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("zero.value"));
@@ -702,19 +783,9 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 		addBracketPage.setNumberOfTeams(testDataProp.getProperty("team.value"));
 		addBracketPage.setWaitlist(testDataProp.getProperty("min.rating.range"));
 
-		seedMatchesPage.scrollUp();
-		addBracketPage.hardWait(2);
-		seedMatchesPage.setRegistrationStartDate();
+		//seedMatchesPage.scrollUp();
 
 		addBracketPage.hardWait(2);
-		addBracketPage.setRegistrationEndDate();
-
-		addBracketPage.hardWait(2);
-		seedMatchesPage.setSampleCompitionStartDate();
-
-		addBracketPage.hardWait(2);
-		addBracketPage.setCompetitionEndDate();
-
 
 		addEventPage.clickOnNextStepButton();
 		addBracketPage.clickOnNoContinueToSummary();

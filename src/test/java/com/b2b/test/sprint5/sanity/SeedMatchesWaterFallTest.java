@@ -97,10 +97,10 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
 
 		addBracketPage.hardWait(2);
-		seedMatchesPage.setRegistrationStartDate();
+		addBracketPage.setRegistrationStartDate();
 
 		addBracketPage.hardWait(2);
-		addBracketPage.setRegistrationEndDate();
+		seedMatchesPage.setSampleRegistrationEndDate();
 
 		addBracketPage.hardWait(2);
 		seedMatchesPage.setSampleCompitionStartDate();
@@ -109,7 +109,7 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		addBracketPage.setCompetitionEndDate();
 
 		addBracketPage.clickOnTimeZoneDropdown();
-		addAMatchPage.hardWait(2);
+		Assert.assertTrue(addBracketPage.isTimeZoneListContains());
 		addBracketPage.clickOnNewDelhiTimeZone();
 
 		addBracketPage.hardWait(2);
