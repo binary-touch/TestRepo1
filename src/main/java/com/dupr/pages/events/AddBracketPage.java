@@ -1197,7 +1197,19 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		System.out.println("*** Clicked on Meridiem ***");
 
 		hardWait(2);
-		this.clickOnCurrentTime(hours);
+
+		try {
+			System.out.println(driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']")));
+			WebElement currentHourValue = driver
+					.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']"));
+
+			this.hardWait(2);
+			Actions action = new Actions(driver);
+			action.moveToElement(currentHourValue).contextClick(currentHourValue).build().perform();
+		} catch (Exception e) {
+			clickOnWebElement(driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']")));
+		}
+
 		System.out.println("*** Clicked on Hour ***");
 
 		hardWait(2);
@@ -1233,8 +1245,19 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 		this.clickOnCurrentTime(meridiem);
 		System.out.println("*** Clicked on Meridiem ***");
+		this.hardWait(3);
 
-		this.clickOnCurrentTime(hours);
+		try {
+			System.out.println(driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']")));
+			WebElement currentHourValue = driver
+					.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']"));
+
+			this.hardWait(2);
+			Actions action = new Actions(driver);
+			action.moveToElement(currentHourValue).contextClick(currentHourValue).build().perform();
+		} catch (Exception e) {
+			clickOnWebElement(driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']")));
+		}
 		System.out.println("*** Clicked on Hour ***");
 
 		clickOnElementUsingActionClass(btnTimeInMinutes);
@@ -1303,13 +1326,23 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 		this.clickOnCurrentTime(meridiem);
 		System.out.println("*** Clicked on Meridiem ***");
+		this.hardWait(3);
+		try {
+			System.out.println(driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']")));
+			WebElement currentHourValue = driver
+					.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']"));
 
-		this.clickOnCurrentTime(hours);
+			this.hardWait(2);
+			Actions action = new Actions(driver);
+			action.moveToElement(currentHourValue).contextClick(currentHourValue).build().perform();
+		} catch (Exception e) {
+			clickOnWebElement(driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']")));
+		}
 		System.out.println("*** Clicked on Hour ***");
 
 		clickOnElementUsingActionClass(btnTimeInMinutes);
 		System.out.println("*** Clicked on Minutes ***");
-		
+
 		try {
 			hardWait(2);
 			if (btnOK.isDisplayed() == true) {
@@ -1346,7 +1379,8 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		String lblmonth = lblMonth.getText();
 		String monthvalue = String.valueOf(lblmonth.split(" ")[0]).toUpperCase().trim();
 		log.debug("Text is " + monthvalue);
-		this.hardWait(3);
+		System.out.println((mValue).equals(monthvalue));
+		this.hardWait(4);
 		try {
 			if ((mValue).equals(monthvalue)) {
 				hardWait(4);
