@@ -572,6 +572,7 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 		logger.info("Starting of verifyForfeitFunctionality method");
 
 		seedMatchesPage.clickOnMatchesTab();
+		seedMatchesPage.hardWait(2);
 		seedMatchesPage.clickOnForfeitButon();
 
 		Assert.assertTrue(seedMatchesPage.isForfeitMatchPopupContains());
@@ -585,7 +586,7 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 	@Story("Test case #44, Verify the results on click on the Forfeit Button")
 	public void verifyRadioButtonFunctionality() {
 		logger.info("Starting of verifyRadioButtonFunctionality method");
-
+		seedMatchesPage.hardWait(2);
 		seedMatchesPage.clickOnFirstTeamRadioButton();
 
 		Assert.assertTrue(seedMatchesPage.isFirstTeamRadioButtonSelected());
