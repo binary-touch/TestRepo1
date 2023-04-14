@@ -690,10 +690,21 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 		addBracketPage.hardWait(3);
 		addBracketPage.selectRoundRobinEvent();
 		Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
+		
+		addBracketPage.hardWait(2);
+		addBracketPage.setRegistrationStartDate();
 
 		addBracketPage.hardWait(2);
+		seedMatchesPage.setSampleRegistrationEndDate();
 
+		addBracketPage.hardWait(2);
+		seedMatchesPage.setSampleCompitionStartDate();
+
+		addBracketPage.hardWait(2);
+		addBracketPage.setCompetitionEndDate();
+		addBracketPage.hardWait(2);
 		addBracketPage.clickOnTimeZoneDropdown();
+		addBracketPage.hardWait(2);
 		addBracketPage.clickOnNewDelhiTimeZone();
 
 		addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("zero.value"));
@@ -702,19 +713,9 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 		addBracketPage.setNumberOfTeams(testDataProp.getProperty("team.value"));
 		addBracketPage.setWaitlist(testDataProp.getProperty("min.rating.range"));
 
-		seedMatchesPage.scrollUp();
-		addBracketPage.hardWait(2);
-		seedMatchesPage.setRegistrationStartDate();
+		//seedMatchesPage.scrollUp();
 
 		addBracketPage.hardWait(2);
-		addBracketPage.setRegistrationEndDate();
-
-		addBracketPage.hardWait(2);
-		seedMatchesPage.setSampleCompitionStartDate();
-
-		addBracketPage.hardWait(2);
-		addBracketPage.setCompetitionEndDate();
-
 
 		addEventPage.clickOnNextStepButton();
 		addBracketPage.clickOnNoContinueToSummary();
