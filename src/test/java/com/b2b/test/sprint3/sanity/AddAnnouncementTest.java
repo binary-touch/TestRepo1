@@ -55,11 +55,11 @@ public class AddAnnouncementTest extends DUPRBaseAutomationTest {
 	public void verifyAddAnnouncementFunctionality() {
 		logger.info("Starting of verifyAddAnnouncementFunctionality method");
 
-		clubLogoPage.hardWait(3);
+		
 		browseEventsPage.clickOnMyEventButton();
-		clubLogoPage.hardWait(3);
+		addAnnouncementPage.hardWait(5);
 		addAnnouncementPage.clickOnEventLabel();
-		endEventpage.hardWait(2);
+		addAnnouncementPage.hardWait(2);
 
 		Assert.assertTrue(addAnnouncementPage.isSendAnnouncementPageContains());
 		Assert.assertEquals(addAnnouncementPage.getSubjectText(), expectedAssertionsProp.getProperty("subject.txt"));
@@ -82,7 +82,7 @@ public class AddAnnouncementTest extends DUPRBaseAutomationTest {
 		endEventpage.hardWait(2);
 		addAnnouncementPage.setDescription(testDataProp.getProperty("primary.location"));
 		addAnnouncementPage.clickOnSendButton();
-		endEventpage.hardWait(2);
+		addAnnouncementPage.hardWait(2);
 
 		Assert.assertEquals(addAnnouncementPage.getMinimumCharactersTxt(),
 				expectedAssertionsProp.getProperty("description.validation.txt"));
@@ -102,9 +102,9 @@ public class AddAnnouncementTest extends DUPRBaseAutomationTest {
 
 		addAnnouncementPage.setDescription(testDataProp.getProperty("announcement.txt"));
 
-		endEventpage.hardWait(2);
+		addAnnouncementPage.hardWait(2);
 		Assert.assertFalse(addAnnouncementPage.isMinimumCharactersText());
-		endEventpage.hardWait(2);
+		addAnnouncementPage.hardWait(2);
 
 		Assert.assertTrue(addAnnouncementPage.isSendButtonEnabled());
 
@@ -123,7 +123,7 @@ public class AddAnnouncementTest extends DUPRBaseAutomationTest {
 
 		addAnnouncementPage.setDescription(testDataProp.getProperty("announcement.txt"));
 		addAnnouncementPage.clickOnSendButton();
-		endEventpage.hardWait(2);
+		addAnnouncementPage.hardWait(2);
 
 		Assert.assertEquals(addAnnouncementPage.getValidationOfTitleTxt(),
 				expectedAssertionsProp.getProperty("title.validation.txt"));

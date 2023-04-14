@@ -67,7 +67,9 @@ public class BrowseEventsPage extends DUPRBaseAutomationPage {
 
 	public void clickOnMyEventButton() {
 		log.info("Starting of clickOnMyEventButton method");
-
+         hardWait(3);
+         this.scrollDown(800);
+         hardWait(3);
 		elementClick(btnMyEvent);
 
 		log.info("Ending of clickOnMyEventButton method");

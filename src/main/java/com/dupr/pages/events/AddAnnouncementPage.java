@@ -22,6 +22,9 @@ public class AddAnnouncementPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "(//h4[contains(@class,'MuiTypography-root MuiTypography-h4')])")
 	private List<WebElement> lblEvent;
 
+	@B2BFindBy(xpath = "(//h4[contains(@class,'MuiTypography-root MuiTypography-h4')])[1]")
+	private WebElement lblEventName;
+
 	@B2BFindBy(xpath = "//button[text()='Add An Announcement']")
 	private WebElement btnAddAnnouncement;
 
@@ -105,11 +108,17 @@ public class AddAnnouncementPage extends DUPRBaseAutomationPage {
 	public void clickOnEventLabel() {
 		log.info("Starting of clickOnEventLabel method");
 
-		for (int i = 1; i < lblEvent.size(); i++) {
-			this.hardWait(3);
-			driver.findElement(
-					By.xpath((("(//h4[contains(@class,'MuiTypography-root MuiTypography-h4')])[" + i + "]")))).click();
-
+		for(int i=1;i<=lblEvent.size();i++) {
+			this.hardWait(5);
+			try {
+				System.out.println("starting dynamic xpath");
+				clickOnElementUsingActionClass(driver.findElement(By.xpath("//h4[contains(@class,'MuiTypography-root MuiTypography-h4')][i]")));
+				System.out.println("ending dynamic xpath");
+			}catch(Exception e) {
+				System.out.println("starting hardcode xpath");
+				lblEventName.click();
+				System.out.println("ending hardcode xpath");
+			}
 			this.hardWait(3);
 			try {
 				if ((isDisplayed(btnAddAnnouncement) == true)) {
@@ -203,6 +212,14 @@ public class AddAnnouncementPage extends DUPRBaseAutomationPage {
 		clickOnElement(btnAddAnnouncement);
 
 		log.info("Ending of clickOnAddAnnouncementButton method");
+	}
+	
+	public void clickOnEventName() {
+		log.info("Starting of clickOnEventName method");
+
+		clickOnElement(lblEventName);
+
+		log.info("Ending of clickOnEventName method");
 	}
 
 	public void clickOnBackButton() {

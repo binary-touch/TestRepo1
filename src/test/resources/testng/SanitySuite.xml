@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Sanity UI Automation Tests">
-<!-- <parallel = "classes" thread-count = "4" /> -->
+
 
 	<test name="Sprint 1">
 		<classes>
@@ -45,16 +45,17 @@
 			<class name="com.b2b.test.sprint2.sanity.EditEventsTest" />
 			<class name="com.b2b.test.sprint2.sanity.EditBracketsTest" />
 		</classes>
-	</test> 
+	</test>
 	
 	<test name="Sprint 3">
 
 		<classes> 
+		<class name="com.b2b.test.sprint3.sanity.AddAnnouncementTest" />
 		<class
 				name="com.b2b.test.sprint3.sanity.AddEditRemoveEventLogoTest" />
 			 <class
 				name="com.b2b.test.sprint3.sanity.AddParticipantsInBracketTest" />
-			<class name="com.b2b.test.sprint3.sanity.AddAnnouncementTest" />
+			
 			<class
 				name="com.b2b.test.sprint3.sanity.AntiScrappingCaptchaTest" />
 			<class name="com.b2b.test.sprint3.sanity.EndEventTest" />
