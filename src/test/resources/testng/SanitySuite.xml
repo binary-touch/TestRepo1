@@ -48,7 +48,7 @@
 	</test>
  
 	<test name="Sprint 3">
-		<!--<classes>
+		<classes>
 			<class
 
 				name="com.b2b.test.sprint3.sanity.AddEditRemoveEventLogoTest" />
@@ -57,8 +57,11 @@
 			
 			<class
 				name="com.b2b.test.sprint3.sanity.AntiScrappingCaptchaTest" />
-			<class name="com.b2b.test.sprint3.sanity.EndEventTest" />
 			<class
+				name="com.b2b.test.sprint3.sanity.AddAnnouncementTest" />
+				
+			<class name="com.b2b.test.sprint3.sanity.EndEventTest" />
+						<class
 				name="com.b2b.test.sprint3.sanity.PlayerEventRegistrationTest" />
 			<class
 				name="com.b2b.test.sprint3.sanity.AcceptOrDeclinePartnerTest" />
@@ -72,7 +75,7 @@
 			<class name="com.b2b.test.sprint3.sanity.UserDashboardTest" />
 			<class
 				name="com.b2b.test.sprint3.sanity.PreservingPageVisitsTest" />
-		</classes>-->
+		</classes>
 	</test>
 
 	 <test name="Sprint 4">
@@ -104,5 +107,6 @@
 		</classes>
 
 	</test>
-</suite>
+
+ </suite>
 
