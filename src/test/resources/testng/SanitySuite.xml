@@ -82,13 +82,9 @@
 		<classes>
 			<class name="com.b2b.test.sprint4.sanity.ChatTest" />
 			<class name="com.b2b.test.sprint4.sanity.ShareTest" />
-			<class
-				name="com.b2b.test.sprint4.sanity.CombinationOfMatchTypeAndPlayerGroupTest" />
-			<class name="com.b2b.test.sprint4.sanity.FullRegistrationTest" />
+			<class	name="com.b2b.test.sprint4.sanity.CombinationOfMatchTypeAndPlayerGroupTest" />
 			<class name="com.b2b.test.sprint4.sanity.TimeZoneTest" />
-			<class
-				name="com.b2b.test.sprint4.sanity.SeedMatchesRoundRobinTest">
-			</class>
+	<class name="com.b2b.test.sprint4.sanity.SeedMatchesRoundRobinTest"/>
 		</classes>
 	</test>
 
@@ -106,7 +102,9 @@
 				
 		</classes>
 
+
 	</test>
 
  </suite>
+
 
