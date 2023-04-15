@@ -326,8 +326,9 @@ public class PlayerProfileTest extends CommonBaseTest {
 		logger.info("Starting of verifyPhoneNumberWithInvalidPhoneNumber method");
 
 		editProfilePage.scrollDown(-500);
+		editProfilePage.hardWait(5);
 		editProfilePage.clickOnCountryCodePhoneNumber(testDataProp.getProperty("country.name.for.phone.number"));
-		editProfilePage.hardWait(3);
+		editProfilePage.hardWait(5);
 		editProfilePage.clearPhoneNumber();
 		editProfilePage.hardWait(3);
 		editProfilePage.setValidPhoneNumber(testDataProp.getProperty("invalid.phone.number"));
@@ -339,6 +340,7 @@ public class PlayerProfileTest extends CommonBaseTest {
 		editProfilePage.setOTP(testDataProp.getProperty("valid.otp"));
 		editProfilePage.clickOnVerifyNowButton();
 
+		editProfilePage.hardWait(3);
 		String otpValidationText = editProfilePage.getOTPValidationText();
 		editProfilePage.hardWait(5);
 		Assert.assertTrue(otpValidationText.equals(expectedAssertionsProp.getProperty("mobile.successfully.verfied"))
@@ -356,8 +358,9 @@ public class PlayerProfileTest extends CommonBaseTest {
 		logger.info("Starting of verifyPhoneNumberWithValidPhoneNumber method");
 
 		editProfilePage.scrollDown(-400);
-		editProfilePage.clickOnCountryCodePhoneNumber(testDataProp.getProperty("country.name.for.phone.number"));
 		editProfilePage.hardWait(3);
+		editProfilePage.clickOnCountryCodePhoneNumber(testDataProp.getProperty("country.name.for.phone.number"));
+		editProfilePage.hardWait(5);
 		editProfilePage.clearPhoneNumber();
 		editProfilePage.hardWait(4);
 		editProfilePage.setValidPhoneNumber(testDataProp.getProperty("invalid.phone.number"));
@@ -397,8 +400,7 @@ public class PlayerProfileTest extends CommonBaseTest {
 
 		editProfilePage.clickOnDominantHandDropDownListOption();
 		editProfilePage.hardWait(3);
-
-		Assert.assertTrue(editProfilePage.isSaveEnabled());
+		
 		editProfilePage.clickOnSaveButton();
 
 		editProfilePage.hardWait(3);

@@ -212,7 +212,7 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//p[text()='A link was sent to your new email!']")
 	private WebElement txtLinkSentValidation;
 
-	@B2BFindBy(xpath = "//p[text()='That DUPR account already exists']")
+	@B2BFindBy(xpath = "//p[text()='Email already exists']")
 	private WebElement txtAlreadyExistAccountValidation;
 
 	@B2BFindBy(xpath = "//p[text()='Invalid email address']")
