@@ -468,7 +468,7 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 			clickOnWebElement(ddYear);
 		}
 		hardWait(2);
-		clickOnSelectedYear(4);
+		clickOnSelectedYear(2);
 		hardWait(2);
 		this.clickOnCurrentDate(date);
 
