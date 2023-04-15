@@ -86,7 +86,7 @@ public class AddClubMatchTest extends CommonBaseTest {
 		clubLogoPage.hardWait(5);
 
 		addClubMatchPage.clickOnAddAMatchButton();
-		addAMatchPage.setLocationInDoubles(testDataProp.getProperty("location.city.name"));
+		addAMatchPage.setLocationInDoubles(testDataProp.getProperty("location.city"));
 		addAMatchPage.setEventName(testDataProp.getProperty("event.name.in.doubles"));
 
 		logger.info("Ending of verifyAddClubMatchFunctionalityFromASpecificClub method");
@@ -229,7 +229,7 @@ public class AddClubMatchTest extends CommonBaseTest {
 
 		clubLogoPage.hardWait(3);
 		addClubMatchPage.clickOnAddAMatchButton();
-		addAMatchPage.setLocationInDoubles(testDataProp.getProperty("location.city.name"));
+		addAMatchPage.setLocationInDoubles(testDataProp.getProperty("location.city"));
 		addAMatchPage.setEventName(testDataProp.getProperty("event.name.in.doubles"));
 
 		addClubMatchPage.clickOnAddDoublesButton();

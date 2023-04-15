@@ -438,18 +438,20 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 	public void setBirthDateWithLessthanMinimumAge() {
 		log.info("Starting of setBirthDateWithLessthanMinimumAge method");
 
-		Calendar cal = Calendar.getInstance();
-		cal.add(Calendar.DATE, 1);
-		cal.add(Calendar.YEAR, -2);
-
-		Date minDate = cal.getTime();
-		DateFormat formatDate = new SimpleDateFormat("MM/dd/YYYY");
-
-		String dateOfSystem = formatDate.format(minDate);
 		clickOnWebElement(txtBoxBirthDate);
+		int date = this.getCurrentDate();
 
-		this.txtBoxBirthDate.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
-		sendKeys(txtBoxBirthDate, dateOfSystem);
+		try {
+			hardWait(2);
+			clickUsingActionsClass(ddYear);
+		} catch (Exception e) {
+			hardWait(2);
+			clickOnWebElement(ddYear);
+		}
+		hardWait(2);
+		clickOnSelectedYear(1);
+		hardWait(2);
+		this.clickOnCurrentDate(date);
 
 		log.info("Ending of setBirthDateWithLessthanMinimumAge method");
 	}
@@ -468,7 +470,7 @@ public class EditProfilePage extends DUPRBaseAutomationPage {
 			clickOnWebElement(ddYear);
 		}
 		hardWait(2);
-		clickOnSelectedYear(3);
+		clickOnSelectedYear(2);
 		hardWait(2);
 		this.clickOnCurrentDate(date);
 

@@ -192,7 +192,7 @@ public class DUPRClaimAccountSignUpTest extends DUPRBaseAutomationTest {
 
 		driver.get(testDataProp.getProperty("claim.your.account.page.url"));
 
-		duprSignUpPage.searchPlayerName(searchPlayerName);
+		duprSignUpPage.searchPlayerName(searchPlayerName);duprSignUpPage.hardWait(3);
 		Assert.assertFalse(duprSignUpPage.isClaimAccountButtonDisplayed());
 
 		logger.info("Ending of verifyButtonInPlayerCardAfterClaimedTheirAccount method");

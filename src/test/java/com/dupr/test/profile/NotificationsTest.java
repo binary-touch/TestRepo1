@@ -149,7 +149,7 @@ public class NotificationsTest extends CommonBaseTest {
 
 		addAMatchPage.clickOnAddAMatchTab();
 		
-		addAMatchPage.setLocationInDoubles(testDataProp.getProperty("location.city.name"));
+		addAMatchPage.setLocationInDoubles(testDataProp.getProperty("location.city"));
 		addAMatchPage.setEventName(testDataProp.getProperty("event.name"));
 		addAMatchPage.clickOnSinglesButton();
 		addAMatchPage.clickOnAddOpponentButton();

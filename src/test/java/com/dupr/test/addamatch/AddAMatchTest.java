@@ -54,7 +54,7 @@ public class AddAMatchTest extends CommonBaseTest {
 	public void verifySetMatchDetails() {
 		logger.info("Starting of verifySetMatchDetails method");
 
-		addAMatchPage.setLocationInDoubles(testDataProp.getProperty("location.city.name"));
+		addAMatchPage.setLocationInDoubles(testDataProp.getProperty("location.city"));
 		addAMatchPage.setEventName(testDataProp.getProperty("event.name.in.doubles"));
 
 		logger.info("Ending of verifySetMatchDetails method");

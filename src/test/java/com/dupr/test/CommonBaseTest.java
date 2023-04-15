@@ -86,7 +86,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 
 		addAMatchPage.hardWait(3);
 
-		addAMatchPage.setLocationInDoubles(testDataProp.getProperty("location.city.name"));
+		addAMatchPage.setLocationInDoubles(testDataProp.getProperty("location.city"));
 
 		matchEvent = addAMatchPage.setEventName(testDataProp.getProperty("event.name.in.doubles"));
 

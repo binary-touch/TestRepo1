@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Common UI Automation Tests"><!-- <parallel = "classes" thread-count = "2" -->
 
-	<!--<test name="Sprint 1">
+	<test name="Sprint 1">
 		<classes>
 			 <class name="com.dupr.test.players.SearchPlayersTest" />
 			<class name="com.dupr.test.signup.SignupTest" />
@@ -20,24 +20,24 @@
 			<class name="com.dupr.test.profile.ChangePasswordTest" />
 			<class name="com.dupr.test.profile.ProfilePictureTest" /> 
 		</classes>
-	</test>-->
+	</test>
 
-	<test name="Sprint 2">
+	<!-- <test name="Sprint 2">
 		<classes>
-			<!-- <class name="com.dupr.test.clubs.BrowseClubsTest" />
+			<class name="com.dupr.test.clubs.BrowseClubsTest" />
 			 <class name="com.dupr.test.clubs.EditClubInfoTest" />
 			<class name="com.dupr.test.clubs.MyClubsTest" />
-			<class name="com.dupr.test.clubs.ClubLogoTest" /> -->
+			<class name="com.dupr.test.clubs.ClubLogoTest" />
 			<class name="com.dupr.test.clubs.AddRemoveOrganizerTest" />
-			<!--<class name="com.dupr.test.clubs.RemoveClubMemberTest" />
+			<class name="com.dupr.test.clubs.RemoveClubMemberTest" />
 			<class name="com.dupr.test.clubs.ImportPlayerViaCSVTest" />
 			<class name="com.dupr.test.addamatch.AddClubMatchTest" />
 			<class name="com.dupr.test.events.AddEventTest" />
 			<class name="com.dupr.test.events.BrowseEventsTest" />
 			<class name="com.dupr.test.events.EditEventsTest" />
-			<class name="com.dupr.test.events.EditBracketsTest" />-->
+			<class name="com.dupr.test.events.EditBracketsTest" />
 		</classes>
-	</test>
+	</test> -->
 
 	<!--<test name="Sprint 3">
 		<classes>

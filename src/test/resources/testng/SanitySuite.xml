@@ -3,9 +3,7 @@
 <suite name="Sanity UI Automation Tests">
 
 	<!--<test name="Sprint 1">
-
 		<classes>
-
 			<class name="com.b2b.test.sprint1.sanity.SignupTest" />
 			<class name="com.b2b.test.sprint1.sanity.SearchPlayersTest" />
 			<class
@@ -26,11 +24,12 @@
 			<class name="com.b2b.test.sprint1.sanity.ChangePasswordTest" />
 			<class name="com.b2b.test.sprint1.sanity.ProfilePictureTest" />
 		</classes>
-	</test>
+	</test>-->
 
-	<test name="Sprint 2">
+	<!--<test name="Sprint 2">
 		<classes>
-			<class name="com.b2b.test.sprint2.sanity.BrowseClubsTest" />
+
+			 <class name="com.b2b.test.sprint2.sanity.BrowseClubsTest" />
 			<class name="com.b2b.test.sprint2.sanity.MyClubsTest" />
 			<class name="com.b2b.test.sprint2.sanity.EditClubInfoTest" />
 			<class name="com.b2b.test.sprint2.sanity.ClubLogoTest" />
@@ -41,24 +40,26 @@
 				name="com.b2b.test.sprint2.sanity.ImportPlayerViaCSVTest" />
 			<class name="com.b2b.test.sprint2.sanity.AddClubMatchTest" />
 			<class name="com.b2b.test.sprint2.sanity.AddEventTest" />
-			<class name="com.b2b.test.sprint2.sanity.BrowseEventsTest" />
+			 <class name="com.b2b.test.sprint2.sanity.BrowseEventsTest" />
 			<class name="com.b2b.test.sprint2.sanity.EditEventsTest" />
-			<class name="com.b2b.test.sprint2.sanity.EditBracketsTest" />
+			<class name="com.b2b.test.sprint2.sanity.EditBracketsTest" /> 
 		</classes>
 	</test>-->
- 
-	<test name="Sprint 3">
-		<!--<classes>
-			<class
 
+	<!-- <test name="Sprint 3">
+		<classes>
+			<class
 				name="com.b2b.test.sprint3.sanity.AddEditRemoveEventLogoTest" />
 			<class
 				name="com.b2b.test.sprint3.sanity.AddParticipantsInBracketTest" />
 			
 			<class
 				name="com.b2b.test.sprint3.sanity.AntiScrappingCaptchaTest" />
-			<class name="com.b2b.test.sprint3.sanity.EndEventTest" />
 			<class
+				name="com.b2b.test.sprint3.sanity.AddAnnouncementTest" />
+				
+			<class name="com.b2b.test.sprint3.sanity.EndEventTest" />
+						<class
 				name="com.b2b.test.sprint3.sanity.PlayerEventRegistrationTest" />
 			<class
 				name="com.b2b.test.sprint3.sanity.AcceptOrDeclinePartnerTest" />
@@ -72,7 +73,7 @@
 			<class name="com.b2b.test.sprint3.sanity.UserDashboardTest" />
 			<class
 				name="com.b2b.test.sprint3.sanity.PreservingPageVisitsTest" />
-		</classes>-->
+		</classes>
 	</test>
 
 	 <test name="Sprint 4">
@@ -88,17 +89,20 @@
 	<test name="Sprint 5">
 		<classes>
 
-		<!--<class name="com.b2b.test.sprint5.sanity.PaidEventAndPaidBracketWithWaterfallEventTest" />
+		<class name="com.b2b.test.sprint5.sanity.PaidEventAndPaidBracketWithWaterfallEventTest" />
 
 			<class
 				name="com.b2b.test.sprint5.sanity.WaterfallRoundOneSeedingLogicTest" />-->
 			<!--<class
 				name="com.b2b.test.sprint5.sanity.EditScoreAfterValidationTest" />-->
 			<!--<class
-				name="com.b2b.test.sprint5.sanity.SeedMatchesWaterFallTest"/>-->
+				name="com.b2b.test.sprint5.sanity.SeedMatchesWaterFallTest"/>
 				
-		</classes>
+		</classes>-->
 
 	</test>
 </suite>
+
+
+
 
