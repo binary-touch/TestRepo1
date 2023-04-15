@@ -24,7 +24,6 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 
 	private static final Logger logger = Logger.getLogger(SeedMatchesRoundRobinTest.class.getName());
 	private static String seedsEvents = null;
-
 	private SeedMatchesPage seedMatchesPage = null;
 
 	@BeforeClass
@@ -80,7 +79,6 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 		seedMatchesPage.hardWait(5);
 		seedMatchesPage.clickOnMyClubsCard();
 		addEventPage.hardWait(5);
-
 		addEventPage.clickOnEventsTab();
 		seedMatchesPage.hardWait(5);
 		addEventPage.clickOnRecentlyAddedEvent(seedsEvents);
@@ -115,7 +113,6 @@ public class SeedMatchesRoundRobinTest extends CommonBaseTest {
 		seedMatchesPage.hardWait(5);
 		seedMatchesPage.clickOnTeamsTab();
 		seedMatchesPage.hardWait(5);
-
 		seedMatchesPage.clickOnSeedMatchesButton();
 		seedMatchesPage.hardWait(5);
 
