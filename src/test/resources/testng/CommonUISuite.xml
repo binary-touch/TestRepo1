@@ -6,7 +6,7 @@
 		<classes>
 			 <class name="com.dupr.test.players.SearchPlayersTest" />
 			<class name="com.dupr.test.signup.SignupTest" />
-			<class name="com.dupr.test.signup.DUPRClaimAccountSignUpTest" />
+			 <class name="com.dupr.test.signup.DUPRClaimAccountSignUpTest" />
 			<class name="com.dupr.test.DUPRLoginTest" />
 			<class name="com.dupr.test.NegativeLoginTest" />
 			<class name="com.dupr.test.ForgotPasswordTest" />
@@ -17,8 +17,8 @@
 			<class name="com.dupr.test.players.BrowsePlayersTest" />
 			<class name="com.dupr.test.profile.PlayerProfileTest" />
 			<class name="com.dupr.test.profile.NotificationsTest" />
-			<class name="com.dupr.test.profile.ChangePasswordTest" />
-			<class name="com.dupr.test.profile.ProfilePictureTest" /> 
+			<class name="com.dupr.test.profile.ChangePasswordTest" /> 
+			<class name="com.dupr.test.profile.ProfilePictureTest" />
 		</classes>
 	</test>
 
