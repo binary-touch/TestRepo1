@@ -22,7 +22,7 @@
 		</classes>
 	</test> -->
 
-	<test name="Sprint 2">
+	<!--<test name="Sprint 2">
 		<classes>
 			<class name="com.dupr.test.clubs.BrowseClubsTest" />
 			 <class name="com.dupr.test.clubs.EditClubInfoTest" />
@@ -37,7 +37,7 @@
 			<class name="com.dupr.test.events.EditEventsTest" />
 			<class name="com.dupr.test.events.EditBracketsTest" />
 		</classes>
-	</test>
+	</test>-->
 
 	<!-- <test name="Sprint 3">
 		<classes>
