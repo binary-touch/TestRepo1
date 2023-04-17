@@ -57,7 +57,9 @@ public class ClubLogoTest extends DUPRBaseAutomationTest {
 		clubLogoPage.hardWait(3);
 		clubLogoPage.clickOnMyClubsTab();
 		try {
+			clubLogoPage.hardWait(3);
 			if (clubLogoPage.isClubsDisplayedInMyClubs()) {
+				clubLogoPage.hardWait(2);
 				clubLogoPage.clickOnClub();
 			} else {
 				myClubsPage.clickOnBrowseClubsButton();
