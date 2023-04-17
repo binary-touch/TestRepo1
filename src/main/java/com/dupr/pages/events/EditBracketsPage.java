@@ -40,18 +40,12 @@ public class EditBracketsPage extends DUPRBaseAutomationPage {
 	private WebElement listMen;
 
 	@B2BFindBy(xpath = "//h3[text()='Event Type']/parent::div//div[contains(@class,'MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input')]")
-	// @B2BFindBy(xpath = "//h3[text()='Event
-	// Type']/parent::div//div[contains(@class,'MuiInputBase-root
-	// MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl')]")
 	private WebElement btnEventType;
 
 	@B2BFindBy(xpath = "//li[text()='Waterfall']")
 	private WebElement listWaterfall;
 
-	@B2BFindBy(xpath = "//h3[text()='Time Zone']/parent::div//div[contains(@class,'MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input')]")
-	// @B2BFindBy(xpath = "//h3[text()='Time
-	// Zone']/parent::div//div[contains(@class,'MuiInputBase-root
-	// MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl')]")
+	@B2BFindBy(xpath = "//h3[text()='Time Zone']/parent::div//input[contains(@class,'MuiInputBase-input MuiOutlinedInput-input')]")
 	private WebElement btnTimeZone;
 
 	@B2BFindBy(xpath = "//li[contains(text(),'Alaskan Standard Time')]")
@@ -72,14 +66,15 @@ public class EditBracketsPage extends DUPRBaseAutomationPage {
 	}
 
 	public void clickOnBracketLabel() {
-		log.info("Starting of clickOnLabelBracket method");
+		log.info("Starting of clickOnBracketLabel method");
+		
 		try {
 			clickUsingActionsClass(lblBracket);
 		} catch (Exception e) {
 			clickOnWebElement(lblBracket);
 		}
 
-		log.info("Ending of clickOnLabelBracket method");
+		log.info("Ending of clickOnBracketLabel method");
 	}
 
 	public void clickOnEditBracketButton() {
@@ -174,43 +169,40 @@ public class EditBracketsPage extends DUPRBaseAutomationPage {
 	}
 
 	public void clickOnResetButton() {
-		log.info("Starting of clickOnReset method");
+		log.info("Starting of clickOnResetButton method");
 
 		clickOnElement(btnReset);
 
-		log.info("Ending of clickOnReset method");
+		log.info("Ending of clickOnResetButton method");
 	}
 
 	public void clickOnSaveChangesButton() {
-		log.info("Starting of clickOnSaveChanges method");
+		log.info("Starting of clickOnSaveChangesButton method");
 
 		clickOnElement(btnSaveChanges);
 
-		log.info("Ending of clickOnSaveChanges method");
+		log.info("Ending of clickOnSaveChangesButton method");
 	}
 
 	public String getPlayerGroupFieldTxt() {
-		log.info("Starting of getPlayerGroup method");
-		log.info("Ending of getPlayerGroup method");
+		log.info("Starting of getPlayerGroupFieldTxt method");
+		log.info("Ending of getPlayerGroupFieldTxt method");
 
 		return getText(btnPlayerGroup);
-
 	}
 
 	public String getEventTypeFieldTxt() {
-		log.info("Starting of getEventType method");
-		log.info("Ending of getEventType method");
+		log.info("Starting of getEventTypeFieldTxt method");
+		log.info("Ending of getEventTypeFieldTxt method");
 
 		return getText(btnEventType);
-
 	}
 
 	public String getTimeZoneFieldTxt() {
-		log.info("Starting of getTimeZOne method");
-		log.info("Ending of getTimeZOne method");
+		log.info("Starting of getTimeZoneFieldTxt method");
+		log.info("Ending of getTimeZoneFieldTxt method");
 
 		return getText(btnTimeZone);
-
 	}
 
 }
