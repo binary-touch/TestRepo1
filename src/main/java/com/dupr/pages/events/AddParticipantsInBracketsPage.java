@@ -498,7 +498,7 @@ public class AddParticipantsInBracketsPage extends DUPRBaseAutomationPage {
 	public void addParticipantsIntoRoundRobinSinglesMatch() {
 		log.info("Starting of addParticipantsIntoRoundRobinSinglesMatch method");
 
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < 3; i++) {
 			
 			this.hardWait(2);
 			this.scrollDown(-400);

@@ -24,7 +24,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 
 @Epic(value = "Home")
-@Feature(value = "Chat")
+@Feature(value = "Chat Sanity")
 
 public class ChatTest extends DUPRBaseAutomationTest {
 
@@ -122,8 +122,8 @@ public class ChatTest extends DUPRBaseAutomationTest {
 	@Description("Test case #4, Verify Message Icon Functionality In Club members")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #4, Verify Message Icon Functionality In Club members")
-	public void verifyMessageIconFunctionalityInClubmembers() {
-		logger.info("Starting of verifyMessageIconFunctionalityInClubmembers method");
+	public void verifyMessageIconFunctionalityInClubMembers() {
+		logger.info("Starting of verifyMessageIconFunctionalityInClubMembers method");
 
 		browseClubsPage.clickOnBrowseClubsTab();
 		chatpage.hardWait(3);
@@ -138,16 +138,16 @@ public class ChatTest extends DUPRBaseAutomationTest {
 		chatpage.hardWait(2);
 		chatpage.clickOnCloseIcon();
 
-		logger.info("Ending of verifyMessageIconFunctionalityInClubmembers method");
+		logger.info("Ending of verifyMessageIconFunctionalityInClubMembers method");
 	}
 
 	@Parameters({ "validPassword" })
-	@Test(priority = 5, description = "Verify the results on click of chart icon on Dashboard with no charts", groups = "sanity")
-	@Description("Test case #5, Verify the results on click of chart icon on Dashboard with no charts")
+	@Test(priority = 5, description = "Verify Empty Inbox On Dashboard", groups = "sanity")
+	@Description("Test case #5, Verify Empty Inbox On Dashboard")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #5, Verify the results on click of chart icon on Dashboard with no charts")
-	public void verifyEmptyInBoxOnDashboard(String validPassword) {
-		logger.info("Starting of verifyEmptyInBoxOnDashboard method");
+	@Story("Test case #5, Verify Empty Inbox On Dashboard")
+	public void verifyEmptyInboxOnDashboard(String validPassword) {
+		logger.info("Starting of verifyEmptyInboxOnDashboard method");
 
 		userDashboardPage.clickOnOpenSettingsMenu();
 		browseEventsPage.hardWait(2);
@@ -160,7 +160,7 @@ public class ChatTest extends DUPRBaseAutomationTest {
 
 		Assert.assertTrue(chatpage.isInboxEmptyDisplayed());
 
-		logger.info("Ending of verifyEmptyInBoxOnDashboard method");
+		logger.info("Ending of verifyEmptyInboxOnDashboard method");
 	}
 
 	@Parameters({ "validPassword" })
@@ -168,8 +168,8 @@ public class ChatTest extends DUPRBaseAutomationTest {
 	@Description("Test case #6, Verify the results on click of chart icon on Dashboard with not verified email")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #6, Verify the results on click of chart icon on Dashboard with not verified email")
-	public void verifyPresenceOfMessageIconForUnverifiedAccount(String validPassword) {
-		logger.info("Starting of verifyPresenceOfMessageIconForUnverifiedAccount method");
+	public void verifyChartIconWithNotverifiedEmail(String validPassword) {
+		logger.info("Starting of verifyChartIconWithNotverifiedEmail method");
 
 		userDashboardPage.clickOnOpenSettingsMenu();
 		browseEventsPage.hardWait(2);
@@ -183,7 +183,7 @@ public class ChatTest extends DUPRBaseAutomationTest {
 
 		Assert.assertFalse(chatpage.isMessageIconDisplayed());
 
-		logger.info("Ending of verifyPresenceOfMessageIconForUnverifiedAccount method");
+		logger.info("Ending of verifyChartIconWithNotverifiedEmail method");
 	}
 
 	@AfterClass

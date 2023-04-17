@@ -72,16 +72,19 @@
 
 	</test>-->
 
-	<!--  <test name="Sprint 4">
+  <test name="Sprint 4">
 		<classes>
-			<class name="com.b2b.test.sprint4.sanity.ChatTest" />
+		<!--	<class name="com.b2b.test.sprint4.sanity.ChatTest" />
 			<class name="com.b2b.test.sprint4.sanity.ShareTest" />
-
 			<class name="com.b2b.test.sprint4.sanity.CombinationOfMatchTypeAndPlayerGroupTest" />
-			<class name="com.b2b.test.sprint4.sanity.TimeZoneTest" />
-			<class name="com.b2b.test.sprint4.sanity.SeedMatchesRoundRobinTest" />
-		</classes>
-	</test> -->
+			<class name="com.b2b.test.sprint4.sanity.TimeZoneTest" />-->
+			<class name="com.b2b.test.sprint4.sanity.SeedMatchesRoundRobinTest" >
+				<methods><include name="verifySeedMatchesFunctionalityWithSinglesMatchType"></include></methods>
+			</class>
+			
+			
+					</classes>
+	</test> 
 
 <!--	<test name="Sprint 5">
 		<classes>
