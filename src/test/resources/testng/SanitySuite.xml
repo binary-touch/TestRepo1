@@ -79,8 +79,8 @@
 			<class name="com.b2b.test.sprint4.sanity.ShareTest" />-->
 			<class	name="com.b2b.test.sprint4.sanity.CombinationOfMatchTypeAndPlayerGroupTest" >
 				
-				<methods><include name="verifyBracketWithMatchTypeSingleAndMixedPlayerGroup"></include>
-					<include name="verifyBracketWithMatchTypeSingleAndOpenPlayerGroup"></include></methods>
+				<!--<methods><include name="verifyBracketWithMatchTypeSingleAndMixedPlayerGroup"></include>
+					<include name="verifyBracketWithMatchTypeSingleAndOpenPlayerGroup"></include></methods>-->
 			</class>
 		<!--	<class name="com.b2b.test.sprint4.sanity.TimeZoneTest" />
 	<class name="com.b2b.test.sprint4.sanity.SeedMatchesRoundRobinTest"/>-->
