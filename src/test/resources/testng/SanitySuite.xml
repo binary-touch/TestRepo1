@@ -81,8 +81,6 @@
 			<class name="com.b2b.test.sprint4.sanity.TimeZoneTest" />
 			<class
 				name="com.b2b.test.sprint4.sanity.SeedMatchesRoundRobinTest" />
-		</classes>
-	</test>
 
 	<test name="Sprint 5">
 		<classes>
