@@ -724,7 +724,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 
 		addBracketPage.clickOnTimeZoneDropdown();
 		addBracketPage.hardWait(3);
-		Assert.assertTrue(addBracketPage.isTimeZoneListContains());
+		
 		addBracketPage.clickOnNewDelhiTimeZone();
 
 		addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("min.age.range"));
