@@ -26,7 +26,7 @@
 		</classes>
 	</test> -->
 
-	<test name="Sprint 2">
+   <test name="Sprint 2">
 		<classes>
 			<class name="com.b2b.test.sprint2.sanity.BrowseClubsTest" />
 			<class name="com.b2b.test.sprint2.sanity.MyClubsTest" />
@@ -44,7 +44,6 @@
 			<class name="com.b2b.test.sprint2.sanity.EditBracketsTest" />
 		</classes>
 	</test> 
-
 	<!-- <test name="Sprint 3">
 		<classes>
 			<class
@@ -70,22 +69,26 @@
 			<class
 				name="com.b2b.test.sprint3.sanity.PreservingPageVisitsTest" />
 		</classes>
-	</test>
 
-	<test name="Sprint 4">
+	</test>-->
+
+	<!--  <test name="Sprint 4">
 		<classes>
 			<class name="com.b2b.test.sprint4.sanity.ChatTest" />
 			<class name="com.b2b.test.sprint4.sanity.ShareTest" />
+
 			<class name="com.b2b.test.sprint4.sanity.CombinationOfMatchTypeAndPlayerGroupTest" />
 			<class name="com.b2b.test.sprint4.sanity.TimeZoneTest" />
 			<class name="com.b2b.test.sprint4.sanity.SeedMatchesRoundRobinTest" />
+		</classes>
+	</test> -->
 
-	<test name="Sprint 5">
+<!--	<test name="Sprint 5">
 		<classes>
 			<class name="com.b2b.test.sprint5.sanity.PaidEventAndPaidBracketWithWaterfallEventTest" />
 			<class name="com.b2b.test.sprint5.sanity.WaterfallRoundOneSeedingLogicTest" />
 			<class name="com.b2b.test.sprint5.sanity.EditScoreAfterValidationTest" />
 			<class name="com.b2b.test.sprint5.sanity.SeedMatchesWaterFallTest" />
 		</classes>
-	</test> -->
+	</test>-->
 </suite>

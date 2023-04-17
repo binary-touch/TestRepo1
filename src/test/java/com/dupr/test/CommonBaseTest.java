@@ -15,6 +15,7 @@ import com.dupr.pages.events.Create_Edit_Split_TeamPage;
 import com.dupr.pages.events.EventRegistrationPage;
 import com.dupr.pages.events.PaidEventPage;
 import com.dupr.pages.events.PlayerEventRegistrationPage;
+import com.dupr.pages.events.SeedMatchesPage;
 import com.dupr.pages.events.TimeZonePage;
 import com.dupr.pages.home.ChatPage;
 import com.dupr.pages.home.UserDashboardPage;
@@ -55,6 +56,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 	protected EventRegistrationPage directorEventRegistrationPage = null;
 	protected PlayerEventRegistrationPage playerEventRegistrationPage = null;
 	protected PaidEventPage paidEventPage = null;
+	private SeedMatchesPage seedMatchesPage = null;
 
 	public void initCommonBaseTest(String siteURL, String email, String password) throws Exception {
 		logger.info("Starting of initTest in CommonBaseTest");
@@ -65,6 +67,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		this.browsePlayersPage = new BrowsePlayersPage(this.driver);
 		this.searchPlayersPage = new SearchPlayersPage(this.driver);
 		this.addEventPage = new AddEventPage(this.driver);
+		this.seedMatchesPage = new SeedMatchesPage(this.driver);
 		this.addBracketPage = new AddBracketPage(this.driver);
 		this.editClubInfoPage = new EditClubInfoPage(this.driver);
 		this.clubLogoPage = new ClubLogoPage(this.driver);
