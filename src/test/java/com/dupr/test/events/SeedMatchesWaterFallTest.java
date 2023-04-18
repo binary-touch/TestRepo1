@@ -378,10 +378,9 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		seedMatchesPage.hardWait(5);
 		clubLogoPage.clickOnMyClubsTab();
 		editClubInfoPage.clickOnSimbaOrganizerButton();
-		// userDashboardPage.clickOnMyBracketsButton();
+	
 		seedMatchesPage.hardWait(5);
 
-		// Assert.assertTrue(seedMatchesWaterFallPage.isViewTheQueuebuttonDisplayed());
 
 		logger.info("Ending of verifyViewQueueButtonsAfterSeeding method");
 	}
@@ -393,14 +392,8 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 	public void verifyExitQueueButtonsAfterSeeding() {
 		logger.info("Starting of verifyExitQueueButtonsAfterSeeding method");
 
-		// addEventPage.clickOnEventsTab();
-		// seedMatchesPage.hardWait(5);
-		// addEventPage.clickOnRecentlyAddedEvent(eventName);
-		// addEventPage.hardWait(5);
-
-		// seedMatchesPage.clickOnBracketCard();
 		seedMatchesPage.hardWait(5);
-		// seedMatchesWaterFallPage.clickOnViewQueueButton(eventName);
+		
 		seedMatchesPage.hardWait(3);
 		Assert.assertTrue(seedMatchesWaterFallPage.isExitTheQueuebuttonDisplayed());
 
@@ -436,19 +429,6 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 	@Story("Test case #16, verify the presence of View draw button")
 	public void verifyPresenceOfViewDrawButtonAfterValidation() {
 		logger.info("Starting of verifyPresenceOfViewDrawButtonAfterValidation method");
-
-		/*
-		 * seedMatchesPage.clickOnValidateButton(); seedMatchesPage.hardWait(3);
-		 * seedMatchesPage.clickOnValidateInValidateMatchButton();
-		 * seedMatchesPage.hardWait(3);
-		 * seedMatchesPage.clickOnValidateMatchValidateButton();
-		 * 
-		 * try { seedMatchesPage.clickOnValidateMatchSuccessCloseButton();
-		 * 
-		 * } catch (Exception e) { seedMatchesPage.clickOnMatchesTabButton();
-		 * seedMatchesPage.hardWait(3);
-		 * seedMatchesPage.clickOnValidateMatchSuccessCloseButton(); }
-		 */
 
 		Assert.assertTrue(seedMatchesWaterFallPage.isViewDrawButtonDisplayed());
 
@@ -769,7 +749,7 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		logger.info("Starting of verifyCreatingWaterFallEventAsSingles method");
 
 		seedMatchesPage.hardWait(3);
-		// seedMatchesWaterFallPage.navigateBack();
+	    seedMatchesWaterFallPage.navigateBack();
 		seedMatchesPage.hardWait(3);
 		seedMatchesWaterFallPage.clickOnHomeMenu();
 		seedMatchesPage.hardWait(3);

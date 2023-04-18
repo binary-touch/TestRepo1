@@ -139,7 +139,6 @@ public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 		this.verifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
 		this.verifyPublishEventButton();
 
-		//super.verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup();
 		addEventPage.hardWait(3);
 		addEventPage.clickOnEventsTab();
 		addEventPage.clickOnRecentlyAddedEvent(eventName);
@@ -170,7 +169,7 @@ public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 		Assert.assertTrue(addBracketPage.isPlayerGroupListDisplayed());
 		addBracketPage.selectMenPlayerGroup();
 		Assert.assertTrue(addBracketPage.isSelectedPlayerGroupTypeDisplayed());
-//
+
 		addBracketPage.setMinimumAgeRange(testDataProp.getProperty("min.age.range"));
 		Assert.assertTrue(addBracketPage.isEnteredMinimumAgeDisplayed(testDataProp.getProperty("min.age.range")));
 
@@ -222,7 +221,7 @@ public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 
 		this.verifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
 		this.verifyPublishEventButton();
-		//super.verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup();
+		
 		addEventPage.hardWait(3);
 		addEventPage.clickOnEventsTab();
 		addEventPage.clickOnRecentlyAddedEvent(eventName);
@@ -253,7 +252,7 @@ public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 		Assert.assertTrue(addBracketPage.isPlayerGroupListDisplayed());
 		addBracketPage.selectWomenPlayerGroup();
 		Assert.assertTrue(addBracketPage.isSelectedPlayerGroupTypeDisplayed());
-//
+
 		addBracketPage.setMinimumAgeRange(testDataProp.getProperty("min.age.range"));
 		Assert.assertTrue(addBracketPage.isEnteredMinimumAgeDisplayed(testDataProp.getProperty("min.age.range")));
 
@@ -305,7 +304,6 @@ public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 
 		this.verifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
 		this.verifyPublishEventButton();
-		//super.verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup();
 		addEventPage.hardWait(3);
 		addEventPage.clickOnEventsTab();
 		addEventPage.clickOnRecentlyAddedEvent(eventName);
@@ -336,7 +334,7 @@ public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 		Assert.assertTrue(addBracketPage.isPlayerGroupListDisplayed());
 		addBracketPage.selectMixedPlayerGroup();
 		Assert.assertTrue(addBracketPage.isSelectedPlayerGroupTypeDisplayed());
-//
+
 		addBracketPage.setMinimumAgeRange(testDataProp.getProperty("min.age.range"));
 		Assert.assertTrue(addBracketPage.isEnteredMinimumAgeDisplayed(testDataProp.getProperty("min.age.range")));
 
@@ -388,7 +386,7 @@ public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 
 		this.verifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
 		this.verifyPublishEventButton();
-		//super.verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup();
+		
 		addEventPage.hardWait(3);
 		addEventPage.clickOnEventsTab();
 		addEventPage.clickOnRecentlyAddedEvent(eventName);
@@ -419,7 +417,7 @@ public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 		Assert.assertTrue(addBracketPage.isPlayerGroupListDisplayed());
 		addBracketPage.selectOpenPlayerGroup();
 		Assert.assertTrue(addBracketPage.isSelectedPlayerGroupTypeDisplayed());
-//
+
 		addBracketPage.setMinimumAgeRange(testDataProp.getProperty("min.age.range"));
 		Assert.assertTrue(addBracketPage.isEnteredMinimumAgeDisplayed(testDataProp.getProperty("min.age.range")));
 
@@ -471,7 +469,7 @@ public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 
 		this.verifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
 		this.verifyPublishEventButton();
-		//super.verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup();
+	
 		addEventPage.hardWait(3);
 		addEventPage.clickOnEventsTab();
 		addEventPage.clickOnRecentlyAddedEvent(eventName);
@@ -502,7 +500,7 @@ public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 		Assert.assertTrue(addBracketPage.isPlayerGroupListDisplayed());
 		addBracketPage.selectMenPlayerGroup();
 		Assert.assertTrue(addBracketPage.isSelectedPlayerGroupTypeDisplayed());
-//
+
 		addBracketPage.setMinimumAgeRange(testDataProp.getProperty("min.age.range"));
 		Assert.assertTrue(addBracketPage.isEnteredMinimumAgeDisplayed(testDataProp.getProperty("min.age.range")));
 
@@ -554,7 +552,6 @@ public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 
 		this.verifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
 		this.verifyPublishEventButton();
-		//super.verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup();
 
 		addEventPage.hardWait(3);
 		addEventPage.clickOnEventsTab();
@@ -586,7 +583,7 @@ public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 		Assert.assertTrue(addBracketPage.isPlayerGroupListDisplayed());
 		addBracketPage.selectWomenPlayerGroup();
 		Assert.assertTrue(addBracketPage.isSelectedPlayerGroupTypeDisplayed());
-//
+
 		addBracketPage.setMinimumAgeRange(testDataProp.getProperty("min.age.range"));
 		Assert.assertTrue(addBracketPage.isEnteredMinimumAgeDisplayed(testDataProp.getProperty("min.age.range")));
 
@@ -638,7 +635,6 @@ public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 
 		this.verifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
 		this.verifyPublishEventButton();
-		//super.verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup();
 
 		addEventPage.hardWait(3);
 		addEventPage.clickOnEventsTab();

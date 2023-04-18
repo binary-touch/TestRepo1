@@ -58,7 +58,7 @@ protected void siteLogin(String siteURL, String email, String password, WebDrive
 		loginPage.hardWait(3);
 		driver.get(devSiteURL);
 		this.loginPage = new DUPRLoginPage(webdriver);
-
+		loginPage.hardWait(5);
 		loginPage.clickOnLogInLink();
 		loginPage.loginToDUPRApplication(email, password);
 	}

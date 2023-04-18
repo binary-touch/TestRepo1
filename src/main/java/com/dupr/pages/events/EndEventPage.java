@@ -20,7 +20,10 @@ public class EndEventPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//button[text()='End Event']")
 	private WebElement btnEndEvent;
-
+	
+	@B2BFindBy(xpath = "(//h4[contains(@class,'MuiTypography-root MuiTypography-h4')])[1]")
+	private WebElement lblEventName;
+	
 	@B2BFindBy(xpath = "//*[contains(@class,'MuiSvgIcon-root MuiSvgIcon-colorPrimary MuiSvgIcon-fontSizeMedium')]")
 	private WebElement btnBack;
 
@@ -83,13 +86,16 @@ public class EndEventPage extends DUPRBaseAutomationPage {
 	public void clickOnEventLabel() {
 		log.info("Starting of clickOnEventLabel method");
 
-		for (int i = 1; i < lblEvent.size(); i++) {
-			this.hardWait(3);
-			driver.findElement(
-					By.xpath((("(//h4[contains(@class,'MuiTypography-root MuiTypography-h4')])[" + i + "]")))).click();
-
-			this.hardWait(3);
+		for(int i=1;i<=lblEvent.size();i++) {
+			this.hardWait(5);
 			try {
+				clickOnElementUsingActionClass(driver.findElement(By.xpath("//h4[contains(@class,'MuiTypography-root MuiTypography-h4')][i]")));
+			}catch(Exception e) {
+				this.hardWait(5);
+				lblEventName.click();
+			}
+			this.hardWait(3);
+					try {
 				if ((isDisplayed(btnEndEvent) == true)) {
 					clickOnElement(btnEndEvent);
 					break;

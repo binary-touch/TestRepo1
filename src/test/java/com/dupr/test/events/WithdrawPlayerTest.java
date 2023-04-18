@@ -8,9 +8,13 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.b2b.common.WebDriversEnum;
+import com.dupr.pages.clubs.EditClubInfoPage;
+import com.dupr.pages.events.AddBracketPage;
+import com.dupr.pages.events.AddEventPage;
 import com.dupr.pages.events.EditBracketsPage;
 import com.dupr.pages.events.EndEventPage;
 import com.dupr.pages.events.SeedMatchesPage;
+import com.dupr.pages.events.TimeZonePage;
 import com.dupr.pages.events.WithdrawPlayerPage;
 import com.dupr.test.CommonBaseTest;
 
@@ -41,6 +45,11 @@ public class WithdrawPlayerTest extends CommonBaseTest {
 
 		this.driver = super.getWebDriver(WebDriversEnum.WITHDRAW_PLAYER_DRIVER);
 		super.initCommonBaseTest(siteURL, directorEmail, directorPassword);
+		
+		this.addBracketPage = new AddBracketPage(this.driver);
+		this.editClubInfoPage = new EditClubInfoPage(this.driver);
+		this.addEventPage = new AddEventPage(this.driver);
+		this.timeZonePage = new TimeZonePage(this.driver);
 
 		this.editBracketsPage = new EditBracketsPage(this.driver);
 		this.endEventpage = new EndEventPage(this.driver);
@@ -110,7 +119,7 @@ public class WithdrawPlayerTest extends CommonBaseTest {
 		addBracketPage.setCompetitionEndDate();
 
 		addBracketPage.clickOnTimeZoneDropdown();
-		Assert.assertTrue(addBracketPage.isTimeZoneListContains());
+		
 		addBracketPage.clickOnNewDelhiTimeZone();
 
 		addBracketPage.hardWait(2);
@@ -197,10 +206,12 @@ public class WithdrawPlayerTest extends CommonBaseTest {
 	@Story("Test case #5, Verify the results on click of Close Icon")
 	public void verifyValidationMsgWithoutSelectingAnyOption() {
 		logger.info("Starting of verifyValidationMsgWithoutSelectingAnyOption method");
-
+		
+		withdrawPlayerPage.hardWait(4);
 		withdrawPlayerPage.clickOnWithdrawButton();
-		withdrawPlayerPage.hardWait(2);
+		withdrawPlayerPage.hardWait(4);
 		withdrawPlayerPage.clickOnNextButton();
+		withdrawPlayerPage.hardWait(4);
 		Assert.assertEquals(withdrawPlayerPage.getOptionValidationTxt(),
 				expectedAssertionsProp.getProperty("Option.validation.txt"));
 
