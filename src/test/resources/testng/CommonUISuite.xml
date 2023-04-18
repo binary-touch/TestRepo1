@@ -71,7 +71,7 @@
 			<class name="com.dupr.test.events.CombinationOfMatchTypeAndPlayerGroupTest" />
 			<class name="com.dupr.test.events.FullRegistrationTest" />
 			<class name="com.dupr.test.events.TimeZoneTest" />
-			<class name="com.dupr.test.events.SeedMatchesTest" />
+			<class name="com.dupr.test.events.SeedMatchesRoundRobinTest" />
 		</classes>
 	</test>
 
