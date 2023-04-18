@@ -36,7 +36,7 @@
 			<class name="com.b2b.test.sprint2.sanity.RemoveClubMemberTest" />
 			<class name="com.b2b.test.sprint2.sanity.ImportPlayerViaCSVTest" />
 			<class name="com.b2b.test.sprint2.sanity.AddClubMatchTest" /> -->
-			<class name="com.b2b.test.sprint2.sanity.AddEventTest" />
+			<!--<class name="com.b2b.test.sprint2.sanity.AddEventTest" />-->
 			<!-- <class name="com.b2b.test.sprint2.sanity.BrowseEventsTest" />
 			<class name="com.b2b.test.sprint2.sanity.EditEventsTest" />
 			<class name="com.b2b.test.sprint2.sanity.EditBracketsTest" /> -->
@@ -70,15 +70,15 @@
 
 	</test>-->
 
- <!-- 	 <test name="Sprint 4">
+  	 <test name="Sprint 4">
 		<classes>
-			<class name="com.b2b.test.sprint4.sanity.ChatTest" />
+			<!--<class name="com.b2b.test.sprint4.sanity.ChatTest" />
 			<class name="com.b2b.test.sprint4.sanity.ShareTest" />
 			<class name="com.b2b.test.sprint4.sanity.CombinationOfMatchTypeAndPlayerGroupTest" />
-			<class name="com.b2b.test.sprint4.sanity.TimeZoneTest" />
+			<class name="com.b2b.test.sprint4.sanity.TimeZoneTest" />-->
 			<class name="com.b2b.test.sprint4.sanity.SeedMatchesRoundRobinTest" />	
 			</classes>
-	</test>  -->
+	</test> 
 
 
 	<!--<test name="Sprint 5">

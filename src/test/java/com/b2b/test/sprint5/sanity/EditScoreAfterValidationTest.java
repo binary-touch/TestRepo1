@@ -60,8 +60,6 @@ public class EditScoreAfterValidationTest extends CommonBaseTest {
 		addEventPage.clickOnRecentlyAddedEvent(seedEvents);
 		seedMatchesPage.hardWait(3);
 
-		// Register to an Free Bracket
-
 		seedMatchesPage.clickOnBracketCard();
 		seedMatchesPage.hardWait(5);
 		addparticipantsPage.addParticipantsIntoRoundRobinSinglesMatch();
