@@ -63,10 +63,9 @@ public class PlayerEventRegistrationTest extends CommonBaseTest {
 
 		super.verifyAddEventFunctionality();
 		super.verifyFreeBracketWithRoundRobinEventType();
-		addEventPage.hardWait(3);
-		addEventPage.clickOnEventsTab();
-		addEventPage.hardWait(3);
-		addEventPage.clickOnEventName(eventName);
+		playerEventRegistrationPage.hardWait(3);
+		super.verifyRecentlyAddedEventUnderEventsTab();
+		playerEventRegistrationPage.hardWait(3);
 		eventRegistrationPage.clickOnRegisterButton();
 		eventRegistrationPage.clickOnSelectYourBracketCheckbox();
 		playerEventRegistrationPage.clickOnAddYourPartnerButton();

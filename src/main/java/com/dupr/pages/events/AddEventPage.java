@@ -1127,7 +1127,7 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 
 	public void clickOnNextStepButton() {
 		log.info("Starting of clickOnNextStepButton method");
-
+       hardWait(5);
 		try {
 			clickUsingActionsClass(btnNextStep);
 			//btnNextStep.click();

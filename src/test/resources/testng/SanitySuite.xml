@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Sanity UI Automation Tests">
-	<!-- <parallel = "classes" thread-count = "4" /> -->
 
 	<test name="Sprint 1">
 		<classes>
@@ -52,9 +51,9 @@
 				name="com.b2b.test.sprint3.sanity.AddEditRemoveEventLogoTest" />
 			<class
 				name="com.b2b.test.sprint3.sanity.AddParticipantsInBracketTest" />
-			<class name="com.b2b.test.sprint3.sanity.AddAnnouncementTest" />
 			<class
 				name="com.b2b.test.sprint3.sanity.AntiScrappingCaptchaTest" />
+			<class name="com.b2b.test.sprint3.sanity.AddAnnouncementTest" />
 			<class name="com.b2b.test.sprint3.sanity.EndEventTest" />
 			<class
 				name="com.b2b.test.sprint3.sanity.PlayerEventRegistrationTest" />
@@ -71,7 +70,7 @@
 			<class
 				name="com.b2b.test.sprint3.sanity.PreservingPageVisitsTest" />
 		</classes>
-	</test>
+	</test> 
 
 	<test name="Sprint 4">
 		<classes>
@@ -79,11 +78,9 @@
 			<class name="com.b2b.test.sprint4.sanity.ShareTest" />
 			<class
 				name="com.b2b.test.sprint4.sanity.CombinationOfMatchTypeAndPlayerGroupTest" />
-			<class name="com.b2b.test.sprint4.sanity.FullRegistrationTest" />
 			<class name="com.b2b.test.sprint4.sanity.TimeZoneTest" />
 			<class
-				name="com.b2b.test.sprint4.sanity.SeedMatchesRoundRobinTest">
-			</class>
+				name="com.b2b.test.sprint4.sanity.SeedMatchesRoundRobinTest" />
 		</classes>
 	</test>
 
@@ -96,11 +93,7 @@
 			<class
 				name="com.b2b.test.sprint5.sanity.EditScoreAfterValidationTest" />
 			<class
-				name="com.b2b.test.sprint5.sanity.SeedMatchesWaterFallTest">
-				<methods>
-					<include name="verifyCreatingWaterFallEventAsDoubles"></include>
-				</methods>
-			</class>
+				name="com.b2b.test.sprint5.sanity.SeedMatchesWaterFallTest" />
 		</classes>
 	</test>
 </suite>

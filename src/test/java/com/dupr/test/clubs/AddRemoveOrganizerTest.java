@@ -13,10 +13,13 @@ import com.dupr.pages.clubs.ClubLogoPage;
 import com.dupr.test.DUPRBaseAutomationTest;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
-
+@Epic("DUPR App")
+@Feature("Add Remove Organizer")
 public class AddRemoveOrganizerTest extends DUPRBaseAutomationTest {
 
 	private static final Logger logger = Logger.getLogger(AddRemoveOrganizerTest.class.getName());
@@ -51,13 +54,6 @@ public class AddRemoveOrganizerTest extends DUPRBaseAutomationTest {
 
 		addRemoveOrganizerPage.clickOnSeeClubDetailsDropdown();
 		addRemoveOrganizerPage.AddingOrganizers();
-		/*
-		 * try { if (addRemoveOrganizerPage.isDeleteOrganizerButtonDisplayed() == true)
-		 * {
-		 * 
-		 * addRemoveOrganizerPage.AddingOrganizers(); } } catch (Exception e) {
-		 * logger.info("Delete Organizer Button is not displayed"); }
-		 */
 		
 		logger.info("Ending of verifyAddOrganizerFunctionality method");
 	}
@@ -135,14 +131,14 @@ public class AddRemoveOrganizerTest extends DUPRBaseAutomationTest {
 	@Description("Test case #6, Verify Edit Organizer Button Functionality")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #6, Verify Edit Organizer Button Functionality")
-	public void verifyEditOrgFunctionality() {
-		logger.info("Starting of verifyEditOrgFunctionality method");
+	public void verifyEditOrganizerFunctionality() {
+		logger.info("Starting of verifyEditOrganizerFunctionality method");
 
 		addRemoveOrganizerPage.clickOnEditIcon();
 		clubLogoPage.hardWait(2);
 		Assert.assertTrue(addRemoveOrganizerPage.isEditOrganizerPopupContains());
 
-		logger.info("Ending of verifyEditOrgFunctionality method");
+		logger.info("Ending of verifyEditOrganizerFunctionality method");
 	}
 
 	@Test(priority = 7, description = "Verify Save Button Functionality", groups = "sanity")
@@ -161,9 +157,10 @@ public class AddRemoveOrganizerTest extends DUPRBaseAutomationTest {
 				expectedAssertionsProp.getProperty("email.validation"));
 
 		addRemoveOrganizerPage.setInvalidEmail(testDataProp.getProperty("organizer.invalid.email"));
-
+		addRemoveOrganizerPage.hardWait(3);
+		
 		Assert.assertEquals(addRemoveOrganizerPage.getInvalidEmailText(),
-				expectedAssertionsProp.getProperty("invalid.email.validation"));
+				expectedAssertionsProp.getProperty("invalid.email"));
 
 		logger.info("Ending of verifySaveFunctionality method");
 	}
@@ -206,12 +203,13 @@ public class AddRemoveOrganizerTest extends DUPRBaseAutomationTest {
 	@Description("Test case #10, Verify Remove Organizer Button Functionality")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #10, Verify Remove Organizer Button Functionality")
-	public void verifyRemoveOrgFunctionality() {
-		logger.info("Starting of verifyRemoveOrgFunctionality method");
-
+	public void verifyRemoveOrganizerFunctionality() {
+		logger.info("Starting of verifyRemoveOrganizerFunctionality method");
+		
+		addRemoveOrganizerPage.hardWait(3);
 		addRemoveOrganizerPage.clickOnRemoveOrganizerButton();
 
-		logger.info("Ending of verifyRemoveOrgFunctionality method");
+		logger.info("Ending of verifyRemoveOrganizerFunctionality method");
 	}
 
 	@AfterClass

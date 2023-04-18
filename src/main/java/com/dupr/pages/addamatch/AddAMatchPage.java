@@ -159,7 +159,7 @@ public class AddAMatchPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//p[text()='The winner of the first game must score a minimum of 6 points. ']")
 	private WebElement txtValidationScoreLessThanSixInFirstGame;
 
-	@B2BFindBy(xpath = "//p[text()='Please Enter Score']")
+	@B2BFindBy(xpath = "//p[text()='Please enter score']")
 	private WebElement txtValidationScoreRequired;
 
 	@B2BFindBy(xpath = "//p[text()='Either team must be a winner']")

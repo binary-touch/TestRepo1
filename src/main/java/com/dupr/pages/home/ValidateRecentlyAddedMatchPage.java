@@ -173,7 +173,6 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 	public boolean isMatchHistoryOptionsPageContains() {
 		log.info("Starting of isMatchHistoryOptionsPageContains method");
 
-		explicitWait(lstMatchDetailsBoxes);
 		boolean isMatchHistoryOptionsPageContains = false;
         this.hardWait(3);
 		System.out.println(isDisplayed(lblMatchHistory));
@@ -434,7 +433,6 @@ public class ValidateRecentlyAddedMatchPage extends DUPRBaseAutomationPage {
 	public boolean isDeleteButtonDisplayed(String eventName) {
 		log.info("Starting of isDeleteButtonsDisplayed method");
 
-		explicitWait(lstMatchDetailsBoxes);
 		boolean deleteButtonState = false;
 		this.clickOnDoublesButton();
 

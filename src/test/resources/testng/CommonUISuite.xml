@@ -26,8 +26,8 @@
 	<test name="Sprint 2">
 		<classes>
 			<class name="com.dupr.test.clubs.BrowseClubsTest" />
-			<class name="com.dupr.test.clubs.MyClubsTest" />
 			<class name="com.dupr.test.clubs.EditClubInfoTest" />
+			<class name="com.dupr.test.clubs.MyClubsTest" />
 			<class name="com.dupr.test.clubs.ClubLogoTest" />
 			<class name="com.dupr.test.clubs.AddRemoveOrganizerTest" />
 			<class name="com.dupr.test.clubs.RemoveClubMemberTest" />
@@ -48,12 +48,7 @@
 			<class name="com.dupr.test.events.AddAnnouncementTest" />
 			<class name="com.dupr.test.events.PlayerEventRegistrationTest" />
 			<class name="com.dupr.test.events.AcceptOrDeclinePartnerTest" />
-			<class
-				name="com.dupr.test.events.DirectorEventRegistrationTest" />
 			<class name="com.dupr.test.events.WithdrawPlayerTest" />
-			<class name="com.dupr.test.events.AddAnnouncementTest" />
-			<class name="com.dupr.test.events.PlayerEventRegistrationTest" />
-			<class name="com.dupr.test.events.AcceptOrDeclinePartnerTest" />
 			<class
 				name="com.dupr.test.events.DirectorEventRegistrationTest" />
 			<class name="com.dupr.test.events.EditOrRemovePartnerTest" />

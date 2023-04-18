@@ -81,7 +81,7 @@ public class AddClubMatchTest extends CommonBaseTest {
 		}
 
 		addClubMatchPage.clickOnAddAMatchButton();
-		addAMatchPage.setLocationInDoubles(testDataProp.getProperty("location.city.name"));
+		addAMatchPage.setLocationInDoubles(testDataProp.getProperty("location.city"));
 		addAMatchPage.setEventName(testDataProp.getProperty("event.name.in.doubles"));
 
 		logger.info("Ending of verifyAddClubMatchFunctionalityFromASpecificClub method");
@@ -130,7 +130,7 @@ public class AddClubMatchTest extends CommonBaseTest {
 		logger.info("Starting of verifyAddClubMatchFunctionalityForDoublesBySelectingAddYourselfCheckbox method");
 
 		addClubMatchPage.clickOnAddAMatchButton();
-		addAMatchPage.setLocationInDoubles(testDataProp.getProperty("location.city.name"));
+		addAMatchPage.setLocationInDoubles(testDataProp.getProperty("location.city"));
 		addAMatchPage.setEventName(testDataProp.getProperty("event.name.in.doubles"));
 
 		addClubMatchPage.clickOnAddYourselfAsPlayerCheckbox();
@@ -179,7 +179,7 @@ public class AddClubMatchTest extends CommonBaseTest {
 				"Starting of verifyAddClubMatchFunctionalityForSinglesByWithOutSelectingAddYourselfCheckbox method");
 
 		addClubMatchPage.clickOnAddAMatchButton();
-		addAMatchPage.setLocationInDoubles(testDataProp.getProperty("location.city.name"));
+		addAMatchPage.setLocationInDoubles(testDataProp.getProperty("location.city"));
 		addAMatchPage.setEventName(testDataProp.getProperty("event.name.in.doubles"));
 
 		addAMatchPage.clickOnSinglesButton();
@@ -220,7 +220,7 @@ public class AddClubMatchTest extends CommonBaseTest {
 				"Starting of verifyAddClubMatchFunctionalityForDoublesByWithOutSelectingAddYourselfCheckbox method");
 
 		addClubMatchPage.clickOnAddAMatchButton();
-		addAMatchPage.setLocationInDoubles(testDataProp.getProperty("location.city.name"));
+		addAMatchPage.setLocationInDoubles(testDataProp.getProperty("location.city"));
 		addAMatchPage.setEventName(testDataProp.getProperty("event.name.in.doubles"));
 
 		addClubMatchPage.clickOnAddDoublesButton();

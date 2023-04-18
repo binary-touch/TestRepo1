@@ -525,6 +525,7 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 		logger.info("Starting of isFinishButtonEnabled method");
 
 		boolean buttonState = false;
+		hardWait(5);
 		try {
 			if (btnFinish.isEnabled() == true) {
 				buttonState = true;
@@ -936,6 +937,7 @@ public class DUPRSignUpPage extends DUPRBaseAutomationPage {
 
 	public String getlinkSentEmailValidation() {
 		logger.info("Starting of getlinkSentEmailValidation method");
+		hardWait(3);
 		System.out.println("Link Sent Email: " + txtLinkSentValidation.getText());
 		logger.info("Ending of getlinkSentEmailValidation method");
 

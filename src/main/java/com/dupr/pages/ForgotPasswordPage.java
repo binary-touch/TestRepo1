@@ -12,7 +12,6 @@ import com.b2b.support.B2BPageFactory;
 public class ForgotPasswordPage extends DUPRBaseAutomationPage {
 
 	private static final Logger log = LogManager.getLogger(DUPRLoginPage.class);
-	
 
 	@B2BFindBy(xpath = "(//a[text()='Search Players'])[1]")
 	private WebElement lblSearchPlayers;

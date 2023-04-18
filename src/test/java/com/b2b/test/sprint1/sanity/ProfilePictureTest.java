@@ -47,10 +47,10 @@ public class ProfilePictureTest extends CommonBaseTest {
 
 		profilePicturePage.clickOnOpenSettingsMenu();
 		profilePicturePage.clickOnEditProfileButton();
-		
+
 		profilePicturePage.hardWait(4);
 		profilePicturePage.clickOnCameraIcon();
-		
+
 		try {
 			if (profilePicturePage.isRemoveProfilePictureButtonDisplayed() == true) {
 
@@ -67,9 +67,9 @@ public class ProfilePictureTest extends CommonBaseTest {
 		} catch (Exception e) {
 			System.out.println("*****Profile picture not displayed*****");
 		}
-		
+
 		try {
-			if (profilePicturePage.isSaveButtonDisabled()==false) {
+			if (profilePicturePage.isSaveButtonDisabled() == false) {
 				driver.navigate().refresh();
 
 				profilePicturePage.hardWait(4);
@@ -84,9 +84,9 @@ public class ProfilePictureTest extends CommonBaseTest {
 
 		String profilePictureText = profilePicturePage.getProfilePictureText();
 		Assert.assertEquals(profilePictureText, expectedAssertionsProp.getProperty("profile.picture.label"));
-		
-		profilePicturePage.hardWait(3);
-		
+
+		profilePicturePage.hardWait(5);
+
 		Assert.assertTrue(profilePicturePage.isSaveButtonDisabled());
 
 		logger.info("Ending of verifyAddProfilePicture method");
@@ -101,7 +101,7 @@ public class ProfilePictureTest extends CommonBaseTest {
 
 		profilePicturePage
 				.uploadProfilePicture(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("profile.picture.path"));
-		profilePicturePage.hardWait(3);
+		profilePicturePage.hardWait(5);
 		profilePicturePage.clickOnSaveButton();
 
 		profilePicturePage.hardWait(3);
@@ -117,8 +117,10 @@ public class ProfilePictureTest extends CommonBaseTest {
 	public void verifyEditProfilePicture() {
 		logger.info("Starting of verifyEditProfilePicture method");
 
+		profilePicturePage.hardWait(5);
 		profilePicturePage.clickOnCameraIcon();
 
+		profilePicturePage.hardWait(5);
 		Assert.assertTrue(profilePicturePage.isChangeProfilePictureButtonDisplayed());
 		Assert.assertTrue(profilePicturePage.isRemoveProfilePictureButtonDisplayed());
 
@@ -132,6 +134,7 @@ public class ProfilePictureTest extends CommonBaseTest {
 	public void verifyClickOnChangeProfilePicture() {
 		logger.info("Starting of verifyClickOnChangeProfilePicture method");
 
+		profilePicturePage.hardWait(5);
 		profilePicturePage.clickOnChangeProfilePictureButton();
 
 		Assert.assertTrue(profilePicturePage.isProfilePicturePopupContains());
@@ -145,15 +148,15 @@ public class ProfilePictureTest extends CommonBaseTest {
 
 		profilePicturePage.hardWait(3);
 		Assert.assertTrue(profilePicturePage.isProfilePictureDisplayed());
-		
+
 		try {
-			if(profilePicturePage.isSaveButtonDisplayed()) {
+			if (profilePicturePage.isSaveButtonDisplayed()) {
 				driver.navigate().refresh();
 				profilePicturePage.hardWait(3);
 			}
 		} catch (Exception e) {
 			logger.info("*** Profile Picture popup haven't displayed ***");
-		}	
+		}
 
 		logger.info("Ending of verifyClickOnChangeProfilePicture method");
 	}
@@ -166,7 +169,7 @@ public class ProfilePictureTest extends CommonBaseTest {
 		logger.info("Starting of verifyRemoveProfilePicture method");
 
 		profilePicturePage.clickOnCameraIcon();
-		profilePicturePage.hardWait(3);
+		profilePicturePage.hardWait(5);
 		profilePicturePage.clickOnRemoveProfilePicture();
 
 		Assert.assertTrue(profilePicturePage.isRemoveProfilePicturePopupContains());

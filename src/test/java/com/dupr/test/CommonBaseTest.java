@@ -86,7 +86,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 
 		addAMatchPage.hardWait(3);
 
-		addAMatchPage.setLocationInDoubles(testDataProp.getProperty("location.city.name"));
+		addAMatchPage.setLocationInDoubles(testDataProp.getProperty("location.city"));
 
 		matchEvent = addAMatchPage.setEventName(testDataProp.getProperty("event.name.in.doubles"));
 
@@ -251,6 +251,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		addEventPage.setAboutTheEvent(testDataProp.getProperty("about.the.event"));
 		addEventPage.clickonTextFormattingButtons();
 		addEventPage.hardWait(3);
+		
 		addEventPage.clickOnNextStepButton();
 
 		Assert.assertTrue(addEventPage.isEventPoliciesPageContains());
