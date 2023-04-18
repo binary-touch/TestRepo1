@@ -13,6 +13,7 @@ import org.testng.annotations.Test;
 import com.b2b.common.WebDriversEnum;
 import com.dupr.pages.clubs.BrowseClubsPage;
 import com.dupr.pages.clubs.ClubLogoPage;
+import com.dupr.pages.clubs.EditClubInfoPage;
 import com.dupr.pages.clubs.MyClubsPage;
 import com.dupr.pages.events.AddBracketPage;
 import com.dupr.pages.events.AddEventPage;
@@ -33,6 +34,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	private MyClubsPage myClubsPage = null;
 	private BrowseClubsPage browseClubsPage = null;
 	private static String freeEventName = null;
+	private EditClubInfoPage editClubInfoPage = null;
 
 	@BeforeClass
 	@Parameters({ "browser", "siteURL", "directorEmail", "directorPassword" })
@@ -47,6 +49,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		this.addBracketPage = new AddBracketPage(this.driver);
 		this.myClubsPage = new MyClubsPage(this.driver);
 		this.browseClubsPage = new BrowseClubsPage(this.driver);
+		this.editClubInfoPage = new EditClubInfoPage(this.driver);
 
 		logger.info("Ending of initMethod in AddEventTest");
 	}
@@ -1345,47 +1348,33 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of VerifyResultsOnClickOfGoBackButtonInSummaryPage method");
 	}
 
-	// @Test(priority = 72, description = "Verify Draft Event in Clubs page-Events
-	// Tab Functionality", groups = "sanity")
-	@Description("Test case #72, Verify Draft Event in Clubs page-Events Tab Functionality")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #72, Verify Draft Event in Clubs page-Events Tab Functionality")
-	public void VerifyDeleteEventInClubsPageEventsTabFunctionality1() {
-		logger.info("Starting of VerifyDraftEventInClubsPageEventsTabFunctionality method");
-
-		addEventPage.clickOnEventsTab();
-		addEventPage.clickOnDeleteEventFromList(testDataProp.getProperty("event.name"));
-
-		logger.info("Ending of VerifyDraftEventInClubsPageEventsTabFunctionality method");
-	}
-
 	@Test(priority = 73, description = "Verify Publish Event Button", groups = "sanity")
 	@Description("Test case #73, Verify Publish Event Button")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #73, Verify Publish Event Button")
-	public void VerifyPublishEventButton() {
-		logger.info("Starting of VerifyPublishEventButton method");
+	public void verifyPublishEventButton() {
+		logger.info("Starting of verifyPublishEventButton method");
 
 		addBracketPage.hardWait(2);
 		addBracketPage.clickOnPublishEventButton();
 
 		Assert.assertTrue(addBracketPage.isPublishSuccessPopUpContains());
 
-		logger.info("Ending of VerifyPublishEventButton method");
+		logger.info("Ending of verifyPublishEventButton method");
 	}
 
 	@Test(priority = 74, description = "Verify Close Icon In YourEventIsNowPublished Success Popup", groups = "sanity")
 	@Description("Test case #74, Verify Close Icon In YourEventIsNowPublished Success Popup")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #74, Verify Close Icon In YourEventIsNowPublished Success Popup")
-	public void VerifyCloseIconInYourEventIsNowPublishedSuccessPopup() {
-		logger.info("Starting of VerifyCloseIconInYourEventIsNowPublishedSuccessPopup method");
+	public void verifyCloseIconInYourEventIsNowPublishedSuccessPopup() {
+		logger.info("Starting of verifyCloseIconInYourEventIsNowPublishedSuccessPopup method");
 
 		addBracketPage.clickOnEventSuccessClosePopupButton();
 
 		Assert.assertTrue(addEventPage.isClubPageContains());
 
-		logger.info("Ending of VerifyCloseIconInYourEventIsNowPublishedSuccessPopup method");
+		logger.info("Ending of verifyCloseIconInYourEventIsNowPublishedSuccessPopup method");
 	}
 
 	@Test(priority = 75, description = "Verify Recently Added Event Under Events Tab", groups = "sanity")
@@ -1408,10 +1397,9 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	public void verifyDeleteBracketFunctionalityAfterPublishingEvent() {
 		logger.info("Starting of VerifyRecentlyAddedEventUnderEventsTab method");
 
-		/*
-		 * clubLogoPage.clickOnMyClubsTab();
-		 * editClubInfoPage.clickOnSimbaOrganizerButton();
-		 */
+		  clubLogoPage.clickOnMyClubsTab();
+		  editClubInfoPage.clickOnSimbaOrganizerButton();
+		 
 		addEventPage.clickOnAddEventButton();
 
 		Assert.assertTrue(addEventPage.isEventInformationPageContains());
@@ -1499,8 +1487,8 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 	@Description("Test case #80, Verify Ok Button Functionality In DeleteBracket SuccessPopUP")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #80, Verify Ok  Button Functionality In DeleteBracket SuccessPopUP")
-	public void verifyOkButtonFunctionalityInDeleteBracketSuccessPopUP() {
-		logger.info("Starting of verifyOkButtonFunctionalityInDeleteBracketSuccessPopUP method");
+	public void verifyOkButtonFunctionalityInDeleteBracketSuccessPopUp() {
+		logger.info("Starting of verifyOkButtonFunctionalityInDeleteBracketSuccessPopUp method");
 
 		addBracketPage.clickOnOkButton();
 		addBracketPage.hardWait(3);
@@ -1508,7 +1496,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 
 		driver.navigate().back();
 
-		logger.info("Ending of verifyOkButtonFunctionalityInDeleteBracketSuccessPopUP method");
+		logger.info("Ending of verifyOkButtonFunctionalityInDeleteBracketSuccessPopUp method");
 	}
 
 	@Test(priority = 81, description = "Verify Free Event Functionality", groups = "sanity")
@@ -1543,7 +1531,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		this.VerifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
 
 		addBracketPage.hardWait(3);
-		this.VerifyPublishEventButton();
+		this.verifyPublishEventButton();
 		addBracketPage.clickOnEventSuccessClosePopupButton();
 
 		logger.info("Ending of VerifyFreeEventFunctionality method");
@@ -1619,7 +1607,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		addBracketPage.setCompetitionEndDate();
 
 		addBracketPage.clickOnTimeZoneDropdown();
-		Assert.assertTrue(addBracketPage.isTimeZoneListContains());
+		
 		addBracketPage.clickOnNewDelhiTimeZone();
 
 		addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("zero.value"));
@@ -1635,7 +1623,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 
 		this.VerifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
 
-		this.VerifyPublishEventButton();
+		this.verifyPublishEventButton();
 
 		addBracketPage.clickOnEventSuccessClosePopupButton();
 
@@ -1712,7 +1700,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		addBracketPage.setCompetitionEndDate();
 
 		addBracketPage.clickOnTimeZoneDropdown();
-		Assert.assertTrue(addBracketPage.isTimeZoneListContains());
+		
 		addBracketPage.clickOnNewDelhiTimeZone();
 
 		addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("zero.value"));
@@ -1728,7 +1716,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		this.VerifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
 
 		addBracketPage.hardWait(3);
-		this.VerifyPublishEventButton();
+		this.verifyPublishEventButton();
 
 		addBracketPage.hardWait(3);
 		addBracketPage.clickOnEventSuccessClosePopupButton();

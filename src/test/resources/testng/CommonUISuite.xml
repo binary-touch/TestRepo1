@@ -22,22 +22,35 @@
 		</classes>
 	</test> -->
 
-	<!--<test name="Sprint 2">
+	<test name="Sprint 2">
 		<classes>
-			<class name="com.dupr.test.clubs.BrowseClubsTest" />
+			<!-- <class name="com.dupr.test.clubs.BrowseClubsTest" />
 			 <class name="com.dupr.test.clubs.EditClubInfoTest" />
 			<class name="com.dupr.test.clubs.MyClubsTest" />
 			<class name="com.dupr.test.clubs.ClubLogoTest" />
 			<class name="com.dupr.test.clubs.AddRemoveOrganizerTest" />
 			<class name="com.dupr.test.clubs.RemoveClubMemberTest" />
 			<class name="com.dupr.test.clubs.ImportPlayerViaCSVTest" />
-			<class name="com.dupr.test.addamatch.AddClubMatchTest" />
-			<class name="com.dupr.test.events.AddEventTest" />
-			<class name="com.dupr.test.events.BrowseEventsTest" />
+			<class name="com.dupr.test.addamatch.AddClubMatchTest" /> -->
+			<class name="com.dupr.test.events.AddEventTest">
+			<methods>
+			<include name = "verifyDeleteBracketFunctionalityAfterPublishingEvent" />
+			<include name = "verifyCancelButtonFunctionalityInDeleteBracket"/>
+			<include name = "verifyCloseButtonFunctionalityInDeleteBracket"/>
+			<include name = "verifyConfirmButtonFunctionalityInDeleteBracket"/>
+			<include name = "verifyOkButtonFunctionalityInDeleteBracketSuccessPopUp"/>
+			<include name = "VerifyFreeEventFunctionality"/>
+			<include name = "verifyFreeBracketWithEventTypeAsRoundRobin"/>
+			<include name = "verifyFreeBracketWithEventTypeAsWateFall"/>
+			<include name = "verifyDeleteEventFunctionalityAfterPublishingEvent"/>
+			
+			</methods>
+			</class>
+			<!-- <class name="com.dupr.test.events.BrowseEventsTest" />
 			<class name="com.dupr.test.events.EditEventsTest" />
 			<class name="com.dupr.test.events.EditBracketsTest" />
-		</classes>
-	</test>-->
+ -->		</classes>
+	</test>
 
 	<!-- <test name="Sprint 3">
 		<classes>
@@ -64,7 +77,7 @@
 		</classes>
 	</test>
  -->
-	<test name="Sprint 4">
+	<!-- <test name="Sprint 4">
 		<classes>
 			<class name="com.dupr.test.home.ChatTest" />
 			<class name="com.dupr.test.home.ShareTest" />
@@ -73,7 +86,7 @@
 			<class name="com.dupr.test.events.TimeZoneTest" />
 			<class name="com.dupr.test.events.SeedMatchesRoundRobinTest" />
 		</classes>
-	</test>
+	</test> -->
 
 	<!--<test name="Sprint 5">
 		<classes>

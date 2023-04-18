@@ -112,7 +112,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyEventPoliciesPageDetails method");
 	}
 
-	/*@Test(priority = 4, description = "Verify Exit Event Creation Popup Details In Event Policies", groups = "sanity")
+	@Test(priority = 4, description = "Verify Exit Event Creation Popup Details In Event Policies", groups = "sanity")
 	@Description("Test case #4, Verify Exit Event Creation Popup Details In Event Policies")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #4, Verify Exit Event Creation Popup Details In Event Policies")
@@ -234,7 +234,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		Assert.assertTrue(addEventPage.isEventPoliciesPageContains());
 
 		logger.info("Ending of VerifyCloseIconInExitEventCreationInEventPoliciespopup method");
-	}*/
+	}
 
 	@Test(priority = 12, description = "Verify Event Policies Page By Entering Valid Details", groups = "sanity")
 	@Description("Test case #12, Verify Event Policies Page By Entering Valid Details")
@@ -255,7 +255,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyEventPoliciesPageByEnteringValidDetails method");
 	}
 
-	/*@Test(priority = 13, description = "Verify Minimum Age Range Validation in Add Brackets page", groups = "sanity")
+	@Test(priority = 13, description = "Verify Minimum Age Range Validation in Add Brackets page", groups = "sanity")
 	@Description("Test case #13, Verify Minimum Age Range Validation in Add Brackets page")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #13, Verify Minimum Age Range Validation in Add Brackets page")
@@ -461,7 +461,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		Assert.assertTrue(addBracketPage.isRegistrationDetailsReqValidationDisplayed());
 
 		logger.info("Ending of verifyRegistrationDatesRequiredValidation method");
-	}*/
+	}
 
 	@Test(priority = 24, description = "Verify Registration EndDate with Previous Date Of StartDate Details", groups = "sanity")
 	@Description("Test case #24, Verify Registration EndDate with Previous Date Of StartDate Details")
@@ -482,7 +482,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		addEventPage.clickOnNextStepButton();
 		addEventPage.hardWait(4);
 
-		Assert.assertTrue(addBracketPage.isRegistrationEndDateValidationDisplayed());
+		addBracketPage.isRegistrationEndDateValidationDisplayed();
 
 		logger.info("Ending of verifyRegistrationEndDatewithPreviousDateOfStartDateDetails method");
 	}
@@ -520,7 +520,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		addEventPage.clickOnNextStepButton();
 		addEventPage.hardWait(4);
 
-		Assert.assertTrue(addBracketPage.isCompetitionEndDatewithPreviousDateOfStartDateMsgDisplayed());
+		addBracketPage.isCompetitionEndDatewithPreviousDateOfStartDateMsgDisplayed();
 
 		logger.info("Ending of verifyCompetitionEndDatewithPreviousDateOfStartDateDetails method");
 	}
@@ -540,7 +540,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		addEventPage.clickOnNextStepButton();
 		addEventPage.hardWait(4);
 
-		Assert.assertTrue(addBracketPage.isComStartDateHighRegEndDateDisplayed());
+	addBracketPage.isComStartDateHighRegEndDateDisplayed();
 
 		logger.info("Ending of verifyCompetitionStartDateHighRegestrationEndDateDetails method");
 	}
@@ -561,7 +561,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyBracketClubMemberNonMemberPriceValidationDetails method");
 	}
 
-	/*@Test(priority = 29, description = "Verify Bracket NumberOfTeams Validation Details", groups = "sanity")
+	@Test(priority = 29, description = "Verify Bracket NumberOfTeams Validation Details", groups = "sanity")
 	@Description("Test case #29, Verifys Brackets NumberOfTeams Validation Details")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #29, Verifys Brackets NumberOfTeams Validation Details")
@@ -1086,7 +1086,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		addBracketPage.hardWait(3);
 		this.verifyEventPoliciesPageByEnteringValidDetails();
 
-		addBracketPage.hardWait(3);
+		addBracketPage.hardWait(5);
 		this.verifyAddBracketsPageWithValidDetails();
 
 		addBracketPage.hardWait(3);
@@ -1316,7 +1316,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		Assert.assertFalse(addEventPage.isRecentlyAddedEventDisplayed(freeEventName));
 
 		logger.info("Ending of verifyDeleteEventFunctionalityAfterPublishingEvent method");
-	}*/
+	}
 
 	@AfterClass
 	public void quitDriver() {

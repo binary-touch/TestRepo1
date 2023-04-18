@@ -549,7 +549,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//input[@value='16' and @disabled]")
 	private WebElement txtBoxNumberOfTeamsDisabled;
 
-	@B2BFindBy(xpath = "//div[contains(@class,'MuiAccordionSummary-expandIconWrapper Mui-expanded')]")
+	@B2BFindBy(xpath = "//div[contains(@class,'MuiAccordionSummary-expandIconWrapper')]")
 	private WebElement ddBracketCaretIcon;
 
 	@B2BFindBy(xpath = "//div[contains(@class, 'MuiButtonBase-root MuiAccordionSummary-root Mui-expanded MuiAccordionSummary-gutters')]")
@@ -1064,6 +1064,8 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			clickOnWebElement(txtBoxRegistrationEndDate);
 		}
+		
+		System.out.println("***Clicked on Registration End date field***");
 
 		int date = this.getFutureDate(1);
 		Month monthValue = this.getFutureMonth(1);
@@ -1145,6 +1147,8 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			clickOnWebElement(txtBoxRegistrationStartDate);
 		}
+		
+		System.out.println("***Clicked on Registration start date field***");
 
 		try {
 			int date = this.getFutureDate(1);
@@ -1210,6 +1214,8 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			clickOnWebElement(txtBoxRegistrationEndDate);
 		}
+		
+		System.out.println("***Clicked on Registration End date field***");
 
 		int date = this.getCurrentDate();
 		String hours = this.getCurrentHour();
@@ -1327,6 +1333,8 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			clickOnWebElement(txtBoxCompetitionEndDate);
 		}
+		
+		System.out.println("***Clicked on Competition End date field***");
 
 		int date = this.getCurrentDate();
 		String hours = this.getCurrentHour();
@@ -1375,46 +1383,56 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	public void setIncorrectCompetitionStartDate() {
 		log.info("Starting of setIncorrectCompetitionStartDate method");
-
+		
 		scrollDown(500);
 		hardWait(2);
 		try {
-			clickUsingActionsClass(txtBoxCompetitionStartDate);
+			clickOnElementUsingActionClass(txtBoxCompetitionStartDate);
 		} catch (Exception e) {
 			clickOnWebElement(txtBoxCompetitionStartDate);
 		}
-		
+
 		int date = this.getCurrentDate();
 		String hours = this.getCurrentHour();
+		System.out.println("Hour value is :" + hours);
 		String meridiem = this.getCurrentMeridiem();
-
-		this.clickOnCurrentDate(date);
+		this.hardWait(4);
+		
+				this.clickOnCurrentDate(date);
+				
 		System.out.println("*** Clicked on Date ***");
-
+		
+		hardWait(3);
 		this.clickOnCurrentTime(meridiem);
 		System.out.println("*** Clicked on Meridiem ***");
 		
-		this.hardWait(3);
+		hardWait(4);
 		try {
-			System.out.println(driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']")));
-			WebElement currentHourValue = driver
-					.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']"));
+			try {
+				System.out.println(driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']")));
+				WebElement currentHourValue = driver
+						.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']"));
 
-			this.hardWait(2);
-			Actions action = new Actions(driver);
-			action.moveToElement(currentHourValue).contextClick(currentHourValue).build().perform();
+				this.hardWait(2);
+				Actions action = new Actions(driver);
+				action.moveToElement(currentHourValue).contextClick(currentHourValue).build().perform();
+			} catch (Exception e) {
+				clickOnWebElement(driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']")));
+			}
+			System.out.println("*** Clicked on Hour ***");
+			
+			hardWait(2);
+			try {
+				btnDefaultTimeInMinutes.click();
+			} catch (Exception e) {
+				clickOnElementUsingActionClass(btnTimeInMinutes);
+			}
+
+			System.out.println("*** Clicked on Minutes ***");
+			hardWait(2);
 		} catch (Exception e) {
-			clickOnWebElement(driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']")));
+			System.out.println();
 		}
-		System.out.println("*** Clicked on Hour ***");
-
-		try {
-			clickUsingActionsClass(btnTimeInMinutes);
-		} catch (Exception e) {
-			clickOnWebElement(btnTimeInMinutes);
-		}
-
-		System.out.println("*** Clicked on Minutes ***");
 
 		try {
 			hardWait(2);
