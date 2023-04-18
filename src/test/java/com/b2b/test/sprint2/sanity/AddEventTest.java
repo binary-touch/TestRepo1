@@ -255,257 +255,213 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyEventPoliciesPageByEnteringValidDetails method");
 	}
 
-	/*
-	 * @Test(priority = 13, description =
-	 * "Verify Minimum Age Range Validation in Add Brackets page", groups =
-	 * "sanity")
-	 * 
-	 * @Description("Test case #13, Verify Minimum Age Range Validation in Add Brackets page"
-	 * )
-	 * 
-	 * @Severity(SeverityLevel.NORMAL)
-	 * 
-	 * @Story("Test case #13, Verify Minimum Age Range Validation in Add Brackets page"
-	 * ) public void verifyMinimumAgeRangeValidation() {
-	 * logger.info("Starting of verifyMinimumAgeRangeValidation method");
-	 * 
-	 * addBracketPage.setMinimumAgeRange(testDataProp.getProperty("zero.value"));
-	 * addEventPage.clickOnNextStepButton();
-	 * 
-	 * Assert.assertTrue(addBracketPage.isMinimumAgeValidationDisplayed());
-	 * 
-	 * logger.info("Ending of verifyMinimumAgeRangeValidation method"); }
-	 * 
-	 * @Test(priority = 14, description =
-	 * "Verify Maximum Age Range Validation in Add Brackets page", groups =
-	 * "sanity")
-	 * 
-	 * @Description("Test case #14, Verify Maximum Age Range Validation in Add Brackets page"
-	 * )
-	 * 
-	 * @Severity(SeverityLevel.NORMAL)
-	 * 
-	 * @Story("Test case #14, Verify Maximum Age Range Validation in Add Brackets page"
-	 * ) public void verifyMaximumAgeRangeValidation() {
-	 * logger.info("Starting of verifyMaximumAgeRangeValidation method");
-	 * 
-	 * addBracketPage.setMaximumAgeRange(testDataProp.getProperty(
-	 * "invalid.max.age.value")); addEventPage.clickOnNextStepButton();
-	 * 
-	 * Assert.assertTrue(addBracketPage.isMaximumAgeValidationDisplayed());
-	 * 
-	 * logger.info("Ending of verifyMaximumAgeRangeValidation method"); }
-	 * 
-	 * @Test(priority = 15, description =
-	 * "Verify Minimum AgeRange field validation if MaxAge is Lesser than the min age"
-	 * , groups = "sanity")
-	 * 
-	 * @Description("Test case #15, Verify Minimum AgeRange field validation if MaxAge is Lesser than the min age"
-	 * )
-	 * 
-	 * @Severity(SeverityLevel.NORMAL)
-	 * 
-	 * @Story("Test case #15, Verify Minimum AgeRange field validation if MaxAge is Lesser than the min age"
-	 * ) public void verifyAgeRangeValidationIfMaxAgeIsLesserThanMin() { logger.
-	 * info("Starting of verifyAgeRangeValidationIfMaxAgeIsLesserThanMin method");
-	 * 
-	 * addBracketPage.setMinimumAgeRange(addEventPage.randomNumber(10));
-	 * addBracketPage.setMaximumAgeRange(testDataProp.getProperty(
-	 * "invalid.max.age.value")); addEventPage.clickOnNextStepButton();
-	 * 
-	 * Assert.assertTrue(addBracketPage.isMaximumAgeValidationDisplayed());
-	 * Assert.assertTrue(addBracketPage.isMaxAgeIsHigherThanMinValidationDisplayed()
-	 * );
-	 * 
-	 * logger.
-	 * info("Ending of verifyAgeRangeValidationIfMaxAgeIsLesserThanMin method"); }
-	 * 
-	 * @Test(priority = 16, description =
-	 * "Verify Rating Range Field Validations With Invalid Details", groups =
-	 * "sanity")
-	 * 
-	 * @Description("Test case #16, Verify Rating Range Field Validations With Invalid Details"
-	 * )
-	 * 
-	 * @Severity(SeverityLevel.NORMAL)
-	 * 
-	 * @Story("Test case #16,Verify Rating Range Field Validations With Invalid Details"
-	 * ) public void verifyRatingRangeFieldValidationsWithInvalidDetails() { logger.
-	 * info("Starting of verifyRatingRangeFieldValidationsWithInvalidDetails method"
-	 * );
-	 * 
-	 * addBracketPage.setMinimumRatingRange(addEventPage.randomNumber(10));
-	 * addBracketPage.setMaximumRatingRange(testDataProp.getProperty(
-	 * "max.age.range.in.min"));
-	 * 
-	 * addEventPage.clickOnNextStepButton();
-	 * 
-	 * Assert.assertTrue(addBracketPage.isMinimumRatingRangeMessageDisplayed());
-	 * Assert.assertTrue(addBracketPage.isMaxAgeIsHigherThanMinValidationDisplayed()
-	 * );
-	 * 
-	 * logger.
-	 * info("Ending of verifyRatingRangeFieldValidationsWithInvalidDetails method");
-	 * }
-	 * 
-	 * @Test(priority = 17, description =
-	 * "Verify RatingRange Validations Less Than Minimum Chars", groups = "sanity")
-	 * 
-	 * @Description("Test case #17, Verify RatingRange Validations Less Than Minimum Chars"
-	 * )
-	 * 
-	 * @Severity(SeverityLevel.NORMAL)
-	 * 
-	 * @Story("Test case #17, Verify RatingRange Validations Less Than Minimum Chars"
-	 * ) public void verifyRatingRangeValidationsLessThanMinChars() {
-	 * logger.info("Starting of verifyRatingRangeValidationsLessThanMinChars method"
-	 * );
-	 * 
-	 * addBracketPage.setMinimumRatingRange(testDataProp.getProperty(
-	 * "invalid.minimum.rating.range"));
-	 * 
-	 * addEventPage.clickOnNextStepButton();
-	 * 
-	 * Assert.assertTrue(addBracketPage.isMinRatingRangeValidationMessageDisplayed()
-	 * );
-	 * 
-	 * logger.info("Ending of verifyRatingRangeValidationsLessThanMinChars method");
-	 * }
-	 * 
-	 * @Test(priority = 18, description =
-	 * "Verify RatingRange Validations More Than Minimum Chars", groups = "sanity")
-	 * 
-	 * @Description("Test case #18, Verify RatingRange Validations More Than Minimum Chars"
-	 * )
-	 * 
-	 * @Severity(SeverityLevel.NORMAL)
-	 * 
-	 * @Story("Test case #18, Verify RatingRange Validations More Than Minimum Chars"
-	 * ) public void verifyRatingRangeValidationsMoreThanMaxChars() {
-	 * logger.info("Starting of verifyRatingRangeValidationsMoreThanMaxChars method"
-	 * );
-	 * 
-	 * addBracketPage.setMaximumRatingRange(testDataProp.getProperty(
-	 * "invalid.max.rating.range"));
-	 * 
-	 * addEventPage.clickOnNextStepButton();
-	 * 
-	 * Assert.assertTrue(addBracketPage.isMinimumRatingRangeMessageDisplayed());
-	 * 
-	 * logger.info("Ending of verifyRatingRangeValidationsMoreThanMaxChars method");
-	 * }
-	 * 
-	 * @Test(priority = 19, description =
-	 * "Verify State Of AutoGenerate Functionality After Entering Mandatory Details"
-	 * , groups = "sanity")
-	 * 
-	 * @Description("Test case #19, Verify State Of AutoGenerate Functionality After Entering Mandatory Details"
-	 * )
-	 * 
-	 * @Severity(SeverityLevel.NORMAL)
-	 * 
-	 * @Story("Test case #19, Verify State Of AutoGenerate Functionality After Entering Mandatory Details"
-	 * ) public void verifyStateOfAutoGenerateButtonAfterEnteringMandatoryDetails()
-	 * { logger.
-	 * info("Starting of verifyStateOfAutoGenerateButtonAfterEnteringMandatoryDetails method"
-	 * );
-	 * 
-	 * addBracketPage.clickOnMatchTypeDropdown();
-	 * addBracketPage.selectSinglesMatchType();
-	 * 
-	 * addBracketPage.clickOnPlayGroupDropdown();
-	 * addBracketPage.selectMixedPlayerGroup();
-	 * 
-	 * addBracketPage.setMinimumAgeRange(testDataProp.getProperty("min.age.range"));
-	 * addBracketPage.setMaximumAgeRange(testDataProp.getProperty("max.age.range"));
-	 * addBracketPage.setMinimumRatingRange(testDataProp.getProperty(
-	 * "min.rating.range"));
-	 * addBracketPage.setMaximumRatingRange(testDataProp.getProperty(
-	 * "max.rating.range"));
-	 * 
-	 * Assert.assertTrue(addBracketPage.isAutoGenerateButtonEnabled());
-	 * 
-	 * logger.
-	 * info("Ending of verifyStateOfAutoGenerateButtonAfterEnteringMandatoryDetails method"
-	 * ); }
-	 * 
-	 * @Test(priority = 20, description = "Verify Bracket Name AutoGenerated",
-	 * groups = "sanity")
-	 * 
-	 * @Description("Test case #20, Verify Bracket Name AutoGenerated")
-	 * 
-	 * @Severity(SeverityLevel.NORMAL)
-	 * 
-	 * @Story("Test case #20, Verify Bracket Name AutoGenerated") public void
-	 * verifyBracketNameAutoGenerated() {
-	 * logger.info("Starting of verifyBracketNameAutoGenerated method");
-	 * 
-	 * addBracketPage.clickOnAutoGenerateButton();
-	 * Assert.assertFalse(addBracketPage.isBracketNameAutoGenerated());
-	 * 
-	 * logger.info("Ending of verifyBracketNameAutoGenerated method"); }
-	 * 
-	 * @Test(priority = 21, description =
-	 * "Verify State Of AutoGenerate Functionality After AutoGenerating BracketName"
-	 * , groups = "sanity")
-	 * 
-	 * @Description("Test case #21, Verify State Of AutoGenerate Functionality After AutoGenerating BracketName"
-	 * )
-	 * 
-	 * @Severity(SeverityLevel.NORMAL)
-	 * 
-	 * @Story("Test case #21, Verify State Of AutoGenerate Functionality After AutoGenerating BracketName"
-	 * ) public void
-	 * verifyStateOfAutoGenerateFunctionalityAfterAutoGeneratingBracketName() {
-	 * logger.
-	 * info("Starting of verifyStateOfAutoGenerateFunctionalityAfterAutoGeneratingBracketName method"
-	 * );
-	 * 
-	 * Assert.assertTrue(addBracketPage.isAutoGenerateButtonDisabled());
-	 * 
-	 * logger.
-	 * info("Ending of verifyStateOfAutoGenerateFunctionalityAfterAutoGeneratingBracketName method"
-	 * ); }
-	 * 
-	 * @Test(priority = 22, description =
-	 * "Verify Number Of Courts With Invalid Details", groups = "sanity")
-	 * 
-	 * @Description("Test case #22, Verify Number Of Courts With Invalid Details")
-	 * 
-	 * @Severity(SeverityLevel.NORMAL)
-	 * 
-	 * @Story("Test case #22, Verify Number Of Courts With Invalid Details") public
-	 * void verifyNumberOfCourtsWithInvalidDetails() {
-	 * logger.info("Starting of verifyNumberOfCourtsWithInvalidDetails method");
-	 * 
-	 * addBracketPage.clickOnEventTypeDropdown();
-	 * addBracketPage.selectWaterfallEventType();
-	 * 
-	 * addBracketPage.setNumberOfCourts(testDataProp.getProperty("zero.value"));
-	 * addEventPage.clickOnNextStepButton();
-	 * 
-	 * Assert.assertTrue(addBracketPage.isNumberOfCourtsValidationDisplayed());
-	 * 
-	 * logger.info("Ending of verifyNumberOfCourtsWithInvalidDetails method"); }
-	 * 
-	 * @Test(priority = 23, description =
-	 * "Verify Registration Dates Required Validation", groups = "sanity")
-	 * 
-	 * @Description("Test case #23, Verify Registration Dates Required Validation")
-	 * 
-	 * @Severity(SeverityLevel.NORMAL)
-	 * 
-	 * @Story("Test case #23, Verify Registration Dates Required Validation") public
-	 * void verifyRegistrationDatesRequiredValidation() {
-	 * logger.info("Starting of verifyRegistrationDatesRequiredValidation method");
-	 * 
-	 * addEventPage.clickOnNextStepButton(); addEventPage.hardWait(3);
-	 * 
-	 * Assert.assertTrue(addBracketPage.isRegistrationDetailsReqValidationDisplayed(
-	 * ));
-	 * 
-	 * logger.info("Ending of verifyRegistrationDatesRequiredValidation method"); }
-	 */
+	/*@Test(priority = 13, description = "Verify Minimum Age Range Validation in Add Brackets page", groups = "sanity")
+	@Description("Test case #13, Verify Minimum Age Range Validation in Add Brackets page")
+	@Severity(SeverityLevel.NORMAL)
+	@Story("Test case #13, Verify Minimum Age Range Validation in Add Brackets page")
+	public void verifyMinimumAgeRangeValidation() {
+		logger.info("Starting of verifyMinimumAgeRangeValidation method");
+
+		addBracketPage.setMinimumAgeRange(testDataProp.getProperty("zero.value"));
+		addEventPage.clickOnNextStepButton();
+
+		Assert.assertTrue(addBracketPage.isMinimumAgeValidationDisplayed());
+
+		logger.info("Ending of verifyMinimumAgeRangeValidation method");
+	}
+
+	@Test(priority = 14, description = "Verify Maximum Age Range Validation in Add Brackets page", groups = "sanity")
+
+	@Description("Test case #14, Verify Maximum Age Range Validation in Add Brackets page")
+
+	@Severity(SeverityLevel.NORMAL)
+
+	@Story("Test case #14, Verify Maximum Age Range Validation in Add Brackets page")
+	public void verifyMaximumAgeRangeValidation() {
+		logger.info("Starting of verifyMaximumAgeRangeValidation method");
+
+		addBracketPage.setMaximumAgeRange(testDataProp.getProperty("invalid.max.age.value"));
+		addEventPage.clickOnNextStepButton();
+
+		Assert.assertTrue(addBracketPage.isMaximumAgeValidationDisplayed());
+
+		logger.info("Ending of verifyMaximumAgeRangeValidation method");
+	}
+
+	@Test(priority = 15, description = "Verify Minimum AgeRange field validation if MaxAge is Lesser than the min age", groups = "sanity")
+
+	@Description("Test case #15, Verify Minimum AgeRange field validation if MaxAge is Lesser than the min age")
+
+	@Severity(SeverityLevel.NORMAL)
+
+	@Story("Test case #15, Verify Minimum AgeRange field validation if MaxAge is Lesser than the min age")
+	public void verifyAgeRangeValidationIfMaxAgeIsLesserThanMin() {
+		logger.info("Starting of verifyAgeRangeValidationIfMaxAgeIsLesserThanMin method");
+
+		addBracketPage.setMinimumAgeRange(addEventPage.randomNumber(10));
+		addBracketPage.setMaximumAgeRange(testDataProp.getProperty("invalid.max.age.value"));
+		addEventPage.clickOnNextStepButton();
+
+		Assert.assertTrue(addBracketPage.isMaximumAgeValidationDisplayed());
+		Assert.assertTrue(addBracketPage.isMaxAgeIsHigherThanMinValidationDisplayed());
+
+		logger.info("Ending of verifyAgeRangeValidationIfMaxAgeIsLesserThanMin method");
+	}
+
+	@Test(priority = 16, description = "Verify Rating Range Field Validations With Invalid Details", groups = "sanity")
+
+	@Description("Test case #16, Verify Rating Range Field Validations With Invalid Details")
+
+	@Severity(SeverityLevel.NORMAL)
+
+	@Story("Test case #16,Verify Rating Range Field Validations With Invalid Details")
+	public void verifyRatingRangeFieldValidationsWithInvalidDetails() {
+		logger.info("Starting of verifyRatingRangeFieldValidationsWithInvalidDetails method");
+
+		addBracketPage.setMinimumRatingRange(addEventPage.randomNumber(10));
+		addBracketPage.setMaximumRatingRange(testDataProp.getProperty("max.age.range.in.min"));
+
+		addEventPage.clickOnNextStepButton();
+
+		Assert.assertTrue(addBracketPage.isMinimumRatingRangeMessageDisplayed());
+		Assert.assertTrue(addBracketPage.isMaxAgeIsHigherThanMinValidationDisplayed());
+
+		logger.info("Ending of verifyRatingRangeFieldValidationsWithInvalidDetails method");
+	}
+
+	@Test(priority = 17, description = "Verify RatingRange Validations Less Than Minimum Chars", groups = "sanity")
+
+	@Description("Test case #17, Verify RatingRange Validations Less Than Minimum Chars")
+
+	@Severity(SeverityLevel.NORMAL)
+
+	@Story("Test case #17, Verify RatingRange Validations Less Than Minimum Chars")
+	public void verifyRatingRangeValidationsLessThanMinChars() {
+		logger.info("Starting of verifyRatingRangeValidationsLessThanMinChars method");
+
+		addBracketPage.setMinimumRatingRange(testDataProp.getProperty("invalid.minimum.rating.range"));
+
+		addEventPage.clickOnNextStepButton();
+
+		Assert.assertTrue(addBracketPage.isMinRatingRangeValidationMessageDisplayed());
+
+		logger.info("Ending of verifyRatingRangeValidationsLessThanMinChars method");
+	}
+
+	@Test(priority = 18, description = "Verify RatingRange Validations More Than Minimum Chars", groups = "sanity")
+
+	@Description("Test case #18, Verify RatingRange Validations More Than Minimum Chars")
+
+	@Severity(SeverityLevel.NORMAL)
+
+	@Story("Test case #18, Verify RatingRange Validations More Than Minimum Chars")
+	public void verifyRatingRangeValidationsMoreThanMaxChars() {
+		logger.info("Starting of verifyRatingRangeValidationsMoreThanMaxChars method");
+
+		addBracketPage.setMaximumRatingRange(testDataProp.getProperty("invalid.max.rating.range"));
+
+		addEventPage.clickOnNextStepButton();
+
+		Assert.assertTrue(addBracketPage.isMinimumRatingRangeMessageDisplayed());
+
+		logger.info("Ending of verifyRatingRangeValidationsMoreThanMaxChars method");
+	}
+
+	@Test(priority = 19, description = "Verify State Of AutoGenerate Functionality After Entering Mandatory Details", groups = "sanity")
+
+	@Description("Test case #19, Verify State Of AutoGenerate Functionality After Entering Mandatory Details")
+
+	@Severity(SeverityLevel.NORMAL)
+
+	@Story("Test case #19, Verify State Of AutoGenerate Functionality After Entering Mandatory Details")
+	public void verifyStateOfAutoGenerateButtonAfterEnteringMandatoryDetails() {
+		logger.info("Starting of verifyStateOfAutoGenerateButtonAfterEnteringMandatoryDetails method");
+
+		addBracketPage.clickOnMatchTypeDropdown();
+		addBracketPage.selectSinglesMatchType();
+
+		addBracketPage.clickOnPlayGroupDropdown();
+		addBracketPage.selectMixedPlayerGroup();
+
+		addBracketPage.setMinimumAgeRange(testDataProp.getProperty("min.age.range"));
+		addBracketPage.setMaximumAgeRange(testDataProp.getProperty("max.age.range"));
+		addBracketPage.setMinimumRatingRange(testDataProp.getProperty("min.rating.range"));
+		addBracketPage.setMaximumRatingRange(testDataProp.getProperty("max.rating.range"));
+
+		Assert.assertTrue(addBracketPage.isAutoGenerateButtonEnabled());
+
+		logger.info("Ending of verifyStateOfAutoGenerateButtonAfterEnteringMandatoryDetails method");
+	}
+
+	@Test(priority = 20, description = "Verify Bracket Name AutoGenerated", groups = "sanity")
+
+	@Description("Test case #20, Verify Bracket Name AutoGenerated")
+
+	@Severity(SeverityLevel.NORMAL)
+
+	@Story("Test case #20, Verify Bracket Name AutoGenerated")
+	public void verifyBracketNameAutoGenerated() {
+		logger.info("Starting of verifyBracketNameAutoGenerated method");
+
+		addBracketPage.clickOnAutoGenerateButton();
+		Assert.assertFalse(addBracketPage.isBracketNameAutoGenerated());
+
+		logger.info("Ending of verifyBracketNameAutoGenerated method");
+	}
+
+	@Test(priority = 21, description = "Verify State Of AutoGenerate Functionality After AutoGenerating BracketName", groups = "sanity")
+
+	@Description("Test case #21, Verify State Of AutoGenerate Functionality After AutoGenerating BracketName")
+
+	@Severity(SeverityLevel.NORMAL)
+
+	@Story("Test case #21, Verify State Of AutoGenerate Functionality After AutoGenerating BracketName")
+	public void verifyStateOfAutoGenerateFunctionalityAfterAutoGeneratingBracketName() {
+		logger.info("Starting of verifyStateOfAutoGenerateFunctionalityAfterAutoGeneratingBracketName method");
+
+		Assert.assertTrue(addBracketPage.isAutoGenerateButtonDisabled());
+
+		logger.info("Ending of verifyStateOfAutoGenerateFunctionalityAfterAutoGeneratingBracketName method");
+	}
+
+	@Test(priority = 22, description = "Verify Number Of Courts With Invalid Details", groups = "sanity")
+
+	@Description("Test case #22, Verify Number Of Courts With Invalid Details")
+
+	@Severity(SeverityLevel.NORMAL)
+
+	@Story("Test case #22, Verify Number Of Courts With Invalid Details")
+	public void verifyNumberOfCourtsWithInvalidDetails() {
+		logger.info("Starting of verifyNumberOfCourtsWithInvalidDetails method");
+
+		addBracketPage.clickOnEventTypeDropdown();
+		addBracketPage.selectWaterfallEventType();
+
+		addBracketPage.setNumberOfCourts(testDataProp.getProperty("zero.value"));
+		addEventPage.clickOnNextStepButton();
+
+		Assert.assertTrue(addBracketPage.isNumberOfCourtsValidationDisplayed());
+
+		logger.info("Ending of verifyNumberOfCourtsWithInvalidDetails method");
+	}
+
+	@Test(priority = 23, description = "Verify Registration Dates Required Validation", groups = "sanity")
+
+	@Description("Test case #23, Verify Registration Dates Required Validation")
+
+	@Severity(SeverityLevel.NORMAL)
+
+	@Story("Test case #23, Verify Registration Dates Required Validation")
+	public void verifyRegistrationDatesRequiredValidation() {
+		logger.info("Starting of verifyRegistrationDatesRequiredValidation method");
+
+		addEventPage.clickOnNextStepButton();
+		addEventPage.hardWait(3);
+
+		Assert.assertTrue(addBracketPage.isRegistrationDetailsReqValidationDisplayed());
+
+		logger.info("Ending of verifyRegistrationDatesRequiredValidation method");
+	}*/
 
 	@Test(priority = 24, description = "Verify Registration EndDate with Previous Date Of StartDate Details", groups = "sanity")
 	@Description("Test case #24, Verify Registration EndDate with Previous Date Of StartDate Details")
