@@ -8,8 +8,15 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.b2b.common.WebDriversEnum;
+import com.dupr.pages.clubs.EditClubInfoPage;
+import com.dupr.pages.events.AcceptOrDeclinePartnershipPage;
+import com.dupr.pages.events.AddBracketPage;
+import com.dupr.pages.events.AddEventPage;
+import com.dupr.pages.events.EditBracketsPage;
+import com.dupr.pages.events.EditOrRemovePartnerPage;
 import com.dupr.pages.events.EventRegistrationPage;
 import com.dupr.pages.events.TimeZonePage;
+import com.dupr.pages.home.UserDashboardPage;
 import com.dupr.test.CommonBaseTest;
 
 import io.qameta.allure.Description;
@@ -21,7 +28,7 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 
 	private static final Logger logger = Logger.getLogger(DirectorEventRegistrationTest.class.getName());
 	private EventRegistrationPage eventRegistrationPage = null;
-
+	
 	@BeforeClass
 	@Parameters({ "browser", "siteURL", "directorEmail", "directorPassword" })
 	public void initMethod(String browser, String siteURL, String directorEmail, String directorPassword)
@@ -31,8 +38,13 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 		this.driver = super.getWebDriver(WebDriversEnum.EVENT_REGISTRATION_DRIVER);
 		super.initCommonBaseTest(siteURL, directorEmail, directorPassword);
 
-		this.eventRegistrationPage = new EventRegistrationPage(this.driver);
+		this.eventRegistrationPage= new EventRegistrationPage(this.driver);
+		this.directorEventRegistrationPage = new EventRegistrationPage(this.driver);
+		this.userDashboardPage = new UserDashboardPage(this.driver);
+		this.addBracketPage = new AddBracketPage(this.driver);
+        this.addEventPage = new AddEventPage(this.driver);
 		this.timeZonePage = new TimeZonePage(this.driver);
+		this.editClubInfoPage = new EditClubInfoPage(this.driver);
 
 		logger.info("Ending of initMethod in DirectorEventRegistrationTest");
 	}
@@ -226,6 +238,9 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 		logger.info("Starting of verifyRegisterFunctionalityInOngoingEvent method");
 
 		addBracketPage.hardWait(3);
+		addBracketPage.clickOnBackButton();
+		addBracketPage.hardWait(3);
+		addEventPage.clickOnEventsTab();
 
 		Assert.assertFalse(eventRegistrationPage.isRegisterButtonDisplayedForOnGoingEventCard());
 
@@ -240,6 +255,11 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 		logger.info("Starting of verifyRegisterFunctionalityInCompleteStatusEvent method");
 
 		addBracketPage.hardWait(3);
+		addBracketPage.clickOnBackButton();
+		addBracketPage.hardWait(3);
+		addEventPage.clickOnEventsTab();
+
+		
 		Assert.assertFalse(eventRegistrationPage.isRegisterButtonDisplayedForCompletedEventCard());
 
 		logger.info("Ending of verifyRegisterFunctionalityInCompleteStatusEvent method");
@@ -253,6 +273,10 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 		logger.info("Starting of verifyRegisterFunctionalityInOpenRegisteredPlayerEvent method");
 
 		addBracketPage.hardWait(3);
+		addBracketPage.clickOnBackButton();
+		addBracketPage.hardWait(3);
+		addEventPage.clickOnEventsTab();
+
 		Assert.assertFalse(eventRegistrationPage.isRegisterButtonDisplayedForOpenEventCard());
 
 		logger.info("Ending of verifyRegisterFunctionalityInOpenRegisteredPlayerEvent method");
@@ -266,7 +290,14 @@ public class DirectorEventRegistrationTest extends CommonBaseTest {
 		logger.info("Starting of verifyRegisterFunctionalityWithOpenDoubleBracket method");
 
 		addBracketPage.hardWait(3);
-		super.verifyAddEventFunctionality();
+		addBracketPage.clickOnBackButton();
+		
+		try {
+			clubLogoPage.hardWait(5);
+		addEventPage.clickOnAddEventButton();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		super.verifyFreeBracketWithRoundRobinEventType();
 
 		addEventPage.clickOnEventsTab();

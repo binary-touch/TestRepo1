@@ -110,10 +110,14 @@ public class PaidEventPage extends DUPRBaseAutomationPage {
 				this.txtBoxSearch.click();
 				this.txtBoxSearch.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 
-				sendKeys(txtBoxSearch, "Simba");
-				this.txtBoxSearch.click();
-				this.txtBoxSearch.sendKeys(Keys.BACK_SPACE);
-				this.txtBoxSearch.sendKeys("a");
+				sendKeys(txtBoxSearch, "S");
+				sendKeys(txtBoxSearch, "i");
+				sendKeys(txtBoxSearch, "m");
+				sendKeys(txtBoxSearch, "b");
+				hardWait(5);
+				//sendKeys(txtBoxSearch, "a");
+				//this.txtBoxSearch.sendKeys(Keys.BACK_SPACE);
+				//this.txtBoxSearch.sendKeys("a");
 				this.txtBoxSearch.sendKeys(Keys.ENTER);
 
 				if (lblSimbaClubName.isDisplayed() == true) {

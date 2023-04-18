@@ -295,7 +295,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h2[text()='Event Details']/parent::div/button")
 	private WebElement btnEditEventDetails;
 
-	@B2BFindBy(xpath = "//button[text()='Publish Event']")
+	@B2BFindBy(xpath = "//h6[text()='Publish Event']")
 	private WebElement btnPublishEvent;
 
 	@B2BFindBy(xpath = "//h4[text()='Success']")
