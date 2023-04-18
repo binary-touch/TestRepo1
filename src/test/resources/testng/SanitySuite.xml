@@ -37,8 +37,8 @@
 			<class name="com.b2b.test.sprint2.sanity.ImportPlayerViaCSVTest" />
 			<class name="com.b2b.test.sprint2.sanity.AddClubMatchTest" /> -->
 			<class name="com.b2b.test.sprint2.sanity.AddEventTest" />
-			<!-- <class name="com.b2b.test.sprint2.sanity.BrowseEventsTest" />
-			<class name="com.b2b.test.sprint2.sanity.EditEventsTest" />
+			 <class name="com.b2b.test.sprint2.sanity.BrowseEventsTest" />
+			<!-- <class name="com.b2b.test.sprint2.sanity.EditEventsTest" />
 			<class name="com.b2b.test.sprint2.sanity.EditBracketsTest" /> -->
 		</classes>
 	</test> 
