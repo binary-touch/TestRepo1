@@ -9,9 +9,14 @@ import org.testng.annotations.Test;
 
 import com.b2b.common.WebDriversEnum;
 import com.dupr.pages.clubs.ClubLogoPage;
+import com.dupr.pages.clubs.EditClubInfoPage;
 import com.dupr.pages.events.AddAnnouncementPage;
+import com.dupr.pages.events.AddBracketPage;
+import com.dupr.pages.events.AddEventPage;
 import com.dupr.pages.events.BrowseEventsPage;
 import com.dupr.pages.events.EndEventPage;
+import com.dupr.pages.events.TimeZonePage;
+import com.dupr.test.CommonBaseTest;
 import com.dupr.test.DUPRBaseAutomationTest;
 
 import io.qameta.allure.Description;
@@ -23,11 +28,10 @@ import io.qameta.allure.Story;
 
 @Epic(value = "Events")
 @Feature(value = "Add Announcement")
-public class AddAnnouncementTest extends DUPRBaseAutomationTest {
+public class AddAnnouncementTest extends CommonBaseTest {
 
 	private static final Logger logger = Logger.getLogger(AddAnnouncementTest.class.getName());
-	private ClubLogoPage clubLogoPage = null;
-	private BrowseEventsPage browseEventsPage = null;
+	
 	private EndEventPage endEventpage = null;
 	private AddAnnouncementPage addAnnouncementPage = null;
 
@@ -41,8 +45,11 @@ public class AddAnnouncementTest extends DUPRBaseAutomationTest {
 		this.siteLogin(siteURL, directorEmail, directorPassword, this.driver);
 
 		this.clubLogoPage = new ClubLogoPage(this.driver);
-		this.browseEventsPage = new BrowseEventsPage(this.driver);
 		this.endEventpage = new EndEventPage(this.driver);
+		this.addBracketPage = new AddBracketPage(this.driver);
+		this.editClubInfoPage = new EditClubInfoPage(this.driver);
+		this.addEventPage = new AddEventPage(this.driver);
+		this.timeZonePage = new TimeZonePage(this.driver);
 		this.addAnnouncementPage = new AddAnnouncementPage(this.driver);
 
 		logger.info("Ending of initMethod in AddAnnouncementTest");
@@ -55,12 +62,12 @@ public class AddAnnouncementTest extends DUPRBaseAutomationTest {
 	public void verifyAddAnnouncementFunctionality() {
 		logger.info("Starting of verifyAddAnnouncementFunctionality method");
 
-		clubLogoPage.hardWait(3);
-		browseEventsPage.clickOnMyEventButton();
-		clubLogoPage.hardWait(3);
-		addAnnouncementPage.clickOnEventLabel();
-		endEventpage.hardWait(2);
-
+		super.verifyAddEventFunctionality();
+		super.verifyFreeBracketWithRoundRobinEventType();
+		addAnnouncementPage.hardWait(3);
+		super.verifyRecentlyAddedEventUnderEventsTab();
+		addAnnouncementPage.hardWait(3);
+		addAnnouncementPage.clickOnAddAnnouncementButton();
 		Assert.assertTrue(addAnnouncementPage.isSendAnnouncementPageContains());
 		Assert.assertEquals(addAnnouncementPage.getSubjectText(), expectedAssertionsProp.getProperty("subject.txt"));
 		Assert.assertEquals(addAnnouncementPage.getSendAnnouncementText(),

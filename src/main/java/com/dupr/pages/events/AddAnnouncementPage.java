@@ -111,13 +111,10 @@ public class AddAnnouncementPage extends DUPRBaseAutomationPage {
 		for(int i=1;i<=lblEvent.size();i++) {
 			this.hardWait(5);
 			try {
-				System.out.println("starting dynamic xpath");
 				clickOnElementUsingActionClass(driver.findElement(By.xpath("//h4[contains(@class,'MuiTypography-root MuiTypography-h4')][i]")));
-				System.out.println("ending dynamic xpath");
 			}catch(Exception e) {
-				System.out.println("starting hardcode xpath");
+				this.hardWait(5);
 				lblEventName.click();
-				System.out.println("ending hardcode xpath");
 			}
 			this.hardWait(3);
 			try {

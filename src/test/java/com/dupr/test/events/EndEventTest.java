@@ -52,11 +52,11 @@ public class EndEventTest extends DUPRBaseAutomationTest {
 	public void verifyEndEventFunctionality() {
 		logger.info("Starting of verifyEndEventFunctionality method");
 
-		clubLogoPage.hardWait(3);
+		clubLogoPage.hardWait(5);
 		browseEventsPage.clickOnMyEventButton();
-		clubLogoPage.hardWait(3);
+		clubLogoPage.hardWait(5);
 		endEventpage.clickOnEventLabel();
-		endEventpage.hardWait(2);
+		endEventpage.hardWait(6);
 		Assert.assertTrue(endEventpage.isEndEventPopupContains());
 		Assert.assertEquals(endEventpage.getEndEventTxt(), expectedAssertionsProp.getProperty("end.event"));
 		Assert.assertEquals(endEventpage.getWarningTxt(), expectedAssertionsProp.getProperty("warning.msg"));
@@ -73,7 +73,7 @@ public class EndEventTest extends DUPRBaseAutomationTest {
 		logger.info("Starting of verifyCancelButtonFunctionality method");
 
 		endEventpage.clickOnCancelButton();
-		endEventpage.hardWait(2);
+		endEventpage.hardWait(5);
 
 		Assert.assertFalse(endEventpage.isEndEventPopupContains());
 		Assert.assertEquals(endEventpage.getEventTxt(), expectedAssertionsProp.getProperty("event.txt"));

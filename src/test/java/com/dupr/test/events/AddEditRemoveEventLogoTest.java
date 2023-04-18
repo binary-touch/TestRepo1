@@ -93,7 +93,7 @@ public class AddEditRemoveEventLogoTest extends DUPRBaseAutomationTest {
 			clubLogoPage.uploadProfilePicture(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("club.logo.path"));
 		}
 
-		clubLogoPage.hardWait(3);
+		clubLogoPage.hardWait(6);
 		profilePicturePage.clickOnSaveButton();
 
 		profilePicturePage.hardWait(3);

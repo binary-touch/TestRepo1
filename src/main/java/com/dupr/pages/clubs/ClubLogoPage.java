@@ -100,6 +100,9 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 	@B2BFindBys(@B2BFindBy(xpath = "//div/div[contains(@class,'MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation3')]//h4"))
 	private List<WebElement> lstClubsInBrowseClubsPage;
 
+	@B2BFindBy(xpath = "(//button[contains(@class,'MuiIconButton-root MuiIconButton-sizeMedium') and @type='button'])[2]")
+	private WebElement btnBack;
+
 	@B2BFindBy(xpath = "//input[@id='Search']")
 	private WebElement txtBoxSearch;
 
@@ -163,10 +166,18 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 
 	public void clickOnBrowseClubs() {
 		log.info("Starting of clickOnBrowseClubs method");
-
+         hardWait(5);
 		elementClick(btnBrowseClubs);
 
 		log.info("Ending of clickOnBrowseClubs method");
+	}
+
+	public void clickOnBackButton() {
+		log.info("Starting of clickOnBackButton method");
+
+		elementClick(btnBack);
+
+		log.info("Ending of clickOnBackButton method");
 	}
 
 	public boolean isClubPageContains() {
@@ -249,14 +260,15 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 		log.info("Starting of clickOnMyClubsTab method");
 
 		try {
+			hardWait(5);
 			clickUsingActionsClass(tabMyClubs);
 		} catch (Exception e) {
+			hardWait(5);
 			clickOnWebElement(tabMyClubs);
 		}
 
 		log.info("Ending of clickOnMyClubsTab method");
 	}
-	
 
 	public void clickOnClub() {
 		log.info("Starting of clickOnClub method");
