@@ -1138,8 +1138,13 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	public void setInvalidRegistrationStartDate() {
 		log.info("Starting of setInvalidRegistrationStartDate method");
 
-		scrollDown(200);
-		clickOnWebElement(txtBoxRegistrationStartDate);
+		scrollDown(500);
+		hardWait(2);
+		try {
+			clickOnElementUsingActionClass(txtBoxRegistrationStartDate);
+		} catch (Exception e) {
+			clickOnWebElement(txtBoxRegistrationStartDate);
+		}
 
 		try {
 			int date = this.getFutureDate(1);
@@ -1260,6 +1265,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	public void setInvalidCompetitionStartDate() {
 		log.info("Starting of setInvalidCompetitionStartDate method");
 
+		scrollDown(500);
 		try {
 			clickUsingActionsClass(txtBoxCompetitionStartDate);
 		} catch (Exception e) {
@@ -1370,6 +1376,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	public void setIncorrectCompetitionStartDate() {
 		log.info("Starting of setIncorrectCompetitionStartDate method");
 
+		hardWait(2);
 		try {
 			clickUsingActionsClass(txtBoxCompetitionStartDate);
 		} catch (Exception e) {
