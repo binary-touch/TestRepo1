@@ -1203,7 +1203,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	public void setInvalidRegistrationEndDate() {
 		log.info("Starting of setInvalidRegistrationEndDate method");
 
-		scrollDown(200);
+		scrollDown(500);
 		hardWait(2);
 		try {
 			clickOnElementUsingActionClass(txtBoxRegistrationEndDate);
@@ -1376,6 +1376,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	public void setIncorrectCompetitionStartDate() {
 		log.info("Starting of setIncorrectCompetitionStartDate method");
 
+		scrollDown(500);
 		hardWait(2);
 		try {
 			clickUsingActionsClass(txtBoxCompetitionStartDate);
@@ -2074,6 +2075,8 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	public boolean isRegistrationEndDateValidationDisplayed() {
 		log.info("Starting of isRegistrationEndDateValidationDisplayed method");
+		scrollIntoView(driver.findElement(By.xpath("//h3[contains(text(),'Registration Date')]")));
+		hardWait(3);
 		log.info("Ending of isRegistrationEndDateValidationDisplayed method");
 
 		return msgRegEndDateofPrevStartDate.isDisplayed();
@@ -2103,6 +2106,8 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	public boolean isComStartDateHighRegEndDateDisplayed() {
 		log.info("Starting of isComStartDateHighRegEndDateDisplayed method");
+		scrollIntoView(driver.findElement(By.xpath("//h3[contains(text(), 'Competition Date')]")));
+		hardWait(3);
 		log.info("Ending of isComStartDateHighRegEndDateDisplayed method");
 
 		return msgCompStartDateHighRegEndDate.isDisplayed();
