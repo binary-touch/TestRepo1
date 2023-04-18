@@ -27,10 +27,10 @@ public class ProfilePicturePage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//div[contains(@class,'MuiBox-root')]//span[contains(@class,'MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary MuiIconButton-sizeMedium')]/span")
 	private WebElement iconCamera;
 
-	@B2BFindBy(xpath = "//div[contains(@class,'MuiDialogActions-root MuiDialogActions-spacing')]//h6[text()='Save']")
+	@B2BFindBy(xpath = "//h6[text()='Save']")
 	private WebElement btnSave;
 
-	@B2BFindBy(xpath = "//div[contains(@class,'MuiDialogActions-root MuiDialogActions-spacing')]//button[@disabled]//h6[contains(text(), 'Save')]")
+	@B2BFindBy(xpath = "//button[@type='button' and @disabled]")
 	private WebElement btnSaveInDisabled;
 
 	@B2BFindBy(xpath = "//h4[text()='Profile Picture']")
@@ -184,6 +184,18 @@ public class ProfilePicturePage extends DUPRBaseAutomationPage {
 		}
 
 		log.info("Ending of clickOnCloseIconOnEventLogo method");
+	}
+	
+	public void clickOnCloseIconOnProfilePicture() {
+		log.info("Starting of clickOnCloseIconOnProfilePicture method");
+		try {
+			clickUsingActionsClass(iconCloseOnProfilePicture);
+
+		} catch (Exception e) {
+			elementClick(iconCloseOnProfilePicture);
+		}
+
+		log.info("Ending of clickOnCloseIconOnProfilePicture method");
 	}
 
 	public void clickOnCloseIconOnClubLogo() {

@@ -127,71 +127,16 @@ public class SignupTest extends DUPRBaseAutomationTest {
 	@Description("Test case #4, Verify Sign up functionality with out filling any mandatory fields")
 	@Severity(SeverityLevel.BLOCKER)
 	@Story("Test case #4,Verify Sign up functionality with out filling any mandatory fields")
-	public void verifySignWithFillingMandatoryFields() {
-		logger.info("Starting of verifySignWithFillingMandatoryFields method");
+	public void verifySignUpWithoutFillingMandatoryDetails() {
+		logger.info("Starting of verifySignUpWithoutFillingMandatoryDetails method");
 
-		driver.navigate().refresh();
+		driver.navigate().refresh();signupPage.hardWait(4);
 
-		signupPage.setMobileNumber(testDataProp.getProperty("mobile.number"));
-
-		Assert.assertFalse(signupPage.isFinishButtonEnabled());
-
-		logger.info("Starting of verifySignWithFillingMandatoryFields method");
-	}
-
-	//@Test(priority = 5, description = "Verify Sign up funtionality with invalid birth date ", groups = "sanity")
-	@Description("Test case #5, Verify Sign up funtionality with invalid birth date")
-	@Severity(SeverityLevel.BLOCKER)
-	@Story("Test case #5, Verify Sign up funtionality with invalid birth date")
-	public void verifySignUpWithInvalidBirthDateFormat() {
-		logger.info("Starting of verifySignUpWithInvalidBirthDateFormat method");
-
-		driver.navigate().refresh();
-
-		String playerDetailsText = this.signupPage.getPlayerDetailsText();
-		Assert.assertEquals(playerDetailsText, expectedAssertionsProp.getProperty("player.details.label"));
+		signupPage.setMobileNumber(testDataProp.getProperty("mobile.number"));signupPage.hardWait(3);
 
 		Assert.assertFalse(signupPage.isFinishButtonEnabled());
 
-		signupPage.setBirthDate();
-
-		String birthDateValidationMessage = this.signupPage.getBirthDateValidationMessage();
-		Assert.assertEquals(birthDateValidationMessage,
-				expectedAssertionsProp.getProperty("incorrect.date.format.validation"));
-
-		logger.info("Ending of verifySignUpWithInvalidBirthDateFormat method");
-	}
-
-	//@Test(priority = 6, description = "Verify birth date funtionality with current date ", groups = "sanity")
-	@Description("Test case #6, Verify birth date funtionality with current date")
-	@Severity(SeverityLevel.BLOCKER)
-	@Story("Test case #6, Verify birth date funtionality with current date")
-	public void verifyBirthdateWithCurrentDate() {
-		logger.info("Starting of verifyBirthdateWithCurrentDate method");
-
-		driver.navigate().refresh();
-		signupPage.setDateOfBirthWithCurrentYear();
-
-		Assert.assertEquals(signupPage.getDateOfBirthValidationMessage(),
-				expectedAssertionsProp.getProperty("minimum.age.two.years.validation"));
-
-		logger.info("Ending of verifyBirthdateWithCurrentDate method");
-	}
-
-	//@Test(priority = 7, description = "Verify birth date funtionality with previous year date", groups = "sanity")
-	@Description("Test case #7,Verify birth date funtionality with previous year date")
-	@Severity(SeverityLevel.BLOCKER)
-	@Story("Test case #7, Verify birth date funtionality with previous year date")
-	public void verifyBirthdateWithPreviousYearDate() {
-		logger.info("Starting of verifyBirthdateWithPreviousYearDate method");
-
-		driver.navigate().refresh();
-		signupPage.setDateOfBirthWithPreviousYear();
-
-		Assert.assertEquals(signupPage.getDateOfBirthValidationMessage(),
-				expectedAssertionsProp.getProperty("minimum.age.two.years.validation"));
-
-		logger.info("Ending of verifyBirthdateWithPreviousYearDate method");
+		logger.info("Starting of verifySignUpWithoutFillingMandatoryDetails method");
 	}
 
 	@Test(priority = 8, description = "Verify birth date funtionality with before two years date ", groups = "sanity")

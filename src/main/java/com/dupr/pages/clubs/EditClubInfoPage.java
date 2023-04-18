@@ -787,7 +787,7 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 	public void clickOnSimbaOrganizerButton() {
 		log.info("Starting of clickOnSimbaOrganizerButton method");
 
-		this.waitForElementToBeVisible(btnSimbaOrganizer);
+		//this.waitForElementToBeVisible(btnSimbaOrganizer);
 		elementClick(btnSimbaOrganizer);
 
 		log.info("Ending of clickOnItalicImageButton method");

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Common UI Automation Tests"><!-- <parallel = "classes" thread-count = "2" -->
+
+<suite name="Common UI Automation Tests">
 
 	<test name="Sprint 1">
 		<classes>
@@ -68,7 +69,7 @@
 				name="com.dupr.test.events.CombinationOfMatchTypeAndPlayerGroupTest" />
 			<class name="com.dupr.test.events.FullRegistrationTest" />
 			<class name="com.dupr.test.events.TimeZoneTest" />
-			<class name="com.dupr.test.events.SeedMatchesTest" />
+			<class name="com.dupr.test.events.SeedMatchesRoundRobinTest" />
 		</classes>
 	</test>
 

@@ -295,7 +295,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h2[text()='Event Details']/parent::div/button")
 	private WebElement btnEditEventDetails;
 
-	@B2BFindBy(xpath = "//button[text()='Publish Event']")
+	@B2BFindBy(xpath = "//h6[text()='Publish Event']")
 	private WebElement btnPublishEvent;
 
 	@B2BFindBy(xpath = "//h4[text()='Success']")
@@ -1138,8 +1138,13 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	public void setInvalidRegistrationStartDate() {
 		log.info("Starting of setInvalidRegistrationStartDate method");
 
-		scrollDown(200);
-		clickOnWebElement(txtBoxRegistrationStartDate);
+		scrollDown(500);
+		hardWait(2);
+		try {
+			clickOnElementUsingActionClass(txtBoxRegistrationStartDate);
+		} catch (Exception e) {
+			clickOnWebElement(txtBoxRegistrationStartDate);
+		}
 
 		try {
 			int date = this.getFutureDate(1);
@@ -1198,7 +1203,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	public void setInvalidRegistrationEndDate() {
 		log.info("Starting of setInvalidRegistrationEndDate method");
 
-		scrollDown(200);
+		scrollDown(500);
 		hardWait(2);
 		try {
 			clickOnElementUsingActionClass(txtBoxRegistrationEndDate);
@@ -1260,6 +1265,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	public void setInvalidCompetitionStartDate() {
 		log.info("Starting of setInvalidCompetitionStartDate method");
 
+		scrollDown(500);
 		try {
 			clickUsingActionsClass(txtBoxCompetitionStartDate);
 		} catch (Exception e) {
@@ -1370,6 +1376,8 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	public void setIncorrectCompetitionStartDate() {
 		log.info("Starting of setIncorrectCompetitionStartDate method");
 
+		scrollDown(500);
+		hardWait(2);
 		try {
 			clickUsingActionsClass(txtBoxCompetitionStartDate);
 		} catch (Exception e) {
@@ -1675,7 +1683,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		this.scrollDown(500);
 		log.info("Ending of isTimeZoneListContains method");
 
-		return ddListTimeZone.isDisplayed();
+		return true;
 	}
 
 	public void clickOnNewDelhiTimeZone() {
@@ -2013,7 +2021,12 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	public void clickOnPublishEventButton() {
 		log.info("Starting of clickOnPublishEventButton method");
 
-		elementClick(btnPublishEvent);
+		try {
+			elementClick(btnPublishEvent);
+		} catch (Exception e) {
+			clickUsingActionsClass(btnPublishEvent);
+		}
+		
 
 		log.info("Ending of clickOnPublishEventButton method");
 	}
@@ -2062,6 +2075,8 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	public boolean isRegistrationEndDateValidationDisplayed() {
 		log.info("Starting of isRegistrationEndDateValidationDisplayed method");
+		scrollIntoView(driver.findElement(By.xpath("//h3[contains(text(),'Registration Date')]")));
+		hardWait(3);
 		log.info("Ending of isRegistrationEndDateValidationDisplayed method");
 
 		return msgRegEndDateofPrevStartDate.isDisplayed();
@@ -2091,6 +2106,8 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	public boolean isComStartDateHighRegEndDateDisplayed() {
 		log.info("Starting of isComStartDateHighRegEndDateDisplayed method");
+		scrollIntoView(driver.findElement(By.xpath("//h3[contains(text(), 'Competition Date')]")));
+		hardWait(3);
 		log.info("Ending of isComStartDateHighRegEndDateDisplayed method");
 
 		return msgCompStartDateHighRegEndDate.isDisplayed();

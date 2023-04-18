@@ -119,7 +119,7 @@ public class TimeZonePage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//button[contains(text(),'Add a Bracket')]")
 	private WebElement btnAddABracket;
 
-	@B2BFindBy(xpath = "//button[contains(text(),'Publish')]")
+	@B2BFindBy(xpath = "//h6[contains(text(),'Publish')]")
 	private WebElement btnPublish;
 
 	@B2BFindBy(xpath = "//h4[contains(text(),'Success')]")

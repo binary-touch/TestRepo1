@@ -70,7 +70,7 @@
 			<class
 				name="com.b2b.test.sprint3.sanity.PreservingPageVisitsTest" />
 		</classes>
-	</test> 
+	</test>
 
 	<test name="Sprint 4">
 		<classes>

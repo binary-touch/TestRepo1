@@ -135,9 +135,20 @@ public class BrowseEventsPage extends DUPRBaseAutomationPage {
 
 	public boolean getToggleOnState() {
 		log.info("Starting of getToggleOnState method");
+		
+		boolean toggleButtonState = false;
+		try {
+			if(tglLocationIsOnState.isDisplayed()==true) {
+				System.out.println("Toggle button state: " + toggleButtonState);
+				toggleButtonState = true;
+			}
+		} catch (Exception e) {
+			System.out.println("Toggle button state: " + toggleButtonState);
+			toggleButtonState = false;
+		}
 		log.info("Ending of getToggleOnState method");
 
-		return isDisplayed(tglLocationIsOnState);
+		return toggleButtonState;
 	}
 
 	public boolean getCompleteText() {

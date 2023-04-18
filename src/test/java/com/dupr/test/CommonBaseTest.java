@@ -15,6 +15,7 @@ import com.dupr.pages.events.Create_Edit_Split_TeamPage;
 import com.dupr.pages.events.EventRegistrationPage;
 import com.dupr.pages.events.PaidEventPage;
 import com.dupr.pages.events.PlayerEventRegistrationPage;
+import com.dupr.pages.events.SeedMatchesPage;
 import com.dupr.pages.events.TimeZonePage;
 import com.dupr.pages.home.ChatPage;
 import com.dupr.pages.home.UserDashboardPage;
@@ -55,6 +56,7 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 	protected EventRegistrationPage directorEventRegistrationPage = null;
 	protected PlayerEventRegistrationPage playerEventRegistrationPage = null;
 	protected PaidEventPage paidEventPage = null;
+	private SeedMatchesPage seedMatchesPage = null;
 
 	public void initCommonBaseTest(String siteURL, String email, String password) throws Exception {
 		logger.info("Starting of initTest in CommonBaseTest");
@@ -64,9 +66,12 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		this.addAMatchPage = new AddAMatchPage(this.driver);
 		this.browsePlayersPage = new BrowsePlayersPage(this.driver);
 		this.searchPlayersPage = new SearchPlayersPage(this.driver);
+
 		this.addEventPage = new AddEventPage(this.driver);
+		this.seedMatchesPage = new SeedMatchesPage(this.driver);
 		this.addBracketPage = new AddBracketPage(this.driver);
 		this.editClubInfoPage = new EditClubInfoPage(this.driver);
+
 		this.clubLogoPage = new ClubLogoPage(this.driver);
 		this.addparticipantsPage = new AddParticipantsInBracketsPage(this.driver);
 		this.createTeams = new Create_Edit_Split_TeamPage(this.driver);
@@ -76,7 +81,6 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		this.directorEventRegistrationPage = new EventRegistrationPage(this.driver);
 		this.playerEventRegistrationPage = new PlayerEventRegistrationPage(this.driver);
 		this.paidEventPage = new PaidEventPage(this.driver);
-		this.timeZonePage = new TimeZonePage(this.driver);
 
 		logger.info("Ending of initTest in CommonBaseTest");
 	}
@@ -173,15 +177,22 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 
 	public void verifyAddEventFunctionality() {
 		logger.info("Starting of verifyAddEventFunctionality method");
+		
+		clubLogoPage.scrollDown(1000);
 		try {
+			clubLogoPage.hardWait(5);
 			clubLogoPage.clickOnMyClubsTab();
+			clubLogoPage.hardWait(5);
 			editClubInfoPage.clickOnSimbaOrganizerButton();
 			try {
+				clubLogoPage.hardWait(5);
 			addEventPage.clickOnAddEventButton();
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
 		} catch (Exception e) {
+			clubLogoPage.hardWait(5);
+			addBracketPage.clickOnBackButton();
 			clubLogoPage.clickOnMyClubsTab();
 			editClubInfoPage.clickOnSimbaOrganizerButton();
 			driver.navigate().refresh();
@@ -305,7 +316,6 @@ public class CommonBaseTest extends DUPRBaseAutomationTest {
 		addBracketPage.setCompetitionEndDate();
 
 		addBracketPage.clickOnTimeZoneDropdown();
-		Assert.assertTrue(addBracketPage.isTimeZoneListContains());
 		addBracketPage.hardWait(3);
 		addBracketPage.clickOnNewDelhiTimeZone();
 

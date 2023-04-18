@@ -25,10 +25,10 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//*[contains(@class,'MuiSvgIcon-root MuiSvgIcon-colorPrimary MuiSvgIcon-fontSizeMedium')]")
 	private WebElement btnBack;
 
-	@B2BFindBy(xpath = "//button[text()='Withdraw/Refund']")
+	@B2BFindBy(xpath = "(//button[text()='Withdraw/Refund'])[1]")
 	private WebElement btnWithdraw;
 
-	@B2BFindBy(xpath = "//button[text()='Withdraw/Refund']")
+	@B2BFindBy(xpath = "(//button[text()='Withdraw/Refund'])[1]")
 	private List<WebElement> btnWithdrawRefund;
 
 	@B2BFindBy(xpath = "//button[text()='Players']")
@@ -257,12 +257,13 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 
 	public void clickOnWithdrawButton() {
 		log.info("Starting of clickOnWithdrawButton method");
-		this.scrollDown(150);
+		this.scrollDown(250);
 		try {
-			// clickOnElementUsingActionClass(btnWithdraw);
-			btnWithdraw.click();
-			this.hardWait(2);
+			this.hardWait(5);
+			clickOnElementUsingActionClass(btnWithdraw);
+			
 		} catch (Exception e) {
+			this.hardWait(4);
 			elementClick(btnWithdraw);
 			this.hardWait(2);
 		}
@@ -318,12 +319,13 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 	}
 
 	public void clickOnNextButton() {
-		log.info("Starting of clickOnCloseIcon method");
+		log.info("Starting of clickOnNextButton method");
 
-		clickOnWebElement(btnNext);
+		this.hardWait(4);
+		elementClick(btnNext);
 		this.hardWait(2);
 
-		log.info("Ending of clickOnCloseIcon method");
+		log.info("Ending of clickOnNextButton method");
 	}
 
 	public String getOptionValidationTxt() {
@@ -334,12 +336,13 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 	}
 
 	public void clickOnRadioWithdraw() {
-		log.info("Starting of clickOnCloseIcon method");
+		log.info("Starting of clickOnRadioWithdraw method");
 
-		clickOnWebElement(rdoWithdraw);
+		this.hardWait(4);
+		elementClick(rdoWithdraw);
 		this.hardWait(2);
 
-		log.info("Ending of clickOnCloseIcon method");
+		log.info("Ending of clickOnRadioWithdraw method");
 	}
 
 	public boolean isWithdrawPopUpContains() {
@@ -367,7 +370,8 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 	public void clickOnBackButton() {
 		log.info("Starting of clickOnBackButton method");
 
-		clickOnWebElement(btnBackWithdraw);
+		this.hardWait(4);
+		elementClick(btnBackWithdraw);
 		this.hardWait(2);
 
 		log.info("Ending of clickOnBackButton method");
@@ -382,8 +386,9 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 
 	public void clickOnBracketCheckBox() {
 		log.info("Starting of clickOnBracketCheckBox method");
-
-		clickOnWebElement(chkBracket);
+		
+		this.hardWait(4);
+		elementClick(chkBracket);
 		this.hardWait(2);
 
 		log.info("Ending of clickOnBracketCheckBox method");
@@ -458,6 +463,7 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 
 	public String getSuccessTitleText() {
 		log.info("Starting of getSuccessTitleText method");
+		this.hardWait(5);
 		log.info("Ending of getSuccessTitleText method");
 
 		return getText(txtSucess);
@@ -528,7 +534,8 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 	public void clickOnWithdrawRefund() {
 		log.info("Starting of clickOnWithdrawRefund method");
 
-		clickOnWebElement(rdoWIthdrawRefund);
+		this.hardWait(4);
+		elementClick(rdoWIthdrawRefund);
 		this.hardWait(2);
 
 		log.info("Ending of clickOnWithdrawRefund method");
@@ -537,7 +544,8 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 	public void clickOnRefundButton() {
 		log.info("Starting of clickOnRefundButton method");
 
-		clickOnWebElement(rdoRefund);
+		this.hardWait(4);
+		elementClick(rdoRefund);
 		this.hardWait(2);
 
 		log.info("Ending of clickOnRefundButton method");
@@ -577,12 +585,13 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 
 	
 	public void clickOnCloseWithdraw() {
-		log.info("Starting of clickOnHomeMenu method");
+		log.info("Starting of clickOnCloseWithdraw method");
 
-		clickOnWebElement(iconCloseWithdrawRefund);
+		this.hardWait(4);
+		elementClick(iconCloseWithdrawRefund);
 		this.hardWait(2);
 
-		log.info("Ending of clickOnHomeMenu method");
+		log.info("Ending of clickOnCloseWithdraw method");
 	}
 
 	public boolean isRefundPopUpContains() {
@@ -607,12 +616,13 @@ public class WithdrawPlayerPage extends DUPRBaseAutomationPage {
 	}
 
 	public void clickOnCloseOnRefund() {
-		log.info("Starting of clickOnHomeMenu method");
+		log.info("Starting of clickOnCloseOnRefund method");
 
-		clickOnWebElement(iconCloseRefund);
+		this.hardWait(4);
+		elementClick(iconCloseRefund);
 		this.hardWait(3);
 
-		log.info("Ending of clickOnHomeMenu method");
+		log.info("Ending of clickOnCloseOnRefund method");
 	}
 	public void clickOnUnmatchedTab() {
 		log.info("Starting of clickOnUnmatchedTab method");

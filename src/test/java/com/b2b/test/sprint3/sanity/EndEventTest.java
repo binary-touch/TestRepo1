@@ -112,7 +112,7 @@ public class EndEventTest extends CommonBaseTest {
 		logger.info("Starting of verifyCancelButtonFunctionality method");
 
 		endEventpage.clickOnCancelButton();
-		endEventpage.hardWait(2);
+		endEventpage.hardWait(4);
 
 		Assert.assertFalse(endEventpage.isEndEventPopupContains());
 		Assert.assertEquals(endEventpage.getEventTxt(), expectedAssertionsProp.getProperty("event.txt"));
