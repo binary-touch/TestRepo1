@@ -132,7 +132,7 @@ public class EditBracketsTest extends CommonBaseTest {
 		editBracketsPage.clickOnEditBracketButton();
 		playGroup = editBracketsPage.getPlayerGroupFieldTxt();
 		EventType = editBracketsPage.getEventTypeFieldTxt();
-		TimeZone = editBracketsPage.getTimeZoneFieldTxt();
+	TimeZone = editBracketsPage.getTimeZoneFieldTxt();
 
 		logger.info("Ending of verifyCancelFunctionalityInEditBracketPage method");
 	}
@@ -151,7 +151,7 @@ public class EditBracketsTest extends CommonBaseTest {
 		editBracketsPage.clickOnEventTypeField();
 		editBracketsPage.selectWaterfall();
 		editBracketsPage.hardWait(1);
-		editBracketsPage.clickOnTimeZoneField();
+		addBracketPage.clickOnTimeZoneDropdown();
 		editBracketsPage.selectAlaskan();
 		editBracketsPage.hardWait(1);
 		editBracketsPage.clickOnResetButton();

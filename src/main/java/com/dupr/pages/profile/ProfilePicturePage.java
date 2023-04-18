@@ -185,6 +185,18 @@ public class ProfilePicturePage extends DUPRBaseAutomationPage {
 
 		log.info("Ending of clickOnCloseIconOnEventLogo method");
 	}
+	
+	public void clickOnCloseIconOnProfilePicture() {
+		log.info("Starting of clickOnCloseIconOnProfilePicture method");
+		try {
+			clickUsingActionsClass(iconCloseOnProfilePicture);
+
+		} catch (Exception e) {
+			elementClick(iconCloseOnProfilePicture);
+		}
+
+		log.info("Ending of clickOnCloseIconOnProfilePicture method");
+	}
 
 	public void clickOnCloseIconOnClubLogo() {
 		log.info("Starting of clickOnCloseIconOnClubLogo method");

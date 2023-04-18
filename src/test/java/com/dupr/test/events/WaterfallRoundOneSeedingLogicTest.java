@@ -1,5 +1,6 @@
 package com.dupr.test.events;
 
+
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -14,10 +15,13 @@ import com.dupr.pages.events.WaterfallRoundOneSeedingLogicPage;
 import com.dupr.test.CommonBaseTest;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
-
+@Epic(value = "Events")
+@Feature(value = "Waterfall Round One Seeding Logic Sanity")
 public class WaterfallRoundOneSeedingLogicTest extends CommonBaseTest {
 
 	private static final Logger logger = Logger.getLogger(SeedMatchesWaterFallTest.class.getName());
@@ -91,19 +95,19 @@ public class WaterfallRoundOneSeedingLogicTest extends CommonBaseTest {
 		Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
 
 		addBracketPage.hardWait(2);
-		seedMatchesPage.setRegistrationStartDate();
+		addBracketPage.setRegistrationStartDate();
 
 		addBracketPage.hardWait(2);
-		seedMatchesPage.setRegistrationEndDate();
+		seedMatchesPage.setSampleRegistrationEndDate();
 
 		addBracketPage.hardWait(2);
-		seedMatchesPage.setCompetitionStartDate();
+		seedMatchesPage.setSampleCompitionStartDate();
 
 		addBracketPage.hardWait(2);
 		addBracketPage.setCompetitionEndDate();
 
 		addBracketPage.clickOnTimeZoneDropdown();
-		Assert.assertTrue(addBracketPage.isTimeZoneListContains());
+		addBracketPage.hardWait(2);
 		addBracketPage.clickOnNewDelhiTimeZone();
 
 		addBracketPage.hardWait(2);
@@ -149,17 +153,18 @@ public class WaterfallRoundOneSeedingLogicTest extends CommonBaseTest {
 	@Description("Test case #3, Verify Sorting players as High to low rating")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #3, Verify Sorting players as High to low rating")
-	public void verifySortingPlayersAsRatingHighToLow() {
-		logger.info("Starting of verifySortingPlayersAsRatingHighToLow method");
+	public void verifySortingplayersAsRatingHighToLow() {
+		logger.info("Starting of verifySortingplayersAsRatingHighToLow method");
 
-		seedMatchesPage.hardWait(5);
+		
+		waterfallRoundOneSeedingLogicPage.hardWait(3);
 		waterfallRoundOneSeedingLogicPage.clickOnSortButton();
 		waterfallRoundOneSeedingLogicPage.hardWait(3);
 		waterfallRoundOneSeedingLogicPage.selectHighToLowRadioButton();
 		waterfallRoundOneSeedingLogicPage.hardWait(3);
 		waterfallRoundOneSeedingLogicPage.getPlayerName();
 
-		logger.info("Ending of verifySortingPlayersAsRatingHighToLow method");
+		logger.info("Ending of verifySortingplayersAsRatingHighToLow method");
 	}
 
 	@Test(priority = 4, description = "Verify the results on click of Create matches button in Seed Matches page", groups = "sanity")

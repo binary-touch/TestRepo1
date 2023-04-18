@@ -9,17 +9,23 @@ import org.testng.annotations.Test;
 
 import com.b2b.common.WebDriversEnum;
 import com.dupr.pages.events.CombinationOfMatchTypeAndPlayerGroupPage;
+import com.dupr.pages.events.SeedMatchesPage;
+import com.dupr.pages.events.TimeZonePage;
 import com.dupr.test.CommonBaseTest;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
-
+@Epic(value = "Events")
+@Feature(value = "Combination Of Match Type And Player Group Sanity")
 public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 
 	private static final Logger logger = Logger.getLogger(CombinationOfMatchTypeAndPlayerGroupTest.class.getName());
 	private CombinationOfMatchTypeAndPlayerGroupPage combinationOfMatchTypeAndPlayerGroupPage = null;
+	private SeedMatchesPage seedMatchesPage = null;
 
 	@BeforeClass
 	@Parameters({ "browser", "siteURL", "directorEmail", "directorPassword" })
@@ -29,16 +35,17 @@ public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 
 		this.driver = super.getWebDriver(WebDriversEnum.COMBINATION_OF_MATCHTYPE_AND_PLAYERGROUP_DRIVER);
 		super.initCommonBaseTest(siteURL, directorEmail, directorPassword);
-
+		this.timeZonePage = new TimeZonePage(this.driver);
+		this.seedMatchesPage = new SeedMatchesPage(this.driver);
 		this.combinationOfMatchTypeAndPlayerGroupPage = new CombinationOfMatchTypeAndPlayerGroupPage(this.driver);
 
 		logger.info("Ending of initMethod in CombinationOfMatchTypeAndPlayerGroupTest");
 	}
 
-	@Test(priority = 1, description = "verifyBracketWithMatchTypeSingleAndMixedPlayerGroup", groups = "sanity")
-	@Description("Test case #1, verify RegistVerifyBracketWithMatchTypeSingleAndMixedPlayerGroup")
+	@Test(priority = 1, description = "Verify Bracket With Match Type Single And Mixed Player Group", groups = "sanity")
+	@Description("Test case #1, Verify Bracket With Match Type Single And Mixed Player Group")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #1, verifyBracketWithMatchTypeSingleAndMixedPlayerGroup")
+	@Story("Test case #1, Verify Bracket With Match Type Single And Mixed Player Group")
 	public void verifyBracketWithMatchTypeSingleAndMixedPlayerGroup() {
 		logger.info("Starting of verifyBracketWithMatchTypeSingleAndMixedPlayerGroup method");
 
@@ -63,10 +70,10 @@ public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 		logger.info("Ending of verifyBracketWithMatchTypeSingleAndMixedPlayerGroup method");
 	}
 
-	@Test(priority = 2, description = "verifyBracketWithMatchTypeSingleAndOpenPlayerGroup", groups = "sanity")
-	@Description("Test case #2, verifyBracketWithMatchTypeSingleAndOpenPlayerGroup")
+	@Test(priority = 2, description = "Verify Bracket With Match Type Single And Open Player Group", groups = "sanity")
+	@Description("Test case #2, Verify Bracket With Match Type Single And Open Player Group")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #2, verifyBracketWithMatchTypeSingleAndOpenPlayerGroup")
+	@Story("Test case #2, Verify Bracket With Match Type Single And Open Player Group")
 	public void verifyBracketWithMatchTypeSingleAndOpenPlayerGroup() {
 		logger.info("Starting of verifyBracketWithMatchTypeSingleAndOpenPlayerGroup method");
 
@@ -80,7 +87,59 @@ public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 		addBracketPage.selectOpenPlayerGroup();
 		Assert.assertTrue(addBracketPage.isSelectedPlayerGroupTypeDisplayed());
 
-		super.verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup();
+		addBracketPage.setMinimumAgeRange(testDataProp.getProperty("min.age.range"));
+		Assert.assertTrue(addBracketPage.isEnteredMinimumAgeDisplayed(testDataProp.getProperty("min.age.range")));
+
+		addBracketPage.setMaximumAgeRange(testDataProp.getProperty("max.age.range"));
+		Assert.assertTrue(addBracketPage.isEnteredMaximumAgeDisplayed(testDataProp.getProperty("max.age.range")));
+
+		addBracketPage.setMinimumRatingRange(testDataProp.getProperty("min.rating.range"));
+		Assert.assertTrue(
+				addBracketPage.isEnteredMinimumRatingRangeDisplayed(testDataProp.getProperty("min.rating.range")));
+
+		addBracketPage.setMaximumRatingRange(testDataProp.getProperty("max.rating.range"));
+		Assert.assertTrue(
+				addBracketPage.isEnteredMaximumRatingRangeDisplayed(testDataProp.getProperty("max.rating.range")));
+
+		Assert.assertTrue(addBracketPage.isAutoGenerateButtonEnabled());
+		addBracketPage.clickOnAutoGenerateButton();
+
+		addBracketPage.clickOnEventTypeDropdown();
+		Assert.assertTrue(addBracketPage.isEventTypeListContains());
+		addBracketPage.selectRoundRobinEvent();
+		Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
+
+		addBracketPage.hardWait(2);
+		addBracketPage.setRegistrationStartDate();
+
+		addBracketPage.hardWait(2);
+		seedMatchesPage.setSampleRegistrationEndDate();
+
+		addBracketPage.hardWait(2);
+		seedMatchesPage.setSampleCompitionStartDate();
+
+		addBracketPage.hardWait(2);
+		addBracketPage.setCompetitionEndDate();
+		addBracketPage.hardWait(3);
+		addBracketPage.clickOnTimeZoneDropdown();
+		addBracketPage.hardWait(3);
+		addBracketPage.clickOnNewDelhiTimeZone();
+
+		bracketMember = addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("paid.value"));
+		bracketNonMember = addBracketPage.setBracketNonClubMemberPrice(testDataProp.getProperty("paid.value"));
+
+		addBracketPage.setNumberOfTeams(testDataProp.getProperty("min.age.range"));
+		Assert.assertTrue(addBracketPage.isNumberOfTeamsCountDisplayed(testDataProp.getProperty("min.age.range")));
+
+		addBracketPage.setWaitlist(testDataProp.getProperty("number.of.courts"));
+		Assert.assertTrue(addBracketPage.isWaitListCountDisplayed(testDataProp.getProperty("number.of.courts")));
+
+		addEventPage.clickOnNextStepButton();
+
+		this.verifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
+		this.verifyPublishEventButton();
+
+		//super.verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup();
 		addEventPage.hardWait(3);
 		addEventPage.clickOnEventsTab();
 		addEventPage.clickOnRecentlyAddedEvent(eventName);
@@ -111,8 +170,59 @@ public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 		Assert.assertTrue(addBracketPage.isPlayerGroupListDisplayed());
 		addBracketPage.selectMenPlayerGroup();
 		Assert.assertTrue(addBracketPage.isSelectedPlayerGroupTypeDisplayed());
+//
+		addBracketPage.setMinimumAgeRange(testDataProp.getProperty("min.age.range"));
+		Assert.assertTrue(addBracketPage.isEnteredMinimumAgeDisplayed(testDataProp.getProperty("min.age.range")));
 
-		super.verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup();
+		addBracketPage.setMaximumAgeRange(testDataProp.getProperty("max.age.range"));
+		Assert.assertTrue(addBracketPage.isEnteredMaximumAgeDisplayed(testDataProp.getProperty("max.age.range")));
+
+		addBracketPage.setMinimumRatingRange(testDataProp.getProperty("min.rating.range"));
+		Assert.assertTrue(
+				addBracketPage.isEnteredMinimumRatingRangeDisplayed(testDataProp.getProperty("min.rating.range")));
+
+		addBracketPage.setMaximumRatingRange(testDataProp.getProperty("max.rating.range"));
+		Assert.assertTrue(
+				addBracketPage.isEnteredMaximumRatingRangeDisplayed(testDataProp.getProperty("max.rating.range")));
+
+		Assert.assertTrue(addBracketPage.isAutoGenerateButtonEnabled());
+		addBracketPage.clickOnAutoGenerateButton();
+
+		addBracketPage.clickOnEventTypeDropdown();
+		Assert.assertTrue(addBracketPage.isEventTypeListContains());
+		addBracketPage.selectRoundRobinEvent();
+		Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
+
+		addBracketPage.hardWait(2);
+		addBracketPage.setRegistrationStartDate();
+
+		addBracketPage.hardWait(2);
+		seedMatchesPage.setSampleRegistrationEndDate();
+
+		addBracketPage.hardWait(2);
+		seedMatchesPage.setSampleCompitionStartDate();
+
+		addBracketPage.hardWait(2);
+		addBracketPage.setCompetitionEndDate();
+		addBracketPage.hardWait(3);
+		addBracketPage.clickOnTimeZoneDropdown();
+		addBracketPage.hardWait(3);
+		addBracketPage.clickOnNewDelhiTimeZone();
+
+		bracketMember = addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("paid.value"));
+		bracketNonMember = addBracketPage.setBracketNonClubMemberPrice(testDataProp.getProperty("paid.value"));
+
+		addBracketPage.setNumberOfTeams(testDataProp.getProperty("min.age.range"));
+		Assert.assertTrue(addBracketPage.isNumberOfTeamsCountDisplayed(testDataProp.getProperty("min.age.range")));
+
+		addBracketPage.setWaitlist(testDataProp.getProperty("number.of.courts"));
+		Assert.assertTrue(addBracketPage.isWaitListCountDisplayed(testDataProp.getProperty("number.of.courts")));
+
+		addEventPage.clickOnNextStepButton();
+
+		this.verifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
+		this.verifyPublishEventButton();
+		//super.verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup();
 		addEventPage.hardWait(3);
 		addEventPage.clickOnEventsTab();
 		addEventPage.clickOnRecentlyAddedEvent(eventName);
@@ -143,8 +253,59 @@ public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 		Assert.assertTrue(addBracketPage.isPlayerGroupListDisplayed());
 		addBracketPage.selectWomenPlayerGroup();
 		Assert.assertTrue(addBracketPage.isSelectedPlayerGroupTypeDisplayed());
+//
+		addBracketPage.setMinimumAgeRange(testDataProp.getProperty("min.age.range"));
+		Assert.assertTrue(addBracketPage.isEnteredMinimumAgeDisplayed(testDataProp.getProperty("min.age.range")));
 
-		super.verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup();
+		addBracketPage.setMaximumAgeRange(testDataProp.getProperty("max.age.range"));
+		Assert.assertTrue(addBracketPage.isEnteredMaximumAgeDisplayed(testDataProp.getProperty("max.age.range")));
+
+		addBracketPage.setMinimumRatingRange(testDataProp.getProperty("min.rating.range"));
+		Assert.assertTrue(
+				addBracketPage.isEnteredMinimumRatingRangeDisplayed(testDataProp.getProperty("min.rating.range")));
+
+		addBracketPage.setMaximumRatingRange(testDataProp.getProperty("max.rating.range"));
+		Assert.assertTrue(
+				addBracketPage.isEnteredMaximumRatingRangeDisplayed(testDataProp.getProperty("max.rating.range")));
+
+		Assert.assertTrue(addBracketPage.isAutoGenerateButtonEnabled());
+		addBracketPage.clickOnAutoGenerateButton();
+
+		addBracketPage.clickOnEventTypeDropdown();
+		Assert.assertTrue(addBracketPage.isEventTypeListContains());
+		addBracketPage.selectRoundRobinEvent();
+		Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
+
+		addBracketPage.hardWait(2);
+		addBracketPage.setRegistrationStartDate();
+
+		addBracketPage.hardWait(2);
+		seedMatchesPage.setSampleRegistrationEndDate();
+
+		addBracketPage.hardWait(2);
+		seedMatchesPage.setSampleCompitionStartDate();
+
+		addBracketPage.hardWait(2);
+		addBracketPage.setCompetitionEndDate();
+		addBracketPage.hardWait(3);
+		addBracketPage.clickOnTimeZoneDropdown();
+		addBracketPage.hardWait(3);
+		addBracketPage.clickOnNewDelhiTimeZone();
+
+		bracketMember = addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("paid.value"));
+		bracketNonMember = addBracketPage.setBracketNonClubMemberPrice(testDataProp.getProperty("paid.value"));
+
+		addBracketPage.setNumberOfTeams(testDataProp.getProperty("min.age.range"));
+		Assert.assertTrue(addBracketPage.isNumberOfTeamsCountDisplayed(testDataProp.getProperty("min.age.range")));
+
+		addBracketPage.setWaitlist(testDataProp.getProperty("number.of.courts"));
+		Assert.assertTrue(addBracketPage.isWaitListCountDisplayed(testDataProp.getProperty("number.of.courts")));
+
+		addEventPage.clickOnNextStepButton();
+
+		this.verifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
+		this.verifyPublishEventButton();
+		//super.verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup();
 		addEventPage.hardWait(3);
 		addEventPage.clickOnEventsTab();
 		addEventPage.clickOnRecentlyAddedEvent(eventName);
@@ -175,8 +336,59 @@ public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 		Assert.assertTrue(addBracketPage.isPlayerGroupListDisplayed());
 		addBracketPage.selectMixedPlayerGroup();
 		Assert.assertTrue(addBracketPage.isSelectedPlayerGroupTypeDisplayed());
+//
+		addBracketPage.setMinimumAgeRange(testDataProp.getProperty("min.age.range"));
+		Assert.assertTrue(addBracketPage.isEnteredMinimumAgeDisplayed(testDataProp.getProperty("min.age.range")));
 
-		super.verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup();
+		addBracketPage.setMaximumAgeRange(testDataProp.getProperty("max.age.range"));
+		Assert.assertTrue(addBracketPage.isEnteredMaximumAgeDisplayed(testDataProp.getProperty("max.age.range")));
+
+		addBracketPage.setMinimumRatingRange(testDataProp.getProperty("min.rating.range"));
+		Assert.assertTrue(
+				addBracketPage.isEnteredMinimumRatingRangeDisplayed(testDataProp.getProperty("min.rating.range")));
+
+		addBracketPage.setMaximumRatingRange(testDataProp.getProperty("max.rating.range"));
+		Assert.assertTrue(
+				addBracketPage.isEnteredMaximumRatingRangeDisplayed(testDataProp.getProperty("max.rating.range")));
+
+		Assert.assertTrue(addBracketPage.isAutoGenerateButtonEnabled());
+		addBracketPage.clickOnAutoGenerateButton();
+
+		addBracketPage.clickOnEventTypeDropdown();
+		Assert.assertTrue(addBracketPage.isEventTypeListContains());
+		addBracketPage.selectRoundRobinEvent();
+		Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
+
+		addBracketPage.hardWait(2);
+		addBracketPage.setRegistrationStartDate();
+
+		addBracketPage.hardWait(2);
+		seedMatchesPage.setSampleRegistrationEndDate();
+
+		addBracketPage.hardWait(2);
+		seedMatchesPage.setSampleCompitionStartDate();
+
+		addBracketPage.hardWait(2);
+		addBracketPage.setCompetitionEndDate();
+		addBracketPage.hardWait(3);
+		addBracketPage.clickOnTimeZoneDropdown();
+		addBracketPage.hardWait(3);
+		addBracketPage.clickOnNewDelhiTimeZone();
+
+		bracketMember = addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("paid.value"));
+		bracketNonMember = addBracketPage.setBracketNonClubMemberPrice(testDataProp.getProperty("paid.value"));
+
+		addBracketPage.setNumberOfTeams(testDataProp.getProperty("min.age.range"));
+		Assert.assertTrue(addBracketPage.isNumberOfTeamsCountDisplayed(testDataProp.getProperty("min.age.range")));
+
+		addBracketPage.setWaitlist(testDataProp.getProperty("number.of.courts"));
+		Assert.assertTrue(addBracketPage.isWaitListCountDisplayed(testDataProp.getProperty("number.of.courts")));
+
+		addEventPage.clickOnNextStepButton();
+
+		this.verifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
+		this.verifyPublishEventButton();
+		//super.verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup();
 		addEventPage.hardWait(3);
 		addEventPage.clickOnEventsTab();
 		addEventPage.clickOnRecentlyAddedEvent(eventName);
@@ -207,8 +419,59 @@ public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 		Assert.assertTrue(addBracketPage.isPlayerGroupListDisplayed());
 		addBracketPage.selectOpenPlayerGroup();
 		Assert.assertTrue(addBracketPage.isSelectedPlayerGroupTypeDisplayed());
+//
+		addBracketPage.setMinimumAgeRange(testDataProp.getProperty("min.age.range"));
+		Assert.assertTrue(addBracketPage.isEnteredMinimumAgeDisplayed(testDataProp.getProperty("min.age.range")));
 
-		super.verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup();
+		addBracketPage.setMaximumAgeRange(testDataProp.getProperty("max.age.range"));
+		Assert.assertTrue(addBracketPage.isEnteredMaximumAgeDisplayed(testDataProp.getProperty("max.age.range")));
+
+		addBracketPage.setMinimumRatingRange(testDataProp.getProperty("min.rating.range"));
+		Assert.assertTrue(
+				addBracketPage.isEnteredMinimumRatingRangeDisplayed(testDataProp.getProperty("min.rating.range")));
+
+		addBracketPage.setMaximumRatingRange(testDataProp.getProperty("max.rating.range"));
+		Assert.assertTrue(
+				addBracketPage.isEnteredMaximumRatingRangeDisplayed(testDataProp.getProperty("max.rating.range")));
+
+		Assert.assertTrue(addBracketPage.isAutoGenerateButtonEnabled());
+		addBracketPage.clickOnAutoGenerateButton();
+
+		addBracketPage.clickOnEventTypeDropdown();
+		Assert.assertTrue(addBracketPage.isEventTypeListContains());
+		addBracketPage.selectRoundRobinEvent();
+		Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
+
+		addBracketPage.hardWait(2);
+		addBracketPage.setRegistrationStartDate();
+
+		addBracketPage.hardWait(2);
+		seedMatchesPage.setSampleRegistrationEndDate();
+
+		addBracketPage.hardWait(2);
+		seedMatchesPage.setSampleCompitionStartDate();
+
+		addBracketPage.hardWait(2);
+		addBracketPage.setCompetitionEndDate();
+		addBracketPage.hardWait(3);
+		addBracketPage.clickOnTimeZoneDropdown();
+		addBracketPage.hardWait(3);
+		addBracketPage.clickOnNewDelhiTimeZone();
+
+		bracketMember = addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("paid.value"));
+		bracketNonMember = addBracketPage.setBracketNonClubMemberPrice(testDataProp.getProperty("paid.value"));
+
+		addBracketPage.setNumberOfTeams(testDataProp.getProperty("min.age.range"));
+		Assert.assertTrue(addBracketPage.isNumberOfTeamsCountDisplayed(testDataProp.getProperty("min.age.range")));
+
+		addBracketPage.setWaitlist(testDataProp.getProperty("number.of.courts"));
+		Assert.assertTrue(addBracketPage.isWaitListCountDisplayed(testDataProp.getProperty("number.of.courts")));
+
+		addEventPage.clickOnNextStepButton();
+
+		this.verifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
+		this.verifyPublishEventButton();
+		//super.verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup();
 		addEventPage.hardWait(3);
 		addEventPage.clickOnEventsTab();
 		addEventPage.clickOnRecentlyAddedEvent(eventName);
@@ -239,8 +502,59 @@ public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 		Assert.assertTrue(addBracketPage.isPlayerGroupListDisplayed());
 		addBracketPage.selectMenPlayerGroup();
 		Assert.assertTrue(addBracketPage.isSelectedPlayerGroupTypeDisplayed());
+//
+		addBracketPage.setMinimumAgeRange(testDataProp.getProperty("min.age.range"));
+		Assert.assertTrue(addBracketPage.isEnteredMinimumAgeDisplayed(testDataProp.getProperty("min.age.range")));
 
-		super.verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup();
+		addBracketPage.setMaximumAgeRange(testDataProp.getProperty("max.age.range"));
+		Assert.assertTrue(addBracketPage.isEnteredMaximumAgeDisplayed(testDataProp.getProperty("max.age.range")));
+
+		addBracketPage.setMinimumRatingRange(testDataProp.getProperty("min.rating.range"));
+		Assert.assertTrue(
+				addBracketPage.isEnteredMinimumRatingRangeDisplayed(testDataProp.getProperty("min.rating.range")));
+
+		addBracketPage.setMaximumRatingRange(testDataProp.getProperty("max.rating.range"));
+		Assert.assertTrue(
+				addBracketPage.isEnteredMaximumRatingRangeDisplayed(testDataProp.getProperty("max.rating.range")));
+
+		Assert.assertTrue(addBracketPage.isAutoGenerateButtonEnabled());
+		addBracketPage.clickOnAutoGenerateButton();
+
+		addBracketPage.clickOnEventTypeDropdown();
+		Assert.assertTrue(addBracketPage.isEventTypeListContains());
+		addBracketPage.selectRoundRobinEvent();
+		Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
+
+		addBracketPage.hardWait(2);
+		addBracketPage.setRegistrationStartDate();
+
+		addBracketPage.hardWait(2);
+		seedMatchesPage.setSampleRegistrationEndDate();
+
+		addBracketPage.hardWait(2);
+		seedMatchesPage.setSampleCompitionStartDate();
+
+		addBracketPage.hardWait(2);
+		addBracketPage.setCompetitionEndDate();
+		addBracketPage.hardWait(3);
+		addBracketPage.clickOnTimeZoneDropdown();
+		addBracketPage.hardWait(3);
+		addBracketPage.clickOnNewDelhiTimeZone();
+
+		bracketMember = addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("paid.value"));
+		bracketNonMember = addBracketPage.setBracketNonClubMemberPrice(testDataProp.getProperty("paid.value"));
+
+		addBracketPage.setNumberOfTeams(testDataProp.getProperty("min.age.range"));
+		Assert.assertTrue(addBracketPage.isNumberOfTeamsCountDisplayed(testDataProp.getProperty("min.age.range")));
+
+		addBracketPage.setWaitlist(testDataProp.getProperty("number.of.courts"));
+		Assert.assertTrue(addBracketPage.isWaitListCountDisplayed(testDataProp.getProperty("number.of.courts")));
+
+		addEventPage.clickOnNextStepButton();
+
+		this.verifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
+		this.verifyPublishEventButton();
+		//super.verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup();
 
 		addEventPage.hardWait(3);
 		addEventPage.clickOnEventsTab();
@@ -272,8 +586,59 @@ public class CombinationOfMatchTypeAndPlayerGroupTest extends CommonBaseTest {
 		Assert.assertTrue(addBracketPage.isPlayerGroupListDisplayed());
 		addBracketPage.selectWomenPlayerGroup();
 		Assert.assertTrue(addBracketPage.isSelectedPlayerGroupTypeDisplayed());
+//
+		addBracketPage.setMinimumAgeRange(testDataProp.getProperty("min.age.range"));
+		Assert.assertTrue(addBracketPage.isEnteredMinimumAgeDisplayed(testDataProp.getProperty("min.age.range")));
 
-		super.verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup();
+		addBracketPage.setMaximumAgeRange(testDataProp.getProperty("max.age.range"));
+		Assert.assertTrue(addBracketPage.isEnteredMaximumAgeDisplayed(testDataProp.getProperty("max.age.range")));
+
+		addBracketPage.setMinimumRatingRange(testDataProp.getProperty("min.rating.range"));
+		Assert.assertTrue(
+				addBracketPage.isEnteredMinimumRatingRangeDisplayed(testDataProp.getProperty("min.rating.range")));
+
+		addBracketPage.setMaximumRatingRange(testDataProp.getProperty("max.rating.range"));
+		Assert.assertTrue(
+				addBracketPage.isEnteredMaximumRatingRangeDisplayed(testDataProp.getProperty("max.rating.range")));
+
+		Assert.assertTrue(addBracketPage.isAutoGenerateButtonEnabled());
+		addBracketPage.clickOnAutoGenerateButton();
+
+		addBracketPage.clickOnEventTypeDropdown();
+		Assert.assertTrue(addBracketPage.isEventTypeListContains());
+		addBracketPage.selectRoundRobinEvent();
+		Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
+
+		addBracketPage.hardWait(2);
+		addBracketPage.setRegistrationStartDate();
+
+		addBracketPage.hardWait(2);
+		seedMatchesPage.setSampleRegistrationEndDate();
+
+		addBracketPage.hardWait(2);
+		seedMatchesPage.setSampleCompitionStartDate();
+
+		addBracketPage.hardWait(2);
+		addBracketPage.setCompetitionEndDate();
+		addBracketPage.hardWait(3);
+		addBracketPage.clickOnTimeZoneDropdown();
+		addBracketPage.hardWait(3);
+		addBracketPage.clickOnNewDelhiTimeZone();
+
+		bracketMember = addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("paid.value"));
+		bracketNonMember = addBracketPage.setBracketNonClubMemberPrice(testDataProp.getProperty("paid.value"));
+
+		addBracketPage.setNumberOfTeams(testDataProp.getProperty("min.age.range"));
+		Assert.assertTrue(addBracketPage.isNumberOfTeamsCountDisplayed(testDataProp.getProperty("min.age.range")));
+
+		addBracketPage.setWaitlist(testDataProp.getProperty("number.of.courts"));
+		Assert.assertTrue(addBracketPage.isWaitListCountDisplayed(testDataProp.getProperty("number.of.courts")));
+
+		addEventPage.clickOnNextStepButton();
+
+		this.verifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
+		this.verifyPublishEventButton();
+		//super.verifyBracketWithoutEnteringDetailsIntoMatchTypeAndPlayerGroup();
 
 		addEventPage.hardWait(3);
 		addEventPage.clickOnEventsTab();

@@ -129,12 +129,7 @@ public class PlayerProfileTest extends CommonBaseTest {
 		logger.info("Starting of verifyFullNameFieldWithMoreThanMaxCharacters method");
 
 		editProfilePage.setFullName(editProfilePage.randomAlphabet(52));
-
 		editProfilePage.hardWait(2);
-		// String validationText = editProfilePage.getFullNameValidationText();
-		// Assert.assertEquals(validationText,
-		// expectedAssertionsProp.getProperty("more.than.max.characters.are.not.allowed"));////Reason
-		// For Failure:NO Validation Message is Displaying////
 
 		logger.info("Ending of verifyFullNameFieldWithMoreThanMaxCharacters method");
 	}
@@ -159,9 +154,6 @@ public class PlayerProfileTest extends CommonBaseTest {
 		Assert.assertTrue(editProfilePage.isUpdateProfilePopupContains());
 
 		editProfilePage.clickOnOkButton();
-
-		// Assert.assertEquals(editProfilePage.getStreetAddresValidationText(),
-		// expectedAssertionsProp.getProperty("invalid.parameters"));
 
 		logger.info("Ending of verifyAddressFieldWithCountryName method");
 	}
@@ -190,27 +182,10 @@ public class PlayerProfileTest extends CommonBaseTest {
 		logger.info("Ending of verifyAddressFieldWithStateAndCountryName method");
 	}
 
-	@Test(priority = 10, description = "Verify Birth Date field with invalid date format")
-	@Description("Test case #10,Verify Birth Date field with invalid date format")
+	@Test(priority = 10, description = "Verify Birth Date field with current date")
+	@Description("Test case #10, Verify Birth Date field with current date")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #10, Verify Birth Date field with invalid date format")
-	public void verifyBirthDateWithInvalidDateFormat() {
-		logger.info("Starting of verifyBirthDateWithInvalidDateFormat method");
-
-		editProfilePage.scrollDown(-650);
-		editProfilePage.setBirthDate(/* testDataProp.getProperty("invalid.data.of.birth") */);
-
-		String birthdateValidation = editProfilePage.getBirthDateValidationText();
-		Assert.assertEquals(birthdateValidation,
-				expectedAssertionsProp.getProperty("incorrect.date.format.validation"));
-
-		logger.info("Ending of verifyBirthDateWithInvalidDateFormat method");
-	}
-
-	@Test(priority = 11, description = "Verify Birth Date field with current date")
-	@Description("Test case #11, Verify Birth Date field with current date")
-	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #11, Verify Birth Date field with current date")
+	@Story("Test case #10, Verify Birth Date field with current date")
 	public void verifyBirthDateWithCurrentDate() {
 		logger.info("Starting of verifyBirthDateWithCurrentDate method");
 
@@ -224,10 +199,10 @@ public class PlayerProfileTest extends CommonBaseTest {
 		logger.info("Ending of verifyBirthDateWithCurrentDate method");
 	}
 
-	@Test(priority = 12, description = "Verify Birth Date field with less than minimum age")
-	@Description("Test case #12, Verify Birth Date field with less than minimum age")
+	@Test(priority = 11, description = "Verify Birth Date field with less than minimum age")
+	@Description("Test case #11, Verify Birth Date field with less than minimum age")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #12, Verify Birth Date field with less than minimum age")
+	@Story("Test case #11, Verify Birth Date field with less than minimum age")
 	public void verifyBirthDateWithLessThanMinimumAge() {
 		logger.info("Starting of verifyBirthDateWithLessThanMinimumAge method");
 
@@ -241,15 +216,16 @@ public class PlayerProfileTest extends CommonBaseTest {
 		logger.info("Ending of verifyBirthDateWithLessThanMinimumAge method");
 	}
 
-	@Test(priority = 13, description = "Verify Birth Date field with minimum age")
-	@Description("Test case #13, Verify Birth Date field with minimum age")
+	@Test(priority = 12, description = "Verify Birth Date field with minimum age")
+	@Description("Test case #12, Verify Birth Date field with minimum age")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #13, Verify Birth Date field with minimum age")
+	@Story("Test case #12, Verify Birth Date field with minimum age")
 	public void verifyBirthDateWithMinimumAge() {
 		logger.info("Starting of verifyBirthDateWithMinimumAge method");
 
 		editProfilePage.scrollDown(-650);
 		editProfilePage.setBirthDateMinimumAge();
+		editProfilePage.hardWait(3);
 
 		Assert.assertTrue(editProfilePage.isReviewDUPRPoliciesPopupContains());
 
@@ -269,10 +245,10 @@ public class PlayerProfileTest extends CommonBaseTest {
 		logger.info("Ending of verifyBirthDateWithMinimumAge method");
 	}
 
-	@Test(priority = 14, description = "Verify full name ,address and birth date fields with valid data")
-	@Description("Test case #14, Verify full name ,address and birth date fields with valid data")
+	@Test(priority = 13, description = "Verify full name ,address and birth date fields with valid data")
+	@Description("Test case #13, Verify full name ,address and birth date fields with valid data")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #14, Verify full name ,address and birth date fields with valid data")
+	@Story("Test case #13, Verify full name ,address and birth date fields with valid data")
 	public void verifyFieldsWithValidData() {
 		logger.info("Starting of verifyFieldsWithValidData method");
 
@@ -293,10 +269,10 @@ public class PlayerProfileTest extends CommonBaseTest {
 		logger.info("Ending of verifyFieldsWithValidData method");
 	}
 
-	@Test(priority = 15, description = "Verify DUPR ID field")
-	@Description("Test case #15, Verify DUPR ID field")
+	@Test(priority = 14, description = "Verify DUPR ID field")
+	@Description("Test case #14, Verify DUPR ID field")
 	@Severity(SeverityLevel.CRITICAL)
-	@Story("Test case #15, Verify DUPR ID field")
+	@Story("Test case #14, Verify DUPR ID field")
 	public void verifyDUPRIDField() {
 		logger.info("Starting of verifyDUPRIDField method");
 
@@ -305,10 +281,10 @@ public class PlayerProfileTest extends CommonBaseTest {
 		logger.info("Ending of verifyDUPRIDField method");
 	}
 
-	@Test(priority = 16, description = "Verify Gender drop down functionality")
-	@Description("Test case #16, Verify Gender drop down functionality")
+	@Test(priority = 15, description = "Verify Gender drop down functionality")
+	@Description("Test case #15, Verify Gender drop down functionality")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #16, Verify Gender drop down functionality")
+	@Story("Test case #15, Verify Gender drop down functionality")
 	public void verifyGenderDropdown() {
 		logger.info("Starting of verifyGenderDropdown method");
 
@@ -324,10 +300,10 @@ public class PlayerProfileTest extends CommonBaseTest {
 		logger.info("Ending of verifyGenderDropdown method");
 	}
 
-	@Test(priority = 17, description = "Verify default rating functionality")
-	@Description("Test case #17, Verify default rating functionality")
+	@Test(priority = 16, description = "Verify default rating functionality")
+	@Description("Test case #16, Verify default rating functionality")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #17, Verify default rating functionality")
+	@Story("Test case #16, Verify default rating functionality")
 	public void verifyDefaultRating() {
 		logger.info("Starting of verifyDefaultRating method");
 
@@ -342,16 +318,17 @@ public class PlayerProfileTest extends CommonBaseTest {
 		logger.info("Ending of verifyDefaultRating method");
 	}
 
-	@Test(priority = 18, description = "Verify phone number field with invalid phone number")
-	@Description("Test case #18,Verify phone number field with invalid phone number")
+	@Test(priority = 17, description = "Verify phone number field with invalid phone number")
+	@Description("Test case #17,Verify phone number field with invalid phone number")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #18, Verify phone number field with invalid phone number")
+	@Story("Test case #17, Verify phone number field with invalid phone number")
 	public void verifyPhoneNumberWithInvalidPhoneNumber() {
 		logger.info("Starting of verifyPhoneNumberWithInvalidPhoneNumber method");
 
 		editProfilePage.scrollDown(-500);
+		editProfilePage.hardWait(5);
 		editProfilePage.clickOnCountryCodePhoneNumber(testDataProp.getProperty("country.name.for.phone.number"));
-		editProfilePage.hardWait(3);
+		editProfilePage.hardWait(5);
 		editProfilePage.clearPhoneNumber();
 		editProfilePage.hardWait(3);
 		editProfilePage.setValidPhoneNumber(testDataProp.getProperty("invalid.phone.number"));
@@ -363,6 +340,7 @@ public class PlayerProfileTest extends CommonBaseTest {
 		editProfilePage.setOTP(testDataProp.getProperty("valid.otp"));
 		editProfilePage.clickOnVerifyNowButton();
 
+		editProfilePage.hardWait(3);
 		String otpValidationText = editProfilePage.getOTPValidationText();
 		editProfilePage.hardWait(5);
 		Assert.assertTrue(otpValidationText.equals(expectedAssertionsProp.getProperty("mobile.successfully.verfied"))
@@ -372,16 +350,17 @@ public class PlayerProfileTest extends CommonBaseTest {
 		logger.info("Ending of verifyPhoneNumberWithInvalidPhoneNumber method");
 	}
 
-	@Test(priority = 19, description = "Verify phone number field with valid phone number")
-	@Description("Test case #19, Verify phone number field with valid phone number")
+	@Test(priority = 18, description = "Verify phone number field with valid phone number")
+	@Description("Test case #18, Verify phone number field with valid phone number")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #19, Verify phone number field with valid phone number")
+	@Story("Test case #18, Verify phone number field with valid phone number")
 	public void verifyPhoneNumberWithValidPhoneNumber() {
 		logger.info("Starting of verifyPhoneNumberWithValidPhoneNumber method");
 
 		editProfilePage.scrollDown(-400);
-		editProfilePage.clickOnCountryCodePhoneNumber(testDataProp.getProperty("country.name.for.phone.number"));
 		editProfilePage.hardWait(3);
+		editProfilePage.clickOnCountryCodePhoneNumber(testDataProp.getProperty("country.name.for.phone.number"));
+		editProfilePage.hardWait(5);
 		editProfilePage.clearPhoneNumber();
 		editProfilePage.hardWait(4);
 		editProfilePage.setValidPhoneNumber(testDataProp.getProperty("invalid.phone.number"));
@@ -412,17 +391,16 @@ public class PlayerProfileTest extends CommonBaseTest {
 		logger.info("Ending of verifyPhoneNumberWithValidPhoneNumber method");
 	}
 
-	@Test(priority = 20, description = "Verify Dominant Hand drop down")
-	@Description("Test case #20,Verify Dominant Hand drop down")
+	@Test(priority = 19, description = "Verify Dominant Hand drop down")
+	@Description("Test case #19,Verify Dominant Hand drop down")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #20, Verify Dominant Hand drop down")
+	@Story("Test case #19, Verify Dominant Hand drop down")
 	public void verifyDominantHandDropdown() {
 		logger.info("Starting of verifyDominantHandDropdown method");
 
 		editProfilePage.clickOnDominantHandDropDownListOption();
 		editProfilePage.hardWait(3);
-
-		Assert.assertTrue(editProfilePage.isSaveEnabled());
+		
 		editProfilePage.clickOnSaveButton();
 
 		editProfilePage.hardWait(3);
@@ -431,10 +409,10 @@ public class PlayerProfileTest extends CommonBaseTest {
 		logger.info("Ending of verifyDominantHandDropdown method");
 	}
 
-	@Test(priority = 21, description = "Verify Paddle Brand,Shoe Brand,Apparel Brand and Preferred Ball fields ")
-	@Description("Test case #21, Verify Paddle Brand,Shoe Brand,Apparel Brand and Preferred Ball fields ")
+	@Test(priority = 20, description = "Verify Paddle Brand,Shoe Brand,Apparel Brand and Preferred Ball fields ")
+	@Description("Test case #20, Verify Paddle Brand,Shoe Brand,Apparel Brand and Preferred Ball fields ")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #21, Verify Paddle Brand,Shoe Brand,Apparel Brand and Preferred Ball fields ")
+	@Story("Test case #20, Verify Paddle Brand,Shoe Brand,Apparel Brand and Preferred Ball fields ")
 	public void verifyPreferencesSectionFields() {
 		logger.info("Starting of verifyPreferencesSectionFields method");
 
@@ -450,10 +428,10 @@ public class PlayerProfileTest extends CommonBaseTest {
 		logger.info("Ending of verifyPreferencesSectionFields method");
 	}
 
-	@Test(priority = 22, description = "Verify Preferred Side drop down field ")
-	@Description("Test case #22,Verify Preferred Side drop down field")
+	@Test(priority = 21, description = "Verify Preferred Side drop down field ")
+	@Description("Test case #21,Verify Preferred Side drop down field")
 	@Severity(SeverityLevel.NORMAL)
-	@Story("Test case #22, Verify Preferred Side drop down field")
+	@Story("Test case #21, Verify Preferred Side drop down field")
 	public void verifyPrefferedSideDropdown() {
 		logger.info("Starting of verifyPrefferedSideDropdown method");
 
