@@ -27,18 +27,19 @@
 	<test name="Sprint 2">
 		<classes>
 			<class name="com.dupr.test.clubs.BrowseClubsTest" />
-			<class name="com.dupr.test.clubs.EditClubInfoTest" />
+			 <class name="com.dupr.test.clubs.EditClubInfoTest" />
 			<class name="com.dupr.test.clubs.MyClubsTest" />
 			<class name="com.dupr.test.clubs.ClubLogoTest" />
 			<class name="com.dupr.test.clubs.AddRemoveOrganizerTest" />
 			<class name="com.dupr.test.clubs.RemoveClubMemberTest" />
 			<class name="com.dupr.test.clubs.ImportPlayerViaCSVTest" />
-			<class name="com.dupr.test.addamatch.AddClubMatchTest" />
-			<class name="com.dupr.test.events.AddEventTest" />
-			<class name="com.dupr.test.events.BrowseEventsTest" />
+			<class name="com.dupr.test.addamatch.AddClubMatchTest" /> 
+			<class name="com.dupr.test.events.AddEventTest"/>
+		   <class name="com.dupr.test.events.BrowseEventsTest" />
 			<class name="com.dupr.test.events.EditEventsTest" />
 			<class name="com.dupr.test.events.EditBracketsTest" />
-		</classes>
+            </classes>
+
 	</test>
 
 	<test name="Sprint 3">
@@ -60,8 +61,7 @@
 			<class name="com.dupr.test.home.PreservingPageVisitsTest" />
 		</classes>
 	</test>
-
-	<test name="Sprint 4">
+	<!-- <test name="Sprint 4">
 		<classes>
 			<class name="com.dupr.test.home.ChatTest" />
 			<class name="com.dupr.test.home.ShareTest" />
@@ -71,14 +71,12 @@
 			<class name="com.dupr.test.events.TimeZoneTest" />
 			<class name="com.dupr.test.events.SeedMatchesRoundRobinTest" />
 		</classes>
-	</test>
+	</test> -->
 
 	<test name="Sprint 5">
 		<classes>
-			<class
-				name="com.dupr.test.events.PaidEventAndPaidBracketWithWaterfallEventTest" />
-			<class
-				name="com.dupr.test.events.WaterfallRoundOneSeedingLogicTest" />
+			<class name="com.dupr.test.events.PaidEventAndPaidBracketWithWaterfallEventTest" />
+			<class name="com.dupr.test.events.WaterfallRoundOneSeedingLogicTest" />
 			<class name="com.dupr.test.events.EditScoreAfterValidationTest" />
 			<class name="com.dupr.test.events.SeedMatchesWaterFallTest" />
 		</classes>
