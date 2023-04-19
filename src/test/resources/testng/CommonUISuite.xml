@@ -61,7 +61,7 @@
 			<class name="com.dupr.test.home.PreservingPageVisitsTest" />
 		</classes>
 	</test> -->
-	<!-- <test name="Sprint 4">
+<!-- 	 <test name="Sprint 4">
 		<classes>
 			<class name="com.dupr.test.home.ChatTest" />
 			<class name="com.dupr.test.home.ShareTest" />
@@ -71,14 +71,14 @@
 			<class name="com.dupr.test.events.TimeZoneTest" />
 			<class name="com.dupr.test.events.SeedMatchesRoundRobinTest" />
 		</classes>
-	</test> -->
+	</test>
 
-	<!-- <test name="Sprint 5">
+	<test name="Sprint 5">
 		<classes>
 			<class name="com.dupr.test.events.PaidEventAndPaidBracketWithWaterfallEventTest" />
 			<class name="com.dupr.test.events.WaterfallRoundOneSeedingLogicTest" />
 			<class name="com.dupr.test.events.EditScoreAfterValidationTest" />
 			<class name="com.dupr.test.events.SeedMatchesWaterFallTest" />
 		</classes>
-	</test> -->
-</suite>
+	</test>
+ --></suite>
