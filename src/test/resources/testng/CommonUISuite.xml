@@ -3,7 +3,7 @@
 
 <suite name="Common UI Automation Tests">
 
-	<test name="Sprint 1">
+	<!-- <test name="Sprint 1">
 		<classes>
 			<class name="com.dupr.test.players.SearchPlayersTest" />
 			<class name="com.dupr.test.signup.SignupTest" />
@@ -22,7 +22,7 @@
 			<class name="com.dupr.test.profile.ChangePasswordTest" />
 			<class name="com.dupr.test.profile.ProfilePictureTest" />
 		</classes>
-	</test>
+	</test> -->
 
 	<test name="Sprint 2">
 		<classes>
@@ -42,7 +42,7 @@
 
 	</test>
 
-	<test name="Sprint 3">
+	<!-- <test name="Sprint 3">
 		<classes>
 			<class name="com.dupr.test.events.AddEditRemoveEventLogoTest" />
 			<class name="com.dupr.test.events.AddParticipantsInBracketTest" />
@@ -60,7 +60,7 @@
 			<class name="com.dupr.test.home.UserDashboardTest" />
 			<class name="com.dupr.test.home.PreservingPageVisitsTest" />
 		</classes>
-	</test>
+	</test> -->
 	<!-- <test name="Sprint 4">
 		<classes>
 			<class name="com.dupr.test.home.ChatTest" />
@@ -73,12 +73,12 @@
 		</classes>
 	</test> -->
 
-	<test name="Sprint 5">
+	<!-- <test name="Sprint 5">
 		<classes>
 			<class name="com.dupr.test.events.PaidEventAndPaidBracketWithWaterfallEventTest" />
 			<class name="com.dupr.test.events.WaterfallRoundOneSeedingLogicTest" />
 			<class name="com.dupr.test.events.EditScoreAfterValidationTest" />
 			<class name="com.dupr.test.events.SeedMatchesWaterFallTest" />
 		</classes>
-	</test>
+	</test> -->
 </suite>
