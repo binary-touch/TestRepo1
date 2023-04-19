@@ -1210,44 +1210,42 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			clickOnWebElement(txtBoxRegistrationEndDate);
 		}
+		
+		System.out.println("*** Clicked on Registration End Date field***");
 
 		int date = this.getCurrentDate();
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
 
-		hardWait(2);
+		hardWait(4);
 		this.clickOnCurrentDate(date);
-		System.out.println("*** Clicked on Date***");
+		System.out.println("*** Clicked on Date ***");
 
-		hardWait(2);
+		hardWait(3);
 		this.clickOnCurrentTime(meridiem);
 		System.out.println("*** Clicked on Meridiem ***");
-
-		hardWait(2);
-
+		hardWait(3);
 		try {
-			System.out.println(driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']")));
-			WebElement currentHourValue = driver
-					.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']"));
+			try {
+				System.out.println(driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']")));
+				WebElement currentHourValue = driver
+						.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']"));
 
-			this.hardWait(2);
-			Actions action = new Actions(driver);
-			action.moveToElement(currentHourValue).contextClick(currentHourValue).build().perform();
+				this.hardWait(2);
+				Actions action = new Actions(driver);
+				action.moveToElement(currentHourValue).contextClick(currentHourValue).build().perform();
+			} catch (Exception e) {
+				clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
+			}
+			System.out.println("*** Clicked on Hour ***");
+			clickUsingActionsClass(btnDefaultTimeInMinutes);
+			System.out.println("*** Clicked on Minutes ***");
+			hardWait(2);
 		} catch (Exception e) {
-			clickOnWebElement(driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']")));
+			System.out.println();
+			clickOnElementUsingActionClass(btnTimeInMinutes);
 		}
 
-		System.out.println("*** Clicked on Hour ***");
-
-		hardWait(2);
-		try {
-			clickUsingActionsClass(btnTimeInMinutes);
-		} catch (Exception e) {
-			clickOnWebElement(btnTimeInMinutes);
-		}
-		System.out.println("*** Clicked on Minutes ***");
-
-		hardWait(2);
 		try {
 			hardWait(2);
 			if (btnOK.isDisplayed() == true) {
@@ -1327,37 +1325,41 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			clickOnWebElement(txtBoxCompetitionEndDate);
 		}
+		
+		System.out.println("*** Clicked on Competition End Date field***");
 
 		int date = this.getCurrentDate();
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
 
+		hardWait(4);
 		this.clickOnCurrentDate(date);
 		System.out.println("*** Clicked on Date ***");
 
+		hardWait(3);
 		this.clickOnCurrentTime(meridiem);
 		System.out.println("*** Clicked on Meridiem ***");
-
+		hardWait(3);
 		try {
-			System.out.println(driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']")));
-			WebElement currentHourValue = driver
-					.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']"));
+			try {
+				System.out.println(driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']")));
+				WebElement currentHourValue = driver
+						.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']"));
 
-			this.hardWait(2);
-			Actions action = new Actions(driver);
-			action.moveToElement(currentHourValue).contextClick(currentHourValue).build().perform();
+				this.hardWait(2);
+				Actions action = new Actions(driver);
+				action.moveToElement(currentHourValue).contextClick(currentHourValue).build().perform();
+			} catch (Exception e) {
+				clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
+			}
+			System.out.println("*** Clicked on Hour ***");
+			clickUsingActionsClass(btnDefaultTimeInMinutes);
+			System.out.println("*** Clicked on Minutes ***");
+			hardWait(2);
 		} catch (Exception e) {
-			clickOnWebElement(driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']")));
+			System.out.println();
+			clickOnElementUsingActionClass(btnTimeInMinutes);
 		}
-		System.out.println("*** Clicked on Hour ***");
-
-		hardWait(2);
-		try {
-			clickUsingActionsClass(btnTimeInMinutes);
-		} catch (Exception e) {
-			clickOnWebElement(btnTimeInMinutes);
-		}
-		System.out.println("*** Clicked on Minutes ***");
 
 		try {
 			hardWait(2);
@@ -1384,37 +1386,46 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 			clickOnWebElement(txtBoxCompetitionStartDate);
 		}
 		
+		System.out.println("*** Clicked on Competition Start Date field***");
+		
 		int date = this.getCurrentDate();
 		String hours = this.getCurrentHour();
 		String meridiem = this.getCurrentMeridiem();
 
+		hardWait(4);
+		try {
+			clickUsingActionsClass(driver.findElement(By.xpath("//button[@aria-current='date']")));
+		} catch (Exception e) {
+			clickOnWebElement(driver.findElement(By.xpath("//button[@aria-current='date']")));
+		}
+	
 		this.clickOnCurrentDate(date);
 		System.out.println("*** Clicked on Date ***");
 
+		hardWait(3);
 		this.clickOnCurrentTime(meridiem);
 		System.out.println("*** Clicked on Meridiem ***");
-		
-		this.hardWait(3);
+		hardWait(3);
 		try {
-			System.out.println(driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']")));
-			WebElement currentHourValue = driver
-					.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']"));
+			try {
+				System.out.println(driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']")));
+				WebElement currentHourValue = driver
+						.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']"));
 
-			this.hardWait(2);
-			Actions action = new Actions(driver);
-			action.moveToElement(currentHourValue).contextClick(currentHourValue).build().perform();
+				this.hardWait(2);
+				Actions action = new Actions(driver);
+				action.moveToElement(currentHourValue).contextClick(currentHourValue).build().perform();
+			} catch (Exception e) {
+				clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
+			}
+			System.out.println("*** Clicked on Hour ***");
+			clickUsingActionsClass(btnDefaultTimeInMinutes);
+			System.out.println("*** Clicked on Minutes ***");
+			hardWait(2);
 		} catch (Exception e) {
-			clickOnWebElement(driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']")));
+			System.out.println();
+			clickOnElementUsingActionClass(btnTimeInMinutes);
 		}
-		System.out.println("*** Clicked on Hour ***");
-
-		try {
-			clickUsingActionsClass(btnTimeInMinutes);
-		} catch (Exception e) {
-			clickOnWebElement(btnTimeInMinutes);
-		}
-
-		System.out.println("*** Clicked on Minutes ***");
 
 		try {
 			hardWait(2);
@@ -2099,6 +2110,8 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	public boolean isCompetitionEndDatewithPreviousDateOfStartDateMsgDisplayed() {
 		log.info("Starting of isCompetitionEndDatewithPreviousDateOfStartDateMsgDisplayed method");
+		scrollIntoView(driver.findElement(By.xpath("//h3[contains(text(), 'Competition Date')]")));
+		hardWait(3);
 		log.info("Ending of isCompetitionEndDatewithPreviousDateOfStartDateMsgDisplayed method");
 
 		return msgCompEndDateofPrevStartDate.isDisplayed();
@@ -2106,7 +2119,6 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 
 	public boolean isComStartDateHighRegEndDateDisplayed() {
 		log.info("Starting of isComStartDateHighRegEndDateDisplayed method");
-		scrollIntoView(driver.findElement(By.xpath("//h3[contains(text(), 'Competition Date')]")));
 		hardWait(3);
 		log.info("Ending of isComStartDateHighRegEndDateDisplayed method");
 
