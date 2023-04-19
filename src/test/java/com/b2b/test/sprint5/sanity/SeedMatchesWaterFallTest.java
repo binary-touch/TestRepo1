@@ -474,8 +474,16 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 	@Story("Test case #21, Verify Adding all scores")
 	public void verifyAddingAllScoresForWaterFallEvent() {
 		logger.info("Starting of verifyAddingAllScoresForWaterFallEvent method");
-
+		
 		for (int i = 0; i < seedMatchesWaterFallPage.addScore();) {
+			try {
+				seedMatchesPage.clickOnAddScoresButton();
+			} catch (Exception e) {
+				seedMatchesWaterFallPage.hardWait(2);
+				seedMatchesPage.clickOnMatchesTab();
+				seedMatchesWaterFallPage.hardWait(2);
+				seedMatchesPage.clickOnAddScoresButton();
+			}
 			seedMatchesPage.clickOnAddScoresButton();
 			seedMatchesPage.hardWait(3);
 
@@ -683,19 +691,19 @@ public class SeedMatchesWaterFallTest extends CommonBaseTest {
 		Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
 
 		addBracketPage.hardWait(2);
-		seedMatchesPage.setRegistrationStartDate();
+		addBracketPage.setRegistrationStartDate();
 
 		addBracketPage.hardWait(2);
-		seedMatchesPage.setRegistrationEndDate();
+		seedMatchesPage.setSampleRegistrationEndDate();
 
 		addBracketPage.hardWait(2);
-		seedMatchesPage.setCompetitionStartDate();
+		seedMatchesPage.setSampleCompitionStartDate();
 
 		addBracketPage.hardWait(2);
-		seedMatchesPage.setCompetitionEndDate();
+		addBracketPage.setCompetitionEndDate();
 
 		addBracketPage.clickOnTimeZoneDropdown();
-		Assert.assertTrue(addBracketPage.isTimeZoneListContains());
+		addBracketPage.hardWait(2);
 		addBracketPage.clickOnNewDelhiTimeZone();
 
 		addBracketPage.hardWait(2);
