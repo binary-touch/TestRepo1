@@ -379,9 +379,10 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 
 	public void clickOnAddEventButton() {
 		log.info("Starting of clickOnAddEventButton method");
-
-		this.waitForElementToBeVisible(btnAddEvent);
+		
+		this.hardWait(3);
 		try {
+			this.hardWait(3);
 			clickUsingActionsClass(btnAddEvent);
 		} catch (Exception e) {
 			elementClick(btnAddEvent);
@@ -477,6 +478,7 @@ public class AddEventPage extends DUPRBaseAutomationPage {
 	public void clickOnEventsTab() {
 		log.info("Starting of clickOnEventsTab method");
 		try {
+			this.hardWait(3);
 			clickUsingActionsClass(tabEvents);
 
 		} catch (Exception e) {

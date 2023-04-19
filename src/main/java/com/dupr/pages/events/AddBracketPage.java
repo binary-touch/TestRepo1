@@ -549,7 +549,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//input[@value='16' and @disabled]")
 	private WebElement txtBoxNumberOfTeamsDisabled;
 
-	@B2BFindBy(xpath = "//div[contains(@class,'MuiAccordionSummary-expandIconWrapper Mui-expanded')]")
+	@B2BFindBy(xpath = "//div[contains(@class,'MuiAccordionSummary-expandIconWrapper')]")
 	private WebElement ddBracketCaretIcon;
 
 	@B2BFindBy(xpath = "//div[contains(@class, 'MuiButtonBase-root MuiAccordionSummary-root Mui-expanded MuiAccordionSummary-gutters')]")
@@ -1031,7 +1031,6 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		log.info("Ending of setRegistrationStartDate method");
 	}
 
-	
 	public void setFutureRegistrationEndDate() {
 		log.info("Starting of clickOnRegistrationEndDate method");
 
@@ -1064,6 +1063,8 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			clickOnWebElement(txtBoxRegistrationEndDate);
 		}
+
+		System.out.println("***Clicked on Registration End date field***");
 
 		int date = this.getFutureDate(1);
 		Month monthValue = this.getFutureMonth(1);
@@ -1146,6 +1147,8 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 			clickOnWebElement(txtBoxRegistrationStartDate);
 		}
 
+		System.out.println("***Clicked on Registration start date field***");
+
 		try {
 			int date = this.getFutureDate(1);
 			String hours = this.getCurrentHour();
@@ -1210,7 +1213,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			clickOnWebElement(txtBoxRegistrationEndDate);
 		}
-		
+
 		System.out.println("*** Clicked on Registration End Date field***");
 
 		int date = this.getCurrentDate();
@@ -1300,7 +1303,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			clickOnWebElement(btnTimeInMinutes);
 		}
-		
+
 		System.out.println("*** Clicked on Minutes ***");
 
 		try {
@@ -1325,8 +1328,8 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			clickOnWebElement(txtBoxCompetitionEndDate);
 		}
-		
-		System.out.println("*** Clicked on Competition End Date field***");
+
+		System.out.println("***Clicked on Competition End date field***");
 
 		int date = this.getCurrentDate();
 		String hours = this.getCurrentHour();
@@ -1381,15 +1384,15 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		scrollDown(500);
 		hardWait(2);
 		try {
-			clickUsingActionsClass(txtBoxCompetitionStartDate);
+			clickOnElementUsingActionClass(txtBoxCompetitionStartDate);
 		} catch (Exception e) {
 			clickOnWebElement(txtBoxCompetitionStartDate);
 		}
-		
+
 		System.out.println("*** Clicked on Competition Start Date field***");
-		
-		int date = this.getCurrentDate();
+
 		String hours = this.getCurrentHour();
+		System.out.println("Hour value is :" + hours);
 		String meridiem = this.getCurrentMeridiem();
 
 		hardWait(4);
@@ -1398,14 +1401,14 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			clickOnWebElement(driver.findElement(By.xpath("//button[@aria-current='date']")));
 		}
-	
-		this.clickOnCurrentDate(date);
+
 		System.out.println("*** Clicked on Date ***");
 
 		hardWait(3);
 		this.clickOnCurrentTime(meridiem);
 		System.out.println("*** Clicked on Meridiem ***");
-		hardWait(3);
+
+		hardWait(4);
 		try {
 			try {
 				System.out.println(driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']")));
@@ -1419,12 +1422,17 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 				clickOnWebElement(driver.findElement(By.xpath("//span[contains(text(),'" + hours + "')]")));
 			}
 			System.out.println("*** Clicked on Hour ***");
-			clickUsingActionsClass(btnDefaultTimeInMinutes);
+
+			hardWait(2);
+			try {
+				btnDefaultTimeInMinutes.click();
+			} catch (Exception e) {
+				clickOnElementUsingActionClass(btnTimeInMinutes);
+			}
 			System.out.println("*** Clicked on Minutes ***");
 			hardWait(2);
 		} catch (Exception e) {
 			System.out.println();
-			clickOnElementUsingActionClass(btnTimeInMinutes);
 		}
 
 		try {
@@ -1455,7 +1463,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		int date = this.getFutureDate(2);
 		Month monthValue = this.getFutureMonth(2);
 		String mValue = monthValue.toString();
-		
+
 		String hours = this.getCurrentHour();
 		System.out.println("Hour value is :" + hours);
 		String meridiem = this.getCurrentMeridiem();
@@ -1471,7 +1479,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 			if ((mValue).equalsIgnoreCase(monthvalue)) {
 				hardWait(4);
 				this.clickOnCurrentDate(date);
-				
+
 			} else {
 				try {
 					clickOnWebElement(driver.findElement(By.xpath("//button[@title='Next month']")));
@@ -1484,11 +1492,11 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 			e.printStackTrace();
 		}
 		System.out.println("*** Clicked on Date ***");
-		
+
 		hardWait(3);
 		this.clickOnCurrentTime(meridiem);
 		System.out.println("*** Clicked on Meridiem ***");
-		
+
 		hardWait(4);
 		try {
 			try {
@@ -1503,7 +1511,7 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 				clickOnWebElement(driver.findElement(By.cssSelector("div>span[aria-label='" + hours + " hours']")));
 			}
 			System.out.println("*** Clicked on Hour ***");
-			
+
 			hardWait(2);
 			try {
 				btnDefaultTimeInMinutes.click();
@@ -2037,7 +2045,6 @@ public class AddBracketPage extends DUPRBaseAutomationPage {
 		} catch (Exception e) {
 			clickUsingActionsClass(btnPublishEvent);
 		}
-		
 
 		log.info("Ending of clickOnPublishEventButton method");
 	}

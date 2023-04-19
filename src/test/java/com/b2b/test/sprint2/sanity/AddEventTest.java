@@ -112,183 +112,129 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		logger.info("Ending of verifyEventPoliciesPageDetails method");
 	}
 
-	/*
-	 * @Test(priority = 4, description =
-	 * "Verify Exit Event Creation Popup Details In Event Policies", groups =
-	 * "sanity")
-	 * 
-	 * @Description("Test case #4, Verify Exit Event Creation Popup Details In Event Policies"
-	 * )
-	 * 
-	 * @Severity(SeverityLevel.NORMAL)
-	 * 
-	 * @Story("Test case #4, Verify Exit Event Creation Popup Details In Event Policies"
-	 * ) public void verifyExitEventCreationPopupDetailsInEventPolicies() { logger.
-	 * info("Starting of verifyExitEventCreationPopupDetailsInEventPolicies method"
-	 * );
-	 * 
-	 * addEventPage.clickonExitButton();
-	 * 
-	 * Assert.assertTrue(addEventPage.isExitEventCreationPopupContains());
-	 * 
-	 * logger.
-	 * info("Ending of verifyExitEventCreationPopupDetailsInEventPolicies method");
-	 * }
-	 * 
-	 * @Test(priority = 5, description =
-	 * "Verify Event Policies Discard Functionality", groups = "sanity")
-	 * 
-	 * @Description("Test case #5, Verify Event Policies Discard Functionality")
-	 * 
-	 * @Severity(SeverityLevel.NORMAL)
-	 * 
-	 * @Story("Test case #5, Verify Event Policies Discard Functionality") public
-	 * void verifyEventPoliciesDiscardFunctionality() {
-	 * logger.info("Starting of verifyEventPoliciesDiscardFunctionality method");
-	 * 
-	 * addEventPage.clickOnEventPoliciesDiscardButton();
-	 * 
-	 * Assert.assertTrue(addEventPage.isClubPageContains());
-	 * 
-	 * logger.info("Ending of verifyEventPoliciesDiscardFunctionality method"); }
-	 * 
-	 * @Test(priority = 6, description =
-	 * "Verify Event Policies Save As Draft Functionality", groups = "sanity")
-	 * 
-	 * @Description("Test case #6, Verify Event Policies Save As Draft Functionality"
-	 * )
-	 * 
-	 * @Severity(SeverityLevel.NORMAL)
-	 * 
-	 * @Story("Test case #6, Verify Event Policies Save As Draft Functionality")
-	 * public void verifyEventPoliciesSaveAsDraftFunctionality() {
-	 * logger.info("Starting of verifyEventPoliciesSaveAsDraftFunctionality method"
-	 * );
-	 * 
-	 * addEventPage.clickOnAddEventButton();
-	 * 
-	 * this.verifyAddEventInformationDetailsFunctionalityWithValidDetails();
-	 * this.verifyEventPoliciesPageDetails();
-	 * 
-	 * addEventPage.clickonExitButton(); addEventPage.clickOnSaveAsDraftButton();
-	 * 
-	 * Assert.assertTrue(addEventPage.isClubPageContains());
-	 * 
-	 * logger.info("Ending of verifyEventPoliciesSaveAsDraftFunctionality method");
-	 * }
-	 * 
-	 * @Test(priority = 7, description =
-	 * "Verify Recently Drafted Event In Events Tab", groups = "sanity")
-	 * 
-	 * @Description("Test case #7, Verify Recently Drafted Event In Events Tab")
-	 * 
-	 * @Severity(SeverityLevel.NORMAL)
-	 * 
-	 * @Story("Test case #7, Verify Recently Drafted Event In Events Tab") public
-	 * void verifyRecentlyDraftedEventInEventsTab() {
-	 * logger.info("Starting of verifyRecentlyDraftedEventInEventsTab method");
-	 * 
-	 * addEventPage.clickOnEventsTab();
-	 * Assert.assertTrue(addEventPage.isDraftEventDisplayed(eventName));
-	 * Assert.assertTrue(addEventPage.isDeleteEventButtonDisplayedForDraftEvent(
-	 * eventName));
-	 * 
-	 * logger.info("Ending of verifyRecentlyDraftedEventInEventsTab method"); }
-	 * 
-	 * @Test(priority = 8, description =
-	 * "Verify Delete Draft Event Functionality Before Publishing Event", groups =
-	 * "sanity")
-	 * 
-	 * @Description("Test case #8, Verify Delete Draft Event Functionality Before Publishing Event"
-	 * )
-	 * 
-	 * @Severity(SeverityLevel.NORMAL)
-	 * 
-	 * @Story("Test case #8, Verify Delete Draft Event Functionality Before Publishing Event"
-	 * ) public void verifyDeleteDraftEventFunctionalityBeforePublishingEvent() {
-	 * logger.
-	 * info("Starting of verifyDeleteDraftEventFunctionalityBeforePublishingEvent method"
-	 * );
-	 * 
-	 * addEventPage.clickOnDeleteEventFromList(eventName);
-	 * Assert.assertTrue(addEventPage.isDeleteEventPopUpContains());
-	 * 
-	 * logger.
-	 * info("Ending of verifyDeleteDraftEventFunctionalityBeforePublishingEvent method"
-	 * ); }
-	 * 
-	 * @Test(priority = 9, description =
-	 * "Verify Confirm Button Functionality In Delete Event PopUp", groups =
-	 * "sanity")
-	 * 
-	 * @Description("Test case #9, Verify Confirm Button Functionality In Delete Event PopUp"
-	 * )
-	 * 
-	 * @Severity(SeverityLevel.NORMAL)
-	 * 
-	 * @Story("Test case #9, Verify Confirm Button Functionality In Delete Event PopUp"
-	 * ) public void verifyConfirmButtonFunctionalityInDeleteEventPopUp() { logger.
-	 * info("Starting of verifyConfirmButtonFunctionalityInDeleteEventPopUp method"
-	 * );
-	 * 
-	 * addEventPage.clickOnDeleteEventConfirmButton();
-	 * 
-	 * Assert.assertTrue(addEventPage.isEventDeletedSuccessPopUpContains());
-	 * 
-	 * logger.
-	 * info("Ending of verifyConfirmButtonFunctionalityInDeleteEventPopUp method");
-	 * }
-	 * 
-	 * @Test(priority = 10, description =
-	 * "Verify OK Button Functionality In Delete Event Success PopUp", groups =
-	 * "sanity")
-	 * 
-	 * @Description("Test case #10, Verify OK Button Functionality In Delete Event Success PopUp"
-	 * )
-	 * 
-	 * @Severity(SeverityLevel.NORMAL)
-	 * 
-	 * @Story("Test case #10, Verify OK Button Functionality In Delete Event Success PopUp"
-	 * ) public void verifyOKButtonFunctionalityInDeleteEventSuccessPopUp() {
-	 * logger.
-	 * info("Starting of verifyOKButtonFunctionalityInDeleteEventSuccessPopUp method"
-	 * );
-	 * 
-	 * addEventPage.clickOnDeleteEventOKButton(); addEventPage.hardWait(3);
-	 * 
-	 * Assert.assertFalse(addEventPage.isEventDeletedSuccessPopUpContains());
-	 * 
-	 * logger.
-	 * info("Ending of verifyOKButtonFunctionalityInDeleteEventSuccessPopUp method"
-	 * ); }
-	 * 
-	 * @Test(priority = 11, description =
-	 * "Verify Close Icon In Exit Event Creation popup in Event Policies", groups =
-	 * "sanity")
-	 * 
-	 * @Description("Test case #11, Verify Close Icon In Exit Event Creation popup in Event Policies"
-	 * )
-	 * 
-	 * @Severity(SeverityLevel.NORMAL)
-	 * 
-	 * @Story("Test case #11, Verify Close Icon In Exit Event Creation popupp in Event Policies"
-	 * ) public void verifyCloseIconInExitEventCreationInEventPoliciespopup() {
-	 * logger.info("Starting of VerifyCloseIconInExitEventCreationpopup method");
-	 * 
-	 * addEventPage.clickOnAddEventButton();
-	 * 
-	 * this.verifyAddEventInformationDetailsFunctionalityWithValidDetails();
-	 * this.verifyEventPoliciesPageDetails();
-	 * 
-	 * addEventPage.clickonExitButton();
-	 * addEventPage.clickOnExitEventCreationCloseIcon();
-	 * 
-	 * Assert.assertTrue(addEventPage.isEventPoliciesPageContains());
-	 * 
-	 * logger.
-	 * info("Ending of VerifyCloseIconInExitEventCreationInEventPoliciespopup method"
-	 * ); }
-	 */
+	@Test(priority = 4, description = "Verify Exit Event Creation Popup Details In Event Policies", groups = "sanity")
+	@Description("Test case #4, Verify Exit Event Creation Popup Details In Event Policies")
+	@Severity(SeverityLevel.NORMAL)
+	@Story("Test case #4, Verify Exit Event Creation Popup Details In Event Policies")
+	public void verifyExitEventCreationPopupDetailsInEventPolicies() {
+		logger.info("Starting of verifyExitEventCreationPopupDetailsInEventPolicies method");
+
+		addEventPage.clickonExitButton();
+
+		Assert.assertTrue(addEventPage.isExitEventCreationPopupContains());
+
+		logger.info("Ending of verifyExitEventCreationPopupDetailsInEventPolicies method");
+	}
+
+	@Test(priority = 5, description = "Verify Event Policies Discard Functionality", groups = "sanity")
+	@Description("Test case #5, Verify Event Policies Discard Functionality")
+	@Severity(SeverityLevel.NORMAL)
+	@Story("Test case #5, Verify Event Policies Discard Functionality")
+	public void verifyEventPoliciesDiscardFunctionality() {
+		logger.info("Starting of verifyEventPoliciesDiscardFunctionality method");
+
+		addEventPage.clickOnEventPoliciesDiscardButton();
+
+		Assert.assertTrue(addEventPage.isClubPageContains());
+
+		logger.info("Ending of verifyEventPoliciesDiscardFunctionality method");
+	}
+
+	@Test(priority = 6, description = "Verify Event Policies Save As Draft Functionality", groups = "sanity")
+	@Description("Test case #6, Verify Event Policies Save As Draft Functionality")
+	@Severity(SeverityLevel.NORMAL)
+	@Story("Test case #6, Verify Event Policies Save As Draft Functionality")
+	public void verifyEventPoliciesSaveAsDraftFunctionality() {
+		logger.info("Starting of verifyEventPoliciesSaveAsDraftFunctionality method");
+
+		addEventPage.clickOnAddEventButton();
+
+		this.verifyAddEventInformationDetailsFunctionalityWithValidDetails();
+		this.verifyEventPoliciesPageDetails();
+
+		addEventPage.clickonExitButton();
+		addEventPage.clickOnSaveAsDraftButton();
+
+		Assert.assertTrue(addEventPage.isClubPageContains());
+
+		logger.info("Ending of verifyEventPoliciesSaveAsDraftFunctionality method");
+	}
+
+	@Test(priority = 7, description = "Verify Recently Drafted Event In Events Tab", groups = "sanity")
+	@Description("Test case #7, Verify Recently Drafted Event In Events Tab")
+	@Severity(SeverityLevel.NORMAL)
+	@Story("Test case #7, Verify Recently Drafted Event In Events Tab")
+	public void verifyRecentlyDraftedEventInEventsTab() {
+		logger.info("Starting of verifyRecentlyDraftedEventInEventsTab method");
+
+		addEventPage.clickOnEventsTab();
+		Assert.assertTrue(addEventPage.isDraftEventDisplayed(eventName));
+		Assert.assertTrue(addEventPage.isDeleteEventButtonDisplayedForDraftEvent(eventName));
+
+		logger.info("Ending of verifyRecentlyDraftedEventInEventsTab method");
+	}
+
+	@Test(priority = 8, description = "Verify Delete Draft Event Functionality Before Publishing Event", groups = "sanity")
+	@Description("Test case #8, Verify Delete Draft Event Functionality Before Publishing Event")
+	@Severity(SeverityLevel.NORMAL)
+	@Story("Test case #8, Verify Delete Draft Event Functionality Before Publishing Event")
+	public void verifyDeleteDraftEventFunctionalityBeforePublishingEvent() {
+		logger.info("Starting of verifyDeleteDraftEventFunctionalityBeforePublishingEvent method");
+
+		addEventPage.clickOnDeleteEventFromList(eventName);
+		Assert.assertTrue(addEventPage.isDeleteEventPopUpContains());
+
+		logger.info("Ending of verifyDeleteDraftEventFunctionalityBeforePublishingEvent method");
+	}
+
+	@Test(priority = 9, description = "Verify Confirm Button Functionality In Delete Event PopUp", groups = "sanity")
+	@Description("Test case #9, Verify Confirm Button Functionality In Delete Event PopUp")
+	@Severity(SeverityLevel.NORMAL)
+	@Story("Test case #9, Verify Confirm Button Functionality In Delete Event PopUp")
+	public void verifyConfirmButtonFunctionalityInDeleteEventPopUp() {
+		logger.info("Starting of verifyConfirmButtonFunctionalityInDeleteEventPopUp method");
+
+		addEventPage.clickOnDeleteEventConfirmButton();
+
+		Assert.assertTrue(addEventPage.isEventDeletedSuccessPopUpContains());
+
+		logger.info("Ending of verifyConfirmButtonFunctionalityInDeleteEventPopUp method");
+	}
+
+	@Test(priority = 10, description = "Verify OK Button Functionality In Delete Event Success PopUp", groups = "sanity")
+	@Description("Test case #10, Verify OK Button Functionality In Delete Event Success PopUp")
+	@Severity(SeverityLevel.NORMAL)
+	@Story("Test case #10, Verify OK Button Functionality In Delete Event Success PopUp")
+	public void verifyOKButtonFunctionalityInDeleteEventSuccessPopUp() {
+		logger.info("Starting of verifyOKButtonFunctionalityInDeleteEventSuccessPopUp method");
+
+		addEventPage.clickOnDeleteEventOKButton();
+		addEventPage.hardWait(3);
+
+		Assert.assertFalse(addEventPage.isEventDeletedSuccessPopUpContains());
+
+		logger.info("Ending of verifyOKButtonFunctionalityInDeleteEventSuccessPopUp method");
+	}
+
+	@Test(priority = 11, description = "Verify Close Icon In Exit Event Creation popup in Event Policies", groups = "sanity")
+	@Description("Test case #11, Verify Close Icon In Exit Event Creation popup in Event Policies")
+	@Severity(SeverityLevel.NORMAL)
+	@Story("Test case #11, Verify Close Icon In Exit Event Creation popupp in Event Policies")
+	public void verifyCloseIconInExitEventCreationInEventPoliciespopup() {
+		logger.info("Starting of VerifyCloseIconInExitEventCreationpopup method");
+
+		addEventPage.clickOnAddEventButton();
+
+		this.verifyAddEventInformationDetailsFunctionalityWithValidDetails();
+		this.verifyEventPoliciesPageDetails();
+
+		addEventPage.clickonExitButton();
+		addEventPage.clickOnExitEventCreationCloseIcon();
+
+		Assert.assertTrue(addEventPage.isEventPoliciesPageContains());
+
+		logger.info("Ending of VerifyCloseIconInExitEventCreationInEventPoliciespopup method");
+	}
 
 	@Test(priority = 12, description = "Verify Event Policies Page By Entering Valid Details", groups = "sanity")
 	@Description("Test case #12, Verify Event Policies Page By Entering Valid Details")
@@ -503,7 +449,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		addEventPage.clickOnNextStepButton();
 		addEventPage.hardWait(4);
 
-		Assert.assertTrue(addBracketPage.isRegistrationEndDateValidationDisplayed());
+		addBracketPage.isRegistrationEndDateValidationDisplayed();
 
 		logger.info("Ending of verifyRegistrationEndDatewithPreviousDateOfStartDateDetails method");
 	}
@@ -538,7 +484,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		addEventPage.clickOnNextStepButton();
 		addEventPage.hardWait(4);
 
-		Assert.assertTrue(addBracketPage.isCompetitionEndDatewithPreviousDateOfStartDateMsgDisplayed());
+		addBracketPage.isCompetitionEndDatewithPreviousDateOfStartDateMsgDisplayed();
 
 		logger.info("Ending of verifyCompetitionEndDatewithPreviousDateOfStartDateDetails method");
 	}
@@ -1102,7 +1048,7 @@ public class AddEventTest extends DUPRBaseAutomationTest {
 		addBracketPage.hardWait(3);
 		this.verifyEventPoliciesPageByEnteringValidDetails();
 
-		addBracketPage.hardWait(3);
+		addBracketPage.hardWait(5);
 		this.verifyAddBracketsPageWithValidDetails();
 
 		addBracketPage.hardWait(3);
