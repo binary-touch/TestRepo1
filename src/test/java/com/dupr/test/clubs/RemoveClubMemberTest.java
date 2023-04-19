@@ -50,8 +50,8 @@ public class RemoveClubMemberTest extends DUPRBaseAutomationTest {
 		removeMemberPage.clickOnMembersTab();
 
 		Assert.assertTrue(removeMemberPage.isClubMemberContains());
-		Assert.assertEquals(removeMemberPage.getDoublesTxt(), expectedAssertionsProp.getProperty("member.doubles"));
-		Assert.assertEquals(removeMemberPage.getSinglesTxt(), expectedAssertionsProp.getProperty("member.singles"));
+		Assert.assertEquals(removeMemberPage.getDoublesText(), expectedAssertionsProp.getProperty("member.doubles"));
+		Assert.assertEquals(removeMemberPage.getSinglesText(), expectedAssertionsProp.getProperty("member.singles"));
 
 		logger.info("Ending of verifyDetailsDisplayedInClubPageMembersTab method");
 	}
@@ -63,7 +63,7 @@ public class RemoveClubMemberTest extends DUPRBaseAutomationTest {
 	public void verifyKebabMenuFunctionalityUnderMemebersTab() {
 		logger.info("Starting of verifyKebabMenuFunctionalityUnderMemebersTab method");
 
-		clubMemberName = removeMemberPage.getMemberNameTxt();
+		clubMemberName = removeMemberPage.getMemberNameText();
 
 		clubLogoPage.hardWait(2);
 		removeMemberPage.clickOnKebabMenu();
@@ -97,7 +97,7 @@ public class RemoveClubMemberTest extends DUPRBaseAutomationTest {
 
 		removeMemberPage.clickOnSearch(clubMemberName);
 
-		Assert.assertEquals(removeMemberPage.getNoResultsTxt(), expectedAssertionsProp.getProperty("member.removed"));
+		Assert.assertEquals(removeMemberPage.getNoResultsText(), expectedAssertionsProp.getProperty("member.removed"));
 
 		logger.info("Ending of verifyMemberSearchFieldWithRemovedClubMemberName method");
 	}

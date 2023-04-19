@@ -269,6 +269,7 @@ public class AddAMatchPage extends DUPRBaseAutomationPage {
 
 	public void setLocationInDoubles(String location) {
 		log.info("Starting of setLocationInDoubles method");
+
 		this.hardWait(3);
 		explicitWait(txtBoxLocation);
 		this.clickOnWebElement(txtBoxLocation);
@@ -348,8 +349,6 @@ public class AddAMatchPage extends DUPRBaseAutomationPage {
 
 		this.implicitWait();
 		this.clickOnWebElement(txtBoxMatchDate);
-		// txtBoxMatchDate.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
-		// txtBoxMatchDate.sendKeys(matchDate);
 
 		log.info("Ending of setMatchDate method");
 	}
@@ -429,7 +428,6 @@ public class AddAMatchPage extends DUPRBaseAutomationPage {
 			break;
 		}
 		clickOnWebElement(Partner);
-		// elementClick(Partner);
 
 		log.info("Ending of clickOnAddPlayer method");
 	}
@@ -491,9 +489,9 @@ public class AddAMatchPage extends DUPRBaseAutomationPage {
 		return isDisplayed(btnOK);
 	}
 
-	public boolean isFlogIconDisplayed() {
-		log.info("Starting of isFlogIconDisplayed method");
-		log.info("Ending of isFlogIconDisplayed method");
+	public boolean isFlagIconDisplayed() {
+		log.info("Starting of isFlagIconDisplayed method");
+		log.info("Ending of isFlagIconDisplayed method");
 
 		return isDisplayed(iconFlog);
 	}
@@ -523,9 +521,9 @@ public class AddAMatchPage extends DUPRBaseAutomationPage {
 	}
 
 	public boolean isFirstOpponentDisplayed() {
-		log.info("Starting of isFirstOPPonentDisplayed method");
+		log.info("Starting of isFirstOpponentDisplayed method");
 		this.scrollDown(500);
-		log.info("Ending of isFirstOPPonentDisplayed method");
+		log.info("Ending of isFirstOpponentDisplayed method");
 
 		return isDisplayed(firstOpponent);
 	}
@@ -615,9 +613,10 @@ public class AddAMatchPage extends DUPRBaseAutomationPage {
 	}
 
 	public String getValidationScoreIsRequired() {
-		log.info("Starting of getValidationvalidationScorerequired method");
-		log.info("Ending of getValidationvalidationScorerequired method");
-        this.hardWait(3);
+		log.info("Starting of getValidationScoreIsRequired method");
+		this.hardWait(3);
+		log.info("Ending of getValidationScoreIsRequired method");
+
 		return getText(txtValidationScoreRequired);
 	}
 

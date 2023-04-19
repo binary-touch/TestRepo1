@@ -50,10 +50,10 @@ public class DUPRLoginPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//h5[text()='Password']/../following-sibling::div//p")
 	private WebElement txtPasswordValidation;
-	
+
 	@B2BFindBy(xpath = "//p[contains(text(),'Oops! Something went wrong, try again later.')]")
 	private WebElement txtLoginFailed;
-	
+
 	public DUPRLoginPage(WebDriver driver) {
 		super(driver);
 		B2BPageFactory.initElements(driver, this);
@@ -206,12 +206,12 @@ public class DUPRLoginPage extends DUPRBaseAutomationPage {
 	}
 
 	public String getPasswordMustNotExceedMaxCharactersValidationText() {
-		log.info("Starting of getPasswordMustNotExceedMaxCharactersText method");
-		log.info("Ending of getPasswordMustNotExceedMaxCharactersText method");
+		log.info("Starting of getPasswordMustNotExceedMaxCharactersValidationText method");
+		log.info("Ending of getPasswordMustNotExceedMaxCharactersValidationText method");
 
 		return getText(txtPasswordValidation);
 	}
-	
+
 	public boolean isLoginFailedValidationText() {
 		log.info("Starting of isLoginFailedValidationText method");
 		log.info("Ending of isLoginFailedValidationText method");
