@@ -44,11 +44,6 @@ public class BrowseClubsPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h3[text()='Club']")
 	private WebElement lblClub;
 
-	/*
-	 * @B2BFindBy(xpath = "//div[@class='MuiBox-root css-1821gv5']/h3/div") private
-	 * WebElement txtClubName;
-	 */
-
 	@B2BFindBy(xpath = "//h3[contains(@class, 'MuiTypography-root MuiTypography-h3')]/following-sibling::h6[1]")
 	private WebElement txtClubAddress;
 
@@ -114,7 +109,7 @@ public class BrowseClubsPage extends DUPRBaseAutomationPage {
 	}
 
 	public boolean isClubsAvailable() {
-		log.info("Starting of clickOnClub method");
+		log.info("Starting of isClubsAvailable method");
 
 		boolean isClubsAvailable = false;
 
@@ -126,7 +121,7 @@ public class BrowseClubsPage extends DUPRBaseAutomationPage {
 			}
 
 		}
-		log.info("Ending of clickOnClub method");
+		log.info("Ending of isClubsAvailable method");
 
 		return isClubsAvailable;
 	}
@@ -143,7 +138,6 @@ public class BrowseClubsPage extends DUPRBaseAutomationPage {
 			hardWait(3);
 			countAfterSearchingClub = lstClubNames.size();
 			break;
-
 		}
 
 		log.info("Ending of setSearchByClubName method");
@@ -157,7 +151,6 @@ public class BrowseClubsPage extends DUPRBaseAutomationPage {
 
 			searchedClub = clubName.getText();
 			break;
-
 		}
 
 		log.info("Ending of isClubNameDisplayed method");
@@ -168,7 +161,6 @@ public class BrowseClubsPage extends DUPRBaseAutomationPage {
 	public void setSearchByClubNameWithClubName(String clubName) {
 		log.info("Starting of setSearchByClubNameWithClubName method");
 
-		// txtBoxSearch.clear();
 		this.txtBoxSearch.sendKeys(Keys.CONTROL + "A", Keys.BACK_SPACE);
 		sendKeys(txtBoxSearch, clubName);
 
@@ -186,15 +178,8 @@ public class BrowseClubsPage extends DUPRBaseAutomationPage {
 		log.info("Starting of clickOnClubTab method");
 
 		for (WebElement clubName : lstClubNames) {
-
-			/*
-			 * name = getText(clubName); this.txtBoxSearch.sendKeys(Keys.CONTROL + "A",
-			 * Keys.BACK_SPACE); sendKeys(txtBoxSearch, name);
-			 */
-
 			clickOnWebElement(clubName);
 			break;
-
 		}
 
 		log.info("Ending of clickOnClubTab method");
@@ -228,12 +213,12 @@ public class BrowseClubsPage extends DUPRBaseAutomationPage {
 		return isClubPageContains;
 	}
 
-	public void clickOnBackArrowicon() {
-		log.info("Starting of clickOnBackArrowicon method");
+	public void clickOnBackArrowIcon() {
+		log.info("Starting of clickOnBackArrowIcon method");
 
 		clickOnWebElement(iconBackArrow);
 
-		log.info("Ending of clickOnBackArrowicon method");
+		log.info("Ending of clickOnBackArrowIcon method");
 	}
 
 	public String getSearchedClubName() {
@@ -243,14 +228,13 @@ public class BrowseClubsPage extends DUPRBaseAutomationPage {
 		return txtBoxSearch.getAttribute("value");
 	}
 
-	public int getClubCountAfterClickOnBackArrowiconOnClubPage() {
-		log.info("Starting of getClubCountAfterClickOnBackArrowiconOnClubPage method");
+	public int getClubCountAfterClickOnBackArrowIconOnClubPage() {
+		log.info("Starting of getClubCountAfterClickOnBackArrowIconOnClubPage method");
 
 		int clubCountOnBrowseClubsPage = lstClubNames.size();
 
-		log.info("Ending of getClubCountAfterClickOnBackArrowiconOnClubPage method");
+		log.info("Ending of getClubCountAfterClickOnBackArrowIconOnClubPage method");
 
 		return clubCountOnBrowseClubsPage;
 	}
-
 }

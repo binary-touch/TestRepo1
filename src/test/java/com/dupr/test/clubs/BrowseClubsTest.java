@@ -102,10 +102,10 @@ public class BrowseClubsTest extends CommonBaseTest {
 	public void verifySearchedClubResultsFunctionality() {
 		logger.info("Starting of verifySearchedClubResultsFunctionality method");
 
-		browseClubsPage.clickOnBackArrowicon();
+		browseClubsPage.clickOnBackArrowIcon();
 		Assert.assertEquals(browseClubsPage.getSearchedClubName(), BrowseClubsPage.name);
 		browseClubsPage.hardWait(3);
-		Assert.assertEquals(browseClubsPage.getClubCountAfterClickOnBackArrowiconOnClubPage(),
+		Assert.assertEquals(browseClubsPage.getClubCountAfterClickOnBackArrowIconOnClubPage(),
 				BrowseClubsPage.countAfterSearchingClub);
 
 		logger.info("Ending of verifySearchedClubResultsFunctionality method");

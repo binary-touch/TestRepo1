@@ -40,7 +40,7 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 	private WebElement lblEmailInContact;
 
 	@B2BFindBy(xpath = "//div[contains(@class,'MuiGrid-grid-md-5')]//following-sibling::div//p")
-	private WebElement lblphoneNumberInContact;
+	private WebElement lblPhoneNumberInContact;
 
 	@B2BFindBy(xpath = "//h4[@id='customized-dialog-title']")
 	private WebElement lblEditClubContactInformation;
@@ -177,7 +177,6 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h5[text()='As a Director']/following-sibling::div//h4[contains(@class,'MuiTypography-root MuiTypography-h4')]")
 	private List<WebElement> lstDirectorNames;
 
-	//@B2BFindBy(xpath = "//div[contains(@class,'MuiBox-root')]/button[contains(@class,'MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium')]/*[contains(@class,'MuiSvgIcon-root MuiSvgIcon-colorPrimary')]")
 	@B2BFindBy(xpath = "//h3[contains(text(),'Club')]/preceding-sibling::div//button")
 	private WebElement btnBackInDirectorsPage;
 
@@ -201,7 +200,7 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//h4[contains(text(),'Jalsa')]")
 	private WebElement btnJalsa;
-	
+
 	@B2BFindBys(@B2BFindBy(xpath = "//div[contains(@class,'MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation3')]//h4"))
 	private List<WebElement> lstClubNames;
 
@@ -212,8 +211,9 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 		super(driver);
 		B2BPageFactory.initElements(driver, this);
 	}
-	public static int numberLength =0;
-	
+
+	public static int numberLength = 0;
+
 	public boolean isClubPageContains() {
 		log.info("Starting of isClubPageContains method");
 
@@ -434,7 +434,6 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 	public void setClubName(String name) {
 		log.info("Starting of setClubName method");
 
-		// this.txtBoxClubName.clear();
 		this.txtBoxClubName.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		this.txtBoxClubName.sendKeys(name + "_" + randomNumber(2));
 
@@ -465,18 +464,18 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 	}
 
 	public boolean isErrorPopUpContains() {
-		log.info("Starting of isSuccessPopUpContains method");
+		log.info("Starting of isErrorPopUpContains method");
 
-		boolean isSuccessPopUpContains = false;
+		boolean isErrorPopUpContains = false;
 
 		if (isDisplayed(btnOk) && isDisplayed(iconClose)) {
 
-			isSuccessPopUpContains = true;
+			isErrorPopUpContains = true;
 		}
 
-		log.info("Ending of isSuccessPopUpContains method");
+		log.info("Ending of isErrorPopUpContains method");
 
-		return isSuccessPopUpContains;
+		return isErrorPopUpContains;
 	}
 
 	public void clickOnOkButton() {
@@ -528,7 +527,6 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 	public void setEmail(String email) {
 		log.info("Starting of setEmail method");
 
-		// this.txtBoxEmail.clear();
 		this.txtBoxEmail.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		this.txtBoxEmail.sendKeys(email);
 
@@ -543,13 +541,12 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 		String s = txtBoxPhoneNumber.getAttribute("value");
 		log.debug("Derived Phone number from the field: " + s);
 
-		 numberLength = s.length();
-	log.debug("Phone number length: " + numberLength);
+		numberLength = s.length();
+		log.debug("Phone number length: " + numberLength);
 
 		for (int i = numberLength; i > 0; i--) {
-			
+
 			log.debug("Phone number length: " + s.length());
-			//hardWait(5);
 			this.txtBoxPhoneNumber.sendKeys(Keys.BACK_SPACE);
 		}
 
@@ -748,18 +745,14 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 		log.info("Starting of selectDirectorFromDirectorsList method");
 
 		hardWait(3);
-		// String s = btnYemenirialDirector.getText();
 
 		for (WebElement director : lstDirectorNames) {
-			// System.out.println(s);
+
 			System.out.println(director.getText());
 			director.click();
-			/*
-			 * if (director.getText().equals(s)) { try { clickOnWebElement(director); }
-			 * catch (Exception e) { clickOnElement(director); }
-			 */
 			break;
 		}
+
 		log.info("Ending of selectDirectorFromDirectorsList method");
 	}
 
@@ -774,20 +767,20 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 		log.info("Starting of clickOnBackButtonInDirectorsPage method");
 
 		this.waitForElementToBeVisible(btnBackInDirectorsPage);
+
 		try {
 			Actions action = new Actions(driver);
 			action.moveToElement(btnBackInDirectorsPage).click().build().perform();
 		} catch (Exception e) {
 			clickOnWebElement(btnBackInDirectorsPage);
 		}
-		
+
 		log.info("Ending of clickOnBackButtonInDirectorsPage method");
 	}
 
 	public void clickOnSimbaOrganizerButton() {
 		log.info("Starting of clickOnSimbaOrganizerButton method");
 
-		//this.waitForElementToBeVisible(btnSimbaOrganizer);
 		elementClick(btnSimbaOrganizer);
 
 		log.info("Ending of clickOnItalicImageButton method");
@@ -796,15 +789,14 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 	public void clickOnClubNameButton() {
 		log.info("Starting of clickOnClubNameButton method");
 
-			for (WebElement clubName : lstClubNames) {
-
-				try {
-					clickUsingActionsClass(clubName);
-				} catch (Exception e) {
-					clickOnWebElement(clubName);
-				}
-				break;
+		for (WebElement clubName : lstClubNames) {
+			try {
+				clickUsingActionsClass(clubName);
+			} catch (Exception e) {
+				clickOnWebElement(clubName);
 			}
+			break;
+		}
 
 		log.info("Ending of clickOnClubNameButton method");
 	}
@@ -870,13 +862,13 @@ public class EditClubInfoPage extends DUPRBaseAutomationPage {
 
 	public void clickOnEditCloseIcon() {
 		log.info("Starting of clickOnEditCloseIcon method");
-		
+
 		try {
 			clickUsingActionsClass(iconCloseEditPopup);
 		} catch (Exception e) {
 			clickOnWebElement(iconCloseEditPopup);
 		}
-		
+
 		log.info("Starting of clickOnEditCloseIcon method");
 	}
 }

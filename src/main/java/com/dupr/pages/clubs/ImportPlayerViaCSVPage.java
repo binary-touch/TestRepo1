@@ -132,6 +132,7 @@ public class ImportPlayerViaCSVPage extends DUPRBaseAutomationPage {
 
 	public void clickOnImportPlayersViaCSVButton() {
 		log.info("Starting of clickOnImportPlayersViaCSVButton method");
+
 		hardWait(2);
 		this.waitForElementToBeVisible(btnImportPlayersViaCSV);
 		elementClick(btnImportPlayersViaCSV);
@@ -173,11 +174,11 @@ public class ImportPlayerViaCSVPage extends DUPRBaseAutomationPage {
 	}
 
 	public void uploadPlayerCSVFile(String filepath) {
-		log.info("Starting of setBrowseFilesButton method");
+		log.info("Starting of uploadPlayerCSVFile method");
 
 		this.inpBrowseFile.sendKeys(filepath);
 
-		log.info("Ending of setBrowseFilesButton method");
+		log.info("Ending of uploadPlayerCSVFile method");
 	}
 
 	public void clickOnRemoveFileButton() {
