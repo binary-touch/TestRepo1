@@ -1128,7 +1128,7 @@ public class SeedMatchesPage extends DUPRBaseAutomationPage {
 	}
 
 	public void clickOnSubmitButton() {
-		// log.info("Starting of clickOnSubmitButton method");
+		 log.info("Starting of clickOnSubmitButton method");
 		try {
 			clickUsingActionsClass(btnSubmit);
 

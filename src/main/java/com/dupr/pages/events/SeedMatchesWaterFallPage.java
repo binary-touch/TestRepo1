@@ -238,6 +238,18 @@ public class SeedMatchesWaterFallPage extends DUPRBaseAutomationPage {
 
 		return isSeedMatchesDisabled;
 	}
+	public void clickOnMatchesTab() {
+		log.info("Starting of clickOnMatchesTab method");
+		try {
+			clickOnElementUsingActionClass(tabMatches);
+			hardWait(4);
+		} catch (Exception e) {
+			clickOnWebElement(tabMatches);
+			hardWait(4);
+		}
+
+		log.info("Ending of clickOnMatchesTab method");
+	}
 
 	public boolean isBracketHomePageContains() {
 		log.info("Starting of isBracketHomePageContains method");
@@ -646,9 +658,16 @@ public class SeedMatchesWaterFallPage extends DUPRBaseAutomationPage {
 
 	public int addScore() {
 		log.info("Starting of addScore method");
-
+		int addScore =0;
 		hardWait(4);
-		int addScore = btnAddScores.size();
+		try {
+			addScore = btnAddScores.size();
+		} catch (Exception e) {
+			this.clickOnMatchesTab();
+			this.hardWait(2);
+			addScore = btnAddScores.size();
+		}
+		 
 		if (addScore == 0) {
 			for (int i = 1; i < 6; i++) {
 				int scroll = i * 1000;
