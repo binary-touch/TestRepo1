@@ -145,6 +145,7 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 	public void clickOnRemoveLogoOption() {
 		log.info("Starting of clickOnRemoveLogoOption method");
 		try {
+			this.hardWait(3);
 			clickUsingActionsClass(btnRemoveLogo);
 		} catch (Exception e) {
 			clickOnWebElement(btnRemoveLogo);
@@ -154,8 +155,9 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 
 	public void clickOnChangeLogoOption() {
 		log.info("Starting of clickOnChangeLogoOption method");
-		
+
 		try {
+			this.hardWait(3);
 			clickUsingActionsClass(btnChangeLogo);
 		} catch (Exception e) {
 			clickOnWebElement(btnChangeLogo);
@@ -166,7 +168,7 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 
 	public void clickOnBrowseClubs() {
 		log.info("Starting of clickOnBrowseClubs method");
-         hardWait(5);
+		hardWait(5);
 		elementClick(btnBrowseClubs);
 
 		log.info("Ending of clickOnBrowseClubs method");
@@ -362,8 +364,8 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 				this.txtBoxSearch.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 
 				sendKeys(txtBoxSearch, "Simba");
-				//this.txtBoxSearch.sendKeys(Keys.ENTER);
-				
+				// this.txtBoxSearch.sendKeys(Keys.ENTER);
+
 				this.txtBoxSearch.sendKeys(Keys.BACK_SPACE);
 				sendKeys(txtBoxSearch, "a");
 				this.waitForElementToBeVisible(lblSimbaClubName);

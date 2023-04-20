@@ -114,7 +114,7 @@ public class ProfilePicturePage extends DUPRBaseAutomationPage {
 	public void clickOnCameraIcon() {
 		log.info("Starting of clickOnCameraIcon method");
 
-		waitForElementToBeVisible(iconCamera);
+		this.hardWait(3);
 		try {
 			this.hardWait(3);
 			clickUsingActionsClass(iconCamera);
@@ -185,7 +185,7 @@ public class ProfilePicturePage extends DUPRBaseAutomationPage {
 
 		log.info("Ending of clickOnCloseIconOnEventLogo method");
 	}
-	
+
 	public void clickOnCloseIconOnProfilePicture() {
 		log.info("Starting of clickOnCloseIconOnProfilePicture method");
 		try {
@@ -220,7 +220,7 @@ public class ProfilePicturePage extends DUPRBaseAutomationPage {
 	public void clickOnCancelButton() {
 		log.info("Starting of clickOnCancelButton method");
 
-		this.waitForElementVisibilty(btnCancel, 5);
+		this.hardWait(3);
 		try {
 			clickUsingActionsClass(btnCancel);
 		} catch (Exception e) {
