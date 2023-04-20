@@ -20,9 +20,6 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h3[text()='Club']")
 	private WebElement lblClub;
 
-	// @B2BFindBy(xpath = "//div[@class='MuiBox-root
-	// css-1srz93r']/input[@type='file']")
-	// @B2BFindBy(xpath = "//label[text()='Choose file']")
 	@B2BFindBy(xpath = "//input[@type='file' and @accept]")
 	private WebElement chooseFile;
 
@@ -47,14 +44,9 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//div/button[contains(@class,'MuiButton-contained')]/preceding-sibling::button[text()='Cancel']")
 	private WebElement btnCancel;
 
-	// @B2BFindBy(xpath
-	// ="//ul[@id='composition-menu']/li/following-sibling::li[text()='Remove
-	// Logo']")
 	@B2BFindBy(xpath = "//li[text()='Remove Logo']")
 	private WebElement btnRemoveLogo;
 
-	// @B2BFindBy(xpath
-	// ="//ul[@id='composition-menu']/li/following-sibling::li/preceding-sibling::li")
 	@B2BFindBy(xpath = "//li[contains(text(),'Change Logo')]")
 	private WebElement btnChangeLogo;
 
@@ -136,7 +128,9 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 
 	public String getClubLogoText() {
 		log.info("Starting of getClubLogoText method");
+
 		System.out.println(getText(lblClubLogo));
+
 		log.info("Ending of getClubLogoText method");
 
 		return getText(lblClubLogo);
@@ -144,12 +138,14 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 
 	public void clickOnRemoveLogoOption() {
 		log.info("Starting of clickOnRemoveLogoOption method");
+
 		try {
 			this.hardWait(3);
 			clickUsingActionsClass(btnRemoveLogo);
 		} catch (Exception e) {
 			clickOnWebElement(btnRemoveLogo);
 		}
+
 		log.info("Ending of clickOnRemoveLogoOption method");
 	}
 
@@ -245,7 +241,9 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 
 	public String getSelectImageToUploadText() {
 		log.info("Starting of getSelectImageToUploadText method");
+
 		System.out.println(getText(lblSelectAnImageToUpload));
+
 		log.info("Ending of getSelectImageToUploadText method");
 
 		return getText(lblSelectAnImageToUpload);
@@ -333,7 +331,6 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 					break;
 				}
 			}
-
 			break;
 		}
 		log.info("Ending of clickOnClubInBrowsePlayersPage method");
@@ -350,11 +347,12 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 				break;
 			}
 		}
+
 		log.info("Ending of isClubsDisplayedInMyClubs method");
 
 		return clubState;
 	}
-
+	
 	public void clickOnSimbaClubName() {
 		log.info("Starting of clickOnSimbaClubName method");
 
@@ -364,8 +362,6 @@ public class ClubLogoPage extends DUPRBaseAutomationPage {
 				this.txtBoxSearch.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 
 				sendKeys(txtBoxSearch, "Simba");
-				// this.txtBoxSearch.sendKeys(Keys.ENTER);
-
 				this.txtBoxSearch.sendKeys(Keys.BACK_SPACE);
 				sendKeys(txtBoxSearch, "a");
 				this.waitForElementToBeVisible(lblSimbaClubName);

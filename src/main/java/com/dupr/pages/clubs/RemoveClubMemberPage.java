@@ -65,20 +65,20 @@ public class RemoveClubMemberPage extends DUPRBaseAutomationPage {
 		log.info("Ending of clickOnMembersTab method");
 	}
 
-	public String getMemberNameTxt() {
-		log.info("Starting of getMemberNameTxt method");
+	public String getMemberNameText() {
+		log.info("Starting of getMemberNameText method");
 
 		String memberName = getText(txtMemberName);
 		System.out.println(memberName);
 
-		log.info("Ending of getMemberNameTxt method");
+		log.info("Ending of getMemberNameText method");
 
 		return memberName;
 	}
 
-	public String getDoublesTxt() {
-		log.info("Starting of getDoublesTxt method");
-		log.info("Ending of getDoublesTxt method");
+	public String getDoublesText() {
+		log.info("Starting of getDoublesText method");
+		log.info("Ending of getDoublesText method");
 
 		return getText(txtDoubles);
 	}
@@ -116,6 +116,8 @@ public class RemoveClubMemberPage extends DUPRBaseAutomationPage {
 	}
 
 	public boolean getDoubles() {
+		log.info("Starting of getDoubles method");
+
 		boolean DoublesTxt = false;
 
 		try {
@@ -128,12 +130,14 @@ public class RemoveClubMemberPage extends DUPRBaseAutomationPage {
 			DoublesTxt = false;
 
 		}
+		log.info("Ending of getDoubles method");
+
 		return DoublesTxt;
 	}
 
-	public String getSinglesTxt() {
-		log.info("Starting of getSinglesTxt method");
-		log.info("Ending of getSinglesTxt method");
+	public String getSinglesText() {
+		log.info("Starting of getSinglesText method");
+		log.info("Ending of getSinglesText method");
 
 		return getText(txtSingles);
 	}
@@ -198,16 +202,17 @@ public class RemoveClubMemberPage extends DUPRBaseAutomationPage {
 		log.info("Ending of clickOnSearch method");
 	}
 
-	public String getNoResultsTxt() {
-		log.info("Starting of getNoResultsTxt method");
-		log.info("Ending of getNoResultsTxt method");
+	public String getNoResultsText() {
+		log.info("Starting of getNoResultsText method");
 		this.hardWait(3);
+		log.info("Ending of getNoResultsText method");
+
 		return getText(txtNoResults);
 	}
 
-	public String getRemovedMemberNameTxt() {
-		log.info("Starting of getRemovedMemberNameTxt method");
-		log.info("Ending of getRemovedMemberNameTxt method");
+	public String getRemovedMemberNameText() {
+		log.info("Starting of getRemovedMemberNameText method");
+		log.info("Ending of getRemovedMemberNameText method");
 
 		return getText(txtRemovedMemberName);
 	}

@@ -11,7 +11,7 @@ import com.b2b.support.B2BFindBy;
 import com.b2b.support.B2BFindBys;
 import com.dupr.pages.DUPRBaseAutomationPage;
 
-public class MyClubsPage   extends DUPRBaseAutomationPage  {
+public class MyClubsPage extends DUPRBaseAutomationPage {
 
 	private static final Logger log = LogManager.getLogger(MyClubsPage.class);
 
@@ -35,20 +35,18 @@ public class MyClubsPage   extends DUPRBaseAutomationPage  {
 
 	@B2BFindBys(@B2BFindBy(xpath = "//div[@class='MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 css-iol86l']"))
 	public List<WebElement> lstClubs;
-	
+
 	@B2BFindBy(xpath = "//div[@class='MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 css-iol86l']/div[1]")
 	private WebElement tabFirstClubCard;
 
 	public MyClubsPage(WebDriver driver) {
 		super(driver);
-	
 	}
 
 	public void clickOnMyClubsTab() {
 		log.info("Starting of clickOnMyClubsTab method");
 
 		clickOnElement(tabMyClubs);
-		// tabMyClubs.click();
 
 		log.info("Ending of clickOnMyClubsTab method");
 	}
@@ -78,10 +76,8 @@ public class MyClubsPage   extends DUPRBaseAutomationPage  {
 				isClubsAvailableOnClubsPage = true;
 			}
 		} catch (Exception e) {
-
 			isClubsAvailableOnClubsPage = false;
 			log.info("User has not joined in any clubs");
-
 		}
 
 		log.info("Ending of isClubsAvailableOnClubsPage method");
@@ -96,7 +92,7 @@ public class MyClubsPage   extends DUPRBaseAutomationPage  {
 
 		log.info("Ending of clickOnBrowseClubsButton method");
 	}
-	
+
 	public void clickOnBackArrowIcon() {
 		log.info("Starting of clickOnBackArrowIcon method");
 
@@ -104,9 +100,9 @@ public class MyClubsPage   extends DUPRBaseAutomationPage  {
 
 		log.info("Ending of clickOnBackArrowIcon method");
 	}
-	
+
 	public void clickOnClubCard() {
-		log.info("Starting of clickOnClubCard method");		
+		log.info("Starting of clickOnClubCard method");
 
 		try {
 			if (isDisplayed(tabFirstClubCard) == true) {
@@ -114,11 +110,11 @@ public class MyClubsPage   extends DUPRBaseAutomationPage  {
 				clickOnWebElement(tabFirstClubCard);
 			}
 		} catch (Exception e) {
-			
+
 			log.info("User has not joined in any clubs");
 
 		}
 
-		log.info("Ending of clickOnClubCard method");		
+		log.info("Ending of clickOnClubCard method");
 	}
 }
