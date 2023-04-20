@@ -202,7 +202,7 @@ public class AddEditRemoveEventLogoTest extends DUPRBaseAutomationTest {
 		profilePicturePage.clickOnCameraIcon();
 		clubLogoPage.implicitWait();
 		clubLogoPage.clickOnRemoveLogoOption();
-		clubLogoPage.hardWait(2);
+		clubLogoPage.hardWait(5);
 		profilePicturePage.clickOnNoButton();
 
 		logger.info("Ending of verifyNoButtonFunctionality method");

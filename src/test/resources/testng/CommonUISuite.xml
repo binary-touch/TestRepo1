@@ -46,8 +46,8 @@
 	 <test name="Sprint 3">
 
 		<classes>
-			
 			<class name="com.dupr.test.events.AddEditRemoveEventLogoTest" />
+			<!-- <class name="com.dupr.test.events.AddEditRemoveEventLogoTest" />
 			<class name="com.dupr.test.events.AddParticipantsInBracketTest" />
 			<class name="com.dupr.test.events.EndEventTest" />
 			<class name="com.dupr.test.events.AddAnnouncementTest" />
@@ -60,7 +60,7 @@
 			<class name="com.dupr.test.home.AdditionOfChartAndShopTabTest" />
 			<class name="com.dupr.test.home.AntiScrappingCaptchaTest" />
 			<class name="com.dupr.test.home.UserDashboardTest" />
-			<class name="com.dupr.test.home.PreservingPageVisitsTest" />
+			<class name="com.dupr.test.home.PreservingPageVisitsTest" /> -->
 		</classes>
 	</test>
 

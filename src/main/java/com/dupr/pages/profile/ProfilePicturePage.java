@@ -265,11 +265,12 @@ public class ProfilePicturePage extends DUPRBaseAutomationPage {
 
 	public void clickOnNoButton() {
 		log.info("Starting of clickOnNoButton method");
-
+        
+		hardWait(4);
 		try {
 			clickUsingActionsClass(btnNo);
 		} catch (Exception e) {
-			clickOnWebElement(btnNo);
+			elementClick(btnNo);
 		}
 		log.info("Ending of clickOnNoButton method");
 	}
