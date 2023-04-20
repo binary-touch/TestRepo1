@@ -62,10 +62,6 @@ public class AddORRemoveOrganizerPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h2[contains(text(),'Add a Club Organizer')]/parent::div/descendant::input[@id='Search']")
 	private WebElement txtSearchBar;
 
-	// @B2BFindBy(xpath =
-	// "//body/div[@id='root']/div/main/div/div/div[contains(@class,
-	// 'MuiPaper-elevation MuiPaper-rounded
-	// MuiPaper-elevation0')]/div/div[contains(@class,'MuiGrid-spacing-xs-4')]/div[2]/div[1]/div[1]/div[1]/div[1]/button[1]/*[1]")
 	@B2BFindBy(xpath = "//div[@class='MuiBox-root css-0']/button[contains(@class, 'MuiIconButton-sizeSmall')]/*[@viewBox='0 0 13 13.001']")
 	private List<WebElement> iconEdit;
 
@@ -75,15 +71,12 @@ public class AddORRemoveOrganizerPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h4[text()='Edit Organiser Details']")
 	private WebElement lblEditOrganizer;
 
-	// @B2BFindBy(xpath = "//input[@id=':r1o:']")
 	@B2BFindBy(xpath = "//h5[contains(text(),'Name')]/parent::div/following-sibling::div//input")
 	private WebElement txtEditName;
 
-	// @B2BFindBy(xpath = "//input[@id=':r1s:']")
 	@B2BFindBy(xpath = "//h5[contains(text(),'Email')]/parent::div/following-sibling::div//input")
 	private WebElement txtEditEmail;
 
-	// @B2BFindBy(xpath = "//input[@id=':r1q:']")
 	@B2BFindBy(xpath = "//input[@type='tel']")
 	private WebElement txtEditNumber;
 
@@ -115,7 +108,6 @@ public class AddORRemoveOrganizerPage extends DUPRBaseAutomationPage {
 
 		elementClick(btnSeeClubDetails);
 		this.scrollDown(300);
-		// this.scrollIntoView(txtClubOrganizer);
 
 		log.info("Ending of clickOnSeeClubDetailsDropdown method");
 	}
@@ -142,7 +134,6 @@ public class AddORRemoveOrganizerPage extends DUPRBaseAutomationPage {
 	public void clickOnAddOrganizerButton() {
 		log.info("Starting of clickOnAddOrganizerButton method");
 
-		// this.scrollIntoView(txtClubOrganizer);
 		this.hardWait(2);
 		clickOnWebElement(btnAddOrganizer);
 
@@ -157,7 +148,7 @@ public class AddORRemoveOrganizerPage extends DUPRBaseAutomationPage {
 	}
 
 	public boolean isAddOrgPageContains() {
-		// log.info("Starting of isAddOrgPageContains method");
+		log.info("Starting of isAddOrgPageContains method");
 
 		boolean isAddOrgPageContains = false;
 		this.hardWait(3);
@@ -177,7 +168,6 @@ public class AddORRemoveOrganizerPage extends DUPRBaseAutomationPage {
 	public void AddingOrganizers() {
 		log.info("Starting of AddingOrganizers method");
 
-		// this.scrollIntoView(txtClubOrganizer);
 		try {
 			System.out.println(isDeleteOrganizerButtonDisplayed());
 			System.out.println(btnDelete.size());
@@ -274,7 +264,7 @@ public class AddORRemoveOrganizerPage extends DUPRBaseAutomationPage {
 
 	public void DeletingOrganizer() {
 		log.info("Starting of DeletingOrganizers method");
-		// this.scrollDown(-150);
+
 		this.hardWait(2);
 
 		for (WebElement deletOrgButton : btnDeleteOrg) {
@@ -298,6 +288,7 @@ public class AddORRemoveOrganizerPage extends DUPRBaseAutomationPage {
 
 	public void clickOnGoBackButton() {
 		log.info("Starting of clickOnGoBackButton method");
+
 		try {
 			clickOnElementUsingActionClass(btnGoBack);
 		} catch (Exception e) {
@@ -311,7 +302,6 @@ public class AddORRemoveOrganizerPage extends DUPRBaseAutomationPage {
 	public void clickOnCancelButton() {
 		log.info("Starting of clickOnCancelButton method");
 
-		// DeletingOrganizers();
 		this.hardWait(1);
 		try {
 			clickOnElementUsingActionClass(btnCancel);
@@ -319,13 +309,13 @@ public class AddORRemoveOrganizerPage extends DUPRBaseAutomationPage {
 			clickOnWebElement(btnCancel);
 
 		}
-		
 
 		log.info("Ending of clickOnCancelButton method");
 	}
 
 	public void clickOnRemoveOrganizerButton() {
-		// log.info("Starting of clickOnRemoveOrganizerButton method");
+		log.info("Starting of clickOnRemoveOrganizerButton method");
+
 		this.scrollDown(-150);
 		for (int i = 1; i < btnDelete.size() - 1;) {
 
@@ -340,13 +330,14 @@ public class AddORRemoveOrganizerPage extends DUPRBaseAutomationPage {
 				this.hardWait(1);
 				clickOnWebElement(btnRemoveOrganizer);
 			}
-
 		}
+
 		log.info("Ending of clickOnRemoveOrganizerButton method");
 	}
 
 	public void clickOnRemoveOrgButton() {
-		log.info("Starting of clickOnRemoveOrganizerButton method");
+		log.info("Starting of clickOnRemoveOrgButton method");
+
 		this.scrollDown(-150);
 		for (int i = 1; i < 2; i++) {
 
@@ -361,9 +352,9 @@ public class AddORRemoveOrganizerPage extends DUPRBaseAutomationPage {
 				this.hardWait(1);
 				clickOnWebElement(btnRemoveOrganizer);
 			}
-
 		}
-		log.info("Ending of clickOnRemoveOrganizerButton method");
+
+		log.info("Ending of clickOnRemoveOrgButton method");
 	}
 
 	public void clickOnRemoveorganizerButton() {
@@ -381,13 +372,10 @@ public class AddORRemoveOrganizerPage extends DUPRBaseAutomationPage {
 			try {
 				this.hardWait(2);
 				mouseHoverAndClick(iconEditOrg);
-
 			} catch (Exception e) {
 				mouseHoverAndClick(iconEditOrg);
-
 			}
 			break;
-
 		}
 
 		log.info("Ending of clickOnEditIcon method");
@@ -398,8 +386,6 @@ public class AddORRemoveOrganizerPage extends DUPRBaseAutomationPage {
 
 		boolean isEditOrganizerPopupContains = false;
 		try {
-			// System.out.println(isDisplayed(btnSaveChanges));
-
 			if (isDisplayed(btnSaveChanges) && isDisplayed(txtEditEmail) && isDisplayed(txtEditName)) {
 				isEditOrganizerPopupContains = true;
 			}
@@ -421,7 +407,7 @@ public class AddORRemoveOrganizerPage extends DUPRBaseAutomationPage {
 	}
 
 	public void clearOrganizerNameEmail() {
-		log.info("Starting of setOrganizerName method");
+		log.info("Starting of clearOrganizerNameEmail method");
 
 		clickOnWebElement(txtEditName);
 		this.txtEditName.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
@@ -430,7 +416,7 @@ public class AddORRemoveOrganizerPage extends DUPRBaseAutomationPage {
 		this.txtEditEmail.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		clickOnElement(btnSaveChanges);
 
-		log.info("Ending of setOrganizerName method");
+		log.info("Ending of clearOrganizerNameEmail method");
 	}
 
 	public void setInvalidEmail(String orgInvalidEmail) {
@@ -459,6 +445,7 @@ public class AddORRemoveOrganizerPage extends DUPRBaseAutomationPage {
 
 	public void clickOnEditCancelButton() {
 		log.info("Starting of clickOnEditCancelButton method");
+
 		try {
 
 			clickUsingActionsClass(iconCancel);
@@ -491,14 +478,13 @@ public class AddORRemoveOrganizerPage extends DUPRBaseAutomationPage {
 
 	public void setOrganizerNumber(String orgNum) {
 		log.info("Starting of setOrganizerNumber method");
-try {
-	clickOnElement(txtEditNumber);
-	this.txtEditNumber.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
-	this.txtEditNumber.sendKeys(orgNum);
-} catch (Exception e) {
-	// TODO: handle exception
-}
-		
+
+		try {
+			clickOnElement(txtEditNumber);
+			this.txtEditNumber.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
+			this.txtEditNumber.sendKeys(orgNum);
+		} catch (Exception e) {
+		}
 
 		log.info("Ending of setOrganizerNumber method");
 	}

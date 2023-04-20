@@ -13,11 +13,10 @@ import com.dupr.pages.clubs.EditClubInfoPage;
 import com.dupr.pages.events.AddAnnouncementPage;
 import com.dupr.pages.events.AddBracketPage;
 import com.dupr.pages.events.AddEventPage;
-import com.dupr.pages.events.BrowseEventsPage;
 import com.dupr.pages.events.EndEventPage;
+import com.dupr.pages.events.SeedMatchesPage;
 import com.dupr.pages.events.TimeZonePage;
 import com.dupr.test.CommonBaseTest;
-import com.dupr.test.DUPRBaseAutomationTest;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
@@ -27,13 +26,14 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 
 @Epic(value = "Events")
-@Feature(value = "Add Announcement")
+@Feature(value = "Add Announcement Sanity")
 public class AddAnnouncementTest extends CommonBaseTest {
 
 	private static final Logger logger = Logger.getLogger(AddAnnouncementTest.class.getName());
 	
 	private EndEventPage endEventpage = null;
 	private AddAnnouncementPage addAnnouncementPage = null;
+	private SeedMatchesPage seedMatchesPage =null;
 
 	@BeforeClass
 	@Parameters({ "browser", "siteURL", "directorEmail", "directorPassword" })
@@ -51,6 +51,7 @@ public class AddAnnouncementTest extends CommonBaseTest {
 		this.addEventPage = new AddEventPage(this.driver);
 		this.timeZonePage = new TimeZonePage(this.driver);
 		this.addAnnouncementPage = new AddAnnouncementPage(this.driver);
+		this.seedMatchesPage = new SeedMatchesPage(this.driver);
 
 		logger.info("Ending of initMethod in AddAnnouncementTest");
 	}
@@ -63,9 +64,8 @@ public class AddAnnouncementTest extends CommonBaseTest {
 		logger.info("Starting of verifyAddAnnouncementFunctionality method");
 
 		super.verifyAddEventFunctionality();
-		super.verifyFreeBracketWithRoundRobinEventType();
+		this.verifyFreeBracketWithRoundRobinEventType();
 		addAnnouncementPage.hardWait(3);
-		super.verifyRecentlyAddedEventUnderEventsTab();
 		addAnnouncementPage.hardWait(3);
 		addAnnouncementPage.clickOnAddAnnouncementButton();
 		Assert.assertTrue(addAnnouncementPage.isSendAnnouncementPageContains());
@@ -391,6 +391,101 @@ public class AddAnnouncementTest extends CommonBaseTest {
 
 		logger.info("Ending of verifyCloseButtonFunctionality method");
 	}
+	
+	public void verifyFreeBracketWithRoundRobinEventType() {
+		logger.info("Starting of verifyFreeBracketWithRoundRobinEventType method");
+
+		/*
+		 * try{ addEventPage.clickOnAddEventButton(); }catch(Exception e) {
+		 * e.printStackTrace(); }
+		 */
+		eventName = addEventPage.setEventName(testDataProp.getProperty("event.name"));
+		addEventPage.setLocation(testDataProp.getProperty("state.address"));
+
+		addEventPage.uploadEventLogo(BASE_DIR + FILE_SEPARATOR + testDataProp.getProperty("edit.club.logo.path"));
+		memberPrice = addEventPage.setMemberPrice(testDataProp.getProperty("zero.value"));
+		nonmemberPrice = addEventPage.setNonMemberPrice(testDataProp.getProperty("zero.value"));
+		addEventPage.setAboutTheEvent(testDataProp.getProperty("about.the.event"));
+		addEventPage.clickonTextFormattingButtons();
+		addEventPage.hardWait(3);
+		
+		addEventPage.clickOnNextStepButton();
+
+		Assert.assertTrue(addEventPage.isEventPoliciesPageContains());
+
+		this.verifyEventPoliciesPageByEnteringValidDetails();
+
+		addBracketPage.hardWait(3);
+		addBracketPage.clickOnMatchTypeDropdown();
+		addBracketPage.hardWait(3);
+		addBracketPage.selectDoublesMatchType();
+
+		addBracketPage.hardWait(3);
+		addBracketPage.clickOnPlayGroupDropdown();
+		addBracketPage.hardWait(3);
+		addBracketPage.selectOpenPlayerGroup();
+
+		addBracketPage.setMinimumAgeRange(testDataProp.getProperty("min.age.range"));
+		Assert.assertTrue(addBracketPage.isEnteredMinimumAgeDisplayed(testDataProp.getProperty("min.age.range")));
+
+		addBracketPage.setMaximumAgeRange(testDataProp.getProperty("max.age.range"));
+		Assert.assertTrue(addBracketPage.isEnteredMaximumAgeDisplayed(testDataProp.getProperty("max.age.range")));
+
+		addBracketPage.setMinimumRatingRange(testDataProp.getProperty("min.rating.range"));
+		Assert.assertTrue(
+				addBracketPage.isEnteredMinimumRatingRangeDisplayed(testDataProp.getProperty("min.rating.range")));
+
+		addBracketPage.setMaximumRatingRange(testDataProp.getProperty("max.rating.range"));
+		Assert.assertTrue(
+				addBracketPage.isEnteredMaximumRatingRangeDisplayed(testDataProp.getProperty("max.rating.range")));
+
+		Assert.assertTrue(addBracketPage.isAutoGenerateButtonEnabled());
+		addBracketPage.clickOnAutoGenerateButton();
+
+		addBracketPage.hardWait(3);
+		addBracketPage.clickOnEventTypeDropdown();
+		Assert.assertTrue(addBracketPage.isEventTypeListContains());
+		addBracketPage.hardWait(3);
+		addBracketPage.selectRoundRobinEvent();
+		Assert.assertTrue(addBracketPage.isSelectedEventTypeDisplayed());
+
+		addBracketPage.hardWait(2);
+		addBracketPage.setRegistrationStartDate();
+
+		addBracketPage.hardWait(2);
+		seedMatchesPage.setSampleRegistrationEndDate();
+
+		addBracketPage.hardWait(2);
+		seedMatchesPage.setSampleCompitionStartDate();
+
+		addBracketPage.hardWait(2);
+		addBracketPage.setCompetitionEndDate();
+		addBracketPage.hardWait(2);
+		addBracketPage.clickOnTimeZoneDropdown();
+		addBracketPage.hardWait(2);
+		addBracketPage.clickOnNewDelhiTimeZone();
+
+		bracketMember = addBracketPage.setBracketClubMemberPrice(testDataProp.getProperty("paid.value"));
+		bracketNonMember = addBracketPage.setBracketNonClubMemberPrice(testDataProp.getProperty("paid.value"));
+
+		addBracketPage.setNumberOfTeams(testDataProp.getProperty("min.rating.range"));
+		Assert.assertTrue(addBracketPage.isNumberOfTeamsCountDisplayed(testDataProp.getProperty("min.rating.range")));
+
+		addBracketPage.setWaitlist(testDataProp.getProperty("min.rating.range"));
+		Assert.assertTrue(addBracketPage.isWaitListCountDisplayed(testDataProp.getProperty("min.rating.range")));
+
+		addEventPage.clickOnNextStepButton();
+
+		this.verifyNoContinueToSummaryButtonInAddAnotherBracketpopup();
+
+		this.verifyPublishEventButton();
+		addAMatchPage.hardWait(3);
+		addEventPage.clickOnEventsTab();
+		addEventPage.clickOnRecentlyAddedEvent(eventName);
+
+		logger.info("Ending of verifyFreeBracketWithRoundRobinEventType method");
+	}
+
 
 	@AfterClass
 	public void quitDriver() {

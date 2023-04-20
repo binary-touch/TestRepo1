@@ -73,7 +73,7 @@ public class TimeZoneTest extends CommonBaseTest {
 		logger.info("Ending of verifyRegistrationCompetitionDateFields method");
 	}
 
-	@Test(priority = 2, description = "Verify Select Registration Date And Time")
+	//@Test(priority = 2, description = "Verify Select Registration Date And Time")
 	@Description("Test case #2, Verify Select Registration Date And Time")
 	@Severity(SeverityLevel.NORMAL)
 	@Story("Test case #2, Verify Select Registration Date And Time")

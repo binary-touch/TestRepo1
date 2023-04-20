@@ -100,23 +100,23 @@ public class AddClubMatchPage extends DUPRBaseAutomationPage {
 		return isDisplayed(btnDirectorAddedItSelf);
 	}
 
-	public boolean isDisplayedSinglesDoublesInMatchesTab() {
-		log.info("Starting of isDisplayedSinglesDoublesInMatchesTab method");
+	public boolean isSinglesDoublesInMatchesTabDisplayed() {
+		log.info("Starting of isSinglesDoublesInMatchesTabDisplayed method");
 
-		boolean isDisplayedSinglesDoublesInMatchesTab = false;
+		boolean isSinglesDoublesInMatchesTabDisplayed = false;
 		if (isDisplayed(btnSort) && isDisplayed(btnSingles) && isDisplayed(btnDoubles)
 				&& isDisplayed(btnClearFilters)) {
-			isDisplayedSinglesDoublesInMatchesTab = true;
+			isSinglesDoublesInMatchesTabDisplayed = true;
 		}
 
-		log.info("Ending of isDisplayedSinglesDoublesInMatchesTab method");
+		log.info("Ending of isSinglesDoublesInMatchesTabDisplayed method");
 
-		return isDisplayedSinglesDoublesInMatchesTab;
+		return isSinglesDoublesInMatchesTabDisplayed;
 	}
 
 	public void clickOnAddFirstOpponentButton() {
 		log.info("Starting of clickOnAddFirstOpponentButton method");
-		
+
 		this.scrollDown(500);
 		this.waitForElementToBeVisible(btnAddFirstOpponent);
 		elementClick(btnAddFirstOpponent);
@@ -219,6 +219,7 @@ public class AddClubMatchPage extends DUPRBaseAutomationPage {
 
 	public void clickOnAddSecondOpponentButton() {
 		log.info("Starting of clickOnAddSecondOpponentButton method");
+
 		this.scrollDown(500);
 		this.waitForElementToBeVisible(btnAddSecondOpponent);
 
@@ -229,6 +230,7 @@ public class AddClubMatchPage extends DUPRBaseAutomationPage {
 
 	public void clickOnPlayerRadioButton() {
 		log.info("Starting of clickOnPlayerRadioButton method");
+
 		hardWait(3);
 		elementClick(rdoPlayer);
 

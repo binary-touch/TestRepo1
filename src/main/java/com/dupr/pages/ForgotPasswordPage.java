@@ -11,8 +11,7 @@ import com.b2b.support.B2BPageFactory;
 
 public class ForgotPasswordPage extends DUPRBaseAutomationPage {
 
-	private static final Logger log = LogManager.getLogger(DUPRLoginPage.class);
-	
+	private static final Logger log = LogManager.getLogger(ForgotPasswordPage.class);
 
 	@B2BFindBy(xpath = "(//a[text()='Search Players'])[1]")
 	private WebElement lblSearchPlayers;
@@ -42,7 +41,7 @@ public class ForgotPasswordPage extends DUPRBaseAutomationPage {
 	private WebElement txtBoxOTPOne;
 
 	@B2BFindBy(xpath = "//h4[text()='Verification code (OTP)*']/parent::div//input[@aria-label='Digit 2']")
-	private WebElement txtBoxOTPtwo;
+	private WebElement txtBoxOTPTwo;
 
 	@B2BFindBy(xpath = "//h4[text()='Verification code (OTP)*']/parent::div//input[@aria-label='Digit 3']")
 	private WebElement txtBoxOTPThree;
@@ -56,7 +55,8 @@ public class ForgotPasswordPage extends DUPRBaseAutomationPage {
 	@B2BFindBy(xpath = "//h5[text()='Confirm Password']/parent::div/following-sibling::div//input")
 	private WebElement txtBoxConfirmPassword;
 
-	//@B2BFindBy(xpath = "//button[contains(@class ,'MuiButton-contained') and text()='Confirm Password']")
+	// @B2BFindBy(xpath = "//button[contains(@class ,'MuiButton-contained') and
+	// text()='Confirm Password']")
 	@B2BFindBy(xpath = "//button[text()='Reset Password']")
 	private WebElement btnResetPassword;
 
@@ -68,10 +68,10 @@ public class ForgotPasswordPage extends DUPRBaseAutomationPage {
 
 	@B2BFindBy(xpath = "//p[text()='Email is invalid.']")
 	private WebElement txtValidationEmailInvalid;
-	
+
 	@B2BFindBy(xpath = "//p[text()='Invalid email address']")
 	private WebElement txtInvalidEmailAddress;
-	
+
 	@B2BFindBy(xpath = "//p[contains(@class, 'MuiFormHelperText-root Mui-error')]")
 	private WebElement txtValidationAccountDoesnotExist;
 
@@ -133,14 +133,14 @@ public class ForgotPasswordPage extends DUPRBaseAutomationPage {
 	}
 
 	public void setEmail(String strEmail) {
-		log.info("Starting of setEmailText method");
+		log.info("Starting of setEmail method");
 
 		this.implicitWait();
 		txtBoxEmail.sendKeys(Keys.CONTROL + "a", Keys.BACK_SPACE);
 		this.txtBoxEmail.click();
 		this.txtBoxEmail.sendKeys(strEmail);
 
-		log.info("Ending of setEmailText method");
+		log.info("Ending of setEmail method");
 	}
 
 	public void clickOnSendEmailButton() {
@@ -163,7 +163,7 @@ public class ForgotPasswordPage extends DUPRBaseAutomationPage {
 
 		this.implicitWait();
 		sendKeys(txtBoxOTPOne, strOTP1);
-		this.txtBoxOTPtwo.sendKeys(strOTP2);
+		this.txtBoxOTPTwo.sendKeys(strOTP2);
 		this.txtBoxOTPThree.sendKeys(strOTP3);
 		this.txtBoxOTPFour.sendKeys(strOTP4);
 
@@ -220,14 +220,14 @@ public class ForgotPasswordPage extends DUPRBaseAutomationPage {
 
 		return getText(txtInvalidEmailAddress);
 	}
-	
+
 	public String getAccountDoesnotExistValidationText() {
 		log.info("Starting of getAccountDoesnotExistValidationText method");
 		log.info("Ending of getAccountDoesnotExistValidationText method");
 
 		return getText(txtValidationAccountDoesnotExist);
 	}
-	
+
 	public String getEmailRequiredValidationText() {
 		log.info("Starting of getEmailRequiredValidationText method");
 		log.info("Ending of getEmailRequiredValidationText method");
